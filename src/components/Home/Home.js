@@ -1,7 +1,7 @@
-import logo from "./.ComCom.jpg";
-import './App.css';
+import logo from "../../images/.ComCom.jpg";
+import './Home.css';
 
-function App() {
+function Home() {
   return (
     <div className="App">
       <header className="App-header">
@@ -22,4 +22,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
