@@ -4,4 +4,4 @@ function Nieuws() {
     )
 }
 
-export default Nieuws
+export default Nieuws;

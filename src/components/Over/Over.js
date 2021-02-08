@@ -4,4 +4,4 @@ function Over() {
     )
 }
 
-export default Over
+export default Over;
