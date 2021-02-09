@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useLocation
 } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -18,32 +19,33 @@ import Contact from '../Contact/Contact';
 import './custom.scss';
 import './App.css';
 
-function App() {
-  const [currentTab, setCurrentTab] = useState(sessionStorage.getItem("tab"));
-
-  function changeTab(newTab) {
-    setCurrentTab(newTab);
-    sessionStorage.setItem("tab", newTab);
-  }
-
+function Navig() {
+  const location = useLocation();
+  
   return (
-    <Router>
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Navbar.Brand id="brand" onClick={() => changeTab("home")} as={Link} to="/">DSAV`40</Navbar.Brand>
+    <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar.Brand id="brand"as={Link} to="/">DSAV`40</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav id="tabs" variant="pills" activeKey={currentTab}>
-            <Nav.Link id="tab" eventKey="home" onClick={() => changeTab("home")} as={Link} to="/">Home</Nav.Link>
-            <Nav.Link eventKey="nieuws" onClick={() => changeTab("nieuws")} as={Link} to="/nieuws">Nieuws</Nav.Link>
-            <Nav.Link eventKey="over" onClick={() => changeTab("over")} as={Link} to="/over">Over</Nav.Link>
-            <Nav.Link eventKey="trainingen" onClick={() => changeTab("trainingen")} as={Link} to="/trainingen">Trainingen</Nav.Link>
-            <Nav.Link eventKey="wedstrijden"onClick={() => changeTab("wedstrijden")}  as={Link} to="/wedstrijden">Wedstrijden</Nav.Link>
-            <Nav.Link eventKey="agenda" onClick={() => changeTab("agenda")} as={Link} to="/agenda">Agenda</Nav.Link>
-            <Nav.Link eventKey="wordLid" onClick={() => changeTab("wordLid")} as={Link} to="/word_lid">Word lid!</Nav.Link>
-            <Nav.Link eventKey="contact" onClick={() => changeTab("contact")} as={Link} to="/contact">Contact</Nav.Link>
+          <Nav id="tabs" variant="pills" activeKey={location.pathname}>
+            <Nav.Link eventKey="/" id="tab" as={Link} to="/">Home</Nav.Link>
+            <Nav.Link eventKey="/nieuws" as={Link} to="/nieuws">Nieuws</Nav.Link>
+            <Nav.Link eventKey="/over" as={Link} to="/over">Over</Nav.Link>
+            <Nav.Link eventKey="/trainingen" as={Link} to="/trainingen">Trainingen</Nav.Link>
+            <Nav.Link eventKey="/wedstrijden" as={Link} to="/wedstrijden">Wedstrijden</Nav.Link>
+            <Nav.Link eventKey="/agenda" as={Link} to="/agenda">Agenda</Nav.Link>
+            <Nav.Link eventKey="/word_lid" as={Link} to="/word_lid">Word lid!</Nav.Link>
+            <Nav.Link eventKey="/contact" as={Link} to="/contact">Contact</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <Navig />
       <div>
         <Switch>
           <Route path="/nieuws">
