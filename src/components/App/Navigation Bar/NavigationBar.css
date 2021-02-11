@@ -1,0 +1,14 @@
+#brand {
+    color: white;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+#tabs * {
+    color: white;
+    font-size: large;
+}
+
+#tabs *:hover {
+    color: lightgrey;
+}
