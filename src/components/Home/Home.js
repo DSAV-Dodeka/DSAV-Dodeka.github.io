@@ -11,7 +11,7 @@ function Home() {
         </p>
         <a
           className="App-link"
-          href="https://av40.nl"
+          href="https://www.av40.nl"
           target="_blank"
           rel="noopener noreferrer"
         >
