@@ -13,7 +13,6 @@ import Wedstrijden from '../Wedstrijden/Wedstrijden';
 import Agenda from '../Agenda/Agenda';
 import WordLid from '../Word lid/WordLid';
 import Contact from '../Contact/Contact';
-import './custom.scss';
 import './App.css';
 
 function App() {
