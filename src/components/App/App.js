@@ -18,7 +18,7 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <NavigationBar />
+      <NavigationBar/>
       <div>
         <Switch>
           <Route path="/nieuws">

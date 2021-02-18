@@ -1,6 +1,15 @@
+import React from "react";
+import Nieuwsbericht from "./Nieuwsbericht/Nieuwsbericht"
+
 function Nieuws() {
     return(
-        <h1>Dit is de nieuws pagina</h1>
+        <div class="inline space-y-32">
+            <Nieuwsbericht />
+            <Nieuwsbericht />
+            <Nieuwsbericht />
+            <Nieuwsbericht />
+        </div>
+        
     )
 }
 
