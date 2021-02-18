@@ -14,6 +14,7 @@ import Agenda from '../Agenda/Agenda';
 import WordLid from '../Word lid/WordLid';
 import Contact from '../Contact/Contact';
 import './App.css';
+import ContactBar from "../Shared/Contact/ContactBar"
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           </Route>
         </Switch>
       </div>
+      <ContactBar/>
     </Router>
   );
 }
