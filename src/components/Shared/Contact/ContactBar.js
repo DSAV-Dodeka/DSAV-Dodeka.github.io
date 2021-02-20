@@ -4,7 +4,7 @@ import Info from "./Info";
 
 function ContactBar() {
     return(
-        <div class="bg-dsav_blauw py-8 mt-16 bg-opacity-90">
+        <div class="bg-dsav_blauw py-8 bg-opacity-90">
             <Headings/>
             <Info/>
         </div>

@@ -1,12 +1,13 @@
 import React from "react";
 
-function Foto(props) {
+function Title(props) {
     return(
-        <div class="w-full py-2 text-white bg-tartan_rood font-bold">
-            <h1 class="ml-16 text-3xl">{props.title}</h1>
-            
+        <div class={"w-full py-2 bg-tartan_rood"}>
+            <h1 class={"mx-16 text-3xl text-white font-bold " + (props.position === "left" ? " text-left" : " text-right")}>
+                {props.title}
+            </h1>
         </div>
     )
 }
 
-export default Foto;
+export default Title;
