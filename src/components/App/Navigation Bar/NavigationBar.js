@@ -46,8 +46,8 @@ function NavigationBar() {
               <div class="flex-1 justify-center sm:block sm:ml-6">
                 <div class="flex m-8 space-x-4">
                   {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                  <Link to="/" class="bg-tartan_rood text-white px-3 py-2 rounded-md text-lg font-medium">Home</Link>
-                  <Link to="/nieuws" href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Nieuws</Link>
+                  <Link to="/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Home</Link>
+                  <Link to="/nieuws" class="bg-tartan_rood text-white px-3 py-2 rounded-md text-lg font-medium">Nieuws</Link>
                   <Link to="/over" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Over</Link>
                   <Link to="/trainingen" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Trainingen</Link>
                   <Link to="/wedstrijden" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Wedstrijden</Link>
