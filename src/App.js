@@ -4,16 +4,16 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import NavigationBar from './Navigation Bar/NavigationBar'
-import Home from '../Home/Home';
-import Nieuws from '../Nieuws/Nieuws';
-import Over from '../Over/Over';
-import Trainingen from '../Trainingen/Trainingen';
-import Wedstrijden from '../Wedstrijden/Wedstrijden';
-import Agenda from '../Agenda/Agenda';
-import WordLid from '../Word lid/WordLid';
-import Contact from '../Contact/Contact';
-import ContactBar from "../Shared/Contact/ContactBar"
+import NavigationBar from './components/Shared/Navigation Bar/NavigationBar'
+import Home from './components/Home/Home';
+import Nieuws from './components/Nieuws/Nieuws';
+import Over from './components/Over/Over';
+import Trainingen from './components/Trainingen/Trainingen';
+import Wedstrijden from './components/Wedstrijden/Wedstrijden';
+import Agenda from './components/Agenda/Agenda';
+import WordLid from './components/Word lid/WordLid';
+import Contact from './components/Contact/Contact';
+import ContactBar from "./components/Shared/Contact/ContactBar"
 
 function App() {
   return (
