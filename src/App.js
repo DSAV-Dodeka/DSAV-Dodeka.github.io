@@ -13,7 +13,8 @@ import Wedstrijden from './components/Wedstrijden/Wedstrijden';
 import Agenda from './components/Agenda/Agenda';
 import WordLid from './components/Word lid/WordLid';
 import Contact from './components/Contact/Contact';
-import ContactBar from "./components/Shared/Contact/ContactBar"
+import ContactBar from "./components/Shared/Contact/ContactBar";
+import Merchandise from "./components/Over/Merchandise/Overview";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
         <Switch>
           <Route path="/nieuws">
             <Nieuws />
+          </Route>
+          <Route path="/over/merchandise">
+            <Merchandise />
           </Route>
           <Route path="/over">
             <Over />

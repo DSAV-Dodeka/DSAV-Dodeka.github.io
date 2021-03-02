@@ -51,7 +51,7 @@ function NavigationBar() {
                   {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                   <Link to="/" class={location === "/" ? activeStyle : regularStyle}>Home</Link>
                   <Link to="/nieuws" class={location === "/nieuws" ? activeStyle : regularStyle}>Nieuws</Link>
-                  <Link to="/over" class={location === "/over" ? activeStyle : regularStyle}>Over</Link>
+                  <Link to="/over" class={location.includes("/over") ? activeStyle : regularStyle}>Over</Link>
                   <Link to="/trainingen" class={location === "/trainingen" ? activeStyle : regularStyle}>Trainingen</Link>
                   <Link to="/wedstrijden" class={location === "/wedstrijden" ? activeStyle : regularStyle}>Wedstrijden</Link>
                   <Link to="/agenda" class={location === "/agenda" ? activeStyle : regularStyle}>Agenda</Link>
