@@ -14,7 +14,7 @@ import Agenda from './components/Agenda/Agenda';
 import WordLid from './components/Word lid/WordLid';
 import Contact from './components/Contact/Contact';
 import ContactBar from "./components/Shared/Contact/ContactBar";
-import Merchandise from "./components/Over/Merchandise/Overview";
+import Merchandise from "./components/Over/Merchandise/Overview/Overview";
 
 function App() {
   return (
