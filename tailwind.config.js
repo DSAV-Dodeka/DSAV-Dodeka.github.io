@@ -9,8 +9,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        dsav_blauw: "#001F48",
-        tartan_rood: "#CB4B3D",
+        blauw: "#001F48",
+        rood: "#CB4B3D",
         
       }
     },

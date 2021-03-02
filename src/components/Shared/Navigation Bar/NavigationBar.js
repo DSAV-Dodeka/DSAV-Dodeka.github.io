@@ -4,15 +4,18 @@ import {
     useLocation
 } from "react-router-dom";
 import logo from "../../../images/.ComCom.jpg";
-import "./NavigationBar.css"
+
+const regularStyle = "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium";
+const activeStyle = "bg-rood text-white px-3 py-2 rounded-md text-lg font-medium";
 
 function NavigationBar() {
 
     // //Get the current path of the website.
-    // const location = useLocation();
+    const location = useLocation().pathname;
+    console.log(location);
 
     return (
-      <nav class="bg-dsav_blauw">
+      <nav class="bg-blauw">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div class="relative flex items-center justify-between h-24">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -46,13 +49,13 @@ function NavigationBar() {
               <div class="flex-1 justify-center sm:block sm:ml-6">
                 <div class="flex m-8 space-x-4">
                   {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                  <Link to="/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Home</Link>
-                  <Link to="/nieuws" class="bg-tartan_rood text-white px-3 py-2 rounded-md text-lg font-medium">Nieuws</Link>
-                  <Link to="/over" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Over</Link>
-                  <Link to="/trainingen" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Trainingen</Link>
-                  <Link to="/wedstrijden" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Wedstrijden</Link>
-                  <Link to="/agenda" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Agenda</Link>
-                  <Link to="/contact" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">Contact</Link>
+                  <Link to="/" class={location === "/" ? activeStyle : regularStyle}>Home</Link>
+                  <Link to="/nieuws" class={location === "/nieuws" ? activeStyle : regularStyle}>Nieuws</Link>
+                  <Link to="/over" class={location === "/over" ? activeStyle : regularStyle}>Over</Link>
+                  <Link to="/trainingen" class={location === "/trainingen" ? activeStyle : regularStyle}>Trainingen</Link>
+                  <Link to="/wedstrijden" class={location === "/wedstrijden" ? activeStyle : regularStyle}>Wedstrijden</Link>
+                  <Link to="/agenda" class={location === "/agenda" ? activeStyle : regularStyle}>Agenda</Link>
+                  <Link to="/contact" class={location === "/contact" ? activeStyle : regularStyle}>Contact</Link>
                 </div>
               </div>
             </div>

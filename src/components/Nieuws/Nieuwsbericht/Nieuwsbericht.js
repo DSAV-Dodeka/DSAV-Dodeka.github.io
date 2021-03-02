@@ -1,13 +1,13 @@
 import React from "react";
 import Foto from "./Foto";
 import Title from "./Title"
-import logo from "../../../images/placeholder.png";
+import logo from "../../../images/nieuwsPagina.png";
 
 function Nieuwsbericht(props) {
     return(
         <div class="pt-16 relative">
             <Foto image={logo} position={props.position}/>
-            <div class="w-full py-8 bg-dsav_blauw bg-opacity-90">
+            <div class="w-full py-8 bg-blauw bg-opacity-90">
                 <Title title="NIEUWE WEBSITE .COMT ERAAN!" position={props.position}/>
                 <p class={"my-4 px-16 text-white" + (props.position === "left" ? " text-left" : " text-right")}>
                     28/02/2021 | .ComCommentator
