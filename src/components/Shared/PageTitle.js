@@ -6,5 +6,4 @@ function PageTitle(props) {
         <h1 class="text-left text-5xl text-blauw ml-16 mt-8 font-bold">{props.title.toUpperCase()}</h1>
     )
 }
-
 export default PageTitle;
