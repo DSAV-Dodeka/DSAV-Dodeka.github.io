@@ -1,6 +1,5 @@
 import React from "react";
 import GalleryFoto from "./GalleryFoto";
-import placeholder from "../../../../../images/placeholder.png";
 
 function GalleryItem(props) {
     return(
