@@ -1,82 +1,50 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Link,
     useLocation
 } from "react-router-dom";
 import logo from "../../../images/.ComCom.jpg";
 
-const regularStyle = "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium";
-const activeStyle = "bg-rood text-white px-3 py-2 rounded-md text-lg font-medium";
+const regularStyle = "absolute h-24 w-32 py-8 text-center text-white hover:bg-white hover:text-blauw text-2xl font-medium";
+const activeStyle = "absolute h-24 bg-rood text-white w-32 py-8 text-center text-2xl font-medium";
+const dropdownStyle = "block h-16 py-4 w-32 text-center text-white bg-blauw text-white border-white hover:bg-white hover:text-blauw text-lg font-medium";
 
 function NavigationBar() {
-
-    // //Get the current path of the website.
     const location = useLocation().pathname;
-    console.log(location);
+    const [activeTab, setActiveTab] = useState("none");
 
     return (
-      <nav class="bg-blauw">
-        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <div class="relative flex items-center justify-between h-24">
-            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        {/* <!-- Mobile menu button--> */}
-              <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-          {/* <!-- Icon when menu is closed. -->
-          <!--
-            Heroicon name: outline/menu
-
-            Menu open: "hidden", Menu closed: "block"
-          --> */}
-                <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-          {/* <!-- Icon when menu is open. -->
-          <!--
-            Heroicon name: outline/x
-
-            Menu open: "block", Menu closed: "hidden"
-          --> */}
-                <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div class="flex-1 flex items-center justify-end sm:items-stretch sm:justify-start">
-              <div class="flex-shrink-0 flex items-center">
-                <img class="block h-16 w-auto" src={logo} alt="Workflow"/>
-              </div>
-              <div class="flex-1 justify-center sm:block sm:ml-6">
-                <div class="flex m-8 space-x-4">
-                  {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                  <Link to="/" class={location === "/" ? activeStyle : regularStyle}>Home</Link>
-                  <Link to="/nieuws" class={location === "/nieuws" ? activeStyle : regularStyle}>Nieuws</Link>
-                  <Link to="/over" class={location.includes("/over") ? activeStyle : regularStyle}>Over</Link>
-                  <Link to="/trainingen" class={location === "/trainingen" ? activeStyle : regularStyle}>Trainingen</Link>
-                  <Link to="/wedstrijden" class={location === "/wedstrijden" ? activeStyle : regularStyle}>Wedstrijden</Link>
-                  <Link to="/agenda" class={location === "/agenda" ? activeStyle : regularStyle}>Agenda</Link>
-                  <Link to="/contact" class={location === "/contact" ? activeStyle : regularStyle}>Contact</Link>
-                </div>
-              </div>
-            </div>
+      <nav class="flex w-full h-24 bg-blauw mx-auto items-center">
+        <h1 class="ml-16 font-bold text-white text-5xl align-text-bottom">DSAV Dodeka</h1>
+        <img class="mx-8 h-16 w-16" src={logo} alt=""/>
+        <div class="relative h-24 w-32">
+          <Link to="/" class={location === "/" ? activeStyle : regularStyle}>Home</Link>
+        </div>
+        <div class="relative h-24 w-32">
+          <Link to="/nieuws" class={location === "/nieuws" ? activeStyle : regularStyle}>Nieuws</Link>
+        </div>
+        <div onMouseLeave={() => setActiveTab("none")} class="relative h-24 w-32">
+          <Link to="/over" onMouseEnter={() => setActiveTab("over")} class={location.includes("/over") ? activeStyle : regularStyle}>Over</Link>
+          <div class={activeTab === "over" ? "absolute left-0 w-32 top-24 z-50" : "hidden"}>
+            <Link to="/over/bestuur" class={dropdownStyle}>Bestuur</Link>
+            <Link to="/over/commissies" class={dropdownStyle}>Commissies</Link>
+            <Link to="/over/merchandise" class={dropdownStyle}>Merchandise</Link>
+            <Link to="/over/arnold" class={dropdownStyle + " rounded-b-md"}>Arnold</Link>
           </div>
         </div>
-
-  {/* <!--
-    Mobile menu, toggle classes based on menu state.
-
-    Menu open: "block", Menu closed: "hidden"
-  --> */}
-  <div class="hidden sm:hidden">
-    <div class="px-2 pt-2 pb-3 space-y-1">
-      {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-      <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
-    </div>
-  </div>
-</nav>
+        <div class="relative h-24 w-32">
+          <Link to="/trainingen" class={location === "/trainingen" ? activeStyle : regularStyle}>Trainingen</Link>
+        </div>
+        <div class="relative h-24 w-32">
+          <Link to="/wedstrijden" class={location === "/wedstrijden" ? activeStyle : regularStyle}>Wedstrijden</Link>
+        </div>
+        <div class="relative h-24 w-32">
+          <Link to="/agenda" class={location === "/agenda" ? activeStyle : regularStyle}>Agenda</Link>
+        </div>
+        <div class="relative h-24 w-32">
+          <Link to="/contact" class={location === "/contact" ? activeStyle : regularStyle}>Contact</Link>
+        </div>
+      </nav>
     )
   }
 
