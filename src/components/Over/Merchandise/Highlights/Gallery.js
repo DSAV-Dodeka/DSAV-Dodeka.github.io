@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import GalleryItem from "./GalleryItem";
-import placeholder from "../../../../../images/placeholder.png";
-import droste from "../../../../../images/nieuwsPagina.png";
+import placeholder from "../../../../images/placeholder.png";
+import droste from "../../../../images/nieuwsPagina.png";
 
 const maxIndex = 1;
 
