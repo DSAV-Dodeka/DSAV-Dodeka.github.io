@@ -14,7 +14,7 @@ function NavigationBar() {
     const [activeTab, setActiveTab] = useState("none");
 
     return (
-      <nav class="flex w-full h-24 bg-blauw mx-auto items-center">
+      <nav class="fixed flex w-full h-24 bg-blauw mx-auto items-center z-50">
         <h1 class="ml-16 font-bold text-white text-5xl align-text-bottom">DSAV Dodeka</h1>
         <img class="mx-8 h-16 w-16" src={logo} alt=""/>
         <div class="relative h-24 w-32">

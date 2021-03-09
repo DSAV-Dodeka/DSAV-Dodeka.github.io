@@ -20,7 +20,7 @@ function App() {
   return (
     <Router>
       <NavigationBar/>
-      <div>
+      <div class="pt-24">
         <Switch>
           <Route path="/nieuws">
             <Nieuws />
