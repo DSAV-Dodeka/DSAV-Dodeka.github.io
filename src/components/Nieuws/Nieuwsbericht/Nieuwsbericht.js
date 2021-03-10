@@ -5,7 +5,7 @@ import logo from "../../../images/nieuwsPagina.png";
 
 function Nieuwsbericht(props) {
     return(
-        <div class="pt-16 relative">
+        <div class="py-8 relative">
             <Foto image={logo} position={props.position}/>
             <div class="w-full py-8 bg-blauw bg-opacity-90">
                 <Title title="NIEUWE WEBSITE .COMT ERAAN!" position={props.position}/>

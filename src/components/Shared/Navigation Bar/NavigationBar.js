@@ -14,7 +14,7 @@ function NavigationBar() {
     const [activeTab, setActiveTab] = useState("none");
 
     return (
-      <nav class="flex w-full h-24 bg-blauw mx-auto items-center">
+      <nav class="fixed flex w-full h-24 bg-blauw mx-auto items-center z-50">
         <h1 class="ml-16 font-bold text-white text-5xl align-text-bottom">DSAV Dodeka</h1>
         <img class="mx-8 h-16 w-16" src={logo} alt=""/>
         <div class="relative h-24 w-32">
@@ -25,7 +25,7 @@ function NavigationBar() {
         </div>
         <div onMouseLeave={() => setActiveTab("none")} class="relative h-24 w-32">
           <Link to="/over" onMouseEnter={() => setActiveTab("over")} class={location.includes("/over") ? activeStyle : regularStyle}>Over</Link>
-          <div class={activeTab === "over" ? "absolute left-0 w-32 top-24 z-50" : "hidden"}>
+          <div onClick={() => setActiveTab("none")} class={activeTab === "over" ? "absolute left-0 w-32 top-24 z-50" : "hidden"}>
             <Link to="/over/bestuur" class={dropdownStyle}>Bestuur</Link>
             <Link to="/over/commissies" class={dropdownStyle}>Commissies</Link>
             <Link to="/over/merchandise" class={dropdownStyle}>Merchandise</Link>

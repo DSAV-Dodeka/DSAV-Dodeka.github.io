@@ -1,6 +1,18 @@
+import {
+    Link, useRouteMatch
+} from "react-router-dom";
+import Title from "../Shared/PageTitle";
+
 function Over() {
+    let match = useRouteMatch();
+
     return(
-        <h1>Dit is de over pagina</h1>
+        <div>
+            <Title title="Over" />
+            <Link to={`${match.url}/merchandise`} >Merchandise</Link>
+        </div>
+        
+
     )
 }
 

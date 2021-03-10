@@ -13,16 +13,20 @@ import Wedstrijden from './components/Wedstrijden/Wedstrijden';
 import Agenda from './components/Agenda/Agenda';
 import WordLid from './components/Word lid/WordLid';
 import Contact from './components/Contact/Contact';
-import ContactBar from "./components/Shared/Contact/ContactBar"
+import ContactBar from "./components/Shared/Contact/ContactBar";
+import Merchandise from "./components/Over/Merchandise/Merchandise";
 
 function App() {
   return (
     <Router>
       <NavigationBar/>
-      <div>
+      <div class="pt-24">
         <Switch>
           <Route path="/nieuws">
             <Nieuws />
+          </Route>
+          <Route path="/over/merchandise">
+            <Merchandise />
           </Route>
           <Route path="/over">
             <Over />
