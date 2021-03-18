@@ -21,14 +21,13 @@ function Contact() {
                             <h1 class="text-rood text-3xl font-bold">Nummer</h1>
                             <div><a href="mailto:studentenatletiek@av40.nl" class="text-rood text-3xl font-bold">studentenatletiek@av40.nl</a></div>
                             <h1 class="text-rood text-3xl font-bold">Sportring 12, 2616LK Delft</h1>
-                            <div><a href="https://www.av40.nl" class="text-rood text-3xl font-bold">www.av40.nl</a></div>
+                            <div><a target="_blank" rel="noreferrer" href="https://www.av40.nl" class="text-rood text-3xl font-bold">www.av40.nl</a></div>
                         </div>
                     </div>
                     <div class="mt-16 mx-16">
                         <h1 class="text-white text-3xl font-bold">Socials:</h1>
                         <div class="flex mt-2 justify-between w-1/2">
-                            <a target="_blank" rel="noreferrer" href="https://www.av40.nl"><svg id="insta" href="www.av40.nl" class="w-12 cursor-pointer fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><use xlinkHref='www.av40.nl' /><radialGradient id="rg" r="150%" cx="30%" cy="107%">
-
+                            <a target="_blank" rel="noreferrer" href="https://www.instagram.com/dsav40/?hl=nl"><svg id="insta" href="www.av40.nl" class="w-12 cursor-pointer fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><use xlinkHref='www.av40.nl' /><radialGradient id="rg" r="150%" cx="30%" cy="107%">
                                 <stop stop-color="#fdf497" offset="0" />
                                 <stop stop-color="#fdf497" offset="0.05" />
                                 <stop stop-color="#fd5949" offset="0.45" />
@@ -46,8 +45,8 @@ function Contact() {
                         </div>
                     </div>
                 </div>
-                <div class="inline w-1/2 px-16 bg-black">
-
+                <div class="inline w-1/2 px-16">
+                    <iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.7636217944923!2d4.365595816481968!3d52.029403779724376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b60b0c9dbfa9%3A0x9fa03ef4a72f1db8!2sDelftse%20Atletiekvereniging%201940!5e0!3m2!1snl!2snl!4v1616071415753!5m2!1snl!2snl" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
