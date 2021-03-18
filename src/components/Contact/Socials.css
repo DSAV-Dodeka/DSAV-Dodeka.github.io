@@ -1,0 +1,16 @@
+#discord:hover {
+    color: #7289DA;
+}
+
+
+#insta:hover {
+    fill: url(#rg);
+}
+
+#youtube:hover {
+    color: #FF0000;
+}
+
+#facebook:hover {
+    color: #3b5998;
+}
