@@ -1,6 +1,6 @@
 import React from "react";
 import Nieuwsbericht from "./Nieuwsbericht/Nieuwsbericht";
-import PageTitle from "../Shared/PageTitle";
+import PageTitle from "../../components/PageTitle";
 
 function Nieuws() {
     return(

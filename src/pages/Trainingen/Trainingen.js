@@ -1,8 +1,8 @@
 import React from "react";
-import PageTitle from "../Shared/PageTitle";
+import PageTitle from "../../components/PageTitle";
 import Tijden from "./Tijden";
 import Placeholder from "../../images/placeholder.png";
-import icons from "../../images/icons.PNG";
+import icons from "../../images/icons.png";
 import "./Icons.css";
 
 function Trainingen() {

@@ -3,7 +3,7 @@ import {
     Link,
     useLocation
 } from "react-router-dom";
-import logo from "../../../images/.ComCom.jpg";
+import logo from "../../images/.ComCom.jpg";
 
 const regularStyle = "absolute h-24 w-32 py-8 text-center text-white hover:bg-white hover:text-blauw text-2xl font-medium";
 const activeStyle = "absolute h-24 bg-rood text-white w-32 py-8 text-center text-2xl font-medium";

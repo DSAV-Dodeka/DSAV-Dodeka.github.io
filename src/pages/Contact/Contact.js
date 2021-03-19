@@ -1,5 +1,5 @@
 import React from "react";
-import PageTitle from "../Shared/PageTitle";
+import PageTitle from "../../components/PageTitle";
 import "./Socials.css";
 
 
