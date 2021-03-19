@@ -1,6 +1,9 @@
+import React from "react";
+import PageTitle from "../../components/PageTitle";
+
 function Wedstrijden() {
     return(
-        <h1>Dit is de wedstrijden pagina</h1>
+        <PageTitle title="Wedstrijden"/>
     )
 }
 

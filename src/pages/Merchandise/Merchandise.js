@@ -1,4 +1,4 @@
-import Title from "../../components/PageTitle";
+import PageTitle from "../../components/PageTitle";
 import Highlights from "./Highlights/Highlights";
 import Collectie from "./Collectie/Collectie";
 import img from "../../images/placeholder.png";
@@ -10,7 +10,7 @@ const casualkleding= [{title: "Trainingsbroek", price: "€20,00", image: img}, 
 function Merchandise() {
     return(
         <div>
-            <Title title="Merchandise: Overview" />
+            <PageTitle title="Merchandise" />
             <Highlights/>
             <Collectie title="Wedstrijdkleding vrouwen" items={wedstrijdkleding_vrouwen}/>
             <Collectie title="Wedstrijdkleding mannen" items={wedstrijdkleding_mannen}/>

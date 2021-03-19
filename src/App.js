@@ -1,8 +1,8 @@
 import React from "react";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
+  BrowserRouter as Router,
+  Switch,
+  Route,
 } from "react-router-dom";
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
@@ -19,8 +19,8 @@ import Merchandise from "./pages/Merchandise/Merchandise";
 function App() {
   return (
     <Router>
-      <NavigationBar/>
-      <div class="pt-24">
+      <div class="flex flex-col min-h-screen">
+        <NavigationBar />
         <Switch>
           <Route path="/nieuws">
             <Nieuws />
@@ -50,8 +50,9 @@ function App() {
             <Home />
           </Route>
         </Switch>
+        <div class="flex-grow"/>
+        <ContactBar />
       </div>
-      <ContactBar/>
     </Router>
   );
 }

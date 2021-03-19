@@ -1,6 +1,9 @@
+import React from "react";
+import PageTitle from "../../components/PageTitle";
+
 function WordLid() {
     return(
-        <h1>Dit is de word lid pagina</h1>
+        <PageTitle title="Word Lid"/>
     )
 }
 
