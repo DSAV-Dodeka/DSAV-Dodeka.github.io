@@ -1,6 +1,6 @@
 import PageTitle from "../../components/PageTitle";
-import Highlights from "./Highlights/Highlights";
-import Collectie from "./Collectie/Collectie";
+import Highlights from "./components/Highlights/Highlights";
+import Collectie from "./components/Collectie/Collectie";
 import img from "../../images/placeholder.png";
 
 const wedstrijdkleding_vrouwen = [{title: "Sport t-shirt", price: "€15,00", image: img}, {title: "Sport singlet", price: "€15,00", image: img}]

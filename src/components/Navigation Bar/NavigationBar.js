@@ -6,8 +6,7 @@ import Dropdown from "./Dropdown";
 function NavigationBar() {
   return (
     <nav class="sticky top-0 flex w-full h-24 bg-blauw mx-auto items-center z-50">
-      <h1 class="ml-16 font-bold text-white text-5xl align-text-bottom">DSAV Dodeka</h1>
-      <img class="mx-8 h-16 w-16" src={Logo} alt="" />
+      <h1 class="mx-16 font-bold text-white text-5xl align-text-bottom">DSAV Dodeka</h1>
       <Item name="Home" path="/" />
       <Item name="Nieuws" path="/nieuws" />
       <Dropdown name="Over" path="/over" items={[{name: "Bestuur", path: "/bestuur"}, {name: "Commissies", path: "/commissies"}, {name: "Merchandise", path: "/merchandise"}, {name: "Arnold", path: "/arnold"}]}/>

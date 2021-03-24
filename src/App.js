@@ -13,7 +13,7 @@ import Wedstrijden from './pages/Wedstrijden/Wedstrijden';
 import Agenda from './pages/Agenda/Agenda';
 import WordLid from './pages/Word lid/WordLid';
 import Contact from './pages/Contact/Contact';
-import ContactBar from "./components/Contact/ContactBar";
+import ContactBar from "./components/Contact Bar/ContactBar";
 import Merchandise from "./pages/Merchandise/Merchandise";
 
 function App() {

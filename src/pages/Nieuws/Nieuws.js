@@ -1,5 +1,5 @@
 import React from "react";
-import Nieuwsbericht from "./Nieuwsbericht/Nieuwsbericht";
+import Nieuwsbericht from "./components/Nieuwsbericht";
 import PageTitle from "../../components/PageTitle";
 
 function Nieuws() {
