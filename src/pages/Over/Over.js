@@ -1,7 +1,7 @@
 import {
     Link, useRouteMatch
 } from "react-router-dom";
-import Title from "../Shared/PageTitle";
+import Title from "../../components/PageTitle";
 
 function Over() {
     let match = useRouteMatch();

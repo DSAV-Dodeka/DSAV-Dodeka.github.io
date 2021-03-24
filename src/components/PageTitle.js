@@ -1,4 +1,3 @@
-import { PreviousMap } from "postcss";
 import React from "react";
 
 function PageTitle(props) {

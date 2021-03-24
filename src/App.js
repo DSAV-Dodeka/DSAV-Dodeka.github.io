@@ -1,26 +1,26 @@
 import React from "react";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
+  BrowserRouter as Router,
+  Switch,
+  Route,
 } from "react-router-dom";
-import NavigationBar from './components/Shared/Navigation Bar/NavigationBar'
-import Home from './components/Home/Home';
-import Nieuws from './components/Nieuws/Nieuws';
-import Over from './components/Over/Over';
-import Trainingen from './components/Trainingen/Trainingen';
-import Wedstrijden from './components/Wedstrijden/Wedstrijden';
-import Agenda from './components/Agenda/Agenda';
-import WordLid from './components/Word lid/WordLid';
-import Contact from './components/Contact/Contact';
-import ContactBar from "./components/Shared/Contact/ContactBar";
-import Merchandise from "./components/Over/Merchandise/Merchandise";
+import NavigationBar from './components/Navigation Bar/NavigationBar'
+import Home from './pages/Home/Home';
+import Nieuws from './pages/Nieuws/Nieuws';
+import Over from './pages/Over/Over';
+import Trainingen from './pages/Trainingen/Trainingen';
+import Wedstrijden from './pages/Wedstrijden/Wedstrijden';
+import Agenda from './pages/Agenda/Agenda';
+import WordLid from './pages/Word lid/WordLid';
+import Contact from './pages/Contact/Contact';
+import ContactBar from "./components/Contact Bar/ContactBar";
+import Merchandise from "./pages/Merchandise/Merchandise";
 
 function App() {
   return (
     <Router>
-      <NavigationBar/>
-      <div class="pt-24">
+      <div class="flex flex-col min-h-screen">
+        <NavigationBar />
         <Switch>
           <Route path="/nieuws">
             <Nieuws />
@@ -50,8 +50,9 @@ function App() {
             <Home />
           </Route>
         </Switch>
+        <div class="flex-grow"/>
+        <ContactBar />
       </div>
-      <ContactBar/>
     </Router>
   );
 }
