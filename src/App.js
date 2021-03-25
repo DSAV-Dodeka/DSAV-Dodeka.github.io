@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  useLocation
 } from "react-router-dom";
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
@@ -16,9 +17,20 @@ import Contact from './pages/Contact/Contact';
 import ContactBar from "./components/Contact Bar/ContactBar";
 import Merchandise from "./pages/Merchandise/Merchandise";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div class="flex flex-col min-h-screen">
         <NavigationBar />
         <Switch>
