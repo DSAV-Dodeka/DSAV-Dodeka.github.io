@@ -4,8 +4,8 @@ import {
     useLocation
 } from "react-router-dom";
 
-const regularStyle = "absolute h-24 w-32 py-8 text-center text-white hover:bg-white hover:text-blauw text-2xl font-medium";
-const activeStyle = "absolute h-24 bg-rood text-white w-32 py-8 text-center text-2xl font-medium";
+const regularStyle = "absolute h-16 lg:h-24 w-full lg:w-32 py-4 lg:py-8 bg-blauw text-center text-white hover:bg-white hover:text-blauw text-2xl font-medium";
+const activeStyle = "absolute h-16 lg:h-24 w-full bg-rood text-white lg:w-32 py-4 lg:py-8 text-center text-2xl font-medium";
 const dropdownStyle = "block h-16 py-4 w-32 text-center text-white bg-blauw text-white border-white hover:bg-white hover:text-blauw text-lg font-medium";
 
 function Dropdown(props) {
