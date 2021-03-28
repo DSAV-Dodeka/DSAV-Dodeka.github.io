@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
@@ -41,16 +41,17 @@ function NavigationBar() {
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform rotate-45 -translate-y-3" : "")}></div>
           </div>
         </div>
-        <div class={"fixed top-24 w-screen h-screen transition duration-500 bg-blauw transform" + (active ? "" : " opacity-0")}>
+        <div class={"fixed top-24 w-screen h-screen transition duration-500 bg-blauw transform" + (active ? "" : " opacity-0 hidden")}>
           <div class={active ? "" : "hidden"}>
             <Item name="Home" path="/" onClick={() => setActive(false)}/>
+            <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)}/>
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)}/>
             <MobileDropdown name="Over" path="/over" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }, { name: "Arnold", path: "/arnold" }]} onClick={() => setActive(false)}/>
             <Item name="Wedstrijden" path="/wedstrijden" onClick={() => setActive(false)}/>
             <Item name="Agenda" path="/agenda" onClick={() => setActive(false)}/>
             <Item name="Contact" path="/contact" onClick={() => setActive(false)}/>
           </div>
-        </div>
+        </div> 
       </nav>
     </div>
   )

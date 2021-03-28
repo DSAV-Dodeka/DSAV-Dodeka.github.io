@@ -9,12 +9,12 @@ function Contact() {
     return (
         <div>
             <PageTitle title="Contact" />
-            <div class="flex bg-blauw bg-opacity-90 w-full mb-16">
-                <div class="inline my-8 w-1/2">
+            <div class="lg:flex bg-blauw bg-opacity-90 w-full mb-8 lg:mb-16">
+                <div class="w-full lg:inline py-4 lg:my-8 lg:py-0 lg:w-1/2">
                     <Contactinfo />
                     <Socials />
                 </div>
-                <div class="inline w-1/2 px-16">
+                <div class="w-full h-96 lg:h-auto lg:inline lg:w-1/2 lg:px-16">
                     <Maps />    
                 </div>
             </div>
