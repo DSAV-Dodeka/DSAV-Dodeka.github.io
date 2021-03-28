@@ -3,7 +3,6 @@ import {
     useLocation
 } from "react-router-dom";
 import Item from "./Item";
-import "./NavigationBar.css";
 import SubMenuItem from "./SubMenuItem";
 
 const regularStyle = "absolute cursor-pointer h-16 lg:h-24 w-full lg:w-32 py-4 lg:py-8 bg-blauw text-center text-white lg:hover:bg-white lg:hover:text-blauw text-2xl font-medium";

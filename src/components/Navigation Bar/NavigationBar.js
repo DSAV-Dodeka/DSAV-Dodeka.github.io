@@ -3,7 +3,6 @@ import Item from "./Item";
 import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from 'disable-scroll';
-import "./NavigationBar.css";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
@@ -15,7 +14,7 @@ function NavigationBar() {
   }
 
   return (
-    <div class="sticky top-0">
+    <div class="sticky top-0 z-50">
       <nav class="hidden lg:flex w-full h-24 bg-blauw mx-auto items-center z-50">
         <h1 class="mx-16 font-bold text-white text-5xl align-text-bottom">DSAV Dodeka</h1>
         <Item name="Home" path="/" />
