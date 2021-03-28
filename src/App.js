@@ -63,7 +63,7 @@ function App() {
           </Route>
         </Switch>
         <div class="flex-grow"/>
-        {/* <ContactBar /> */}
+        <ContactBar />
       </div>
     </Router>
   );
