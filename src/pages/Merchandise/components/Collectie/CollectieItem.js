@@ -3,7 +3,7 @@ import "./CardFlip.css";
 
 function CollectieItem(props) {
     return(
-        <div class="mt-8 w-96 font-rajdhani">
+        <div class="mt-8 w-96">
             <div class="card h-96 w-96">
                 <div class="inner relative">
                     <div class="front absolute">
