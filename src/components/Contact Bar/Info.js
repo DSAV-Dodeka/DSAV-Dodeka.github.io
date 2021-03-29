@@ -3,7 +3,7 @@ import React from "react";
 function Info() {
     return(
         <div class="flex justify-between pt-4 px-16 w-full text-white">
-            <div class="w-64 inline text-left">
+            <div class="w-64 inline text-center">
                 <p>Email: studentenatletiek@av40.nl</p>
                 <p>Adres: Sportring 12, Delft</p>
             </div>

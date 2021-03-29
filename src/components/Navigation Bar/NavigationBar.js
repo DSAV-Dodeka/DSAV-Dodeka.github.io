@@ -26,14 +26,14 @@ function NavigationBar() {
         <Item name="Contact" path="/contact" />
       </nav>
       <nav class="lg:hidden w-full bg-blauw z-10">
-        <div class="flex h-24 px-4 items-center">
+        <div class="flex h-16 px-4 items-center">
           <div class="inline space-y-2 cursor-pointer" onClick={() => setActive(!active)}>
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform -rotate-45 translate-y-3" : "")}></div>
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " opacity-0" : "")}></div>
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform rotate-45 -translate-y-3" : "")}></div>
           </div>
           <div class="flex-grow" />
-          <h1 class="mx-16 font-bold text-white text-5xl align-text-bottom">Dodeka</h1>
+          <h1 class="mx-16 font-bold text-white text-4xl align-text-bottom">Dodeka</h1>
           <div class="flex-grow" />
           <div class="inline space-y-2 cursor-pointer invisible">
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform -rotate-45 translate-y-3" : "")}></div>
@@ -41,7 +41,7 @@ function NavigationBar() {
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform rotate-45 -translate-y-3" : "")}></div>
           </div>
         </div>
-        <div class={"fixed top-24 w-screen h-screen transition duration-500 bg-blauw transform" + (active ? "" : " opacity-0 hidden")}>
+        <div class={"fixed top-16 w-screen h-screen transition duration-500 bg-blauw transform" + (active ? "" : " opacity-0 hidden")}>
           <div class={active ? "" : "hidden"}>
             <Item name="Home" path="/" onClick={() => setActive(false)}/>
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)}/>

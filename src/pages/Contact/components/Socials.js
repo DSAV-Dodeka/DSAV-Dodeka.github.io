@@ -5,7 +5,7 @@ function Socials() {
     return (
         <div class="mt-4 lg:mt-16 mx-4 lg:mx-16">
             <h1 class="text-white text-xl lg:text-3xl font-bold">Socials:</h1>
-            <div class="flex mt-2 justify-between w-3/4 lg:w-1/2">
+            <div class="flex mt-2 space-x-4 lg:space-x-16 lg:w-1/2">
                 <a class="cursor-pointer" target="_blank" rel="noreferrer" href="https://www.instagram.com/dsav40/?hl=nl"><svg id="insta" href="www.av40.nl" class="w-8 lg:w-12 cursor-pointer fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><use xlinkHref='www.av40.nl' /><radialGradient id="rg" r="150%" cx="30%" cy="107%">
                     <stop stop-color="#fdf497" offset="0" />
                     <stop stop-color="#fdf497" offset="0.05" />
