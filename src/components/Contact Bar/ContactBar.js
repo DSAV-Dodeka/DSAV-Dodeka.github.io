@@ -1,7 +1,5 @@
 import React from "react";
-import Headings from "./Headings";
 import Heading from "./Heading";
-import Info from "./Info";
 
 function ContactBar() {
     return (
