@@ -4,11 +4,11 @@ import image from "../../../images/baanatletiek.jpg"
 
 function Loopgroep() {
     return(
-        <div class="flex bg-blauw bg-opacity-90 w-full mb-16">
-            <img src={image} alt="" class="inline w-1/2" />
-            <div class="inline my-8 w-1/2">
+        <div class="lg:flex bg-blauw bg-opacity-90 w-full mb-8 lg:mb-16">
+            <img src={image} alt="" class="lg:inline w-full lg:w-1/2" />
+            <div class="lg:inline py-4 lg:py-0 lg:my-8 w-full lg:w-1/2">
                 <Header text="Loopgroep" position="right"/>
-                <p class="text-white text-lg mx-16 mt-8">
+                <p class="text-white text-lg mx-4 lg:mx-16 mt-4 lg:mt-8">
                     De loopgroep trainingen worden gegeven door Rik Palings en Aniek Sips. 
                     Er wordt getraind voor de langere afstanden op de baan en op de weg.
                     Op maandag traint deze groep na de warming-up buiten de baan op de weg. Op woensdag blijven we op de baan om daar loopschema's te trainen. En op zaterdag wordt er afwisselend op de baan en buiten de baan getraind.<br/><br/>
