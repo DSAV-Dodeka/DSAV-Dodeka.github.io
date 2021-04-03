@@ -1,7 +1,7 @@
 import React from "react";
 import PageTitle from "../../components/PageTitle";
-import Meetrainen from "./components/meetrainen";
-import Contributie from "./components/contributie";
+import Meetrainen from "./components/Meetrainen";
+import Contributie from "./components/Contributie";
 
 function WordLid() {
     return(
