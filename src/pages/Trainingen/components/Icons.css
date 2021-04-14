@@ -31,7 +31,7 @@
     #icons {
         will-change: background-position;
         background-repeat: repeat-x;
-        background-size: 200vw 4rem;
+        background-size: 300vw 4rem;
         -webkit-animation: slide 20s linear infinite;
            -moz-animation: slide 20s linear infinite;
                 animation: slide 20s linear infinite;
@@ -39,19 +39,19 @@
 
     @-webkit-keyframes slide
     {
-        0%   {background-position: 200vw 0;}
+        0%   {background-position: 300vw 0;}
         100% {background-position: 0 0;}
     }
 
     @-moz-keyframes slide
     {
-        0%   {background-position: 200vw 0;}
+        0%   {background-position: 300vw 0;}
         100% {background-position: 0 0;}
     }
 
     @keyframes slide
     {
-        0%   {background-position: 200vw 0;}
+        0%   {background-position: 300vw 0;}
         100% {background-position: 0 0;}
     }
 }

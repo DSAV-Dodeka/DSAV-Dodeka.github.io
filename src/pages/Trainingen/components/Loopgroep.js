@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../../components/Header";
-import image from "../../../images/baanatletiek.jpg"
+import image from "../../../images/loopgroep.jpg"
 
 function Loopgroep() {
     return(
