@@ -39,14 +39,11 @@ function Commissie(props) {
                 </div>
             </div>
             <div id={props.name + "second"} class={"h-128 top-0 left-0 w-full flex space-x-16 transform translate-x-full" + (props.position === "right" ? " space-x-reverse" : "")}>
-                <div class="flex-none w-128 bg-blauw content-center">
-                    <img class={"w-128 py-12" + (props.position === "right" ? " order-last" : "")} src={comcom} alt="" />
-                </div>
-                    
-                    
-                    
+                <div class={"flex-none w-128 bg-blauw content-center" + (props.position === "right" ? " order-last" : "")}>
+                    <img class="w-128 py-12" src={comcom} alt="" />
+                </div>                    
                 
-                <div class="h-128 flex-grow relative bg-blauw bg-opacity-90 pt-8 pb-auto">
+                <div class={"h-128 flex-grow relative bg-blauw bg-opacity-90 pt-8 pb-auto" + (props.position === "right" ? " order-first" : "")}>
                     <Header text=".ComCom leden" position="left" />
                     <div class="flex mt-8 mx-8 space-x-8">
                         <div class="inline">
