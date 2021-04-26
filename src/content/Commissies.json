@@ -1,0 +1,251 @@
+{
+    "commissies": [
+        {
+            "naam": "BarCo",
+            "info": "De Barco is de mooiste commissie binnen DSAV’40. Wij organiseren iedere woensdag (nu iets minder vanwege de corona maatregelen) na de training een gezellige borrel. Wij zorgen hierbij voor het eten en natuurlijk ook voor het goudgele wondermiddel, genaamd bier. Ook organiseren we regelmatig themaborrels. En hou jij er nou ook van om nog wat langer door te gaan? Geen probleem! Na de borrels zijn er vaak nog genoeg mensen enthousiast om het feest door te zetten in het centrum van Delft. Deze gezelligheid wil je zeker niet missen!",
+            "leden": [
+                {
+                    "naam": "David Wolfrat",
+                    "functie": "Voorzitter"
+                },
+                {
+                    "naam": "Vincent Kuiper",
+                    "functie": "Secretaris"
+                },
+                {
+                    "naam": "Tom Klunder",
+                    "functie": "Penningmeester"
+                },
+                {
+                    "naam": "Pien Abbink",
+                    "functie": "Commissaris Activiteiten"
+                },
+                {
+                    "naam": "Sam van der Pol",
+                    "functie": "Commissaris Consumptiemaatschappij"
+                },
+                {
+                    "naam": "Stefan Pol",
+                    "functie": "QQ'er"
+                }
+            ]
+        },
+        {
+            "naam": ".ComCom",
+            "info": "Met het groter worden van de vereniging, is er dit studiejaar ook de .ComCom opgericht. Wij, als .ComCom gaan over de inhoud van de website en het ontwerp ervan. Maar het belangrijkste is dat we werken naar het bouwen van onze eigen DSAV `40 website. Mocht je iets missen op de website qua functionaliteiten, aarzel dan niet om ons dit te laten weten bij Matthijs!",
+            "leden": [
+                {
+                    "naam": "Matthijs Arnoldus",
+                    "functie": "CTO"
+                },
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "Junior UI/UX en Chat Manager"
+                },
+                {
+                    "naam": "Nathan Douenburg",
+                    "functie": "Senior Design Critic Expert"
+                },
+                {
+                    "naam": "Donne Gerlich",
+                    "functie": "QQ'er"
+                }
+            ]
+        },
+        {
+            "naam": "Focus",
+            "info": "Wij, van Focus 2, zetten alles in de spotlight en leggen het vast voor het nageslacht. Van posters, tot foto's, tot kalenders, als het promoot dan doen wij dat. Door middel van onze fotografie, video's, en creatieve skills vertegenwoordigen wij de vereniging. Dit jaar gaan wij diep duiken en zien wij alles door een fisheye lens! Hou ons in de gaten op instagram, facebook, linkedin, en wellicht ook tiktok.",
+            "leden": [
+                {
+                    "naam": "Nathan Douenburg",
+                    "functie": "Voorzitter"
+                },
+                {
+                    "naam": "Abel Kappenburg",
+                    "functie": "Penningmeester + Commissaris Fotoshop"
+                },
+                {
+                    "naam": "Saana Taal",
+                    "functie": "Secretaris"
+                },
+                {
+                    "naam": "Lianne Folkerts",
+                    "functie": "Commissaris Foto en Planning"
+                },
+                {
+                    "naam": "Marin Nijenhuis",
+                    "functie": "Commissaris Planning en Foto"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "functie": "QQ'er"
+                }
+            ]
+        },
+        {
+            "naam": "NSK Indoor Commissie",
+            "info": "Begin 2022 organiseert DSAV`40 haar eerste fysieke NSK (Nederlands Studenten Kampioenschap). En niet zomaar eentje: NSK Indoor is hét grootste NSK van Nederland! De organisatie, logisitiek, eindfeest en gezelligheid worden door onze commissie verzorgd. Dus bereid je vast voor, train voor de onderdelen én het feest, en wie weet sleep jij een prachtige medaille binnen! Tot in Apeldoorn.",
+            "leden": [
+                {
+                    "naam": "Matthijs Arnoldus",
+                    "functie": "Onbekend"
+                },
+                {
+                    "naam": "Florence Estublier",
+                    "functie": "Onbekend"
+                },
+                {
+                    "naam": "Niels Goedegebure",
+                    "functie": "Onbekend"
+                },
+                {
+                    "naam": "Simon Loose",
+                    "functie": "Onbekend"
+                },
+                {
+                    "naam": "Stefan Pol",
+                    "functie": "QQ'er"
+                }
+            ]
+        },
+        {
+            "naam": "RedaCie",
+            "info": "De RedaCie houdt zich bezig met documenteren wat er afspeelt op de vereniging: activiteiten, wedstrijden en alles daartussenin. Door middel van meerdere nieuwsbrieven en een jaaroverzicht uit te brengen worden de leden op de hoogte gehouden van alle ins en outs van onze prachtige vereniging. Daarnaast is dit de mooiste manier om later nog eens terug te kijken op de beste jaren uit je leven. Oh ja, heb je nog een leuke quote, foto of een tof idee? Mail ons dan op jaaroverzicht@av40.nl ! Lieve groetjes, De RedaCie",
+            "leden": [
+                {
+                    "naam": "Niels Goedegebure",
+                    "functie": "Voorzitter"
+                },
+                {
+                    "naam": "Rianne Stuivenberg",
+                    "functie": "Secretaris"
+                },
+                {
+                    "naam": "Noortje Molenaar",
+                    "functie": "Commissaris Vormgeving"
+                },
+                {
+                    "naam": "Carine Leijn",
+                    "functie": "Commissaris Inhoud"
+                },
+                {
+                    "naam": "Jasper Rou",
+                    "functie": "QQ'er"
+                }
+            ]
+        },
+        {
+            "naam": "Riceco",
+            "info": "Wij mogen als RiceCo de allereerste wintersport en zomertrip organiseren. Hierbij combineren we wat de andere commissies ook doen, maar dan allemaal in één week. Activiteiten, gezelligheid, borrels, alles komt bij elkaar in deze ene week. Ice ice ice, we gaan op rice!",
+            "leden": [
+                {
+                    "naam": "Simon Loose",
+                    "functie": "Voorzitter"
+                },
+                {
+                    "naam": "Arno Soetens",
+                    "functie": "Secretaris"
+                },
+                {
+                    "naam": "Rick Verkooij",
+                    "functie": "Commissaris Vormgeving"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "functie": "QQ'er"
+                }
+            ]
+        },
+        {
+            "naam": "Sax",
+            "info": "Hoi! Wij zijn de SAX, de saxiviteiten commissie. Een saxiviteit is een activiteit georganiseerd door en voor de studenten! Elke maand is er wel iets leuks gepland waarin wij ervoor zorgen dat de aardvarkens elkaar ook zien buiten de trainingen of borrels. Zo heeft de SAX bijvoorbeeld vorig jaar een kroegentocht met een twist door Delft en ook een kerstdiner georganiseerd waar er door de aardvarkens in groepjes voor iedereen gekookt werd! Dit jaar zijn we begonnen met een online pubquiz die in groepjes bij de aardvarkens thuis gespeeld werd en kort daarna zijn we met een grote groep gaan boulderen in de buurt van de atletiekbaan! Zien wij jou bij de eerstvolgende saxiviteit?",
+            "leden": [
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "Voorzitter"
+                },
+                {
+                    "naam": "Jesper van der Marel",
+                    "functie": "Secretaris"
+                },
+                {
+                    "naam": "Niels Steverink",
+                    "functie": "Penningmeester"
+                },
+                {
+                    "naam": "Henriëtta Gussenhoven",
+                    "functie": "Commissaris Promo"
+                },
+                {
+                    "naam": "Donne Gerlich",
+                    "functie": "QQ'er"
+                }
+            ]
+        },
+        {
+            "naam": "STARTcommissie",
+            "info": "Duurt lang",
+            "leden": [
+                {
+                    "naam": "Bart Groeneveld",
+                    "functie": "Voorzitter"
+                },
+                {
+                    "naam": "Danique Oost",
+                    "functie": "Secretaris"
+                },
+                {
+                    "naam": "Niels Verheugd",
+                    "functie": "Penningmeester"
+                },
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "Alweer Jefry?!?"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "functie": "QQ'er"
+                },
+                {
+                    "naam": "Donne Gerlich",
+                    "functie": "QQ'er"
+                }
+            ]
+        }
+        ,
+        {
+            "naam": "Trainerscommissie",
+            "info": "Met de trainerscommissie verzorgen wij de studenten trainingen van AV`40. Elke maandag, woensdag en zaterdag staan wij weer klaar met een leuke, originele training waar je beter van wordt. Ons doel is zorgen dat atleten plezier hebben op de trainingen en voor te bereiden op de wedstrijden. Ook organiseren wij een keer per jaar een episch trainingsweekend vol met trainingen en leuke activiteiten. Naast dat we atleten proberen te verbeteren, zijn we zelf ook bezig een betere trainer te worden. We zijn daarom altijd erg blij met feedback op onze trainingen, dus schroom niet om deze te geven. Tot op de training!",
+            "leden": [
+                {
+                    "naam": "Jasper Rou",
+                    "functie": "Baanatletiek trainer"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "functie": "Baanatletiek trainer"
+                },
+                {
+                    "naam": "Sanne van Beek",
+                    "functie": "Baanatletiek trainer"
+                },
+                {
+                    "naam": "Niels Verheugd",
+                    "functie": "Baanatletiek trainer"
+                },
+                {
+                    "naam": "Rik Palings",
+                    "functie": "Loopgroep trainer 'Vo"
+                },
+                {
+                    "naam": "Aniek Sips",
+                    "functie": "Loopgroep trainer 'Vo"
+                },
+                {
+                    "naam": "Bart Groeneveld",
+                    "functie": "Erelid"
+                }
+            ]
+        }
+    ]
+}

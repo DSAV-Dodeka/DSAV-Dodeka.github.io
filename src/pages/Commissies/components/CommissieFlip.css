@@ -1,3 +1,13 @@
+.commissie {
+    width: 200%;
+}
+
+.test {
+    width: calc(50% - 36rem);
+    height: 32rem;
+    vertical-align: top;
+}
+
 .out {
     animation: slide-out 1s forwards;
 }
@@ -15,10 +25,11 @@
 }
 
 @keyframes slide-in {
+    0% {transform: translateX(-50%)}
     100% {transform: translateX(0%)}
 }
 @keyframes slide-out {
-    100% {transform: translateX(-100%)}
+    100% {transform: translateX(-50%)}
 }
 
 @keyframes slide-in-back {

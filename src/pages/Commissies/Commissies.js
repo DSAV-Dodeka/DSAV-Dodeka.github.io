@@ -1,15 +1,16 @@
 import PageTitle from "../../components/PageTitle";
 import Commissie from "./components/Commissie";
+import CommissiesText from "../../content/Commissies.json";
 
 function Commissies() {
-    return(
+    return (
         <div>
             <PageTitle title="Commissies" />
-            <div class="space-y-24">
-            <Commissie position="left" name=".ComCom"/>
-            <Commissie position="right" name=".ComCo"/>
+            <div class="space-y-24 overflow-x-hidden">
+                {CommissiesText.commissies.map((commissie, index) =>
+                    <Commissie position={index % 2 === 0 ? "left" : "right"} name={commissie.naam} info={commissie.info} leden={commissie.leden} />
+                )}
             </div>
-            
         </div>
     )
 }
