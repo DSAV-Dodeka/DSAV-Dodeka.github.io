@@ -8,9 +8,9 @@
         },
         {
             "naam": "Bestuur 1",
-            "leden": ["Abel Kappenburg", "Bart Groeneveld", "Emile Vink", "Jasper Rou"],
+            "leden": ["Bart Groeneveld", "Emile Vink", "Abel Kappenburg", "Jasper Rou"],
             "jaar": "2019/2020",
-            "foto": "bestuur_2.jpg" 
+            "foto": "bestuur_1.jpg" 
         }
     ]
 }
