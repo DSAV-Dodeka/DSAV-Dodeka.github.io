@@ -6,29 +6,36 @@
             "leden": [
                 {
                     "naam": "David Wolfrat",
-                    "functie": "Voorzitter"
+                    "functie": "Voorzitter",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Vincent Kuiper",
-                    "functie": "Secretaris"
+                    "functie": "Secretaris",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Tom Klunder",
-                    "functie": "Penningmeester"
+                    "functie": "Penningmeester",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Pien Abbink",
-                    "functie": "Commissaris Activiteiten"
+                    "functie": "Commissaris Activiteiten",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Sam van der Pol",
-                    "functie": "Commissaris Consumptiemaatschappij"
+                    "functie": "Commissaris Consumptiemaatschappij",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Stefan Pol",
-                    "functie": "QQ'er"
+                    "functie": "QQ'er",
+                    "foto": "jefry"
                 }
-            ]
+            ],
+            "fotos": "barco"
         },
         {
             "naam": ".ComCom",
@@ -36,21 +43,26 @@
             "leden": [
                 {
                     "naam": "Matthijs Arnoldus",
-                    "functie": "CTO"
+                    "functie": "CTO",
+                    "foto": "matthijs"
                 },
                 {
                     "naam": "Jefry el Bhwash",
-                    "functie": "Junior UI/UX en Chat Manager"
+                    "functie": "Junior UI/UX en Chat Manager",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Nathan Douenburg",
-                    "functie": "Senior Design Critic Expert"
+                    "functie": "Senior Design Critic Expert",
+                    "foto": "nathan"
                 },
                 {
                     "naam": "Donne Gerlich",
-                    "functie": "QQ'er"
+                    "functie": "QQ'er",
+                    "foto": "donne"
                 }
-            ]
+            ],
+            "fotos": "comcom"
         },
         {
             "naam": "Focus",
@@ -58,29 +70,36 @@
             "leden": [
                 {
                     "naam": "Nathan Douenburg",
-                    "functie": "Voorzitter"
+                    "functie": "Voorzitter",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Abel Kappenburg",
-                    "functie": "Penningmeester + Commissaris Fotoshop"
+                    "functie": "Penningmeester + Commissaris Fotoshop",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Saana Taal",
-                    "functie": "Secretaris"
+                    "functie": "Secretaris",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Lianne Folkerts",
-                    "functie": "Commissaris Foto en Planning"
+                    "functie": "Commissaris Foto en Planning",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Marin Nijenhuis",
-                    "functie": "Commissaris Planning en Foto"
+                    "functie": "Commissaris Planning en Foto",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Koen Stapel",
-                    "functie": "QQ'er"
+                    "functie": "QQ'er",
+                    "foto": "jefry"
                 }
-            ]
+            ],
+            "fotos": "focus"
         },
         {
             "naam": "NSK Indoor Commissie",
@@ -88,25 +107,31 @@
             "leden": [
                 {
                     "naam": "Matthijs Arnoldus",
-                    "functie": "Onbekend"
+                    "functie": "Onbekend",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Florence Estublier",
-                    "functie": "Onbekend"
+                    "functie": "Onbekend",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Niels Goedegebure",
-                    "functie": "Onbekend"
+                    "functie": "Onbekend",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Simon Loose",
-                    "functie": "Onbekend"
+                    "functie": "Onbekend",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Stefan Pol",
-                    "functie": "QQ'er"
+                    "functie": "QQ'er",
+                    "foto": "jefry"
                 }
-            ]
+            ],
+            "fotos": "indoor"
         },
         {
             "naam": "RedaCie",
@@ -114,25 +139,31 @@
             "leden": [
                 {
                     "naam": "Niels Goedegebure",
-                    "functie": "Voorzitter"
+                    "functie": "Voorzitter",
+                    "foto": "niels"
                 },
                 {
                     "naam": "Rianne Stuivenberg",
-                    "functie": "Secretaris"
+                    "functie": "Secretaris",
+                    "foto": "rianne"
                 },
                 {
                     "naam": "Noortje Molenaar",
-                    "functie": "Commissaris Vormgeving"
+                    "functie": "Commissaris Vormgeving",
+                    "foto": "noortje"
                 },
                 {
                     "naam": "Carine Leijn",
-                    "functie": "Commissaris Inhoud"
+                    "functie": "Commissaris Inhoud",
+                    "foto": "carine"
                 },
                 {
                     "naam": "Jasper Rou",
-                    "functie": "QQ'er"
+                    "functie": "QQ'er",
+                    "foto": "jasper"
                 }
-            ]
+            ],
+            "fotos": "redacie"
         },
         {
             "naam": "Riceco",
@@ -140,21 +171,26 @@
             "leden": [
                 {
                     "naam": "Simon Loose",
-                    "functie": "Voorzitter"
+                    "functie": "Voorzitter",
+                    "foto": "simon"
                 },
                 {
                     "naam": "Arno Soetens",
-                    "functie": "Secretaris"
+                    "functie": "Secretaris",
+                    "foto": "arno"
                 },
                 {
                     "naam": "Rick Verkooij",
-                    "functie": "Commissaris Vormgeving"
+                    "functie": "Commissaris Vormgeving",
+                    "foto": "rick"
                 },
                 {
                     "naam": "Koen Stapel",
-                    "functie": "QQ'er"
+                    "functie": "QQ'er",
+                    "foto": "koen"
                 }
-            ]
+            ],
+            "fotos": "riceco"
         },
         {
             "naam": "Sax",
@@ -162,25 +198,31 @@
             "leden": [
                 {
                     "naam": "Jefry el Bhwash",
-                    "functie": "Voorzitter"
+                    "functie": "Voorzitter",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Jesper van der Marel",
-                    "functie": "Secretaris"
+                    "functie": "Secretaris",
+                    "foto": "jesper"
                 },
                 {
                     "naam": "Niels Steverink",
-                    "functie": "Penningmeester"
+                    "functie": "Penningmeester",
+                    "foto": "niels"
                 },
                 {
                     "naam": "Henriëtta Gussenhoven",
-                    "functie": "Commissaris Promo"
+                    "functie": "Commissaris Promo",
+                    "foto": "henrietta"
                 },
                 {
                     "naam": "Donne Gerlich",
-                    "functie": "QQ'er"
+                    "functie": "QQ'er",
+                    "foto": "donne"
                 }
-            ]
+            ],
+            "fotos": "sax"
         },
         {
             "naam": "STARTcommissie",
@@ -188,29 +230,36 @@
             "leden": [
                 {
                     "naam": "Bart Groeneveld",
-                    "functie": "Voorzitter"
+                    "functie": "Voorzitter",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Danique Oost",
-                    "functie": "Secretaris"
+                    "functie": "Secretaris",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Niels Verheugd",
-                    "functie": "Penningmeester"
+                    "functie": "Penningmeester",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Jefry el Bhwash",
-                    "functie": "Alweer Jefry?!?"
+                    "functie": "Alweer Jefry?!?",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Koen Stapel",
-                    "functie": "QQ'er"
+                    "functie": "QQ'er",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Donne Gerlich",
-                    "functie": "QQ'er"
+                    "functie": "QQ'er",
+                    "foto": "jefry"
                 }
-            ]
+            ],
+            "fotos": "start"
         }
         ,
         {
@@ -219,33 +268,41 @@
             "leden": [
                 {
                     "naam": "Jasper Rou",
-                    "functie": "Baanatletiek trainer"
+                    "functie": "Baanatletiek trainer",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Koen Stapel",
-                    "functie": "Baanatletiek trainer"
+                    "functie": "Baanatletiek trainer",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Sanne van Beek",
-                    "functie": "Baanatletiek trainer"
+                    "functie": "Baanatletiek trainer",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Niels Verheugd",
-                    "functie": "Baanatletiek trainer"
+                    "functie": "Baanatletiek trainer",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Rik Palings",
-                    "functie": "Loopgroep trainer 'Vo"
+                    "functie": "Loopgroep trainer 'Vo",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Aniek Sips",
-                    "functie": "Loopgroep trainer 'Vo"
+                    "functie": "Loopgroep trainer 'Vo",
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Bart Groeneveld",
-                    "functie": "Erelid"
+                    "functie": "Erelid",
+                    "foto": "jefry"
                 }
-            ]
+            ],
+            "fotos": "trainers"
         }
     ]
 }
