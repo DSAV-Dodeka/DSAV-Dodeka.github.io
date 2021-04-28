@@ -16,6 +16,7 @@ import WordLid from './pages/Word lid/WordLid';
 import Contact from './pages/Contact/Contact';
 import ContactBar from "./components/Contact Bar/ContactBar";
 import Merchandise from "./pages/Merchandise/Merchandise";
+import Commissies from "./pages/Commissies/Commissies";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -31,7 +32,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div class="flex flex-col min-h-screen">
+      <div class="flex flex-col min-h-screen w-full ">
         <NavigationBar />
         <Switch>
           <Route path="/nieuws">
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/over/merchandise">
             <Merchandise />
+          </Route>
+          <Route path="/over/commissies">
+            <Commissies />
           </Route>
           <Route path="/over">
             <Over />
