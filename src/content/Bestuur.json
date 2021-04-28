@@ -1,0 +1,16 @@
+{
+    "besturen": [
+        {
+            "naam": "Bestuur 2",
+            "leden": ["Koen Stapel", "Jasper Rou", "Donne Gerlich", "Stefan Pol"],
+            "jaar": "2020/2021",
+            "foto": "bestuur_2.jpg" 
+        },
+        {
+            "naam": "Bestuur 1",
+            "leden": ["Abel Kappenburg", "Bart Groeneveld", "Emile Vink", "Jasper Rou"],
+            "jaar": "2019/2020",
+            "foto": "bestuur_2.jpg" 
+        }
+    ]
+}
