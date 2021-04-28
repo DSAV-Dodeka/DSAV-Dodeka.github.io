@@ -17,6 +17,7 @@ import Contact from './pages/Contact/Contact';
 import ContactBar from "./components/Contact Bar/ContactBar";
 import Merchandise from "./pages/Merchandise/Merchandise";
 import Commissies from "./pages/Commissies/Commissies";
+import Bestuur from "./pages/Bestuur/Bestuur";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -44,18 +45,21 @@ function App() {
           <Route path="/over/commissies">
             <Commissies />
           </Route>
+          <Route path="/over/bestuur">
+            <Bestuur />
+          </Route>
           <Route path="/over">
             <Over />
           </Route>
           <Route path="/trainingen">
             <Trainingen />
           </Route>
-          <Route path="/wedstrijden">
+          {/* <Route path="/wedstrijden">
             <Wedstrijden />
-          </Route>
-          <Route path="/agenda">
+          </Route> */}
+          {/* <Route path="/agenda">
             <Agenda />
-          </Route>
+          </Route> */}
           <Route path="/word_lid">
             <WordLid />
           </Route>

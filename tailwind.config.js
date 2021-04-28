@@ -3,7 +3,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      'sans': ['Rajdhani', 'sans-serif']
+      'sans': ['Arboria', 'sans-serif']
     },
     extend: {
       colors: {

@@ -5,7 +5,7 @@ import PageTitle from "../../components/PageTitle";
 function Nieuws() {
     return(
         <div class="text-center">
-            <PageTitle title="Laatste nieuws"/>
+            <PageTitle title="Nieuws"/>
             <Nieuwsbericht position="left"/>
             <Nieuwsbericht position="right"/>
             <Nieuwsbericht position="left"/>
