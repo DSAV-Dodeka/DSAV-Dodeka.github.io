@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import {
+  Link
+} from "react-router-dom";
 import Item from "./Item";
 import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
@@ -19,15 +22,19 @@ function NavigationBar() {
   return (
     <div class="sticky top-0 z-50">
       <nav class="hidden lg:flex w-full h-24 bg-blauw mx-auto items-center z-50">
-        <img class="mt-8 w-16 bg-blauw rounded-b-full ml-16" src={logo2} alt=""/>
-        <img class="w-32 bg-blauw ml-1 mr-16" src={logo3} alt=""/>
+        <Link to="/">
+          <img class="mt-8 w-16 bg-blauw rounded-b-full ml-16" src={logo2} alt="" />
+        </Link>
+        <Link to="/">
+          <img class="w-32 bg-blauw ml-1 mr-16" src={logo3} alt="" />
+        </Link>
         <Item name="Home" path="/" />
         <Item name="Nieuws" path="/nieuws" />
         <Dropdown name="Over" path="/over" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }]} />
         <Item name="Trainingen" path="/trainingen" />
         {/* <Item name="Wedstrijden" path="/wedstrijden" />
         <Item name="Agenda" path="/agenda" /> */}
-        <Item name="Word Lid" path="/word_lid" />
+        <Item name="Word lid!" path="/word_lid" />
         <Item name="Contact" path="/contact" />
       </nav>
       <nav class="lg:hidden w-full bg-blauw z-10">
@@ -38,7 +45,7 @@ function NavigationBar() {
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform rotate-45 -translate-y-3" : "")}></div>
           </div>
           <div class="flex-grow" />
-          <img class="w-32 mx-16" src={logo3} alt=""/>
+          <img class="w-32 mx-16" src={logo3} alt="" />
           <div class="flex-grow" />
           <div class="inline space-y-2 cursor-pointer invisible">
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform -rotate-45 translate-y-3" : "")}></div>
@@ -48,16 +55,16 @@ function NavigationBar() {
         </div>
         <div class={"fixed top-16 w-screen h-screen transition duration-500 bg-blauw transform" + (active ? "" : " opacity-0 hidden")}>
           <div class={active ? "" : "hidden"}>
-            <Item name="Home" path="/" onClick={() => setActive(false)}/>
-            <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)}/>
-            <MobileDropdown name="Over" path="/over" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }]} onClick={() => setActive(false)}/>
-            <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)}/>
+            <Item name="Home" path="/" onClick={() => setActive(false)} />
+            <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
+            <MobileDropdown name="Over" path="/over" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }]} onClick={() => setActive(false)} />
+            <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
             {/* <Item name="Wedstrijden" path="/wedstrijden" onClick={() => setActive(false)}/>
             <Item name="Agenda" path="/agenda" onClick={() => setActive(false)}/> */}
-            <Item name="Word Lid" path="/word_lid" onClick={() => setActive(false)}/>
-            <Item name="Contact" path="/contact" onClick={() => setActive(false)}/>
+            <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
+            <Item name="Contact" path="/contact" onClick={() => setActive(false)} />
           </div>
-        </div> 
+        </div>
       </nav>
     </div>
   )

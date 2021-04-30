@@ -40,7 +40,7 @@ function Commissie(props) {
                     </p>
                     <div class="cursor-pointer bg-rood text-white text-xl font-bold absolute flex space-x-4 right-0 top-8 p-3 h-8" onClick={() => slideIn()}>
                         <p>Bekijk de leden</p>
-                        <svg id="" xmlns="http://www.w3.org/2000/svg" class=" right-4 top-0 bottom-0 my-auto w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+                        <svg id="" xmlns="http://www.w3.org/2000/svg" class="w-6 h-8 fill-current" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
 
                     </div>
                 </div>
@@ -58,7 +58,7 @@ function Commissie(props) {
                         )}
                     </div>
                     <div class="cursor-pointer bg-rood text-white text-xl flex space-x-4 font-bold absolute right-0 top-8 p-3 h-8 rounded-tr" onClick={() => slideOut()}>
-                        <svg id="" xmlns="http://www.w3.org/2000/svg" class=" right-4 top-0 bottom-0 my-auto w-6 h-6 fill-current transform rotate-180" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+                        <svg id="" xmlns="http://www.w3.org/2000/svg" class=" right-4 top-0 bottom-0 my-auto w-6 h-8 fill-current transform rotate-180" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
                         <p>Bekijk de commissie</p>
                     </div>
                 </div>
@@ -78,7 +78,7 @@ function Commissie(props) {
             </p>
             <div class="cursor-pointer bg-rood text-white text-xl font-bold absolute flex space-x-4 right-0 top-8 p-3 h-8" onClick={() => slideIn()}>
                 <p>Bekijk de leden</p>
-                <svg id="" xmlns="http://www.w3.org/2000/svg" class=" right-4 top-0 bottom-0 my-auto w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+                <svg id="" xmlns="http://www.w3.org/2000/svg" class=" right-4 top-0 bottom-0 my-auto w-6 h-8 fill-current" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
 
             </div>
         </div>
@@ -100,7 +100,7 @@ function Commissie(props) {
                 )}
             </div>
             <div class="cursor-pointer bg-rood text-white text-xl flex space-x-4 font-bold absolute right-0 top-8 p-3 h-8 rounded-tr" onClick={() => slideOut()}>
-                <svg id="" xmlns="http://www.w3.org/2000/svg" class=" right-4 top-0 bottom-0 my-auto w-6 h-6 fill-current transform rotate-180" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+                <svg id="" xmlns="http://www.w3.org/2000/svg" class=" right-4 top-0 bottom-0 my-auto w-6 h-8 fill-current transform rotate-180" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
                 <p>Bekijk de commissie</p>
             </div>
         </div>

@@ -6,7 +6,7 @@ import Contributie from "./components/Contributie";
 function WordLid() {
     return(
         <div>
-            <PageTitle title="Word Lid"/>
+            <PageTitle title="Word lid!"/>
             <Meetrainen />
             <Contributie />
         </div>

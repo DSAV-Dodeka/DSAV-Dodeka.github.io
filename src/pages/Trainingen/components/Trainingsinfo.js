@@ -4,7 +4,7 @@ import ContactButtons from "../../../components/ContactButtons";
 
 function Trainingsinfo() {
     return(
-        <div class="lg:flex bg-blauw bg-opacity-90 w-full mb-8 lg:mb-16">
+        <div class="lg:flex bg-blauw bg-opacity-90 w-full mb-8 lg:mb-24">
             <div class="lg:inline py-8 lg:py-0 lg:my-8 w-full lg:w-1/2">
                 <p class= "text-white text-lg px-4 lg:px-0 lg:mx-16 ">
                     De trainingen vinden plaats op maandag van 18:00 tot 19:30, woensdag 18:15 tot 19:45 en zaterdag van 10:15 tot 11:45 op de atletiekbaan van AV`40 in Delft.
