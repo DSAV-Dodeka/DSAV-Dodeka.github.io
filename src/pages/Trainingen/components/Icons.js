@@ -1,5 +1,5 @@
 import React from "react";
-import icons from "../../../images/icons.png";
+import icons from "../../../images/trainingen/icons.svg";
 import "./Icons.css"
 
 function Icons() {

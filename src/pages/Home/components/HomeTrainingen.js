@@ -1,6 +1,6 @@
 import React from "react";
 import "./HomeTrainingen.css";
-import foto from "../../../images/baanatletiek.jpg";
+import foto from "../../../images/trainingen/baanatletiek.jpg";
 
 function HomeTrainingen() {
   return (
