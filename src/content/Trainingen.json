@@ -1,0 +1,13 @@
+{
+    "algemeen": {
+        "tekst": "De trainingen vinden plaats op maandag van 18:00 tot 19:30, woensdag 18:15 tot 19:45 en zaterdag van 10:15 tot 11:45 op de atletiekbaan van AV`40 in Delft. Alle atletiekonderdelen, van sprint tot de marathon en van speerwerpen tot polsstokhoogspringen, kunnen bij ons getraind worden. Ook zijn de trainingen geschikt voor elk niveau. Er trainen bij ons mensen die net begonnen zijn met atletiek, maar ook mensen die voor de NK's trainen.\n\n We trainen in twee groepen, een baanatletiekgroep voor alle baanonderdelen, en de loopgroep voor de langere loopnummers op de baan en op de weg. Je kan elke training weer kiezen bij welke groep je aansluit, en de warming-up is gezamenlijk met beide groepen. \n\n Lijkt het je leuk om een keer mee te trainen? Geef je dan op via de mail of via een insta-dm."
+    },
+    "baanatletiek": {
+        "tekst": "De baanatletiek trainingen worden gegeven door Koen Stapel, Jasper Rou, Sanne van Beek en Niels Verheugd. Tijdens deze trainingen komen alle aspecten van baanatletiek aan bod. We trainen op snelheid, kracht, stabiliteit, uithoudingsvermogen en techniek.\n\n Er wordt training gegeven voor alle onderdelen, zowel technisch als de korte en middellange afstanden. Elke training is er na de warming-up keuze uit verschillende werp-, spring- of looponderdelen. De trainers hebben allemaal hun eigen specialiteiten waardoor ze jou samen naar een hoger niveau kunnen brengen.",
+        "foto": "baanatletiek.jpg"
+    },
+    "loopgroep": {
+        "tekst": "De loopgroep trainingen worden gegeven door Rik Palings en Aniek Sips. Er wordt getraind voor de langere afstanden op de baan en op de weg. Op maandag traint deze groep na de warming-up buiten de baan op de weg. Op woensdag blijven we op de baan om daar loopschema's te trainen. En op zaterdag wordt er afwisselend op de baan en buiten de baan getraind.\n\n De trainingen worden altijd aangepast voor verschillende niveaus, zodat iedereen mee kan met de trainingen. Ook zit er veel variatie in de trainingen. Zo trainen we korte en lange intervallen, doen we heuveltrainingen en duurloopjes, en trainen we op verschillende ondergronden. Dit zorgt ervoor dat je zowel je snelheid als je uithoudingsvermogen zal verbeteren.",
+        "foto": "loopgroep.jpg"
+    }
+}
