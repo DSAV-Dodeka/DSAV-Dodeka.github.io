@@ -19,7 +19,7 @@ function Meetrainen(props) {
                 </p>
                 <ContactButtons />
             </div>
-            <img src={image} alt="" class="lg:inline w-full lg:w-1/2" />
+            <img src={require(`../../../images/word_lid/${props.foto}`).default} alt="" class="lg:inline w-full lg:w-1/2" />
         </div>
     )
 }

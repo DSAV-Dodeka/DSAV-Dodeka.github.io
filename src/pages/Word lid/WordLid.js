@@ -9,7 +9,7 @@ function WordLid() {
         <div>
             <PageTitle title="Word lid!"/>
             <Meetrainen text={Text.proeftrainen.text} foto={Text.proeftrainen.foto}/>
-            <Contributie Text={Text.contributie.text} foto={Text.contributie.foto}/>
+            <Contributie text={Text.contributie.text} foto={Text.contributie.foto}/>
         </div>
     )
 }
