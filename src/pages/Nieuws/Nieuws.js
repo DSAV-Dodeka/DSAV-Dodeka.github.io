@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Nieuwsbericht from "./components/Nieuwsbericht";
 import PageTitle from "../../components/PageTitle";
 import NieuwsText from "../../content/Nieuws.json";
 
 function Nieuws() {
+    const [nBerichten, setNBerichten] = useState(3);
+
     return(
         <div class="text-center">
             <PageTitle title="Nieuws"/>
-            {NieuwsText.nieuwsberichten.map((bericht, index) =>
+            <div class={"space-y-8 lg:space-y-24 mb-4 lg:mb-12" + (nBerichten >= NieuwsText.nieuwsberichten.length ? " mb-8 lg:mb-24" : "")}>
+            {NieuwsText.nieuwsberichten.slice(0, nBerichten).map((bericht, index) =>
                     <Nieuwsbericht position={index % 2 === 0 ? "left" : "right"} titel={bericht.titel} datum={bericht.datum} auteur={bericht.auteur} tekst={bericht.tekst} foto={bericht.foto}/>
                 )}
-            <button class="transition duration-500 border-4 p-4 m-8 border-blauw border-opacity-90 text-blauw text-opacity-90 text-3xl font-bold rounded-lg transform hover:text-white hover:bg-opacity-90 hover:border-white hover:bg-blauw">
-                ARCHIEF
+            </div>
+            
+            <button onClick={() => setNBerichten(nBerichten + 3)} class={"bg-rood text-white text-xl font-bold rounded-xl py-2 px-4 lg:py-4 mb-4 lg:mb-12" + (nBerichten >= NieuwsText.nieuwsberichten.length ? " hidden" : "")}>
+                LAAD MEER
             </button>
         </div>
         
