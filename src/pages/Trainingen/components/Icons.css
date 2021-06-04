@@ -1,7 +1,7 @@
 #icons {
     will-change: background-position;
     background-repeat: repeat-x;
-    background-size: 100vw 4rem;
+    background-size: 50vw 2rem;
     -webkit-animation: slide 20s linear infinite;
        -moz-animation: slide 20s linear infinite;
             animation: slide 20s linear infinite;
