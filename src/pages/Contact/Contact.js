@@ -3,6 +3,8 @@ import PageTitle from "../../components/PageTitle";
 import Contactinfo from "./components/Contactinfo";
 import Socials from "./components/Socials"
 import Maps from "../../components/Maps";
+import Questions from "./components/Questions";
+import Text from "../../content/FAQ.json";
 
 
 function Contact() {
@@ -14,10 +16,12 @@ function Contact() {
                     <Contactinfo />
                     <Socials />
                 </div>
-                <div class="w-full h-96 lg:h-auto lg:inline lg:w-1/2 lg:px-16">
+                <div class="w-full h-96 lg:h-auto lg:inline lg:w-1/2">
                     <Maps />    
                 </div>
             </div>
+            <PageTitle title="Frequently asked questions" />
+            <Questions questions={Text.questions} />
         </div>
     )
 }
