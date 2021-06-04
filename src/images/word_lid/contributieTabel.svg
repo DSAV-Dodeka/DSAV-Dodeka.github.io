@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 944">
+  <defs>
+    <style>
+      .cls-1, .cls-10, .cls-12, .cls-5, .cls-7 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #19355a;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #bb4b3d;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 40px;
+      }
+
+      .cls-4 {
+        fill: #cb4b3d;
+      }
+
+      .cls-10, .cls-5, .cls-7 {
+        font-size: 72px;
+      }
+
+      .cls-10, .cls-12, .cls-5, .cls-7 {
+        font-family: Arboria-Bold, Arboria;
+        font-weight: 700;
+      }
+
+      .cls-5 {
+        letter-spacing: -0.04em;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        letter-spacing: -0.02em;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-10 {
+        letter-spacing: 0em;
+      }
+
+      .cls-11 {
+        letter-spacing: -0.01em;
+      }
+
+      .cls-12 {
+        font-size: 35px;
+      }
+
+      .cls-13 {
+        letter-spacing: 0em;
+      }
+
+      .cls-14 {
+        letter-spacing: -0.01em;
+      }
+
+      .cls-15 {
+        letter-spacing: -0.02em;
+      }
+
+      .cls-16 {
+        letter-spacing: -0.02em;
+      }
+
+      .cls-17 {
+        letter-spacing: -0.02em;
+      }
+
+      .cls-18 {
+        letter-spacing: -0.02em;
+      }
+
+      .cls-19 {
+        letter-spacing: -0.04em;
+      }
+
+      .cls-20 {
+        letter-spacing: -0.03em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_2" data-name="Layer 2">
+    <g>
+      <rect class="cls-1" x="0.5" y="22.5" width="1599" height="899"/>
+      <path d="M1599,1V899H1V1H1599m1-1H0V900H1600V0Z" transform="translate(0 22)"/>
+    </g>
+  </g>
+  <g id="Layer_1" data-name="Layer 1">
+    <rect class="cls-2" width="1600" height="944"/>
+    <g>
+      <line class="cls-3" x1="799" y1="145" x2="800" y2="798"/>
+      <line class="cls-4" x1="799" y1="145" x2="800" y2="798"/>
+    </g>
+    <text class="cls-5" transform="translate(303.97 245.99)">W<tspan class="cls-6" x="65.02" y="0">edstrijdlid</tspan></text>
+    <text class="cls-7" transform="translate(697.01 222.02) scale(0.58)">1</text>
+    <text class="cls-7" transform="translate(311.84 418.79)"><tspan class="cls-8">R</tspan><tspan x="47.09" y="0">ec</tspan><tspan class="cls-9" x="125.06" y="0">r</tspan><tspan x="152.14" y="0">eantlid</tspan></text>
+    <text class="cls-10" transform="translate(693.65 394.82) scale(0.58)">2</text>
+    <text class="cls-7" transform="translate(459.44 591.59)">Gastlid</text>
+    <text class="cls-10" transform="translate(693.65 567.62) scale(0.58)">2</text>
+    <text class="cls-7" transform="translate(317.47 764.39)">Inschrij<tspan class="cls-11" x="232.48" y="0">f</tspan><tspan x="256.03" y="0">geld</tspan></text>
+    <text class="cls-12" transform="translate(1135.73 826.89) scale(0.58)">1</text>
+    <text class="cls-12" transform="translate(1145.93 838.54)"><tspan class="cls-13">: Inclusief </tspan><tspan class="cls-14" x="156.76" y="0">w</tspan><tspan x="182.07" y="0">edstrijdli</tspan><tspan class="cls-15" x="320.52" y="0">c</tspan><tspan class="cls-13" x="337.75" y="0">entie</tspan></text>
+    <text class="cls-12" transform="translate(1135.73 868.89) scale(0.58)">2</text>
+    <text class="cls-12" transform="translate(1147.56 880.54)">: E<tspan class="cls-16" x="38.85" y="0">x</tspan><tspan x="56.49" y="0">clusief </tspan><tspan class="cls-14" x="166.6" y="0">w</tspan><tspan x="191.9" y="0">edstrijdli</tspan><tspan class="cls-17" x="330.36" y="0">c</tspan><tspan x="347.58" y="0">entie</tspan></text>
+    <text class="cls-7" transform="translate(874.93 245.99)">€<tspan class="cls-18" x="42.48" y="0">5</tspan><tspan x="82.51" y="0">2,00</tspan><tspan x="2.45" y="172.8">€</tspan><tspan class="cls-19" x="44.93" y="172.8">4</tspan><tspan class="cls-20" x="86.18" y="172.8">7</tspan><tspan x="124.27" y="172.8">,00</tspan><tspan x="-1.66" y="345.6">€38,00</tspan><tspan x="-2.88" y="518.4">€20,00</tspan></text>
+  </g>
+</svg>
