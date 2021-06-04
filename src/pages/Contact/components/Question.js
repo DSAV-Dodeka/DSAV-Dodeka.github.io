@@ -11,7 +11,7 @@ function Question(props) {
                         </span>
                     )} 
             </div>
-            <div class="px-8 py-2 text-base lg:text-lg">
+            <div class="px-8 pb-4 pt-2 text-base lg:text-lg">
                 {props.antwoord.split('\n').map(item =>
                         <span>
                             {item}
