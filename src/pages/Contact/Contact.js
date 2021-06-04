@@ -16,7 +16,7 @@ function Contact() {
                     <Contactinfo />
                     <Socials />
                 </div>
-                <div class="w-full h-96 lg:h-auto lg:inline lg:w-1/2 lg:px-16">
+                <div class="w-full h-96 lg:h-auto lg:inline lg:w-1/2">
                     <Maps />    
                 </div>
             </div>
