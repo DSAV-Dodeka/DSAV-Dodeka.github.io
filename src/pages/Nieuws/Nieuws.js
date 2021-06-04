@@ -15,8 +15,8 @@ function Nieuws() {
                 )}
             </div>
             
-            <button onClick={() => setNBerichten(nBerichten + 3)} class={"bg-rood text-white text-3xl font-bold rounded-xl p-4 mb-12" + (nBerichten >= NieuwsText.nieuwsberichten.length ? " hidden" : "")}>
-                ARCHIEF
+            <button onClick={() => setNBerichten(nBerichten + 3)} class={"bg-rood text-white text-xl font-bold rounded-xl p-4 mb-12" + (nBerichten >= NieuwsText.nieuwsberichten.length ? " hidden" : "")}>
+                LAAD MEER
             </button>
         </div>
         

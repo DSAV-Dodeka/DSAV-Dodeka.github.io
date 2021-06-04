@@ -11,7 +11,7 @@ function Nieuwsbericht(props) {
                 <p class={"my-4 px-16 text-white" + (props.position === "left" ? " text-left" : " text-right")}>
                     {props.datum} | {props.auteur}
                 </p>
-                <p class="my-8 px-16 text-white text-left">
+                <p class="my-8 px-16 text-white text-left text-base">
                     {props.tekst.split('\n').map(item =>
                         <span>
                             {item}
