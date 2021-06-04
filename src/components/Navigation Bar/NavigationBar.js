@@ -21,21 +21,23 @@ function NavigationBar() {
 
   return (
     <div class="sticky top-0 z-50">
-      <nav class="hidden lg:flex w-full h-24 bg-blauw mx-auto items-center z-50">
-        <Link to="/">
+      <nav class="hidden lg:flex w-full h-24 bg-blauw mx-auto justify-center z-50">
+        {/* <Link to="/">
           <img class="mt-8 w-16 bg-blauw rounded-b-full ml-16" src={logo2} alt="" />
         </Link>
         <Link to="/">
           <img class="w-32 bg-blauw ml-1 mr-16" src={logo3} alt="" />
-        </Link>
-        <Item name="Home" path="/" />
-        <Item name="Nieuws" path="/nieuws" />
-        <Dropdown name="Over" path="/over" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }]} />
-        <Item name="Trainingen" path="/trainingen" />
-        {/* <Item name="Wedstrijden" path="/wedstrijden" />
+        </Link> */}
+        <div class="flex">
+          <Item name="Home" path="/" />
+          <Item name="Nieuws" path="/nieuws" />
+          <Dropdown name="Over" path="/over" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }]} />
+          <Item name="Trainingen" path="/trainingen" />
+          {/* <Item name="Wedstrijden" path="/wedstrijden" />
         <Item name="Agenda" path="/agenda" /> */}
-        <Item name="Word lid!" path="/word_lid" />
-        <Item name="Contact" path="/contact" />
+          <Item name="Word lid!" path="/word_lid" />
+          <Item name="Contact" path="/contact" />
+        </div>
       </nav>
       <nav class="lg:hidden w-full bg-blauw z-10">
         <div class="flex h-16 px-4 items-center">

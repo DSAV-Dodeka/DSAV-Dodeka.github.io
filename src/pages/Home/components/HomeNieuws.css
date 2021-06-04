@@ -1,0 +1,7 @@
+.diagonal {
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.dia {
+    clip-path: polygon(0% 0%, 100% 0%, 66.25% 100%, 0% 100%);
+}
