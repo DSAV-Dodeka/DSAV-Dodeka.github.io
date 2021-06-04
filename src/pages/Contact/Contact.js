@@ -3,6 +3,8 @@ import PageTitle from "../../components/PageTitle";
 import Contactinfo from "./components/Contactinfo";
 import Socials from "./components/Socials"
 import Maps from "../../components/Maps";
+import Questions from "./components/Questions";
+import Text from "../../content/FAQ.json";
 
 
 function Contact() {
@@ -18,6 +20,8 @@ function Contact() {
                     <Maps />    
                 </div>
             </div>
+            <PageTitle title="Frequently asked questions" />
+            <Questions questions={Text.questions} />
         </div>
     )
 }
