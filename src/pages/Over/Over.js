@@ -2,7 +2,12 @@ import {
     Link, useRouteMatch
 } from "react-router-dom";
 import PageTitle from "../../components/PageTitle";
-import test from "../../images/placeholder.png"
+// import test from "../../images/over/placeholder.png"
+import over from "../../images/over/over.jpg"
+import bestuur from "../../images/over/overBestuur.jpg"
+import commissie from "../../images/over/overCommissies.png"
+import merch from "../../images/over/overMerch.jpg"
+
 
 function Over() {
     let match = useRouteMatch();
@@ -11,24 +16,31 @@ function Over() {
         <div class="overflow-x-hidden">
             <PageTitle title="Over" />
             <div class="lg:flex bg-blauw bg-opacity-90 w-full text-white">
-                <p class="w-full lg:w-1/2 p-4 lg:p-16"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim egestas lorem, in posuere arcu consectetur a. Morbi consequat libero et libero convallis suscipit. Proin ac augue vitae ex convallis porta vel in risus. Quisque mi quam, convallis at semper id, accumsan a quam. Duis accumsan dui a consectetur posuere. Aliquam efficitur lacus ac nibh iaculis, ac pharetra ex laoreet. Duis laoreet, ex id vulputate accumsan, purus diam volutpat magna, eu vehicula ante dolor vitae diam. Pellentesque quis ligula vel purus vestibulum pulvinar. Suspendisse fermentum euismod mi, ut pellentesque odio porta quis. Suspendisse quis viverra felis, non elementum sem. Nam id leo nulla.
+                <p class="w-full lg:w-1/2 p-4 lg:p-16">D.S.A.V. Dodeka is dé Delfste Studenten AtletiekVereniging! Er wordt drie keer per week een training aangeboden samen met genoeg borrels en activiteiten om de leuke dodekaëders te leren kennen.<br></br><br></br>
+                    D.S.A.V. Dodeka is aangesloten bij de Nederlandse Studenten Atletiek Federatie ZeuS.
 
-Quisque vitae purus nunc. Morbi viverra bibendum augue et condimentum. Ut tempor feugiat mi, eu vestibulum nibh cursus in. Aenean maximus felis id lacus elementum malesuada. Morbi id rutrum nunc, aliquet bibendum metus. Aenean dapibus consequat lorem nec malesuada. Integer varius sem eget ipsum aliquet, ac posuere ante blandit. Nulla at vulputate mauris. Aenean imperdiet metus ac felis posuere pellentesque. Duis tempor tempus urna, eget ornare libero.</p>
-                <img src={test} class="w-full lg:w-1/2" alt=""/>
+                    De atleten van Dodeka zijn niet bang voor wat competitie en gaan vaak in groepjes naar allerlei verschillende wedstrijden toe. De grootste opkomst is te vinden bij alle Nederlands Studenten Kampioenschappen (NSK) waar wij altijd aan meedoen.<br></br><br></br>
+
+                    Wij zijn een jonge vereniging met zo'n 80 leden. Dat ledenaantal heeft ons niet tegengehouden met het opzetten van de velen commissies. Er zijn genoeg commissies waar jij een bijdrage kan leveren, en van kan leren. Er is bijvoorbeeld een commissie voor activiteiten, maar ook voor de website waar je nu op kijkt, ook zijn er commissies voor de borrels of voor de nieuwsbrief en nog meer!<br></br><br></br>
+
+                   <b>Geschiedenis</b> <br></br>
+
+                    Dodeka is op 25 februari 2019 begonnen als DSAV`40 als een commissie bij AV`40 in 2019. Om een eerste stap te zetten richting volledige onafhankelijkheid hebben wij besloten om door te gaan als D.S.A.V. Dodeka in 2021.</p>
+                <img src={over} class="w-full lg:w-1/2 object-cover" alt=""/>
             </div>
             <div class="lg:flex mb-16">
             <Link class="relative w-full lg:w-1/3 lg:h-128" to={`${match.url}/bestuur`} >
                     <h1 class="absolute bg-rood py-2 px-8 w-96 text-white text-3xl font-bold top-8 ml-8 z-30 lg:ml-0 left-0 lg:top-32 lg:right-0">Bestuur</h1>
-                    <img src={test} class="h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24" alt=""/>
+                    <img src={bestuur} class="object-cover h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24" alt=""/>
                 </Link>
                 <Link class="relative w-full lg:w-1/3 h-128 overflow-x-hidden" to={`${match.url}/commissies`} >
                 <h1 class="absolute bg-rood py-2 px-8 w-96 text-white text-3xl font-bold top-24 z-30 ml-8 lg:ml-0 left-0 lg:top-32 lg:right-0">Commissies</h1>
-                    <img src={test} class="h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24" alt=""/>
+                    <img src={commissie} class="object-cover h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24" alt=""/>
                     
                 </Link>
                 <Link class="relative w-full lg:w-1/3 h-128 overflow-x-hidden" to={`${match.url}/merchandise`} >
                 <h1 class="absolute bg-rood py-2 px-8 w-96 text-white text-3xl font-bold top-24 z-30 ml-8 lg:ml-0 left-0 lg:top-32 lg:right-0">Merchandise</h1>
-                    <img src={test} class="h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24" alt=""/>
+                    <img src={merch} class="object-cover h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24" alt=""/>
                 </Link>
             </div>
         </div>
