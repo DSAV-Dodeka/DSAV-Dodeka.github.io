@@ -9,7 +9,7 @@ function Merchandise() {
             <PageTitle title="Merchandise" />
             <Highlights items={Text.highlights}/>
             <Collectie title="Wedstrijdkleding vrouwen" items={Text.wedstrijdkleding_vrouwen}/>
-            <Collectie title="Wedstrijdkleding mannen" items={Text.wedstrijdkleding_vrouwen}/>
+            <Collectie title="Wedstrijdkleding mannen" items={Text.wedstrijdkleding_mannen}/>
             <Collectie title="Casual kleding" items={Text.casualkleding}/>
         </div>
     )

@@ -9,8 +9,8 @@ function CollectieItem(props) {
                     <div class="front absolute">
                         <img class="object-fill h-64 w-64 border-4 border-blauw rounded-2xl" src={require(`../../../../images/merchandise/${props.foto}`).default} alt=""/>
                     </div>
-                    <div class="back absolute bg-blauw text-white w-64 h-64 rounded-2xl text-center text-base p-4 pt-8">
-                        <h1>Dit is een geweldig shirt gemaakt van een prachtige stof. Perfect voor de trainingen en de wedstrijden.</h1>
+                    <div class="back absolute bg-blauw text-white w-64 h-64 rounded-2xl text-center text-base p-2 ">
+                        <h1>{props.text}</h1>
                     </div>
                 </div>
             </div>

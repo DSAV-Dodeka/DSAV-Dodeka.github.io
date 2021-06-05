@@ -8,7 +8,7 @@ function Collectie(props) {
             <Title title={props.title}/>
             <div class="grid ml-12 lg:ml-16 grid-cols-1 lg:grid-cols-3 mb-16 lg:mb-24">
                 {props.items.map((item) => (
-                    <CollectieItem title={item.title} price={item.price} foto={item.image} />
+                    <CollectieItem title={item.title} price={item.price} foto={item.image} text={item.text}/>
                 ))}
                 
             </div>
