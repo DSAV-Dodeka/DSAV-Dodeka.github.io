@@ -32,7 +32,7 @@ function Commissie(props) {
 
     return (
         props.position === "left" || window.innerWidth <= 768 ? (<div id={props.name} class="commissie relative lg:h-128">
-        <img class={"w-1/2 lg:w-128 lg:h-128 lg:inline-block lg:align-top"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
+        <img class={"object-cover w-1/2 lg:w-128 lg:h-128 lg:inline-block lg:align-top"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
         <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full lg:ml-16 py-8">
             <Header text={props.name} position="left" />
             <p class="text-lg text-white mx-4 mt-4 lg:mx-16 lg:mt-8">
@@ -47,7 +47,7 @@ function Commissie(props) {
 
 
         <div class={"align-top lg:inline-block w-full lg:w-128 lg:h-128 bg-blauw content-center"}>
-            <img class="w-1/2 lg:w-128 align-center" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
+            <img class="object-cover w-1/2 lg:w-128 align-center" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
         </div>
 
         <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full lg:ml-16 py-8">
@@ -80,7 +80,7 @@ function Commissie(props) {
 
                     </div>
                 </div>
-                <img class={"lg:w-128 lg:h-128 lg:inline-block align-top"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
+                <img class={"object-cover lg:w-128 lg:h-128 lg:inline-block align-top"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
 
                 <div class="test relative bg-blauw bg-opacity-90 lg:inline-block h-full mr-16 py-8">
                     <Header text={props.name + " leden"} position="left" />
@@ -100,7 +100,7 @@ function Commissie(props) {
                 </div>
 
                 <div class={"align-top lg:inline-block w-128 h-128 bg-blauw content-center"}>
-                    <img class="w-128 align-center" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
+                    <img class="object-cover w-128 align-center" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
                 </div>
 
 
