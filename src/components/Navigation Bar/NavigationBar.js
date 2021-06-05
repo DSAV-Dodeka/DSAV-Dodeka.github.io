@@ -21,13 +21,13 @@ function NavigationBar() {
 
   return (
     <div class="sticky top-0 z-50">
-      <nav class="hidden lg:flex w-full h-24 bg-blauw mx-auto justify-center z-50">
-        {/* <Link to="/">
-          <img class="mt-8 w-16 bg-blauw rounded-b-full ml-16" src={logo2} alt="" />
+      <nav class="relative hidden lg:flex w-full h-16 bg-blauw mx-auto justify-center z-50">
+        <Link to="/">
+          <img class="absolute left-8 mt-2 w-8 bg-blauw rounded-b-full ml-16" src={logo2} alt="" />
         </Link>
         <Link to="/">
-          <img class="w-32 bg-blauw ml-1 mr-16" src={logo3} alt="" />
-        </Link> */}
+          <img class="absolute left-32 w-32 bg-blauw ml-1 mr-16 mt-5" src={logo3} alt="" />
+        </Link>
         <div class="flex">
           <Item name="Home" path="/" />
           <Item name="Nieuws" path="/nieuws" />
