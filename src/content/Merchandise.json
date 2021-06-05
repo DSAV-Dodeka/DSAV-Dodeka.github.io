@@ -1,0 +1,55 @@
+{
+    "highlights": [
+        {
+            "title": "Sport t-shirt", 
+            "price": "€15,00", 
+            "image": "placeholder.png"
+        }, 
+        {
+            "title": "Sport singlet", 
+            "price": "€15,00", 
+            "image": "placeholder.png"
+        }
+    ],
+    "wedstrijdkleding_vrouwen": [
+        {
+            "title": "Sport t-shirt", 
+            "price": "€15,00", 
+            "image": "placeholder.png"
+        }, 
+        {
+            "title": "Sport singlet", 
+            "price": "€15,00", 
+            "image": "placeholder.png"
+        }],
+    "wedstrijdkleding_mannen": [
+        {
+            "title": "Sport t-shirt", 
+            "price": "€15,00", 
+            "image": "placeholder.png"
+        }, 
+        {
+            "title": "Sport singlet", 
+            "price": "€15,00", 
+            "image": "placeholder.png"
+        }
+    ],
+    "casualkleding": [
+        {
+            "title": "Trainingsbroek", 
+            "price": "€20,00", 
+            "image": "placeholder.png"
+        }, 
+        {
+            "title": "Windjack", 
+            "price": "€29,00", 
+            "image": "placeholder.png"
+        }
+        , 
+        {
+            "title": "Hoodie", 
+            "price": "€20,00", 
+            "image": "placeholder.png"
+        }
+    ]
+}
