@@ -1,5 +1,6 @@
 import React from "react";
 import Heading from "./Heading";
+import Maltha from "../../images/contact/maltha.svg";
 
 function ContactBar() {
     return (
@@ -22,8 +23,7 @@ function ContactBar() {
             <div class="lg:inline w-full py-4 lg:py-8">
                 <Heading title="Sponsoren" />
                 <div class="pt-4 px-4 text-white lg:text-center">
-                    <p>Rice & Pasta</p>
-                    <p>Maltha Sport</p>
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={Maltha} alt="" class="w-24 m-auto"/></a>
                 </div>
             </div>
 
