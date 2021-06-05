@@ -43,22 +43,22 @@
             "leden": [
                 {
                     "naam": "Matthijs Arnoldus",
-                    "functie": "CTO",
+                    "functie": "Voorkauwer",
                     "foto": "matthijs"
                 },
                 {
                     "naam": "Jefry el Bhwash",
-                    "functie": "Junior UI/UX en Chat Manager",
+                    "functie": "Control C-cretaris",
                     "foto": "jefry"
                 },
                 {
                     "naam": "Nathan Douenburg",
-                    "functie": "Senior Design Critic Expert",
+                    "functie": "Commissaris Oppervlakkig",
                     "foto": "nathan"
                 },
                 {
                     "naam": "Donne Gerlich",
-                    "functie": "QQ'er",
+                    "functie": "QuQubit",
                     "foto": "donne"
                 }
             ],
@@ -160,7 +160,7 @@
                 },
                 {
                     "naam": "Jasper Rou",
-                    "functie": "QQ'er",
+                    "functie": "QuQu'er",
                     "foto": "jasper"
                 }
             ],
