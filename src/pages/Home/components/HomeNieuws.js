@@ -3,7 +3,7 @@ import {
     Link
 } from "react-router-dom";
 import "./HomeNieuws.css";
-import foto from "../../../images/trainingen/baanatletiek.jpg";
+import foto from "../../../images/home/nieuws.png";
 import Nieuws from "../../../content/Nieuws.json";
 
 function HomeNieuws() {

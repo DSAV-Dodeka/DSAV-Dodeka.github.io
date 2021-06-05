@@ -11,7 +11,6 @@ function Home() {
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
-      <HomeSponsors />
     </div>
   );
 }
