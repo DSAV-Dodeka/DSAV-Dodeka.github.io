@@ -7,39 +7,39 @@
                 {
                     "naam": "David Wolfrat",
                     "functie": "Voorzitter",
-                    "foto": "jefry"
+                    "foto": "barCoDavid"
                 },
                 {
                     "naam": "Vincent Kuiper",
                     "functie": "Secretaris",
-                    "foto": "jefry"
+                    "foto": "barCoVincent"
                 },
                 {
                     "naam": "Tom Klunder",
                     "functie": "Penningmeester",
-                    "foto": "jefry"
+                    "foto": "barCoTom"
                 },
                 {
                     "naam": "Pien Abbink",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "jefry"
+                    "foto": "barCoPien"
                 },
                 {
                     "naam": "Sam van der Pol",
                     "functie": "Commissaris Consumptiemaatschappij",
-                    "foto": "jefry"
+                    "foto": "barCoSam"
                 },
                 {
                     "naam": "Stefan Pol",
                     "functie": "QQ'er",
-                    "foto": "jefry"
+                    "foto": "barCoStefan"
                 }
             ],
             "fotos": "barco"
         },
         {
             "naam": ".ComCom",
-            "info": "Met het groter worden van de vereniging, is er dit studiejaar ook de .ComCom opgericht. Wij, als .ComCom gaan over de inhoud van de website en het ontwerp ervan. Maar het belangrijkste is dat we werken naar het bouwen van onze eigen DSAV Dodeka website. Mocht je iets missen op de website qua functionaliteiten, aarzel dan niet om ons dit te laten weten bij Matthijs!",
+            "info": "Met het groter worden van de vereniging, is er dit studiejaar ook de .ComCom opgericht. Wij, als .ComCom gaan over de inhoud van de website en het ontwerp ervan. De website waar je nu op kijkt is dus volledig door ons gebouwd. Hierdoor hebben wij veel vrijheid in de mogelijkheden en ontwerpkeuzes. Mocht je iets missen op de website qua functionaliteiten, aarzel dan niet om ons dit te laten weten bij Matthijs!",
             "leden": [
                 {
                     "naam": "Matthijs Arnoldus",
@@ -71,32 +71,32 @@
                 {
                     "naam": "Nathan Douenburg",
                     "functie": "Voorzitter",
-                    "foto": "jefry"
+                    "foto": "focusNathan"
                 },
                 {
                     "naam": "Abel Kappenburg",
                     "functie": "Penningmeester + Commissaris Fotoshop",
-                    "foto": "jefry"
+                    "foto": "focusAbel"
                 },
                 {
                     "naam": "Saana Taal",
                     "functie": "Secretaris",
-                    "foto": "jefry"
+                    "foto": "focusSaana"
                 },
                 {
                     "naam": "Lianne Folkerts",
                     "functie": "Commissaris Foto en Planning",
-                    "foto": "jefry"
+                    "foto": "focusLianne"
                 },
                 {
                     "naam": "Marin Nijenhuis",
                     "functie": "Commissaris Planning en Foto",
-                    "foto": "jefry"
+                    "foto": "focusMarin"
                 },
                 {
                     "naam": "Koen Stapel",
                     "functie": "QQ'er",
-                    "foto": "jefry"
+                    "foto": "focusSaana2"
                 }
             ],
             "fotos": "focus"
@@ -106,29 +106,30 @@
             "info": "Begin 2022 organiseert DSAV Dodeka haar eerste fysieke NSK (Nederlands Studenten Kampioenschap). En niet zomaar eentje: NSK Indoor is hét grootste NSK van Nederland! De organisatie, logisitiek, eindfeest en gezelligheid worden door onze commissie verzorgd. Dus bereid je vast voor, train voor de onderdelen én het feest, en wie weet sleep jij een prachtige medaille binnen! Tot in Apeldoorn.",
             "leden": [
                 {
-                    "naam": "Matthijs Arnoldus",
-                    "functie": "Onbekend",
-                    "foto": "jefry"
+                    "naam": "Niels Goedegebure",
+                    "functie": "Voorzitter",
+                    "foto": "nskIndoorNiels"
                 },
                 {
                     "naam": "Florence Estublier",
-                    "functie": "Onbekend",
-                    "foto": "jefry"
+                    "functie": "Secretaris",
+                    "foto": "nskIndoorFlorence"
                 },
+
                 {
-                    "naam": "Niels Goedegebure",
-                    "functie": "Onbekend",
-                    "foto": "jefry"
+                    "naam": "Matthijs Arnoldus",
+                    "functie": "Penningmeester",
+                    "foto": "nskIndoorMatthijs"
                 },
                 {
                     "naam": "Simon Loose",
-                    "functie": "Onbekend",
-                    "foto": "jefry"
+                    "functie": "Wedstrijdwappie",
+                    "foto": "nskIndoorSimon"
                 },
                 {
                     "naam": "Stefan Pol",
                     "functie": "QQ'er",
-                    "foto": "jefry"
+                    "foto": "nskIndoorStefan"
                 }
             ],
             "fotos": "indoor"
@@ -225,8 +226,8 @@
             "fotos": "sax"
         },
         {
-            "naam": "STARTcommissie",
-            "info": "Duurt lang",
+            "naam": "STARTco",
+            "info": "De STARTcommissie is misschien wel de belangrijkste commissie van de vereniging. Elk jaar zorgen wij ervoor dat alle nieuwe studenten de naam D.S.A.V. Dodeka kennen en een keer langskomen tijdens onze trainingen. Dit doen wij door tijdens de OWee epische activiteiten te organiseren waarbij we de nieuwe studenten op een leuke manier kennis laten maken met de atletieksport en de vereniging. Dit jaar zal dat gebeuren op 1 digitale dag via het platform van de OWee en meerdere fysieke dagen waarvan de inhoud op dit moment nog niet bekend is.\n\nNa de OWee zorgen wij ervoor dat alle nieuwe leden zich thuisvoelen op de vereniging door kennismakingsactiviteiten en het leukste weekend van het jaar te organiseren, het STARTweekend op 1, 2 en 3 oktober.\n\nWordt D.S.A.V. Dodeka ook jouw startschot voor een geweldige studententijd?",
             "leden": [
                 {
                     "naam": "Bart Groeneveld",
@@ -269,37 +270,42 @@
                 {
                     "naam": "Jasper Rou",
                     "functie": "Baanatletiek trainer",
-                    "foto": "jefry"
+                    "foto": "trainerJasper"
                 },
                 {
                     "naam": "Koen Stapel",
                     "functie": "Baanatletiek trainer",
-                    "foto": "jefry"
+                    "foto": "trainerKoen"
                 },
                 {
                     "naam": "Sanne van Beek",
                     "functie": "Baanatletiek trainer",
-                    "foto": "jefry"
+                    "foto": "trainerSanne"
                 },
                 {
                     "naam": "Niels Verheugd",
                     "functie": "Baanatletiek trainer",
-                    "foto": "jefry"
+                    "foto": "trainerNiels"
                 },
                 {
                     "naam": "Rik Palings",
-                    "functie": "Loopgroep trainer 'Vo",
-                    "foto": "jefry"
+                    "functie": "'Voopgroep trainer",
+                    "foto": "trainerRik"
                 },
                 {
                     "naam": "Aniek Sips",
-                    "functie": "Loopgroep trainer 'Vo",
-                    "foto": "jefry"
+                    "functie": "'Voopgroep trainer",
+                    "foto": "trainerAniek"
+                },
+                {
+                    "naam": "Arno Soetens",
+                    "functie": "MiLa trainer anti-Vo",
+                    "foto": "trainerArno"
                 },
                 {
                     "naam": "Bart Groeneveld",
                     "functie": "Erelid",
-                    "foto": "jefry"
+                    "foto": "trainerBart"
                 }
             ],
             "fotos": "trainers"
