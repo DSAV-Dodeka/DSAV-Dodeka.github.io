@@ -4,13 +4,13 @@ import {
 } from "react-router-dom";
 import "./TitleBar.css";
 import foto from "../../../images/home.jpg";
-import logo from "../../../images/logo.png";
 
-function TitleBar() {
+
+function TitleBar() {  
   return (
     <div class="w-full relative h-96">
-        <div class="absolute logo left-0 w-3/5 h-96 bg-blauw">
-        <img class="w-2/3 ml-16" src={logo} alt=""/>
+        <div class="hidden lg:block absolute logo left-0 w-3/5 h-96 bg-blauw">
+          
 
         </div>
         <div class="absolute signup w-full lg:w-1/2 right-0 h-96">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
-  Link
+  Link,
+  useLocation
 } from "react-router-dom";
 import Item from "./Item";
 import Dropdown from "./Dropdown";
@@ -9,9 +10,11 @@ import disableScroll from 'disable-scroll';
 import logo from "../../images/dodeka.png";
 import logo2 from "../../images/dsav.png";
 import logo3 from "../../images/odeka.png";
+import dodeka from "../../images/logo.png";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
+  const location = useLocation().pathname;
 
   if (active) {
     disableScroll.on();
@@ -23,10 +26,7 @@ function NavigationBar() {
     <div class="sticky top-0 z-50">
       <nav class="relative hidden lg:flex w-full h-16 bg-blauw mx-auto justify-center z-50">
         <Link to="/">
-          <img class="absolute left-8 mt-2 w-8 bg-blauw rounded-b-full ml-16" src={logo2} alt="" />
-        </Link>
-        <Link to="/">
-          <img class="absolute left-32 w-32 bg-blauw ml-1 mr-16 mt-5" src={logo3} alt="" />
+          <img class={"absolute left-8 mt-2 w-24 bg-blauw ml-16" + (location === "/" ? " hidden" : "")} src={dodeka} alt="" />
         </Link>
         <div class="flex">
           <Item name="Home" path="/" />
