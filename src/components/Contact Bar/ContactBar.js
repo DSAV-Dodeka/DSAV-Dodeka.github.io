@@ -26,7 +26,6 @@ function ContactBar() {
                     <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={Maltha} alt="" class="w-24 m-auto"/></a>
                 </div>
             </div>
-
         </div>
     )
 }
