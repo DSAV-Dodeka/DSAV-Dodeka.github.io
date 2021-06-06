@@ -6,7 +6,7 @@ import Item from "./Item";
 import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from 'disable-scroll';
-import logo from "../../images/logo.png";
+import logo from "../../images/dodeka.png";
 import logo2 from "../../images/dsav.png";
 import logo3 from "../../images/odeka.png";
 
@@ -47,7 +47,7 @@ function NavigationBar() {
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform rotate-45 -translate-y-3" : "")}></div>
           </div>
           <div class="flex-grow" />
-          <img class="w-32 mx-16" src={logo3} alt="" />
+          <img class="w-32 mx-16" src={logo} alt="" />
           <div class="flex-grow" />
           <div class="inline space-y-2 cursor-pointer invisible">
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform -rotate-45 translate-y-3" : "")}></div>
