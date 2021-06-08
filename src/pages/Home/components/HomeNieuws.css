@@ -8,3 +8,11 @@
     clip-path: polygon(0% 0%, 100% 0%, 66.25% 100%, 0% 100%);
 }
 }
+
+.nieuwsstukje {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
