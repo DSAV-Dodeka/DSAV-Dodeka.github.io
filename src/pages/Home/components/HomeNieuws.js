@@ -17,10 +17,10 @@ function HomeNieuws() {
         </div>
         <div class="lg:absolute diagonal w-full lg:w-3/4 right-0 bg-blauw bg-opacity-90 lg:h-96 p-2 lg:pl-40 lg:pr-16">
             {Nieuws.nieuwsberichten.slice(0, maxNieuws).map(item =>
-                    <div class="inline-block text-white w-full lg:w-1/3 align-top lg:mt-28 h-64 border-r-2 border-white border-opacity-50">
-                        <div class="h-56 overflow-y-hidden">
-                            <h1 class="font-bold text-2xl mx-2">{item.titel}</h1>
-                            <h2 class="pt-4 mx-2 overflow-y-hidden h-48">{item.tekst}</h2>
+                    <div class="inline-block text-white w-full lg:w-1/3 align-top lg:mt-28 h-64 lg:border-r-2 border-white border-opacity-50">
+                        <div class="h-56 overflow-hidden">
+                            <h1 class="font-bold text-2xl mx-2 h-16">{item.titel}</h1>
+                            <h2 class="nieuwsstukje pt-4 mx-2 h-40">{item.tekst}</h2>
                         </div>
                         <Link to="/nieuws"><h2 class="pt-2 mx-2 text-right text-rood font-bold underline">Lees meer</h2></Link>
                     </div>
