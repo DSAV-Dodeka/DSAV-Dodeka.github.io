@@ -11,6 +11,17 @@ const logoMax = Math.min((6 * window.innerWidth / 15), 614.4) / parseFloat(getCo
 
 function Home() {
   const [offset, setOffset] = useState(0);
+  const [counter, setCounter]  = useState(0);
+
+  function count() {
+    if (counter === 11) {
+      setCounter(0);
+      var win = window.open("https://nl.wikipedia.org/wiki/12_(getal)", '_blank');
+      win.focus();
+    } else {
+      setCounter(counter + 1);
+    }
+  }
 
   useEffect(() => {
     window.onscroll = () => {
@@ -26,7 +37,7 @@ function Home() {
 
   return (
     <div>
-      <img id="dodeka" class="hidden lg:block w-2/5 fixed top-24 ml-16 z-50" src={logo} alt=""/>
+      <img id="dodeka" onClick={() => count()} class="hidden cursor-pointer lg:block w-2/5 fixed top-24 ml-16 z-50" src={logo} alt=""/>
       <TitleBar />
       <HomeNieuws />
       <HomeTrainingen />
