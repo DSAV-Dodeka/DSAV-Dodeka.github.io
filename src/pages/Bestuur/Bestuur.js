@@ -19,7 +19,7 @@ function Bestuur() {
                 {BestuurText.besturen.map(bestuur => 
                     <Bestuursjaar naam={bestuur.naam} jaar={bestuur.jaar} leden={bestuur.leden} foto={bestuur.foto} />
                 )}
-                <p id="laadbart" onClick={() => bart()} class="cursor-default absolute right-0 bottom-0 text-blauw text-opacity-5">Laad meer</p>
+                <p id="laadbart" onClick={() => bart()} class="cursor-default absolute right-0 bottom-0 text-blauw text-opacity-10">Laad meer</p>
                 <div id="bart" class="hidden">
                     <Bestuursjaar naam="Bestuur 0" jaar="1940/2019" leden={["Bart Groeneveld"]} foto="bestuur_0.jpg"/>
                 </div>
