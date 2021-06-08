@@ -10,8 +10,6 @@ function Commissie(props) {
         const scrollWidth = scrollContainer.scrollWidth - scrollContainer.offsetWidth;
         scrollContainer.scrollTo(1, 0);
         var scroll = window.self.setInterval(() => {
-            console.log(scrollContainer.scrollLeft);
-            console.log(scrollWidth);
             if (scrollContainer.scrollLeft !== scrollWidth && scrollContainer.scrollLeft !== 0) {
                 scrollContainer.scrollTo(scrollContainer.scrollLeft + 1, 0);
             }
