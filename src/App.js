@@ -33,7 +33,9 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div class="flex flex-col min-h-screen w-full ">
+      <div class="w-full bg-blauw bg-opacity-90">
+        <div class="w-full max-w-screen-3xl bg-white border-r-0 3xl:border-r-8 3xl:border-l-8 border-white mx-auto">
+      <div class="flex flex-col min-h-screen w-full max-w-screen-3xl mx-auto">
         <NavigationBar />
         <Switch>
           <Route path="/nieuws">
@@ -72,6 +74,8 @@ function App() {
         </Switch>
         <div class="flex-grow"/>
         <ContactBar />
+      </div>
+      </div>
       </div>
     </Router>
   );
