@@ -23,7 +23,7 @@ function ContactBar() {
             <div class="lg:inline w-full py-4 lg:py-8">
                 <Heading title="Sponsoren" />
                 <div class="pt-4 px-4 text-white lg:text-center">
-                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><Maltha fill="white" class="mx-auto w-24 h-20"/></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><Maltha fill="white" class="lg:mx-auto w-24 h-20"/></a>
                 </div>
             </div>
         </div>
