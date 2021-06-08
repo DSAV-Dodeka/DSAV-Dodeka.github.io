@@ -30,8 +30,8 @@ function Commissie(props) {
 
     return (
         props.position === "left" || window.innerWidth <= 768 ? (<div id={props.name} class="commissie relative lg:h-128">
-        <img class={"object-cover w-1/2 lg:w-128 lg:h-128 lg:inline-block lg:align-top"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
-        <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full lg:ml-16 py-8">
+        <img class={"object-cover w-1/2 lg:w-128 lg:h-128 lg:inline-block lg:align-top lg:rounded-r-lg"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
+        <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full lg:ml-16 py-8 lg:rounded-l-lg">
             <Header text={props.name} position="left" />
             <p class="text-lg text-white mx-4 mt-4 lg:mx-16 lg:mt-8">
                 {props.info}
@@ -44,11 +44,11 @@ function Commissie(props) {
         </div>
 
 
-        <div class={"align-top lg:inline-block w-full lg:w-128 lg:h-128 bg-blauw content-center"}>
-            <img class="object-cover w-1/2 lg:w-128 align-center" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
+        <div class={"align-top lg:inline-block w-full lg:w-128 lg:h-128 bg-blauw content-center lg:rounded-r-lg"}>
+            <img class="object-cover w-1/2 lg:w-128 align-center lg:rounded-r-lg" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
         </div>
 
-        <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full lg:ml-16 py-8">
+        <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full lg:ml-16 py-8 lg:rounded-l-lg">
             <Header text={props.name + " leden"} position="left" />
             <div id={props.name + "scroll"} class="pt-8 pb-4 overflow-auto overflow-x-scroll whitespace-nowrap">
                 {props.leden.map((lid) =>
@@ -67,7 +67,7 @@ function Commissie(props) {
     </div>):
     (
             <div id={props.name} class="commissie relative lg:h-128">
-                <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full mr-16 py-8">
+                <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full mr-16 py-8 lg:rounded-r-lg">
                     <Header text={props.name} position="left" />
                     <p class="text-lg text-white mx-4 mt-4 lg:mx-16 lg:mt-8">
                         {props.info}
@@ -78,9 +78,9 @@ function Commissie(props) {
 
                     </div>
                 </div>
-                <img class={"object-cover lg:w-128 lg:h-128 lg:inline-block align-top"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
+                <img class={"object-cover lg:w-128 lg:h-128 lg:inline-block align-top lg:rounded-l-lg"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
 
-                <div class="test relative bg-blauw bg-opacity-90 lg:inline-block h-full mr-16 py-8">
+                <div class="test relative bg-blauw bg-opacity-90 lg:inline-block h-full mr-16 py-8 lg:rounded-r-lg">
                     <Header text={props.name + " leden"} position="left" />
                     <div id={props.name + "scroll"} class="pt-8 pb-4 overflow-auto overflow-x-scroll whitespace-nowrap">
                         {props.leden.map((lid) =>
@@ -97,8 +97,8 @@ function Commissie(props) {
                     </div>
                 </div>
 
-                <div class={"align-top lg:inline-block w-128 h-128 bg-blauw content-center"}>
-                    <img class="object-cover w-128 align-center" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
+                <div class={"align-top lg:inline-block w-128 h-128 bg-blauw content-center lg:rounded-l-lg"}>
+                    <img class="object-cover w-128 align-center lg:rounded-l-lg" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
                 </div>
 
 
