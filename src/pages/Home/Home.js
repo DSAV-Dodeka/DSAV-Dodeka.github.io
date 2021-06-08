@@ -27,8 +27,8 @@ function Home() {
     window.onscroll = () => {
         setOffset(window.pageYOffset);
         try {
-          document.getElementById("dodeka").style.width = Math.max(6, Math.round(logoMax - (offset / maxOffset) * (logoMax - 6))) + 'rem';
-          document.getElementById("dodeka").style.marginLeft = Math.min(6, Math.round((4 + (offset / maxOffset) * 2))) + 'rem';
+          document.getElementById("dodeka").style.width = Math.max(6, logoMax - (offset / maxOffset) * (logoMax - 6)) + 'rem';
+          document.getElementById("dodeka").style.marginLeft = Math.min(6, (4 + (offset / maxOffset) * 2)) + 'rem';
           document.getElementById("dodeka").style.top = Math.max(0.5, 6 - (offset / maxOffset) * 5) + 'rem';
         } catch {}
     }
