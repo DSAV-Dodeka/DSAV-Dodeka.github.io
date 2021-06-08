@@ -16,6 +16,12 @@ module.exports = {
       },
       height: {
         '128': '32rem',
+      },
+      screens: {
+        '3xl': '1840px'
+      },
+      maxWidth: {
+        'max-w-screen-3xl': '1840px'
       }
     },
   },
