@@ -13,7 +13,7 @@ function SubMenuItem(props) {
             <svg class="absolute top-4 left-4 z-20 w-8 text-center text-white stroke-current self-center cursor-pointer" viewBox="0 0 32 32" onClick={props.onClick}>
                 <path d="M16 8 L8 16 L16 24" fill="none" stroke-width="4" />
             </svg>
-            <Link to={props.path} class={regularStyle}>{props.name}</Link>
+            <h1 class={regularStyle}>{props.name}</h1>
         </div>
     )
 }

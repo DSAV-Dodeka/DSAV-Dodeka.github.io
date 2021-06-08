@@ -8,7 +8,7 @@ import Nieuws from "../../../content/Nieuws.json";
 
 function HomeNieuws() {
     let maxNieuws = 3;
-    if (window.innerWidth <= 768) maxNieuws = 1; 
+    if (window.innerWidth <= 1023) maxNieuws = 1; 
   return (
     <div class="w-full relative lg:h-96 mt-8 lg:mt-24">
         <div class="lg:absolute dia left-0 w-full lg:w-1/3 h-96 bg-rood bg-opacity-60">
