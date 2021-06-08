@@ -6,7 +6,7 @@ import {
 
 const regularStyle = "absolute h-16 w-full lg:w-32 py-4 bg-blauw text-center text-white hover:bg-white hover:text-blauw text-xl font-medium";
 const activeStyle = "absolute h-16 w-full bg-rood text-white lg:w-32 py-4 text-center text-xl font-medium";
-const dropdownStyle = "block h-16 py-4 w-32 text-center text-white bg-blauw2 text-white border-white hover:bg-white hover:text-blauw text-lg font-medium";
+const dropdownStyle = "block h-16 py-4 w-32 text-center text-white bg-blauw text-white border-white hover:bg-white hover:text-blauw text-lg font-medium";
 
 function Dropdown(props) {
     const location = useLocation().pathname;

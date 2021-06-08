@@ -16,7 +16,7 @@ function MobileDropdown(props) {
     return (
         <div>
             <div class="h-16 w-full lg:h-24 lg:w-32" onClick={() => setActive(true)}>
-                <h class={location.includes(props.path) ? activeStyle : regularStyle} >Over</h>
+                <h class={location.includes(props.path) ? activeStyle : regularStyle} >{props.name}</h>
             </div>
             <div class={"fixed top-0 w-screen h-screen transition duration-500 bg-blauw z-50 transform" + (active ? "" : " translate-x-full")}>
                 <div class={active ? "" : "hidden"} onClick={() => setActive(!active)}>
