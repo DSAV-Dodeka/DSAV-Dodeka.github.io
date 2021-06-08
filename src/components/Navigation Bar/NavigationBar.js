@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import {
-  Link
+  Link,
+  useLocation
 } from "react-router-dom";
 import Item from "./Item";
 import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from 'disable-scroll';
-import logo from "../../images/logo.png";
+import logo from "../../images/dodeka.png";
 import logo2 from "../../images/dsav.png";
 import logo3 from "../../images/odeka.png";
+import dodeka from "../../images/logo.png";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
+  const location = useLocation().pathname;
 
   if (active) {
     disableScroll.on();
@@ -23,10 +26,7 @@ function NavigationBar() {
     <div class="sticky top-0 z-50">
       <nav class="relative hidden lg:flex w-full h-16 bg-blauw mx-auto justify-center z-50">
         <Link to="/">
-          <img class="absolute left-8 mt-2 w-8 bg-blauw rounded-b-full ml-16" src={logo2} alt="" />
-        </Link>
-        <Link to="/">
-          <img class="absolute left-32 w-32 bg-blauw ml-1 mr-16 mt-5" src={logo3} alt="" />
+          <img class={"absolute left-8 mt-2 w-24 bg-blauw ml-16" + (location === "/" ? " hidden" : "")} src={dodeka} alt="" />
         </Link>
         <div class="flex">
           <Item name="Home" path="/" />
@@ -47,7 +47,7 @@ function NavigationBar() {
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform rotate-45 -translate-y-3" : "")}></div>
           </div>
           <div class="flex-grow" />
-          <img class="w-32 mx-16" src={logo3} alt="" />
+          <img class="w-32 mx-16" src={logo} alt="" />
           <div class="flex-grow" />
           <div class="inline space-y-2 cursor-pointer invisible">
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform -rotate-45 translate-y-3" : "")}></div>
@@ -59,7 +59,7 @@ function NavigationBar() {
           <div class={active ? "" : "hidden"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
-            <MobileDropdown name="Over" path="/over" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }]} onClick={() => setActive(false)} />
+            <MobileDropdown name="Over" path="/over" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
             {/* <Item name="Wedstrijden" path="/wedstrijden" onClick={() => setActive(false)}/>
             <Item name="Agenda" path="/agenda" onClick={() => setActive(false)}/> */}
