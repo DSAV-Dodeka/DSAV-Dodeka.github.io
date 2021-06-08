@@ -15,14 +15,14 @@ function HomeNieuws() {
             <img class="w-full h-full object-cover" src={foto} alt=""/>
 
         </div>
-        <div class="lg:absolute diagonal w-full lg:w-3/4 right-0 bg-blauw bg-opacity-90 lg:h-96 p-2 lg:pl-40 lg:pr-16">
-            {Nieuws.nieuwsberichten.slice(0, maxNieuws).map(item =>
-                    <div class="inline-block text-white w-full lg:w-1/3 align-top lg:mt-28 h-64 lg:border-r-2 border-white border-opacity-50">
+        <div class="lg:absolute diagonal w-full lg:w-3/4 right-0 bg-blauw bg-opacity-90 lg:h-96 p-2 lg:pl-40 lg:pr-8">
+            {Nieuws.nieuwsberichten.slice(0, maxNieuws).map((item, index) =>
+                    <div class={"inline-block text-white w-full lg:w-1/3 align-top lg:mt-28 h-64 border-white border-opacity-50" + (index < 2 ? " lg:border-r-2" : "")}> 
                         <div class="h-56 overflow-hidden">
-                            <h1 class="font-bold text-2xl mx-2 h-16">{item.titel}</h1>
-                            <h2 class="nieuwsstukje pt-4 mx-2 h-40">{item.tekst}</h2>
+                            <h1 class="font-bold text-2xl mx-4 h-16">{item.titel}</h1>
+                            <h2 class="nieuwsstukje pt-4 mx-4 h-40">{item.tekst}</h2>
                         </div>
-                        <Link to="/nieuws"><h2 class="pt-2 mx-2 text-right text-rood font-bold underline">Lees meer</h2></Link>
+                        <Link to="/nieuws"><h2 class="pt-2 mx-4 text-rood font-bold">Lees meer</h2></Link>
                     </div>
                 )}
 

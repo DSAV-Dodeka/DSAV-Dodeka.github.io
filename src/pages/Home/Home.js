@@ -26,7 +26,6 @@ function Home() {
   useEffect(() => {
     window.onscroll = () => {
         setOffset(window.pageYOffset);
-        console.log((1 - (offset / maxOffset)) * logoMax);
         try {
           document.getElementById("dodeka").style.width = Math.max(6, Math.round(logoMax - (offset / maxOffset) * (logoMax - 6))) + 'rem';
           document.getElementById("dodeka").style.marginLeft = Math.min(6, Math.round((4 + (offset / maxOffset) * 2))) + 'rem';
