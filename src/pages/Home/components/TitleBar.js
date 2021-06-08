@@ -3,7 +3,7 @@ import {
   Link
 } from "react-router-dom";
 import "./TitleBar.css";
-import foto from "../../../images/home.jpg";
+import foto from "../../../images/home/titlebar.png";
 
 
 function TitleBar() {  
@@ -13,8 +13,8 @@ function TitleBar() {
           
 
         </div>
-        <div class="absolute signup w-full lg:w-1/2 right-0 h-96">
-            <img class="h-full" src={foto} alt=""/>
+        <div class="absolute signup w-full lg:w-1/2 right-0 h-96 object-cover">
+            <img class="h-full object-cover" src={foto} alt=""/>
 
         </div>
         <div class="absolute signup w-full lg:w-1/2 right-0 bg-white bg-opacity-50 h-96">
