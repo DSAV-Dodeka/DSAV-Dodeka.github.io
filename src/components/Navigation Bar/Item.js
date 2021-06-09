@@ -12,7 +12,7 @@ function Item(props) {
 
   return (
     <div class="h-16 w-full lg:w-32" onClick={props.onClick}>
-      <Link to={props.path} class={location === props.path ? activeStyle : regularStyle}>{props.name}</Link>
+      <Link to={props.path} class={props.path === "/" ? (location === props.path ? activeStyle : regularStyle) : (location.includes(props.path) ? activeStyle : regularStyle)}>{props.name}</Link>
     </div>
   )
 }
