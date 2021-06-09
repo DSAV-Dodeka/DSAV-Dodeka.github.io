@@ -5,7 +5,7 @@ import PageTitle from "../../components/PageTitle";
 // import test from "../../images/over/placeholder.png"
 import over from "../../images/over/over.jpg"
 import bestuur from "../../images/over/overBestuur.jpg"
-import commissie from "../../images/over/overCommissies.png"
+import commissie from "../../images/over/overCommissies.jpg"
 import merch from "../../images/over/overMerch.jpg"
 
 
