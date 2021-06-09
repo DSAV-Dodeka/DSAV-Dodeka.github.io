@@ -32,7 +32,7 @@ function Commissie(props) {
         props.position === "left" || window.innerWidth <= 768 ? (<div id={props.name} class="commissie relative lg:h-128">
         <img class={"object-cover w-1/2 lg:w-128 lg:h-128 lg:inline-block lg:align-top lg:rounded-r-xl"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
         <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full lg:ml-16 py-8 lg:rounded-l-xl">
-            <Header text={props.name} position="left" />
+        {props.name === ".ComCom" ? <a target="_blank" rel="noreferrer" class="cursor-default" href="https://nl.wikipedia.org/wiki/Komkommer"><Header text={props.name} position="right" /></a> : <Header text={props.name} position="right" />}
             <p class="text-lg text-white mx-4 mt-4 lg:mx-16 lg:mt-8">
                 {props.info}
             </p>
@@ -68,7 +68,7 @@ function Commissie(props) {
     (
             <div id={props.name} class="commissie relative lg:h-128">
                 <div class="test w-1/2 relative bg-blauw bg-opacity-90 lg:inline-block h-full mr-16 py-8 lg:rounded-r-xl">
-                    <Header text={props.name} position="left" />
+                    {props.name === ".ComCom" ? <a target="_blank" rel="noreferrer" class="cursor-default" href="https://nl.wikipedia.org/wiki/Komkommer"><Header text={props.name} position="left" /></a> : <Header text={props.name} position="left" />}
                     <p class="text-lg text-white mx-4 mt-4 lg:mx-16 lg:mt-8">
                         {props.info}
                     </p>
