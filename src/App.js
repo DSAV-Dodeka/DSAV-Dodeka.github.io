@@ -8,6 +8,7 @@ import {
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
 import Nieuws from './pages/Nieuws/Nieuws';
+import Spike from './pages/Spike/Spike';
 import Over from './pages/Over/Over';
 import Trainingen from './pages/Trainingen/Trainingen';
 import Wedstrijden from './pages/Wedstrijden/Wedstrijden';
@@ -38,6 +39,9 @@ function App() {
       <div class="flex flex-col min-h-screen w-full max-w-screen-3xl mx-auto">
         <NavigationBar />
         <Switch>
+        <Route path="/nieuws/spike">
+            <Spike />
+          </Route>
           <Route path="/nieuws">
             <Nieuws />
           </Route>
