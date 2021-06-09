@@ -3,7 +3,7 @@ import {
   Link
 } from "react-router-dom";
 import "./TitleBar.css";
-import foto from "../../../images/home/titlebar.png";
+import foto from "../../../images/home/titlebar.jpg";
 import {ReactComponent as D} from "../../../images/groteD.svg";
 
 

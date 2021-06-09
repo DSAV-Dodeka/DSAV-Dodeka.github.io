@@ -3,7 +3,7 @@ import {
     Link
 } from "react-router-dom";
 import "./HomeNieuws.css";
-import foto from "../../../images/home/nieuws.png";
+import foto from "../../../images/home/nieuws.jpg";
 import Nieuws from "../../../content/Nieuws.json";
 
 function HomeNieuws() {

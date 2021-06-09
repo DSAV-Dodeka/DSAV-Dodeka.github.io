@@ -3,7 +3,7 @@ import {
     Link
 } from "react-router-dom";
 import "./HomeCommissies.css";
-import foto from "../../../images/home/commissie.png";
+import foto from "../../../images/home/commissie.jpg";
 
 function HomeCommissies() {
   return (

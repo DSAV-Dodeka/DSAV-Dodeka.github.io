@@ -1,6 +1,6 @@
 import React from "react";
 import "./HomeTrainingen.css";
-import foto from "../../../images/home/trainingen.png";
+import foto from "../../../images/home/trainingen.jpg";
 import {Link} from "react-router-dom";
 
 function HomeTrainingen() {
