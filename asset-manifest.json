@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.0f6e459a.chunk.css",
-    "main.js": "/static/js/main.44c1c3f7.chunk.js",
-    "main.js.map": "/static/js/main.44c1c3f7.chunk.js.map",
+    "main.js": "/static/js/main.d684e423.chunk.js",
+    "main.js.map": "/static/js/main.d684e423.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fa961822.js",
     "runtime-main.js.map": "/static/js/runtime-main.fa961822.js.map",
-    "static/js/2.2215a2a9.chunk.js": "/static/js/2.2215a2a9.chunk.js",
-    "static/js/2.2215a2a9.chunk.js.map": "/static/js/2.2215a2a9.chunk.js.map",
+    "static/js/2.73bc6e4d.chunk.js": "/static/js/2.73bc6e4d.chunk.js",
+    "static/js/2.73bc6e4d.chunk.js.map": "/static/js/2.73bc6e4d.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.0f6e459a.chunk.css.map": "/static/css/main.0f6e459a.chunk.css.map",
-    "static/js/2.2215a2a9.chunk.js.LICENSE.txt": "/static/js/2.2215a2a9.chunk.js.LICENSE.txt",
+    "static/js/2.73bc6e4d.chunk.js.LICENSE.txt": "/static/js/2.73bc6e4d.chunk.js.LICENSE.txt",
     "static/media/Broek.jpg": "/static/media/Broek.af87a301.jpg",
     "static/media/Hoodie.jpg": "/static/media/Hoodie.dcd03789.jpg",
     "static/media/Singlet.jpg": "/static/media/Singlet.8e263b4b.jpg",
@@ -106,12 +106,13 @@
     "static/media/trainerRik.jpg": "/static/media/trainerRik.00f31953.jpg",
     "static/media/trainerSanne.jpg": "/static/media/trainerSanne.ddf40068.jpg",
     "static/media/trainingen.jpg": "/static/media/trainingen.9f4fb674.jpg",
+    "static/media/website_wikipedia.jpg": "/static/media/website_wikipedia.8c16380d.jpg",
     "static/media/windJack.jpg": "/static/media/windJack.9a3f6b96.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.fa961822.js",
-    "static/js/2.2215a2a9.chunk.js",
+    "static/js/2.73bc6e4d.chunk.js",
     "static/css/main.0f6e459a.chunk.css",
-    "static/js/main.44c1c3f7.chunk.js"
+    "static/js/main.d684e423.chunk.js"
   ]
 }
