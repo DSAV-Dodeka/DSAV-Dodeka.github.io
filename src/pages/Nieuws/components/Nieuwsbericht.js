@@ -21,7 +21,7 @@ function Nieuwsbericht(props) {
                 </p>
             </div>
             {props.position === "right" ? (
-                <img class="w-full lg:w-1/3 object-cover hidden lg:block" src={require(`../../../images/nieuws/${props.foto}`).default} alt="" />) : ""}
+                <img class="w-full lg:w-1/3 object-cover hidden lg:block" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />) : ""}
         </div>
     )
 }
