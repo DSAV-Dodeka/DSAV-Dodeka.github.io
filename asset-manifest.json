@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.0f6e459a.chunk.css",
-    "main.js": "/static/js/main.3a917d5d.chunk.js",
-    "main.js.map": "/static/js/main.3a917d5d.chunk.js.map",
+    "main.js": "/static/js/main.f47bf04a.chunk.js",
+    "main.js.map": "/static/js/main.f47bf04a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fa961822.js",
     "runtime-main.js.map": "/static/js/runtime-main.fa961822.js.map",
     "static/js/2.cbf57dc7.chunk.js": "/static/js/2.cbf57dc7.chunk.js",
@@ -107,6 +107,7 @@
     "static/media/trainerSanne.jpg": "/static/media/trainerSanne.ddf40068.jpg",
     "static/media/trainingen.jpg": "/static/media/trainingen.9f4fb674.jpg",
     "static/media/website_fysBorrel.jpg": "/static/media/website_fysBorrel.1f30ac04.jpg",
+    "static/media/website_vergetenSpies.jpg": "/static/media/website_vergetenSpies.3a8cdc44.jpg",
     "static/media/website_vijfdePuntje.jpg": "/static/media/website_vijfdePuntje.44c2759d.jpg",
     "static/media/website_waslijn.jpg": "/static/media/website_waslijn.ae9c8da6.jpg",
     "static/media/website_wikipedia.jpg": "/static/media/website_wikipedia.8c16380d.jpg",
@@ -116,6 +117,6 @@
     "static/js/runtime-main.fa961822.js",
     "static/js/2.cbf57dc7.chunk.js",
     "static/css/main.0f6e459a.chunk.css",
-    "static/js/main.3a917d5d.chunk.js"
+    "static/js/main.f47bf04a.chunk.js"
   ]
 }
