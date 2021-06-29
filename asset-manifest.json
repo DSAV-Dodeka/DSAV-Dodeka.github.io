@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.0f6e459a.chunk.css",
-    "main.js": "/static/js/main.b757af0a.chunk.js",
-    "main.js.map": "/static/js/main.b757af0a.chunk.js.map",
+    "main.js": "/static/js/main.a33c947f.chunk.js",
+    "main.js.map": "/static/js/main.a33c947f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fa961822.js",
     "runtime-main.js.map": "/static/js/runtime-main.fa961822.js.map",
     "static/js/2.cbf57dc7.chunk.js": "/static/js/2.cbf57dc7.chunk.js",
@@ -106,6 +106,7 @@
     "static/media/trainerRik.jpg": "/static/media/trainerRik.00f31953.jpg",
     "static/media/trainerSanne.jpg": "/static/media/trainerSanne.ddf40068.jpg",
     "static/media/trainingen.jpg": "/static/media/trainingen.9f4fb674.jpg",
+    "static/media/website_dodekaDating.jpg": "/static/media/website_dodekaDating.ff679a71.jpg",
     "static/media/website_fysBorrel.jpg": "/static/media/website_fysBorrel.1f30ac04.jpg",
     "static/media/website_spiesKanon.jpg": "/static/media/website_spiesKanon.e04dc735.jpg",
     "static/media/website_vergetenSpies.jpg": "/static/media/website_vergetenSpies.3a8cdc44.jpg",
@@ -118,6 +119,6 @@
     "static/js/runtime-main.fa961822.js",
     "static/js/2.cbf57dc7.chunk.js",
     "static/css/main.0f6e459a.chunk.css",
-    "static/js/main.b757af0a.chunk.js"
+    "static/js/main.a33c947f.chunk.js"
   ]
 }
