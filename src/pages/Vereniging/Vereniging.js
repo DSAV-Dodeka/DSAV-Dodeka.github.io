@@ -9,12 +9,12 @@ import commissie from "../../images/over/overCommissies.jpg"
 import merch from "../../images/over/overMerch.jpg"
 
 
-function Over() {
+function Vereniging() {
     let match = useRouteMatch();
 
     return(
         <div class="overflow-x-hidden">
-            <PageTitle title="Over" />
+            <PageTitle title="vereniging" />
             <div class="lg:flex bg-blauw bg-opacity-90 w-full text-white">
                 <p class="w-full lg:w-1/2 p-4 lg:p-16">D.S.A.V. Dodeka is dé Delfste Studenten AtletiekVereniging! Er wordt drie keer per week een training aangeboden samen met genoeg borrels en activiteiten om de leuke dodekaëders te leren kennen.<br></br><br></br>
                     D.S.A.V. Dodeka is aangesloten bij de Nederlandse Studenten Atletiek Federatie ZeuS.
@@ -49,4 +49,4 @@ function Over() {
     )
 }
 
-export default Over;
+export default Vereniging;

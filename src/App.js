@@ -9,7 +9,7 @@ import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
 import Nieuws from './pages/Nieuws/Nieuws';
 import Spike from './pages/Spike/Spike';
-import Over from './pages/Over/Over';
+import Vereniging from './pages/Vereniging/Vereniging';
 import Trainingen from './pages/Trainingen/Trainingen';
 import Wedstrijden from './pages/Wedstrijden/Wedstrijden';
 import Agenda from './pages/Agenda/Agenda';
@@ -45,17 +45,17 @@ function App() {
           <Route path="/nieuws">
             <Nieuws />
           </Route>
-          <Route path="/over/merchandise">
+          <Route path="/vereniging/merchandise">
             <Merchandise />
           </Route>
-          <Route path="/over/commissies">
+          <Route path="/vereniging/commissies">
             <Commissies />
           </Route>
-          <Route path="/over/bestuur">
+          <Route path="/vereniging/bestuur">
             <Bestuur />
           </Route>
-          <Route path="/over">
-            <Over />
+          <Route path="/vereniging">
+            <Vereniging />
           </Route>
           <Route path="/trainingen">
             <Trainingen />
