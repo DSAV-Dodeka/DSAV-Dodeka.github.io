@@ -1,6 +1,7 @@
 {
     "nieuwsberichten": [
         {
+            "id": "nieuweSite",
             "titel": ".ComCom: De Nieuwe Website",
             "datum": "09-06-2021",
             "auteur": ".ComCommentator Jefry",
@@ -8,6 +9,7 @@
             "foto": "stagairArnold.jpg"
         },
         {
+            "id": "campusRun",
             "titel": "CampusRun!",
             "datum": "03-06-2021",
             "auteur": ".ComCommentator Jefry",
@@ -15,6 +17,7 @@
             "foto": "campusRun.jpg"
         },
         {
+            "id": "ballenspel",
             "titel": "SAX: Het Grote Ballenspel",
             "datum": "13-05-2021",
             "auteur": "SAX",
@@ -22,6 +25,7 @@
             "foto": "ballenPoster.jpg"
         },
         {
+            "id": "kb3",
             "titel": "Het nieuwe bloed, KB3, met twee verraders",
             "datum": "05-05-2021",
             "auteur": "RedaCie",

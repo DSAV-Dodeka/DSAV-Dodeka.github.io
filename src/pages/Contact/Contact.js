@@ -20,7 +20,9 @@ function Contact() {
                     <Maps />    
                 </div>
             </div>
-            <PageTitle title="Frequently asked questions" />
+            <div id="faq">
+                <PageTitle title="Frequently asked questions" />
+            </div>
             <Questions questions={Text.questions} />
         </div>
     )

@@ -38,10 +38,10 @@ function Vereniging() {
                     <img src={commissie} class="object-cover h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24" alt=""/>
                     
                 </Link>
-                <Link class="relative w-full lg:w-1/3 h-128 overflow-x-hidden" to={`${match.url}/merchandise`} >
+                {/* <Link class="relative w-full lg:w-1/3 h-128 overflow-x-hidden" to={`${match.url}/merchandise`} >
                 <h1 class="absolute bg-rood py-2 px-8 w-96 text-white text-3xl font-bold top-24 z-30 ml-8 lg:ml-0 left-0 lg:top-32 lg:right-0">Merchandise</h1>
                     <img src={merch} class="object-cover h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24" alt=""/>
-                </Link>
+                </Link> */}
             </div>
         </div>
         

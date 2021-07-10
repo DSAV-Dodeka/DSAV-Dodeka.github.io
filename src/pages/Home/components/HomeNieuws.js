@@ -1,7 +1,7 @@
 import React from "react";
 import {
-    Link
-} from "react-router-dom";
+    HashLink as Link
+} from "react-router-hash-link";
 import "./HomeNieuws.css";
 import foto from "../../../images/home/nieuws.jpg";
 import Nieuws from "../../../content/Nieuws.json";
@@ -22,7 +22,7 @@ function HomeNieuws() {
                             <h1 class="font-bold text-2xl mx-4 h-16">{item.titel}</h1>
                             <h2 class="nieuwsstukje pt-4 mx-4 h-40">{item.tekst}</h2>
                         </div>
-                        <Link to="/nieuws"><h2 class="pt-2 mx-4 text-rood font-bold">Lees meer</h2></Link>
+                        <Link to={"/nieuws#" + item.id}><h2 class="pt-2 mx-4 text-rood font-bold">Lees meer</h2></Link>
                     </div>
                 )}
 

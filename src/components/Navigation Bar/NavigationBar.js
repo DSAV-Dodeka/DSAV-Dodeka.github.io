@@ -31,7 +31,7 @@ function NavigationBar() {
         <div class="flex">
           <Item name="Home" path="/" />
           <Item name="Nieuws" path="/nieuws" />
-          <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }]} />
+          <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} />
           <Item name="Trainingen" path="/trainingen" />
           {/* <Item name="Wedstrijden" path="/wedstrijden" />
         <Item name="Agenda" path="/agenda" /> */}
@@ -59,7 +59,7 @@ function NavigationBar() {
           <div class={active ? "" : "hidden"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
-            <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Merchandise", path: "/merchandise" }]} onClick={() => setActive(false)} />
+            <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
             {/* <Item name="Wedstrijden" path="/wedstrijden" onClick={() => setActive(false)}/>
             <Item name="Agenda" path="/agenda" onClick={() => setActive(false)}/> */}
