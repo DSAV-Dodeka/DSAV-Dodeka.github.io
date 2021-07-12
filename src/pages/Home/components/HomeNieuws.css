@@ -1,11 +1,11 @@
 @media screen and (min-width: 1024px) {
 
 .diagonal {
-    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, calc(1/60 * 100%) 100%);
 }
 
 .dia {
-    clip-path: polygon(0% 0%, 100% 0%, 66.25% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
 }
 }
 

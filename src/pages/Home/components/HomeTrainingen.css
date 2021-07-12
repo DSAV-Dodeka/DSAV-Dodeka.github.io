@@ -1,10 +1,10 @@
 @media screen and (min-width: 1024px) {
 
 #traininfo {
-    clip-path: polygon(0% 0%, 85% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 85% 0%, calc((1 - (1/60)) * 100%) 100%, 0% 100%);
 }
 
 #trainfoto {
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 33.75% 100%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 30% 100%);
 }
 }
