@@ -22,6 +22,7 @@ import ContactBar from "./components/Contact Bar/ContactBar";
 import Merchandise from "./pages/Merchandise/Merchandise";
 import Commissies from "./pages/Commissies/Commissies";
 import Bestuur from "./pages/Bestuur/Bestuur";
+import Sponsors from "./pages/Sponsors/Sponsors";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -70,6 +71,9 @@ function App() {
           </Route> */}
               <Route path="/word_lid">
                 <WordLid />
+              </Route>
+              <Route path="/contact/sponsors">
+                <Sponsors />
               </Route>
               <Route path="/contact">
                 <Contact />
