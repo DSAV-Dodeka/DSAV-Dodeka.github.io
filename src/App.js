@@ -65,9 +65,9 @@ function App() {
               {/* <Route path="/wedstrijden">
             <Wedstrijden />
           </Route> */}
-              {/* <Route path="/agenda">
-            <Agenda />
-          </Route> */}
+              <Route path="/agenda">
+                <Agenda />
+              </Route>
               <Route path="/word_lid">
                 <WordLid />
               </Route>

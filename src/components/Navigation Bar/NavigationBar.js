@@ -33,8 +33,8 @@ function NavigationBar() {
           <Item name="Nieuws" path="/nieuws" />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} />
           <Item name="Trainingen" path="/trainingen" />
-          {/* <Item name="Wedstrijden" path="/wedstrijden" />
-        <Item name="Agenda" path="/agenda" /> */}
+          {/* <Item name="Wedstrijden" path="/wedstrijden" /> */}
+          <Item name="Agenda" path="/agenda" />
           <Item name="Word lid!" path="/word_lid" />
           <Item name="Contact" path="/contact" />
         </div>
@@ -61,8 +61,8 @@ function NavigationBar() {
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
             <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
-            {/* <Item name="Wedstrijden" path="/wedstrijden" onClick={() => setActive(false)}/>
-            <Item name="Agenda" path="/agenda" onClick={() => setActive(false)}/> */}
+            {/* <Item name="Wedstrijden" path="/wedstrijden" onClick={() => setActive(false)}/> */}
+            <Item name="Agenda" path="/agenda" onClick={() => setActive(false)}/>
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <Item name="Contact" path="/contact" onClick={() => setActive(false)} />
           </div>
