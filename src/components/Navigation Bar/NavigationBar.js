@@ -36,7 +36,7 @@ function NavigationBar() {
           {/* <Item name="Wedstrijden" path="/wedstrijden" />
         <Item name="Agenda" path="/agenda" /> */}
           <Item name="Word lid!" path="/word_lid" />
-          <Item name="Contact" path="/contact" />
+          <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
         </div>
       </nav>
       <nav class="lg:hidden w-full bg-blauw z-10">
@@ -64,7 +64,8 @@ function NavigationBar() {
             {/* <Item name="Wedstrijden" path="/wedstrijden" onClick={() => setActive(false)}/>
             <Item name="Agenda" path="/agenda" onClick={() => setActive(false)}/> */}
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
-            <Item name="Contact" path="/contact" onClick={() => setActive(false)} />
+            <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
+            
           </div>
         </div>
       </nav>
