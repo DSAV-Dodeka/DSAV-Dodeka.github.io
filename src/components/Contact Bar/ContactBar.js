@@ -1,7 +1,8 @@
 import React from "react";
 import {
-    Link
-  } from "react-router-dom";
+    HashLink as Link
+  } from "react-router-hash-link";
+  
 import Heading from "./Heading";
 import {ReactComponent as Maltha} from "../../images/contact/maltha.svg";
 
@@ -17,7 +18,7 @@ function ContactBar() {
                 </div>
             </div>
             <div class="lg:inline w-full py-4 lg:py-8">
-                <Link to="/trainingen"><Heading title="Trainingsdagen" /></Link>
+                <Link to="/trainingen#"><Heading title="Trainingsdagen" /></Link>
                 <div class="pt-4 px-4 text-white lg:text-center">
                     <p>Maandag 18:00 - 19:30</p>
                     <p>Woensdag 18:15 - 19:45</p>
@@ -25,7 +26,7 @@ function ContactBar() {
                 </div>
             </div>
             <div class="lg:inline w-full py-4 lg:py-8">
-                <Heading title="Sponsoren" />
+                <Link to="/contact/sponsors#"><Heading title="Sponsors" /></ Link>
                 <div class="pt-4 px-4 text-white lg:text-center">
                     <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><Maltha fill="white" class="lg:mx-auto w-24 h-20"/></a>
                 </div>
