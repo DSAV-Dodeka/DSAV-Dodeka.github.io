@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.19e8c92f.chunk.css",
-    "main.js": "/static/js/main.b526224f.chunk.js",
-    "main.js.map": "/static/js/main.b526224f.chunk.js.map",
+    "main.js": "/static/js/main.aa2d1e48.chunk.js",
+    "main.js.map": "/static/js/main.aa2d1e48.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fa961822.js",
     "runtime-main.js.map": "/static/js/runtime-main.fa961822.js.map",
     "static/js/2.bce59608.chunk.js": "/static/js/2.bce59608.chunk.js",
@@ -114,6 +114,7 @@
     "static/media/website_piotr.jpg": "/static/media/website_piotr.cd50524e.jpg",
     "static/media/website_spiesKanon.jpg": "/static/media/website_spiesKanon.e04dc735.jpg",
     "static/media/website_tickets.jpg": "/static/media/website_tickets.626d498a.jpg",
+    "static/media/website_tokyoPers.jpg": "/static/media/website_tokyoPers.8b7267b1.jpg",
     "static/media/website_vergetenSpies.jpg": "/static/media/website_vergetenSpies.3a8cdc44.jpg",
     "static/media/website_vijfdePuntje.jpg": "/static/media/website_vijfdePuntje.44c2759d.jpg",
     "static/media/website_waslijn.jpg": "/static/media/website_waslijn.ae9c8da6.jpg",
@@ -125,6 +126,6 @@
     "static/js/runtime-main.fa961822.js",
     "static/js/2.bce59608.chunk.js",
     "static/css/main.19e8c92f.chunk.css",
-    "static/js/main.b526224f.chunk.js"
+    "static/js/main.aa2d1e48.chunk.js"
   ]
 }
