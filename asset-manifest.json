@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.19e8c92f.chunk.css",
-    "main.js": "/static/js/main.ee9a046f.chunk.js",
-    "main.js.map": "/static/js/main.ee9a046f.chunk.js.map",
+    "main.js": "/static/js/main.be07386c.chunk.js",
+    "main.js.map": "/static/js/main.be07386c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fa961822.js",
     "runtime-main.js.map": "/static/js/runtime-main.fa961822.js.map",
     "static/js/2.bce59608.chunk.js": "/static/js/2.bce59608.chunk.js",
@@ -113,6 +113,7 @@
     "static/media/website_koenstokhoog.jpg": "/static/media/website_koenstokhoog.9ea97472.jpg",
     "static/media/website_osFiets.jpg": "/static/media/website_osFiets.da2e0e23.jpg",
     "static/media/website_osValseStart.jpg": "/static/media/website_osValseStart.6f4edbd8.jpg",
+    "static/media/website_oskb3_3x3.jpg": "/static/media/website_oskb3_3x3.9d4350c3.jpg",
     "static/media/website_piotr.jpg": "/static/media/website_piotr.cd50524e.jpg",
     "static/media/website_spiesKanon.jpg": "/static/media/website_spiesKanon.e04dc735.jpg",
     "static/media/website_tickets.jpg": "/static/media/website_tickets.626d498a.jpg",
@@ -128,6 +129,6 @@
     "static/js/runtime-main.fa961822.js",
     "static/js/2.bce59608.chunk.js",
     "static/css/main.19e8c92f.chunk.css",
-    "static/js/main.ee9a046f.chunk.js"
+    "static/js/main.be07386c.chunk.js"
   ]
 }
