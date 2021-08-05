@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.19e8c92f.chunk.css",
-    "main.js": "/static/js/main.2afee4c0.chunk.js",
-    "main.js.map": "/static/js/main.2afee4c0.chunk.js.map",
+    "main.js": "/static/js/main.da60841d.chunk.js",
+    "main.js.map": "/static/js/main.da60841d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fa961822.js",
     "runtime-main.js.map": "/static/js/runtime-main.fa961822.js.map",
     "static/js/2.bce59608.chunk.js": "/static/js/2.bce59608.chunk.js",
@@ -40,6 +40,7 @@
     "static/media/dinnerDatePlaylist.jpg": "/static/media/dinnerDatePlaylist.1d53c967.jpg",
     "static/media/dodeka - kopie.png": "/static/media/dodeka - kopie.8dc31251.png",
     "static/media/dodeka.png": "/static/media/dodeka.8dc31251.png",
+    "static/media/dodekathlon.jpg": "/static/media/dodekathlon.aa3294e2.jpg",
     "static/media/donne.jpg": "/static/media/donne.8d3f2fd9.jpg",
     "static/media/dsav.png": "/static/media/dsav.7c241ef7.png",
     "static/media/focusAbel.jpg": "/static/media/focusAbel.52440b98.jpg",
@@ -130,6 +131,6 @@
     "static/js/runtime-main.fa961822.js",
     "static/js/2.bce59608.chunk.js",
     "static/css/main.19e8c92f.chunk.css",
-    "static/js/main.2afee4c0.chunk.js"
+    "static/js/main.da60841d.chunk.js"
   ]
 }
