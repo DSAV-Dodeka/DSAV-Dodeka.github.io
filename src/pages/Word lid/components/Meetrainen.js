@@ -16,7 +16,7 @@ function Meetrainen(props) {
                 <a target="_blank" rel="noreferrer" href="https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1" class="block relative lg:flex-1 lg:w-auto bg-rood py-4 text-white text-lg text-center rounded font-bold cursor-pointer mt-4 lg:mt-8 mx-4 lg:mx-16">
                     <p>Schrijf je in!</p>
                 </a>
-                <p class="text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8">Mocht je nu nog vragen hebben, kijk dan in onze <Link smooth to="/contact#faq" class="text-rood">F.A.Q</Link>, of stuur een berichtje via de mail of Instagram!</p>
+                <p class="text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8">Mocht je nu nog vragen hebben, kijk dan in onze <Link smooth to="/contact#faq" class="text-rood">F.A.Q.</Link>, of stuur een berichtje via de mail of Instagram!</p>
                 <ContactButtons />
             </div>
             <img src={require(`../../../images/word_lid/${props.foto}`).default} alt="" class="lg:inline w-full lg:w-1/2 object-cover" />
