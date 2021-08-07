@@ -1,6 +1,14 @@
 {
     "nieuwsberichten": [
         {
+            "id": "dodekathlon",
+            "titel": "De allereerste Dodekathlon is een feit!",
+            "datum": "05-08-2021",
+            "auteur": "Aniek",
+            "tekst": "Nadat de strijd om tentamens, deadlines en presentaties gestreden was en ieder lid dacht te kunnen uitrusten, was het op 3 juli tijd voor de andere welbekende traditie aan het eind van elk collegejaar: de clubkampioenschappen der D.S.A.V. Dodeka. 18 mannen en 15 vrouwen zetten hun beste beentje voor in deze allereerste Dodekathlon. Om 10.45 klonk het eerste startschot, waarna de atleten (en overigens ook de juryleden) het gevecht tegen de zon, fysieke vermoeidheid, mentale gesteldheid en honger aangingen. Treffend was het dat maar liefst 12 mannen over de 5 meter sprongen met verspringen en ook 12 mannen bij polsstok de aanvangshoogte haalden. Uiteindelijk werd bij de vrouwen Larissa Smit 3e en Fieke Witte 2e. Aniek Sips werd clubkampioen der D.S.A.V. Dodeka 2021. Bij de mannen werd Stefan Pol 3e en Jasper Rou 2e. Koen Stapel werd clubkampioen der D.S.A.V. Dodeka 2021.",
+            "foto": "dodekathlon.jpg"
+        },
+        {
             "id": "nieuweSite",
             "titel": ".ComCom: De Nieuwe Website",
             "datum": "09-06-2021",
