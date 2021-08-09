@@ -30,6 +30,7 @@ function NavigationBar() {
         </Link>
         <div class="flex">
           <Item name="Home" path="/" />
+          <Item name="OWee" path="/owee" />
           <Item name="Nieuws" path="/nieuws" />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} />
           <Item name="Trainingen" path="/trainingen" />
