@@ -59,6 +59,7 @@ function NavigationBar() {
         <div class={"fixed top-16 w-screen h-screen transition duration-500 bg-blauw transform" + (active ? "" : " opacity-0 hidden")}>
           <div class={active ? "" : "hidden"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
+            <Item name="OWee" path="/owee" onClick={() => setActive(false)} />
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
             <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
