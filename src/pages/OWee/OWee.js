@@ -1,11 +1,8 @@
 import React from "react";
 import PageTitle from "../../components/PageTitle";
-import pcPlanning from "../../images/owee/planning_pc.svg";
-import mobielPlanning from "../../images/owee/planning_mobiel.svg";
+import pcPlanning from "../../images/owee/planningPC.svg";
+import mobielPlanning from "../../images/owee/planningMobiel.svg";
 import Header from "../../components/Header";
-import {
-    HashLink as Link
-  } from "react-router-hash-link";
 import { useState, useEffect } from 'react';
 
 function getWindowDimensions() {
