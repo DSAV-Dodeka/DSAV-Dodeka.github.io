@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.780b22ef.chunk.css",
-    "main.js": "/static/js/main.8d73f180.chunk.js",
-    "main.js.map": "/static/js/main.8d73f180.chunk.js.map",
+    "main.js": "/static/js/main.01e0408a.chunk.js",
+    "main.js.map": "/static/js/main.01e0408a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fa961822.js",
     "runtime-main.js.map": "/static/js/runtime-main.fa961822.js.map",
     "static/js/2.8510b091.chunk.js": "/static/js/2.8510b091.chunk.js",
@@ -93,13 +93,13 @@
     "static/media/spike.svg": "/static/media/spike.72a105d8.svg",
     "static/media/sponsoropties.jpg": "/static/media/sponsoropties.884cc732.jpg",
     "static/media/stagairArnold.jpg": "/static/media/stagairArnold.a187c4a1.jpg",
-    "static/media/startCoBart.jpg": "/static/media/startCoBart.1180ec56.jpg",
-    "static/media/startCoDanique.jpg": "/static/media/startCoDanique.eccabe5c.jpg",
-    "static/media/startCoDonne.jpg": "/static/media/startCoDonne.e42bf470.jpg",
-    "static/media/startCoJefry.jpg": "/static/media/startCoJefry.cdcbeeae.jpg",
+    "static/media/startCoBart.jpg": "/static/media/startCoBart.138f74c7.jpg",
+    "static/media/startCoDanique.jpg": "/static/media/startCoDanique.8c430cf3.jpg",
+    "static/media/startCoDonne.jpg": "/static/media/startCoDonne.062d135b.jpg",
+    "static/media/startCoJefry.jpg": "/static/media/startCoJefry.c7e3ff17.jpg",
     "static/media/startCoJefry_.jpg": "/static/media/startCoJefry_.b8bfbf1b.jpg",
-    "static/media/startCoKoen.jpg": "/static/media/startCoKoen.9984d377.jpg",
-    "static/media/startCoNiels.jpg": "/static/media/startCoNiels.5a26fd47.jpg",
+    "static/media/startCoKoen.jpg": "/static/media/startCoKoen.2019b893.jpg",
+    "static/media/startCoNiels.jpg": "/static/media/startCoNiels.0ca30485.jpg",
     "static/media/titlebar.jpg": "/static/media/titlebar.06048741.jpg",
     "static/media/trainerAniek.jpg": "/static/media/trainerAniek.5822fff1.jpg",
     "static/media/trainerArno.jpg": "/static/media/trainerArno.216ff7fb.jpg",
@@ -114,6 +114,7 @@
     "static/media/website_fysBorrel.jpg": "/static/media/website_fysBorrel.1f30ac04.jpg",
     "static/media/website_indoor.jpg": "/static/media/website_indoor.8e2a9637.jpg",
     "static/media/website_koenstokhoog.jpg": "/static/media/website_koenstokhoog.9ea97472.jpg",
+    "static/media/website_medaille.jpg": "/static/media/website_medaille.f1fc7efe.jpg",
     "static/media/website_osFiets.jpg": "/static/media/website_osFiets.da2e0e23.jpg",
     "static/media/website_osTurn.jpg": "/static/media/website_osTurn.05a5198f.jpg",
     "static/media/website_osValseStart.jpg": "/static/media/website_osValseStart.6f4edbd8.jpg",
@@ -133,6 +134,6 @@
     "static/js/runtime-main.fa961822.js",
     "static/js/2.8510b091.chunk.js",
     "static/css/main.780b22ef.chunk.css",
-    "static/js/main.8d73f180.chunk.js"
+    "static/js/main.01e0408a.chunk.js"
   ]
 }
