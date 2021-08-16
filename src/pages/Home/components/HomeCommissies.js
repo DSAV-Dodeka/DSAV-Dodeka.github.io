@@ -13,10 +13,10 @@ function HomeCommissies() {
 
         </div>
         <div class="lg:absolute commissieinfo w-full lg:w-3/4 right-0 bg-blauw bg-opacity-90 lg:h-96 p-2 lg:p-0 lg:pl-40 lg:pr-16 lg:pt-32 text-white">
-            D.S.A.V. Dodeka wordt voor en door studenten gerund. Er zijn een flink aantal commissies, waaronder de activiteiten commissie (SAX) of de Nieuwsbrief commissie (RedaCie). Ben je benieuwd naar welke commissies er nog meer op de vereniging bestaan, neem dan eens een kijkje op de <Link to="/vereniging/commissies#" class="text-rood"><b>commissiepagina</b></Link>!
+        Naast drie keer in de week sporten is er bij Dodeka ook meer dan genoeg tijd voor gezelligheid. Elke woensdag wordt na de training gezamenlijk gegeten en geborreld, en er worden vaak gezellige feestjes en andere activiteiten georganiseerd door onze vele commissies, waar je ook elk jaar deel van uit kunt maken. Ben je benieuwd naar welke commissies er nog meer op de vereniging bestaan, neem dan eens een kijkje op de <Link to="/vereniging/commissies#" class="text-rood"><b>commissiepagina</b></Link>!
 
         </div>
-        <div class="absolute lg:right-0 top-8 w-3/4 bg-rood h-16 text-white text-3xl font-bold pl-8 lg:pl-16 pt-3">COMMISSIES</div>
+        <div class="absolute lg:right-0 top-8 w-3/4 bg-rood h-16 text-white text-3xl font-bold pl-8 lg:pl-16 pt-3">GEZELLIGHEID</div>
     </div>
   );
 }
