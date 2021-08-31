@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.780b22ef.chunk.css",
-    "main.js": "/static/js/main.0c24aa2c.chunk.js",
-    "main.js.map": "/static/js/main.0c24aa2c.chunk.js.map",
+    "main.js": "/static/js/main.af6b9337.chunk.js",
+    "main.js.map": "/static/js/main.af6b9337.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fa961822.js",
     "runtime-main.js.map": "/static/js/runtime-main.fa961822.js.map",
     "static/js/2.8510b091.chunk.js": "/static/js/2.8510b091.chunk.js",
@@ -110,6 +110,7 @@
     "static/media/trainerRik.jpg": "/static/media/trainerRik.00f31953.jpg",
     "static/media/trainerSanne.jpg": "/static/media/trainerSanne.ddf40068.jpg",
     "static/media/trainingen.jpg": "/static/media/trainingen.9f4fb674.jpg",
+    "static/media/website_OWee.jpg": "/static/media/website_OWee.09521081.jpg",
     "static/media/website_dodekaDating.jpg": "/static/media/website_dodekaDating.ff679a71.jpg",
     "static/media/website_fysBorrel.jpg": "/static/media/website_fysBorrel.1f30ac04.jpg",
     "static/media/website_indoor.jpg": "/static/media/website_indoor.8e2a9637.jpg",
@@ -134,6 +135,6 @@
     "static/js/runtime-main.fa961822.js",
     "static/js/2.8510b091.chunk.js",
     "static/css/main.780b22ef.chunk.css",
-    "static/js/main.0c24aa2c.chunk.js"
+    "static/js/main.af6b9337.chunk.js"
   ]
 }
