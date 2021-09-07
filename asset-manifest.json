@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.780b22ef.chunk.css",
-    "main.js": "/static/js/main.af6b9337.chunk.js",
-    "main.js.map": "/static/js/main.af6b9337.chunk.js.map",
+    "main.js": "/static/js/main.3525ad63.chunk.js",
+    "main.js.map": "/static/js/main.3525ad63.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fa961822.js",
     "runtime-main.js.map": "/static/js/runtime-main.fa961822.js.map",
     "static/js/2.8510b091.chunk.js": "/static/js/2.8510b091.chunk.js",
@@ -77,6 +77,7 @@
     "static/media/nskIndoorNiels.jpg": "/static/media/nskIndoorNiels.528e3839.jpg",
     "static/media/nskIndoorSimon.jpg": "/static/media/nskIndoorSimon.f05f008c.jpg",
     "static/media/nskIndoorStefan.jpg": "/static/media/nskIndoorStefan.b04fb951.jpg",
+    "static/media/nskbaan.jpg": "/static/media/nskbaan.e5acfbd8.jpg",
     "static/media/odeka.png": "/static/media/odeka.5e0f902c.png",
     "static/media/onderVereniging.jpg": "/static/media/onderVereniging.208eb336.jpg",
     "static/media/over.jpg": "/static/media/over.9b8337e7.jpg",
@@ -121,6 +122,7 @@
     "static/media/website_osValseStart.jpg": "/static/media/website_osValseStart.6f4edbd8.jpg",
     "static/media/website_oskb3_3x3.jpg": "/static/media/website_oskb3_3x3.9d4350c3.jpg",
     "static/media/website_piotr.jpg": "/static/media/website_piotr.cd50524e.jpg",
+    "static/media/website_proeven.jpg": "/static/media/website_proeven.41c58525.jpg",
     "static/media/website_spiesKanon.jpg": "/static/media/website_spiesKanon.e04dc735.jpg",
     "static/media/website_tickets.jpg": "/static/media/website_tickets.626d498a.jpg",
     "static/media/website_tokyoPers.jpg": "/static/media/website_tokyoPers.8b7267b1.jpg",
@@ -135,6 +137,6 @@
     "static/js/runtime-main.fa961822.js",
     "static/js/2.8510b091.chunk.js",
     "static/css/main.780b22ef.chunk.css",
-    "static/js/main.af6b9337.chunk.js"
+    "static/js/main.3525ad63.chunk.js"
   ]
 }
