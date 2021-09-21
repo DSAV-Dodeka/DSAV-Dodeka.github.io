@@ -25,7 +25,7 @@ function Vereniging() {
 
                    <b>Geschiedenis</b> <br></br>
 
-                    Dodeka is op 25 februari 2019 begonnen als DSAV`40 als een commissie bij AV`40 in 2019. Om een eerste stap te zetten richting volledige onafhankelijkheid hebben wij besloten om door te gaan als D.S.A.V. Dodeka in 2021.</p>
+                    Dodeka is op 25 februari 2019 begonnen onder de naam DSAV`40 als een commissie bij AV`40. Om een eerste stap te zetten richting volledige onafhankelijkheid hebben wij besloten om door te gaan als D.S.A.V. Dodeka in 2021.</p>
                 <img src={over} class="w-full lg:w-1/2 object-cover" alt=""/>
             </div>
             <div class="lg:flex mb-16">
