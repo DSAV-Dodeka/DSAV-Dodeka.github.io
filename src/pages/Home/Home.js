@@ -3,7 +3,6 @@ import HomeNieuws from './components/HomeNieuws';
 import TitleBar from './components/TitleBar';
 import HomeTrainingen from './components/HomeTrainingen';
 import HomeCommissies from './components/HomeCommissies';
-import OWeeBar from "./components/OWeeBar";
 import logo from "../../images/logo.png";
 import "./Home.css";
 
@@ -39,7 +38,6 @@ function Home() {
     <div>
       <img id="dodeka" onClick={() => count()} class="hidden cursor-pointer lg:block w-2/5 fixed top-24 ml-16 z-50" src={logo} alt=""/>
       <TitleBar />
-      <OWeeBar />
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
