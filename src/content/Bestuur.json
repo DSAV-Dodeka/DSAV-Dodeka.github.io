@@ -1,8 +1,14 @@
 {
     "besturen": [
         {
+            "naam": "Bestuur 3",
+            "leden": ["Koen Stapel - Voorzitter", "Fieke Witte - Secretaris", "Stefan Pol - Penningmeester", "Aniek Sips - Commissaris Atletiek"],
+            "jaar": "2021/2022",
+            "foto": "bestuur_3.jpg" 
+        },
+        {
             "naam": "Bestuur 2",
-            "leden": ["Koen Stapel", "Jasper Rou", "Donne Gerlich", "Stefan Pol"],
+            "leden": ["Koen Stapel", "Donne Gerlich", "Jasper Rou", "Stefan Pol"],
             "jaar": "2020/2021",
             "foto": "bestuur_2.jpg" 
         },

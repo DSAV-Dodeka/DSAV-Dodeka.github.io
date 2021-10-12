@@ -23,6 +23,7 @@ import Merchandise from "./pages/Merchandise/Merchandise";
 import Commissies from "./pages/Commissies/Commissies";
 import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
+import OWee from "./pages/OWee/OWee";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -63,6 +64,9 @@ function App() {
               <Route path="/trainingen">
                 <Trainingen />
               </Route>
+              {/* <Route path="/owee">
+                <OWee />
+              </Route> */}
               {/* <Route path="/wedstrijden">
             <Wedstrijden />
           </Route> */}
