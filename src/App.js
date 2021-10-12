@@ -64,9 +64,9 @@ function App() {
               <Route path="/trainingen">
                 <Trainingen />
               </Route>
-              <Route path="/owee">
+              {/* <Route path="/owee">
                 <OWee />
-              </Route>
+              </Route> */}
               {/* <Route path="/wedstrijden">
             <Wedstrijden />
           </Route> */}
