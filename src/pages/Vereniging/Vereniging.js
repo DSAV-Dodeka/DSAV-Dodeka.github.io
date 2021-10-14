@@ -6,7 +6,7 @@ import PageTitle from "../../components/PageTitle";
 import over from "../../images/over/over.jpg"
 import bestuur from "../../images/over/overBestuur.jpg"
 import commissie from "../../images/over/overCommissies.jpg"
-import merch from "../../images/over/overMerch.jpg"
+// import merch from "../../images/over/overMerch.jpg"
 
 
 function Vereniging() {

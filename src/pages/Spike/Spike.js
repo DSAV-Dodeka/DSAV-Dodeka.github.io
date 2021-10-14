@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Nieuwsbericht from "../Nieuws/components/Nieuwsbericht";
-import PageTitle from "../../components/PageTitle";
 import SpikeText from "../../content/Spike.json";
 import logo from "../../images/spike/logo.png";
 
