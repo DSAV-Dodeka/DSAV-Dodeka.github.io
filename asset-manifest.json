@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.6b715de1.chunk.css",
-    "main.js": "/static/js/main.c50bc136.chunk.js",
-    "main.js.map": "/static/js/main.c50bc136.chunk.js.map",
+    "main.js": "/static/js/main.fce7be84.chunk.js",
+    "main.js.map": "/static/js/main.fce7be84.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.12fe43f9.js",
     "runtime-main.js.map": "/static/js/runtime-main.12fe43f9.js.map",
     "static/js/2.675a5741.chunk.js": "/static/js/2.675a5741.chunk.js",
@@ -115,6 +115,7 @@
     "static/media/website_OWee.jpg": "/static/media/website_OWee.09521081.jpg",
     "static/media/website_Opvang.jpg": "/static/media/website_Opvang.49ac7263.jpg",
     "static/media/website_dodekaDating.jpg": "/static/media/website_dodekaDating.ff679a71.jpg",
+    "static/media/website_doping.jpg": "/static/media/website_doping.58f9ec1c.jpg",
     "static/media/website_fysBorrel.jpg": "/static/media/website_fysBorrel.1f30ac04.jpg",
     "static/media/website_indoor.jpg": "/static/media/website_indoor.8e2a9637.jpg",
     "static/media/website_koenstokhoog.jpg": "/static/media/website_koenstokhoog.9ea97472.jpg",
@@ -141,6 +142,6 @@
     "static/js/runtime-main.12fe43f9.js",
     "static/js/2.675a5741.chunk.js",
     "static/css/main.6b715de1.chunk.css",
-    "static/js/main.c50bc136.chunk.js"
+    "static/js/main.fce7be84.chunk.js"
   ]
 }
