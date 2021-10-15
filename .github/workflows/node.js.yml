@@ -21,8 +21,8 @@ jobs:
         node-version: '16'
         cache: 'npm'
     - run: |
-        git config user.name marnoldus
-        git config user.email mat.arnoldus@kpnmail.nl
+        git config user.name "marnoldus"
+        git config user.email "mat.arnoldus@kpnmail.nl"
     - run: npm install
     - run: npm run deploy
       env:
