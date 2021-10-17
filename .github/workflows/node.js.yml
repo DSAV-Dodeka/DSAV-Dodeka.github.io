@@ -20,10 +20,10 @@ jobs:
       with:
         node-version: '16'
         cache: 'npm'
-    - run: |
-        git config user.name "marnoldus"
-        git config user.email "mat.arnoldus@kpnmail.nl"
     - run: npm install
-    - run: npm run deploy
-      env:
-        GITHUB_TOKEN: ${{ secrets.github_token }}
+    - run: npm run build
+    - uses: peaceiris/actions-gh-pages@v3.7.3
+      with:
+        publish_branch: "site"
+        commit_message: "Automatic deploy"
+        cname: "dsavdodeka.nl"
