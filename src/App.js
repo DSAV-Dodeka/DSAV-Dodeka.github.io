@@ -1,39 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useLocation
 } from "react-router-dom";
-import {
-  HashLink as Link
-} from "react-router-hash-link";
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
 import Nieuws from './pages/Nieuws/Nieuws';
 import Spike from './pages/Spike/Spike';
 import Vereniging from './pages/Vereniging/Vereniging';
 import Trainingen from './pages/Trainingen/Trainingen';
-import Wedstrijden from './pages/Wedstrijden/Wedstrijden';
-import Agenda from './pages/Agenda/Agenda';
+// import Wedstrijden from './pages/Wedstrijden/Wedstrijden';
+// import Agenda from './pages/Agenda/Agenda';
 import WordLid from './pages/Word lid/WordLid';
 import Contact from './pages/Contact/Contact';
 import ContactBar from "./components/Contact Bar/ContactBar";
-import Merchandise from "./pages/Merchandise/Merchandise";
+// import Merchandise from "./pages/Merchandise/Merchandise";
 import Commissies from "./pages/Commissies/Commissies";
 import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
-import OWee from "./pages/OWee/OWee";
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
+// import OWee from "./pages/OWee/OWee";
 
 function App() {
   return (
