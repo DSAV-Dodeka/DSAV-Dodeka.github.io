@@ -1,8 +1,4 @@
 import React from "react";
-import {
-    Link,
-    useLocation
-} from "react-router-dom";
 
 const regularStyle = "absolute h-16 lg:h-24 w-full lg:w-32 py-4 lg:py-8 bg-blauw text-center text-white lg:hover:bg-white lg:hover:text-blauw text-xl font-medium border-b-2 border-white";
 

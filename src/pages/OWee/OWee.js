@@ -29,7 +29,7 @@ function useWindowDimensions() {
 }
 
 function OWee() {
-    const { height, width } = useWindowDimensions();
+    const width = useWindowDimensions().width;
 
     return(
         <div class="text-center">

@@ -8,8 +8,8 @@ import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from 'disable-scroll';
 import logo from "../../images/dodeka.png";
-import logo2 from "../../images/dsav.png";
-import logo3 from "../../images/odeka.png";
+// import logo2 from "../../images/dsav.png";
+// import logo3 from "../../images/odeka.png";
 import dodeka from "../../images/logo.png";
 
 function NavigationBar() {
