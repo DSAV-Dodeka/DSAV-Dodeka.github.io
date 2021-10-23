@@ -1,0 +1,14 @@
+@import "../variables";
+
+#page {
+    color: $dodeka_blauw;
+    font-weight: $bold;
+    font-size: $font_large;
+    line-height: $line_height_large;
+    margin-left: $margin_x;
+    margin-top: $margin_y;
+    @include respond(mobile) {
+        margin-left: $margin_mobile;
+        margin-top: $margin_mobile;
+    }
+}

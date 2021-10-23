@@ -1,0 +1,14 @@
+@import "../../../variables";
+
+#question_grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-left: $margin_x;
+    margin-right: $margin_x;
+    column-gap: $margin_y;
+    @include respond(mobile) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        margin-left: $margin_mobile;
+        margin-right: $margin_mobile;
+    }
+}

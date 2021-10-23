@@ -1,0 +1,82 @@
+#dm {
+    background: radial-gradient(circle at -20% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    box-shadow: 0 0 15px #001F48;
+}
+
+#dm:hover {
+    background: radial-gradient(circle at 120% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+#mail {
+    background: radial-gradient(circle at -20% 150%, #26D0CE 0%, #1A2980 100%);
+    box-shadow: 0 0 15px #001F48;
+}
+
+#mail:hover {
+    background: radial-gradient(circle at 120% 150%, #26D0CE 0%, #1A2980 100%);
+}
+
+#mail:hover #mail_icon {
+    visibility: hidden;
+}
+
+#mail:hover #mail_arrow {
+    visibility: visible;
+}
+#mail_arrow {
+    visibility: hidden;
+}
+
+#dm:hover #dm_icon {
+    visibility: hidden;
+}
+
+#dm:hover #dm_arrow {
+    visibility: visible;
+}
+#dm_arrow {
+    visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    #dm {
+        background: radial-gradient(circle at -20% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+        box-shadow: 0 0 15px #001F48;
+    }
+    
+    #dm:hover {
+        background: radial-gradient(circle at -20% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    }
+    
+    #mail {
+        background: radial-gradient(circle at -20% 150%, #26D0CE 0%, #1A2980 100%);
+        box-shadow: 0 0 15px #001F48;
+    }
+    
+    #mail:hover {
+        background: radial-gradient(circle at -20% 150%, #26D0CE 0%, #1A2980 100%);
+    }
+    
+    #mail:hover #mail_icon {
+        visibility: visible;
+    }
+    
+    #mail:hover #mail_arrow {
+        visibility: hidden;
+    }
+    #mail_arrow {
+        visibility: hidden;
+    }
+    
+    #dm:hover #dm_icon {
+        visibility: visible;
+    }
+    
+    #dm:hover #dm_arrow {
+        visibility: hidden;
+    }
+    #dm_arrow {
+        visibility: hidden;
+    }
+
+}

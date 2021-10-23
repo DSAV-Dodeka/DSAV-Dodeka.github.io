@@ -1,0 +1,44 @@
+.commissie {
+    width: 200%;
+}
+
+@media screen and (min-width: 769px) {
+    .test {
+        width: calc(50% - 36rem);
+        height: 32rem;
+        vertical-align: top;
+    }
+}
+
+.out {
+    animation: slide-out 1s forwards;
+}
+
+.in {
+    animation: slide-in 1s forwards;
+}
+
+.out-back {
+    animation: slide-out-back 1s forwards;
+}
+
+.in-back {
+    animation: slide-in-back 1s forwards;
+}
+
+@keyframes slide-in {
+    0% {transform: translateX(-50%)}
+    100% {transform: translateX(0%)}
+}
+@keyframes slide-out {
+    100% {transform: translateX(-50%)}
+}
+
+@keyframes slide-in-back {
+    0% {transform: translateX(-100%)}
+    100% {transform: translateX(0%)}
+}
+@keyframes slide-out-back {
+    0% {transform: translateX(0%)}
+    100% {transform: translateX(100%)}
+}
