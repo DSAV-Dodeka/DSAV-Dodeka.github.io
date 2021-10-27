@@ -4,8 +4,10 @@
     width: 100%;
     background-color: $dodeka_blauw90p;
     display: flex;
+    margin-bottom: $margin_x;
     @include respond(mobile) {
         display: block;
+        margin-bottom: $margin_y;
     }
 }
 
