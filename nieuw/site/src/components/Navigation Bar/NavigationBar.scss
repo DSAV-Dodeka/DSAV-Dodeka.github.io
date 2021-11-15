@@ -1,0 +1,45 @@
+@import "../../variables";
+
+.hidden {
+    display: none;
+}
+
+#navBar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#navPc {
+    position: relative;
+    display: flex;
+    height: 4rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $dodeka_blauw;
+    @include respond(mobile) {
+        display: none;
+    }
+}
+
+#navLogo {
+    position: absolute;
+    left: 2rem;
+    width: 6rem;
+    margin-top: 0.5rem;
+    margin-left: $margin_x;
+}
+
+#navMobile {
+    display: none;
+    @include respond(mobile) {
+        display: block;
+    }
+}
+
+#navItems {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}

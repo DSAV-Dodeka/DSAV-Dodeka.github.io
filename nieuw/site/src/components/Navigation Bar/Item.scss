@@ -1,0 +1,34 @@
+@import "../../variables";
+
+#navItem {
+    height: 4rem;
+    width: 8rem;
+    @include respond(mobile) {
+        width: 100%;
+    }
+}
+
+.itemNav {
+    text-decoration: none;
+    position: absolute;
+    height: 2rem;
+    width: 8rem;
+    color: white;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: $font_medium;
+    font-weight: 500;
+    @include respond(mobile) {
+        width: 100%;
+    }
+}
+
+.navItemActive {
+    background-color: $dodeka_rood;
+}
+
+.navItemNormal:hover {
+    background-color: white;
+    color: $dodeka_blauw;
+}

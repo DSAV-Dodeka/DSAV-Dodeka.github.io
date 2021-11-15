@@ -8,9 +8,8 @@ import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from 'disable-scroll';
 import logo from "../../images/dodeka.png";
-// import logo2 from "../../images/dsav.png";
-// import logo3 from "../../images/odeka.png";
 import dodeka from "../../images/logo.png";
+import "./NavigationBar.scss"
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
@@ -23,12 +22,12 @@ function NavigationBar() {
   }
 
   return (
-    <div class="sticky top-0 z-50">
-      <nav class="relative hidden lg:flex w-full h-16 bg-blauw mx-auto justify-center z-50">
+    <div id="navBar">
+      <nav id="navPc">
         <Link to="/">
-          <img class={"absolute left-8 mt-2 w-24 bg-blauw ml-16" + (location === "/" ? " hidden" : "")} src={dodeka} alt="" />
+          <img id="navLogo" class={(location === "/" ? "hidden" : "")} src={dodeka} alt="" />
         </Link>
-        <div class="flex">
+        <div id="navItems">
           <Item name="Home" path="/" />
           {/* <Item name="OWee" path="/owee" /> */}
           <Item name="Nieuws" path="/nieuws" />
@@ -40,7 +39,7 @@ function NavigationBar() {
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
         </div>
       </nav>
-      <nav class="lg:hidden w-full bg-blauw z-10">
+      <nav id="navMobile" class="lg:hidden w-full bg-blauw z-10">
         <div class="flex h-16 px-4 items-center">
           <div class="inline space-y-2 cursor-pointer" onClick={() => setActive(!active)}>
             <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform -rotate-45 translate-y-3" : "")}></div>

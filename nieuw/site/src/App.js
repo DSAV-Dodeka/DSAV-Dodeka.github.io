@@ -27,7 +27,7 @@ function App() {
       <div class="w-full bg-blauw bg-opacity-90">
         <div class="w-full max-w-screen-3xl bg-white border-r-0 3xl:border-r-8 3xl:border-l-8 border-white mx-auto">
           <div class="flex flex-col min-h-screen w-full max-w-screen-3xl mx-auto">
-            {/* <NavigationBar /> */}
+            <NavigationBar />
             <Switch>
               <Route path="/nieuws/spike">
                 <Spike />
