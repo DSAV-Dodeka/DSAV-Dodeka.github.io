@@ -20,6 +20,7 @@ import Commissies from "./pages/Commissies/Commissies";
 import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
 // import OWee from "./pages/OWee/OWee";
+import Auth from "./pages/Auth/Auth"
 
 function App() {
   return (
@@ -67,6 +68,9 @@ function App() {
               </Route>
               <Route path="/contact">
                 <Contact />
+              </Route>
+              <Route path="/auth">
+                <Auth />
               </Route>
               <Route path="/">
                 <Home />
