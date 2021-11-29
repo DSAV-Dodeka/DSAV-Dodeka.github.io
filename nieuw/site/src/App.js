@@ -10,16 +10,12 @@ import Nieuws from './pages/Nieuws/Nieuws';
 import Spike from './pages/Spike/Spike';
 import Vereniging from './pages/Vereniging/Vereniging';
 import Trainingen from './pages/Trainingen/Trainingen';
-// import Wedstrijden from './pages/Wedstrijden/Wedstrijden';
-// import Agenda from './pages/Agenda/Agenda';
 import WordLid from './pages/Word lid/WordLid';
 import Contact from './pages/Contact/Contact';
 import ContactBar from "./components/Contact Bar/ContactBar";
-// import Merchandise from "./pages/Merchandise/Merchandise";
 import Commissies from "./pages/Commissies/Commissies";
 import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
-// import OWee from "./pages/OWee/OWee";
 
 function App() {
   return (
@@ -35,9 +31,6 @@ function App() {
               <Route path="/nieuws">
                 <Nieuws />
               </Route>
-              {/* <Route path="/vereniging/merchandise">
-            <Merchandise />
-          </Route> */}
               <Route path="/vereniging/commissies">
                 <Commissies />
               </Route>
@@ -50,15 +43,6 @@ function App() {
               <Route path="/trainingen">
                 <Trainingen />
               </Route>
-              {/* <Route path="/owee">
-                <OWee />
-              </Route> */}
-              {/* <Route path="/wedstrijden">
-            <Wedstrijden />
-          </Route> */}
-              {/* <Route path="/agenda">
-            <Agenda />
-          </Route> */}
               <Route path="/word_lid">
                 <WordLid />
               </Route>

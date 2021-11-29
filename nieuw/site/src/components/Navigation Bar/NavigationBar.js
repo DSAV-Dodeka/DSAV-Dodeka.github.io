@@ -29,44 +29,36 @@ function NavigationBar() {
         </Link>
         <div id="navItems">
           <Item name="Home" path="/" />
-          {/* <Item name="OWee" path="/owee" /> */}
           <Item name="Nieuws" path="/nieuws" />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} />
           <Item name="Trainingen" path="/trainingen" />
-          {/* <Item name="Wedstrijden" path="/wedstrijden" />
-        <Item name="Agenda" path="/agenda" /> */}
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
         </div>
       </nav>
-      <nav id="navMobile" class="lg:hidden w-full bg-blauw z-10">
-        <div class="flex h-16 px-4 items-center">
-          <div class="inline space-y-2 cursor-pointer" onClick={() => setActive(!active)}>
-            <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform -rotate-45 translate-y-3" : "")}></div>
-            <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " opacity-0" : "")}></div>
-            <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform rotate-45 -translate-y-3" : "")}></div>
+      <nav id="navMobile">
+        <div id="navMobileBar">
+          <div class="hamburgerIcon" onClick={() => setActive(!active)}>
+            <div class={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>
+            <div class={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
+            <div class={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
-          <div class="flex-grow" />
-          <img class="w-32 mx-16" src={logo} alt="" />
-          <div class="flex-grow" />
-          <div class="inline space-y-2 cursor-pointer invisible">
-            <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform -rotate-45 translate-y-3" : "")}></div>
-            <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " opacity-0" : "")}></div>
-            <div class={"bg-white h-1 w-8 rounded transition duration-500" + (active ? " transform rotate-45 -translate-y-3" : "")}></div>
+          <div class="navSpacing" />
+          <img id="navMobileLogo" src={logo} alt="" />
+          <div class="navSpacing" />
+          <div class="hamburgerIconInvisible">
+          <div class={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>
+            <div class={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
+            <div class={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
         </div>
-        <div class={"fixed top-16 w-screen h-screen transition duration-500 bg-blauw transform" + (active ? "" : " opacity-0 hidden")}>
-          <div class={active ? "" : "hidden"}>
+        <div id="navMobileContainer" class={active ? "" : " inactive"}>
+          <div class={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
-            {/* <Item name="OWee" path="/owee" onClick={() => setActive(false)} /> */}
-            <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
             <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
-            {/* <Item name="Wedstrijden" path="/wedstrijden" onClick={() => setActive(false)}/>
-            <Item name="Agenda" path="/agenda" onClick={() => setActive(false)}/> */}
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
-            
           </div>
         </div>
       </nav>
