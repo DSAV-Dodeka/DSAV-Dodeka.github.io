@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.5b74ac8c.chunk.css",
-    "main.js": "/static/js/main.446c4c04.chunk.js",
-    "main.js.map": "/static/js/main.446c4c04.chunk.js.map",
+    "main.js": "/static/js/main.05af6725.chunk.js",
+    "main.js.map": "/static/js/main.05af6725.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.12fe43f9.js",
     "runtime-main.js.map": "/static/js/runtime-main.12fe43f9.js.map",
     "static/js/2.8f19a743.chunk.js": "/static/js/2.8f19a743.chunk.js",
@@ -115,6 +115,7 @@
     "static/media/trainingen.jpg": "/static/media/trainingen.9f4fb674.jpg",
     "static/media/website_OWee.jpg": "/static/media/website_OWee.09521081.jpg",
     "static/media/website_Opvang.jpg": "/static/media/website_Opvang.49ac7263.jpg",
+    "static/media/website_balkx.jpg": "/static/media/website_balkx.ad5c35ee.jpg",
     "static/media/website_beerLisa.jpg": "/static/media/website_beerLisa.68b13815.jpg",
     "static/media/website_dodekaDating.jpg": "/static/media/website_dodekaDating.ff679a71.jpg",
     "static/media/website_doping.jpg": "/static/media/website_doping.58f9ec1c.jpg",
@@ -145,6 +146,6 @@
     "static/js/runtime-main.12fe43f9.js",
     "static/js/2.8f19a743.chunk.js",
     "static/css/main.5b74ac8c.chunk.css",
-    "static/js/main.446c4c04.chunk.js"
+    "static/js/main.05af6725.chunk.js"
   ]
 }
