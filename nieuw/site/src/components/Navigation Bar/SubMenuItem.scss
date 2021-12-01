@@ -1,1 +1,25 @@
 @import "../../variables";
+
+.itemNav {
+    text-decoration: none;
+    position: absolute;
+    height: 4rem;
+    width: 8rem;
+    color: white;
+    text-align: center;
+    line-height: 4rem;
+    font-size: $font_medium;
+    font-weight: 500;
+    @include respond(mobile) {
+        width: 100%;
+    }
+}
+
+#subMenu {
+    color: yellow;
+    position: relative;
+    height: 4rem;
+    width: 100%;
+    border-bottom-width: 2px;
+    border-color: white;
+}

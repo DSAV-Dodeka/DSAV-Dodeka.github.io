@@ -31,3 +31,23 @@
     background-color: white;
     color: $dodeka_blauw;
 }
+
+.mobileDrop {
+    position: fixed;
+    top: 4rem;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background-color: $dodeka_blauw;
+    transition-duration: 500;
+    transition-property: all;
+}
+
+.mobileDropInactive {
+    
+    transform: translateX(100%);
+}
+
+.noMobileDrop {
+    display: none;
+}
