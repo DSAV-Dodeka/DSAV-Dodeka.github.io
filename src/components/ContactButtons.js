@@ -5,7 +5,7 @@ import "./ContactButtons.css";
 function ContactButtons() {
     return (
         <div class="lg:flex mx-4 lg:mx-16 lg:space-x-16 space-y-4 lg:space-y-0 mt-4 lg:mt-8">
-            <a target="_blank" rel="noreferrer" href="mailto:studentenatletiek@av40.nl" id="mail" class="block relative lg:flex-1 lg:w-auto w-full bg-rood py-4 text-white text-lg text-center rounded font-bold cursor-pointer">
+            <a target="_blank" rel="noreferrer" href="mailto:bestuur@dsavdodeka.nl" id="mail" class="block relative lg:flex-1 lg:w-auto w-full bg-rood py-4 text-white text-lg text-center rounded font-bold cursor-pointer">
                 <svg id="mail_icon" xmlns="http://www.w3.org/2000/svg" class="absolute top-0 bottom-0 my-auto left-4 w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z" /></svg>
                 <p>Mail</p>
                 <svg id="mail_arrow" xmlns="http://www.w3.org/2000/svg" class="absolute right-4 top-0 bottom-0 my-auto w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
