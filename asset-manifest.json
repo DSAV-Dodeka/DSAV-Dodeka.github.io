@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.188042b2.chunk.css",
-    "main.js": "/static/js/main.2d36b061.chunk.js",
-    "main.js.map": "/static/js/main.2d36b061.chunk.js.map",
+    "main.js": "/static/js/main.ac9682c8.chunk.js",
+    "main.js.map": "/static/js/main.ac9682c8.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.12fe43f9.js",
     "runtime-main.js.map": "/static/js/runtime-main.12fe43f9.js.map",
     "static/js/2.8f19a743.chunk.js": "/static/js/2.8f19a743.chunk.js",
@@ -120,6 +120,7 @@
     "static/media/website_dodekaDating.jpg": "/static/media/website_dodekaDating.ff679a71.jpg",
     "static/media/website_doping.jpg": "/static/media/website_doping.58f9ec1c.jpg",
     "static/media/website_fysBorrel.jpg": "/static/media/website_fysBorrel.1f30ac04.jpg",
+    "static/media/website_holleBolle.jpg": "/static/media/website_holleBolle.b2bfbe06.jpg",
     "static/media/website_indoor.jpg": "/static/media/website_indoor.8e2a9637.jpg",
     "static/media/website_knie.jpg": "/static/media/website_knie.7a88229b.jpg",
     "static/media/website_koenstokhoog.jpg": "/static/media/website_koenstokhoog.9ea97472.jpg",
@@ -146,6 +147,6 @@
     "static/js/runtime-main.12fe43f9.js",
     "static/js/2.8f19a743.chunk.js",
     "static/css/main.188042b2.chunk.css",
-    "static/js/main.2d36b061.chunk.js"
+    "static/js/main.ac9682c8.chunk.js"
   ]
 }
