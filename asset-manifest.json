@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.188042b2.chunk.css",
-    "main.js": "/static/js/main.37f96ee9.chunk.js",
-    "main.js.map": "/static/js/main.37f96ee9.chunk.js.map",
+    "main.js": "/static/js/main.fecddc44.chunk.js",
+    "main.js.map": "/static/js/main.fecddc44.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.12fe43f9.js",
     "runtime-main.js.map": "/static/js/runtime-main.12fe43f9.js.map",
     "static/js/2.8f19a743.chunk.js": "/static/js/2.8f19a743.chunk.js",
@@ -114,6 +114,7 @@
     "static/media/trainerSanne.jpg": "/static/media/trainerSanne.ddf40068.jpg",
     "static/media/trainingen.jpg": "/static/media/trainingen.9f4fb674.jpg",
     "static/media/website_OWee.jpg": "/static/media/website_OWee.09521081.jpg",
+    "static/media/website_ObiBo.jpg": "/static/media/website_ObiBo.d0c960e6.jpg",
     "static/media/website_Opvang.jpg": "/static/media/website_Opvang.49ac7263.jpg",
     "static/media/website_balkx.jpg": "/static/media/website_balkx.ad5c35ee.jpg",
     "static/media/website_beerLisa.jpg": "/static/media/website_beerLisa.68b13815.jpg",
@@ -147,6 +148,6 @@
     "static/js/runtime-main.12fe43f9.js",
     "static/js/2.8f19a743.chunk.js",
     "static/css/main.188042b2.chunk.css",
-    "static/js/main.37f96ee9.chunk.js"
+    "static/js/main.fecddc44.chunk.js"
   ]
 }
