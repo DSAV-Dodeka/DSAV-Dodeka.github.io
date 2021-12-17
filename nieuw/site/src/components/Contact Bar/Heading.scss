@@ -1,1 +1,44 @@
 @import "../../variables";
+
+#contact_heading {
+    position: relative;
+    
+    height: 2rem;
+    padding-top: 0.25rem;
+    color: $dodeka_rood;
+    background-color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-weight: $bold;
+    text-align: center;
+    @include respond(mobile) {
+        text-align: left;
+    }
+}
+
+#bar_title {
+    width: 16rem;
+    display: inline;
+    font-size: $font_medium;
+    text-decoration: none;
+    text-align: left;
+}
+
+
+
+#arrow_container {
+    position: relative;
+    display: inline;
+}
+
+#bar_arrow {
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: $dodeka_rood;
+    fill: currentColor;
+}

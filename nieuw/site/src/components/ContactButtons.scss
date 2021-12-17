@@ -1,0 +1,179 @@
+@import "../variables";
+
+#contactButtonsContainer {
+    display: flex;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 2rem;
+    @include respond(mobile) {
+        display: block;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+#dm {
+    display: inline;
+    position: relative;
+    flex: 1 1 0%;
+    width: auto;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    color: white;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-weight: $bold;
+    font-size: $font_medium;
+    text-decoration: none;
+    cursor: pointer;
+    background: radial-gradient(circle at -20% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    box-shadow: 0 0 15px #001F48;
+    @include respond(mobile) {
+        display: block;
+        width: 100%;
+    }
+}
+
+#dm:hover {
+    background: radial-gradient(circle at 120% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+#mail {
+    display: inline;
+    position: relative;
+    flex: 1 1 0%;
+    width: auto;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    color: white;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-weight: $bold;
+    font-size: $font_medium;
+    text-decoration: none;
+    cursor: pointer;
+    background: radial-gradient(circle at -20% 150%, #26D0CE 0%, #1A2980 100%);
+    box-shadow: 0 0 15px #001F48;
+    @include respond(mobile) {
+        display: block;
+        width: 100%;
+    }
+}
+
+#mail_icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    left: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: white;
+}
+
+#mail_arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    right: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: white;
+}
+
+#dm_icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    left: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: white;
+}
+
+#dm_arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    right: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: white;
+}
+
+#mail:hover {
+    background: radial-gradient(circle at 120% 150%, #26D0CE 0%, #1A2980 100%);
+}
+
+#mail:hover #mail_icon {
+    visibility: hidden;
+}
+
+#mail:hover #mail_arrow {
+    visibility: visible;
+}
+#mail_arrow {
+    visibility: hidden;
+}
+
+#dm:hover #dm_icon {
+    visibility: hidden;
+}
+
+#dm:hover #dm_arrow {
+    visibility: visible;
+}
+#dm_arrow {
+    visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    #dm {
+        background: radial-gradient(circle at -20% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+        box-shadow: 0 0 15px #001F48;
+    }
+    
+    #dm:hover {
+        background: radial-gradient(circle at -20% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    }
+    
+    #mail {
+        background: radial-gradient(circle at -20% 150%, #26D0CE 0%, #1A2980 100%);
+        box-shadow: 0 0 15px #001F48;
+    }
+    
+    #mail:hover {
+        background: radial-gradient(circle at -20% 150%, #26D0CE 0%, #1A2980 100%);
+    }
+    
+    #mail:hover #mail_icon {
+        visibility: visible;
+    }
+    
+    #mail:hover #mail_arrow {
+        visibility: hidden;
+    }
+    #mail_arrow {
+        visibility: hidden;
+    }
+    
+    #dm:hover #dm_icon {
+        visibility: visible;
+    }
+    
+    #dm:hover #dm_arrow {
+        visibility: hidden;
+    }
+    #dm_arrow {
+        visibility: hidden;
+    }
+
+}
