@@ -33,7 +33,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, var(--tw-text-opacity));
+    color: white;
     @include respond(computerscherm){
         padding-left: 4rem;
         padding-right: 4rem;
@@ -45,7 +45,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, var(--tw-text-opacity));
+    color: white;
     text-align: left;
     font-size: 1rem;
     line-height: 1.5rem;
