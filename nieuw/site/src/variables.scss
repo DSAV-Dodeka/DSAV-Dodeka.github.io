@@ -27,4 +27,7 @@ $margin_mobile: 1rem;
         @media (max-width: 1023px) { @content }
     }
     
+    @if($breakpoint == computerscherm) {
+        @media (min-width: 1024px) { @content }
+    }
 }
