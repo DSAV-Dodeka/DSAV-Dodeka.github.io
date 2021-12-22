@@ -16,8 +16,9 @@ function Meetrainen(props) {
                 <a target="_blank" rel="noreferrer" href="https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1" class="block relative lg:flex-1 lg:w-auto bg-rood py-4 text-white text-lg text-center rounded font-bold cursor-pointer mt-4 lg:mt-8 mx-4 lg:mx-16">
                     <p>Schrijf je in!</p>
                 </a>
+                <p class="text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8">Wil je je uitschrijven bij D.S.A.V. Dodeka? Stuur dan een mailtje naar de ledenadministratie van AV'40 (<a target="_blank" rel="noreferrer" href="mailto:ledenadministratie@av40.nl" class="text-rood">ledenadministratie@av40.nl</a>).<br/></p>
                 <p class="text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8">Mocht je nu nog vragen hebben, kijk dan in onze <Link smooth to="/contact#faq" class="text-rood">F.A.Q.</Link>, of stuur een berichtje via de mail of Instagram!</p>
-                <ContactButtons />
+                <ContactButtons />                
             </div>
             <img src={require(`../../../images/word_lid/${props.foto}`).default} alt="" class="lg:inline w-full lg:w-1/2 object-cover" />
         </div>

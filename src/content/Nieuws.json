@@ -1,6 +1,14 @@
 {
     "nieuwsberichten": [
         {
+            "id": "uitwissel_els",
+            "titel": "Uitwisseltraining met ELS",
+            "datum": "29-11-2021",
+            "auteur": "Thomas",
+            "tekst": "Maandag 22 november was er tijdens de training een groepje schaatsers van ELS te gast. Hoewel het door het koude herfstige weer best glad was op de baan (glad is in dit geval enigszins relatief, want de echte schaatsers waren niet erg onder de indruk), hebben onze gasten zich prima vermaakt met al het moois dat de atletieksport te bieden heeft. Zij hebben kennis kunnen maken met verschillende atletiekdisciplines, én geleerd dat je benen recht naar voren moeten als je snel wilt kunnen lopen.\n Op vrijdag 26 november was het onze beurt. We zijn met een groep Dodekaëders effe lekker gaan schaatsen op een training bij ELS. De meeste atleten pakten het schaatsen snel op door de technische schaatsoefeningen, maar er zijn er zeker ook een paar onderuit gegleden. De ijsbaan was vergeleken met onze baan toch wel een stuk kouder wat resulteerde in een aantal verkleumde leden. Toch kwam iedereen voldaan terug en was de uitwisseltraining een groot succes. Op naar de volgende!",
+            "foto": "els.jpg"
+        },
+        {
             "id": "nsk_baan",
             "titel": "Prachtige prestaties van Dodeka op NSK Baan",
             "datum": "09-09-2021",

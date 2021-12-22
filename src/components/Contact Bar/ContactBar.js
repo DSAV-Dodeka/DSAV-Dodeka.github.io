@@ -12,7 +12,7 @@ function ContactBar() {
             <div class="lg:inline w-full py-4 lg:py-8">
                 <Link to="/contact"><Heading title="Contactinformatie" /></Link>
                 <div class="pt-4 px-4 text-white lg:text-center">
-<p>Email: <a href="mailto:studentenatletiek@av40.nl" class="text-rood">studentenatletiek@av40.nl</a></p>
+<p>Email: <a href="mailto:bestuur@dsavdodeka.nl" class="text-rood">bestuur@dsavdodeka.nl</a></p>
                     <p>Adres: <a target="_blank" rel="noreferrer" href="https://www.google.nl/maps/place/Delftse+Atletiekvereniging+1940/@52.0294071,4.3655958,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5b60b0c9dbfa9:0x9fa03ef4a72f1db8!8m2!3d52.0294038!4d4.3677845" class="text-rood">Sportring 12, Delft</a></p>
                     <Link to="/contact" class="text-rood">F.A.Q.</Link>
                 </div>
