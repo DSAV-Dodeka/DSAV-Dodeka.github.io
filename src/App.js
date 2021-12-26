@@ -21,6 +21,8 @@ import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
 // import OWee from "./pages/OWee/OWee";
 import Auth from "./pages/Auth/Auth"
+import AuthRedirect from "./pages/Auth/AuthRedirect";
+import AuthCallback from "./pages/Auth/AuthCallback";
 
 function App() {
   return (
@@ -69,8 +71,14 @@ function App() {
               <Route path="/contact">
                 <Contact />
               </Route>
-              <Route path="/auth">
+              <Route path="/auth/credentials">
                 <Auth />
+              </Route>
+              <Route path="/auth/redirect">
+                <AuthRedirect />
+              </Route>
+              <Route path="/auth/callback">
+                <AuthCallback />
               </Route>
               <Route path="/">
                 <Home />
