@@ -1,15 +1,18 @@
 import React from "react";
-import { computeCodeVerifier } from "./functions/OAuth";
+import { computeCodeVerifier, computeRandom, encodedHashBin } from "./functions/OAuth";
 import PageTitle from "../../components/PageTitle";
-import { binToBase64url } from "./functions/AuthUtility";
+import { binToBase64Url } from "./functions/AuthUtility";
 
 
 const AuthRedirect = () => {
     const handleRedirect = async () => {
 
         //OAuth Authorization Code Flow + PKCE step 1
-        const state = binToBase64url(crypto.getRandomValues(new Uint8Array(16)))
+        const state = binToBase64Url(crypto.getRandomValues(new Uint8Array(16)))
         const { verifier, challenge } = await computeCodeVerifier()
+        //OpenID nonce
+        const { encoded_bin: nonce_original, random_bin: nonce_bin } = computeRandom()
+        const nonce = await encodedHashBin(nonce_bin)
 
         const params = new URLSearchParams({
             "response_type": "code",
@@ -18,7 +21,9 @@ const AuthRedirect = () => {
             "state": state,
             "code_challenge": challenge,
             "code_challenge_method": "S256",
+            "nonce": nonce,
         }).toString()
+
         // const res = await fetch(`http://localhost:4243/oauth/start/`, {
         //     method: 'POST', body: JSON.stringify(reqst),
         //     headers: {
@@ -32,6 +37,7 @@ const AuthRedirect = () => {
             state
         }
         localStorage.setItem("state_verify", JSON.stringify(state_verifier))
+        localStorage.setItem("nonce_original", nonce_original)
 
         const redirectUrl = "http://localhost:4243/oauth/authorize?" + params
 

@@ -1,14 +1,12 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { computeCodeVerifier } from "./functions/OAuth";
 import PageTitle from "../../components/PageTitle";
-import { binToBase64url } from "./functions/AuthUtility";
+import { binToBase64Url } from "./functions/AuthUtility";
+import {Redirect} from "react-router-dom";
 
 
 const AuthCallback = () => {
-    const wrapCallback = () => {
-        handleCallback().catch(e => console.log(e))
-        return <></>
-    }
+    const [gotToken, setGotToken] = useState(false);
 
     const handleCallback = async () => {
         let params = (new URLSearchParams(window.location.search))
@@ -41,13 +39,27 @@ const AuthCallback = () => {
         })
         const result = await res.text()
         console.log(result)
+
+        setGotToken(true)
     }
 
+    useEffect(() => {
+        if (!gotToken) {
+            handleCallback().catch();
+        }
+    }, []);
+
+    if (gotToken) {
+       // Use state to get path to redirect to
+        return <Redirect to="/" />
+    }
+
+    // Called twice???
     return (
         <>
             <PageTitle title="Auth" />
             <div>
-                {wrapCallback()}
+
             </div>
         </>
     )
