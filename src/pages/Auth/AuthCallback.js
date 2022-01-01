@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { computeCodeVerifier } from "./functions/OAuth";
 import PageTitle from "../../components/PageTitle";
-import { binToBase64Url } from "./functions/AuthUtility";
 import {Redirect} from "react-router-dom";
 
 
@@ -37,9 +35,25 @@ const AuthCallback = () => {
                 'Content-Type': 'application/json'
             }
         })
-        const result = await res.text()
-        console.log(result)
+        const {
+            access_token, refresh_token, token_type, id_token, expires_in, scope
+        } = await res.json()
+        if (token_type !== "Bearer") {
+            console.log("Incorrect token_type!")
+        }
+        if (id_token === "x") {
 
+        }
+        if (expires_in === "x") {
+
+        }
+        if (scope === "scope") {
+
+        }
+        localStorage.setItem("access", access_token)
+        localStorage.setItem("refresh", refresh_token)
+        console.log(access_token)
+        console.log(refresh_token)
         setGotToken(true)
     }
 
@@ -47,14 +61,13 @@ const AuthCallback = () => {
         if (!gotToken) {
             handleCallback().catch();
         }
-    }, []);
+    }, [gotToken]);
 
     if (gotToken) {
        // Use state to get path to redirect to
         return <Redirect to="/" />
     }
 
-    // Called twice???
     return (
         <>
             <PageTitle title="Auth" />

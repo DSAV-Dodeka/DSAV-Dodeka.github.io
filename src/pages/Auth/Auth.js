@@ -13,6 +13,7 @@ const Auth = () => {
 
         if (isRegister) {
             const is_ok = await clientRegister(username, password)
+            console.log(is_ok)
         }
         // login
         else {
