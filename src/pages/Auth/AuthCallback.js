@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import PageTitle from "../../components/PageTitle";
 import {Redirect} from "react-router-dom";
+import { decodeJwtPayload, validateIdToken } from "./functions/OAuth";
 
 
 const AuthCallback = () => {
@@ -36,22 +37,28 @@ const AuthCallback = () => {
             }
         })
         const {
-            access_token, refresh_token, token_type, id_token, expires_in, scope
+            id_token, access_token, refresh_token, token_type, expires_in, scope
         } = await res.json()
         if (token_type !== "Bearer") {
             console.log("Incorrect token_type!")
         }
-        if (id_token === "x") {
 
-        }
         if (expires_in === "x") {
 
         }
         if (scope === "scope") {
 
         }
-        localStorage.setItem("access", access_token)
-        localStorage.setItem("refresh", refresh_token)
+        try {
+            const id_payload = await validateIdToken(decodeJwtPayload(id_token))
+            localStorage.setItem("access", access_token)
+            localStorage.setItem("refresh", refresh_token)
+            localStorage.setItem("id_payload", JSON.stringify(id_payload))
+        }
+        catch (e) {
+            console.log(e.message)
+        }
+
         console.log(access_token)
         console.log(refresh_token)
         setGotToken(true)
@@ -70,7 +77,7 @@ const AuthCallback = () => {
 
     return (
         <>
-            <PageTitle title="Auth" />
+            <PageTitle title="AuthCallback" />
             <div>
 
             </div>

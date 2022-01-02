@@ -23,6 +23,7 @@ import Sponsors from "./pages/Sponsors/Sponsors";
 import Auth from "./pages/Auth/Auth"
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -79,6 +80,9 @@ function App() {
               </Route>
               <Route path="/auth/callback">
                 <AuthCallback />
+              </Route>
+              <Route path="/profile">
+                <Profile />
               </Route>
               <Route path="/">
                 <Home />

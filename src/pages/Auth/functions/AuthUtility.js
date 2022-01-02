@@ -19,7 +19,7 @@ export function base64ToBin(encoded_string) {
     // for (let i = 0; i < bytes.length; i++) {
     //     bytes[i] = decoded.charCodeAt(i);
     // }
-    return new Uint8Array.from(Array.from(decoded).map((char) => {
+    return new Uint8Array(Array.from(decoded).map((char) => {
         return char.charCodeAt(0)
     }))
 }

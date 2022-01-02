@@ -46,7 +46,7 @@ const AuthRedirect = () => {
 
     return (
         <>
-            <PageTitle title="Auth" />
+            <PageTitle title="AuthRedirect" />
             <div>
                 {handleRedirect()}
             </div>
