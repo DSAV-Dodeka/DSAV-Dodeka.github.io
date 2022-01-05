@@ -23,8 +23,9 @@ function Contact() {
             </div>
             <div id="faq">
                 <PageTitle title="Frequently asked questions" />
+                <Questions questions={Text.questions} />
             </div>
-            <Questions questions={Text.questions} />
+            
         </div>
     )
 }

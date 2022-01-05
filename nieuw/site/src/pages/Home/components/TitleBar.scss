@@ -1,0 +1,100 @@
+@import "../../../variables";
+
+@media screen and (min-width: 1024px) {
+
+#pos {
+    left: 60%;
+}
+}
+
+#home_title_container {
+    width: 100%;
+    height: 24rem;
+    position: relative;
+    background-color: $dodeka_blauw;
+    margin-top: 0rem;
+}
+
+#home_title_left {
+    display: block;
+    position: absolute;
+    clip-path: polygon(0% 0%, 100% 0%, calc(5/6 * 100%) 100%, 0% 100%);
+    left: 0;
+    width: 60%;
+    height: 24rem;
+    background-color: $dodeka_blauw;
+    @include respond(mobile) {
+        visibility: hidden;
+    }
+}
+
+#home_title_right {
+    position: absolute;
+    clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+    width: 50%;
+    right: 0;
+    height: 24rem;
+    @include respond(mobile) {
+        width: 100%;
+        clip-path: none;
+    }
+}
+
+#home_title_background {
+    height: 100%;
+    object-fit: cover;
+}
+
+#home_title_right_over {
+    position: absolute;
+    clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+    width: 50%;
+    right: 0;
+    height: 24rem;
+    background-color: rgba(255,255,255,0.5);
+    @include respond(mobile) {
+        width: 100%;
+        clip-path: none;
+    }
+}
+
+#home_title_right_pos {
+    position: absolute;
+    top: 50%;
+    width: 60%;
+    text-align: center;
+    transform: translate(40%, -50%);
+    @include respond(mobile) {
+        width: 100%;
+        transform: translateY(-50%);
+    }
+}
+
+#home_title_right_text {
+    color: $dodeka_blauw;
+    font-size: $font_large;
+    font-weight: $bold;
+    margin: 0;
+}
+
+#home_title_right_button {
+    background-color: $dodeka_rood;
+    color: white;
+    border-radius: 0.75rem;
+    border: none;
+    padding: 1rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-top: 2rem;
+}
+
+#home_title_d {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 4rem;
+    margin-top: 2rem;
+    @include respond(mobile) {
+        display: block;
+    }
+}

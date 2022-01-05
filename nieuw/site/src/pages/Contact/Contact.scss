@@ -31,3 +31,10 @@
         display: block;
     }
 }
+
+#faq {
+    margin-bottom: 6rem;
+    @include respond(mobile) {
+        margin-bottom: 4rem;
+    }
+}
