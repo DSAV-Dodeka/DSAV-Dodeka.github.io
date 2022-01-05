@@ -24,6 +24,7 @@ function Home() {
   }
 
   useEffect(() => {
+    setOffset(window.pageYOffset);
     window.onscroll = () => {
         setOffset(window.pageYOffset);
         try {
@@ -32,6 +33,12 @@ function Home() {
           document.getElementById("home_logo").style.top = Math.max(0.5, 6 - (offset / maxOffset) * 5) + 'rem';
         } catch {}
     }
+      try {
+        document.getElementById("home_logo").style.width = Math.max(6, logoMax - (offset / maxOffset) * (logoMax - 6)) + 'rem';
+        document.getElementById("home_logo").style.marginLeft = Math.min(6, (4 + (offset / maxOffset) * 2)) + 'rem';
+        document.getElementById("home_logo").style.top = Math.max(0.5, 6 - (offset / maxOffset) * 5) + 'rem';
+      } catch {}
+    
   }, [offset]);
 
   return (
