@@ -1,6 +1,14 @@
 {
     "nieuwsberichten": [
         {
+            "id": "wispo_uithof",
+            "titel": "Skiën en snowboarden in de uithof",
+            "datum": "12-12-2021",
+            "auteur": "Simon",
+            "tekst": "Op de mooiste dag van het jaar kregen wij alvast een heerlijk voorproefje van de (hopelijk) eerste echte wintersport. Snowdeka had een uitstapje georganiseerd naar de Uithof in Den Haag, waar iedereen zijn ski- of snowboardskills weer even kon opvijzelen voordat we gaan beginnen aan het echte werk op de pistes in Frankrijk. Na twee uur heerlijk van de piste te sjezen en niet één blessure op te hebben gelopen kon iedereen zich gaan omkleden en gaan genieten van een warme chocolademelk en een frietje om weer lekker op temperatuur te komen. Al met al was het een geslaagd dagje en een mooie voorbereiding op een hopelijk nog veel mooiere wispo!",
+            "foto": "uithof.jpg"
+        },
+        {
             "id": "uitwissel_els",
             "titel": "Uitwisseltraining met ELS",
             "datum": "29-11-2021",
