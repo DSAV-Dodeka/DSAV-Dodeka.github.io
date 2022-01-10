@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "./Title";
-import "./Nieuwsbericht.scss"
+import "./Nieuwsbericht.scss";
 
 function Nieuwsbericht(props) {
     return (

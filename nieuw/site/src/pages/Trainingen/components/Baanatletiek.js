@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "../../../components/Header";
+import "./Baanatletiek.scss"
 
 function Baanatletiek(props) {
     return(
-        <div class="lg:flex bg-blauw bg-opacity-90 w-full">
-            <img src={require(`../../../images/trainingen/${props.foto}`).default} alt="" class="lg:inline w-full lg:w-1/2" />
-            <div class="lg:inline py-4 lg:py-0 lg:my-8 w-full lg:w-1/2">
+        <div class="baanatletiek_1">
+            <img src={require(`../../../images/trainingen/${props.foto}`).default} alt="" class="baanatletiek_2" />
+            <div class="baanatletiek_3">
                 <Header text="Baanatletiek" position="left"/>
-                <p class="text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8">
+                <p class="baanatletiek_4">
                     {props.text.split('\n').map(item =>
                         <span>
                             {item}
