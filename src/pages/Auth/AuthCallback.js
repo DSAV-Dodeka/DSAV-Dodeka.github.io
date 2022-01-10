@@ -20,6 +20,7 @@ const AuthCallback = () => {
             console.log(loaded_state)
             console.log(state_verifier.state)
             console.log("wrong state!")
+            //TODO nice abort
             return
         }
 

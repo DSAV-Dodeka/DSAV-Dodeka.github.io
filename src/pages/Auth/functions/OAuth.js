@@ -1,4 +1,4 @@
-import { binToBase64Url, base64ToBin } from "./AuthUtility"
+import { binToBase64Url, base64ToBin, stringToUint8 } from "./AuthUtility"
 
 export function computeRandom(length=16) {
     const random_bin = crypto.getRandomValues(new Uint8Array(length))
@@ -14,8 +14,10 @@ export async function encodedHashBin(random_bin) {
 export async function computeCodeVerifier() {
     // Random value encoded as Base64url
     const random_bin = crypto.getRandomValues(new Uint8Array(32))
-    const hash = new Uint8Array(await crypto.subtle.digest("SHA-256", random_bin))
     const verifier = binToBase64Url(random_bin)
+    const asciiBinary = stringToUint8(verifier)
+    const hash = new Uint8Array(await crypto.subtle.digest("SHA-256", asciiBinary))
+
     const challenge = binToBase64Url(hash)
 
     return { verifier, challenge }

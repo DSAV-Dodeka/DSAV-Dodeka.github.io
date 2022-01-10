@@ -23,3 +23,11 @@ export function base64ToBin(encoded_string) {
         return char.charCodeAt(0)
     }))
 }
+
+export function stringToUint8(str) {
+    let chars = [];
+    for (let i = 0; i < str.length; ++i){
+        chars.push(str.charCodeAt(i));
+    }
+    return new Uint8Array(chars);
+}
