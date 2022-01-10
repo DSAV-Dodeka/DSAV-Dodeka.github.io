@@ -32,6 +32,7 @@ function NavigationBar() {
           <Item name="Nieuws" path="/nieuws" />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} />
           <Item name="Trainingen" path="/trainingen" />
+          <Dropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "NSK Indoor", path: "/nskindoor"}]} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
         </div>

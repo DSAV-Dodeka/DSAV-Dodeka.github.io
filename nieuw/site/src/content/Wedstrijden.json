@@ -1,0 +1,32 @@
+{
+    "wedstrijden": [
+        {
+            "naam": "NSK Indoor",
+            "datum": "12/03/2022",
+            "foto": "nskindoor.png",
+            "path": "/nskindoor",
+            "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquam lacus sit amet metus lobortis mollis. Donec eget efficitur nunc. Maecenas maximus feugiat augue, id eleifend nulla pellentesque vel. Vestibulum venenatis, lectus vitae consequat venenatis, nunc risus tincidunt augue, non. "
+        },
+        {
+            "naam": "NSK Teams",
+            "datum": "17/09/2022",
+            "foto": "komkommer.jpg",
+            "path": "",
+            "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquam lacus sit amet metus lobortis mollis. Donec eget efficitur nunc. Maecenas maximus feugiat augue, id eleifend nulla pellentesque vel. Vestibulum venenatis, lectus vitae consequat venenatis, nunc risus tincidunt augue, non. "
+        },
+        {
+            "naam": "Biermijl",
+            "datum": "14/10/2022",
+            "foto": "komkommer.jpg",
+            "path": "",
+            "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquam lacus sit amet metus lobortis mollis. Donec eget efficitur nunc. Maecenas maximus feugiat augue, id eleifend nulla pellentesque vel. Vestibulum venenatis, lectus vitae consequat venenatis, nunc risus tincidunt augue, non. "
+        },
+        {
+            "naam": "NSK Weg",
+            "datum": "??/??/2022",
+            "foto": "komkommer.jpg",
+            "path": "",
+            "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquam lacus sit amet metus lobortis mollis. Donec eget efficitur nunc. Maecenas maximus feugiat augue, id eleifend nulla pellentesque vel. Vestibulum venenatis, lectus vitae consequat venenatis, nunc risus tincidunt augue, non. "
+        }
+    ]
+}

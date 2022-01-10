@@ -1,0 +1,11 @@
+@import "../../variables";
+
+#eigenWedstrijden {
+    height: 40rem;
+    background-color: $dodeka_blauw90p;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    margin-bottom: 6rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
