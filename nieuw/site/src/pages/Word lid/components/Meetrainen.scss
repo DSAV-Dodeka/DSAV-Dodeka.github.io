@@ -1,0 +1,96 @@
+@import "../../../variables.scss";
+
+//meetrainen 4 heeft niet de text-align correct??
+//Schrijf je in staat niet in het midden.
+
+.meetrainen_1{ //lg:flex bg-blauw bg-opacity-90 w-full mb-16 lg:mb-24
+    background-color: $dodeka_blauw90p;
+    width: 100%;
+    margin-bottom: 4rem;
+    @include respond(computerscherm){
+        display: flex;
+        margin-bottom: 6rem;
+    }
+}
+
+.meetrainen_2{//lg:inline py-4 lg:py-0 lg:my-8 w-full lg:w-1/2
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+    @include respond(computerscherm){
+        display: inline;
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+        margin-top: $margin_y;
+        margin-bottom: $margin_y;
+        width: 50%;
+    }
+}
+
+.meetrainen_3{//text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8
+    color: white;
+    font-size: $font_small;
+    line-height: $line_height_small;
+    margin-left: $margin_mobile;
+    margin-right: $margin_mobile;
+    margin-top: $margin_mobile;
+    @include respond(computerscherm){
+        margin-left: $margin_x;
+        margin-right: $margin_x;   
+        margin-top: $margin_y;     
+    }
+}
+
+.meetrainen_4{//block relative lg:flex-1 lg:w-auto bg-rood py-4 text-white text-lg text-center rounded font-bold cursor-pointer 
+    //mt-4 lg:mt-8 mx-4 lg:mx-16
+    text-decoration: none;
+    display: block;
+    position: relative;
+    background-color: $dodeka_rood;
+    padding-top: $margin_mobile;
+    padding-bottom: $margin_mobile;
+    color: white;
+    font-size: $font_medium;
+    line-height: $font_medium;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-weight: $bold;
+    cursor: pointer;
+    margin-top: $margin_mobile;
+    margin-left: $margin_mobile;
+    margin-right: $margin_mobile;
+    @include respond(computerscherm){
+        display: flex;
+        width: auto;
+        margin-top: $margin_y;
+        margin-left: $margin_x;
+        margin-right: $margin_x;
+    }
+}
+
+.meetrainen_5{//text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8
+    color: white;
+    font-size: $font_small;
+    line-height: $line_height_small;
+    margin-left: $margin_mobile;
+    margin-right: $margin_mobile;
+    margin-top: $margin_mobile;
+    @include respond(computerscherm){
+        margin-top: $margin_y;
+        margin-left: $margin_x;
+        margin-right: $margin_x;
+    }
+}
+
+.meetrainen_6{//text-rood
+    color: $dodeka_rood;
+}
+
+.meetrainen_7{//lg:inline w-full lg:w-1/2 object-cover
+    width: 100%;
+    object-fit: cover;
+    @include respond(computerscherm){
+        display: inline;
+        width: 50%;
+    }
+}
