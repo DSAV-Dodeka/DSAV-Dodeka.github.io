@@ -1,5 +1,9 @@
 @import "../../variables";
 
+#nieuwsContainer {
+    text-align: center;
+}
+
 .linktospike { //"w-4 bg-rood absolute right-1 h-0 z-30"
     width: 1rem;
     position: absolute; 
@@ -10,46 +14,37 @@
 }
 
 .nieuwsberichten1{ //"space-y-8 lg:space-y-24 mb-4 lg:mb-12"
-    // --tw-space-y-reverse: 0; 
-    // margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
-    // margin-bottom: calc(2rem * var(--tw-space-y-reverse));
     margin-bottom: 1rem; 
     @include respond(computerscherm){
-        // margin-top: calc(6rem * calc(1 - var(--tw-space-y-reverse)));
-        // margin-bottom: calc(6rem * var(--tw-space-y-reverse));
         margin-bottom: 3rem;
     }
 }
 
 .nieuwsberichten2{ //mb-8 lg:mb-24
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     @include respond(computerscherm){
-        margin-bottom: 3rem;
+        margin-bottom: 6rem;
     }
 }
 
 .nieuwsberichten3{ //bg-rood text-white text-xl font-bold rounded-xl py-2 px-4 lg:py-4 mb-4 lg:mb-12
     background-color: $dodeka_rood;
-    --tw-text-opacity: 1;
+    text-decoration: none;
+    border: none;
     color: white;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
     font-weight: 700;
     border-radius: 0.75rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    margin-bottom: 1rem;
-    //margin: 0 auto;
-    // display: flex;
-    // justify-content: center;
-    // margin-left: auto;
-    // margin-right: auto;
-    //text-align: center;
+    text-align: center;
     @include respond(computerscherm){
         padding-top: 1rem;
         padding-bottom: 1rem;
         margin-bottom: 3rem;
+    
     }
 }

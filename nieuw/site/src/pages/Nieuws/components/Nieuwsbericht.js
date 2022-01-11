@@ -9,7 +9,7 @@ function Nieuwsbericht(props) {
                 <img class="nieuwsbericht_2" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />)}
                 <div class="nieuwsbericht_3">
                 <Title title={props.titel.toUpperCase()} position={props.position} />
-                <p class={"nieuwsbericht_4" + (props.position === "left" ? " text-left" : " text-right")}>
+                <p class={"nieuwsbericht_4" + (props.position === "left" ? " textLeft" : " textRight")}>
                     {props.datum} | {props.auteur}
                 </p>
                 <p class="nieuwsbericht_5">

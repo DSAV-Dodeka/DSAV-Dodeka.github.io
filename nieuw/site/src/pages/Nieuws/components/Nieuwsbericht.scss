@@ -2,14 +2,25 @@
 
 .nieuwsbericht_1{ //relative lg:flex
     position: relative;
+    margin-top: 6rem;
     @include respond(computerscherm){
         display: flex;
     }
+    @include respond(mobile) {
+        margin-top: 4rem;
+    }
 }
+
+.nieuwsbericht_1:first-of-type {
+    margin-top: 0;
+}
+
+
 
 .nieuwsbericht_2{ //w-full lg:w-1/3 object-cover
     width: 100%;
     object-fit: cover;
+    display: block;
     @include respond(computerscherm){
         width: 33.333333%;
     }
@@ -32,7 +43,6 @@
     margin-bottom: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    --tw-text-opacity: 1;
     color: white;
     @include respond(computerscherm){
         padding-left: 4rem;
@@ -41,16 +51,17 @@
 }
 
 .nieuwsbericht_5{ //my-4 lg:my-8 px-4 lg:px-16 text-white text-left text-base
-    margin: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    --tw-text-opacity: 1;
     color: white;
     text-align: left;
     font-size: 1rem;
     line-height: 1.5rem;
     @include respond(computerscherm){
-        margin: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
         padding-left: 4rem;
         padding-right: 4rem;
     }
@@ -64,4 +75,12 @@
         width: 33.333333%;
         display: block;
     }
+}
+
+.textLeft {
+    text-align: left;
+}
+
+.textRight {
+    text-align: right;
 }

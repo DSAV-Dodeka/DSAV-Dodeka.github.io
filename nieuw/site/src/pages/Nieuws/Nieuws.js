@@ -10,10 +10,10 @@ function Nieuws() {
     const [nBerichten, setNBerichten] = useState(3);
 
     return(
-        <div class="text-center">
+        <div id="nieuwsContainer" class="text-center">
             <PageTitle title="Nieuws"/>
             <Link to="/nieuws/spike" class="linktospike"><img src={spike} alt="" class=""/></Link>
-            <div class={"nieuwsberichten1" + (nBerichten >= NieuwsText.nieuwsberichten.length ? "nieuwsberichten2" : "")}>
+            <div class={"nieuwsberichten1" + (nBerichten >= NieuwsText.nieuwsberichten.length ? " nieuwsberichten2" : "")}>
             {NieuwsText.nieuwsberichten.slice(0, nBerichten).map((bericht, index) =>
                     <Nieuwsbericht position={index % 2 === 0 ? "left" : "right"} page="nieuws" id={bericht.id} titel={bericht.titel} datum={bericht.datum} auteur={bericht.auteur} tekst={bericht.tekst} foto={bericht.foto}/>
                 )}
