@@ -1,0 +1,31 @@
+@import "../../variables";
+
+.wedstrijdFoto {
+    display: inline;
+    width: 50%;
+    height: 16rem;
+    object-fit: cover;
+}
+
+.wedstrijdDatum {
+    width: 100%;
+    background-color: $dodeka_rood;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    padding-left: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: $bold;
+}
+
+.wedstrijdInfo {
+    background-color: $dodeka_blauw90p;
+    color: white;
+    padding-right: 4rem;
+    padding-left: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-left: 4rem solid $dodeka_rood;
+    margin-bottom: 6rem;
+}
