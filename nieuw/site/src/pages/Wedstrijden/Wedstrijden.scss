@@ -8,4 +8,9 @@
     margin-bottom: 6rem;
     overflow-x: scroll;
     white-space: nowrap;
+    @include respond(mobile) {
+        padding-right: 1rem;
+        padding-left: 1rem;
+        margin-bottom: 4rem;
+    }
 }
