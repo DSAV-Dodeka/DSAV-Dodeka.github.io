@@ -9,7 +9,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
-    "@tiptenbrink/opaquewasm": "^0.1.6",
+    "@tiptenbrink/opaquewasm": "^0.1.7",
     "autoprefixer": "^9.8.6",
     "browserslist": "^4.17.3",
     "core-js": "^3.18.3",
