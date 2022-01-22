@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import PageTitle from "../../components/PageTitle";
 import {Redirect} from "react-router-dom";
 import { decodeJwtPayload, validateIdToken } from "./functions/OAuth";
+import {redirect_uri} from "./AuthRedirect";
+import config from "./config"
 
 
 const AuthCallback = () => {
@@ -12,9 +13,12 @@ const AuthCallback = () => {
 
         let code = params.get("code");
         let loaded_state = params.get("state")
-        let redirect_uri = "http://localhost:3000/auth/callback"
 
-        const state_verifier = JSON.parse(localStorage.getItem("state_verify"))
+        const ls_state_verify = localStorage.getItem("state_verify")
+        if (!ls_state_verify) {
+            return
+        }
+        const state_verifier = JSON.parse(ls_state_verify)
         if (loaded_state !== state_verifier.state) {
             // abort
             console.log(loaded_state)
@@ -25,13 +29,13 @@ const AuthCallback = () => {
         }
 
         const token_request = {
-            "client_id":  "dodekaweb_client",
+            "client_id":  config.client_id,
             "grant_type": "authorization_code",
             "redirect_uri":  redirect_uri,
             "code": code,
             "code_verifier": state_verifier.code_verifier,
         }
-        const res = await fetch(`http://localhost:4243/oauth/token/`, {
+        const res = await fetch(`${config.auth_location}/oauth/token/`, {
             method: 'POST', body: JSON.stringify(token_request),
             headers: {
                 'Content-Type': 'application/json'
@@ -57,7 +61,11 @@ const AuthCallback = () => {
             localStorage.setItem("id_payload", JSON.stringify(id_payload))
         }
         catch (e) {
-            console.log(e.message)
+            if (e instanceof Error) {
+                console.log(e.message)
+            } else {
+                console.log(e)
+            }
         }
 
         console.log(access_token)
@@ -72,22 +80,13 @@ const AuthCallback = () => {
     }, [gotToken]);
 
     if (gotToken) {
-       // Use state to get path to redirect to
-        return <Redirect to="/" />
+        return (<Redirect to="/"/>)
     }
 
     return (
         <>
-            <PageTitle title="AuthCallback" />
-            <div>
-
-            </div>
         </>
     )
 }
 
 export default AuthCallback;
-
-
-
-

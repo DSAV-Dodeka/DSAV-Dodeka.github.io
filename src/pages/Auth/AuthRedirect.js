@@ -1,11 +1,18 @@
-import React from "react";
-import { computeCodeVerifier, computeRandom, encodedHashBin } from "./functions/OAuth";
-import PageTitle from "../../components/PageTitle";
-import { binToBase64Url } from "./functions/AuthUtility";
+import React, {useEffect, useState} from "react";
+import {binToBase64Url} from "./functions/AuthUtility";
+import {computeCodeVerifier, computeRandom, encodedHashBin} from "./functions/OAuth";
+import config from "./config"
 
+export const redirect_uri = config.self_location + "/auth/callback"
 
 const AuthRedirect = () => {
+
+    const [handled, setHandled] = useState(false)
+    const [redirectUrl, setRedirectUrl] = useState("")
+
     const handleRedirect = async () => {
+
+
 
         //OAuth Authorization Code Flow + PKCE step 1
         const state = binToBase64Url(crypto.getRandomValues(new Uint8Array(16)))
@@ -16,21 +23,13 @@ const AuthRedirect = () => {
 
         const params = new URLSearchParams({
             "response_type": "code",
-            "client_id":  "dodekaweb_client",
-            "redirect_uri":  "http://localhost:3000/auth/callback",
+            "client_id":  config.client_id,
+            "redirect_uri":  redirect_uri,
             "state": state,
             "code_challenge": challenge,
             "code_challenge_method": "S256",
             "nonce": nonce,
         }).toString()
-
-        // const res = await fetch(`http://localhost:4243/oauth/start/`, {
-        //     method: 'POST', body: JSON.stringify(reqst),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // })
-        // const auth_id = await res.text()
 
         const state_verifier = {
             code_verifier: verifier,
@@ -39,23 +38,23 @@ const AuthRedirect = () => {
         localStorage.setItem("state_verify", JSON.stringify(state_verifier))
         localStorage.setItem("nonce_original", nonce_original)
 
-        const redirectUrl = "http://localhost:4243/oauth/authorize?" + params
+        setRedirectUrl(`${config.auth_location}/oauth/authorize?` + params)
 
-        window.location.replace(redirectUrl);
+        setHandled(true)
     }
+
+    useEffect(() => {
+        if (!handled) {
+            handleRedirect().catch();
+        } else {
+            window.location.replace(redirectUrl)
+        }
+    }, [handled, redirectUrl]);
 
     return (
         <>
-            <PageTitle title="AuthRedirect" />
-            <div>
-                {handleRedirect()}
-            </div>
         </>
     )
 }
 
 export default AuthRedirect;
-
-
-
-

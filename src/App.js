@@ -20,7 +20,6 @@ import Commissies from "./pages/Commissies/Commissies";
 import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
 // import OWee from "./pages/OWee/OWee";
-import Auth from "./pages/Auth/Auth"
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
 import Profile from "./pages/Profile/Profile";
@@ -71,9 +70,6 @@ function App() {
               </Route>
               <Route path="/contact">
                 <Contact />
-              </Route>
-              <Route path="/auth/credentials">
-                <Auth />
               </Route>
               <Route path="/auth/redirect">
                 <AuthRedirect />

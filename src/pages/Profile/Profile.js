@@ -10,6 +10,8 @@ const Profile = () => {
     const setProfile = async () => {
         const access = localStorage.getItem("access")
         console.log(access)
+        const refresh = localStorage.getItem("refresh")
+        console.log(refresh)
         const bearer = 'Bearer ' + access
         const res = await fetch(`http://localhost:4243/res/profile/`, {
             method: 'GET',
