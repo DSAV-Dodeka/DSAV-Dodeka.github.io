@@ -5,8 +5,9 @@ import "./Nieuwsbericht.scss";
 function Nieuwsbericht(props) {
     return (
         <div id={props.id} class="nieuwsbericht_1">
-            {props.position === "right" ? "" : (
-                <img class="nieuwsbericht_2" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />)}
+            {(props.position === "left" || window.innerWidth <= 1023) ? (
+                <img class="nieuwsbericht_2" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />
+            ) : ""}
                 <div class="nieuwsbericht_3">
                 <Title title={props.titel.toUpperCase()} position={props.position} />
                 <p class={"nieuwsbericht_4" + (props.position === "left" ? " textLeft" : " textRight")}>
@@ -22,8 +23,8 @@ function Nieuwsbericht(props) {
                     )}
                 </p>
             </div>
-            {props.position === "right" ? (
-                <img class="nieuwsbericht_6" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />) : ""}
+            {(props.position === "left" || window.innerWidth <= 1023) ? "" : (
+                <img class="nieuwsbericht_6" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />)}
         </div>
     )
 }

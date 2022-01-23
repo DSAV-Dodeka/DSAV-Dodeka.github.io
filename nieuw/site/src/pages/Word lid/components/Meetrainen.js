@@ -17,6 +17,7 @@ function Meetrainen(props) {
                 <a target="_blank" rel="noreferrer" href="https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1" class="meetrainen_4">
                     <p>Schrijf je in!</p>
                 </a>
+                <p class="meetrainen_uitschrijven">Wil je je uitschrijven bij D.S.A.V. Dodeka? Stuur dan een mailtje naar de ledenadministratie van AV'40 (<a target="_blank" rel="noreferrer" href="mailto:ledenadministratie@av40.nl" class="meetrainen_uitschrijflink">ledenadministratie@av40.nl</a>).</p>
                 <p class="meetrainen_5">Mocht je nu nog vragen hebben, kijk dan in onze <Link smooth to="/contact#faq" class="meetrainen_6">F.A.Q.</Link>, of stuur een berichtje via de mail of Instagram!</p>
                 <ContactButtons />
             </div>

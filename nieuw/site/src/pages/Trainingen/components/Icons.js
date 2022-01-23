@@ -1,7 +1,6 @@
 import React from "react";
 import icons from "../../../images/trainingen/icons.svg";
-import "./Icons.scss"
-import "./Icons2.scss"
+import "./Icons.scss";
 
 function Icons() {
     return(

@@ -16,10 +16,21 @@
 }
 
 #subMenu {
-    color: yellow;
+    color: white;
     position: relative;
     height: 4rem;
     width: 100%;
-    border-bottom-width: 2px;
-    border-color: white;
+    border-bottom: solid white 2px;
+    text-align: center;
+    padding-top: 0.8rem;
+}
+
+#subMenu_arrow {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: white;
+    stroke: currentColor;
+    width: 2rem;
+
 }

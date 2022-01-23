@@ -16,13 +16,14 @@ import ContactBar from "./components/Contact Bar/ContactBar";
 import Commissies from "./pages/Commissies/Commissies";
 import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
+import "./App.scss";
 
 function App() {
   return (
     <Router>
-      <div class="w-full bg-blauw bg-opacity-90">
-        <div class="w-full max-w-screen-3xl bg-white border-r-0 3xl:border-r-8 3xl:border-l-8 border-white mx-auto">
-          <div class="flex flex-col min-h-screen w-full max-w-screen-3xl mx-auto">
+      <div id="app_screen">
+        <div id="app_container">
+          <div id="app_flex" class="flex flex-col min-h-screen w-full max-w-screen-3xl mx-auto">
             <NavigationBar />
             <Switch>
               <Route path="/nieuws/spike">
@@ -56,7 +57,7 @@ function App() {
                 <Home />
               </Route>
             </Switch>
-            <div class="flex-grow" />
+            <div id="app_flex_grow"/>
             <ContactBar />
           </div>
         </div>

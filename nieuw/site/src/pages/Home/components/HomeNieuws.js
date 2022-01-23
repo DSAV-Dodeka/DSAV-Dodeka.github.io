@@ -22,7 +22,7 @@ function HomeNieuws() {
                             <h1 class="home_nieuwstitel">{item.titel}</h1>
                             <h2 class="home_nieuwsstukje">{item.tekst}</h2>
                         </div>
-                        <Link to={"/nieuws#" + item.id}><h2 class="home_nieuws_link">Lees meer</h2></Link>
+                        <Link to={"/nieuws#" + item.id} class="no_underline"><h2 class="home_nieuws_link">Lees meer</h2></Link>
                     </div>
                 )}
 

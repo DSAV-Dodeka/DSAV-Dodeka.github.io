@@ -1,8 +1,5 @@
 @import "../../../variables.scss";
 
-//meetrainen 4 heeft niet de text-align correct??
-//Schrijf je in staat niet in het midden.
-
 .meetrainen_1{ //lg:flex bg-blauw bg-opacity-90 w-full mb-16 lg:mb-24
     background-color: $dodeka_blauw90p;
     width: 100%;
@@ -60,12 +57,30 @@
     margin-left: $margin_mobile;
     margin-right: $margin_mobile;
     @include respond(computerscherm){
-        display: flex;
         width: auto;
         margin-top: $margin_y;
         margin-left: $margin_x;
         margin-right: $margin_x;
     }
+}
+
+.meetrainen_uitschrijven {
+    color: white;
+    font-size: $font_small;
+    line-height: $line_height_small;
+    margin-left: $margin_mobile;
+    margin-right: $margin_mobile;
+    margin-top: $margin_mobile;
+    @include respond(computerscherm){
+        margin-top: $margin_y;
+        margin-left: $margin_x;
+        margin-right: $margin_x;
+    }
+}
+
+.meetrainen_uitschrijflink {
+    color: $dodeka_rood;
+    text-decoration: none;
 }
 
 .meetrainen_5{//text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8
@@ -84,9 +99,11 @@
 
 .meetrainen_6{//text-rood
     color: $dodeka_rood;
+    text-decoration: none;
 }
 
 .meetrainen_7{//lg:inline w-full lg:w-1/2 object-cover
+    display: block;
     width: 100%;
     object-fit: cover;
     @include respond(computerscherm){

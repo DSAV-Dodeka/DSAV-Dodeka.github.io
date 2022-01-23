@@ -13,7 +13,7 @@ function ContactBar() {
             <div class="bar_container">
                 <Link class="no_underline" to="/contact"><Heading title="Contactinformatie" /></Link>
                 <div class="bar_info">
-                    <p>Email: <a href="mailto:studentenatletiek@av40.nl" class="bar_link">bestuur@dsavdodeka.nl</a></p>
+                    <p>Email: <a href="mailto:bestuur@dsavdodeka.nl" class="bar_link">bestuur@dsavdodeka.nl</a></p>
                     <p>Adres: <a target="_blank" rel="noreferrer" href="https://www.google.nl/maps/place/Delftse+Atletiekvereniging+1940/@52.0294071,4.3655958,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5b60b0c9dbfa9:0x9fa03ef4a72f1db8!8m2!3d52.0294038!4d4.3677845" class="bar_link">Sportring 12, Delft</a></p>
                     <Link to="/contact" class="bar_link">F.A.Q.</Link>
                 </div>

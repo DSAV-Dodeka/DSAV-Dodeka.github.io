@@ -1,4 +1,12 @@
+@import "../../../variables.scss";
+
 #icons {
+    height: 4rem;
+    width: 100%;
+    @include respond(computerscherm){
+        height: 5rem;
+        margin-top: 1rem;
+    }
     will-change: background-position;
     background-repeat: repeat-x;
     background-size: 100vw 4rem;
@@ -6,8 +14,6 @@
        -moz-animation: slide 20s linear infinite;
             animation: slide 20s linear infinite;
 }
-
-
 
 @-webkit-keyframes slide
 {

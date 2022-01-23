@@ -26,8 +26,8 @@
 
 .loopgroep_3{//text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8
     color: white;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: $font_small;
+    line-height: $line_height_small;
     margin-left: $margin_mobile;
     margin-right: $margin_mobile;
     margin-top: $margin_mobile;
@@ -39,6 +39,7 @@
 }
 
 .loopgroep_4{//lg:inline w-full lg:w-1/2
+    display: block;
     width: 100%;
     @include respond(computerscherm){
         display: inline;

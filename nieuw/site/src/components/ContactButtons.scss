@@ -40,6 +40,7 @@
 }
 
 #mail {
+    margin-right: 4rem;
     display: inline;
     position: relative;
     flex: 1 1 0%;
@@ -58,6 +59,8 @@
     @include respond(mobile) {
         display: block;
         width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
     }
 }
 

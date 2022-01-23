@@ -30,4 +30,8 @@ $margin_mobile: 1rem;
     @if($breakpoint == computerscherm) {
         @media (min-width: 1024px) { @content }
     }
+
+    @if($breakpoint == too_large) {
+        @media (min-width: 1841px) { @content }
+    }
 }

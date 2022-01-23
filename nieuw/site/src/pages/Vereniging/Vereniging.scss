@@ -28,6 +28,7 @@
 }
 
 .vereniging_4{//w-full lg:w-1/2 object-cover
+    display: block;
     width: 100%;
     object-fit: cover;
     @include respond(computerscherm){
@@ -60,13 +61,13 @@
     padding-right: 2rem;
     width: 24rem;
     color: white;
-    font-size: $font_large;
+    font-size: 1.75rem;
     line-height: $line_height_large;
     font-weight: $bold;
     top: 2rem;
     margin-left: 2rem;
-    z-index: 30;
-    left: 0px;
+    z-index: 6;
+    left: 0rem;
     @include respond(computerscherm){
         margin-left: 0rem;
         top: 8rem;
@@ -75,14 +76,16 @@
 }
 
 .vereniging_8{//object-cover h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24
+    display: block;
     object-fit: cover;
     height: 24rem;
     width: 24rem;
     background-color: $dodeka_blauw;
-    margin: auto;
     margin-top: 4rem;
     @include respond(computerscherm){
         margin-top: 6rem;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -92,7 +95,7 @@
     height: 32rem;
     overflow-x: hidden;
     @include respond(computerscherm){
-        width: 33.3333%;   
+        width: 33.3333%;
     }
 }
 
@@ -105,12 +108,12 @@
     padding-right: 2rem;
     width: 24rem;
     color: white;
-    font-size: $font_large;
+    font-size: 1.75rem;
     line-height: $line_height_large;
     font-weight: $bold;
     top: 6rem;
     margin-left: 2rem;
-    z-index: 30;
+    z-index: 6;
     left: 0px;
     @include respond(computerscherm){
         margin-left: 0rem;
@@ -120,13 +123,15 @@
 }
 
 .vereniging_11{//object-cover h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24
+    display: block;
     object-fit: cover;
     height: 24rem;
     width: 24rem;
     background-color: $dodeka_blauw;
-    margin: auto;
     margin-top: 4rem;
     @include respond(computerscherm){
         margin-top: 6rem;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
