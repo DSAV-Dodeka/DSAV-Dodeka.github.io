@@ -1,9 +1,10 @@
 import React from "react";
+import "./Question.scss";
 
 function Question(props) {
     return (
-        <div class=" bg-blauw bg-opacity-90 text-white rounded-xl text-lg lg:text-xl mb-8">
-            <div class="w-full bg-rood rounded-t-xl py-2 px-8 font-bold">
+        <div id="question_box">
+            <div id="question">
                 {props.vraag.split('\n').map(item =>
                         <span>
                             {item}
@@ -11,7 +12,7 @@ function Question(props) {
                         </span>
                     )} 
             </div>
-            <div class="px-8 pb-4 pt-2 text-base lg:text-lg">
+            <div id="answer">
                 {props.antwoord.split('\n').map(item =>
                         <span>
                             {item}

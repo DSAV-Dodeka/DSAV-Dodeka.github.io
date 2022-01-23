@@ -1,0 +1,33 @@
+@import "../variables";
+
+.header {
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: $dodeka_rood;
+}
+
+.headerText {
+    margin: 0;
+    margin-left: $margin_x;
+    margin-right: $margin_x;
+    color: white;
+    font-size: $font_medium;
+    font-weight: $bold;
+    @include respond(mobile) {
+        margin-left: $margin_mobile;
+        margin-right: $margin_mobile;
+    }
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}

@@ -2,27 +2,24 @@ import React from "react";
 import {
   Link
 } from "react-router-dom";
-import "./TitleBar.css";
+import "./TitleBar.scss";
 import foto from "../../../images/home/titlebar.jpg";
 import {ReactComponent as D} from "../../../images/groteD.svg";
 
 
 function TitleBar() {  
   return (
-    <div class="w-full relative h-96">
-        <div class="hidden lg:block absolute logo left-0 w-3/5 h-96 bg-blauw">
-          
+    <div id="home_title_container">
+        <div id="home_title_left" ></div>
+        <div id="home_title_right">
+            <img id="home_title_background" src={foto} alt=""/>
 
         </div>
-        <div class="absolute signup w-full lg:w-1/2 right-0 h-96 object-cover">
-            <img class="h-full object-cover" src={foto} alt=""/>
-
-        </div>
-        <div class="absolute signup w-full lg:w-1/2 right-0 bg-white bg-opacity-50 h-96">
-            <div id="pos" class="absolute top-1/2 space-y-8 transform lg:-translate-x-1/2 -translate-y-1/2 text-center w-full lg:w-3/5">
-                <h1 class="text-blauw text-3xl font-bold">Dé Delftse Studenten <br/>Atletiek Vereniging!</h1>
-                <Link to="/word_lid"><button class="bg-rood text-white text-3xl font-bold rounded-xl p-4 mt-8">Train 3x gratis mee!</button></Link>
-                <D class="lg:hidden mx-auto w-16"></D>
+        <div id="home_title_right_over">
+            <div id="home_title_right_pos">
+                <h1 id="home_title_right_text">Dé Delftse Studenten <br/>Atletiek Vereniging!</h1>
+                <Link to="/word_lid"><button id="home_title_right_button">Train 3x gratis mee!</button></Link>
+                <D id="home_title_d"></D>
             </div>
             
 

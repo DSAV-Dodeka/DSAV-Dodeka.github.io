@@ -1,0 +1,66 @@
+@import "../../variables";
+
+#navDropdown {
+    position: relative;
+    height: 4rem;
+    width: 8rem;
+}
+
+.dropdownNav {
+    text-decoration: none;
+    position: absolute;
+    height: 4rem;
+    width: 8rem;
+    color: white;
+    text-align: center;
+    line-height: 4rem;
+    font-size: $font_medium;
+    font-weight: 500;
+    @include respond(mobile) {
+        width: 100%;
+    }
+}
+
+.navDropdownActive {
+    background-color: $dodeka_rood;
+}
+
+.navDropdownNormal:hover {
+    background-color: white;
+    color: $dodeka_blauw;
+}
+
+.drop {
+    position: absolute;
+    left: 0;
+    top: 4rem;
+    width: 8rem;
+    z-index: 10;
+}
+
+.dropHide {
+    display: none;
+}
+
+.dropdownElement {
+    display: block;
+    height: 4rem;
+    width: 8rem;
+    line-height: 4rem;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: $dodeka_blauw;
+    font-size: $font_small;
+    font-weight: 500;
+}
+
+.dropdownElement:hover {
+    background-color: white;
+    color: $dodeka_blauw;
+}
+
+.dropdownElement:last-of-type {
+    border-bottom-left-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}

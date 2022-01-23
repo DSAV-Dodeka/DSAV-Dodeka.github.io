@@ -5,25 +5,27 @@ import Socials from "./components/Socials"
 import Maps from "../../components/Maps";
 import Questions from "./components/Questions";
 import Text from "../../content/FAQ.json";
+import "./Contact.scss"
 
 
 function Contact() {
     return (
         <div>
             <PageTitle title="Contact" />
-            <div class="lg:flex bg-blauw bg-opacity-90 w-full mb-8 lg:mb-16">
-                <div class="w-full lg:inline py-4 lg:my-8 lg:py-0 lg:w-1/2">
+            <div id="contact" className="mb-8 lg:mb-16">
+                <div id="contact_info">
                     <Contactinfo />
                     <Socials />
                 </div>
-                <div class="w-full h-96 lg:h-auto lg:inline lg:w-1/2">
+                <div id="contact_map">
                     <Maps />    
                 </div>
             </div>
             <div id="faq">
                 <PageTitle title="Frequently asked questions" />
+                <Questions questions={Text.questions} />
             </div>
-            <Questions questions={Text.questions} />
+            
         </div>
     )
 }

@@ -28,4 +28,4 @@ jobs:
         publish_branch: site
         publish_dir: ./build
         commit_message: "Automatic deploy"
-        cname: dsavdodeka.nl
+        cname: dsavdodeka.nls
