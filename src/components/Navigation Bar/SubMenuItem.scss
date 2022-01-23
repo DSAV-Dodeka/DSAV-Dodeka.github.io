@@ -1,0 +1,36 @@
+@import "../../variables";
+
+.itemNav {
+    text-decoration: none;
+    position: absolute;
+    height: 4rem;
+    width: 8rem;
+    color: white;
+    text-align: center;
+    line-height: 4rem;
+    font-size: $font_medium;
+    font-weight: 500;
+    @include respond(mobile) {
+        width: 100%;
+    }
+}
+
+#subMenu {
+    color: white;
+    position: relative;
+    height: 4rem;
+    width: 100%;
+    border-bottom: solid white 2px;
+    text-align: center;
+    padding-top: 0.8rem;
+}
+
+#subMenu_arrow {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: white;
+    stroke: currentColor;
+    width: 2rem;
+
+}

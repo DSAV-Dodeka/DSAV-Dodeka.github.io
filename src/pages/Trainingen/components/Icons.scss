@@ -1,0 +1,63 @@
+@import "../../../variables.scss";
+
+#icons {
+    height: 4rem;
+    width: 100%;
+    @include respond(computerscherm){
+        height: 5rem;
+        margin-top: 1rem;
+    }
+    will-change: background-position;
+    background-repeat: repeat-x;
+    background-size: 100vw 4rem;
+    -webkit-animation: slide 20s linear infinite;
+       -moz-animation: slide 20s linear infinite;
+            animation: slide 20s linear infinite;
+}
+
+@-webkit-keyframes slide
+{
+    0%   {background-position: 0 0;}
+    100% {background-position: 100vw 0;}
+}
+
+@-moz-keyframes slide
+{
+    0%   {background-position: 0 0;}
+    100% {background-position: 100vw 0;}
+}
+
+@keyframes slide
+{
+    0%   {background-position: 0 0;}
+    100% {background-position: 100vw 0;}
+}
+
+@media screen and (max-width: 768px) {
+    #icons {
+        will-change: background-position;
+        background-repeat: repeat-x;
+        background-size: 300vw 4rem;
+        -webkit-animation: slide 20s linear infinite;
+           -moz-animation: slide 20s linear infinite;
+                animation: slide 20s linear infinite;
+    }
+
+    @-webkit-keyframes slide
+    {
+        0%   {background-position: 300vw 0;}
+        100% {background-position: 0 0;}
+    }
+
+    @-moz-keyframes slide
+    {
+        0%   {background-position: 300vw 0;}
+        100% {background-position: 0 0;}
+    }
+
+    @keyframes slide
+    {
+        0%   {background-position: 300vw 0;}
+        100% {background-position: 0 0;}
+    }
+}

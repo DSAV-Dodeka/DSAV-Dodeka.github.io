@@ -1,0 +1,56 @@
+@import "../../variables";
+
+#contact_bar { 
+    display: flex;
+    width: 100%;
+    background-color: $dodeka_blauw90p;
+    overflow-x: hidden;
+    @include respond(mobile) {
+        display: block;
+    }
+}
+
+.bar_container {
+    display: inline;
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    @include respond(mobile) {
+        display: block;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
+}
+
+.bar_info {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: white;
+    line-height: $line_height_small;
+    text-align: center;
+    @include respond(mobile) {
+        text-align: left;
+    }
+}
+
+
+
+.bar_link {
+    color: $dodeka_rood;
+    text-decoration: none;
+}
+
+.no_underline {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+#maltha {
+    width: 6rem;
+    height: 5rem;
+    @include respond(mobile) {
+        margin-left: 0;
+    }
+}
