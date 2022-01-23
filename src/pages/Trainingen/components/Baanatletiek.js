@@ -9,8 +9,8 @@ function Baanatletiek(props) {
             <div className="baanatletiek_3">
                 <Header text="Baanatletiek" position="left"/>
                 <p className="baanatletiek_4">
-                    {props.text.split('\n').map(item =>
-                        <span>
+                    {props.text.split('\n').map((item, index) =>
+                        <span key={"baan" + index}>
                             {item}
                             <br/>
                         </span>

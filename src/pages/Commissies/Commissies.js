@@ -9,7 +9,7 @@ function Commissies() {
             <PageTitle title="Commissies" />
             <div className="commissies overflow-x-hidden mb-16 lg:mb-24">
                 {CommissiesText.commissies.map((commissie, index) =>
-                    <Commissie position={index % 2 === 0 ? "left" : "right"} name={commissie.naam} info={commissie.info} leden={commissie.leden} fotos={commissie.fotos}/>
+                    <Commissie key={commissie.naam} position={index % 2 === 0 ? "left" : "right"} name={commissie.naam} info={commissie.info} leden={commissie.leden} fotos={commissie.fotos}/>
                 )}
             </div>
         </div>

@@ -52,7 +52,7 @@ function Commissie(props) {
             <Header text={props.name + " leden"} position="left" />
             <div id={props.name + "scroll"} className="commissieLeden">
                 {props.leden.map((lid) =>
-                    <div className="commissieLid">
+                    <div key={props.name + lid.naam} className="commissieLid">
                         <img className="commissieLidFoto" src={require(`../../../images/commissies/${props.fotos}/${lid.foto}.jpg`).default} alt="" />
                         <p className="commissieLidNaam">{lid.naam}</p>
                         <p className="commissieLidFunctie">{lid.functie}</p>
@@ -84,7 +84,7 @@ function Commissie(props) {
                     <Header text={props.name + " leden"} position="left" />
                     <div id={props.name + "scroll"} className="commissieLeden">
                         {props.leden.map((lid) =>
-                            <div className="commissieLid">
+                            <div key={props.name + lid.naam + "2"} className="commissieLid">
                                 <img className="commissieLidFoto" src={require(`../../../images/commissies/${props.fotos}/${lid.foto}.jpg`).default} alt="" />
                                 <p className="commissieLidNaam">{lid.naam}</p>
                                 <p className="commissieLidFunctie">{lid.functie}</p>

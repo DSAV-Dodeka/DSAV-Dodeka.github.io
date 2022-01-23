@@ -8,8 +8,8 @@ function Trainingsinfo(props) {
         <div className="trainingsinfo_1">
             <div className="trainingsinfo_2">
                 <p className= "trainingsinfo_3">
-                    {props.text.split('\n').map(item =>
-                        <span>
+                    {props.text.split('\n').map((item, index) =>
+                        <span key={"trainingenLine" + index}>
                             {item}
                             <br/>
                         </span>

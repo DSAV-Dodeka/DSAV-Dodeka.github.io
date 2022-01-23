@@ -18,7 +18,7 @@ function Bestuur() {
             <PageTitle title="Bestuur" />
             <div id="bestuurContainer" className="relative space-y-16 lg:space-y-24 pb-16 lg:pb-24">
                 {BestuurText.besturen.map(bestuur => 
-                    <Bestuursjaar naam={bestuur.naam} jaar={bestuur.jaar} leden={bestuur.leden} foto={bestuur.foto} />
+                    <Bestuursjaar key={"bestuur" + bestuur.jaar} naam={bestuur.naam} jaar={bestuur.jaar} leden={bestuur.leden} foto={bestuur.foto} />
                 )}
                 <p id="laadBart" onClick={() => bart()}>Laad meer</p>
                 <div id="bart" className="hidden">

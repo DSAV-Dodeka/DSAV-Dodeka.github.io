@@ -8,8 +8,8 @@ function Loopgroep(props) {
             <div className="loopgroep_2">
                 <Header text="Loopgroep" position="right"/>
                 <p className="loopgroep_3">
-                    {props.text.split('\n').map(item =>
-                        <span>
+                    {props.text.split('\n').map((item, index) =>
+                        <span key={"loop" + index}>
                             {item}
                             <br/>
                         </span>

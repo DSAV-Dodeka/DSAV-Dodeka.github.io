@@ -14,7 +14,7 @@ function Bestuursjaar(props) {
             </div>
             <div id="bestuursjaarRight">
                 {props.leden.map(lid =>
-                    <h1 id="bestuurLid">{lid}</h1>
+                    <h1 key={props.jaar + lid} id="bestuurLid">{lid}</h1>
                 )}
                 <h1 id="jaarBestuur">{props.jaar}</h1>
             </div>
