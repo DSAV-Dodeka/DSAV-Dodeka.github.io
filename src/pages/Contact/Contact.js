@@ -12,7 +12,7 @@ function Contact() {
     return (
         <div>
             <PageTitle title="Contact" />
-            <div id="contact" class="mb-8 lg:mb-16">
+            <div id="contact" className="mb-8 lg:mb-16">
                 <div id="contact_info">
                     <Contactinfo />
                     <Socials />

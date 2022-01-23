@@ -18,12 +18,12 @@ function Bestuursjaar(props) {
                 )}
                 <h1 id="jaarBestuur">{props.jaar}</h1>
             </div>
-            <div id="line1" class="line vertical"/>
-            <div id="line2" class="line vertical"/>
-            <div id="line3" class="line vertical"/>
-            <div id="line4" class="line horizontal"/>
-            <div id="line5" class="line horizontal"/>
-            <div id="line6" class="line horizontal"/>
+            <div id="line1" className="line vertical"/>
+            <div id="line2" className="line vertical"/>
+            <div id="line3" className="line vertical"/>
+            <div id="line4" className="line horizontal"/>
+            <div id="line5" className="line horizontal"/>
+            <div id="line6" className="line horizontal"/>
         </div>
     )
 }

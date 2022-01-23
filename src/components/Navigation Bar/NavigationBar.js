@@ -25,7 +25,7 @@ function NavigationBar() {
     <div id="navBar">
       <nav id="navPc">
         <Link to="/">
-          <img id="navLogo" class={(location === "/" ? "hidden" : "")} src={dodeka} alt="" />
+          <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={dodeka} alt="" />
         </Link>
         <div id="navItems">
           <Item name="Home" path="/" />
@@ -38,22 +38,22 @@ function NavigationBar() {
       </nav>
       <nav id="navMobile">
         <div id="navMobileBar">
-          <div class="hamburgerIcon" onClick={() => setActive(!active)}>
-            <div class={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>
-            <div class={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
-            <div class={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
+          <div className="hamburgerIcon" onClick={() => setActive(!active)}>
+            <div className={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>
+            <div className={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
+            <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
-          <div class="navSpacing" />
+          <div className="navSpacing" />
           <img id="navMobileLogo" src={logo} alt="" />
-          <div class="navSpacing" />
-          <div class="hamburgerIconInvisible">
-          <div class={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>
-            <div class={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
-            <div class={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
+          <div className="navSpacing" />
+          <div className="hamburgerIconInvisible">
+          <div className={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>
+            <div className={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
+            <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
         </div>
-        <div id="navMobileContainer" class={active ? "" : " inactive"}>
-          <div class={active ? "" : "inactive"}>
+        <div id="navMobileContainer" className={active ? "" : " inactive"}>
+          <div className={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
             <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} onClick={() => setActive(false)} />

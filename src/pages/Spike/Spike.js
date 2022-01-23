@@ -8,17 +8,17 @@ function Spike() {
     const [nBerichten, setNBerichten] = useState(3);
 
     return(
-        <div class="spikeContainer">
-            <div class="spikeLogoContainer">
-                <img src={logo} alt="De Spike" class="spike_1"/>
+        <div className="spikeContainer">
+            <div className="spikeLogoContainer">
+                <img src={logo} alt="De Spike" className="spike_1"/>
             </div>
-            <div class={"spike_2" + (nBerichten >= SpikeText.nieuwsberichten.length ? " spike_3" : "")}>
+            <div className={"spike_2" + (nBerichten >= SpikeText.nieuwsberichten.length ? " spike_3" : "")}>
             {SpikeText.nieuwsberichten.slice(0, nBerichten).map((bericht, index) =>
-                    <Nieuwsbericht position={index % 2 === 0 ? "left" : "right"} page="spike" titel={bericht.titel} datum={bericht.datum} auteur={bericht.auteur} tekst={bericht.tekst} foto={bericht.foto}/>
+                    <Nieuwsbericht key={bericht.titel} position={index % 2 === 0 ? "left" : "right"} page="spike" titel={bericht.titel} datum={bericht.datum} auteur={bericht.auteur} tekst={bericht.tekst} foto={bericht.foto}/>
                 )}
             </div>
             
-            <button onClick={() => setNBerichten(nBerichten + 3)} class={"spike_4" + (nBerichten >= SpikeText.nieuwsberichten.length ? " hidden" : "")}>
+            <button onClick={() => setNBerichten(nBerichten + 3)} className={"spike_4" + (nBerichten >= SpikeText.nieuwsberichten.length ? " hidden" : "")}>
                 LAAD MEER
             </button>
         </div>

@@ -4,10 +4,10 @@ import "./Loopgroep.scss"
 
 function Loopgroep(props) {
     return(
-        <div class="loopgroep_1">
-            <div class="loopgroep_2">
+        <div className="loopgroep_1">
+            <div className="loopgroep_2">
                 <Header text="Loopgroep" position="right"/>
-                <p class="loopgroep_3">
+                <p className="loopgroep_3">
                     {props.text.split('\n').map(item =>
                         <span>
                             {item}
@@ -16,7 +16,7 @@ function Loopgroep(props) {
                     )}  
                 </p>
             </div> 
-            <img src={require(`../../../images/trainingen/${props.foto}`).default} alt="" class="loopgroep_4" />
+            <img src={require(`../../../images/trainingen/${props.foto}`).default} alt="" className="loopgroep_4" />
                
         </div>
     )

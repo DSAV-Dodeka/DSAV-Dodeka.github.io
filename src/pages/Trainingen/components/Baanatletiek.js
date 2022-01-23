@@ -4,11 +4,11 @@ import "./Baanatletiek.scss"
 
 function Baanatletiek(props) {
     return(
-        <div class="baanatletiek_1">
-            <img src={require(`../../../images/trainingen/${props.foto}`).default} alt="" class="baanatletiek_2" />
-            <div class="baanatletiek_3">
+        <div className="baanatletiek_1">
+            <img src={require(`../../../images/trainingen/${props.foto}`).default} alt="" className="baanatletiek_2" />
+            <div className="baanatletiek_3">
                 <Header text="Baanatletiek" position="left"/>
-                <p class="baanatletiek_4">
+                <p className="baanatletiek_4">
                     {props.text.split('\n').map(item =>
                         <span>
                             {item}

@@ -3,8 +3,8 @@ import "./Header.scss";
 
 function Header(props) {
     return(
-        <div class="header">
-            <h1 class={"headerText " + props.position}>
+        <div className="header">
+            <h1 className={"headerText " + props.position}>
                 {props.text.toUpperCase()}
             </h1>
         </div>

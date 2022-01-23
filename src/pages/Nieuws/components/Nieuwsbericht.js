@@ -4,18 +4,18 @@ import "./Nieuwsbericht.scss";
 
 function Nieuwsbericht(props) {
     return (
-        <div id={props.id} class="nieuwsbericht_1">
+        <div id={props.id} className="nieuwsbericht_1">
             {(props.position === "left" || window.innerWidth <= 1023) ? (
-                <img class="nieuwsbericht_2" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />
+                <img className="nieuwsbericht_2" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />
             ) : ""}
-                <div class="nieuwsbericht_3">
+                <div className="nieuwsbericht_3">
                 <Title title={props.titel.toUpperCase()} position={props.position} />
-                <p class={"nieuwsbericht_4" + (props.position === "left" ? " textLeft" : " textRight")}>
+                <p className={"nieuwsbericht_4" + (props.position === "left" ? " textLeft" : " textRight")}>
                     {props.datum} | {props.auteur}
                 </p>
-                <p class="nieuwsbericht_5">
-                    {props.tekst.split('\n').map(item =>
-                        <span>
+                <p className="nieuwsbericht_5">
+                    {props.tekst.split('\n').map((item, index) =>
+                        <span key={props.id + index}>
                             {item}
                             <br />
                         </span>
@@ -24,7 +24,7 @@ function Nieuwsbericht(props) {
                 </p>
             </div>
             {(props.position === "left" || window.innerWidth <= 1023) ? "" : (
-                <img class="nieuwsbericht_6" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />)}
+                <img className="nieuwsbericht_6" src={require(`../../../images/${props.page}/${props.foto}`).default} alt="" />)}
         </div>
     )
 }

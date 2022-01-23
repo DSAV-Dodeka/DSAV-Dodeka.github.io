@@ -29,76 +29,76 @@ function Commissie(props) {
     }
 
     return (
-        props.position === "left" || window.innerWidth <= 1023 ? (<div id={props.name} class="commissieContainer">
-        <img class="commissieLogo roundedRight" src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
-        <div class="commissieInfo roundedLeft">
-        {props.name === ".ComCom" ? <a target="_blank" rel="noreferrer" class="commissieEasteregg" href="https://nl.wikipedia.org/wiki/Komkommer"><Header text={props.name} position="left" /></a> : <Header text={props.name} position="left" />}
-            <p class="commissieStukje">
+        props.position === "left" || window.innerWidth <= 1023 ? (<div id={props.name} className="commissieContainer">
+        <img className="commissieLogo roundedRight" src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
+        <div className="commissieInfo roundedLeft">
+        {props.name === ".ComCom" ? <a target="_blank" rel="noreferrer" className="commissieEasteregg" href="https://nl.wikipedia.org/wiki/Komkommer"><Header text={props.name} position="left" /></a> : <Header text={props.name} position="left" />}
+            <p className="commissieStukje">
                 {props.info}
             </p>
-            <div class="commissieSlider" onClick={() => slideIn()}>
-                <p class="commissieSliderMargin">Bekijk de leden</p>
-                <svg id="" xmlns="http://www.w3.org/2000/svg" class="commissieArrow" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+            <div className="commissieSlider" onClick={() => slideIn()}>
+                <p className="commissieSliderMargin">Bekijk de leden</p>
+                <svg id="" xmlns="http://www.w3.org/2000/svg" className="commissieArrow" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
 
             </div>
         </div>
 
 
-        <div class="commissieLogo roundedRight">
-            <img class="commissieFoto roundedRight" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
+        <div className="commissieLogo roundedRight">
+            <img className="commissieFoto roundedRight" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
         </div>
 
-        <div class="commissieInfo roundedLeft">
+        <div className="commissieInfo roundedLeft">
             <Header text={props.name + " leden"} position="left" />
-            <div id={props.name + "scroll"} class="commissieLeden">
+            <div id={props.name + "scroll"} className="commissieLeden">
                 {props.leden.map((lid) =>
-                    <div class="commissieLid">
-                        <img class="commissieLidFoto" src={require(`../../../images/commissies/${props.fotos}/${lid.foto}.jpg`).default} alt="" />
-                        <p class="commissieLidNaam">{lid.naam}</p>
-                        <p class="commissieLidFunctie">{lid.functie}</p>
+                    <div className="commissieLid">
+                        <img className="commissieLidFoto" src={require(`../../../images/commissies/${props.fotos}/${lid.foto}.jpg`).default} alt="" />
+                        <p className="commissieLidNaam">{lid.naam}</p>
+                        <p className="commissieLidFunctie">{lid.functie}</p>
                     </div>
                 )}
             </div>
-            <div class="commissieSlider" onClick={() => slideOut()}>
-                <svg id="" xmlns="http://www.w3.org/2000/svg" class="commissieArrow reverseArrow commissieSliderMargin" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+            <div className="commissieSlider" onClick={() => slideOut()}>
+                <svg id="" xmlns="http://www.w3.org/2000/svg" className="commissieArrow reverseArrow commissieSliderMargin" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
                 <p>Bekijk de commissie</p>
             </div>
         </div>
     </div>):
     (
-            <div id={props.name} class="commissieContainer">
-                <div class="commissieInfo roundedRight inverseMargin">
-                    {props.name === ".ComCom" ? <a target="_blank" rel="noreferrer" class="cursor-default" href="https://nl.wikipedia.org/wiki/Komkommer"><Header text={props.name} position="left" /></a> : <Header text={props.name} position="left" />}
-                    <p class="commissieStukje">
+            <div id={props.name} className="commissieContainer">
+                <div className="commissieInfo roundedRight inverseMargin">
+                    {props.name === ".ComCom" ? <a target="_blank" rel="noreferrer" className="cursor-default" href="https://nl.wikipedia.org/wiki/Komkommer"><Header text={props.name} position="left" /></a> : <Header text={props.name} position="left" />}
+                    <p className="commissieStukje">
                         {props.info}
                     </p>
-                    <div class="commissieSlider" onClick={() => slideIn()}>
-                        <p class="commissieSliderMargin">Bekijk de leden</p>
-                        <svg id="" xmlns="http://www.w3.org/2000/svg" class="commissieArrow" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+                    <div className="commissieSlider" onClick={() => slideIn()}>
+                        <p className="commissieSliderMargin">Bekijk de leden</p>
+                        <svg id="" xmlns="http://www.w3.org/2000/svg" className="commissieArrow" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
 
                     </div>
                 </div>
-                <img class={"commissieLogo roundedLeft"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
+                <img className={"commissieLogo roundedLeft"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
 
-                <div class="commissieInfo roundedRight inverseMargin">
+                <div className="commissieInfo roundedRight inverseMargin">
                     <Header text={props.name + " leden"} position="left" />
-                    <div id={props.name + "scroll"} class="commissieLeden">
+                    <div id={props.name + "scroll"} className="commissieLeden">
                         {props.leden.map((lid) =>
-                            <div class="commissieLid">
-                                <img class="commissieLidFoto" src={require(`../../../images/commissies/${props.fotos}/${lid.foto}.jpg`).default} alt="" />
-                                <p class="commissieLidNaam">{lid.naam}</p>
-                                <p class="commissieLidFunctie">{lid.functie}</p>
+                            <div className="commissieLid">
+                                <img className="commissieLidFoto" src={require(`../../../images/commissies/${props.fotos}/${lid.foto}.jpg`).default} alt="" />
+                                <p className="commissieLidNaam">{lid.naam}</p>
+                                <p className="commissieLidFunctie">{lid.functie}</p>
                             </div>
                         )}
                     </div>
-                    <div class="commissieSlider" onClick={() => slideOut()}>
-                        <svg id="" xmlns="http://www.w3.org/2000/svg" class="commissieArrow reverseArrow commissieSliderMargin" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
+                    <div className="commissieSlider" onClick={() => slideOut()}>
+                        <svg id="" xmlns="http://www.w3.org/2000/svg" className="commissieArrow reverseArrow commissieSliderMargin" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" /></svg>
                         <p>Bekijk de commissie</p>
                     </div>
                 </div>
 
-                <div class="commissieLogo roundedLeft">
-                    <img class="commissieFoto roundedLeft" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
+                <div className="commissieLogo roundedLeft">
+                    <img className="commissieFoto roundedLeft" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
                 </div>
 
 

@@ -17,12 +17,12 @@ function HomeNieuws() {
         </div>
         <div id="home_nieuws_info">
             {Nieuws.nieuwsberichten.slice(0, maxNieuws).map((item, index) =>
-                    <div class={"home_nieuwsbericht" + (index < 2 ? " home_border" : "")}> 
-                        <div class="home_nieuwsitem">
-                            <h1 class="home_nieuwstitel">{item.titel}</h1>
-                            <h2 class="home_nieuwsstukje">{item.tekst}</h2>
+                    <div key={"home_nieuws" + item.titel} className={"home_nieuwsbericht" + (index < 2 ? " home_border" : "")}> 
+                        <div className="home_nieuwsitem">
+                            <h1 className="home_nieuwstitel">{item.titel}</h1>
+                            <h2 className="home_nieuwsstukje">{item.tekst}</h2>
                         </div>
-                        <Link to={"/nieuws#" + item.id} class="no_underline"><h2 class="home_nieuws_link">Lees meer</h2></Link>
+                        <Link to={"/nieuws#" + item.id} className="no_underline"><h2 className="home_nieuws_link">Lees meer</h2></Link>
                     </div>
                 )}
 

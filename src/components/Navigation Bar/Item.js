@@ -12,7 +12,7 @@ function Item(props) {
 
   return (
     <div id="navItem" onClick={props.onClick}>
-      <Link to={props.path + "#"} class={"itemNav" + (props.path in ["/vereniging", "/contact"] ? (location.includes(props.path) ? " navItemActive" : " navItemNormal") : (location === props.path ? " navItemActive" : " navItemNormal"))}>{props.name}</Link>
+      <Link to={props.path + "#"} className={"itemNav" + (props.path in ["/vereniging", "/contact"] ? (location.includes(props.path) ? " navItemActive" : " navItemNormal") : (location === props.path ? " navItemActive" : " navItemNormal"))}>{props.name}</Link>
     </div>
   )
 }

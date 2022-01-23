@@ -4,7 +4,7 @@ import "./Icons.scss";
 
 function Icons() {
     return(
-        <div id="icons" class="icons_1" style={{ backgroundImage: `url(${icons})` }} />
+        <div id="icons" className="icons_1" style={{ backgroundImage: `url(${icons})` }} />
     )
 }
 export default Icons;

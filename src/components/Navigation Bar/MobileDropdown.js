@@ -13,13 +13,13 @@ function MobileDropdown(props) {
     return (
         <div>
             <div id="navItem" onClick={() => setActive(true)}>
-                <h class={"itemNav " + (location.includes(props.path) ? "navItemActive" : "")} >{props.name}</h>
+                <h1 className={"itemNav " + (location.includes(props.path) ? "navItemActive" : "")} >{props.name}</h1>
             </div>
-            <div id="mobileDrop" class={"mobileDrop" + (active ? "" : " mobileDropInactive")}>
+            <div id="mobileDrop" className={"mobileDrop" + (active ? "" : " mobileDropInactive")}>
                 <div onClick={() => setActive(!active)}>
                     <SubMenuItem name={props.name} path={props.path} onClick={() => setActive(false)} onItemClick={props.onClick}/>
                     {props.items.map((item) => (
-                        <Item name={item.name} path={props.path + item.path} onClick={props.onClick} />
+                        <Item key={"drop" + item.name} name={item.name} path={props.path + item.path} onClick={props.onClick} />
                     ))}
                 </div>
             </div>

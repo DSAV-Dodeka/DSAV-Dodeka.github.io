@@ -13,10 +13,10 @@ function Dropdown(props) {
 
     return (
         <div id="navDropdown" onMouseLeave={() => setActive(false)}>
-            <Link to={props.path + "#"} onMouseEnter={() => setActive(true)} class={"dropdownNav " + (location.includes(props.path) ? "navDropdownActive" : "navDropdownNormal") }>{props.name}</Link>
-            <div onClick={() => setActive(false)} class={active ? "drop" : "dropHide"}>
+            <Link to={props.path + "#"} onMouseEnter={() => setActive(true)} className={"dropdownNav " + (location.includes(props.path) ? "navDropdownActive" : "navDropdownNormal") }>{props.name}</Link>
+            <div onClick={() => setActive(false)} className={active ? "drop" : "dropHide"}>
                 {props.items.map((item) => (
-                    <Link to={props.path + item.path + "#"} class={"dropdownElement"}>{item.name}</Link>
+                    <Link key={"pcDrop" + item.name} to={props.path + item.path + "#"} className={"dropdownElement"}>{item.name}</Link>
                 ))}
             </div>
         </div>
