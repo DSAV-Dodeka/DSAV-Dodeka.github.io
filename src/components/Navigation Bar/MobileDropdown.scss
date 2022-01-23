@@ -1,0 +1,49 @@
+@import "../../variables";
+
+#navItem {
+    height: 4rem;
+    width: 8rem;
+    @include respond(mobile) {
+        width: 100%;
+    }
+}
+
+.itemNav {
+    text-decoration: none;
+    position: absolute;
+    height: 4rem;
+    width: 8rem;
+    color: white;
+    text-align: center;
+    line-height: 4rem;
+    font-size: $font_medium;
+    font-weight: 500;
+    @include respond(mobile) {
+        width: 100%;
+    }
+}
+
+.navItemActive {
+    background-color: $dodeka_rood;
+}
+
+.navItemNormal:hover {
+    background-color: white;
+    color: $dodeka_blauw;
+}
+
+.mobileDrop {
+    position: fixed;
+    top: 4rem;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background-color: $dodeka_blauw;
+    transition-duration: 500;
+    transition-property: all;
+    transition: transform 0.5s;
+}
+
+.mobileDropInactive {
+    transform: translateX(100%);
+}

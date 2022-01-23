@@ -1,0 +1,32 @@
+@import "./variables";
+
+#app_screen {
+    width: 100%;
+    background-color: $dodeka_blauw90p;
+}
+
+#app_container {
+    width: 100%;
+    max-width: 1840px;
+    background-color: white;
+    margin-right: auto;
+    margin-left: auto;
+    @include respond(too_large) {
+        border-right: solid white 8px;
+        border-left: solid white 8px;
+    }
+}
+
+#app_flex {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1840px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#app_flex_grow {
+    flex-grow: 1;
+}

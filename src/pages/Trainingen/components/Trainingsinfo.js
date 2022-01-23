@@ -1,14 +1,15 @@
 import React from "react";
 import Maps from "../../../components/Maps";
 import ContactButtons from "../../../components/ContactButtons";
+import "./Trainingsinfo.scss";
 
 function Trainingsinfo(props) {
     return(
-        <div class="lg:flex bg-blauw bg-opacity-90 w-full mb-16 lg:mb-24">
-            <div class="lg:inline py-8 lg:py-0 lg:my-8 w-full lg:w-1/2">
-                <p class= "text-white text-base px-4 lg:px-0 lg:mx-16 ">
-                    {props.text.split('\n').map(item =>
-                        <span>
+        <div className="trainingsinfo_1">
+            <div className="trainingsinfo_2">
+                <p className= "trainingsinfo_3">
+                    {props.text.split('\n').map((item, index) =>
+                        <span key={"trainingenLine" + index}>
                             {item}
                             <br/>
                         </span>
@@ -16,7 +17,7 @@ function Trainingsinfo(props) {
                 </p>
                 <ContactButtons />
             </div>
-            <div class="lg:inline w-full lg:w-1/2 h-96 lg:h-auto">
+            <div className="trainingsinfo_4">
                 <Maps />    
             </div>
         </div>
