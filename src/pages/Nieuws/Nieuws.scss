@@ -1,0 +1,50 @@
+@import "../../variables";
+
+#nieuwsContainer {
+    text-align: center;
+}
+
+.linktospike { //"w-4 bg-rood absolute right-1 h-0 z-30"
+    width: 1rem;
+    position: absolute; 
+    right: 0.25rem; 
+    height: 0px; 
+    z-index: 6;  
+    background-color: $dodeka_rood;
+}
+
+.nieuwsberichten1{ //"space-y-8 lg:space-y-24 mb-4 lg:mb-12"
+    margin-bottom: 1rem; 
+    @include respond(computerscherm){
+        margin-bottom: 3rem;
+    }
+}
+
+.nieuwsberichten2{ //mb-8 lg:mb-24
+    margin-bottom: 4rem;
+    @include respond(computerscherm){
+        margin-bottom: 6rem;
+    }
+}
+
+.nieuwsberichten3{ //bg-rood text-white text-xl font-bold rounded-xl py-2 px-4 lg:py-4 mb-4 lg:mb-12
+    background-color: $dodeka_rood;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: 700;
+    border-radius: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    @include respond(computerscherm){
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 3rem
+    }
+}
