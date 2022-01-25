@@ -1,0 +1,39 @@
+@import "../../../variables";
+
+.belangrijke_info {
+    min-width: 32rem;
+    background-color: $dodeka_blauw90p;
+    padding-bottom: 2rem;
+}
+
+.belangrijke_info_text {
+    color: white;
+    font-size: $font_medium;
+    margin-left: 4rem;
+    margin-top: 2rem;
+}
+
+.belangrijke_info_button {
+    text-decoration: none;
+    display: block;
+    position: relative;
+    background-color: $dodeka_rood;
+    padding-top: $margin_mobile;
+    padding-bottom: $margin_mobile;
+    color: white;
+    font-size: $font_medium;
+    line-height: $font_medium;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-weight: $bold;
+    cursor: pointer;
+    margin-top: $margin_mobile;
+    margin-left: $margin_mobile;
+    margin-right: $margin_mobile;
+    @include respond(computerscherm){
+        width: auto;
+        margin-top: $margin_y;
+        margin-left: $margin_x;
+        margin-right: $margin_x;
+    }
+}

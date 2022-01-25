@@ -9,8 +9,32 @@
     overflow-x: scroll;
     white-space: nowrap;
     @include respond(mobile) {
+        position: relative;
         padding-right: 1rem;
         padding-left: 1rem;
         margin-bottom: 4rem;
     }
+    @include respond(mobile) {
+        overflow-x: hidden;
+    }
+}
+
+#wedstrijdenPaging {
+    display: none;
+    @include respond(phone) {
+        position: absolute;
+        display: block;
+        bottom: 2rem;
+        bottom: 1rem;
+        
+    }
+}
+
+.wedstrijdenPagingCircle {
+    position: relative;
+    display: inline;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: $dodeka_rood;
 }

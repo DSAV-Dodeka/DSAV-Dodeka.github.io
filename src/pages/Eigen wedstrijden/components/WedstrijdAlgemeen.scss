@@ -1,0 +1,24 @@
+@import "../../../variables";
+
+.wedstrijd_algemeen {
+    flex-grow: 1;
+    background-color: $dodeka_blauw90p;
+    margin-right: 4rem;
+}
+
+.wedstrijd_algemeen_foto {
+    width: calc(100% - 8rem);
+    height: 32rem;
+    object-fit: cover;
+
+    margin: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.wedstrijd_algemeen_info {
+    margin-right: 4rem;
+    margin-left: 4rem;
+    color: white;
+    column-count: 2;
+}
