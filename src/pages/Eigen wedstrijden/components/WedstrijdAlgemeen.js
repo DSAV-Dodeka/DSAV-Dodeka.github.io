@@ -1,6 +1,5 @@
 import React from "react";
 import "./WedstrijdAlgemeen.scss";
-import ContactButtons from "../../../components/ContactButtons";
 import indoor from "../../../images/wedstrijden/nsk_indoor_algemeen.jpeg";
 
 function Wedstrijd() {
