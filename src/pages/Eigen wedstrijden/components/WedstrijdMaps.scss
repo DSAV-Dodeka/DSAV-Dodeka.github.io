@@ -13,4 +13,10 @@
     width: 24rem;
     height: 24rem;
     border: none;
+    @include respond(mobile) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        width: calc(100vw - 2rem);
+        height: calc(100vw - 2rem);
+    }
 }

@@ -16,9 +16,6 @@
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    @include respond(phone) {
-        margin-right: 1rem;
-    }
 }
 
 .eigenWedstrijdNaam {

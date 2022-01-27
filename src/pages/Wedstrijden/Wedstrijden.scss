@@ -14,20 +14,6 @@
         padding-left: 1rem;
         margin-bottom: 4rem;
     }
-    @include respond(mobile) {
-        overflow-x: hidden;
-    }
-}
-
-#wedstrijdenPaging {
-    display: none;
-    @include respond(phone) {
-        position: absolute;
-        display: block;
-        bottom: 2rem;
-        bottom: 1rem;
-        
-    }
 }
 
 .wedstrijdenPagingCircle {
