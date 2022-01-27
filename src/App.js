@@ -16,6 +16,8 @@ import ContactBar from "./components/Contact Bar/ContactBar";
 import Commissies from "./pages/Commissies/Commissies";
 import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
+import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
+import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
 import "./App.scss";
 
 function App() {
@@ -43,6 +45,12 @@ function App() {
               </Route>
               <Route path="/trainingen">
                 <Trainingen />
+              </Route>
+              <Route path="/wedstrijden/nskindoor">
+                <Wedstrijd />
+              </Route>
+              <Route path="/wedstrijden">
+                <Wedstrijden />
               </Route>
               <Route path="/word_lid">
                 <WordLid />

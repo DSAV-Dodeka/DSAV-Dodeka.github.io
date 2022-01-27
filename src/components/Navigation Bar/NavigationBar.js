@@ -32,6 +32,7 @@ function NavigationBar() {
           <Item name="Nieuws" path="/nieuws" />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} />
           <Item name="Trainingen" path="/trainingen" />
+          <Dropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "NSK Indoor", path: "/nskindoor"}]} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
         </div>
@@ -58,6 +59,7 @@ function NavigationBar() {
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
             <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
+            <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}, { name: "NSK Indoor", path: "/nskindoor" }]} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
           </div>

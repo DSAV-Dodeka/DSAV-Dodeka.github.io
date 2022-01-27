@@ -1,0 +1,88 @@
+@import "../../../variables";
+
+.belangrijke_info {
+    min-width: 32rem;
+    background-color: $dodeka_blauw90p;
+    padding-bottom: 2rem;
+    border-bottom-left-radius: 0.75rem;
+    border-top-left-radius: 0.75rem;
+    @include respond(mobile) {
+        min-width: 0;
+        width: 100%;
+        padding-bottom: 1rem;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+}
+
+.belangrijke_info_titel {
+    background-color: $dodeka_rood;
+    color: white;
+    font-size: 1.75rem;
+    font-weight: $bold;
+    text-align: center;
+    height: 4rem;
+    line-height: 4rem;
+    border-top-left-radius: 0.75rem;
+    @include respond(mobile) {
+        border-top-left-radius: 0;
+    }
+}
+
+.belangrijke_info_text {
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 1rem;
+    @include respond(mobile) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+.belangrijke_info_button {
+    text-decoration: none;
+    display: block;
+    position: relative;
+    background-color: $dodeka_rood;
+    padding-top: $margin_mobile;
+    padding-bottom: $margin_mobile;
+    color: white;
+    font-size: $font_medium;
+    line-height: $font_medium;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-weight: $bold;
+    cursor: pointer;
+    margin-top: $margin_mobile;
+    margin-left: $margin_mobile;
+    margin-right: $margin_mobile;
+    @include respond(computerscherm){
+        width: auto;
+        margin-top: $margin_y;
+        margin-left: $margin_x;
+        margin-right: $margin_x;
+    }
+}
+
+.belangrijke_info_insta {
+    background: radial-gradient(circle at -20% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    box-shadow: 0 0 15px #001F48;
+}
+
+.belangrijke_info_insta:hover {
+    background: radial-gradient(circle at 120% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+.belangrijke_info_mail {
+    background: radial-gradient(circle at -20% 150%, #26D0CE 0%, #1A2980 100%);
+    box-shadow: 0 0 15px #001F48;
+}
+
+.belangrijke_info_mail:hover {
+    background: radial-gradient(circle at 120% 150%, #26D0CE 0%, #1A2980 100%);
+
+}
