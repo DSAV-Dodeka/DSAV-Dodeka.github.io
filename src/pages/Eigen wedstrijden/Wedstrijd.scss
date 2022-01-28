@@ -1,0 +1,26 @@
+@import "../../variables";
+
+.wedstrijd_container {
+    display: flex;
+    position: relative;
+    margin-bottom: 6rem;
+    @include respond(mobile) {
+        display: block;
+        margin-bottom: 4rem;
+    }
+}
+
+.wedstrijd_logo {
+    position: absolute;
+    width: 16rem;
+    height: 16rem;
+    border-radius: 50%;
+    right: 34rem;
+    top: -4rem;
+    @include respond(mobile) {
+        width: 8rem;
+        height: 8rem;
+        right: 1rem;
+        top: -2rem;
+    }
+}

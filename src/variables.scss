@@ -34,4 +34,8 @@ $margin_mobile: 1rem;
     @if($breakpoint == too_large) {
         @media (min-width: 1841px) { @content }
     }
+
+    @if($breakpoint == phone) {
+        @media (max-width: 479px) { @content }
+    }
 }

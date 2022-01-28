@@ -1,6 +1,14 @@
 {
     "nieuwsberichten": [
         {
+            "id": "indoor_inschrijvingen",
+            "titel": "Inschrijvingen NSK Indoor zijn geopend!",
+            "datum": "28-01-2021",
+            "auteur": "Niels",
+            "tekst": "Pak je spikes alvast in, laat je paraplu thuisliggen en bereid je voor op een blauwe baan: het NSK Indoor komt er aan! Het eerste Nederlands Studenten Kampioenschap van het jaar én het eerste fysieke NSK van Dodeka zal dit jaar plaatsvinden op 12 maart in de Omnisporthal van Apeldoorn. Wij vinden het een prachtige eer dat D.S.A.V. Dodeka deze grote wedstrijd gaat organiseren en willen iedereen oproepen om mee te doen of te vrijwilligen. We gaan er een geweldige dag van maken met veel atletiek en gezelligheid. Tot in Apeldoorn! \n\n Want winnen… doe je binnen!\n\n Meer informatie over de wedstrijd en inschrijven vind je onder wedstrijden.",
+            "foto": "indoor.jpg"
+        },
+        {
             "id": "wispo_uithof",
             "titel": "Skiën en snowboarden in de uithof",
             "datum": "12-12-2021",
