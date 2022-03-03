@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.29d537d8.chunk.css",
-    "main.js": "/static/js/main.f9b36970.chunk.js",
-    "main.js.map": "/static/js/main.f9b36970.chunk.js.map",
+    "main.js": "/static/js/main.8df0583c.chunk.js",
+    "main.js.map": "/static/js/main.8df0583c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8d6da718.js",
     "runtime-main.js.map": "/static/js/runtime-main.8d6da718.js.map",
     "static/js/2.675279b1.chunk.js": "/static/js/2.675279b1.chunk.js",
@@ -126,6 +126,7 @@
     "static/media/website_indoor.jpg": "/static/media/website_indoor.8e2a9637.jpg",
     "static/media/website_knie.jpg": "/static/media/website_knie.7a88229b.jpg",
     "static/media/website_koenstokhoog.jpg": "/static/media/website_koenstokhoog.9ea97472.jpg",
+    "static/media/website_maartVarkens.jpg": "/static/media/website_maartVarkens.1e7cead5.jpg",
     "static/media/website_marinRelay.jpg": "/static/media/website_marinRelay.4b85a16a.jpg",
     "static/media/website_medaille.jpg": "/static/media/website_medaille.f1fc7efe.jpg",
     "static/media/website_nesten.jpg": "/static/media/website_nesten.c06c5d46.jpg",
@@ -150,6 +151,6 @@
     "static/js/runtime-main.8d6da718.js",
     "static/js/2.675279b1.chunk.js",
     "static/css/main.29d537d8.chunk.css",
-    "static/js/main.f9b36970.chunk.js"
+    "static/js/main.8df0583c.chunk.js"
   ]
 }
