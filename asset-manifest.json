@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.29d537d8.chunk.css",
-    "main.js": "/static/js/main.89c0292f.chunk.js",
-    "main.js.map": "/static/js/main.89c0292f.chunk.js.map",
+    "main.js": "/static/js/main.2a4ca5a6.chunk.js",
+    "main.js.map": "/static/js/main.2a4ca5a6.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8d6da718.js",
     "runtime-main.js.map": "/static/js/runtime-main.8d6da718.js.map",
     "static/js/2.675279b1.chunk.js": "/static/js/2.675279b1.chunk.js",
@@ -70,6 +70,8 @@
     "static/media/nathan.jpg": "/static/media/nathan.46ef977c.jpg",
     "static/media/niels.jpg": "/static/media/niels.f3ec61eb.jpg",
     "static/media/nieuws.jpg": "/static/media/nieuws.5278f42b.jpg",
+    "static/media/nkindoor22.jpg": "/static/media/nkindoor22.2654227f.jpg",
+    "static/media/nkmeerkamp22.jpg": "/static/media/nkmeerkamp22.5c0cad10.jpg",
     "static/media/noortje.jpg": "/static/media/noortje.55b51c1c.jpg",
     "static/media/nskCrossGroep.jpg": "/static/media/nskCrossGroep.99be34de.jpg",
     "static/media/nskIndoorFlorence.jpg": "/static/media/nskIndoorFlorence.71e301a3.jpg",
@@ -151,6 +153,6 @@
     "static/js/runtime-main.8d6da718.js",
     "static/js/2.675279b1.chunk.js",
     "static/css/main.29d537d8.chunk.css",
-    "static/js/main.89c0292f.chunk.js"
+    "static/js/main.2a4ca5a6.chunk.js"
   ]
 }
