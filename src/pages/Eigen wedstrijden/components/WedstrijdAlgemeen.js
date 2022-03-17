@@ -13,6 +13,7 @@ function Wedstrijd() {
                 <a target="_blank" rel="noreferrer" href="https://photos.app.goo.gl/UeAXqJz5YnMrsr457" className="wedstrijd_algemeen_link">Harry van 't Veld</a><br/>
                 <a target="_blank" rel="noreferrer" href="https://flic.kr/s/aHBqjzFzhT" className="wedstrijd_algemeen_link">Lars van der Valk</a><br/>
                 <a target="_blank" rel="noreferrer" href="https://www.facebook.com/103783782064194/posts/gisteren-fotos-mogen-maken-bij-het-nederlands-studenten-kampioenschap-indoor-atl/150978680678037/" className="wedstrijd_algemeen_link">MaLy photography</a><br/>
+                <a target="_blank" rel="noreferrer" href="https://www.flickr.com/gp/195286001@N08/Z5L0AA" className="wedstrijd_algemeen_link">Bouwe van Leeuwen</a><br/>
             </p>
             <a target="_blank" rel="noreferrer" href="https://www.atletiek.nu/wedstrijd/main/36345/" className="inschrijf_button">Uitslagen</a>
         </div>
