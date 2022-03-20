@@ -6,14 +6,16 @@ function Wedstrijd() {
     return(
         <div className="wedstrijd_algemeen">
             <img className="wedstrijd_algemeen_foto" alt="" src={indoor}/>
-            <p class="wedstrijd_algemeen_info">Welkom op de pagina van de Nederlandse Studenten Kampioenschappen Indoor 2022, dat georganiseerd wordt door D.S.A.V. Dodeka! Ondanks de moeilijke en onzekere situatie wat betreft het coronavirus, is het gelukkig toch mogelijk om deze kampioenschappen te organiseren op 12 maart in Omnisport te Apeldoorn. <br/><br/>
-            Het zal een volle dag van ongeveer 11 tot 19 uur worden, waarbij je heerlijk mee kunt doen aan wedstrijden van verschillende onderdelen. Denk hierbij aan diverse loopafstanden, hordelopen, kogelstoten, hoogspringen en nog zoveel meer (klik op inschrijven om alle onderdelen te bekijken)!<br/><br/>
-            Iedere student die wedstrijdlid is bij de atletiekunie kan aan deze wedstrijd meedoen. Hiervoor dien je wel een bewijs van inschrijving aan je onderwijsinstelling te uploaden via de form op de inschrijfpagina. Ook voor niet-studenten is het mogelijk om mee te doen indien er nog genoeg startplekken zijn.<br/><br/>
-            Wij zijn altijd op zoek naar ervaren en/of enthousiaste vrijwilligers. Opgeven kan via <a className="wedstrijd_algemeen_link" href="https://forms.gle/Z5KiQPmQCpaBF5828" target="_blank" rel="noreferrer">dit formulier</a>.<br/><br/>
-            Door de huidige coronamaatregelen gaan wij op dit moment uit van een wedstrijd zonder eten en feest achteraf en mogelijk met beperkingen voor publiek.<br/><br/>
-            Dit NSK wordt georganiseerd onder auspiciën van Studentensport Nederland, en met steun van de TU Delft. Wij willen hen hier graag voor bedanken.<br/><br/>
-            We hopen dat het een onvergetelijke wedstrijd wordt en dat er veel mooie pr's zullen worden behaald. Dus schrijf je snel in en hopelijk tot dan!</p>
-            <a target="_blank" rel="noreferrer" href="https://www.atletiek.nu/wedstrijd/main/36345/" className="inschrijf_button">Inschrijven</a>
+            <p class="wedstrijd_algemeen_info">
+                Het Nederlandse Studentenkampioenschap Indooratletiek 2022 is dit jaar op zaterdag 12 maart georganiseerd door D.S.A.V. Dodeka in Omnisport, Apeldoorn. Wij vonden het een heel geslaagde dag, en willen graag alle deelnemers, vrijwilligers, officials, sponsors en andere ondersteunende partijen van harte bedanken. Zonder jullie was het nooit mogelijk geweest.<br/><br/>
+                De dag begon om 11 uur met de eerste onderdelen en eindigde rond 7 uur na de estafettes en het ludieke onderdeel: slalommen over de hoogteverschillen van de rondbaan. Vervolgens zijn we van locatie verhuisd om gezellig te gaan eten en de dag af te sluiten met een groot feest. <br/><br/>
+                Terugblikken op deze dag? Onderstaand is een overzicht van alle (tot nu toe binnengekomen) foto's van de fotografen. Delen mag, graag met het noemen van de naam van de fotograaf.<br/><br/>
+                <a target="_blank" rel="noreferrer" href="https://photos.app.goo.gl/UeAXqJz5YnMrsr457" className="wedstrijd_algemeen_link">Harry van 't Veld</a><br/>
+                <a target="_blank" rel="noreferrer" href="https://flic.kr/s/aHBqjzFzhT" className="wedstrijd_algemeen_link">Lars van der Valk</a><br/>
+                <a target="_blank" rel="noreferrer" href="https://www.facebook.com/103783782064194/posts/gisteren-fotos-mogen-maken-bij-het-nederlands-studenten-kampioenschap-indoor-atl/150978680678037/" className="wedstrijd_algemeen_link">MaLy photography</a><br/>
+                <a target="_blank" rel="noreferrer" href="https://www.flickr.com/gp/195286001@N08/Z5L0AA" className="wedstrijd_algemeen_link">Bouwe van Leeuwen</a><br/>
+            </p>
+            <a target="_blank" rel="noreferrer" href="https://www.atletiek.nu/wedstrijd/main/36345/" className="inschrijf_button">Uitslagen</a>
         </div>
     )
 }
