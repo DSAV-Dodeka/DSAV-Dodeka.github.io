@@ -25,8 +25,8 @@ function App() {
     <Router>
       <div id="app_screen">
         <div id="app_container">
+          <NavigationBar />
           <div id="app_flex">
-            <NavigationBar />
             <Switch>
               <Route path="/nieuws/spike">
                 <Spike />
