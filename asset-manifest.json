@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.29d537d8.chunk.css",
-    "main.js": "/static/js/main.2a4ca5a6.chunk.js",
-    "main.js.map": "/static/js/main.2a4ca5a6.chunk.js.map",
+    "main.css": "/static/css/main.fa07b2f1.chunk.css",
+    "main.js": "/static/js/main.81670d6d.chunk.js",
+    "main.js.map": "/static/js/main.81670d6d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8d6da718.js",
     "runtime-main.js.map": "/static/js/runtime-main.8d6da718.js.map",
     "static/js/2.675279b1.chunk.js": "/static/js/2.675279b1.chunk.js",
     "static/js/2.675279b1.chunk.js.map": "/static/js/2.675279b1.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.29d537d8.chunk.css.map": "/static/css/main.29d537d8.chunk.css.map",
+    "static/css/main.fa07b2f1.chunk.css.map": "/static/css/main.fa07b2f1.chunk.css.map",
     "static/js/2.675279b1.chunk.js.LICENSE.txt": "/static/js/2.675279b1.chunk.js.LICENSE.txt",
     "static/media/Broek.jpg": "/static/media/Broek.af87a301.jpg",
     "static/media/Hoodie.jpg": "/static/media/Hoodie.dcd03789.jpg",
@@ -152,7 +152,7 @@
   "entrypoints": [
     "static/js/runtime-main.8d6da718.js",
     "static/js/2.675279b1.chunk.js",
-    "static/css/main.29d537d8.chunk.css",
-    "static/js/main.2a4ca5a6.chunk.js"
+    "static/css/main.fa07b2f1.chunk.css",
+    "static/js/main.81670d6d.chunk.js"
   ]
 }
