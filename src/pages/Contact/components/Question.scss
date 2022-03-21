@@ -1,0 +1,29 @@
+@import "../../../variables";
+
+#question_box {
+    background-color: $dodeka_blauw90p;
+    color: white;
+    font-size: $font_medium;
+    margin-bottom: $margin_y;
+    border-radius: 0.75rem;
+}
+
+#question {
+    font-weight: $bold;
+    background-color: $dodeka_rood;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    padding-left: $margin_y;
+    padding-right: $margin_y;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+#answer { 
+    font-size: $font_small;
+    line-height: $line_height_small;
+    padding-left: $margin_y;
+    padding-right: $margin_y;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}

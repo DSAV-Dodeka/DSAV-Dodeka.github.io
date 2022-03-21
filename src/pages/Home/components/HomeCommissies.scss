@@ -1,0 +1,84 @@
+@import "../../../variables";
+
+#home_commissies_container {
+    width: 100%;
+    position: relative;
+    height: 24rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    @include respond(mobile) {
+        height: auto;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+}
+
+#home_commissies_foto {
+    position: absolute;
+    left: 0;
+    width: calc(100%/3);
+    height: 24rem;
+    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
+    @include respond(mobile) {
+        width: 100%;
+        position: relative;
+        clip-path: none;
+    }
+}
+
+#home_commissies_foto_2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#home_commissies_info {
+    position: absolute;
+    width: 75%;
+    right: 0;
+    background-color: $dodeka_blauw90p;
+    height: 24rem;
+    padding-left: 10rem;
+    padding-right: 4rem;
+    padding-top: 8rem;
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, calc(1/60 * 100%) 100%);
+    color: white;
+    line-height: $line_height_small;
+    @include respond(mobile) {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding-top: 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 0.5rem;
+        clip-path: none;
+    }
+}
+
+#home_commissies_title {
+    position: absolute;
+    right: 0;
+    top: 2rem;
+    width: 75%;
+    background-color: $dodeka_rood;
+    height: 4rem;
+    color: white;
+    text-align: left;
+    font-size: 1.75rem;
+    font-weight: $bold;
+    padding-top: 0.75rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    @include respond(mobile) {
+        left: 0;
+        text-align: left;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+#home_commissies_link {
+    color: $dodeka_rood;
+    text-decoration: none;
+}

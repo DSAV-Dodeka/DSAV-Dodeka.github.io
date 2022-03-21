@@ -1,9 +1,10 @@
 import React from "react";
+import "./Title.scss";
 
 function Title(props) {
     return(
-        <div class="w-full py-2 bg-rood">
-            <h1 class={"mx-4 lg:mx-16 text-xl text-white font-bold " + (props.position === "left" ? " text-left" : " text-right")}>
+        <div className="title_class_1">
+            <h1 className={"title_class_2" + (props.position === "left" ? " textLeft" : " textRight")}>
                 {props.title}
             </h1>
         </div>

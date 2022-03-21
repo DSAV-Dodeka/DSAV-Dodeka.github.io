@@ -1,0 +1,32 @@
+{
+    "wedstrijden": [
+        {
+            "naam": "NSK Indoor",
+            "datum": "12/03/2022",
+            "foto": "nsk_indoor.png",
+            "path": "/nskindoor",
+            "info": "Dit jaar hebben wij de eer om de Nederlandse Studenten Kampioenschappen Indoor te organiseren. Dit wordt ons eerste fysieke NSK! De wedstrijd zal plaatsvinden in Omnisport in Apeldoorn."
+        },
+        {
+            "naam": "NSK Teams",
+            "datum": "17/09/2022",
+            "foto": "nsk_teams.jpg",
+            "path": "",
+            "info": "In 2022 organiseert Dodeka het NSK Teams. Hierbij gaan alle studenten atletiekverenigingen van Nederland de strijd met elkaar aan. Welke studentenstad mag zich komend jaar de beste atletiekstad van Nederland noemen?"
+        },
+        {
+            "naam": "Biermijl",
+            "datum": "14/10/2022",
+            "foto": "biermijl.jpg",
+            "path": "",
+            "info": "Elk jaar in oktober vindt de biermijl plaats. Dit is het ultieme sportevenement voor studenten, waarbij je 4 rondjes moet lopen en voor elk rondje een biertje moet drinken. Ook kun je er voor kiezen om in een duo mee te doen, waarbij je allebei 2 rondjes loopt en 2 biertjes drinkt."
+        },
+        {
+            "naam": "NSK Weg",
+            "datum": "N.N.B.",
+            "foto": "nsk_weg.jpg",
+            "path": "",
+            "info": "Het NSK Weg is dé wedstrijd voor de studenten die van de langere afstanden houden. Bij deze wedstrijd kun je er namelijk voor kiezen om 5 of 10 kilometer te lopen op de weg. Dit jaar zullen de deelnemers een mooi rondje door Delft gaan lopen."
+        }
+    ]
+}

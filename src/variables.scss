@@ -1,0 +1,41 @@
+// Colors
+$dodeka_blauw: #001f48;
+$dodeka_blauw90p: #193459;
+$dodeka_rood: #CB4B3D;
+
+// Font weights
+$bold: 700;
+$normal: 400;
+
+// Font sizes
+$font_large: 2.25rem;
+$font_medium: 1.25rem;
+$font_small: 1rem;
+$line_height_large: 2.5rem;
+$line_height_medium: 1.75rem;
+$line_height_small: 1.5rem;
+
+// Margins
+$margin_x: 4rem;
+$margin_y: 2rem;
+$margin_mobile: 1rem;
+ 
+
+// Media queries
+@mixin respond($breakpoint) {
+    @if($breakpoint == mobile) {
+        @media (max-width: 1023px) { @content }
+    }
+    
+    @if($breakpoint == computerscherm) {
+        @media (min-width: 1024px) { @content }
+    }
+
+    @if($breakpoint == too_large) {
+        @media (min-width: 1841px) { @content }
+    }
+
+    @if($breakpoint == phone) {
+        @media (max-width: 479px) { @content }
+    }
+}
