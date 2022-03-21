@@ -23,7 +23,6 @@ import "./App.scss";
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
 import Profile from "./pages/Profile/Profile";
-import {AuthProvider} from "./pages/Auth/AuthContext";
 
 function App() {
   return (
