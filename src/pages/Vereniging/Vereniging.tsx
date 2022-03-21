@@ -1,5 +1,5 @@
 import {
-    Link, useMatch
+    Link
 } from "react-router-dom";
 import PageTitle from "../../components/PageTitle";
 // import test from "../../images/over/placeholder.png"
@@ -11,7 +11,6 @@ import "./Vereniging.scss";
 
 
 function Vereniging() {
-    let match = useMatch();
 
     return(
         <div className="vereniging_1">
@@ -30,14 +29,13 @@ function Vereniging() {
                 <img src={over} className="vereniging_4" alt=""/>
             </div>
             <div className="vereniging_5">
-            <Link className="vereniging_6" to={`${match.url}/bestuur`} >
+                <Link className="vereniging_6" to='bestuur' >
                     <h1 className="vereniging_7">Bestuur</h1>
                     <img src={bestuur} className="vereniging_8" alt=""/>
                 </Link>
-                <Link className="vereniging_9" to={`${match.url}/commissies`} >
-                <h1 className="vereniging_10">Commissies</h1>
+                <Link className="vereniging_9" to='commissies' >
+                    <h1 className="vereniging_10">Commissies</h1>
                     <img src={commissie} className="vereniging_11" alt=""/>
-                    
                 </Link>
                 {/* <Link className="vereniging_9" to={`${match.url}/merchandise`} >
                 <h1 className="vereniging_10">Merchandise</h1>
@@ -45,7 +43,6 @@ function Vereniging() {
                 </Link> */}
             </div>
         </div>
-        
 
     )
 }

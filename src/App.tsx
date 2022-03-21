@@ -29,39 +29,33 @@ function App() {
               <NavigationBar />
               <div id="app_flex">
                 <Routes>
-                  {/*<Route path="/nieuws/spike" element={*/}
-                  {/*  <Spike />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/nieuws" element={*/}
-                  {/*  <Nieuws />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/vereniging/commissies" element={*/}
-                  {/*  <Commissies />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/vereniging/bestuur" element={*/}
-                  {/*  <Bestuur />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/vereniging" element={*/}
-                  {/*  <Vereniging />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/trainingen" element={*/}
-                  {/*  <Trainingen />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/wedstrijden/nskindoor" element={*/}
-                  {/*  <Wedstrijd />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/wedstrijden" element={*/}
-                  {/*  <Wedstrijden />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/word_lid" element={*/}
-                  {/*  <WordLid />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/contact/sponsors" element={*/}
-                  {/*  <Sponsors />*/}
-                  {/*}/>*/}
-                  {/*<Route path="/contact" element={*/}
-                  {/*  <Contact />*/}
-                  {/*}/>*/}
+                  <Route path="/nieuws/spike" element={
+                    <Spike />
+                  }/>
+                  <Route path="/nieuws" element={
+                    <Nieuws />
+                  }/>
+                  <Route path="vereniging" element={<Vereniging />} />
+                  <Route path="vereniging/commissies" element={<Commissies />} />
+                  <Route path="vereniging/bestuur" element={<Bestuur />} />
+                  <Route path="/trainingen" element={
+                    <Trainingen />
+                  }/>
+                  <Route path="/wedstrijden/nskindoor" element={
+                    <Wedstrijd />
+                  }/>
+                  <Route path="/wedstrijden" element={
+                    <Wedstrijden />
+                  }/>
+                  <Route path="/word_lid" element={
+                    <WordLid />
+                  }/>
+                  <Route path="/contact/sponsors" element={
+                    <Sponsors />
+                  }/>
+                  <Route path="/contact" element={
+                    <Contact />
+                  }/>
                   <Route path="/"
                     element={<Home />}
                   />
