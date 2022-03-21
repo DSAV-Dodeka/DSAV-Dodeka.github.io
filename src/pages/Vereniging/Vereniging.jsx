@@ -1,5 +1,5 @@
 import {
-    Link, useRouteMatch
+    Link, useMatch
 } from "react-router-dom";
 import PageTitle from "../../components/PageTitle";
 // import test from "../../images/over/placeholder.png"
@@ -11,7 +11,7 @@ import "./Vereniging.scss";
 
 
 function Vereniging() {
-    let match = useRouteMatch();
+    let match = useMatch();
 
     return(
         <div className="vereniging_1">
