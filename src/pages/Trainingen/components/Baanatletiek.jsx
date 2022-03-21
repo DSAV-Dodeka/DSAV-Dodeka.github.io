@@ -6,7 +6,7 @@ import getUrl from "../../../functions/links";
 function Baanatletiek(props) {
     return(
         <div className="baanatletiek_1">
-            <img src={getUrl(`../images/trainingen/${props.foto}`)} alt="" className="baanatletiek_2" />
+            <img src={getUrl(`trainingen/${props.foto}`)} alt="" className="baanatletiek_2" />
             <div className="baanatletiek_3">
                 <Header text="Baanatletiek" position="left"/>
                 <p className="baanatletiek_4">

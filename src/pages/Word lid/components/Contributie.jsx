@@ -6,7 +6,7 @@ import getUrl from "../../../functions/links";
 function Contributie(props) {
     return(
         <div className="contributie_1">
-            <img src={getUrl(`../images/word_lid/${props.foto}`)} alt="" className="contributie_2" />
+            <img src={getUrl(`word_lid/${props.foto}`)} alt="" className="contributie_2" />
             <div className="contributie_3">
                 <Header text="Contributie" position="right"/>
                 <p className="contributie_4">

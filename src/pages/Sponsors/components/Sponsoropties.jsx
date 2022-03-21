@@ -19,7 +19,7 @@ function Sponsoropties() {
                 </div>
                
             </div>
-            <img src={getUrl(`../images/sponsors/sponsoropties.jpg`)} alt="" className="sponsoropties_6" />
+            <img src={getUrl(`sponsors/sponsoropties.jpg`)} alt="" className="sponsoropties_6" />
         </div>
     )
 }

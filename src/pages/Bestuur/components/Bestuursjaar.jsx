@@ -10,7 +10,7 @@ function Bestuursjaar(props) {
                 <div id="bestuurHeaderContainer">
                     <Header text={props.naam} position="right"/>
                 </div>
-                <img id="bestuurFoto" src={getUrl(`../images/bestuur/${props.foto}`)} alt=""/>
+                <img id="bestuurFoto" src={getUrl(`bestuur/${props.foto}`)} alt=""/>
                 
             </div>
             <div id="bestuursjaarRight">

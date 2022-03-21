@@ -7,7 +7,7 @@ function Nieuwsbericht(props) {
     return (
         <div id={props.id} className="nieuwsbericht_1">
             {(props.position === "left" || window.innerWidth <= 1023) ? (
-                <img className="nieuwsbericht_2" src={new URL(`../../../images/${props.page}/${props.foto}`, import.meta.url).href} alt="" />
+                <img className="nieuwsbericht_2" src={getUrl(`${props.page}/${props.foto}`)} alt="" />
             ) : ""}
                 <div className="nieuwsbericht_3">
                 <Title title={props.titel.toUpperCase()} position={props.position} />
@@ -25,7 +25,7 @@ function Nieuwsbericht(props) {
                 </p>
             </div>
             {(props.position === "left" || window.innerWidth <= 1023) ? "" : (
-                <img className="nieuwsbericht_6" src={getUrl(`../images/${props.page}/${props.foto}`)} alt="" />)}
+                <img className="nieuwsbericht_6" src={getUrl(`${props.page}/${props.foto}`)} alt="" />)}
         </div>
     )
 }

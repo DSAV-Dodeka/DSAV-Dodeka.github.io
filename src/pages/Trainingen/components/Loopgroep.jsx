@@ -17,7 +17,7 @@ function Loopgroep(props) {
                     )}  
                 </p>
             </div> 
-            <img src={getUrl(`../images/trainingen/${props.foto}`)} alt="" className="loopgroep_4" />
+            <img src={getUrl(`trainingen/${props.foto}`)} alt="" className="loopgroep_4" />
                
         </div>
     )
