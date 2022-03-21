@@ -49,7 +49,7 @@ const AuthRedirect = () => {
         } else {
             window.location.replace(redirectUrl)
         }
-    }, [handled, redirectUrl]);
+    }, [handled]);
 
     return (
         <>

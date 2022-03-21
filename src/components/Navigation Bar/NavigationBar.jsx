@@ -35,6 +35,7 @@ function NavigationBar() {
           <Dropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "NSK Indoor", path: "/nskindoor"}]} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
+          <Item name="Account" path="/profile" />
         </div>
       </nav>
       <nav id="navMobile">
@@ -62,6 +63,7 @@ function NavigationBar() {
             <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}, { name: "NSK Indoor", path: "/nskindoor" }]} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
+            <Item name="Account" path="/profile" onClick={() => setActive(false)} />
           </div>
         </div>
       </nav>

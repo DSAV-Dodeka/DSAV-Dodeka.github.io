@@ -1,12 +1,15 @@
-import React, {useEffect, useState} from "react";
-import {Redirect} from "react-router-dom";
-import { decodeJwtPayload, validateIdToken } from "./functions/OAuth";
+import React, {useContext, useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {decodeJwtPayload, handleTokenResponse, validateIdToken} from "./functions/OAuth";
 import {redirect_uri} from "./AuthRedirect";
 import config from "./config"
+import AuthContext, {useAuth} from "./AuthContext";
 
 
 const AuthCallback = () => {
+    const navigate = useNavigate()
     const [gotToken, setGotToken] = useState(false);
+    const {authState, setAuthState} = useContext(AuthContext)
 
     const handleCallback = async () => {
         let params = (new URLSearchParams(window.location.search))
@@ -41,47 +44,22 @@ const AuthCallback = () => {
                 'Content-Type': 'application/json'
             }
         })
-        const {
-            id_token, access_token, refresh_token, token_type, expires_in, scope
-        } = await res.json()
-        if (token_type !== "Bearer") {
-            console.log("Incorrect token_type!")
-        }
+        // TODO error handling
+        await handleTokenResponse(await res.json())
 
-        if (expires_in === "x") {
-
-        }
-        if (scope === "scope") {
-
-        }
-        try {
-            const id_payload = await validateIdToken(decodeJwtPayload(id_token))
-            localStorage.setItem("access", access_token)
-            localStorage.setItem("refresh", refresh_token)
-            localStorage.setItem("id_payload", JSON.stringify(id_payload))
-        }
-        catch (e) {
-            if (e instanceof Error) {
-                console.log(e.message)
-            } else {
-                console.log(e)
-            }
-        }
-
-        console.log(access_token)
-        console.log(refresh_token)
         setGotToken(true)
     }
 
     useEffect(() => {
         if (!gotToken) {
             handleCallback().catch();
+        } else {
+            useAuth().then(as => {
+                setAuthState(as)
+                navigate("/", { replace: true} )
+            })
         }
     }, [gotToken]);
-
-    if (gotToken) {
-        return (<Redirect to="/"/>)
-    }
 
     return (
         <>

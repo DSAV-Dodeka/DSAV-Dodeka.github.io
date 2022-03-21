@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,12 +20,34 @@ import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
 import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
 import "./App.scss";
 
+import AuthRedirect from "./pages/Auth/AuthRedirect";
+import AuthCallback from "./pages/Auth/AuthCallback";
+import {AuthProvider, AuthState, useAuth} from "./pages/Auth/AuthContext";
+import Protected from "./pages/Auth/Protected";
+import Login from "./components/Login/Login";
+
 function App() {
+  const [authState, setAuthState] = useState(new AuthState());
+  const contextValue = { authState, setAuthState }
+  const [authLoad, setAuthLoad] = useState(false)
+
+  useEffect(() => {
+    if (!authLoad) {
+      const authLoader = async () => {
+        let loadedState = await useAuth()
+        setAuthState(loadedState)
+      }
+
+      authLoader().then(() => setAuthLoad(true))
+    }
+  }, [])
+
   return (
-      <>
+      <AuthProvider value={contextValue}>
         <Router>
           <div id="app_screen">
             <div id="app_container">
+              <Login />
               <NavigationBar />
               <div id="app_flex">
                 <Routes>
@@ -59,6 +81,9 @@ function App() {
                   <Route path="/"
                     element={<Home />}
                   />
+                  <Route path="/lg" element={<AuthRedirect />} />
+                  <Route path="/auth/callback" element={<AuthCallback />} />
+                  <Route path="/profile" element={<Protected />} />
                 </Routes>
                 <div id="app_flex_grow"/>
                 <ContactBar />
@@ -66,7 +91,7 @@ function App() {
             </div>
           </div>
         </Router>
-      </>
+      </AuthProvider>
   );
 }
 

@@ -1,4 +1,4 @@
-export function binToBase64Url(byte_array) {
+export function binToBase64Url(byte_array: Uint8Array) {
     const random_chrpts = Array.from(byte_array).map((num) => {
         return String.fromCharCode(num)
     }).join('')
@@ -7,19 +7,15 @@ export function binToBase64Url(byte_array) {
         .replaceAll("=", "")
 }
 
-export function base64ToBin(encoded_string) {
+export function base64ToBin(encoded_string: string) {
     const base64 = encoded_string.replaceAll("_", "/").replaceAll("-", "+");
     const decoded = atob(base64)
-    // const bytes = new Uint8Array(decoded.length);
-    // for (let i = 0; i < bytes.length; i++) {
-    //     bytes[i] = decoded.charCodeAt(i);
-    // }
     return new Uint8Array(Array.from(decoded).map((char) => {
         return char.charCodeAt(0)
     }))
 }
 
-export function stringToUint8(str) {
+export function stringToUint8(str: string) {
     let chars = [];
     for (let i = 0; i < str.length; ++i){
         chars.push(str.charCodeAt(i));
