@@ -49,13 +49,9 @@ export const useAuth = async (retry: boolean = false) : Promise<AuthState> => {
         as.isLoaded = true
         return as
     }
-    console.log("refreshin22")
     const it = parseIdToken(id_payload)
     const utc_now = Math.floor(Date.now()/1000)
-    console.log(utc_now)
-    console.log(it.exp)
     if (utc_now > it.exp - (60 * 60)) {
-        console.log("refreshin")
 
         if (!retry) {
             // Updates localStorage
@@ -77,7 +73,7 @@ export const useAuth = async (retry: boolean = false) : Promise<AuthState> => {
     return as
 }
 
-async function refresh_tokens(refresh: string) {
+export async function refresh_tokens(refresh: string) {
     const token_request = {
         "client_id":  config.client_id,
         "grant_type": "refresh_token",
@@ -91,5 +87,5 @@ async function refresh_tokens(refresh: string) {
         }
     })
     const res_j = await res.json()
-    await handleTokenResponse(res_j)
+    return await handleTokenResponse(res_j)
 }

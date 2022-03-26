@@ -96,8 +96,7 @@ export async function handleTokenResponse(token_res: any) {
         localStorage.setItem("access", access_token)
         localStorage.setItem("refresh", refresh_token)
         localStorage.setItem("id_payload", JSON.stringify(id_payload))
-        console.log(access_token)
-        console.log(refresh_token)
+        return true
     }
     catch (e) {
         if (e instanceof Error) {
