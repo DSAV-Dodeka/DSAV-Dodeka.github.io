@@ -65,7 +65,7 @@ const Protected = () => {
                     <li><strong>Access scope:</strong> {accessScope}</li>
                 </ul>
             </div>
-            {authState.isAuthenticated && (<>
+            {authState.isAuthenticated && (
                 <div>
                     <ul>
                         <li><strong>Authenticated:</strong> {`${authState.isAuthenticated}`}</li>
@@ -76,7 +76,7 @@ const Protected = () => {
                         <li><button onClick={doRefresh}>Refresh</button></li>
                     </ul>
                 </div>
-            </>)}
+            )}
         </>
     )
 }

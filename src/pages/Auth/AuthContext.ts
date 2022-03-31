@@ -49,7 +49,16 @@ export const useAuth = async (retry: boolean = false) : Promise<AuthState> => {
         as.isLoaded = true
         return as
     }
-    const it = parseIdToken(id_payload)
+    let it
+    try {
+        it = parseIdToken(id_payload)
+    } catch (e) {
+        console.log(e)
+        as.loginRequired = true
+        as.isLoaded = true
+        return as
+    }
+
     const utc_now = Math.floor(Date.now()/1000)
     if (utc_now > it.exp - (60 * 60)) {
 
@@ -59,6 +68,7 @@ export const useAuth = async (retry: boolean = false) : Promise<AuthState> => {
             return await useAuth(true)
         } else {
             // Some error must have occurred
+            // TODO see what error
             as.loginRequired = true
             as.isLoaded = true
             return as
