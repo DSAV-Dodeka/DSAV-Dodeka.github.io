@@ -1,9 +1,12 @@
 import React from "react";
 import "./HomeTrainingen.scss";
 import foto from "../../../images/home/trainingen.jpg";
+// import {
+//   HashLink as Link
+// } from "react-router-hash-link";
 import {
-  HashLink as Link
-} from "react-router-hash-link";
+    Link
+} from "react-router-dom";
 
 function HomeTrainingen() {
   return (
