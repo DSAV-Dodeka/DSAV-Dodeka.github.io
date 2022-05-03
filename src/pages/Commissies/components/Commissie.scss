@@ -12,11 +12,13 @@
 }
 
 .commissieLogo {
+    position: relative;
     object-fit: cover;
     width: 32rem;
     height: 32rem;
     display: inline-block;
     vertical-align: top;
+    background-color: $dodeka_blauw90p;
     @include respond(mobile) {
         width: 50%;
         height: auto;
@@ -93,8 +95,11 @@
 }
 
 .commissieFoto {
+    position: absolute;
     object-fit: cover;
     width: 32rem;
+    top: 50%;
+    transform: translateY(-50%);
     @include respond(mobile) {
         width: 100%;
     }

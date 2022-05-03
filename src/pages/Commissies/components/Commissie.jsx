@@ -46,7 +46,7 @@ function Commissie(props) {
 
 
         <div className="commissieLogo roundedRight">
-            <img className="commissieFoto roundedRight" src={getUrl(`commissies/${props.fotos}/commissie.jpg`)} alt="" />
+            <img className="commissieFoto" src={getUrl(`commissies/${props.fotos}/commissie.jpg`)} alt="" />
         </div>
 
         <div className="commissieInfo roundedLeft">
@@ -99,7 +99,7 @@ function Commissie(props) {
                 </div>
 
                 <div className="commissieLogo roundedLeft">
-                    <img className="commissieFoto roundedLeft" src={getUrl(`commissies/${props.fotos}/commissie.jpg`)} alt="" />
+                    <img className="commissieFoto" src={getUrl(`commissies/${props.fotos}/commissie.jpg`)} alt="" />
                 </div>
 
 

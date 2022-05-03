@@ -33,80 +33,6 @@
             "fotos": "baco"
         },
         {
-            "naam": "BarCo",
-            "info": "De BarCo is de mooiste commissie binnen D.S.A.V. Dodeka. Wij organiseren iedere woensdag (of zaterdag, in verband met corona) na de training een gezellige borrel. We zorgen hierbij voor het eten en natuurlijk ook voor het goudgele wondermiddel, genaamd bier. Ook organiseren we regelmatig themaborrels. En hou jij er nou ook van om nog wat langer door te gaan? Geen probleem! Na de borrels zijn er vaak nog genoeg mensen enthousiast om het feest door te zetten in het centrum van Delft. Deze gezelligheid wil je zeker niet missen!",
-            "leden": [
-                {
-                    "naam": "Tim",
-                    "functie": "Voorzitter",
-                    "foto": "barCoTim"
-                },
-                {
-                    "naam": "Job",
-                    "functie": "Penningmeester",
-                    "foto": "barCoJob"
-                },
-                {
-                    "naam": "Sam van der Pol",
-                    "functie": "Commissaris Thema",
-                    "foto": "barCoSam"
-                },
-                {
-                    "naam": "Henriëtta",
-                    "functie": "Commissaris Bar",
-                    "foto": "barCoHenriëtta"
-                },
-                {
-                    "naam": "Madeline el Assaitti",
-                    "functie": "Commissaris Eten",
-                    "foto": "barCoMadeline"
-                },
-                {
-                    "naam": "Stefan Pol",
-                    "functie": "QQ'er",
-                    "foto": "barCoStefan"
-                }
-            ],
-            "fotos": "barco"
-        },
-        {
-            "naam": ".ComCom",
-            "info": "De .comcom gaat over de website. Das toch gaaf. De website geeft ons namelijk een nieuw facet om ons als vereniging te profileren. Want wat voor vereniging ben je zonder website? Wij ontwerpen, programmeren, en beheren onze mooie website. Dit jaar gaan wij ons bezig houden met de basis van het ledenportaal. Heb jij input? Contacteer ons en misschien verschijnt een van jouw ideeën op onze website! ",
-            "leden": [
-                {
-                    "naam": "Matthijs Arnoldus",
-                    "functie": "'Voor'vormer",
-                    "foto": "comcomMatthijs"
-                },
-                {
-                    "naam": "Tip ten Brink",
-                    "functie": "Ctrl C-cretaris en commissaris Achter",
-                    "foto": "comcomTip"
-                },
-                {
-                    "naam": "Pien Abbink",
-                    "functie": "Commissaris voor",
-                    "foto": "comcomPien"
-                },
-                {
-                    "naam": "Jefry el Bhwash",
-                    "functie": "Datæ expert",
-                    "foto": "comcomJefry"
-                },
-                {
-                    "naam": "Nathan Douenburg",
-                    "functie": "Commissaris Oppervlakkig en senior lead designer",
-                    "foto": "comcomNathan"
-                },
-                {
-                    "naam": "Aniek Sips",
-                    "functie": "QomQommer",
-                    "foto": "comcomAniek"
-                }
-            ],
-            "fotos": "comcom"
-        },
-        {
             "naam": "Dies",
             "info": "Hee! Wij zijn de Dies commissie. We kunnen de oprichtingsdatum van onze mooie vereniging en de verjaardag van het allerleukste beestje natuurlijk niet ongemerkt voorbij laten gaan. Daarom zorgen wij ervoor dat we dit uitgebreid gaan vieren met gezellige activiteiten en natuurlijk het leukste feestje van het jaar. 24 t/m 26 februari vindt DIEScalatie van de verjaardag van Arnold plaats en dat wil je echt niet missen dus hou deze data maar alvast vrij! Wij hebben er in elk geval heel veel zin in, tot dan!",
             "leden": [
@@ -173,7 +99,7 @@
                     "foto": "focusAlan"
                 },
                 {
-                    "naam": "Jara",
+                    "naam": "Jara Aarts",
                     "functie": "Commissaris Beer",
                     "foto": "focusJara"
                 },
@@ -197,68 +123,30 @@
                 {
                     "naam": "Niels Goedegebure",
                     "functie": "Voorzitter",
-                    "foto": "nskIndoorNiels"
+                    "foto": "nskindoorNiels"
                 },
                 {
                     "naam": "Florence Estublier",
                     "functie": "Secretaris",
-                    "foto": "nskIndoorFlorence"
+                    "foto": "nskindoorFlorence"
                 },
-
                 {
                     "naam": "Matthijs Arnoldus",
                     "functie": "Penningmeester",
-                    "foto": "nskIndoorMatthijs"
+                    "foto": "nskindoorMatthijs"
                 },
                 {
                     "naam": "Simon Loose",
                     "functie": "Wedstrijdwappie",
-                    "foto": "nskIndoorSimon"
+                    "foto": "nskindoorSimon"
                 },
                 {
                     "naam": "Stefan Pol",
                     "functie": "QQ'er",
-                    "foto": "nskIndoorStefan"
+                    "foto": "nskindoorStefan"
                 }
             ],
             "fotos": "indoor"
-        },
-        {
-            "naam": "RedaXII",
-            "info": "Hoi allemaal, wij zijn de RedaXII! Wij zijn verantwoordelijk voor de nieuwsbrieven die jullie door het jaar heen in je mailbox ontvangen en we zorgen aan het eind van het jaar voor een jaarboek met alle mooie herinneringen van het afgelopen jaar. Dat is een mooie manier om later nog eens herinneringen op te halen en terug te kijken op je fantastische studententijd! Door de nieuwsbrieven blijft iedereen lekker up-to-date over wat er allemaal reilt en zeilt binnen onze vereniging, zodat ook de nieuwe leden kunnen lezen wat we allemaal voor leuke dingen doen bij Dodeka. Het leuke aan de RedaXII (naast onze toffe naam) is dat we de leden betrekken bij het schrijven van de stukjes. Op die manier kunnen we samen met de leden iets moois neerzetten. Je kunt ons bereiken via jaaroverzicht@av40.nl, en je kunt natuurlijk ook altijd een van onze commissieleden een appje sturen!\n Groetjes van de RedaXII ",
-            "leden": [
-                {
-                    "naam": "Donne Gerlich",
-                    "functie": "Voorzitter",
-                    "foto": "redaxiiDonne"
-                },
-                {
-                    "naam": "Thomas Albers",
-                    "functie": "Secretaris",
-                    "foto": "redaxiiThomas"
-                },
-                {
-                    "naam": "Larissa Smit",
-                    "functie": "Commissaris Inhoud",
-                    "foto": "redaxiiLarissa"
-                },
-                {
-                    "naam": "Robin Beijer",
-                    "functie": "Commissaris Vormgevind",
-                    "foto": "redaxiiRobin"
-                },
-                {   
-                    "naam": "Simon Loose",
-                    "functie": "Commisaris Flexibel",
-                    "foto": "redaxiiSimon"
-                },
-                {
-                    "naam": "Fieke Witte",
-                    "functie": "QQ'er",
-                    "foto": "redaxiiFieke"
-                }
-            ],
-            "fotos": "redaxii"
         },
         {
             "naam": "Snowdeka",
@@ -334,7 +222,7 @@
                     "foto": "barCoStefan"
                 }
             ],
-            "fotos": "barco"
+            "fotos": "barco_oud"
         },
         {
             "naam": ".ComCom",
@@ -361,7 +249,7 @@
                     "foto": "donne"
                 }
             ],
-            "fotos": "comcom"
+            "fotos": "comcom_oud"
         },
         {
             "naam": "Focus",
@@ -398,40 +286,7 @@
                     "foto": "focusKoen"
                 }
             ],
-            "fotos": "focus"
-        },
-        {
-            "naam": "NSK Indoor Commissie",
-            "info": "Begin 2022 organiseert D.S.A.V. Dodeka haar eerste fysieke NSK (Nederlands Studenten Kampioenschap). En niet zomaar eentje: NSK Indoor is hét grootste NSK van Nederland! De organisatie, logisitiek, eindfeest en gezelligheid worden door onze commissie verzorgd. Dus bereid je vast voor, train voor de onderdelen én het feest, en wie weet sleep jij een prachtige medaille binnen! Tot in Apeldoorn.",
-            "leden": [
-                {
-                    "naam": "Niels Goedegebure",
-                    "functie": "Voorzitter",
-                    "foto": "nskIndoorNiels"
-                },
-                {
-                    "naam": "Florence Estublier",
-                    "functie": "Secretaris",
-                    "foto": "nskIndoorFlorence"
-                },
-
-                {
-                    "naam": "Matthijs Arnoldus",
-                    "functie": "Penningmeester",
-                    "foto": "nskIndoorMatthijs"
-                },
-                {
-                    "naam": "Simon Loose",
-                    "functie": "Wedstrijdwappie",
-                    "foto": "nskIndoorSimon"
-                },
-                {
-                    "naam": "Stefan Pol",
-                    "functie": "QQ'er",
-                    "foto": "nskIndoorStefan"
-                }
-            ],
-            "fotos": "indoor"
+            "fotos": "focus_oud"
         },
         {
             "naam": "RedaCie",
@@ -463,7 +318,7 @@
                     "foto": "jasper"
                 }
             ],
-            "fotos": "redacie"
+            "fotos": "redacie_oud"
         },
         {
             "naam": "Riceco",
@@ -490,7 +345,7 @@
                     "foto": "koen"
                 }
             ],
-            "fotos": "riceco"
+            "fotos": "riceco_oud"
         },
         {
             "naam": "Sax",
@@ -522,7 +377,7 @@
                     "foto": "donne"
                 }
             ],
-            "fotos": "sax"
+            "fotos": "sax_oud"
         },
         {
             "naam": "STARTco",
@@ -559,7 +414,7 @@
                     "foto": "startCoDonne"
                 }
             ],
-            "fotos": "start"
+            "fotos": "startco_oud"
         }
         ,
         {
@@ -607,7 +462,7 @@
                     "foto": "trainerBart"
                 }
             ],
-            "fotos": "trainers"
+            "fotos": "trainers_oud"
         }
     ]
 }

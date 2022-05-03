@@ -1,0 +1,579 @@
+{
+    "commissies": [
+        {
+            "naam": "BaCo",
+            "info": "Dit jaar is er een nieuwe commissie in het leven geroepen: de BaCo! Voor de eerste keer doet Dodeka mee aan de Batavierenrace, de langste studenten estafetteloop van de wereld. Deze start 29 april in Nijmegen en eindigt 30 april in Enschede. Wij zorgen er voor dat er dit jaar een D.S.A.V. Dodeka team aanwezig is en dat alles eromheen geregeld wordt. Na de Batavierenrace zal er een groot feest op de campus van Universiteit Twente zijn. Wij zullen verantwoordelijk zijn voor het regelen van een onvergetelijk weekend. Dit weekend zullen er een aantal records verbroken worden: Dodeka gaat meer kilometers lopen en meer bier drinken dan ooit tevoren.",
+            "leden": [
+                {
+                    "naam": "Thijs Exterkate",
+                    "functie": "Voorzitter",
+                    "foto": "bacoThijs"
+                },
+                {
+                    "naam": "Jelmer Stuijt",
+                    "functie": "Secretaris",
+                    "foto": "bacoJelmer"
+                },
+                {   
+                    "naam": "David Wolfrat",
+                    "functie": "Penningmeester",
+                    "foto": "bacoDavid"
+                },
+                {
+                    "naam": "Loek Sanders",
+                    "functie": "Commissaris Logistiek",
+                    "foto": "bacoLoek"
+                },
+                {
+                    "naam": "Fieke Witte",
+                    "functie": "QQ'er",
+                    "foto": "bacoFieke"
+                }
+            ],
+            "fotos": "baco"
+        },
+        {
+            "naam": "BarCo",
+            "info": "De BarCo is de mooiste commissie binnen D.S.A.V. Dodeka. Wij organiseren iedere woensdag (of zaterdag, in verband met corona) na de training een gezellige borrel. We zorgen hierbij voor het eten en natuurlijk ook voor het goudgele wondermiddel, genaamd bier. Ook organiseren we regelmatig themaborrels. En hou jij er nou ook van om nog wat langer door te gaan? Geen probleem! Na de borrels zijn er vaak nog genoeg mensen enthousiast om het feest door te zetten in het centrum van Delft. Deze gezelligheid wil je zeker niet missen!",
+            "leden": [
+                {
+                    "naam": "Tim Creusen",
+                    "functie": "Voorzitter",
+                    "foto": "barcoTim"
+                },
+                {
+                    "naam": "Job van der Kleij",
+                    "functie": "Penningmeester",
+                    "foto": "barcoJob"
+                },
+                {
+                    "naam": "Sam van der Pol",
+                    "functie": "Commissaris Thema",
+                    "foto": "barcoSam"
+                },
+                {
+                    "naam": "Henriëtta Gussenhoven",
+                    "functie": "Commissaris Bar",
+                    "foto": "barcoHenriëtta"
+                },
+                {
+                    "naam": "Madeline el Assaitti",
+                    "functie": "Commissaris Eten",
+                    "foto": "barcoMadeline"
+                },
+                {
+                    "naam": "Stefan Pol",
+                    "functie": "QQ'er",
+                    "foto": "barcoStefan"
+                }
+            ],
+            "fotos": "barco"
+        },
+        {
+            "naam": ".ComCom",
+            "info": "De .comcom gaat over de website. Das toch gaaf. De website geeft ons namelijk een nieuw facet om ons als vereniging te profileren. Want wat voor vereniging ben je zonder website? Wij ontwerpen, programmeren, en beheren onze mooie website. Dit jaar gaan wij ons bezig houden met de basis van het ledenportaal. Heb jij input? Contacteer ons en misschien verschijnt een van jouw ideeën op onze website! ",
+            "leden": [
+                {
+                    "naam": "Matthijs Arnoldus",
+                    "functie": "'Voor'vormer",
+                    "foto": "comcomMatthijs"
+                },
+                {
+                    "naam": "Tip ten Brink",
+                    "functie": "Ctrl C-cretaris en commissaris Achter",
+                    "foto": "comcomTip"
+                },
+                {
+                    "naam": "Pien Abbink",
+                    "functie": "Commissaris voor",
+                    "foto": "comcomPien"
+                },
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "Datæ expert",
+                    "foto": "comcomJefry"
+                },
+                {
+                    "naam": "Nathan Douenburg",
+                    "functie": "Commissaris Oppervlakkig en senior lead designer",
+                    "foto": "comcomNathan"
+                },
+                {
+                    "naam": "Aniek Sips",
+                    "functie": "QomQommer",
+                    "foto": "comcomAniek"
+                }
+            ],
+            "fotos": "comcom"
+        },
+        {
+            "naam": "Dies",
+            "info": "Hee! Wij zijn de Dies commissie. We kunnen de oprichtingsdatum van onze mooie vereniging en de verjaardag van het allerleukste beestje natuurlijk niet ongemerkt voorbij laten gaan. Daarom zorgen wij ervoor dat we dit uitgebreid gaan vieren met gezellige activiteiten en natuurlijk het leukste feestje van het jaar. 24 t/m 26 februari vindt DIEScalatie van de verjaardag van Arnold plaats en dat wil je echt niet missen dus hou deze data maar alvast vrij! Wij hebben er in elk geval heel veel zin in, tot dan!",
+            "leden": [
+                {
+                    "naam": "Céline Smit",
+                    "functie": "Voorzitter",
+                    "foto": "diesCeline"
+                },
+                {
+                    "naam": "Amaryllis Brosens",
+                    "functie": "Secretaris",
+                    "foto": "diesAmaryllis"
+                },
+                {
+                    "naam": "Abel Kappenburg",
+                    "functie": "Penningmeester",
+                    "foto": "diesAbel"
+                },
+                {
+                    "naam": "Marin Nijenhuis",
+                    "functie": "Commissaris Extern",
+                    "foto": "diesMarin"
+                },
+                {
+                    "naam": "Rianne Stuivenberg",
+                    "functie": "Commissaris Promo",
+                    "foto": "diesRianne"
+                },
+                {
+                    "naam": "Amber Kroon",
+                    "functie": "Commissaris Versiering",
+                    "foto": "diesAmber"
+                },
+                {
+                    "naam": "Fieke Witte",
+                    "functie": "QQ'er",
+                    "foto": "diesFieke"
+                }
+            ],
+            "fotos": "dies"
+        },
+        {
+            "naam": "FOCUS",
+            "info": "Hey! Wij zijn de commissie die alles vast gaat leggen dit jaar zodat je over 24 jaar aan je kinderen kan laten zien dat je ooit wél cool was.\n \"Kijk, kijk, kijk! Hier doe ik een vleermuis spies direct na mijn 400m!\" \nVan instagram tot tiktok, van een camera in je gezicht tot de smoelenposter op je wc.\n Naast dat we alles vastleggen proberen we zelf ook meer Kontent te maken, denk hier bij aan de Kookboek filmpjes of het NSK News.\n Ben je benieuwd naar ons bildmateriaal, kijk dan vooral op onze insta!\n\n Als je vragen hebt, app ons privé of stuur ons een dm.",
+            "leden": [
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "Kapitein",
+                    "foto": "focusJefry"
+                },
+                {
+                    "naam": "Sylke van der Kleij",
+                    "functie": "Secretavis",
+                    "foto": "focusSylke"
+                },
+                {
+                    "naam": "Noortje Molenaar",
+                    "functie": "Commissaris Bil",
+                    "foto": "focusNoortje"
+                },
+                {
+                    "naam": "Alan Renkema",
+                    "functie": "Commissaris Vies",
+                    "foto": "focusAlan"
+                },
+                {
+                    "naam": "Jara Aarts",
+                    "functie": "Commissaris Beer",
+                    "foto": "focusJara"
+                },
+                {
+                    "naam": "Martha Chapple",
+                    "functie": "Commissaris Kont",
+                    "foto": "FocusMartha"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "functie": "Stroeverd",
+                    "foto": "focusKoen"
+                }
+            ],
+            "fotos": "focus"
+        },
+        {
+            "naam": "NSK Indoor Commissie",
+            "info": "Begin 2022 organiseert D.S.A.V. Dodeka haar eerste fysieke NSK (Nederlands Studenten Kampioenschap). En niet zomaar eentje: NSK Indoor is hét grootste NSK van Nederland! De organisatie, logisitiek, eindfeest en gezelligheid worden door onze commissie verzorgd. Dus bereid je vast voor, train voor de onderdelen én het feest, en wie weet sleep jij een prachtige medaille binnen! Tot in Apeldoorn.",
+            "leden": [
+                {
+                    "naam": "Niels Goedegebure",
+                    "functie": "Voorzitter",
+                    "foto": "nskindoorNiels"
+                },
+                {
+                    "naam": "Florence Estublier",
+                    "functie": "Secretaris",
+                    "foto": "nskindoorFlorence"
+                },
+                {
+                    "naam": "Matthijs Arnoldus",
+                    "functie": "Penningmeester",
+                    "foto": "nskindoorMatthijs"
+                },
+                {
+                    "naam": "Simon Loose",
+                    "functie": "Wedstrijdwappie",
+                    "foto": "nskindoorSimon"
+                },
+                {
+                    "naam": "Stefan Pol",
+                    "functie": "QQ'er",
+                    "foto": "nskindoorStefan"
+                }
+            ],
+            "fotos": "indoor"
+        },
+        {
+            "naam": "RedaXII",
+            "info": "Hoi allemaal, wij zijn de RedaXII! Wij zijn verantwoordelijk voor de nieuwsbrieven die jullie door het jaar heen in je mailbox ontvangen en we zorgen aan het eind van het jaar voor een jaarboek met alle mooie herinneringen van het afgelopen jaar. Dat is een mooie manier om later nog eens herinneringen op te halen en terug te kijken op je fantastische studententijd! Door de nieuwsbrieven blijft iedereen lekker up-to-date over wat er allemaal reilt en zeilt binnen onze vereniging, zodat ook de nieuwe leden kunnen lezen wat we allemaal voor leuke dingen doen bij Dodeka. Het leuke aan de RedaXII (naast onze toffe naam) is dat we de leden betrekken bij het schrijven van de stukjes. Op die manier kunnen we samen met de leden iets moois neerzetten. Je kunt ons bereiken via jaaroverzicht@av40.nl, en je kunt natuurlijk ook altijd een van onze commissieleden een appje sturen!\n Groetjes van de RedaXII ",
+            "leden": [
+                {
+                    "naam": "Donne Gerlich",
+                    "functie": "Voorzitter",
+                    "foto": "redaxiiDonne"
+                },
+                {
+                    "naam": "Thomas Albers",
+                    "functie": "Secretaris",
+                    "foto": "redaxiiThomas"
+                },
+                {
+                    "naam": "Larissa Smit",
+                    "functie": "Commissaris Inhoud",
+                    "foto": "redaxiiLarissa"
+                },
+                {
+                    "naam": "Robin Beijer",
+                    "functie": "Commissaris Vormgevind",
+                    "foto": "redaxiiRobin"
+                },
+                {   
+                    "naam": "Simon Loose",
+                    "functie": "Commisaris Flexibel",
+                    "foto": "redaxiiSimon"
+                },
+                {
+                    "naam": "Fieke Witte",
+                    "functie": "QQ'er",
+                    "foto": "redaxiiFieke"
+                }
+            ],
+            "fotos": "redaxii"
+        },
+        {
+            "naam": "Snowdeka",
+            "info": "Hey snow, slet's go! Wij (Snowdeka) zijn als allerleukste commissie in het leven geroepen om de allerleukste wintersport en allerleukste apresski neer te zetten! In de week van de TU vakantie (week 5) zal Snowdeka samen met een hele hoop mega gezellige leden op wintersport naar Frankrijk gaan! Natuurlijk staan we niet alleen maar de pistes op, maar zijn er ook genoeg andere super gave activiteiten die wij gaan organiseren. \n\n Maar wat hoort nou nog meer bij een mega, vette, epische wispo? \nSNEEEUUUWWWWW ('Vo), Aprés-ski, sleeën, brakke ontbijtjes, gezelligheid, sneeuwballengevechten, touren over de pistes, warme chocomel, verbrande kopjes, skilift dates, keihard vallen, stunten op de piste, leren skiën, Jägermeister en nog meer sneeuw!\n\n Zie je dit nou helemaal zitten en is wintersport nou helemaal jou ding of wil je leren skiën of snowboarden? Dan is dit je kans. Ga volgend jaar mee op de Wispo! We hopen dat je er volgend jaar ook bij bent.\n\nSnow snow snow, 'vo voor de wispo! ",
+            "leden": [
+                {
+                    "naam": "Saana Taal",
+                    "functie": "Voorzitter",
+                    "foto": "snowdekaSaana"
+                },
+                {
+                    "naam": "Anne-Wil van Werkhoven",
+                    "functie": "Secretaris",
+                    "foto": "snowdekaAnneWil"
+                },
+                {
+                    "naam": "Sanne Diepen",
+                    "functie": "Penningmeester",
+                    "foto": "snowdekaSanne"
+                },
+                {
+                    "naam": "Luc Werner",
+                    "functie": "Commissaris Logistiek",
+                    "foto": "snowdekaLuc"
+                },
+                {
+                    "naam": "Raymond Knetemann",
+                    "functie": "Commissaris activiteiten",
+                    "foto": "snowdekaRaymond"
+                },
+                {
+                    "naam": "Aniek Sips",
+                    "functie": "QQ'er",
+                    "foto": "snowdekaAniek"
+                }
+            ],
+            "fotos": "snowdeka"
+        }
+    ],
+    "commissies_oud": [
+        {
+            "naam": "BarCo",
+            "info": "De Barco is de mooiste commissie binnen D.S.A.V. Dodeka. Wij organiseren iedere woensdag (nu iets minder vanwege de coronamaatregelen) na de training een gezellige borrel. Wij zorgen hierbij voor het eten en natuurlijk ook voor het goudgele wondermiddel, genaamd bier. Ook organiseren we regelmatig themaborrels. En hou jij er nou ook van om nog wat langer door te gaan? Geen probleem! Na de borrels zijn er vaak nog genoeg mensen enthousiast om het feest door te zetten in het centrum van Delft. Deze gezelligheid wil je zeker niet missen!",
+            "leden": [
+                {
+                    "naam": "David Wolfrat",
+                    "functie": "Voorzitter",
+                    "foto": "barCoDavid"
+                },
+                {
+                    "naam": "Vincent Kuiper",
+                    "functie": "Secretaris",
+                    "foto": "barCoVincent"
+                },
+                {
+                    "naam": "Tom Klunder",
+                    "functie": "Penningmeester",
+                    "foto": "barCoTom"
+                },
+                {
+                    "naam": "Pien Abbink",
+                    "functie": "Commissaris Activiteiten",
+                    "foto": "barCoPien"
+                },
+                {
+                    "naam": "Sam van der Pol",
+                    "functie": "Commissaris Consumptiemaatschappij",
+                    "foto": "barCoSam"
+                },
+                {
+                    "naam": "Stefan Pol",
+                    "functie": "QQ'er",
+                    "foto": "barCoStefan"
+                }
+            ],
+            "fotos": "barco"
+        },
+        {
+            "naam": ".ComCom",
+            "info": "Met het groter worden van de vereniging, is er dit studiejaar ook de .ComCom opgericht. Wij, als .ComCom gaan over de inhoud van de website en het ontwerp ervan. De website waar je nu op kijkt is dus volledig door ons gebouwd. Hierdoor hebben wij veel vrijheid in de mogelijkheden en ontwerpkeuzes. Mocht je iets missen op de website qua functionaliteiten, aarzel dan niet om ons dit te laten weten bij Matthijs!",
+            "leden": [
+                {
+                    "naam": "Matthijs Arnoldus",
+                    "functie": "Voorkauwer",
+                    "foto": "matthijs"
+                },
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "Control C-cretaris",
+                    "foto": "jefry"
+                },
+                {
+                    "naam": "Nathan Douenburg",
+                    "functie": "Commissaris Oppervlakkig",
+                    "foto": "nathan"
+                },
+                {
+                    "naam": "Donne Gerlich",
+                    "functie": "QuQubit",
+                    "foto": "donne"
+                }
+            ],
+            "fotos": "comcom_oud"
+        },
+        {
+            "naam": "Focus",
+            "info": "Wij, van Focus 2, zetten alles in de spotlight en leggen het vast voor het nageslacht. Van posters, tot foto's, tot kalenders, als het promoot dan doen wij dat. Door middel van onze fotografie, video's, en creatieve skills vertegenwoordigen wij de vereniging. Dit jaar gaan wij diep duiken en zien wij alles door een fisheye lens! Hou ons in de gaten op instagram, facebook, linkedin, en wellicht ook tiktok.",
+            "leden": [
+                {
+                    "naam": "Nathan Douenburg",
+                    "functie": "Voorzitter",
+                    "foto": "focusNathan"
+                },
+                {
+                    "naam": "Abel Kappenburg",
+                    "functie": "Penningmeester + Commissaris Fotoshop",
+                    "foto": "focusAbel"
+                },
+                {
+                    "naam": "Saana Taal",
+                    "functie": "Secretaris",
+                    "foto": "focusSaana"
+                },
+                {
+                    "naam": "Lianne Folkerts",
+                    "functie": "Commissaris Foto en Planning",
+                    "foto": "focusLianne"
+                },
+                {
+                    "naam": "Marin Nijenhuis",
+                    "functie": "Commissaris Planning en Foto",
+                    "foto": "focusMarin"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "functie": "QQ'er",
+                    "foto": "focusKoen"
+                }
+            ],
+            "fotos": "focus"
+        },
+        {
+            "naam": "RedaCie",
+            "info": "De RedaCie houdt zich bezig met documenteren wat er afspeelt op de vereniging: activiteiten, wedstrijden en alles daartussenin. Door middel van meerdere nieuwsbrieven en een jaaroverzicht uit te brengen worden de leden op de hoogte gehouden van alle ins en outs van onze prachtige vereniging. Daarnaast is dit de mooiste manier om later nog eens terug te kijken op de beste jaren uit je leven. Oh ja, heb je nog een leuke quote, foto of een tof idee? Mail ons dan op jaaroverzicht@av40.nl ! Lieve groetjes, De RedaCie",
+            "leden": [
+                {
+                    "naam": "Niels Goedegebure",
+                    "functie": "Voorzitter",
+                    "foto": "niels"
+                },
+                {
+                    "naam": "Rianne Stuivenberg",
+                    "functie": "Secretaris",
+                    "foto": "rianne"
+                },
+                {
+                    "naam": "Noortje Molenaar",
+                    "functie": "Commissaris Vormgeving",
+                    "foto": "noortje"
+                },
+                {
+                    "naam": "Carine Leijn",
+                    "functie": "Commissaris Inhoud",
+                    "foto": "carine"
+                },
+                {
+                    "naam": "Jasper Rou",
+                    "functie": "QuQu'er",
+                    "foto": "jasper"
+                }
+            ],
+            "fotos": "redacie"
+        },
+        {
+            "naam": "Riceco",
+            "info": "Wij mogen als RiceCo de allereerste wintersport en zomertrip organiseren. Hierbij combineren we wat de andere commissies ook doen, maar dan allemaal in één week. Activiteiten, gezelligheid, borrels, alles komt bij elkaar in deze ene week. Ice ice ice, we gaan op rice!",
+            "leden": [
+                {
+                    "naam": "Simon Loose",
+                    "functie": "Voorzitter",
+                    "foto": "simon"
+                },
+                {
+                    "naam": "Arno Soetens",
+                    "functie": "Secretaris",
+                    "foto": "arno"
+                },
+                {
+                    "naam": "Rick Verkooij",
+                    "functie": "Commissaris Vormgeving",
+                    "foto": "rick"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "functie": "QQ'er",
+                    "foto": "koen"
+                }
+            ],
+            "fotos": "riceco"
+        },
+        {
+            "naam": "Sax",
+            "info": "Hoi! Wij zijn de SAX, de saxiviteiten commissie. Een saxiviteit is een activiteit georganiseerd door en voor de studenten! Elke maand is er wel iets leuks gepland waarin wij ervoor zorgen dat de aardvarkens elkaar ook zien buiten de trainingen of borrels. Zo heeft de SAX bijvoorbeeld vorig jaar een kroegentocht met een twist door Delft en ook een kerstdiner georganiseerd waar er door de aardvarkens in groepjes voor iedereen gekookt werd! Dit jaar zijn we begonnen met een online pubquiz die in groepjes bij de aardvarkens thuis gespeeld werd en kort daarna zijn we met een grote groep gaan boulderen in de buurt van de atletiekbaan! Zien wij jou bij de eerstvolgende saxiviteit?",
+            "leden": [
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "Voorzitter",
+                    "foto": "jefry"
+                },
+                {
+                    "naam": "Jesper van der Marel",
+                    "functie": "Secretaris",
+                    "foto": "jesper"
+                },
+                {
+                    "naam": "Niels Steverink",
+                    "functie": "Penningmeester",
+                    "foto": "niels"
+                },
+                {
+                    "naam": "Henriëtta Gussenhoven",
+                    "functie": "Commissaris Promo",
+                    "foto": "henrietta"
+                },
+                {
+                    "naam": "Donne Gerlich",
+                    "functie": "QQ'er",
+                    "foto": "donne"
+                }
+            ],
+            "fotos": "sax"
+        },
+        {
+            "naam": "STARTco",
+            "info": "De STARTcommissie is misschien wel de belangrijkste commissie van de vereniging. Elk jaar zorgen wij ervoor dat alle nieuwe studenten de naam D.S.A.V. Dodeka kennen en een keer langskomen tijdens onze trainingen. Dit doen wij door tijdens de OWee epische activiteiten te organiseren waarbij we de nieuwe studenten op een leuke manier kennis laten maken met de atletieksport en de vereniging. Dit jaar zal dat gebeuren op 1 digitale dag via het platform van de OWee en meerdere fysieke dagen waarvan de inhoud op dit moment nog niet bekend is.\n\nNa de OWee zorgen wij ervoor dat alle nieuwe leden zich thuisvoelen op de vereniging door kennismakingsactiviteiten en het leukste weekend van het jaar te organiseren, het STARTweekend op 1, 2 en 3 oktober.\n\nWordt D.S.A.V. Dodeka ook jouw startschot voor een geweldige studententijd?",
+            "leden": [
+                {
+                    "naam": "Bart Groeneveld",
+                    "functie": "Voorzitter",
+                    "foto": "startCoBart"
+                },
+                {
+                    "naam": "Danique Oost",
+                    "functie": "Secretaris",
+                    "foto": "startCoDanique"
+                },
+                {
+                    "naam": "Niels Verheugd",
+                    "functie": "Penningmeester",
+                    "foto": "startCoNiels"
+                },
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "Commissaris Logistiek",
+                    "foto": "startCoJefry"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "functie": "QQ'er",
+                    "foto": "startCoKoen"
+                },
+                {
+                    "naam": "Donne Gerlich",
+                    "functie": "QQ'er",
+                    "foto": "startCoDonne"
+                }
+            ],
+            "fotos": "start"
+        }
+        ,
+        {
+            "naam": "Trainerscommissie",
+            "info": "Met de trainerscommissie verzorgen wij de trainingen van D.S.A.V. Dodeka. Elke maandag, woensdag en zaterdag staan wij weer klaar met een leuke, originele training waar je beter van wordt. Ons doel is zorgen dat atleten plezier hebben op de trainingen en voor te bereiden op de wedstrijden. Ook organiseren wij een keer per jaar een episch trainingsweekend vol met trainingen en leuke activiteiten. Naast dat we atleten proberen te verbeteren zijn we zelf ook bezig een betere trainer te worden. We zijn daarom altijd erg blij met feedback op onze trainingen, dus schroom niet om deze te geven. Tot op de training!",
+            "leden": [
+                {
+                    "naam": "Jasper Rou",
+                    "functie": "Baanatletiek trainer",
+                    "foto": "trainerJasper"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "functie": "Baanatletiek trainer",
+                    "foto": "trainerKoen"
+                },
+                {
+                    "naam": "Sanne van Beek",
+                    "functie": "Baanatletiek trainer",
+                    "foto": "trainerSanne"
+                },
+                {
+                    "naam": "Niels Verheugd",
+                    "functie": "Baanatletiek trainer",
+                    "foto": "trainerNiels"
+                },
+                {
+                    "naam": "Rik Palings",
+                    "functie": "Loopgroep trainer",
+                    "foto": "trainerRik"
+                },
+                {
+                    "naam": "Aniek Sips",
+                    "functie": "Loopgroep trainer",
+                    "foto": "trainerAniek"
+                },
+                {
+                    "naam": "Arno Soetens",
+                    "functie": "MiLa trainer",
+                    "foto": "trainerArno"
+                },
+                {
+                    "naam": "Bart Groeneveld",
+                    "functie": "Erelid",
+                    "foto": "trainerBart"
+                }
+            ],
+            "fotos": "trainers"
+        }
+    ]
+}
