@@ -1,10 +1,14 @@
 import React from "react";
+// import {
+//   HashLink as Link
+// } from "react-router-hash-link";
 import {
-    HashLink as Link
-} from "react-router-hash-link";
+    Link
+} from "react-router-dom";
 import Header from "../../../components/Header";
 import ContactButtons from "../../../components/ContactButtons";
 import "./Meetrainen.scss"
+import getUrl from "../../../functions/links";
 
 function Meetrainen(props) {
     return (
@@ -21,7 +25,7 @@ function Meetrainen(props) {
                 <p className="meetrainen_5">Mocht je nu nog vragen hebben, kijk dan in onze <Link smooth to="/contact#faq" className="meetrainen_6">F.A.Q.</Link>, of stuur een berichtje via de mail of Instagram!</p>
                 <ContactButtons />
             </div>
-            <img src={require(`../../../images/word_lid/${props.foto}`).default} alt="" className="meetrainen_7" />
+            <img src={getUrl(`word_lid/${props.foto}`)} alt="" className="meetrainen_7" />
         </div>
     )
 }
