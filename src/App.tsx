@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
+import ReactGA from 'react-ga4';
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
 import Nieuws from './pages/Nieuws/Nieuws';
@@ -20,9 +21,18 @@ import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
 import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
 import "./App.scss";
 
+ReactGA.initialize('G-Z0WSFFKY1X');
+
 function App() {
+  ReactGA.send({hitType: 'pageview', page: window.location.pathname});
+
+  useEffect(() => {
+    console.log(window.location.pathname);
+    
+  }, [])
+  
+
   return (
-      <>
         <Router>
           <div id="app_screen">
             <div id="app_container">
@@ -66,7 +76,6 @@ function App() {
             </div>
           </div>
         </Router>
-      </>
   );
 }
 

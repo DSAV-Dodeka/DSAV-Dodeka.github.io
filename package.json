@@ -10,6 +10,7 @@
     "disable-scroll": "^0.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-ga4": "^1.4.1",
     "react-router-dom": "^6.2.1",
     "zod": "^3.11.6"
   },
