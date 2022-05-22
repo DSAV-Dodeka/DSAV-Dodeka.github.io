@@ -26,6 +26,6 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: site
-        publish_dir: ./build
+        publish_dir: ./dist
         commit_message: "Automatic deploy"
         cname: dsavdodeka.nls
