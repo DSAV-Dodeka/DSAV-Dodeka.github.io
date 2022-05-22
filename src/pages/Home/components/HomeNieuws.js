@@ -1,10 +1,7 @@
 import React from "react";
-// import {
-//   HashLink as Link
-// } from "react-router-hash-link";
 import {
-    Link
-} from "react-router-dom";
+    HashLink as Link
+} from "react-router-hash-link";
 import "./HomeNieuws.scss";
 import foto from "../../../images/home/nieuws.jpg";
 import Nieuws from "../../../content/Nieuws.json";

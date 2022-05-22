@@ -1,10 +1,7 @@
 import React from "react";
-// import {
-//   HashLink as Link
-// } from "react-router-hash-link";
 import {
-    Link
-} from "react-router-dom";
+    HashLink as Link
+  } from "react-router-hash-link";
 import "./ContactBar.scss";
   
 import Heading from "./Heading";

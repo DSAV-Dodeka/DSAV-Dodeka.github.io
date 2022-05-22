@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../../../components/Header";
 import "./Bestuursjaar.scss";
-import getUrl from "../../../functions/links";
 
 function Bestuursjaar(props) {
     return(
@@ -10,7 +9,7 @@ function Bestuursjaar(props) {
                 <div id="bestuurHeaderContainer">
                     <Header text={props.naam} position="right"/>
                 </div>
-                <img id="bestuurFoto" src={getUrl(`bestuur/${props.foto}`)} alt=""/>
+                <img id="bestuurFoto" src={require(`../../../images/bestuur/${props.foto}`).default} alt=""/>
                 
             </div>
             <div id="bestuursjaarRight">

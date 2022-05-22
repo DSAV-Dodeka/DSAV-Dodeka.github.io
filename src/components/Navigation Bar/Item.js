@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  useLocation, Link
+  useLocation
 } from "react-router-dom";
-// import {
-//   HashLink as Link
-// } from "react-router-hash-link";
+import {
+  HashLink as Link
+} from "react-router-hash-link";
 import "./Item.scss"
 
 function Item(props) {

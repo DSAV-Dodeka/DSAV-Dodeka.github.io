@@ -1,6 +1,5 @@
 import Header from "../../../components/Header";
 import "./Commissie.scss";
-import getUrl from "../../../functions/links";
 
 function Commissie(props) {
     function slideIn() {
@@ -31,7 +30,7 @@ function Commissie(props) {
 
     return (
         props.position === "left" || window.innerWidth <= 1023 ? (<div id={props.name} className="commissieContainer">
-        <img className="commissieLogo roundedRight" src={getUrl(`commissies/${props.fotos}/logo.jpg`)} alt="" />
+        <img className="commissieLogo roundedRight" src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
         <div className="commissieInfo roundedLeft">
         {props.name === ".ComCom" ? <a target="_blank" rel="noreferrer" className="commissieEasteregg" href="https://nl.wikipedia.org/wiki/Komkommer"><Header text={props.name} position="left" /></a> : <Header text={props.name} position="left" />}
             <p className="commissieStukje">
@@ -46,7 +45,7 @@ function Commissie(props) {
 
 
         <div className="commissieLogo roundedRight">
-            <img className="commissieFoto roundedRight" src={getUrl(`commissies/${props.fotos}/commissie.jpg`)} alt="" />
+            <img className="commissieFoto roundedRight" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
         </div>
 
         <div className="commissieInfo roundedLeft">
@@ -54,7 +53,7 @@ function Commissie(props) {
             <div id={props.name + "scroll"} className="commissieLeden">
                 {props.leden.map((lid) =>
                     <div key={props.name + lid.naam} className="commissieLid">
-                        <img className="commissieLidFoto" src={getUrl(`commissies/${props.fotos}/${lid.foto}.jpg`)} alt="" />
+                        <img className="commissieLidFoto" src={require(`../../../images/commissies/${props.fotos}/${lid.foto}.jpg`).default} alt="" />
                         <p className="commissieLidNaam">{lid.naam}</p>
                         <p className="commissieLidFunctie">{lid.functie}</p>
                     </div>
@@ -79,14 +78,14 @@ function Commissie(props) {
 
                     </div>
                 </div>
-                <img className={"commissieLogo roundedLeft"} src={getUrl(`commissies/${props.fotos}/logo.jpg`)} alt="" />
+                <img className={"commissieLogo roundedLeft"} src={require(`../../../images/commissies/${props.fotos}/logo.jpg`).default} alt="" />
 
                 <div className="commissieInfo roundedRight inverseMargin">
                     <Header text={props.name + " leden"} position="left" />
                     <div id={props.name + "scroll"} className="commissieLeden">
                         {props.leden.map((lid) =>
                             <div key={props.name + lid.naam + "2"} className="commissieLid">
-                                <img className="commissieLidFoto" src={getUrl(`commissies/${props.fotos}/${lid.foto}.jpg`)} alt="" />
+                                <img className="commissieLidFoto" src={require(`../../../images/commissies/${props.fotos}/${lid.foto}.jpg`).default} alt="" />
                                 <p className="commissieLidNaam">{lid.naam}</p>
                                 <p className="commissieLidFunctie">{lid.functie}</p>
                             </div>
@@ -99,7 +98,7 @@ function Commissie(props) {
                 </div>
 
                 <div className="commissieLogo roundedLeft">
-                    <img className="commissieFoto roundedLeft" src={getUrl(`commissies/${props.fotos}/commissie.jpg`)} alt="" />
+                    <img className="commissieFoto roundedLeft" src={require(`../../../images/commissies/${props.fotos}/commissie.jpg`).default} alt="" />
                 </div>
 
 

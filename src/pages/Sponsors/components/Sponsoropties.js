@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../../../components/Header";
 import {ReactComponent as Maltha} from "../../../images/contact/maltha.svg";
 import "./Sponsoropties.scss"
-import getUrl from "../../../functions/links";
 
 function Sponsoropties() {
     return(
@@ -19,7 +18,7 @@ function Sponsoropties() {
                 </div>
                
             </div>
-            <img src={getUrl(`sponsors/sponsoropties.jpg`)} alt="" className="sponsoropties_6" />
+            <img src={require(`../../../images/sponsors/sponsoropties.jpg`).default} alt="" className="sponsoropties_6" />
         </div>
     )
 }
