@@ -5,16 +5,15 @@ import WedstrijdAlgemeen from "./components/WedstrijdAlgemeen";
 import WedstrijdBelangrijk from "./components/WedstrijdBelangrijk";
 import "./Wedstrijd.scss";
 
-function Wedstrijd() {
+function Wedstrijd(props) {
     return(
         <div>
-            <PageTitle title="NSK Indoor"/>
+            <PageTitle title={props.wedstrijd.naam}/>
             <div className="wedstrijd_container">
-                <img className="wedstrijd_logo" src={indoor} alt =""/>
-                <WedstrijdAlgemeen />
-                <WedstrijdBelangrijk />
+                <img className="wedstrijd_logo" src={require(`../../images/wedstrijden/${props.wedstrijd.logo_rond}`).default} alt =""/>
+                <WedstrijdAlgemeen wedstrijd={props.wedstrijd}/>
+                <WedstrijdBelangrijk wedstrijd={props.wedstrijd}/>
             </div>
-            
         </div>
     )
 }
