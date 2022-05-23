@@ -3,7 +3,13 @@ import AuthContext, {AuthState, refresh_tokens, useAuth} from "./AuthContext";
 import {decodeJwtPayload} from "./functions/OAuth";
 import Timer from "./Timer";
 import {back_request} from "./functions/Request";
+import {z} from "zod";
 
+const Profile = z.object({
+    username: z.string(),
+    scope: z.string(),
+})
+type Profile = z.infer<typeof Profile>;
 
 const Protected = () => {
 
@@ -20,9 +26,9 @@ const Protected = () => {
         if (changedState) {
             setAuthState(returnedState)
         }
-        let { username, scope } = response
-        setUser(username)
-        setAccessScope(scope)
+        let profile: Profile = Profile.parse(response)
+        setUser(profile.username)
+        setAccessScope(profile.scope)
     }
 
     const setProfile = async () => {
