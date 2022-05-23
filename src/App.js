@@ -18,6 +18,7 @@ import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
 import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
+import WedstrijdText from "./content/Wedstrijden.json";
 import "./App.scss";
 
 function App() {
@@ -46,9 +47,13 @@ function App() {
               <Route path="/trainingen">
                 <Trainingen />
               </Route>
-              <Route path="/wedstrijden/nskindoor">
-                <Wedstrijd />
-              </Route>
+              {WedstrijdText.wedstrijden.map((item) =>
+                (item.path === "" ? "" : 
+                  <Route path={"/wedstrijden" + item.path}>
+                    <Wedstrijd wedstrijd={item}/>
+                  </Route>
+                )
+              )}
               <Route path="/wedstrijden">
                 <Wedstrijden />
               </Route>

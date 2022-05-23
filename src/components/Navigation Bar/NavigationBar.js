@@ -9,6 +9,7 @@ import MobileDropdown from "./MobileDropdown";
 import disableScroll from 'disable-scroll';
 import logo from "../../images/dodeka.png";
 import dodeka from "../../images/logo.png";
+import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss"
 
 function NavigationBar() {
@@ -32,7 +33,7 @@ function NavigationBar() {
           <Item name="Nieuws" path="/nieuws" />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} />
           <Item name="Trainingen" path="/trainingen" />
-          <Dropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "NSK Indoor", path: "/nskindoor"}]} />
+          <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path}))} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
         </div>

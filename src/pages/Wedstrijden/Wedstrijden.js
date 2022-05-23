@@ -11,13 +11,13 @@ function Wedstrijden() {
             <PageTitle title="Wedstrijden"/>
             <div id="eigenWedstrijden">
                 {TextWedstrijden.wedstrijden.map(wedstrijd => 
-                    <EigenWedstrijd naam={wedstrijd.naam} datum={wedstrijd.datum} foto={wedstrijd.foto} info={wedstrijd.info} path={wedstrijd.path}/>
+                    <EigenWedstrijd naam={wedstrijd.naam} datum={wedstrijd.datum} logo={wedstrijd.logo} info_kort={wedstrijd.info_kort} path={wedstrijd.path}/>
                 )}
-                <div id="wedstrijdenPaging">
+                {/* <div id="wedstrijdenPaging">
                     {TextWedstrijden.wedstrijden.map((wedstrijd, index) => 
                         <div className="wedstrijdenPagingCircle"/>
                     )}
-                </div>
+                </div> */}
             </div>
         </div>
     )
