@@ -1,8 +1,15 @@
 import config from "../config"
 import ky from "ky"
 import {AuthState, refresh_tokens, useAuth} from "../AuthContext";
+import {z} from "zod";
 
 const api = ky.create({prefixUrl: config.api_location});
+
+const Profile = z.object({
+    username: z.string(),
+    scope: z.string(),
+})
+type Profile = z.infer<typeof Profile>;
 
 export const back_request = async (endpoint: string, access: string, refresh: string, as: AuthState) => {
     let returnedState = as
@@ -43,4 +50,10 @@ export const back_request = async (endpoint: string, access: string, refresh: st
     }).json()
 
     return { response, returnedState, changedState }
+}
+
+export const profile_request = async (access: string, refresh: string, as: AuthState) => {
+    let { response, returnedState, changedState } = await back_request('res/profile', access, refresh, as)
+    const profile: Profile = Profile.parse(response)
+    return { profile, returnedState, changedState }
 }

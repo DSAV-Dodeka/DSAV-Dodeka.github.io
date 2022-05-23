@@ -2,14 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import AuthContext, {AuthState, refresh_tokens, useAuth} from "./AuthContext";
 import {decodeJwtPayload} from "./functions/OAuth";
 import Timer from "./Timer";
-import {back_request} from "./functions/Request";
-import {z} from "zod";
-
-const Profile = z.object({
-    username: z.string(),
-    scope: z.string(),
-})
-type Profile = z.infer<typeof Profile>;
+import {profile_request} from "./functions/Request";
 
 const Protected = () => {
 
@@ -22,11 +15,10 @@ const Protected = () => {
     const [refresh, setRefresh] = useState("")
 
     const loadScope = async () => {
-        const { response, returnedState, changedState  } = await back_request('res/profile', accessRaw, refresh, authState)
+        const { profile, returnedState, changedState  } = await profile_request(accessRaw, refresh, authState)
         if (changedState) {
             setAuthState(returnedState)
         }
-        let profile: Profile = Profile.parse(response)
         setUser(profile.username)
         setAccessScope(profile.scope)
     }
