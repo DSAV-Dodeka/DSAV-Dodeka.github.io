@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import AuthContext, {AuthState, refresh_tokens, useAuth} from "./AuthContext";
 import {decodeJwtPayload} from "./functions/OAuth";
 import Timer from "./Timer";
+import {back_request} from "./functions/Request";
 
 
 const Protected = () => {
@@ -15,15 +16,11 @@ const Protected = () => {
     const [refresh, setRefresh] = useState("")
 
     const loadScope = async () => {
-        const bearer = 'Bearer ' + accessRaw
-        const res = await fetch(`http://localhost:4243/res/profile/`, {
-            method: 'GET',
-            headers: {
-                'Authorization': bearer
-            }
-        })
-
-        const { username, scope } = await res.json()
+        const { response, returnedState, changedState  } = await back_request('res/profile', accessRaw, refresh, authState)
+        if (changedState) {
+            setAuthState(returnedState)
+        }
+        let { username, scope } = response
         setUser(username)
         setAccessScope(scope)
     }

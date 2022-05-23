@@ -21,7 +21,7 @@ export class AuthState {
     }
 }
 
-interface IAuth {
+export interface IAuth {
     authState: AuthState,
     setAuthState: Dispatch<SetStateAction<AuthState>>
 }
