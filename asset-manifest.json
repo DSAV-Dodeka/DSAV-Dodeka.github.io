@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.fa07b2f1.chunk.css",
-    "main.js": "/static/js/main.81670d6d.chunk.js",
-    "main.js.map": "/static/js/main.81670d6d.chunk.js.map",
+    "main.js": "/static/js/main.847e57ac.chunk.js",
+    "main.js.map": "/static/js/main.847e57ac.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8d6da718.js",
     "runtime-main.js.map": "/static/js/runtime-main.8d6da718.js.map",
-    "static/js/2.675279b1.chunk.js": "/static/js/2.675279b1.chunk.js",
-    "static/js/2.675279b1.chunk.js.map": "/static/js/2.675279b1.chunk.js.map",
+    "static/js/2.121e97a7.chunk.js": "/static/js/2.121e97a7.chunk.js",
+    "static/js/2.121e97a7.chunk.js.map": "/static/js/2.121e97a7.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.fa07b2f1.chunk.css.map": "/static/css/main.fa07b2f1.chunk.css.map",
-    "static/js/2.675279b1.chunk.js.LICENSE.txt": "/static/js/2.675279b1.chunk.js.LICENSE.txt",
+    "static/js/2.121e97a7.chunk.js.LICENSE.txt": "/static/js/2.121e97a7.chunk.js.LICENSE.txt",
     "static/media/Broek.jpg": "/static/media/Broek.af87a301.jpg",
     "static/media/Hoodie.jpg": "/static/media/Hoodie.dcd03789.jpg",
     "static/media/Singlet.jpg": "/static/media/Singlet.8e263b4b.jpg",
@@ -82,9 +82,13 @@
     "static/media/nsk_indoor.png": "/static/media/nsk_indoor.6777127b.png",
     "static/media/nsk_indoor_algemeen.jpeg": "/static/media/nsk_indoor_algemeen.f6e3b72d.jpeg",
     "static/media/nsk_indoor_logo.jpg": "/static/media/nsk_indoor_logo.a196fd39.jpg",
+    "static/media/nsk_teams.jpeg": "/static/media/nsk_teams.0afe8069.jpeg",
     "static/media/nsk_teams.jpg": "/static/media/nsk_teams.b30c9b7d.jpg",
+    "static/media/nsk_teams_algemeen.jpeg": "/static/media/nsk_teams_algemeen.294bf10c.jpeg",
+    "static/media/nsk_teams_logo.jpeg": "/static/media/nsk_teams_logo.669e30ee.jpeg",
     "static/media/nsk_weg.jpg": "/static/media/nsk_weg.f24c1e72.jpg",
     "static/media/nskbaan.jpg": "/static/media/nskbaan.e5acfbd8.jpg",
+    "static/media/nskindoor22.jpg": "/static/media/nskindoor22.7d5bbeae.jpg",
     "static/media/onderVereniging.jpg": "/static/media/onderVereniging.208eb336.jpg",
     "static/media/over.jpg": "/static/media/over.9b8337e7.jpg",
     "static/media/overBestuur.jpg": "/static/media/overBestuur.f0783573.jpg",
@@ -113,6 +117,7 @@
     "static/media/trainerRik.jpg": "/static/media/trainerRik.00f31953.jpg",
     "static/media/trainerSanne.jpg": "/static/media/trainerSanne.ddf40068.jpg",
     "static/media/trainingen.jpg": "/static/media/trainingen.9f4fb674.jpg",
+    "static/media/trainingsweekend22.jpg": "/static/media/trainingsweekend22.f362e091.jpg",
     "static/media/uithof.jpg": "/static/media/uithof.f71905bb.jpg",
     "static/media/website_OWee.jpg": "/static/media/website_OWee.09521081.jpg",
     "static/media/website_ObiBo.jpg": "/static/media/website_ObiBo.d0c960e6.jpg",
@@ -151,8 +156,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.8d6da718.js",
-    "static/js/2.675279b1.chunk.js",
+    "static/js/2.121e97a7.chunk.js",
     "static/css/main.fa07b2f1.chunk.css",
-    "static/js/main.81670d6d.chunk.js"
+    "static/js/main.847e57ac.chunk.js"
   ]
 }
