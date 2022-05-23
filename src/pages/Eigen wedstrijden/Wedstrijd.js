@@ -1,6 +1,5 @@
 import React from "react";
 import PageTitle from "../../components/PageTitle";
-import indoor from "../../images/wedstrijden/nsk_indoor_logo.jpg";
 import WedstrijdAlgemeen from "./components/WedstrijdAlgemeen";
 import WedstrijdBelangrijk from "./components/WedstrijdBelangrijk";
 import "./Wedstrijd.scss";

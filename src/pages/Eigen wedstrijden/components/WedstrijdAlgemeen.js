@@ -2,17 +2,6 @@ import React from "react";
 import parse from "html-react-parser";
 import "./WedstrijdAlgemeen.scss";
 
-function getLinks(text) {
-    var values = text.split('<')
-    var res = values[0];
-    for (const x of values) {
-        var link = x.split('>')[0];
-        var rest = x.split('>')[1];
-        res += rest;
-    }
-    return res;
-}
-
 function Wedstrijd(props) {
     return(
         <div className="wedstrijd_algemeen">
