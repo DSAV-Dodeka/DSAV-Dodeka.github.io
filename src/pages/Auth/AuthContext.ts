@@ -1,6 +1,6 @@
 import {createContext, Dispatch, SetStateAction} from "react";
 import {handleTokenResponse, parseIdToken} from "./functions/OAuth";
-import config from "./config";
+import config from "../../config";
 import {redirect_uri} from "./AuthRedirect";
 
 class User {

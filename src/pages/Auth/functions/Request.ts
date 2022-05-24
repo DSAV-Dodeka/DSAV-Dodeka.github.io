@@ -1,4 +1,4 @@
-import config from "../config"
+import config from "../../../config"
 import ky from "ky"
 import {AuthState, refresh_tokens, useAuth} from "../AuthContext";
 import {z} from "zod";

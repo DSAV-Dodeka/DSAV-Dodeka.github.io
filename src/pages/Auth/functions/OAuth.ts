@@ -1,6 +1,6 @@
 import { binToBase64Url, base64ToBin, stringToUint8 } from "./AuthUtility"
 import { z } from "zod";
-import config from "../config";
+import config from "../../../config";
 
 export function computeRandom(length=16) {
     const random_bin = crypto.getRandomValues(new Uint8Array(length))

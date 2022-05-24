@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {decodeJwtPayload, handleTokenResponse, validateIdToken} from "./functions/OAuth";
 import {redirect_uri} from "./AuthRedirect";
-import config from "./config"
+import config from "../../config"
 import AuthContext, {useAuth} from "./AuthContext";
 
 
