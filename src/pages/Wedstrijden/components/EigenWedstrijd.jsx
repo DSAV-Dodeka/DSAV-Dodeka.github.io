@@ -13,9 +13,9 @@ function EigenWedstrijd(props) {
         <div className="eigenWedstrijd">
             <p className="eigenWedstrijdNaam">{props.naam}</p>
             <p className="eigenWedstrijdDatum">{props.datum}</p>
-            <img className="eigenWedstrijdFoto" src={getUrl(`wedstrijden/${props.foto}`)} alt=""/>
-            <p className="eigenWedstrijdInfo">{props.info}</p>
-            {props.path === "" ? "" : <Link to={"/wedstrijden" + props.path}><h1 className="eigenWedstrijdLink">Bekijk wedstrijd</h1></Link>} 
+            <img className="eigenWedstrijdFoto" src={getUrl(`wedstrijden/${props.logo}`)} alt=""/>
+            <p className="eigenWedstrijdInfo">{props.info_kort}</p>
+            {props.path === "" ? "" : <Link to={"/wedstrijden" + props.path}><h1 className="eigenWedstrijdLink">Bekijk wedstrijd</h1></Link>}
         </div>
     )
 }

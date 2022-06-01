@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "disable-scroll": "^0.6.0",
+    "html-react-parser": "^1.4.14",
     "ky": "^0.30.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

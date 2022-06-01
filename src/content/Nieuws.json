@@ -1,6 +1,22 @@
 {
     "nieuwsberichten": [
         {
+            "id": "trainingsweekend_22",
+            "titel": "Trainingsweekend Schoorl",
+            "datum": "24-04-2021",
+            "auteur": "Thomas",
+            "tekst": "In het weekend van 22 tot 24 april was het tijd voor het eerste Dodeka trainingsweekend. Op vrijdagavond zijn we met een groep atleten afgereisd naar Schoorl om daar een weekend lang in de duinen en op het strand te kunnen trainen. De vrijdagavond begon rustig met een core stability training tussen de bedden van de slaapzaal. Op zaterdagochtend gingen we de duinen in, waar de groep zich opsplitste in een loopgroep en baangroep. Beide groepen werkten in de duinen een trainingsprogramma af. In de middag vertrokken we naar het strand, waar we ons na de tweede training lekker op het strand vermaakt hebben. Na een hele gezellige avond was het dan zondagochtend tijd voor de laatste training. Deze was ondanks zijn simpele eenvoud misschien nog wel het zwaarst. De opdracht was: ren twaalf keer deze duin op. Ondanks dat het zwaar was, was het zeker een geslaagd eerste trainingsweekend!",
+            "foto": "trainingsweekend22.jpg"
+        },
+        {
+            "id": "nsk_indoor_22",
+            "titel": "NSK indoor 2022",
+            "datum": "23-03-2021",
+            "auteur": "Thomas",
+            "tekst": "Afgelopen 12 maart was het dan eindelijk zover, het was tijd voor het NSK Indoor. Vanuit Delft zijn wij met een grote groep atleten, vrijwilligers en natuurlijk de organiserende commissie afgereisd naar Apeldoorn. Dit alles om in de droge lucht van Omnisport aan een mooie wedstrijd deel te nemen. En een mooie wedstrijd is het ook zeker geworden. Door de inzet van de NSK Indoorcommissie hebben wij, aan het einde van een toch enigszins beperkt indoorseizoen, kunnen genieten van een prachtige indoorwedstrijd en na een hoogwaardig diner ook nog een gezellig feestje om de dag goed af te sluiten. Door de dag heen zijn er geweldige prestaties neergezet, niet alleen door onze atleten, maar ook door de commissie, die met hulp van alle vrijwilligers ervoor heeft gezorgd dat het chronoloog perfect werd gevolgd.",
+            "foto": "nskindoor22.jpg"
+        },
+        {
             "id": "nk_indoor_22",
             "titel": "Enthousiaste atleetjes op het NK Indoor",
             "datum": "28-02-2021",
