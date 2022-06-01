@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../../components/Header";
 import "./Loopgroep.scss"
+import getUrl from "../../../functions/links";
 
 function Loopgroep(props) {
     return(
@@ -16,7 +17,7 @@ function Loopgroep(props) {
                     )}  
                 </p>
             </div> 
-            <img src={require(`../../../images/trainingen/${props.foto}`).default} alt="" className="loopgroep_4" />
+            <img src={getUrl(`trainingen/${props.foto}`)} alt="" className="loopgroep_4" />
                
         </div>
     )
