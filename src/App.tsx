@@ -17,6 +17,7 @@ import Commissies from "./pages/Commissies/Commissies";
 import Bestuur from "./pages/Bestuur/Bestuur";
 import Sponsors from "./pages/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
+import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
 import "./App.scss";
 
@@ -41,9 +42,13 @@ function App() {
                   <Route path="/trainingen" element={
                     <Trainingen />
                   }/>
-                  <Route path="/wedstrijden/nskindoor" element={
-                    <Wedstrijd />
-                  }/>
+                  {WedstrijdText.wedstrijden.map((item) =>
+                      (item.path === "" ? "" :
+                              <Route path={"/wedstrijden" + item.path} element={
+                                <Wedstrijd wedstrijd={item}/>
+                            }/>
+                      )
+                  )}
                   <Route path="/wedstrijden" element={
                     <Wedstrijden />
                   }/>
