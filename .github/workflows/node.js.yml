@@ -22,15 +22,9 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
-
-  deploy:
     - uses: s0/git-publish-subdir-action@develop
       env:
         REPO: self
         BRANCH: site
         FOLDER: dist
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: site
-        publish_dir: ./build
-        commit_message: "Automatic deploy"
-        cname: dsavdodeka.nls
