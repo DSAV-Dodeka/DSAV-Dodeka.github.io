@@ -27,4 +27,4 @@ jobs:
         REPO: self
         BRANCH: site
         FOLDER: dist
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
