@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, ts-test ]
   pull_request:
     branches: [ main ]
 
@@ -22,8 +22,13 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
-    - uses: peaceiris/actions-gh-pages@v3.7.3
-      with:
+
+  deploy:
+    - uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: self
+        BRANCH: site
+        FOLDER: dist
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: site
         publish_dir: ./build
