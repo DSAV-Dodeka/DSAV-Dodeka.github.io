@@ -61,7 +61,7 @@ function NavigationBar() {
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
             <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
-            <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}, { name: "NSK Indoor", path: "/nskindoor" }]} onClick={() => setActive(false)} />
+            <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})))} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
             <Item name="Account" path="/profile" onClick={() => setActive(false)} />
