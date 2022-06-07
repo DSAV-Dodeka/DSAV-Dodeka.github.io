@@ -19,6 +19,7 @@ import Sponsors from "./pages/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
+import Gezelligheid from "./pages/Gezelligheid/Gezelligheid";
 import "./App.scss";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
                   <Route path="vereniging" element={<Vereniging />} />
                   <Route path="vereniging/commissies" element={<Commissies />} />
                   <Route path="vereniging/bestuur" element={<Bestuur />} />
+                  <Route path="vereniging/gezelligheid" element={<Gezelligheid />} />
                   <Route path="/trainingen" element={
                     <Trainingen />
                   }/>

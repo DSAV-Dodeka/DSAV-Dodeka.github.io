@@ -1,0 +1,54 @@
+@import "../../variables";
+
+
+.algemeen{
+    margin-top: 0rem;
+}
+
+.headeropmaak{
+    width: 100%;
+}
+
+.fotobalk{
+    width: 100%;
+    height: 20rem;
+}
+
+.fotos{
+    width: 25%;
+    height: 20rem;
+    object-fit: cover;
+    object-position: center;
+    @include respond(mobile){
+        width: 100%;
+    }
+}
+
+.textalgemeen{
+    width: 100%;
+    height: 30rem;
+    background-color: white;
+}
+
+.textkolom{
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    width: 29%;
+    display: inline-table;
+    height: 20rem;
+    padding: 2rem;
+    margin-left: 2%;
+    margin-right: 2%;
+    background-color: $dodeka_blauw;
+}
+
+.textvakheader{
+    color: white;
+    padding-bottom: 1rem;
+    font-size: $font_large;
+}
+
+.text{
+    color: white;
+    font-size: $font_medium;
+}
