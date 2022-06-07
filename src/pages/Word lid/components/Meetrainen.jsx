@@ -15,7 +15,7 @@ function Meetrainen(props) {
     return (
         <div className="meetrainen_1">
             <div className="meetrainen_2">
-                <Header text="Proeftrainen" position="left" />
+                <Header text="Proeftrainen en inschrijven" position="left" />
                 <p className="meetrainen_3">
                   Bij D.S.A.V. Dodeka krijg je het hele jaar door de mogelijkheid om drie keer gratis te komen proeftrainen. Zo kun je de sfeer te proeven en erachter komen of atletiek iets voor jou is. Heb je na de proeftrainingen de smaak te pakken en wil je lid worden? Inschrijvingen verlopen via AV`40 en hun inschrijfformulier vind je hieronder.
                 </p>
