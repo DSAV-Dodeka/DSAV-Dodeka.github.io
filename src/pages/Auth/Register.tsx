@@ -1,4 +1,6 @@
 import React, {useReducer, Reducer} from "react";
+import "./Register.scss";
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 const registerReducer = (state: RegisterState, action: RegisterAction): RegisterState => {
     switch (action.type) {
@@ -17,9 +19,11 @@ const registerReducer = (state: RegisterState, action: RegisterAction): Register
 }
 
 type RegisterState = {
-    username: string,
+    name: string,
+    surname: string,
+    email: string,
+    phone: string,
     password: string,
-    email: string
 }
 
 type RegisterAction =
@@ -28,9 +32,11 @@ type RegisterAction =
     | { type: 'change', field: string, value: string }
 
 const initialState: RegisterState = {
-    username: "",
+    name: "",
+    surname: "",
+    email: "",
+    phone: "",
     password: "",
-    email: ""
 }
 
 const Register = () => {
@@ -53,21 +59,21 @@ const Register = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username</label>
-                    <input id="username" type="text" placeholder="username" name="username" value={state.username}
+            <form className="registerForm" onSubmit={handleSubmit}>
+                <div className="formContents">
+                    <input id="name" type="text" placeholder="Voornaam" name="name" value={state.name}
                            onChange={handleFormChange}/>
-                    <br />
-                    <label>Password</label>
-                    <input type="password" placeholder="password" name="password" value={state.password}
-                           onChange={handleFormChange} />
-                    <br />
-                    <label>E-mail</label>
-                    <input type="text" placeholder="e-mail" name="email" value={state.email}
+                    <input id="surname" type="text" placeholder="Achternaam" name="surname" value={state.surname}
                            onChange={handleFormChange}/>
+                    <input id="email" type="text" placeholder="E-mail" name="email" value={state.email}
+                           onChange={handleFormChange}/>
+                    <input id="phone" type="text" placeholder="Telefoonnummer" name="phone" value={state.phone}
+                           onChange={handleFormChange}/>
+                    <input id="password" type="password" placeholder="Wachtwoord" name="password" value={state.password}
+                           onChange={handleFormChange}/>
+                    <PasswordStrengthBar password={state.password} />
                 </div>
-                <button id="submit_button" type="submit">Register</button><br />
+                <button className="registerButton" id="submit_button" type="submit">Registreer</button><br />
             </form>
         </>
     )

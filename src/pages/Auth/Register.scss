@@ -1,0 +1,50 @@
+@import "../../variables";
+
+.registerForm {
+    width: 50%;
+    background-color: $dodeka_blauw;
+    margin: auto;
+    border-radius: 0.75rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding: 2rem;
+}
+
+.formContents {
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formContents input {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    margin-bottom: 0.5rem;
+}
+
+.formContents input:focus {
+    outline: none;
+}
+
+.registerButton {
+    margin-left: 25%;
+    width: 50%;
+    background-color: $dodeka_rood;
+    color: white;
+    border-radius: 0.75rem;
+    border: none;
+    padding: 1rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-top: 2rem;
+    cursor: pointer;
+}
