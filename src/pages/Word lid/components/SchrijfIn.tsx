@@ -1,5 +1,6 @@
 import React, {useReducer, Reducer, useState} from "react";
 import {back_post} from "../../../functions/api";
+import "./SchrijfIn.scss";
 
 const redirectUrl = "https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1"
 
@@ -61,29 +62,22 @@ const SchrijfIn = () => {
     }
 
     return (
-        <>
+        <div className="schrijfInDiv">
             {show && <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Voornaam</label>
-                    <input type="text" name="firstname" value={state.firstname}
+                <div className="inputDiv">
+                    <input type="text" name="firstname" placeholder="Voornaam" value={state.firstname}
                            onChange={handleFormChange}/>
-                    <br />
-                    <label>Achternaam</label>
-                    <input type="text" name="lastname" value={state.lastname}
+                    <input type="text" name="lastname" placeholder="Achternaam" value={state.lastname}
                            onChange={handleFormChange}/>
-                    <br />
-                    <label>Telefoon</label>
-                    <input type="text" name="phone" value={state.phone}
+                    <input type="text" name="phone" placeholder="Telefoonnummer" value={state.phone}
                            onChange={handleFormChange} />
-                    <br />
-                    <label>E-mail</label>
-                    <input type="text" name="email" value={state.email}
+                    <input type="text" name="email" placeholder="E-mail" value={state.email}
                            onChange={handleFormChange}/>
                 </div>
-                <button id="submit_button" type="submit">Schrijf je in via AV`40</button><br />
+                <button className="schrijfInButton" id="submit_button" type="submit">Schrijf je in via AV`40</button><br />
             </form>}
-            {!show && <button className="meetrainen_4" onClick={handleSignup}>Schrijf je in!</button>}
-        </>
+            {!show && <button className="schrijfInButton" onClick={handleSignup}>Schrijf je in!</button>}
+        </div>
     )
 }
 

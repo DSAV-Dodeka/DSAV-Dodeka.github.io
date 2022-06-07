@@ -1,0 +1,64 @@
+@import "../../../variables";
+
+.schrijfInDiv {
+    width: 100%;
+}
+
+.schrijfInButton{
+    background-color: $dodeka_rood;
+    border-style: none;
+    width: 100%;
+    padding-top: $margin_mobile;
+    padding-bottom: $margin_mobile;
+    color: white;
+    font-size: $font_medium;
+    line-height: $font_medium;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-weight: $bold;
+    cursor: pointer;
+    margin-top: $margin_mobile;
+    margin-left: $margin_mobile;
+    margin-right: $margin_mobile;
+    box-shadow: 0 0 15px $dodeka_blauw;
+    // transition: 0.3s;
+    @include respond(computerscherm){
+        width: calc(100% - 2 * $margin_x);
+        margin-top: $margin_y;
+        margin-left: $margin_x;
+        margin-right: $margin_x;
+    }
+}
+
+// .schrijfInButton:hover {
+//     color: $dodeka_rood;
+//     background-color: white;
+// }
+
+.inputDiv {
+    width: calc(100% - 2 * $margin_x - 1rem);
+    margin-left: 4rem;
+    margin-right: 4rem;
+    padding-top: 1rem;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 50% 50%;
+}
+
+.inputDiv input {
+    width: 100%;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+}
+
+.inputDiv input:focus {
+    outline: none;
+}
+
+.inputDiv input::placeholder {
+    color: $dodeka_blauw90p;
+}
