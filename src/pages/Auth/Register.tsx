@@ -1,6 +1,7 @@
-import React, {useReducer, Reducer} from "react";
+import React, {useReducer, Reducer, useState} from "react";
 import "./Register.scss";
 import PasswordStrengthBar from 'react-password-strength-bar';
+import config from "../../config";
 
 const registerReducer = (state: RegisterState, action: RegisterAction): RegisterState => {
     switch (action.type) {
@@ -10,7 +11,13 @@ const registerReducer = (state: RegisterState, action: RegisterAction): Register
                 [action.field]: action.value
             }
         case 'register':
-            console.log(state.email)
+            localStorage.setItem("register_password", state.password)
+            const target_params = new URLSearchParams({
+                "email": state.email,
+                "register_id": state.register_id
+            }).toString()
+
+            window.location.assign(config.auth_location + "/credentials/register/?" + target_params)
             return state
         default:
             throw new Error()
@@ -24,6 +31,7 @@ type RegisterState = {
     email: string,
     phone: string,
     password: string,
+    register_id: string
 }
 
 type RegisterAction =
@@ -37,10 +45,10 @@ const initialState: RegisterState = {
     email: "",
     phone: "",
     password: "",
+    register_id: ""
 }
 
 const Register = () => {
-
     const [state, dispatch] = useReducer<Reducer<RegisterState, RegisterAction>, RegisterState>(
         registerReducer,
         initialState,
@@ -48,7 +56,9 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        const source_params = (new URLSearchParams(window.location.search))
+        const registerId = source_params.get("register_id");
+        dispatch({type: 'change', field: "register_id", value: registerId})
         dispatch({type: 'register'})
     }
 

@@ -27,6 +27,7 @@ import {AuthProvider, AuthState, useAuth} from "./pages/Auth/AuthContext";
 import Protected from "./pages/Auth/Protected";
 import Login from "./components/Login/Login";
 import Register from "./pages/Auth/Register";
+import RegisterRedirect from "./pages/Auth/RegisterRedirect";
 
 function App() {
   const [authState, setAuthState] = useState(new AuthState());
@@ -89,6 +90,7 @@ function App() {
                   />
                   <Route path="/lg" element={<AuthRedirect />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
+                  <Route path="/register/redirect" element={<RegisterRedirect />} />
                   <Route path="/profile" element={<Protected />} />
                   <Route path="/register" element={<Register />} />
                 </Routes>
