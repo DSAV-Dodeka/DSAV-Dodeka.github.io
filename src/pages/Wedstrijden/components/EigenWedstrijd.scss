@@ -18,6 +18,13 @@
     }
 }
 
+.eigenWedstrijdOud {
+    border-left: 4rem solid #808080;
+    @include respond(mobile) {
+        border-left: 2rem solid #808080;
+    }
+}
+
 .eigenWedstrijdNaam {
     display: block;
     color: white;
@@ -32,6 +39,10 @@
     font-size: $font_medium;
     line-height: $line_height_medium;
     font-weight: $bold;
+}
+
+.eigenWedstrijdDatumOud {
+    color: #808080;
 }
 
 .eigenWedstrijdFoto {
@@ -65,4 +76,8 @@
     font-size: $font_medium;
     line-height: $line_height_medium;
     bottom: 2rem;
+}
+
+.eigenWedstrijdLinkOud {
+    color: #808080;
 }

@@ -2,7 +2,7 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: Node.js CI
-
+ 
 on:
   push:
     branches: [ main ]
@@ -22,10 +22,13 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
-    - uses: peaceiris/actions-gh-pages@v3.7.3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: site
-        publish_dir: ./build
-        commit_message: "Automatic deploy"
-        cname: dsavdodeka.nls
+    - run: |
+        cp "CNAME" "./dist/CNAME"
+    - run: |
+        cp "404.html" "./dist/404.html"
+    - uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: self
+        BRANCH: site
+        FOLDER: dist
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
