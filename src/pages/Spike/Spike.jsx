@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Nieuwsbericht from "../Nieuws/components/Nieuwsbericht";
 import SpikeText from "../../content/Spike.json";
-import logo from "../../images/spike/logo.png";
 import "./Spike.scss";
+import getUrl from "../../functions/links";
 
 function Spike() {
     const [nBerichten, setNBerichten] = useState(3);
@@ -10,7 +10,7 @@ function Spike() {
     return(
         <div className="spikeContainer">
             <div className="spikeLogoContainer">
-                <img src={logo} alt="De Spike" className="spike_1"/>
+                <img src={getUrl("spike/logo.png")} alt="De Spike" className="spike_1"/>
             </div>
             <div className={"spike_2" + (nBerichten >= SpikeText.nieuwsberichten.length ? " spike_3" : "")}>
             {SpikeText.nieuwsberichten.slice(0, nBerichten).map((bericht, index) =>

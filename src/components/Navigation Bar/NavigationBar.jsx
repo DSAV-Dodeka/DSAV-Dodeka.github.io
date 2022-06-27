@@ -7,10 +7,9 @@ import Item from "./Item";
 import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from 'disable-scroll';
-import logo from "../../images/dodeka.png";
-import dodeka from "../../images/logo.png";
 import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss"
+import getUrl from "../../functions/links";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
@@ -26,7 +25,7 @@ function NavigationBar() {
     <div id="navBar">
       <nav id="navPc">
         <Link to="/">
-          <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={dodeka} alt="" />
+          <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={getUrl(`logo.png`)} alt="" />
         </Link>
         <div id="navItems">
           <Item name="Home" path="/" />
@@ -46,7 +45,7 @@ function NavigationBar() {
             <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
           <div className="navSpacing" />
-          <img id="navMobileLogo" src={logo} alt="" />
+          <img id="navMobileLogo" src={getUrl(`dodeka.png`)} alt="" />
           <div className="navSpacing" />
           <div className="hamburgerIconInvisible">
           <div className={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>

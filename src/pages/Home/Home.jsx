@@ -3,8 +3,8 @@ import HomeNieuws from './components/HomeNieuws';
 import TitleBar from './components/TitleBar';
 import HomeTrainingen from './components/HomeTrainingen';
 import HomeCommissies from './components/HomeCommissies';
-import logo from "../../images/logo.png";
 import "./Home.scss";
+import getUrl from "../../functions/links";
 
 const maxOffset = 24 * parseFloat(getComputedStyle(document.documentElement).fontSize);
 const logoMax = Math.min((6 * window.innerWidth / 15), 614.4) / parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -43,7 +43,7 @@ function Home() {
 
   return (
     <div>
-      <img id="home_logo" onClick={() => count()} src={logo} alt=""/>
+      <img id="home_logo" onClick={() => count()} src={getUrl(`logo.png`)} alt=""/>
       <TitleBar />
       <HomeNieuws />
       <HomeTrainingen />

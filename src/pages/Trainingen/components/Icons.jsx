@@ -1,10 +1,10 @@
 import React from "react";
-import icons from "../../../images/trainingen/icons.svg";
 import "./Icons.scss";
+import getUrl from "../../../functions/links";
 
 function Icons() {
     return(
-        <div id="icons" className="icons_1" style={{ backgroundImage: `url(${icons})` }} />
+        <div id="icons" className="icons_1" style={{ backgroundImage: `url(${getUrl(`trainingen/icons.svg`)})` }} />
     )
 }
 export default Icons;
