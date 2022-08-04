@@ -19,6 +19,7 @@ import Sponsors from "./pages/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
+import Arnold from "./pages/Arnold/Arnold";
 import "./App.scss";
 
 function App() {
@@ -36,9 +37,10 @@ function App() {
                   <Route path="/nieuws" element={
                     <Nieuws />
                   }/>
-                  <Route path="vereniging" element={<Vereniging />} />
-                  <Route path="vereniging/commissies" element={<Commissies />} />
-                  <Route path="vereniging/bestuur" element={<Bestuur />} />
+                  <Route path="/vereniging" element={<Vereniging />} />
+                  <Route path="/vereniging/commissies" element={<Commissies />} />
+                  <Route path="/vereniging/bestuur" element={<Bestuur />} />
+                  <Route path="/vereniging/arnold" element={<Arnold />} />
                   <Route path="/trainingen" element={
                     <Trainingen />
                   }/>
