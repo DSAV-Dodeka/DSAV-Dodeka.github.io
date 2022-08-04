@@ -11,17 +11,6 @@ const logoMax = Math.min((6 * window.innerWidth / 15), 614.4) / parseFloat(getCo
 
 function Home() {
   const [offset, setOffset] = useState(0);
-  const [counter, setCounter]  = useState(0);
-
-  function count() {
-    if (counter === 11) {
-      setCounter(0);
-      var win = window.open("https://nl.wikipedia.org/wiki/12_(getal)", '_blank');
-      win.focus();
-    } else {
-      setCounter(counter + 1);
-    }
-  }
 
   useEffect(() => {
     setOffset(window.pageYOffset);
@@ -43,7 +32,6 @@ function Home() {
 
   return (
     <div>
-      <img id="home_logo" onClick={() => count()} src={logo} alt=""/>
       <TitleBar />
       <HomeNieuws />
       <HomeTrainingen />

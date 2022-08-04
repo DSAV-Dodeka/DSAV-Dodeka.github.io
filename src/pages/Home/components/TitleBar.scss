@@ -92,9 +92,10 @@
     display: none;
     margin-left: auto;
     margin-right: auto;
-    width: 4rem;
+    width: 100px;
     margin-top: 2rem;
     @include respond(mobile) {
         display: block;
+        height: 100px;
     }
 }
