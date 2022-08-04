@@ -1,25 +1,6 @@
 {
     "wedstrijden": [
         {
-            "naam": "NSK Indoor",
-            "datum": "12/03/2022",
-            "tijd": "'11.00 uur",
-            "locatie": "Omnisport Apeldoorn",
-            "adres": "De Voorwaarts 55",
-            "postcode": "7321MA Apeldoorn",
-            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.853260909175!2d5.993609751905275!3d52.209714066829875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c7b8a7789688dd%3A0xcfd8f969fd9a9f5d!2sOmnisport%20Apeldoorn!5e0!3m2!1snl!2snl!4v1643105966460!5m2!1snl!2snl",
-            "logo": "nsk_indoor.png",
-            "logo_rond": "nsk_indoor_logo.jpg",
-            "foto": "nsk_indoor_algemeen.jpeg",
-            "uitslagen": "",
-            "mail": "nskindoor@dsavdodeka.nl",
-            "instagram": "https://www.instagram.com/nskindoor22/",
-            "bepalingen": "/files/wedstrijdreglement_nsk_indoor_2022.pdf",
-            "info_kort": "Dit jaar hebben wij de eer om de Nederlandse Studenten Kampioenschappen Indoor te organiseren. Dit wordt ons eerste fysieke NSK! De wedstrijd zal plaatsvinden in Omnisport in Apeldoorn.",
-            "info_lang": "Het Nederlandse Studentenkampioenschap Indooratletiek 2022 is dit jaar op zaterdag 12 maart georganiseerd door D.S.A.V. Dodeka in Omnisport, Apeldoorn. Wij vonden het een heel geslaagde dag, en willen graag alle deelnemers, vrijwilligers, officials, sponsors en andere ondersteunende partijen van harte bedanken. Zonder jullie was het nooit mogelijk geweest.<br/><br/> De dag begon om 11 uur met de eerste onderdelen en eindigde rond 7 uur na de estafettes en het ludieke onderdeel: slalommen over de hoogteverschillen van de rondbaan. Vervolgens zijn we van locatie verhuisd om gezellig te gaan eten en de dag af te sluiten met een groot feest. <br/><br/> Terugblikken op deze dag? Onderstaand is een overzicht van alle (tot nu toe binnengekomen) foto's van de fotografen. Delen mag, graag met het noemen van de naam van de fotograaf.<br/><br/> <a target=\"_blank\" rel=\"noreferrer\" href=\"https://photos.app.goo.gl/UeAXqJz5YnMrsr457\" className=\"wedstrijd_algemeen_link\">Harry van 't Veld</a><br/> <a target=\"_blank\" rel=\"noreferrer\" href=\"https://flic.kr/s/aHBqjzFzhT\" className=\"wedstrijd_algemeen_link\">Lars van der Valk</a><br/> <a target=\"_blank\" rel=\"noreferrer\" href=\"https://www.facebook.com/103783782064194/posts/gisteren-fotos-mogen-maken-bij-het-nederlands-studenten-kampioenschap-indoor-atl/150978680678037/\" className=\"wedstrijd_algemeen_link\">MaLy photography</a><br/> <a target=\"_blank\" rel=\"noreferrer\" href=\"https://www.flickr.com/gp/195286001@N08/Z5L0AA\" className=\"wedstrijd_algemeen_link\">Bouwe van Leeuwen</a><br/>",
-            "path": "/nskindoor"
-        },
-        {
             "naam": "NSK Teams",
             "datum": "17/09/2022",
             "tijd": "Nog niet bekend",
@@ -64,5 +45,26 @@
             "info_lang": "Op 12 November 2022 organiseert D.S.A.V. Dodeka het NSK Weg in Delft. Na een paar jaar van weg geweest en een online editie, is het moment eindelijk daar en mogen we weer samen strijden om de titel. NSK Weg is een duurloopwedstrijd die bestaat uit twee verschillende afstanden, de 5km en de 10km. Na de prestaties zal er nog een afsluitend avondeten en feest georganiseerd worden. Wij nodigen daarom alle Studenten Atletiek Verenigingen (SAV) uit om hier fantastische tijden neer te zetten. Ook zijn andere liefhebbers van de weg welkom. Met een bewijs van inschrijving aan de universiteit is het ook mogelijk om deel te nemen aan dit evenement. Vanaf sedert Oktober zullen de inschrijvingen opengesteld worden. Op dit moment (juni 2022) zijn we volop op zoek naar sponsoren van bedrijven om deze mooie dag werkelijk te maken. Het evenement gaat om de wedstrijd, eten, feest en slaaplocatie. Voor meer informatie wat er voor u als bedrijf mogelijk is qua promotie, verwijzen we jullie door naar de brochure. <br/><br/> Houd onze instragram in de gaten en we hopen jullie allemaal op 12 November in Delft te zien! <br/><br/> Dit NSK teams wordt georganiseerd onder auspiciën van Studenten Sport Nederland.",
             "path": "/nskweg"
         }
+    ],
+    "wedstrijden_oud": [
+        {
+            "naam": "NSK Indoor",
+            "datum": "12/03/2022",
+            "tijd": "11.00 uur",
+            "locatie": "Omnisport Apeldoorn",
+            "adres": "De Voorwaarts 55",
+            "postcode": "7321MA Apeldoorn",
+            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.853260909175!2d5.993609751905275!3d52.209714066829875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c7b8a7789688dd%3A0xcfd8f969fd9a9f5d!2sOmnisport%20Apeldoorn!5e0!3m2!1snl!2snl!4v1643105966460!5m2!1snl!2snl",
+            "logo": "nsk_indoor.png",
+            "logo_rond": "nsk_indoor_logo.jpg",
+            "foto": "nsk_indoor_algemeen.jpeg",
+            "uitslagen": "https://www.atletiek.nu/wedstrijd/main/36345/",
+            "mail": "nskindoor@dsavdodeka.nl",
+            "instagram": "https://www.instagram.com/nskindoor22/",
+            "bepalingen": "/files/wedstrijdreglement_nsk_indoor_2022.pdf",
+            "info_kort": "Dit jaar hebben wij de eer om de Nederlandse Studenten Kampioenschappen Indoor te organiseren. Dit wordt ons eerste fysieke NSK! De wedstrijd zal plaatsvinden in Omnisport in Apeldoorn.",
+            "info_lang": "Het Nederlandse Studentenkampioenschap Indooratletiek 2022 is dit jaar op zaterdag 12 maart georganiseerd door D.S.A.V. Dodeka in Omnisport, Apeldoorn. Wij vonden het een heel geslaagde dag, en willen graag alle deelnemers, vrijwilligers, officials, sponsors en andere ondersteunende partijen van harte bedanken. Zonder jullie was het nooit mogelijk geweest.<br/><br/> De dag begon om 11 uur met de eerste onderdelen en eindigde rond 7 uur na de estafettes en het ludieke onderdeel: slalommen over de hoogteverschillen van de rondbaan. Vervolgens zijn we van locatie verhuisd om gezellig te gaan eten en de dag af te sluiten met een groot feest. <br/><br/> Terugblikken op deze dag? Onderstaand is een overzicht van alle (tot nu toe binnengekomen) foto's van de fotografen. Delen mag, graag met het noemen van de naam van de fotograaf.<br/><br/> <a target=\"_blank\" rel=\"noreferrer\" href=\"https://photos.app.goo.gl/UeAXqJz5YnMrsr457\" className=\"wedstrijd_algemeen_link\">Harry van 't Veld</a><br/> <a target=\"_blank\" rel=\"noreferrer\" href=\"https://flic.kr/s/aHBqjzFzhT\" className=\"wedstrijd_algemeen_link\">Lars van der Valk</a><br/> <a target=\"_blank\" rel=\"noreferrer\" href=\"https://www.facebook.com/103783782064194/posts/gisteren-fotos-mogen-maken-bij-het-nederlands-studenten-kampioenschap-indoor-atl/150978680678037/\" className=\"wedstrijd_algemeen_link\">MaLy photography</a><br/> <a target=\"_blank\" rel=\"noreferrer\" href=\"https://www.flickr.com/gp/195286001@N08/Z5L0AA\" className=\"wedstrijd_algemeen_link\">Bouwe van Leeuwen</a><br/>",
+            "path": "/nskindoor"
+        }        
     ]
 }
