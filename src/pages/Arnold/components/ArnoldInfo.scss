@@ -5,6 +5,10 @@
     width: 100%;
     background-color: $dodeka_blauw90p;
     margin-bottom: 6rem;
+    @include respond(mobile) {
+        display: block;
+        margin-bottom: 4rem;
+    }
 }
 
 .arnoldText {
@@ -15,17 +19,30 @@
     padding-right: 4rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    @include respond(mobile) {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+    }
 }
 
 .arnoldText p {
     font-size: $font_small;
     line-height: $line_height_small;
     height: calc(100% - 4rem);
+    @include respond(mobile) {
+        padding-bottom: 1rem;
+        height: auto;
+    }
 }
 
 .arnoldFoto {
     display: inline;
     width: 50%;
+    @include respond(mobile) {
+        display: block;
+        width: 100%;
+    }
 }
 
 .arnoldInsta {
@@ -48,6 +65,8 @@
     @include respond(mobile) {
         display: block;
         width: 100%;
+        padding: 0;
+        padding-top: 1rem;
     }
 }
 
