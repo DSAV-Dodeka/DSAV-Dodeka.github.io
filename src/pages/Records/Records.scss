@@ -1,0 +1,39 @@
+@import "../../variables";
+
+.toggles {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.toggle {
+    display: flex;
+    border: none;
+}
+
+.toggle p {
+    width: 6rem;
+    text-align: center;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.toggleLeft {
+    border-radius: 0.75rem 0 0 0.75rem;
+}
+
+.toggleRight {
+    border-radius: 0 0.75rem 0.75rem 0;
+}
+
+.toggleActive {
+    background-color: $dodeka_rood;
+}
+
+.toggleInactive {
+    background-color: $dodeka_blauw90p;
+}

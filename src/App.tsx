@@ -19,6 +19,7 @@ import Sponsors from "./pages/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
+import Records from "./pages/Records/Records";
 import "./App.scss";
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
                   )}
                   <Route path="/wedstrijden" element={
                     <Wedstrijden />
+                  }/>
+                  <Route path="/wedstrijden/records" element={
+                    <Records />
                   }/>
                   <Route path="/word_lid" element={
                     <WordLid />
