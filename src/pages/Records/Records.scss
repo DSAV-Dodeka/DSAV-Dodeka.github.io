@@ -1,10 +1,15 @@
 @import "../../variables";
 
+.records {
+    margin-bottom: 4rem;
+}
+
 .toggles {
     margin-left: 4rem;
     margin-right: 4rem;
     display: flex;
     justify-content: space-around;
+    margin-bottom: 2rem;
 }
 
 .toggle {
@@ -16,6 +21,7 @@
     width: 6rem;
     text-align: center;
     font-size: $font_medium;
+    font-weight: $bold;
     line-height: $line_height_medium;
     color: white;
     padding: 0.5rem;
