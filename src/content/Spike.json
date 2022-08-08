@@ -1,8 +1,15 @@
 {
     "nieuwsberichten": [
         {
+            "titel": "De Spike terug na kwijtraken artikelen door ransomware-hack",
+            "datum": "08-08-2022",
+            "auteur": "RedaCteur Nieuws & .ComCommentator Matthijs",
+            "tekst": "Afgelopen maanden ontving De Spike veel lezersvragen over wanneer er nieuwe Spike-artikelen zouden komen. In tegenstelling tot wat de meeste mensen dachten kwam dit niet door incapabele, al dan niet luie redacteuren, maar door een grootschalige ransomware-aanval waarbij alle bestanden waren gegijzeld in een hack. De Spike-redactie kon hier op dat moment niks over kwijt vanwege lopend politieonderzoek. \n\n Maandenlang hebben de bestanden met nieuwe inhoud versleuteld op de servers gestaan, en werd een groot bedrag losgeld geëist. Ondanks extra bijbaantjes van de redactie en pogingen om budget van Dodeka te krijgen is het niet gelukt dit bedrag bij elkaar te krijgen. Vorige week is de hack echter eindelijk omzeild. Na een technisch onderzoek van .ComCommentator Matthijs bleek het IP-adres van de daders uit de regio Eindhoven te komen. In combinatie met de datum van de hack - de dag na het winnen van de ZeuS-bokaal - lijkt dit te duiden op een actie van de niet nader te noemen tweede SAV van Nederland. \n\n Inmiddels zijn na een aantal onderhandelingen en bemiddeling van SSN en ZeuS alle problemen verholpen, en zullen er naar verluid komende maanden weer nieuwe artikelen worden gepubliceerd. Of er uiteindelijk iets van losgeld is betaald wil De Spike niet vrijgeven. Geïrriteerd antwoordt redacteur Nieuws op vragen van de pers: \"Ik vind het erg jammer dat het dan weer direct over een bedrag gaat. Laten we ons eerst focussen op de nieuwe artikelen, op wat er wél weer kan.\"",
+            "foto": "website_ransomware.png"
+        },
+        {
             "titel": "Onderzoek wijst uit: mensen geboren in maart komen aandacht tekort",
-            "datum": "03-03-2021",
+            "datum": "03-03-2022",
             "auteur": ".ComCommentator Matthijs",
             "tekst": "Uit recent onderzoek op een groep studenten uit Delft is gebleken dat mensen die in maart geboren zijn lijden aan een chronisch tekort aan aandacht. Dit tekort kan ernstige symptomen veroorzaken, waaronder het volspammen van WhatsAppgroepen, het bedenken van opdrachten voor mensen die daar totaal geen behoefte aan hebben, en een spraakgebrek waarbij alle woorden die enigszins op maart lijken verkeerd uitgesproken worden. Hoogleraar A. Pril, die deze ontdekking deed, maakt zich ernstig zorgen en raadt alle mensen die geboren zijn in maart en zich in deze symptomen herkennen aan professionele hulp te zoeken. De reden dat dit alleen mensen uit maart overkomt is nog onbekend. Vermoed wordt dat dit komt doordat Arnold na zijn verjaardag in februari in een algemene staat van diesinteresse belandt.",
             "foto": "website_maartVarkens.jpg"
