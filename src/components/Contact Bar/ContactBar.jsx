@@ -36,7 +36,7 @@ function ContactBar() {
                 <Link className="no_underline" to="/contact/sponsors#"><Heading title="Sponsors" /></ Link>
                 <div className="bar_info">
                     <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><Maltha id="maltha" class="bar_sponsor" fill="white"/></a>
-                    <a target="_blank" rel="noreferrer" href=""><img src={getUrl(`sponsors/kverneland.jpg`)} alt="" class="bar_sponsor"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://nl.kvernelandgroup.com/"><img src={getUrl(`sponsors/kverneland.jpg`)} alt="" class="bar_sponsor"></img></a>
                     
                 </div>
                 
