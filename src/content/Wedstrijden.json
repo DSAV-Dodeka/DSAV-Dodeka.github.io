@@ -22,9 +22,21 @@
         {
             "naam": "Biermijl",
             "datum": "14/10/2022",
-            "logo": "biermijl.jpg",
-            "path": "",
-            "info_kort": "Elk jaar in oktober vindt de biermijl plaats. Dit is het ultieme sportevenement voor studenten, waarbij je 4 rondjes moet lopen en voor elk rondje een biertje moet drinken. Ook kun je er voor kiezen om in een duo mee te doen, waarbij je allebei 2 rondjes loopt en 2 biertjes drinkt."
+            "tijd": "Nog niet bekend",
+            "locatie": "D.S.A.V. Dodeka",
+            "adres": "Sportring 12",
+            "postcode": "2616LK Delft",
+            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
+            "logo": "biermijl_logo.png",
+            "logo_rond": "biermijl_logo_rond.png",
+            "foto": "biermijl.jpg",
+            "inschrijven": "https://www.atletiek.nu/wedstrijd/main/36363/",
+            "mail": "biermijl@dsavdodeka.nl",
+            "instagram": "https://www.instagram.com/dsavdodeka/?hl=nl",
+            "bepalingen": "",
+            "info_kort": "Elk jaar in oktober vindt de biermijl plaats. Dit is het ultieme sportevenement voor studenten, waarbij je 4 rondjes moet lopen en voor elk rondje een biertje moet drinken. Ook kun je er voor kiezen om in een duo mee te doen, waarbij je allebei 2 rondjes loopt en 2 biertjes drinkt.",
+            "info_lang": "De Biermijl van D.S.A.V. Dodeka. <br/> 4 bier, 4 rondjes, durf jij het aan? <br/><br/> Deelname kan individueel of in duo's (M/M, M/V, V/V, anders), laat een van het duo de inschrijving doen voor iedereen. Vergeet niet een verwachte prestatie op te geven als je al eerder een biermijl hebt gelopen. Elke deelnemer ontvangt een shirt en in elke categorie zijn er medailles te verdienen. Voor de beste man en beste vrouw is er nog een epische verrassingsprijs.<br/><br/>De regels zijn als volgt:<br/> 1. Deelname onder de 18 jaar met alcoholvrij bier.<br/> 2. Kom je met de auto, neem iemand mee die nuchter blijft<br/> 3. Deelnemers drinken vier bier en lopen vier rondes. <br/> 4. Bier wordt gedronken voordat wordt begonnen aan de ronde binnen de 10m-zone voor de start.<br/>5. De race begint met het drinken van een bier in de laatste meter van de 10m-zone.<br/>6. Hulpmiddelen en technieken die adten verbeteren zijn verboden.<br/>7. Een bier wordt pas geopend indien de deelnemer de 10m-zone binnenkomt.<br/>8. Indien een deelnemer kotst moet deze een extra ronde lopen. Een extra bier is niet nodig. Indien meer dan een keer wordt gekotst is nog steeds één extra ronde vereist.<br/> 9. Indien een deelnemer kotst, ruimt deze het zelf op.<br/><br/>",
+            "path": "/biermijl"
         },
         {
             "naam": "NSK Weg",
