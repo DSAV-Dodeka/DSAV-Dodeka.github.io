@@ -11,6 +11,10 @@ const registerReducer = (state: RegisterState, action: RegisterAction): Register
                 ...state,
                 [action.field]: action.value
             }
+        case 'reset':
+            return {
+                ...initialState
+            }
         default:
             throw new Error()
     }
@@ -37,16 +41,44 @@ const initialState: RegisterState = {
 
 const SchrijfIn = () => {
     const [show, setShow] = useState(false)
+    const [status, setStatus] = useState("");
     const [state, dispatch] = useReducer<Reducer<RegisterState, RegisterAction>, RegisterState>(
         registerReducer,
         initialState,
     )
 
+    const validateInput = () => {
+        console.log(state.firstname)
+        if (state.firstname === "") {
+            setStatus("Vul je voornaam in")
+            return false;
+        }
+        else if (state.lastname === "") {
+            setStatus("Vul je achternaam in")
+            return false;
+        }
+        else if (state.phone === "") {
+            setStatus("Vul je telefoonnummer in")
+            return false;
+        }
+        else if (state.email === "") {
+            setStatus("Vul je emailadres in")
+            return false;
+        }
+        else if (! /\S+@\S+\.\S+/.test(state.email)){
+            setStatus("Vul een correct emailadres in")
+            return false;
+        }
+        return true;
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (show) {
+        if (show && validateInput()) {
             back_post('onboard/signup', state).then()
             setShow(false)
+            dispatch({type: 'reset'})
+            setStatus("")
             window.location.assign(redirectUrl)
         }
 
@@ -73,6 +105,7 @@ const SchrijfIn = () => {
                            onChange={handleFormChange} />
                     <input type="text" name="email" placeholder="E-mail" value={state.email}
                            onChange={handleFormChange}/>
+                    <p className="schrijfInStatus">{status}</p>
                 </div>
                 <button className="schrijfInButton" id="submit_button" type="submit">Schrijf je in via AV`40</button><br />
             </form>}

@@ -12,7 +12,7 @@
     padding-bottom: $margin_mobile;
     color: white;
     font-size: $font_medium;
-    line-height: $font_medium;
+    line-height: $line_height_medium;
     text-align: center;
     border-radius: 0.25rem;
     font-weight: $bold;
@@ -61,4 +61,10 @@
 
 .inputDiv input::placeholder {
     color: #808080;
+}
+
+.schrijfInStatus {
+    font-size: $font_small;
+    line-height: $line_height_small;
+    color: $dodeka_rood;
 }
