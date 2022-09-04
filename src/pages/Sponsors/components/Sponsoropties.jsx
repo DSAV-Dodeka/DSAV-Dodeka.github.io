@@ -15,7 +15,8 @@ function Sponsoropties() {
                </p>
                 <Header text="Huidige sponsors" position="left"/>
                 <div className="sponsoropties_4">
-                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><Maltha fill="white" className="sponsoropties_5"/></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><Maltha fill="white" className="sponsoropties_5 maltha"/></a>
+                    <a target="_blank" rel="noreferrer" href="https://nl.kvernelandgroup.com/"><img src={getUrl(`sponsors/kverneland.png`)} alt="" className="sponsoropties_5"></img></a>
                 </div>
                
             </div>

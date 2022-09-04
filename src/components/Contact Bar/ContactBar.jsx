@@ -9,6 +9,7 @@ import "./ContactBar.scss";
   
 import Heading from "./Heading";
 import {ReactComponent as Maltha} from "../../images/contact/maltha.svg";
+import getUrl from "../../functions/links";
 
 function ContactBar() {
     return (
@@ -34,7 +35,8 @@ function ContactBar() {
             <div className="bar_container">
                 <Link className="no_underline" to="/contact/sponsors#"><Heading title="Sponsors" /></ Link>
                 <div className="bar_info">
-                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><Maltha id="maltha" fill="white"/></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><Maltha id="maltha" class="bar_sponsor" fill="white"/></a>
+                    <a target="_blank" rel="noreferrer" href="https://nl.kvernelandgroup.com/"><img src={getUrl(`sponsors/kverneland.png`)} alt="" class="bar_sponsor"></img></a>
                     
                 </div>
                 

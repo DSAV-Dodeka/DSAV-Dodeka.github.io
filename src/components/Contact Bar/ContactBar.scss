@@ -47,10 +47,15 @@
     text-decoration: none;
 }
 
-#maltha {
+.bar_sponsor {
     width: 6rem;
-    height: 5rem;
+    margin-right: 1rem;
+    vertical-align: middle;
     @include respond(mobile) {
         margin-left: 0;
     }
+}
+
+#maltha {
+    height: 5rem;
 }
