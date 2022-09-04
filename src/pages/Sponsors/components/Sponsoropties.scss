@@ -52,9 +52,14 @@
     }
 }
 
+.maltha {
+    height: 8rem;
+}
+
 .sponsoropties_5{ //lg:mx-12 w-36 h-32
     width: 9rem;
-    height: 8rem;
+    vertical-align: middle;
+    margin-right: 2rem;
     @include respond(computerscherm){
         margin-left: 3rem;
         margin-right: 3rem

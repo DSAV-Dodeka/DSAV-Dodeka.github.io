@@ -1,12 +1,1 @@
 @import "../../variables";
-
-#home_logo {
-    max-width: 614.4px;
-    display: block;
-    cursor: pointer;
-    position: fixed;
-    z-index: 10;
-    @include respond(mobile) {
-        visibility: hidden;
-    }
-}
