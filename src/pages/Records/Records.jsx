@@ -30,19 +30,19 @@ function Records() {
                 (geslacht === "Vrouwen" ?
                     (locatie === "Outdoor" ? 
                         vrouwenoutdoor.map((record) =>
-                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("vo" + record.onderdeel)} onClick={() => activeRecord === ("vo" + record.onderdeel) ? setActiveRecord("none") : setActiveRecord("vo" + record.onderdeel)}/>
+                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("vo" + record.onderdeel)} onClick={() => activeRecord === ("vo" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("vo" + record.onderdeel) : "")}/>
                         ) :
                         vrouwenindoor.map((record) =>
-                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("vi" + record.onderdeel)} onClick={() => activeRecord === ("vi" + record.onderdeel) ? setActiveRecord("none") : setActiveRecord("vi" + record.onderdeel)}/>
+                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("vi" + record.onderdeel)} onClick={() => activeRecord === ("vi" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("vi" + record.onderdeel) : "")}/>
                         )
                     )
                     :
                     (locatie === "Outdoor" ? 
                         mannenoutdoor.map((record) =>
-                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("mo" + record.onderdeel)} onClick={() => activeRecord === ("mo" + record.onderdeel) ? setActiveRecord("none") : setActiveRecord("mo" + record.onderdeel)}/>
+                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("mo" + record.onderdeel)} onClick={() => activeRecord === ("mo" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("mo" + record.onderdeel) : "")}/>
                         ) :
                         mannenindoor.map((record) =>
-                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("mi" + record.onderdeel)} onClick={() => activeRecord === ("mi" + record.onderdeel) ? setActiveRecord("none") : setActiveRecord("mi" + record.onderdeel)}/>
+                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("mi" + record.onderdeel)} onClick={() => activeRecord === ("mi" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("mi" + record.onderdeel) : "")}/>
                         )
                     )
                 )
