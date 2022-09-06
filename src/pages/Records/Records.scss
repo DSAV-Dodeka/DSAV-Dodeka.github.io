@@ -10,11 +10,20 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 2rem;
+    @include respond(mobile) {
+        display: block;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
 
 .toggle {
     display: flex;
     border: none;
+    @include respond(mobile) {
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
 }
 
 .toggle p {
@@ -26,6 +35,10 @@
     color: white;
     padding: 0.5rem;
     cursor: pointer;
+    @include respond(mobile) {
+        font-size: $font_small;
+        line-height: $line_height_small;
+    }
 }
 
 .toggleLeft {
