@@ -31,6 +31,11 @@ type RegisterState = {
     email: string,
     phone: string,
     password: string,
+    password_confirm: string,
+    date_of_birth: string,
+    birthday_check: boolean,
+    student: boolean,
+    onderwijsinstelling: string,
     register_id: string
 }
 
@@ -45,6 +50,11 @@ const initialState: RegisterState = {
     email: "",
     phone: "",
     password: "",
+    password_confirm: "",
+    date_of_birth: "",
+    birthday_check: false,
+    student: false,
+    onderwijsinstelling: "",
     register_id: ""
 }
 
@@ -67,6 +77,12 @@ const Register = () => {
         dispatch({type: 'change', field: name, value})
     }
 
+    const handleCheckboxChange = (event) => {
+        const {name, checked} = event.target
+        if (checked) dispatch({type: 'change', field: name, value: true});
+        else dispatch({type: 'change', field: name, value: false});
+    }
+
     return (
         <>
             <form className="registerForm" onSubmit={handleSubmit}>
@@ -82,6 +98,40 @@ const Register = () => {
                     <input id="password" type="password" placeholder="Wachtwoord" name="password" value={state.password}
                            onChange={handleFormChange}/>
                     <PasswordStrengthBar password={state.password} />
+                    <br/>
+                    <input id="password_confirm" type="password" placeholder="Herhaal wachtwoord" name="password_confirm" value={state.password_confirm}
+                           onChange={handleFormChange}/>
+                    <input id="date_of_birth" type="date" name="date_of_birth" value={state.date_of_birth}
+                            onChange={handleFormChange} />
+                    <div className="checkbox">
+                        <label >Leden mogen mijn verjaardag zien</label>
+                        <input id="birthday_check" type="checkbox" name="birthday_check" value={state.birthday_check}
+                                onChange={handleFormChange}/>
+                    </div>
+                    <div className="checkbox">
+                        <label >Ik ben student</label>
+                        <input id="student" type="checkbox" name="student"
+                                onChange={handleCheckboxChange}/>
+                    </div>
+                    <div className={"dropdown" + (state.student ? "": " inputHidden")}>
+                        <label >Onderwijsinstelling:</label>
+                        <select id="onderwijsinstelling" name="onderwijsinstelling" value={state.onderwijsinstelling}
+                                onChange={handleFormChange}>
+                            <option value="TU Delft">TU Delft</option>
+                            <option value="Haagse Hogeschool - Delft">Haagse Hogeschool - Delft</option>
+                            <option>Haagse Hogeschool - Den Haag</option>
+                            <option>Hogeschool Inholland - Delft</option>
+                            <option value="Anders, namelijk:">Anders, namelijk:</option>
+                        </select>
+                    </div>
+                    <input className={"" + (state.onderwijsinstelling === "Anders, namelijk:" ? "" : " inputHidden")} id="onderwijsinstelling_overig" type="text" placeholder="Onderwijsinstelling" name="onderwijsinstelling_overig" value={state.onderwijsinstelling_overig}
+                            onChange={handleFormChange} />
+                    <div className="checkbox">
+                        <label >Ik accepteer het privacybeleid</label>
+                        <input id="privacy" type="checkbox" name="privacy"
+                                onChange={handleCheckboxChange}/>
+                    </div>
+                    
                 </div>
                 <button className="registerButton" id="submit_button" type="submit">Registreer</button><br />
             </form>
