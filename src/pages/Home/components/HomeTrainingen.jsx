@@ -1,18 +1,18 @@
 import React from "react";
 import "./HomeTrainingen.scss";
-import foto from "../../../images/home/trainingen.jpg";
 // import {
 //   HashLink as Link
 // } from "react-router-hash-link";
 import {
     Link
 } from "react-router-dom";
+import getUrl from "../../../functions/links";
 
 function HomeTrainingen() {
   return (
     <div id="home_trainingen_container">
         <div id="home_trainingen_foto">
-            <img id="home_trainingen_foto_2" src={foto} alt=""/>
+            <img id="home_trainingen_foto_2" src={getUrl("home/trainingen.jpg")} alt=""/>
 
         </div>
         <div id="home_trainingen_info">

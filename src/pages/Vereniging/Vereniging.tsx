@@ -6,8 +6,9 @@ import PageTitle from "../../components/PageTitle";
 import over from "../../images/over/over.jpg"
 import bestuur from "../../images/over/overBestuur.jpg"
 import commissie from "../../images/over/overCommissies.jpg"
-// import merch from "../../images/over/overMerch.jpg"
+import arnold from "../../images/over/arnold.jpg"
 import "./Vereniging.scss";
+import getUrl from "../../functions/links";
 
 
 function Vereniging() {
@@ -26,21 +27,21 @@ function Vereniging() {
                    <b>Geschiedenis</b> <br></br>
 
                     Dodeka is op 25 februari 2019 begonnen onder de naam DSAV`40 als een commissie bij AV`40. Om een eerste stap te zetten richting volledige onafhankelijkheid hebben wij besloten om door te gaan als D.S.A.V. Dodeka in 2021.</p>
-                <img src={over} className="vereniging_4" alt=""/>
+                <img src={getUrl(`over/over.jpg`)} className="vereniging_4" alt=""/>
             </div>
             <div className="vereniging_5">
                 <Link className="vereniging_6" to='bestuur' >
                     <h1 className="vereniging_7">Bestuur</h1>
-                    <img src={bestuur} className="vereniging_8" alt=""/>
+                    <img src={getUrl(`over/overBestuur.jpg`)} className="vereniging_8" alt=""/>
                 </Link>
                 <Link className="vereniging_9" to='commissies' >
                     <h1 className="vereniging_10">Commissies</h1>
-                    <img src={commissie} className="vereniging_11" alt=""/>
+                    <img src={getUrl(`over/overCommissies.jpg`)} className="vereniging_11" alt=""/>
                 </Link>
-                {/* <Link className="vereniging_9" to={`${match.url}/merchandise`} >
-                <h1 className="vereniging_10">Merchandise</h1>
-                    <img src={merch} className="vereniging_11" alt=""/>
-                </Link> */}
+                <Link className="vereniging_9" to='arnold' >
+                    <h1 className="vereniging_10">Arnold</h1>
+                    <img src={arnold} className="vereniging_11" alt=""/>
+                </Link>
             </div>
         </div>
 
