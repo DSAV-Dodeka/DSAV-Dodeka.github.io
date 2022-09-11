@@ -38,7 +38,7 @@ function NavigationBar() {
         <Link to="/">
           <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={getUrl(`logo.png`)} alt="" />
         </Link>
-        <img id="home_logo" className={(location === "/" ? "" : "hidden")} onClick={() => count()} src={dodeka} alt=""/>
+        <img id="home_logo" className={(location === "/" ? "" : "hidden")} onClick={() => count()} src={getUrl('logo.png')} alt=""/>
         <div id="navItems">
           <Item name="Home" path="/" />
           <Item name="Nieuws" path="/nieuws" />
