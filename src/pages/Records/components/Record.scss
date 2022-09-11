@@ -19,8 +19,25 @@
     padding-left: 4rem;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 2% 100%);
     @include respond(mobile) {
-        padding-left: 1rem;
+        background-color: white;
+        padding: 0;
+        display: block;
+        clip-path: none;
     }
+}
+
+.inactiveRecordMobile {
+    display: none;
+    @include respond(mobile) {
+        background-color: $dodeka_blauw90p;
+        display: flex;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 2% 100%);
+        padding: 1rem;
+    }
+}
+
+.growMobile {
+    flex-grow: 1;
 }
 
 .inactiveRecord p {
@@ -44,10 +61,18 @@
 
 @for $i from 1 through 6 {
     .prestatie:nth-of-type(#{$i}) {
-        padding-left: calc((#{$i} - 1) * (($line_height_small + 2rem) / ($line_height_medium + 2rem)) * 2% + 3rem);
         clip-path: polygon(calc((($line_height_medium + 3rem + ($i - 2) * ($line_height_small + 2rem)) / ($line_height_medium + 2rem)) * 2%) 0, 100% 0, 100% 100%, calc((($line_height_medium + 2rem + ($i - 1) * ($line_height_small + 2rem)) / ($line_height_medium + 2rem)) * 2%) 100%);
         @include respond(mobile) {
             padding-left: calc((#{$i} - 1) * (($line_height_small + 2rem) / ($line_height_medium + 2rem)) * 2% + 1rem);
+        }
+    }
+}
+
+@for $i from 1 through 6 {
+    .prestatie:nth-of-type(#{$i}) .prestatieNaam {
+        @include respond(computerscherm) {
+            // padding-left: 10rem;
+            padding-left: calc((#{$i} - 1) * (($line_height_small + 2rem) / ($line_height_medium + 2rem)) * 2% + 2rem);
         }
     }
 }
@@ -57,7 +82,32 @@
     font-size: $font_small;
     line-height: $line_height_small;
     font-weight: $bold;
-    width: calc(1/ 3 * 100%);
+    @include respond(mobile) {
+        width: fit-content !important;
+    }
+}
+
+.prestatieNaam {
+    @include respond(computerscherm) {
+        width: calc(50% - 2rem);
+    }
+    @include respond(mobile) {
+        flex-grow: 1;
+    }
+}
+
+.prestatieTijd {
+    @include respond(computerscherm) {
+        width: 25%;
+        text-align: left;
+    }
+}
+
+.prestatieDatum {
+    @include respond(computerscherm) {
+        width: calc(25% + 2rem);
+        text-align: right;
+    }
 }
 
 .prestatieLeeg {
@@ -91,6 +141,9 @@
     fill: white;
     right: 2rem;
     top: 1.25rem;
+    @include respond(mobile) {
+        top: 2.75rem;
+    }
 }
 
 .arrowUp {
@@ -103,4 +156,19 @@
 
 .recordCursor {
     cursor: pointer;
+}
+
+.pcOnly {
+    @include respond(mobile) {
+        display: none;
+    }
+}
+
+.onderdeelMobile {
+    @include respond(mobile) {
+        background-color: $dodeka_rood;
+        padding-left: 0.5rem;
+        border-radius: 0.25rem 0.25rem 0 0;
+        width: 50% !important;
+    }
 }
