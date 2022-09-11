@@ -7,10 +7,9 @@ import Item from "./Item";
 import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from 'disable-scroll';
-import logo from "../../images/dodeka.png";
-import dodeka from "../../images/logo.png";
 import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss"
+import getUrl from "../../functions/links";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
@@ -37,15 +36,15 @@ function NavigationBar() {
     <div id="navBar">
       <nav id="navPc">
         <Link to="/">
-          <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={dodeka} alt="" />
+          <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={getUrl(`logo.png`)} alt="" />
         </Link>
-        <img id="home_logo" className={(location === "/" ? "" : "hidden")} onClick={() => count()} src={dodeka} alt=""/>
+        <img id="home_logo" className={(location === "/" ? "" : "hidden")} onClick={() => count()} src={getUrl('logo.png')} alt=""/>
         <div id="navItems">
           <Item name="Home" path="/" />
           <Item name="Nieuws" path="/nieuws" />
-          <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} />
+          <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Arnold", path: "/arnold" }]} />
           <Item name="Trainingen" path="/trainingen" />
-          <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path}))} />
+          <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})).concat([{name: "Records", path: "/records"}])} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
         </div>
@@ -58,7 +57,7 @@ function NavigationBar() {
             <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
           <div className="navSpacing" />
-          <img id="navMobileLogo" src={logo} alt="" />
+          <img id="navMobileLogo" src={getUrl(`dodeka.png`)} alt="" />
           <div className="navSpacing" />
           <div className="hamburgerIconInvisible">
           <div className={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>
@@ -70,9 +69,9 @@ function NavigationBar() {
           <div className={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
-            <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} onClick={() => setActive(false)} />
+            <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Arnold", path: "/arnold" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
-            <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})))} onClick={() => setActive(false)} />
+            <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path}))).concat([{name: "Records", path: "/records"}])} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
           </div>

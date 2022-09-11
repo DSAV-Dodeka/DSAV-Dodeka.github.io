@@ -3,8 +3,8 @@ import {
   Link
 } from "react-router-dom";
 import "./TitleBar.scss";
-import foto from "../../../images/home/titlebar.jpg";
 import {ReactComponent as D} from "../../../images/groteD.svg";
+import getUrl from "../../../functions/links";
 
 
 function TitleBar() {  
@@ -12,7 +12,7 @@ function TitleBar() {
     <div id="home_title_container">
         <div id="home_title_left" ></div>
         <div id="home_title_right">
-            <img id="home_title_background" src={foto} alt=""/>
+            <img id="home_title_background" src={getUrl("home/titlebar.jpg")} alt=""/>
 
         </div>
         <div id="home_title_right_over">
