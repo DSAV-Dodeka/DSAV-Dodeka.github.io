@@ -14,6 +14,17 @@ import getUrl from "../../functions/links";
 function NavigationBar() {
   const [active, setActive] = useState(false);
   const location = useLocation().pathname;
+  const [counter, setCounter]  = useState(0);
+
+  function count() {
+    if (counter === 11) {
+      setCounter(0);
+      var win = window.open("https://nl.wikipedia.org/wiki/12_(getal)", '_blank');
+      win.focus();
+    } else {
+      setCounter(counter + 1);
+    }
+  }
 
   if (active) {
     disableScroll.on();
@@ -27,12 +38,13 @@ function NavigationBar() {
         <Link to="/">
           <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={getUrl(`logo.png`)} alt="" />
         </Link>
+        <img id="home_logo" className={(location === "/" ? "" : "hidden")} onClick={() => count()} src={dodeka} alt=""/>
         <div id="navItems">
           <Item name="Home" path="/" />
           <Item name="Nieuws" path="/nieuws" />
-          <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} />
+          <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Arnold", path: "/arnold" }]} />
           <Item name="Trainingen" path="/trainingen" />
-          <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path}))} />
+          <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})).concat([{name: "Records", path: "/records"}])} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
         </div>
@@ -57,9 +69,9 @@ function NavigationBar() {
           <div className={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
             <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
-            <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }]} onClick={() => setActive(false)} />
+            <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Arnold", path: "/arnold" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
-            <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})))} onClick={() => setActive(false)} />
+            <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path}))).concat([{name: "Records", path: "/records"}])} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
           </div>

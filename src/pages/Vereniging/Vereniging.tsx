@@ -2,6 +2,11 @@ import {
     Link
 } from "react-router-dom";
 import PageTitle from "../../components/PageTitle";
+// import test from "../../images/over/placeholder.png"
+import over from "../../images/over/over.jpg"
+import bestuur from "../../images/over/overBestuur.jpg"
+import commissie from "../../images/over/overCommissies.jpg"
+import arnold from "../../images/over/arnold.jpg"
 import "./Vereniging.scss";
 import getUrl from "../../functions/links";
 
@@ -33,10 +38,10 @@ function Vereniging() {
                     <h1 className="vereniging_10">Commissies</h1>
                     <img src={getUrl(`over/overCommissies.jpg`)} className="vereniging_11" alt=""/>
                 </Link>
-                {/* <Link className="vereniging_9" to={`${match.url}/merchandise`} >
-                <h1 className="vereniging_10">Merchandise</h1>
-                    <img src={merch} className="vereniging_11" alt=""/>
-                </Link> */}
+                <Link className="vereniging_9" to='arnold' >
+                    <h1 className="vereniging_10">Arnold</h1>
+                    <img src={arnold} className="vereniging_11" alt=""/>
+                </Link>
             </div>
         </div>
 
