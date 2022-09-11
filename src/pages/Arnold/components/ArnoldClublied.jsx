@@ -46,7 +46,7 @@ function ArnoldClublied() {
                     [Tweede couplet]<br/>
                     Ja wij trainen bij Dodeka<br/>
                     De club waar ik het hardst ga<br/>
-                    goed trainen voor t'NSK<br/>
+                    goed trainen voor 't NSK<br/>
                     zodat ik bovenaan sta<br/>
                     Loop je achter, try to catch up<br/>
                     Wij gaan winnen, baby, let op<br/>
