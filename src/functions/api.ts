@@ -4,6 +4,6 @@ import {z} from "zod";
 
 const api = ky.create({prefixUrl: config.api_location});
 
-export const back_post = async (endpoint: string, json) => {
+export const back_post = async (endpoint: string, json: Object) => {
     return await api.post(endpoint, {json: json}).json()
 }

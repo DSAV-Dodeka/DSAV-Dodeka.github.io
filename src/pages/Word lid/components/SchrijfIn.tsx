@@ -1,4 +1,4 @@
-import React, {useReducer, Reducer, useState} from "react";
+import React, {useReducer, ChangeEvent, useState, FormEvent} from "react";
 import {back_post} from "../../../functions/api";
 import "./SchrijfIn.scss";
 
@@ -42,7 +42,7 @@ const initialState: RegisterState = {
 const SchrijfIn = () => {
     const [show, setShow] = useState(false)
     const [status, setStatus] = useState("");
-    const [state, dispatch] = useReducer<Reducer<RegisterState, RegisterAction>, RegisterState>(
+    const [state, dispatch] = useReducer(
         registerReducer,
         initialState,
     )
@@ -65,14 +65,14 @@ const SchrijfIn = () => {
             setStatus("Vul je emailadres in")
             return false;
         }
-        else if (! /\S+@\S+\.\S+/.test(state.email)){
+        else if (! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email)){
             setStatus("Vul een correct emailadres in")
             return false;
         }
         return true;
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
         if (show && validateInput()) {
             back_post('onboard/signup', state).then()
@@ -84,7 +84,7 @@ const SchrijfIn = () => {
 
     }
 
-    const handleFormChange = (event) => {
+    const handleFormChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
         dispatch({type: 'change', field: name, value})
     }
