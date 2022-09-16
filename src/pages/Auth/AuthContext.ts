@@ -32,14 +32,6 @@ export const AuthProvider = AuthContext.Provider
 
 export default AuthContext
 
-// export const useAuth = async () => {
-//     const sleep = () => new Promise(resolve => setTimeout(resolve, 6000))
-//     let x = new AuthState()
-//     x.isLoaded = false
-//     await sleep()
-//     return x
-// }
-
 export const useAuth = async (retry: boolean = false) : Promise<AuthState> => {
     let as = new AuthState()
     const id_payload = localStorage.getItem("id_payload")
