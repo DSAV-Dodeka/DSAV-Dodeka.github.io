@@ -20,7 +20,7 @@ function Wedstrijden() {
             <PageTitle title="Wedstrijden"/>
             <div id="eigenWedstrijden">
                 {TextWedstrijden.wedstrijden.map(wedstrijd => 
-                    <EigenWedstrijd naam={wedstrijd.naam} datum={wedstrijd.datum} logo={wedstrijd.logo} info_kort={wedstrijd.info_kort} path={wedstrijd.path} oud={wedstrijdGeweest(wedstrijd.datum)} />
+                    <EigenWedstrijd key={wedstrijd.naam + wedstrijd.datum} naam={wedstrijd.naam} datum={wedstrijd.datum} logo={wedstrijd.logo} info_kort={wedstrijd.info_kort} path={wedstrijd.path} oud={wedstrijdGeweest(wedstrijd.datum)} />
                 )}
             </div>
             <div className="wedstrijden_routes">
