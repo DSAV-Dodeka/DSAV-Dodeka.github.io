@@ -13,12 +13,6 @@ type Profile = z.infer<typeof Profile>;
 
 export const back_request = async (endpoint: string, access: string, refresh: string, as: AuthState) => {
     let returnedState = as
-    // const original = ky.create({
-    //     headers: {
-    //         rainbow: 'rainbow',
-    //         unicorn: 'unicorn'
-    //     }
-    // });
     let changedState = false
     const bearer = 'Bearer ' + access
     const response = await api.get(endpoint, {
