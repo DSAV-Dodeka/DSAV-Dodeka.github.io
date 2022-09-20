@@ -47,7 +47,7 @@ function App() {
                   }/>
                   {WedstrijdText.wedstrijden.map((item) =>
                       (item.path === "" ? "" :
-                              <Route path={"/wedstrijden" + item.path} element={
+                              <Route path={"/wedstrijden" + item.path} key={"wdstr" + item.naam + item.datum} element={
                                 <Wedstrijd wedstrijd={item}/>
                             }/>
                       )
