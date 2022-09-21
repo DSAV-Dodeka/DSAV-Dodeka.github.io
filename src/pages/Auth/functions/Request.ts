@@ -51,3 +51,20 @@ export const profile_request = async (access: string, refresh: string, as: AuthS
     const profile: Profile = Profile.parse(response)
     return { profile, returnedState, changedState }
 }
+
+const SignedUp = z.object({
+    firstname: z.string(),
+    lastname: z.string(),
+    phone: z.string(),
+    email: z.string()
+})
+export type SignedUp = z.infer<typeof SignedUp>;
+
+const SignedUps = z.array(SignedUp)
+type SignedUps = z.infer<typeof SignedUps>;
+
+export const su_request = async (access: string, refresh: string, as: AuthState) => {
+    let { response, returnedState, changedState } = await back_request('onboard/get', access, refresh, as)
+    const sus: SignedUps = SignedUps.parse(response)
+    return { sus, returnedState, changedState }
+}

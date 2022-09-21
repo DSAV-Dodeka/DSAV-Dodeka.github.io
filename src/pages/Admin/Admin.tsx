@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import AuthContext, {AuthState, refresh_tokens, useAuth} from "../Auth/AuthContext";
 import {profile_request} from "../Auth/functions/Request";
 import {decodeJwtPayload} from "../Auth/functions/OAuth";
+import ConfirmUser from "./ConfirmUser";
 
 const Admin = () => {
 
@@ -63,6 +64,7 @@ const Admin = () => {
             </div>
             {authState.isAuthenticated && (
                 <div>
+                <div>
                     <ul>
                         <li><strong>Authenticated:</strong> {`${authState.isAuthenticated}`}</li>
                         <li><strong>Access Token:</strong> {access}</li>
@@ -70,6 +72,8 @@ const Admin = () => {
                         <li><strong>Refresh Token:</strong> {refresh}</li>
                         <li><button onClick={doRefresh}>Refresh</button></li>
                     </ul>
+                </div>
+                <ConfirmUser access={accessRaw} refresh={refresh} />
                 </div>
             )}
         </>
