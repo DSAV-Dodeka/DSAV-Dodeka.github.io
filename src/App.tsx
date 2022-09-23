@@ -25,13 +25,13 @@ import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
-import {AuthProvider, AuthState, useAuth} from "./pages/Auth/AuthContext";
+import {AuthProvider, AuthState, defaultAuthState, newAuthState, useAuth} from "./pages/Auth/AuthContext";
 import Protected from "./pages/Auth/Protected";
 import Login from "./components/Login/Login";
 import Admin from "./pages/Admin/Admin";
 
 function App() {
-  const [authState, setAuthState] = useState(new AuthState());
+  const [authState, setAuthState] = useState(newAuthState());
   const contextValue = { authState, setAuthState }
   const [authLoad, setAuthLoad] = useState(false)
 

@@ -11,7 +11,8 @@ const Login = () => {
     }
 
     const handleLogout = () => {
-        const newState = useLogout(ac)
+        const newState = useLogout()
+        console.log(newState)
         setAuthState(newState)
     }
 

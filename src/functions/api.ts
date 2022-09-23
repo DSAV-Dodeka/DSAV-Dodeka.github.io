@@ -72,7 +72,7 @@ export type SignedUp = z.infer<typeof SignedUp>;
 const SignedUps = z.array(SignedUp)
 type SignedUps = z.infer<typeof SignedUps>;
 
-export const su_request = async (access: string, refresh: string, auth: IAuth) => {
+export const su_request = async (auth: IAuth) => {
     let response = await back_request('onboard/get', auth)
     const sus: SignedUps = SignedUps.parse(response)
     return sus

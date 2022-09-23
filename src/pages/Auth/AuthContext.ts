@@ -10,116 +10,124 @@ import {redirect_uri} from "./AuthRedirect";
 import {string} from "zod";
 import {back_post, catch_api} from "../../functions/api";
 
-export class AuthState {
-    username: string = ""
-    scope: string = "none"
+export const defaultAuthState: AuthState = {
+    username: "",
+    scope: "none",
 
-    updated_at: number = -1
+    updated_at: -1,
 
-    id: string = ""
-    it: IdToken | null = null
-    access: string = ""
-    refresh: string = ""
+    id: "",
+    it: null,
+    access: "",
+    refresh: "",
 
-    isAuthenticated = false
-    loginRequired = false
-    isLoaded = false
+    isAuthenticated: false,
+    loginRequired: false,
+    isLoaded: false,
 
-    invalidState = false
+    invalidState: false,
+}
 
-    /**
-     * Loads access token, ID token and refresh token from local storage and validates them.
-     * It sets invalidState to true and returns if any of them are empty, if there was a parsing failure or if the ID
-     * token has expired.
-     * If there were no problems, it sets the User and returns the valid AuthState. Note that the access token or
-     * refresh token could still be expired, but this is only checked if they are used in a request.
-     * If the auth time has been exceeded by the max login time, loginRequired will be set to true.
-     * @returns Returns an updated AuthState
-     */
-    loadFromStorage(): AuthState {
-        this.access = localStorage.getItem("access") || ""
-        this.id = localStorage.getItem("id_payload") || ""
-        this.refresh = localStorage.getItem("refresh") || ""
-
-        if (!this.id || !this.access || !this.refresh) {
-            this.invalidState = true
-            return this
-        }
-
-        try {
-            this.it = parseIdToken(this.id)
-        } catch (e) {
-            this.invalidState = true
-            return this
-        }
-
-        // Time in seconds since UNIX Epoch
-        const utc_now = Math.floor(Date.now()/1000)
-        // If true, expiry date is more than 1h in the past
-        if (utc_now > this.it.exp - (60 * 60)) {
-            this.invalidState = true
-            return this
-        }
-
-        this.username = this.it.sub
-        this.updated_at = this.it.auth_time
-
-        if (utc_now > this.updated_at + config.max_login) {
-            this.loginRequired = true
-            return this
-        }
-
-        this.invalidState = false
-        return this
-    }
-
-    loadFromRenewal(id_payload_raw: string, id_payload: IdToken, access_token: string, refresh_token: string, scope: string): AuthState {
-        this.username = id_payload.sub
-        this.scope = scope
-
-        this.updated_at = id_payload.auth_time
-
-        this.access = access_token
-        this.refresh = refresh_token
-        this.id = id_payload_raw
-        this.it = id_payload
-
-        this.isAuthenticated = true
-
-        return this
-    }
-
-    saveStorage() {
-        console.log("Saving")
-        console.log(this.refresh)
-        localStorage.setItem("id_payload", this.id)
-        localStorage.setItem("access", this.access)
-        localStorage.setItem("refresh", this.refresh)
-    }
-
-    clear(): AuthState {
-        console.log("Clearing")
-        this.username = ""
-        this.scope = ""
-
-        this.updated_at = 0
-
-        this.id = ""
-        this.it = null
-        this.access = ""
-        this.refresh = ""
-
-        localStorage.removeItem("access")
-        localStorage.removeItem("id_payload")
-        localStorage.removeItem("refresh")
-
-        this.isAuthenticated = false
-        this.loginRequired = false
-        // isLoaded is explicitly not changed
-
-        return this
+export const newAuthState = () => {
+    return {
+        ...defaultAuthState
     }
 }
+
+export type AuthState = {
+    username: string
+    scope: string
+
+    updated_at: number
+
+    id: string
+    it: IdToken | null
+    access: string
+    refresh: string
+
+    isAuthenticated: boolean
+    loginRequired: boolean
+    isLoaded: boolean
+
+    invalidState: boolean
+}
+
+/**
+ * Loads access token, ID token and refresh token from local storage and validates them.
+ * It sets invalidState to true and returns if any of them are empty, if there was a parsing failure or if the ID
+ * token has expired.
+ * If there were no problems, it sets the User and returns the valid AuthState. Note that the access token or
+ * refresh token could still be expired, but this is only checked if they are used in a request.
+ * If the auth time has been exceeded by the max login time, loginRequired will be set to true.
+ * @returns Returns an updated AuthState
+ */
+const loadFromStorage = (): AuthState => {
+    const newState = newAuthState()
+    newState.access = localStorage.getItem("access") || ""
+    newState.id = localStorage.getItem("id_payload") || ""
+    newState.refresh = localStorage.getItem("refresh") || ""
+    newState.scope = localStorage.getItem("scope") || ""
+
+    if (!newState.id || !newState.access || !newState.refresh || !newState.scope) {
+        newState.invalidState = true
+        return newState
+    }
+
+    try {
+        newState.it = parseIdToken(newState.id)
+    } catch (e) {
+        newState.invalidState = true
+        return newState
+    }
+
+    // Time in seconds since UNIX Epoch
+    const utc_now = Math.floor(Date.now()/1000)
+    // If true, expiry date is more than 1h in the past
+    if (utc_now > newState.it.exp - (60 * 60)) {
+        newState.invalidState = true
+        return newState
+    }
+
+    newState.username = newState.it.sub
+    newState.updated_at = newState.it.auth_time
+
+    if (utc_now > newState.updated_at + config.max_login) {
+        newState.loginRequired = true
+        return newState
+    }
+
+    newState.invalidState = false
+    return newState
+}
+
+const loadFromRenewal = (id_payload_raw: string, id_payload: IdToken, access_token: string, refresh_token: string, scope: string): AuthState => {
+    return {
+        ...defaultAuthState,
+        username: id_payload.sub,
+        scope,
+        updated_at: id_payload.auth_time,
+        access: access_token,
+        refresh: refresh_token,
+        id: id_payload_raw,
+        it: id_payload,
+        isAuthenticated: true,
+    }
+}
+
+const saveStorage = (as: AuthState) => {
+    localStorage.setItem("id_payload", as.id)
+    localStorage.setItem("access", as.access)
+    localStorage.setItem("refresh", as.refresh)
+    localStorage.setItem("scope", as.scope)
+}
+
+const clearStorage = () => {
+    localStorage.removeItem("id_payload")
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+    localStorage.removeItem("scope")
+}
+
 
 export interface IAuth {
     authState: AuthState,
@@ -133,8 +141,7 @@ export const AuthProvider = AuthContext.Provider
 export default AuthContext
 
 export const useAuth = async (): Promise<AuthState> => {
-    let as = new AuthState()
-    as = as.loadFromStorage()
+    let as = loadFromStorage()
 
     if (as.invalidState) {
         // If it is invalid but there is a refresh token, renewal is attempted
@@ -146,27 +153,38 @@ export const useAuth = async (): Promise<AuthState> => {
             } catch (e) {
                 console.log(e)
                 // Failed renewal, logout
-                as = as.clear()
+                as = newAuthState()
+                clearStorage()
             }
         } else {
             // Renewal not possible, logout
-            as = as.clear()
+            as = newAuthState()
+            clearStorage()
         }
     } else if (as.loginRequired) {
-        as = as.clear()
+        as = newAuthState()
+        clearStorage()
         // Logout
     } else {
         as.isAuthenticated = true
     }
 
-    as.saveStorage()
+    saveStorage(as)
     as.isLoaded = true
     return as
 }
 
-export const useLogout = (as: AuthState): AuthState => {
-    as = as.clear()
-    as.saveStorage()
+export const useLogin = (id_payload_raw: string, id_payload: IdToken, access_token: string, refresh_token: string, scope: string): AuthState => {
+    const as = loadFromRenewal(id_payload_raw, id_payload, access_token, refresh_token, scope)
+    saveStorage(as)
+    as.isLoaded = true
+    return as
+}
+
+export const useLogout = (): AuthState => {
+    let as = newAuthState()
+    clearStorage()
+    saveStorage(as)
     as.isLoaded = true
     return as
 }
@@ -176,9 +194,9 @@ export const useRenewal = async (as: AuthState): Promise<AuthState> => {
         as = await renewAuth(as)
     } catch (e) {
         console.log(e)
-        as = useLogout(as)
+        as = useLogout()
     }
-    as.saveStorage()
+    saveStorage(as)
     return as
 }
 
@@ -186,7 +204,7 @@ export const renewAuth = async (as: AuthState) => {
     const {
         id_payload_raw, id_payload, access_token, refresh_token, scope
     } = await refresh_tokens(as.refresh)
-    return as.loadFromRenewal(id_payload_raw, id_payload, access_token, refresh_token, scope);
+    return loadFromRenewal(id_payload_raw, id_payload, access_token, refresh_token, scope);
 }
 
 export const handleTokenResponse = async (res: any) => {

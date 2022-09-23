@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {decodeJwtPayload, validateIdToken} from "./functions/OAuth";
 import {redirect_uri} from "./AuthRedirect";
 import config from "../../config"
-import AuthContext, {handleTokenResponse, useAuth} from "./AuthContext";
+import AuthContext, {handleTokenResponse, useAuth, useLogin} from "./AuthContext";
 
 
 const AuthCallback = () => {
@@ -48,9 +48,7 @@ const AuthCallback = () => {
         const {
             id_payload_raw, id_payload, access_token, refresh_token, scope
         } = await handleTokenResponse(await res.json())
-        const newState = authState.loadFromRenewal(id_payload_raw, id_payload, access_token, refresh_token, scope)
-        authState.saveStorage()
-        authState.isLoaded = true
+        const newState = useLogin(id_payload_raw, id_payload, access_token, refresh_token, scope)
         setAuthState(newState)
 
         setGotToken(true)

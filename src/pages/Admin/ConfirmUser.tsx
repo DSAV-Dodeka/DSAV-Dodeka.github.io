@@ -48,11 +48,6 @@ const defaultData: SignedUp[] = [
     },
 ]
 
-interface Props {
-    access: string,
-    refresh: string
-}
-
 const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
     event.target.type = 'date';
 }
@@ -61,7 +56,7 @@ const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
     event.target.type = 'text';
 }
 
-const ConfirmUser: React.FC<Props> = (props) => {
+const ConfirmUser = () => {
     const {authState, setAuthState} = useContext(AuthContext)
 
     const [data, setData] = useState(() => [...defaultData])
@@ -91,19 +86,16 @@ const ConfirmUser: React.FC<Props> = (props) => {
     }
 
     const loadBackend = async () => {
-        const { sus, returnedState, changedState  } = await su_request(props.access, props.refresh, authState)
-        if (changedState) {
-            setAuthState(returnedState)
-        }
+        const sus = await su_request({authState, setAuthState})
         setData(sus)
     }
 
     useEffect(() => {
-        if (authState.isLoaded && props.access) {
+        if (authState.isLoaded && authState.access) {
             loadBackend().catch()
         }
 
-    }, [props.access]);
+    }, [authState.access]);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
