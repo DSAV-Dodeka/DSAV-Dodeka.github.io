@@ -1,6 +1,7 @@
 import { binToBase64Url, base64ToBin, stringToUint8 } from "./AuthUtility"
-import { z } from "zod";
+import {string, z} from "zod";
 import config from "../../../config";
+import {NormalizedOptions} from "ky/distribution/types/options";
 
 export function computeRandom(length=16) {
     const random_bin = crypto.getRandomValues(new Uint8Array(length))
@@ -31,7 +32,7 @@ export function decodeJwtPayload(jwt: string) {
     return new TextDecoder().decode(bin_payload);
 }
 
-const idTokenJson = z.object({
+const IdToken = z.object({
     sub: z.string(),
     iss: z.string(),
     aud: z.array(z.string()),
@@ -40,18 +41,32 @@ const idTokenJson = z.object({
     iat: z.number(),
     exp: z.number()
 })
+export type IdToken = z.infer<typeof IdToken>
 
-export function parseIdToken(jwt_json: string) {
+export function parseIdToken(jwt_json: string): IdToken {
     const jwt_obj = JSON.parse(jwt_json)
-    return idTokenJson.parse(jwt_obj)
+    return IdToken.parse(jwt_obj)
 }
 
-export async function validateIdToken(id_json: string) {
-    const id_payload = parseIdToken(id_json)
+export class TokenError extends Error {
+    error_type: string
+    constructor(error_type: string, desc: string) {
+        super(desc)
+        this.error_type = error_type
+    }
+}
+
+export async function validateIdToken(id_json: string): Promise<IdToken> {
+    let id_payload: IdToken
+    try {
+        id_payload = parseIdToken(id_json)
+    } catch (e) {
+        throw new TokenError("invalid_id_token", "Error parsing ID token!")
+    }
 
     const nonce_original = localStorage.getItem("nonce_original")
     if (nonce_original === null) {
-        return
+        throw new TokenError("no_nonce", "No ID token nonce set!")
     }
     const nonce_bin = base64ToBin(nonce_original)
     const nonce_hash = await encodedHashBin(nonce_bin)
@@ -62,47 +77,59 @@ export async function validateIdToken(id_json: string) {
             web_included = true
         }
         else if (aud !== config.client_id) {
-            throw new Error("Invalid audience!")
+            throw new TokenError("invalid_id_token", "Invalid audience!")
         }
     })
     if (!web_included) {
-        throw new Error("Required audience not included!")
+        throw new TokenError("invalid_id_token", "Required audience not included!")
     }
     if (id_payload.nonce !== nonce_hash) {
-        throw new Error("Invalid nonce!")
+        throw new TokenError("invalid_id_token", "Invalid nonce!")
     }
 
     return id_payload
 }
 
-export async function handleTokenResponse(token_res: any) {
+const TokenResponse = z.object({
+    id_token: z.string(),
+    access_token: z.string(),
+    token_type: z.string(),
+    expires_in: z.number(),
+    refresh_token: z.string(),
+    scope: z.string()
+})
+
+type ValidTokenResponse = {
+    id_payload_raw: string
+    id_payload: IdToken
+    access_token: string
+    refresh_token: string
+    scope: string
+}
+
+export async function validateTokenResponse(token_res: any): Promise<ValidTokenResponse> {
     const {
         id_token, access_token, refresh_token, token_type, expires_in, scope
-    } = token_res
+    } = TokenResponse.parse(token_res)
 
     if (token_type !== "Bearer") {
-        console.log("Incorrect token_type!")
+        throw new TokenError("invalid_token_response", "Incorrect token_type!")
     }
 
-    if (expires_in === "x") {
+    if (expires_in === -1) {
 
     }
     if (scope === "scope") {
 
     }
-    try {
-        const id_payload = await validateIdToken(decodeJwtPayload(id_token))
-        localStorage.setItem("access_expiry", expires_in.toString())
-        localStorage.setItem("access", access_token)
-        localStorage.setItem("refresh", refresh_token)
-        localStorage.setItem("id_payload", JSON.stringify(id_payload))
-        return true
-    }
-    catch (e) {
-        if (e instanceof Error) {
-            console.log(e.message)
-        } else {
-            console.log(e)
-        }
+    const id_payload_raw = decodeJwtPayload(id_token)
+    const id_payload = await validateIdToken(id_payload_raw)
+
+    return {
+        id_payload_raw,
+        id_payload,
+        access_token,
+        refresh_token,
+        scope
     }
 }

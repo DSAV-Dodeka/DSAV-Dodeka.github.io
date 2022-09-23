@@ -35,13 +35,13 @@ function App() {
   const contextValue = { authState, setAuthState }
   const [authLoad, setAuthLoad] = useState(false)
 
+  const authLoader = async () => {
+    let loadedState = await useAuth()
+    setAuthState(loadedState)
+  }
+
   useEffect(() => {
     if (!authLoad) {
-      const authLoader = async () => {
-        let loadedState = await useAuth()
-        setAuthState(loadedState)
-      }
-
       authLoader().then(() => setAuthLoad(true))
     }
   }, [])

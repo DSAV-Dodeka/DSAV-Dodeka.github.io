@@ -1,39 +1,26 @@
 import React, {useContext, useEffect, useState} from "react";
-import AuthContext, {AuthState, refresh_tokens, useAuth} from "./AuthContext";
+import AuthContext, {AuthState, useRenewal} from "./AuthContext";
 import {decodeJwtPayload} from "./functions/OAuth";
 import Timer from "./Timer";
-import {profile_request} from "./functions/Request";
+import {profile_request} from "../../functions/api";
 
 const Protected = () => {
-
     const {authState, setAuthState} = useContext(AuthContext)
 
     const [user, setUser] = useState("")
-    const [accessScope, setAccessScope] = useState("")
-    const [accessRaw, setAccessRaw] = useState("")
     const [access, setAccess] = useState("")
-    const [refresh, setRefresh] = useState("")
+    const [accessScope, setAccessScope] = useState("")
 
     const loadScope = async () => {
-        const { profile, returnedState, changedState  } = await profile_request(accessRaw, refresh, authState)
-        if (changedState) {
-            setAuthState(returnedState)
-        }
+        const profile = await profile_request({authState, setAuthState})
         setUser(profile.username)
         setAccessScope(profile.scope)
     }
 
     const setProfile = async () => {
-        const access = localStorage.getItem("access")
-        if (access) {
-            const decodedAccess = decodeJwtPayload(access)
+        if (authState.isAuthenticated) {
+            const decodedAccess = decodeJwtPayload(authState.access)
             setAccess(decodedAccess)
-            setAccessRaw(access)
-        }
-
-        const refresh = localStorage.getItem("refresh")
-        if (refresh) {
-            setRefresh(refresh)
         }
     }
 
@@ -42,11 +29,8 @@ const Protected = () => {
     }, [authState]);
 
     const doRefresh = async () => {
-        const refreshed = await refresh_tokens(refresh)
-        if (refreshed) {
-            const newAs = await useAuth()
-            setAuthState(newAs)
-        }
+        const newState = await useRenewal(authState)
+        setAuthState(newState)
     }
 
     return (
@@ -65,8 +49,8 @@ const Protected = () => {
                     <ul>
                         <li><strong>Authenticated:</strong> {`${authState.isAuthenticated}`}</li>
                         <li><strong>Access Token:</strong> {access}</li>
-                        <li><strong>Raw Access:</strong> {accessRaw}</li>
-                        <li><strong>Refresh Token:</strong> {refresh}</li>
+                        <li><strong>Raw Access:</strong> {authState.access}</li>
+                        <li><strong>Refresh Token:</strong> {authState.refresh}</li>
                         <li><Timer /></li>
                         <li><button onClick={doRefresh}>Refresh</button></li>
                     </ul>

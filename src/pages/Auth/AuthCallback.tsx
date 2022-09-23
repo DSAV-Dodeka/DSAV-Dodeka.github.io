@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {decodeJwtPayload, handleTokenResponse, validateIdToken} from "./functions/OAuth";
+import {decodeJwtPayload, validateIdToken} from "./functions/OAuth";
 import {redirect_uri} from "./AuthRedirect";
 import config from "../../config"
-import AuthContext, {useAuth} from "./AuthContext";
+import AuthContext, {handleTokenResponse, useAuth} from "./AuthContext";
 
 
 const AuthCallback = () => {
@@ -45,7 +45,13 @@ const AuthCallback = () => {
             }
         })
         // TODO error handling
-        await handleTokenResponse(await res.json())
+        const {
+            id_payload_raw, id_payload, access_token, refresh_token, scope
+        } = await handleTokenResponse(await res.json())
+        const newState = authState.loadFromRenewal(id_payload_raw, id_payload, access_token, refresh_token, scope)
+        authState.saveStorage()
+        authState.isLoaded = true
+        setAuthState(newState)
 
         setGotToken(true)
     }
@@ -54,10 +60,7 @@ const AuthCallback = () => {
         if (!gotToken) {
             handleCallback().catch();
         } else {
-            useAuth().then(as => {
-                setAuthState(as)
-                navigate("/", { replace: true} )
-            })
+            navigate("/", { replace: true} )
         }
     }, [gotToken]);
 
