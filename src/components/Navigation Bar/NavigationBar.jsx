@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import {
   Link,
   useLocation
@@ -10,11 +10,13 @@ import disableScroll from 'disable-scroll';
 import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss"
 import getUrl from "../../functions/links";
+import authContext from "../../pages/Auth/AuthContext";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
   const location = useLocation().pathname;
   const [counter, setCounter]  = useState(0);
+  const {authState, setAuthState} = useContext(authContext)
 
   function count() {
     if (counter === 11) {
@@ -48,6 +50,7 @@ function NavigationBar() {
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
           <Item name="Account" path="/profile" />
+          {authState.scope.includes("admin") && (<Item name="Admin" path="/admin" />)}
         </div>
       </nav>
       <nav id="navMobile">

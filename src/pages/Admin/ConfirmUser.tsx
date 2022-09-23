@@ -8,7 +8,7 @@ import {
     getCoreRowModel,
     useReactTable,
 } from '@tanstack/react-table'
-import {SignedUp, su_request} from "../../functions/api";
+import {back_post_auth, SignedUp, su_request} from "../../functions/api";
 import AuthContext from "../Auth/AuthContext";
 import {back_post} from "../../functions/api";
 
@@ -29,9 +29,12 @@ const columns = [
     }),
     columnHelper.display({
         id: 'confirmer',
-        cell: ({ row }) => {
+        cell: ({ table, row }) => {
             return row.getCanExpand() ? (
-                <button onClick={row.getToggleExpandedHandler()}>{row.getIsExpanded() ? 'Sluit' : 'Bevestig'}</button>
+                <button onClick={() => {
+                    table.toggleAllRowsExpanded(false)
+                    row.toggleExpanded(!row.getIsExpanded())
+                }}>{row.getIsExpanded() ? 'Sluit' : 'Bevestig'}</button>
             ) : (
                 '🔵'
             )
@@ -65,6 +68,8 @@ const ConfirmUser = () => {
     const [av40Id, setAv40Id] = useState("")
     const [joined, setJoined] = useState("")
 
+    const [status, setStatus] = useState("")
+
     const table = useReactTable({
         data,
         columns,
@@ -97,9 +102,20 @@ const ConfirmUser = () => {
 
     }, [authState.access]);
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent, su: SignedUp) => {
         e.preventDefault()
-
+        const signup_confirm = {
+            email: su.email,
+            av40id: av40Id,
+            joined: joined
+        }
+        back_post_auth("onboard/confirm/", signup_confirm, {authState, setAuthState}).then((res: Response) => {
+            console.log(res)
+            if (res.ok) {
+                setStatus(`Inschrijving for ${su.firstname} ${su.lastname} bevestigd!`)
+                doReload()
+            }
+        })
     }
 
     return (
@@ -143,7 +159,7 @@ const ConfirmUser = () => {
                         </tr>
                         {row.getIsExpanded() && (
                             <tr><td colSpan={row.getVisibleCells().length}>
-                                <form onSubmit={handleSubmit}>
+                                <form onSubmit={(e) => handleSubmit(e, row.original)}>
                                     <input id="av40id" type="text" placeholder="AV`40 nummer" name="av40id" value={av40Id} onChange={handleFormChange}/>
                                     <br/>
                                     <input id="joined" type="text" placeholder="Lid sinds" name="joined" value={joined} onFocus={handleFocus} onBlur={handleBlur} onChange={handleFormChange}/>
@@ -157,6 +173,7 @@ const ConfirmUser = () => {
                 </tbody>
             </table>
             <div/><br/>
+            <div className="confirmStatus">{status}</div>
             <button onClick={() => doReload()}>
                 Reload data
             </button>

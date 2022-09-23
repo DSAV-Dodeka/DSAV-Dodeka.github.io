@@ -30,7 +30,6 @@ const Protected = () => {
 
     const doRefresh = async () => {
         const newState = await useRenewal(authState)
-        newState.isLoaded = true
         setAuthState(newState)
     }
 

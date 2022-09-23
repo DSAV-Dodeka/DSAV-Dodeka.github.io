@@ -29,6 +29,7 @@ import {AuthProvider, AuthState, defaultAuthState, newAuthState, useAuth} from "
 import Protected from "./pages/Auth/Protected";
 import Login from "./components/Login/Login";
 import Admin from "./pages/Admin/Admin";
+import Registered from "./pages/Auth/Registered";
 
 function App() {
   const [authState, setAuthState] = useState(newAuthState());
@@ -97,6 +98,7 @@ function App() {
                   <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/profile" element={<Protected />} />
                   <Route path="/admin" element={<Admin />} />
+                  <Route path="/registered" element={<Registered />}/>
                 </Routes>
                 <div id="app_flex_grow"/>
                 <ContactBar />

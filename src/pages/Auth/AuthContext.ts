@@ -192,6 +192,7 @@ export const useLogout = (): AuthState => {
 export const useRenewal = async (as: AuthState): Promise<AuthState> => {
     try {
         as = await renewAuth(as)
+        as.isLoaded = true
     } catch (e) {
         console.log(e)
         as = useLogout()
