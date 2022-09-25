@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import AuthContext, {AuthState, useRenewal} from "./AuthContext";
 import {decodeJwtPayload} from "./functions/OAuth";
 import Timer from "./Timer";
-import {profile_request} from "../../functions/api";
+import {back_post_auth, profile_request} from "../../functions/api";
 
 const Protected = () => {
     const {authState, setAuthState} = useContext(AuthContext)
@@ -10,6 +10,8 @@ const Protected = () => {
     const [user, setUser] = useState("")
     const [access, setAccess] = useState("")
     const [accessScope, setAccessScope] = useState("")
+    const [newEmail, setNewEmail] = useState("")
+
 
     const loadScope = async () => {
         const profile = await profile_request({authState, setAuthState})
@@ -33,6 +35,17 @@ const Protected = () => {
         setAuthState(newState)
     }
 
+    const handleNewEmailSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+        evt.preventDefault()
+
+        const req = {
+            "old_usph": authState.username,
+            "new_email": newEmail
+        }
+
+        await back_post_auth("update/email/send", req, {authState, setAuthState})
+    }
+
     return (
         <>
             <p>{!authState.isLoaded && "is loading"}</p>
@@ -49,12 +62,22 @@ const Protected = () => {
                     <ul>
                         <li><strong>Authenticated:</strong> {`${authState.isAuthenticated}`}</li>
                         <li><strong>Access Token:</strong> {access}</li>
+                        <li><strong>ID Token:</strong> {JSON.stringify(authState.it)}</li>
                         <li><strong>Raw Access:</strong> {authState.access}</li>
                         <li><strong>Refresh Token:</strong> {authState.refresh}</li>
                         <li><Timer /></li>
                         <li><button onClick={doRefresh}>Refresh</button></li>
                     </ul>
+                    <div>
+                        <form onSubmit={handleNewEmailSubmit}>
+                            <label htmlFor="newEmail">Vul je nieuwe emailadres in om een email te versturen om die te veranderen.</label>
+                            <input id="newEmail" placeholder="Nieuwe email" type="text" value={newEmail}
+                                   onChange={e => setNewEmail(e.target.value)}/>
+                            <button id="newEmailSubmit" type="submit">Verzenden</button>
+                        </form>
+                    </div>
                 </div>
+
             )}
         </>
     )

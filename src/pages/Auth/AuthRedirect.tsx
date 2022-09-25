@@ -11,9 +11,6 @@ const AuthRedirect = () => {
     const [redirectUrl, setRedirectUrl] = useState("")
 
     const handleRedirect = async () => {
-
-
-
         //OAuth Authorization Code Flow + PKCE step 1
         const state = binToBase64Url(crypto.getRandomValues(new Uint8Array(16)))
         const { verifier, challenge } = await computeCodeVerifier()
@@ -36,7 +33,7 @@ const AuthRedirect = () => {
             state
         }
         localStorage.setItem("state_verify", JSON.stringify(state_verifier))
-        localStorage.setItem("nonce_original", nonce_original)
+        localStorage.setItem("nonce_original_transient", nonce_original)
 
         setRedirectUrl(`${config.auth_location}/oauth/authorize?` + params)
 

@@ -56,20 +56,13 @@ export class TokenError extends Error {
     }
 }
 
-export async function validateIdToken(id_json: string): Promise<IdToken> {
+export async function validateIdToken(id_json: string, check_nonce: boolean): Promise<IdToken> {
     let id_payload: IdToken
     try {
         id_payload = parseIdToken(id_json)
     } catch (e) {
         throw new TokenError("invalid_id_token", "Error parsing ID token!")
     }
-
-    const nonce_original = localStorage.getItem("nonce_original")
-    if (nonce_original === null) {
-        throw new TokenError("no_nonce", "No ID token nonce set!")
-    }
-    const nonce_bin = base64ToBin(nonce_original)
-    const nonce_hash = await encodedHashBin(nonce_bin)
 
     let web_included = false
     id_payload.aud.forEach(aud => {
@@ -83,8 +76,17 @@ export async function validateIdToken(id_json: string): Promise<IdToken> {
     if (!web_included) {
         throw new TokenError("invalid_id_token", "Required audience not included!")
     }
-    if (id_payload.nonce !== nonce_hash) {
-        throw new TokenError("invalid_id_token", "Invalid nonce!")
+    if (check_nonce) {
+        const nonce_original = localStorage.getItem("nonce_original")
+        if (nonce_original === null) {
+            throw new TokenError("no_nonce", "No ID token nonce set!")
+        }
+
+        const nonce_bin = base64ToBin(nonce_original)
+        const nonce_hash = await encodedHashBin(nonce_bin)
+        if (id_payload.nonce !== nonce_hash) {
+            throw new TokenError("invalid_id_token", "Invalid nonce!")
+        }
     }
 
     return id_payload
@@ -123,7 +125,7 @@ export async function validateTokenResponse(token_res: any): Promise<ValidTokenR
 
     }
     const id_payload_raw = decodeJwtPayload(id_token)
-    const id_payload = await validateIdToken(id_payload_raw)
+    const id_payload = await validateIdToken(id_payload_raw, true)
 
     return {
         id_payload_raw,

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {decodeJwtPayload, validateIdToken} from "./functions/OAuth";
+import {decodeJwtPayload, TokenError, validateIdToken} from "./functions/OAuth";
 import {redirect_uri} from "./AuthRedirect";
 import config from "../../config"
 import AuthContext, {handleTokenResponse, useAuth, useLogin} from "./AuthContext";
@@ -44,6 +44,12 @@ const AuthCallback = () => {
                 'Content-Type': 'application/json'
             }
         })
+        const nonce_original_transient = localStorage.getItem("nonce_original_transient")
+        if (nonce_original_transient === null) {
+            throw new TokenError("no_nonce_set", "No nonce has been set at redirect!")
+        }
+        localStorage.setItem("nonce_original", nonce_original_transient)
+
         // TODO error handling
         const {
             id_payload_raw, id_payload, access_token, refresh_token, scope
