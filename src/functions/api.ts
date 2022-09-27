@@ -1,5 +1,5 @@
 import config from "../config"
-import ky, {HTTPError} from "ky"
+import ky, {HTTPError, ResponsePromise} from "ky"
 import {z} from "zod";
 import {IAuth, useRenewal} from "../pages/Auth/AuthContext";
 import {NormalizedOptions} from "ky/distribution/types/options";
@@ -31,7 +31,7 @@ const renewHook = (auth: IAuth) => {
 export const back_post_auth = async (endpoint: string, json: Object, auth: IAuth) => {
     const bearer = 'Bearer ' + auth.authState.access
 
-    return api.post(endpoint, {
+    return await api.post(endpoint, {
         json: json,
         headers: {
             'Authorization': bearer,
@@ -42,7 +42,7 @@ export const back_post_auth = async (endpoint: string, json: Object, auth: IAuth
             ]
         }
 
-    })
+    }).json()
 }
 
 export const back_request = async (endpoint: string, auth: IAuth) => {

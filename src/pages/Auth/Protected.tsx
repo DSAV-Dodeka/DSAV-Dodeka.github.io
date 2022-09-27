@@ -39,7 +39,7 @@ const Protected = () => {
         evt.preventDefault()
 
         const req = {
-            "old_usph": authState.username,
+            "user_id": authState.username,
             "new_email": newEmail
         }
 

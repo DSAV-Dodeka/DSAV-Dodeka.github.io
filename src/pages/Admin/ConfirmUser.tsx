@@ -109,12 +109,9 @@ const ConfirmUser = () => {
             av40id: av40Id,
             joined: joined
         }
-        back_post_auth("onboard/confirm/", signup_confirm, {authState, setAuthState}).then((res: Response) => {
-            console.log(res)
-            if (res.ok) {
-                setStatus(`Inschrijving for ${su.firstname} ${su.lastname} bevestigd!`)
-                doReload()
-            }
+        back_post_auth("onboard/confirm/", signup_confirm, {authState, setAuthState}).then(() => {
+            setStatus(`Inschrijving for ${su.firstname} ${su.lastname} bevestigd!`)
+            doReload()
         })
     }
 

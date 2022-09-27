@@ -44,6 +44,7 @@ const AuthCallback = () => {
                 'Content-Type': 'application/json'
             }
         })
+
         const nonce_original_transient = localStorage.getItem("nonce_original_transient")
         if (nonce_original_transient === null) {
             throw new TokenError("no_nonce_set", "No nonce has been set at redirect!")

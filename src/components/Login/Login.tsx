@@ -18,7 +18,7 @@ const Login = () => {
 
     return (
         <div className="profile-box">
-            {ac.isLoaded && ac.isAuthenticated && `Is logged in as ${ac.username}`}
+            {ac.isLoaded && ac.isAuthenticated && `Is logged in as ${ac.it.nickname}`}
             {ac.isLoaded && !ac.isAuthenticated &&
                 <button onClick={handleLogin}>Login</button>
             }

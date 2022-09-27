@@ -17,7 +17,7 @@ export const defaultAuthState: AuthState = {
     updated_at: -1,
 
     id: "",
-    it: null,
+    it: {} as IdToken,
     access: "",
     refresh: "",
 
@@ -41,7 +41,7 @@ export type AuthState = {
     updated_at: number
 
     id: string
-    it: IdToken | null
+    it: IdToken
     access: string
     refresh: string
 

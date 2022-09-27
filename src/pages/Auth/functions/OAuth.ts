@@ -39,7 +39,14 @@ const IdToken = z.object({
     auth_time: z.number(),
     nonce: z.string(),
     iat: z.number(),
-    exp: z.number()
+    exp: z.number(),
+    email: z.string(),
+    name: z.string(),
+    given_name: z.string(),
+    family_name: z.string(),
+    nickname: z.string(),
+    preferred_username: z.string(),
+    birthdate: z.string()
 })
 export type IdToken = z.infer<typeof IdToken>
 
