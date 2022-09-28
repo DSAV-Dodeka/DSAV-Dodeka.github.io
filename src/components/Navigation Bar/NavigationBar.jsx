@@ -11,6 +11,7 @@ import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss"
 import getUrl from "../../functions/links";
 import authContext from "../../pages/Auth/AuthContext";
+import Login from "../Login/Login";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
@@ -49,9 +50,10 @@ function NavigationBar() {
           <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})).concat([{name: "Records", path: "/records"}])} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
-          <Item name="Account" path="/profile" />
+          
           {authState.scope.includes("admin") && (<Item name="Admin" path="/admin" />)}
         </div>
+        <Login />
       </nav>
       <nav id="navMobile">
         <div id="navMobileBar">

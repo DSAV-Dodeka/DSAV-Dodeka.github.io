@@ -53,7 +53,6 @@ function App() {
         <Router>
           <div id="app_screen">
             <div id="app_container">
-              <Login />
               <NavigationBar />
               <div id="app_flex">
                 <Routes>
