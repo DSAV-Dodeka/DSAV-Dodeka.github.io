@@ -1,0 +1,19 @@
+@import "../../variables";
+
+.admin_status {
+    color: $dodeka_blauw;
+    margin-left: 4rem;
+}
+
+.table_container {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    width: calc(100% - 8rem);
+}
+
+.table_title {
+    margin-left: 4rem;
+    margin-bottom: 1rem;
+    font-size: $font_medium;
+    color: $dodeka_blauw;
+}

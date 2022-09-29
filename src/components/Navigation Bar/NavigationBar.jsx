@@ -50,8 +50,6 @@ function NavigationBar() {
           <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})).concat([{name: "Records", path: "/records"}])} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
-          
-          {authState.scope.includes("admin") && (<Item name="Admin" path="/admin" />)}
         </div>
         <Login />
       </nav>
