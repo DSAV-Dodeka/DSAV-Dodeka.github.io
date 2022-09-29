@@ -88,6 +88,30 @@ export const su_request = async (auth: IAuth) => {
     return sus
 }
 
+const UserData = z.object({
+    firstname: z.string(),
+    lastname: z.string(),
+    phone: z.string(),
+    email: z.string(),
+    user_id: z.string(),
+    callname: z.string(),
+    av40id: z.number(),
+    joined: z.string(),
+    eduinstitution: z.string(),
+    birthdate: z.string(),
+    registered: z.boolean()
+})
+export type UserData = z.infer<typeof UserData>;
+
+const UsersData = z.array(SignedUp)
+type UsersData = z.infer<typeof SignedUps>;
+
+export const ud_request = async (auth: IAuth) => {
+    let response = await back_request('admin/users/', auth)
+    const uds: UsersData = UsersData.parse(response)
+    return uds
+}
+
 const ApiError = z.object({
     error: z.string(),
     error_description: z.string(),
