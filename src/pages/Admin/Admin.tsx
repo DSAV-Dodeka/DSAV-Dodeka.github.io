@@ -12,10 +12,10 @@ const Admin = () => {
     return (
         <>
             <PageTitle title="Ledenadministratie"/>
-            {authState.isAuthenticated && (
+            {!authState.isAuthenticated && (
                 <p className="admin_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in met een geautorizeerd account om deze pagina te kunnen bekijken.</p>
             )}
-            {!authState.isAuthenticated && !authState.scope.includes("admin") && (
+            {authState.isAuthenticated && authState.scope.includes("admin") && (
                 <div>
                     <h1 className="table_title">Nieuwe leden</h1>
                     <div className="table_container">
