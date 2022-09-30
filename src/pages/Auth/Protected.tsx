@@ -43,7 +43,7 @@ const Protected = () => {
             "new_email": newEmail
         }
 
-        await back_post_auth("update/email/send", req, {authState, setAuthState})
+        await back_post_auth("update/email/send/", req, {authState, setAuthState})
     }
 
     return (

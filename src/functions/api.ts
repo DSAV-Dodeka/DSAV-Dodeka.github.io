@@ -66,7 +66,7 @@ const Profile = z.object({
 type Profile = z.infer<typeof Profile>;
 
 export const profile_request = async (auth: IAuth) => {
-    let response = await back_request('res/profile', auth)
+    let response = await back_request('res/profile/', auth)
     const profile: Profile = Profile.parse(response)
     return profile
 }
@@ -83,7 +83,7 @@ const SignedUps = z.array(SignedUp)
 type SignedUps = z.infer<typeof SignedUps>;
 
 export const su_request = async (auth: IAuth) => {
-    let response = await back_request('onboard/get', auth)
+    let response = await back_request('onboard/get/', auth)
     const sus: SignedUps = SignedUps.parse(response)
     return sus
 }
