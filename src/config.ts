@@ -4,9 +4,9 @@ const max_login = 28 * 24 * 60 * 60
 
 export default
 {
-  "auth_location": production ? "" : "http://localhost:4243",
-  "api_location": production ? "" : "http://localhost:4243",
-  "self_location": production ? "" : "http://localhost:3000",
-  "client_id": "dodekaweb_client",
+  "auth_location": import.meta.env.PAGES_AUTH_URL,
+  "client_location": import.meta.env.PAGES_CLIENT_URL,
+  "api_location": import.meta.env.PAGES_API_URL,
+  "client_id": import.meta.env.PAGES_CLIENT_ID,
   "max_login": max_login
 }

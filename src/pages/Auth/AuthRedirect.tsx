@@ -3,7 +3,7 @@ import {binToBase64Url} from "./functions/AuthUtility";
 import {computeCodeVerifier, computeRandom, encodedHashBin} from "./functions/OAuth";
 import config from "../../config"
 
-export const redirect_uri = config.self_location + "/auth/callback"
+export const redirect_uri = config.client_location + "/auth/callback"
 
 const AuthRedirect = () => {
 

@@ -8,7 +8,7 @@ import AuthContext, {handleTokenResponse, useAuth, useLogin} from "./AuthContext
 
 const AuthCallback = () => {
     const navigate = useNavigate()
-    const [gotToken, setGotToken] = useState(false);
+    const [loaded, setLoaded] = useState(false);
     const {authState, setAuthState} = useContext(AuthContext)
 
     const handleCallback = async () => {
@@ -57,17 +57,16 @@ const AuthCallback = () => {
         } = await handleTokenResponse(await res.json())
         const newState = useLogin(id_payload_raw, id_payload, access_token, refresh_token, scope)
         setAuthState(newState)
-
-        setGotToken(true)
     }
 
     useEffect(() => {
-        if (!gotToken) {
-            handleCallback().catch();
-        } else {
-            navigate("/", { replace: true} )
+        if (!loaded) {
+            setLoaded(true)
+            handleCallback().then(() => {
+                navigate("/", { replace: true} )
+            });
         }
-    }, [gotToken]);
+    }, []);
 
     return (
         <>
