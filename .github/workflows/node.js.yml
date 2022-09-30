@@ -21,7 +21,7 @@ jobs:
         node-version: '16'
         cache: 'npm'
     - run: npm install
-    - run: npm run build
+    - run: npm run build-mode -- --mode production
     - run: |
         cp "CNAME" "./dist/CNAME"
     - run: |
