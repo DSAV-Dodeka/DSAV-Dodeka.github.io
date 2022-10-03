@@ -2,15 +2,13 @@ import React, {useEffect, useState} from "react";
 import {binToBase64Url} from "./functions/AuthUtility";
 import {computeCodeVerifier, computeRandom, encodedHashBin} from "./functions/OAuth";
 import config from "../../config"
+import {PagesError} from "../../functions/error";
 
 export const redirect_uri = config.client_location + "/auth/callback"
 
 const AuthRedirect = () => {
 
-    const [handled, setHandled] = useState(false)
-    const [redirectUrl, setRedirectUrl] = useState("")
-
-    const handleRedirect = async () => {
+    const handleRedirect = async (signal: AbortSignal): Promise<string> => {
         //OAuth Authorization Code Flow + PKCE step 1
         const state = binToBase64Url(crypto.getRandomValues(new Uint8Array(16)))
         const { verifier, challenge } = await computeCodeVerifier()
@@ -32,21 +30,34 @@ const AuthRedirect = () => {
             code_verifier: verifier,
             state
         }
-        localStorage.setItem("state_verify", JSON.stringify(state_verifier))
-        localStorage.setItem("nonce_original_transient", nonce_original)
 
-        setRedirectUrl(`${config.auth_location}/oauth/authorize?` + params)
+        if (!signal.aborted) {
+            console.log("setStorage")
 
-        setHandled(true)
+            localStorage.setItem("state_verify", JSON.stringify(state_verifier))
+            localStorage.setItem("nonce_original_transient", nonce_original)
+
+            return `${config.auth_location}/oauth/authorize?` + params
+        } else {
+            throw new PagesError("abort_error", "Aborted as state was redirect was already generated!",
+                "abort_redirect")
+        }
     }
 
     useEffect(() => {
-        if (!handled) {
-            handleRedirect().catch();
-        } else {
-            window.location.replace(redirectUrl)
+        const ac = new AbortController()
+        handleRedirect(ac.signal).then((url) => {
+            window.location.replace(url)
+        }).catch((e) => {
+            if (!(e instanceof PagesError && e.debug_key === "abort_redirect")) {
+                throw e
+            }
+        });
+
+        return () => {
+            ac.abort()
         }
-    }, [handled]);
+    }, []);
 
     return (
         <>
