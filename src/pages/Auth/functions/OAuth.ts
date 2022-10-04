@@ -2,6 +2,7 @@ import { binToBase64Url, base64ToBin, stringToUint8 } from "./AuthUtility"
 import {string, z} from "zod";
 import config from "../../../config";
 import {NormalizedOptions} from "ky/distribution/types/options";
+import {PagesError} from "../../../functions/error";
 
 export function computeRandom(length=16) {
     const random_bin = crypto.getRandomValues(new Uint8Array(length))
@@ -55,20 +56,18 @@ export function parseIdToken(jwt_json: string): IdToken {
     return IdToken.parse(jwt_obj)
 }
 
-export class TokenError extends Error {
-    error_type: string
-    constructor(error_type: string, desc: string) {
-        super(desc)
-        this.error_type = error_type
+export class TokenError extends PagesError {
+    constructor(err_desc: string, debug_key?: string) {
+        super('bad_tokens', err_desc, debug_key);
     }
 }
 
-export async function validateIdToken(id_json: string, check_nonce: boolean): Promise<IdToken> {
+export async function validateIdToken(id_json: string, check_nonce: boolean, nonce_original?: string): Promise<IdToken> {
     let id_payload: IdToken
     try {
         id_payload = parseIdToken(id_json)
     } catch (e) {
-        throw new TokenError("invalid_id_token", "Error parsing ID token!")
+        throw new TokenError("Error parsing ID token!", "bad_id_parsing")
     }
 
     let web_included = false
@@ -77,22 +76,23 @@ export async function validateIdToken(id_json: string, check_nonce: boolean): Pr
             web_included = true
         }
         else if (aud !== config.client_id) {
-            throw new TokenError("invalid_id_token", "Invalid audience!")
+            throw new TokenError("Invalid audience!", "invalid_id_aud")
         }
     })
     if (!web_included) {
-        throw new TokenError("invalid_id_token", "Required audience not included!")
+        throw new TokenError("Required audience not included!", "not_required_id_audience")
     }
     if (check_nonce) {
-        const nonce_original = localStorage.getItem("nonce_original")
-        if (nonce_original === null) {
-            throw new TokenError("no_nonce", "No ID token nonce set!")
+        const check_nonce = nonce_original !== undefined ? nonce_original : localStorage.getItem("nonce_original")
+
+        if (check_nonce === null) {
+            throw new TokenError("No ID token nonce set!", "no_id_nonce")
         }
 
-        const nonce_bin = base64ToBin(nonce_original)
+        const nonce_bin = base64ToBin(check_nonce)
         const nonce_hash = await encodedHashBin(nonce_bin)
         if (id_payload.nonce !== nonce_hash) {
-            throw new TokenError("invalid_id_token", "Invalid nonce!")
+            throw new TokenError("Invalid nonce!", "bad_id_nonce")
         }
     }
 
@@ -116,13 +116,13 @@ type ValidTokenResponse = {
     scope: string
 }
 
-export async function validateTokenResponse(token_res: any): Promise<ValidTokenResponse> {
+export async function validateTokenResponse(token_res: any, nonce_original?: string): Promise<ValidTokenResponse> {
     const {
         id_token, access_token, refresh_token, token_type, expires_in, scope
     } = TokenResponse.parse(token_res)
 
     if (token_type !== "Bearer") {
-        throw new TokenError("invalid_token_response", "Incorrect token_type!")
+        throw new TokenError("Incorrect token_type!", "token_not_bearer")
     }
 
     if (expires_in === -1) {
@@ -132,7 +132,7 @@ export async function validateTokenResponse(token_res: any): Promise<ValidTokenR
 
     }
     const id_payload_raw = decodeJwtPayload(id_token)
-    const id_payload = await validateIdToken(id_payload_raw, true)
+    const id_payload = await validateIdToken(id_payload_raw, true, nonce_original)
 
     return {
         id_payload_raw,

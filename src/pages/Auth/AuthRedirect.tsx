@@ -39,7 +39,7 @@ const AuthRedirect = () => {
 
             return `${config.auth_location}/oauth/authorize?` + params
         } else {
-            throw new PagesError("abort_error", "Aborted as state was redirect was already generated!",
+            throw new PagesError("abort_error", "Aborted as state for redirect was already generated!",
                 "abort_redirect")
         }
     }

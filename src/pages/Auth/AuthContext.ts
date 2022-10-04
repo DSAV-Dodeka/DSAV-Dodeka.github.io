@@ -208,9 +208,9 @@ export const renewAuth = async (as: AuthState) => {
     return loadFromRenewal(id_payload_raw, id_payload, access_token, refresh_token, scope);
 }
 
-export const handleTokenResponse = async (res: any) => {
+export const handleTokenResponse = async (res: any, nonce_original?: string) => {
     try {
-        return await validateTokenResponse(res)
+        return await validateTokenResponse(res, nonce_original)
     } catch (e) {
         if (e instanceof TokenError) {
             // TODO
