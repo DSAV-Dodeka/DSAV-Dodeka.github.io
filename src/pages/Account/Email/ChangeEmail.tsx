@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
-import {back_post, back_post_auth, catch_api} from "../../../functions/api";
-import AuthContext from "../../Auth/AuthContext";
+import React, {useEffect, useState} from "react";
+import {back_post, err_api} from "../../../functions/api";
 import {z} from "zod";
+import {PagesError} from "../../../functions/error";
 
 const EmailResponse = z.object({
     "old_email": z.string(),
@@ -10,16 +10,14 @@ const EmailResponse = z.object({
 type EmailResponse = z.infer<typeof EmailResponse>
 
 const ChangeEmail = () => {
-    const [load, setLoad] = useState(false)
     const [emails, setEmails] = useState({} as EmailResponse)
-    const {authState, setAuthState} = useContext(AuthContext)
 
 
-    const handleLoad = async () => {
+    const handleLoad = async (signal: AbortSignal) => {
         let code = (new URLSearchParams(window.location.search)).get("code");
         let flow_id = (new URLSearchParams(window.location.search)).get("flow_id");
         if (code === null || flow_id === null) {
-            return
+            throw new PagesError("bad_email_change", "No code or flow_id set to check email update!", 'bad_flow_code_email_change')
         }
         const req = {
             "code": code,
@@ -27,21 +25,32 @@ const ChangeEmail = () => {
         }
 
         try {
-            const res = await back_post("update/email/check/", req)
-            const emails = EmailResponse.parse(res)
-            setEmails(emails)
-
+            const res = await back_post("update/email/check/", req, {signal})
+            return EmailResponse.parse(res)
         }
         catch (e) {
-            const err = await catch_api(e)
-            console.log(JSON.stringify(err))
+            throw await err_api(e)
         }
     }
 
     useEffect(() => {
-        if (!load) {
-            handleLoad().catch()
-            setLoad(true)
+        const ac = new AbortController()
+
+        handleLoad(ac.signal).then(() => {
+            setEmails(emails)
+        }).catch((e) => {
+            if (e instanceof PagesError) {
+                console.log(e.j())
+            } else if (e.name === 'AbortError') {
+                console.log((new PagesError("abort_error", "Aborted as email was already set!",
+                    "abort_email_change")).j())
+            } else {
+                throw e
+            }
+        });
+
+        return () => {
+            ac.abort()
         }
     }, [])
 
