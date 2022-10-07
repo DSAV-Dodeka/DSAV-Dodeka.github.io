@@ -13,7 +13,7 @@ function Record(props) {
                     <div className="prestatieLeeg" />
                     {
                         props.prestaties.length > 0 ? props.prestaties.map((prestatie, index) =>
-                            <div className="prestatie">
+                            <div key={prestatie.naam} className="prestatie">
                                 <p className="prestatieNaam">{index + 1 + ". " + prestatie.naam}</p>
                                 <p className="prestatieTijd">{prestatie.prestatie}</p>
                                 <p className="pcOnly prestatieDatum">{prestatie.datum + " " + prestatie.plaats}</p>

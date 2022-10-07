@@ -7,7 +7,7 @@ function Wedstrijd(props) {
     return(
         <div className="wedstrijd_algemeen">
             <img className="wedstrijd_algemeen_foto" alt="" src={getUrl(`wedstrijden/${props.wedstrijd.foto}`)}/>
-            <p class="wedstrijd_algemeen_info">{parse(props.wedstrijd.info_lang)}
+            <p className="wedstrijd_algemeen_info">{parse(props.wedstrijd.info_lang)}
                 {/* Het Nederlandse Studentenkampioenschap Indooratletiek 2022 is dit jaar op zaterdag 12 maart georganiseerd door D.S.A.V. Dodeka in Omnisport, Apeldoorn. Wij vonden het een heel geslaagde dag, en willen graag alle deelnemers, vrijwilligers, officials, sponsors en andere ondersteunende partijen van harte bedanken. Zonder jullie was het nooit mogelijk geweest.<br/><br/>
                 De dag begon om 11 uur met de eerste onderdelen en eindigde rond 7 uur na de estafettes en het ludieke onderdeel: slalommen over de hoogteverschillen van de rondbaan. Vervolgens zijn we van locatie verhuisd om gezellig te gaan eten en de dag af te sluiten met een groot feest. <br/><br/>
                 Terugblikken op deze dag? Onderstaand is een overzicht van alle (tot nu toe binnengekomen) foto's van de fotografen. Delen mag, graag met het noemen van de naam van de fotograaf.<br/><br/>
