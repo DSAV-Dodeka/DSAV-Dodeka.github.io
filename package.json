@@ -2,8 +2,9 @@
   "name": "newreact",
   "version": "0.1.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --mode localdev",
+    "build": "tsc && vite build --mode localdev",
+    "build-mode": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

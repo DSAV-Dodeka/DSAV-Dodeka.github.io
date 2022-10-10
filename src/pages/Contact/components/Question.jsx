@@ -6,7 +6,7 @@ function Question(props) {
         <div id="question_box">
             <div id="question">
                 {props.vraag.split('\n').map(item =>
-                        <span>
+                        <span key={item}>
                             {item}
                             <br/>
                         </span>
@@ -14,7 +14,7 @@ function Question(props) {
             </div>
             <div id="answer">
                 {props.antwoord.split('\n').map(item =>
-                        <span>
+                        <span key={item}>
                             {item}
                             <br/>
                         </span>

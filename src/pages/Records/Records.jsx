@@ -23,26 +23,26 @@ function Records() {
                 </div>
                 <div className="toggle">
                     <p className={"toggleLeft" + (locatie === "Outdoor" ? " toggleActive": " toggleInactive")} onClick={() => {setLocatie("Outdoor"); setActiveRecord("none")}}>Outdoor</p>
-                    <p className={"toggleRight" + (locatie === "Indoor" ? " toggleActive": " toggleInactive")} onClick={() => {setLocatie("Indoor"); setActiveRecord("none")}}>Indoor</p>
+                    <p className={"toggleRight" + (locatie === "Indoor" ? " toggleActive": " toggleInactive")} onClick={() => {setLocatie("Indoor"); setActiveRecord("none")}}>{locatie === "Indoor" ? ("Indoor" + String.fromCodePoint(0x1F952)) : "Indoor"}</p>
                 </div>
             </div>
             {
                 (geslacht === "Vrouwen" ?
                     (locatie === "Outdoor" ? 
                         vrouwenoutdoor.map((record) =>
-                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("vo" + record.onderdeel)} onClick={() => activeRecord === ("vo" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("vo" + record.onderdeel) : "")}/>
+                            <Record key={record.onderdeel} onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("vo" + record.onderdeel)} onClick={() => activeRecord === ("vo" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("vo" + record.onderdeel) : "")}/>
                         ) :
                         vrouwenindoor.map((record) =>
-                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("vi" + record.onderdeel)} onClick={() => activeRecord === ("vi" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("vi" + record.onderdeel) : "")}/>
+                            <Record key={record.onderdeel} onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("vi" + record.onderdeel)} onClick={() => activeRecord === ("vi" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("vi" + record.onderdeel) : "")}/>
                         )
                     )
                     :
                     (locatie === "Outdoor" ? 
                         mannenoutdoor.map((record) =>
-                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("mo" + record.onderdeel)} onClick={() => activeRecord === ("mo" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("mo" + record.onderdeel) : "")}/>
+                            <Record key={record.onderdeel} onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("mo" + record.onderdeel)} onClick={() => activeRecord === ("mo" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("mo" + record.onderdeel) : "")}/>
                         ) :
                         mannenindoor.map((record) =>
-                            <Record onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("mi" + record.onderdeel)} onClick={() => activeRecord === ("mi" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("mi" + record.onderdeel) : "")}/>
+                            <Record key={record.onderdeel} onderdeel={record.onderdeel} prestaties={record.prestaties} active={activeRecord === ("mi" + record.onderdeel)} onClick={() => activeRecord === ("mi" + record.onderdeel) ? setActiveRecord("none") : (record.prestaties.length > 1 ? setActiveRecord("mi" + record.onderdeel) : "")}/>
                         )
                     )
                 )

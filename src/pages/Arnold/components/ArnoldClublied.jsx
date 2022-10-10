@@ -4,7 +4,8 @@ import "./ArnoldClublied.scss";
 function ArnoldClublied() {
     return(
         <div className="arnoldClublied">
-            <iframe className="clubliedVideo" src="https://www.youtube.com/embed/jLPQCp_OC8w?loop=1&playlist=jLPQCp_OC8w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe className="clubliedVideo" src="https://www.youtube.com/embed/jLPQCp_OC8w?loop=1&playlist=jLPQCp_OC8w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen></iframe>
             <div className="clubliedLyrics">
                 <h2>Aardvarken - Clublied D.S.A.V. Dodeka</h2>
                 <br/>
