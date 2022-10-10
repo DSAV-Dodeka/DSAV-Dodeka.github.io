@@ -23,7 +23,7 @@ function Records() {
                 </div>
                 <div className="toggle">
                     <p className={"toggleLeft" + (locatie === "Outdoor" ? " toggleActive": " toggleInactive")} onClick={() => {setLocatie("Outdoor"); setActiveRecord("none")}}>Outdoor</p>
-                    <p className={"toggleRight" + (locatie === "Indoor" ? " toggleActive": " toggleInactive")} onClick={() => {setLocatie("Indoor"); setActiveRecord("none")}}>{locatie === "Indoor" ? ("Indoor" + String.fromCodePoint(0x1F952)) : "Indoor"}</p>
+                    <p className={"toggleRight" + (locatie === "Indoor" ? " toggleActive": " toggleInactive")} onClick={() => {setLocatie("Indoor"); setActiveRecord("none")}}>Indoor</p>
                 </div>
             </div>
             {
