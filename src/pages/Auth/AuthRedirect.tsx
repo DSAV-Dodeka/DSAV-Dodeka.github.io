@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {binToBase64Url} from "./functions/AuthUtility";
 import {computeCodeVerifier, computeRandom, encodedHashBin} from "./functions/OAuth";
 import config from "../../config"
 import {PagesError} from "../../functions/error";
+import AuthContext, {useLogout} from "./AuthContext";
 
 export const redirect_uri = config.client_location + "/auth/callback"
 
 const AuthRedirect = () => {
+    const {authState, setAuthState} = useContext(AuthContext)
 
     const handleRedirect = async (signal: AbortSignal): Promise<string> => {
         //OAuth Authorization Code Flow + PKCE step 1
@@ -47,6 +49,9 @@ const AuthRedirect = () => {
     useEffect(() => {
         const ac = new AbortController()
         handleRedirect(ac.signal).then((url) => {
+            const newState = useLogout()
+            setAuthState(newState)
+
             window.location.replace(url)
         }).catch((e) => {
             if (!(e instanceof PagesError && e.debug_key === "abort_redirect")) {

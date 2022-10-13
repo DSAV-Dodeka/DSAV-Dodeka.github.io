@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {decodeJwtPayload, TokenError, validateIdToken} from "./functions/OAuth";
 import {redirect_uri} from "./AuthRedirect";
 import config from "../../config"
-import AuthContext, {handleTokenResponse, useAuth, useLogin} from "./AuthContext";
+import AuthContext, {handleTokenResponse, useLogin} from "./AuthContext";
 import {back_post, catch_api, err_api} from "../../functions/api";
 import {PagesError} from "../../functions/error";
 

@@ -114,18 +114,22 @@ const loadFromRenewal = (id_payload_raw: string, id_payload: IdToken, access_tok
     }
 }
 
-const saveStorage = (as: AuthState) => {
-    localStorage.setItem("id_payload", as.id)
-    localStorage.setItem("access", as.access)
-    localStorage.setItem("refresh", as.refresh)
-    localStorage.setItem("scope", as.scope)
+const saveStorage = (as: AuthState, signal?: AbortSignal) => {
+    if (!signal?.aborted) {
+        localStorage.setItem("id_payload", as.id)
+        localStorage.setItem("access", as.access)
+        localStorage.setItem("refresh", as.refresh)
+        localStorage.setItem("scope", as.scope)
+    }
 }
 
-const clearStorage = () => {
-    localStorage.removeItem("id_payload")
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    localStorage.removeItem("scope")
+const clearStorage = (signal?: AbortSignal) => {
+    if (!signal?.aborted) {
+        localStorage.removeItem("id_payload")
+        localStorage.removeItem("access")
+        localStorage.removeItem("refresh")
+        localStorage.removeItem("scope")
+    }
 }
 
 
@@ -140,36 +144,36 @@ export const AuthProvider = AuthContext.Provider
 
 export default AuthContext
 
-export const useAuth = async (): Promise<AuthState> => {
+export const useAuth = async (signal: AbortSignal): Promise<AuthState> => {
     let as = loadFromStorage()
 
     if (as.invalidState) {
         // If it is invalid but there is a refresh token, renewal is attempted
         if (as.refresh) {
             try {
-                as = await renewAuth(as)
+                as = await renewAuth(as, signal)
                 // Successful renewal
                 as.isAuthenticated = true
             } catch (e) {
                 console.log(e)
                 // Failed renewal, logout
                 as = newAuthState()
-                clearStorage()
+                clearStorage(signal)
             }
         } else {
             // Renewal not possible, logout
             as = newAuthState()
-            clearStorage()
+            clearStorage(signal)
         }
     } else if (as.loginRequired) {
         as = newAuthState()
-        clearStorage()
+        clearStorage(signal)
         // Logout
     } else {
         as.isAuthenticated = true
     }
 
-    saveStorage(as)
+    saveStorage(as, signal)
     as.isLoaded = true
     return as
 }
@@ -201,10 +205,10 @@ export const useRenewal = async (as: AuthState): Promise<AuthState> => {
     return as
 }
 
-export const renewAuth = async (as: AuthState) => {
+export const renewAuth = async (as: AuthState, signal?: AbortSignal) => {
     const {
         id_payload_raw, id_payload, access_token, refresh_token, scope
-    } = await refresh_tokens(as.refresh)
+    } = await doTokenRefresh(as.refresh, signal)
     return loadFromRenewal(id_payload_raw, id_payload, access_token, refresh_token, scope);
 }
 
@@ -221,7 +225,7 @@ export const handleTokenResponse = async (res: any, nonce_original?: string) => 
     }
 }
 
-const refresh_tokens = async (refresh: string) => {
+const doTokenRefresh = async (refresh: string, signal?: AbortSignal) => {
     const token_request = {
         "client_id":  config.client_id,
         "grant_type": "refresh_token",
@@ -230,7 +234,7 @@ const refresh_tokens = async (refresh: string) => {
 
     let res
     try {
-        res = await back_post("oauth/token/", token_request)
+        res = await back_post("oauth/token/", token_request, {signal})
     } catch (e) {
         const err = await catch_api(e)
         if (err.error === "invalid_grant") {

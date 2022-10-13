@@ -35,16 +35,21 @@ import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 function App() {
   const [authState, setAuthState] = useState(newAuthState());
   const contextValue = { authState, setAuthState }
-  const [authLoad, setAuthLoad] = useState(false)
 
-  const authLoader = async () => {
-    let loadedState = await useAuth()
-    setAuthState(loadedState)
+  const authLoader = async (signal: AbortSignal) => {
+    let loadedState = await useAuth(signal)
+    if (!signal.aborted) {
+      setAuthState(loadedState)
+    }
   }
 
   useEffect(() => {
-    if (!authLoad) {
-      authLoader().then(() => setAuthLoad(true))
+    const ac = new AbortController()
+
+    authLoader(ac.signal).then()
+
+    return () => {
+      ac.abort()
     }
   }, [])
 
