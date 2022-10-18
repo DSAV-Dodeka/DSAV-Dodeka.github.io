@@ -28,14 +28,6 @@ function Wedstrijden() {
                     <h1 className="wedstrijden_link_header">Records</h1>
                     <img src={records} className="wedstrijden_link_image" alt=""/>
                 </Link>
-                {/* <Link className="vereniging_9" to='commissies' >
-                    <h1 className="vereniging_10">Commissies</h1>
-                    <img src={commissie} className="vereniging_11" alt=""/>
-                </Link> */}
-                {/* <Link className="vereniging_9" to={`${match.url}/merchandise`} >
-                <h1 className="vereniging_10">Merchandise</h1>
-                    <img src={merch} className="vereniging_11" alt=""/>
-                </Link> */}
             </div>
         </div>
     )
