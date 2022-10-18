@@ -1,0 +1,16 @@
+@import "../../../variables";
+
+.maand {
+    width: 12rem;
+    padding: 1rem;
+    background-color: $dodeka_blauw;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 0.75rem;
+}
