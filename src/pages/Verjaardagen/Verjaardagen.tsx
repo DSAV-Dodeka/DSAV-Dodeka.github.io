@@ -4,10 +4,12 @@ import {profile_request} from "../../functions/api";
 import PageTitle from "../../components/PageTitle";
 import {BirthdayData, bd_request} from "../../functions/api";
 import Maand from "./components/Maand";
+import Verjaardag from "./components/Verjaardag";
 import "./Verjaardagen.scss";
 import { number } from "zod";
 
 const maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"]
+const dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"]
 
 const defaultData: BirthdayData[] = [
     {
@@ -83,6 +85,14 @@ function sortBirthdays(a: string, b: string) {
     return 0;
 }
 
+function getDay(birthdate: string) {
+    var currentYear = new Date().getFullYear()
+    var dateCurrent = (new Date(birthdate))
+    dateCurrent.setFullYear(currentYear)
+    if (dateCurrent < new Date()) dateCurrent.setFullYear(currentYear + 1);
+    return dagen[dateCurrent.getDay()];
+}
+
 const Verjaardagen = () => {
 
     const {authState: ac, setAuthState} = useContext(AuthContext)
@@ -102,10 +112,10 @@ const Verjaardagen = () => {
                             return (
                             <>
                                 <Maand maand={maanden[new Date(item.birthdate).getMonth()]} />
-                                <p>{new Date(item.birthdate).getDate() + " " + getAge(item.birthdate) + " jaar"}</p>
+                                <Verjaardag datum={getDay(item.birthdate) + " " + new Date(item.birthdate).getDate()} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>
                             </>)
                         }
-                        return (<p>{new Date(item.birthdate).getDate() + " " + getAge(item.birthdate) + " jaar"}</p>)
+                        return (<Verjaardag datum={getDay(item.birthdate) + " " + new Date(item.birthdate).getDate()} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>)
                     }
                         
                     )}
