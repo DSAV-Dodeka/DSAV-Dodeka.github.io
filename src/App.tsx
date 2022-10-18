@@ -21,6 +21,7 @@ import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
 import Arnold from "./pages/Arnold/Arnold";
 import Records from "./pages/Records/Records";
+import Verjaardagen from "./pages/Verjaardagen/Verjaardagen";
 import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
@@ -95,6 +96,9 @@ function App() {
                   }/>
                   <Route path="/contact" element={
                     <Contact />
+                  }/>
+                  <Route path="/leden/verjaardagen" element={
+                    <Verjaardagen />
                   }/>
                   <Route path="/"
                     element={<Home />}
