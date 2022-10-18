@@ -48,7 +48,6 @@
 }
 
 .bar_sponsor {
-    width: 6rem;
     margin-right: 1rem;
     vertical-align: middle;
     @include respond(mobile) {
@@ -56,6 +55,14 @@
     }
 }
 
-#maltha {
-    height: 5rem;
+.maltha_bar {
+    width: 5rem;
+}
+
+.kverneland_bar {
+    width: 7rem;
+}
+
+.tsa_bar {
+    width: 10rem;
 }

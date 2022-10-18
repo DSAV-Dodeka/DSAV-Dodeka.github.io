@@ -35,9 +35,9 @@ function ContactBar() {
             <div className="bar_container">
                 <Link className="no_underline" to="/contact/sponsors#"><Heading title="Sponsors" /></ Link>
                 <div className="bar_info">
-                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><Maltha id="maltha" className="bar_sponsor" fill="white"/></a>
-                    <a target="_blank" rel="noreferrer" href="https://nl.kvernelandgroup.com/"><img src={getUrl(`sponsors/kverneland.png`)} alt="" className="bar_sponsor"></img></a>
-                    
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getUrl(`sponsors/maltha.png`)} alt="" className="bar_sponsor maltha_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://nl.kvernelandgroup.com/"><img src={getUrl(`sponsors/kverneland.png`)} alt="" className="bar_sponsor kverneland_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getUrl(`sponsors/tsa.png`)} alt="" className="bar_sponsor tsa_bar"></img></a>
                 </div>
                 
             </div>
