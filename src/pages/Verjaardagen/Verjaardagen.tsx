@@ -102,10 +102,10 @@ const Verjaardagen = () => {
     return (
         <>
             <PageTitle title="Verjaardagen"/>
-            {ac.isAuthenticated && (
+            {!ac.isAuthenticated && (
                 <p className="verjaardagen_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in om deze pagina te kunnen bekijken.</p>
             )}
-            {!ac.isAuthenticated && (
+            {ac.isAuthenticated && (
                 <div>
                     {defaultData.map((item, index, array) => {
                         if (index == 0 || new Date(item.birthdate).getMonth() > new Date(array[index - 1].birthdate).getMonth()) {
