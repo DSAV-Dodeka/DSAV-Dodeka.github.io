@@ -44,7 +44,7 @@ function NavigationBar() {
         <img id="home_logo" className={(location === "/" ? "" : "hidden")} onClick={() => count()} src={getUrl('logo.png')} alt=""/>
         <div id="navItems">
           <Item name="Home" path="/" />
-          <Item name="Nieuws" path="/nieuws" />
+          <Dropdown name="Nieuws" path="/nieuws" items={[{name: "De Spike", path: "/spike", protected: true}]} />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Arnold", path: "/arnold" }]} />
           <Item name="Trainingen" path="/trainingen" />
           <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})).concat([{name: "Records", path: "/records"}])} />
