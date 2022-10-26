@@ -6,21 +6,21 @@ import {
 } from "react-router-dom";
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
-import Nieuws from './pages/Nieuws/Nieuws';
-import Spike from './pages/Spike/Spike';
-import Vereniging from './pages/Vereniging/Vereniging';
+import Nieuws from './pages/Nieuws/Nieuws/Nieuws';
+import Spike from './pages/Nieuws/Spike/Spike';
+import Vereniging from './pages/Vereniging/Vereniging/Vereniging';
 import Trainingen from './pages/Trainingen/Trainingen';
 import WordLid from './pages/Word lid/WordLid';
-import Contact from './pages/Contact/Contact';
+import Contact from './pages/Contact/Contact/Contact';
 import ContactBar from "./components/Contact Bar/ContactBar";
-import Commissies from "./pages/Commissies/Commissies";
-import Bestuur from "./pages/Bestuur/Bestuur";
-import Sponsors from "./pages/Sponsors/Sponsors";
-import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
+import Commissies from "./pages/Vereniging/Commissies/Commissies";
+import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
+import Sponsors from "./pages/Contact/Sponsors/Sponsors";
+import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
-import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
-import Arnold from "./pages/Arnold/Arnold";
-import Records from "./pages/Records/Records";
+import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
+import Arnold from "./pages/Vereniging/Arnold/Arnold";
+import Records from "./pages/Wedstrijden/Records/Records";
 import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";

@@ -1,0 +1,40 @@
+@import "../../../variables";
+
+#contact {
+    width: 100%;
+    background-color: $dodeka_blauw90p;
+    display: flex;
+    margin-bottom: $margin_x;
+    @include respond(mobile) {
+        display: block;
+        margin-bottom: $margin_y;
+    }
+}
+
+#contact_info {
+    width: 50%;
+    display: inline;
+    margin-top: $margin_y;
+    margin-bottom: $margin_y;
+    @include respond(mobile) {
+        width: 100%;        
+    }
+}
+
+#contact_map {
+    width: 50%;
+    height: auto;
+    display: inline;
+    @include respond(mobile) {
+        width: 100%;
+        height: 24rem;
+        display: block;
+    }
+}
+
+#faq {
+    margin-bottom: 4rem;
+    @include respond(mobile) {
+        margin-bottom: 2rem;
+    }
+}
