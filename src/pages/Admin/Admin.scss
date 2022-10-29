@@ -5,10 +5,32 @@
     margin-left: 4rem;
 }
 
+.admin_toggle {
+    display: flex;
+    margin-left: 4rem;
+}
+
+.admin_toggle h1 {
+    width: 12rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    padding: 0.5rem;
+    color: white;
+    background-color: $dodeka_blauw;
+    border-radius: 0.75rem 0.75rem 0 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.admin_toggle_active {
+    background-color: $dodeka_rood !important;
+}
+
 .table_container {
     margin-left: 4rem;
     margin-right: 4rem;
     width: calc(100% - 8rem);
+    margin-bottom: 6rem;
 }
 
 .table_title {

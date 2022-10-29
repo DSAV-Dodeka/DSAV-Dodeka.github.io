@@ -15,18 +15,18 @@ import {back_post} from "../../functions/api";
 const columnHelper = createColumnHelper<SignedUp>()
 
 const defaultData: SignedUp[] = [
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        phone: '+31612121212',
-        email: 'arnold@dsavdodeka.nl'
-    },
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        phone: '+31612121212',
-        email: 'arnold@dsavdodeka.nl'
-    },
+    // {
+    //     firstname: 'Arnold',
+    //     lastname: 'Aardvarken',
+    //     phone: '+31612121212',
+    //     email: 'arnold@dsavdodeka.nl'
+    // },
+    // {
+    //     firstname: 'Arnold',
+    //     lastname: 'Aardvarken',
+    //     phone: '+31612121212',
+    //     email: 'arnold@dsavdodeka.nl'
+    // },
 ]
 
 const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
@@ -152,6 +152,11 @@ const ConfirmUser = () => {
                 ))}
                 </thead>
                 <tbody>
+                {table.getRowModel().rows.length === 0 && (
+                    <tr>
+                        <td colSpan={5}>Er zijn helaas geen nieuwe aanmeldingen</td>
+                    </tr>
+                )}
                 {table.getRowModel().rows.map(row => (
                     <Fragment key={row.id}>
                         <tr>
@@ -169,8 +174,8 @@ const ConfirmUser = () => {
                         </tr>
                         {row.getIsExpanded() && (
                             <tr><td colSpan={row.getVisibleCells().length}>
-                                <form onSubmit={(e) => handleSubmit(e, row.original)}>
-                                    <input id="av40id" type="text" placeholder="AV`40 nummer" name="av40id" value={av40Id} onChange={handleFormChange}/>
+                                <form className="bevestig_inschrijving" onSubmit={(e) => handleSubmit(e, row.original)}>
+                                    <input id="av40id" type="text" placeholder="AV`40 lidnummer" name="av40id" value={av40Id} onChange={handleFormChange}/>
                                     <br/>
                                     <input id="joined" type="text" placeholder="Lid sinds" name="joined" value={joined} onFocus={handleFocus} onBlur={handleBlur} onChange={handleFormChange}/>
                                     <br/>

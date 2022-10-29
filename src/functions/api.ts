@@ -105,8 +105,8 @@ const UserData = z.object({
 })
 export type UserData = z.infer<typeof UserData>;
 
-const UsersData = z.array(SignedUp)
-type UsersData = z.infer<typeof SignedUps>;
+const UsersData = z.array(UserData)
+type UsersData = z.infer<typeof UsersData>;
 
 export const ud_request = async (auth: IAuth, options?: Options) => {
     let response = await back_request('admin/users/', auth, options)
