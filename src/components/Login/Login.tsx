@@ -29,10 +29,10 @@ const Login = () => {
                 <button className="login_button" onClick={handleLogin}>Login</button>
             }
             {ac.isLoaded && ac.isAuthenticated &&
-                <div className="profile_dropdown">
-                    <h2 className="profile_login" onClick={() => setActive(!active)}>Ingelogd</h2>
+                <div className="profile_dropdown" onClick={() => setActive(!active)}>
+                    <h2 className="profile_login">{ac.it.given_name}</h2>
                     <div className={active ? "profile_drop" : "dropHide"}>
-                        <Link className="profile_dropdownElement" to="/profile">Profiel</Link>
+                        <Link className="profile_dropdownElement" to="/profiel">Profiel</Link>
                         {ac.scope.includes("admin") ? (<Link className="profile_dropdownElement" to="/admin">Admin</Link>) : ""}
                         <button className="profile_dropdownElement dropLast" onClick={handleLogout}>Log uit</button>
                     </div>

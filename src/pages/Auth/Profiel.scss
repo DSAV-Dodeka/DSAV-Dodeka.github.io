@@ -1,0 +1,65 @@
+@import "../../variables.scss";
+
+.profiel_status {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 2rem;
+    color: $dodeka_blauw;
+    text-align: left;
+}
+
+.profiel {
+    position: relative;
+    width: 100%;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    background-color: $dodeka_blauw90p;
+}
+
+.profiel_naam {
+    width: calc(50% - 4rem);
+    top: -2.25rem;
+    left: 4rem;
+    position: absolute;
+    background-color: $dodeka_rood;
+    color: white;
+    font-size: $font_large;
+    font-weight: $bold;
+    line-height: $line_height_large;
+    padding: 1rem;
+    border-radius: 0.75rem;
+}
+
+.profiel_info {
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    padding-bottom: 0.5rem;
+}
+
+.profiel_highlights {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+    width: calc(25% - 2rem);
+    right: 15%;
+    top: 4rem;
+    padding: 1rem;
+    background-color: white;
+    color: $dodeka_rood;
+    font-weight: $bold;
+    text-align: center;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    border-radius: 0.75rem;
+}
+
+.profiel_highlights p {
+    padding-bottom: 0.5rem;
+}

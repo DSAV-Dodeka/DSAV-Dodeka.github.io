@@ -3,8 +3,9 @@ import AuthContext, {AuthState, useRenewal} from "./AuthContext";
 import {decodeJwtPayload} from "./functions/OAuth";
 import Timer from "./Timer";
 import {back_post_auth, profile_request} from "../../functions/api";
+import "./Profiel.scss";
 
-const Protected = () => {
+const Profiel = () => {
     const {authState, setAuthState} = useContext(AuthContext)
 
     const [user, setUser] = useState("")
@@ -48,26 +49,19 @@ const Protected = () => {
 
     return (
         <>
-            <p>{!authState.isLoaded && "is loading"}</p>
-            <p>{authState.isLoaded && "loaded"}</p>
-            <div>
-                <ul>
-                    <li><button onClick={loadScope}>Load Scope</button></li>
-                    <li><strong>Username:</strong> {user}</li>
-                    <li><strong>Access scope:</strong> {accessScope}</li>
-                </ul>
-            </div>
+            {!authState.isAuthenticated && (
+                <p className="profiel_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in om deze pagina te kunnen bekijken.</p>
+            )}
             {authState.isAuthenticated && (
-                <div>
-                    <ul>
-                        <li><strong>Authenticated:</strong> {`${authState.isAuthenticated}`}</li>
-                        <li><strong>Access Token:</strong> {access}</li>
-                        <li><strong>ID Token:</strong> {JSON.stringify(authState.it)}</li>
-                        <li><strong>Raw Access:</strong> {authState.access}</li>
-                        <li><strong>Refresh Token:</strong> {authState.refresh}</li>
-                        <li><Timer /></li>
-                        <li><button onClick={doRefresh}>Refresh</button></li>
-                    </ul>
+                <div className="profiel">
+                    <p className="profiel_naam">{authState.it.given_name + " " + authState.it.family_name}</p>
+                    <p className="profiel_info">Geboortedatum: {new Date(authState.it.birthdate).getDate() + "/" + (new Date(authState.it.birthdate).getMonth() + 1) + "/" + new Date(authState.it.birthdate).getFullYear()}</p>
+                    <p className="profiel_info">Lid sinds:</p>
+                    <p className="profiel_info">E-mailadres: {authState.it.email}</p>
+                    <p className="profiel_info">Telefoonnummer:</p>
+                    <p className="profiel_info">Adres:</p>
+                    <p className="profiel_info">Student: </p>
+                    <p className="profiel_info">Onderwijsinstelling: </p>
                     <div>
                         <form onSubmit={handleNewEmailSubmit}>
                             <label htmlFor="newEmail">Vul je nieuwe emailadres in om een email te versturen om die te veranderen.</label>
@@ -76,14 +70,21 @@ const Protected = () => {
                             <button id="newEmailSubmit" type="submit">Verzenden</button>
                         </form>
                     </div>
+                    <div className="profiel_highlights">
+                        <p>Trainingsklassement:</p>
+                        <p>12 punten</p>
+                        <p>Puntenklassement:</p>
+                        <p>12 punten</p>
+                        <p>Eastereggs gevonden:</p>
+                        <p>0/12</p>
+                    </div>
                 </div>
-
             )}
         </>
     )
 }
 
-export default Protected;
+export default Profiel;
 
 
 

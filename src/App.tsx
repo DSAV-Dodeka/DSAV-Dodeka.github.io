@@ -26,8 +26,7 @@ import "./App.scss";
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
 import {AuthProvider, AuthState, defaultAuthState, newAuthState, useAuth} from "./pages/Auth/AuthContext";
-import Protected from "./pages/Auth/Protected";
-import Login from "./components/Login/Login";
+import Profiel from "./pages/Auth/Profiel";
 import Admin from "./pages/Admin/Admin";
 import Registered from "./pages/Auth/Registered";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
@@ -101,7 +100,7 @@ function App() {
                   />
                   <Route path="/lg" element={<AuthRedirect />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
-                  <Route path="/profile" element={<Protected />} />
+                  <Route path="/profiel" element={<Profiel />} />
                   <Route path="/admin" element={<Admin />} />
                   <Route path="/registered" element={<Registered />}/>
                   <Route path="/account/email" element={<ChangeEmail />}/>
