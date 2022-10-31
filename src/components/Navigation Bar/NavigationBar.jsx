@@ -68,7 +68,12 @@ function NavigationBar() {
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
           <div className={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
-            <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
+            {(!authState.isLoaded || !authState.isAuthenticated )&&
+              <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
+            } 
+            {authState.isLoaded && authState.isAuthenticated && 
+              <MobileDropdown name="Nieuws" path="/nieuws" items={[{name: "Nieuwsarchief", path: ""}, { name: "De Spike", path: "/spike" }]} onClick={() => setActive(false)} />
+            }
             <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Arnold", path: "/arnold" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
             <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path}))).concat([{name: "Records", path: "/records"}])} onClick={() => setActive(false)} />
