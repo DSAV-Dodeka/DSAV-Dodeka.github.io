@@ -26,7 +26,7 @@ const Login = () => {
     return (
         <div className="profile-box">
             {ac.isLoaded && !ac.isAuthenticated &&
-                <button className="login_button" onClick={handleLogin}>Login</button>
+                <button className="login_button" onClick={handleLogin}>Log in</button>
             }
             {ac.isLoaded && ac.isAuthenticated &&
                 <div className="profile_dropdown" onClick={() => setActive(!active)}>

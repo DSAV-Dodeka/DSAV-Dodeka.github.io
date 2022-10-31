@@ -58,30 +58,33 @@
 }
 
 #navMobileBar {
+    position: relative;
     display: flex;
     height: 4rem;
-    align-items: center;
+    justify-content: center;
     padding-left: 1rem;
     padding-right: 1rem;
 }
 
 #navMobileLogo {
     width: 8rem;
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    
 }
 
-.navSpacing {
-    flex-grow: 1;
+.mobileLogin {
+    position: absolute;
+    right: 0;
 }
 
 .hamburgerIcon {
-    display: inline;
+    position: absolute;
+    left: 1rem;
+    top: 2rem;
+    transform: translateY(-50%);
     cursor: pointer;
-}
-
-.hamburgerIconInvisible {
-    display: inline;
-    cursor: default;
-    opacity: 0;
 }
 
 .hamburgerStreepje {

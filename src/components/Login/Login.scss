@@ -12,6 +12,9 @@
     font-size: $font_medium;
     line-height: 4rem;
     cursor: pointer;
+    @include respond(mobile) {
+        width: 4rem;
+    }
 }
 
 .login_button {
@@ -27,6 +30,10 @@
     font-size: $font_medium;
     line-height: 4rem;
     cursor: pointer;
+    @include respond(mobile) {
+        width: 4rem;
+        font-size: $font_small;
+    }
 }
 
 .profile_drop {

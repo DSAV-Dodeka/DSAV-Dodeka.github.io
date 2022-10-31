@@ -60,13 +60,9 @@ function NavigationBar() {
             <div className={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
             <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
-          <div className="navSpacing" />
           <img id="navMobileLogo" src={getUrl(`dodeka.png`)} alt="" />
-          <div className="navSpacing" />
-          <div className="hamburgerIconInvisible">
-          <div className={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>
-            <div className={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
-            <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
+          <div className="mobileLogin">
+            <Login />
           </div>
         </div>
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
@@ -78,7 +74,6 @@ function NavigationBar() {
             <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path}))).concat([{name: "Records", path: "/records"}])} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
-            <Item name="Account" path="/profiel" onClick={() => setActive(false)} />
           </div>
         </div>
       </nav>
