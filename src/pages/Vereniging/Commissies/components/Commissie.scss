@@ -1,0 +1,203 @@
+@import "../../../../variables";
+
+.commissieContainer {
+    width: 200%;
+    height: 32rem;
+    position: relative;
+    margin-bottom: 6rem;
+    @include respond(mobile) {
+        height: auto;
+        margin-bottom: 4rem;
+    }
+}
+
+.commissieLogo {
+    object-fit: cover;
+    width: 32rem;
+    height: 32rem;
+    display: inline-block;
+    vertical-align: top;
+    @include respond(mobile) {
+        width: 50%;
+        height: auto;
+        display: block;
+        vertical-align: auto;
+    }
+}
+
+.commissieInfo {
+    width: calc(50% - 36rem);
+    height: 32rem;
+    vertical-align: top;
+    position: relative;
+    background-color: $dodeka_blauw90p;
+    display: inline-block;
+    margin-left: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    @include respond(mobile) {
+        width: 50%;
+        height: 100%;
+        display: block;
+        vertical-align: top;
+        margin-top: -0.2rem;
+        margin-left: 0;
+    }
+}
+
+.commissieStukje {
+    color: white;
+    font-size: 1.125rem;
+    line-height: $line_height_medium;
+    margin-top: 2rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    @include respond(mobile) {
+        margin-top: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+.commissieSlider {
+    position: absolute;
+    display: flex;
+    right: 0;
+    height: 2rem;
+    top: 2rem;
+    padding-top: 0.4rem;
+    padding-right: 1rem;
+    cursor: pointer;
+    background-color: $dodeka_rood;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    @include respond(mobile) {
+        display: none;
+    }
+}
+
+.commissieSliderMargin {
+    margin-right: 1rem;
+}
+
+.commissieArrow {
+    right: 1rem;
+    top: 0rem;
+    bottom: 0rem;
+    width: 1.5rem;
+    height: 2rem;
+    color: white;
+    fill: currentColor;
+}
+
+.commissieFoto {
+    object-fit: cover;
+    width: 32rem;
+    @include respond(mobile) {
+        width: 100%;
+    }
+}
+
+.commissieLeden {
+    overflow: auto;
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding-top: 2rem;
+    padding-bottom: 0;
+}
+
+.commissieLid {
+    height: 24rem;
+    display: inline-block;
+}
+
+.commissieLidFoto {
+    display: block;
+    height: 18rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.commissieLidNaam {
+    display: block;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    color: white;
+    font-weight: $bold;
+    font-size: $font_medium;
+    text-align: center;
+}
+
+.commissieLidFunctie {
+    display: block;
+    color: $dodeka_rood;
+    text-align: center;
+    font-size: $font_small;
+    font-weight: $bold;
+}
+
+.roundedLeft {
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+    @include respond(mobile) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.roundedRight {
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    @include respond(mobile) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
+.inverseMargin {
+    margin-left: 0;
+    margin-right: 4rem;
+}
+
+.reverseArrow {
+    transform: rotate(180deg);
+}
+
+.commissieEasteregg, a:link, a:visited {
+    text-decoration: none;
+}
+
+.out {
+    animation: slide-out 1s forwards;
+}
+
+.in {
+    animation: slide-in 1s forwards;
+}
+
+.out-back {
+    animation: slide-out-back 1s forwards;
+}
+
+.in-back {
+    animation: slide-in-back 1s forwards;
+}
+
+@keyframes slide-in {
+    0% {transform: translateX(-50%)}
+    100% {transform: translateX(0%)}
+}
+@keyframes slide-out {
+    100% {transform: translateX(-50%)}
+}
+
+@keyframes slide-in-back {
+    0% {transform: translateX(-100%)}
+    100% {transform: translateX(0%)}
+}
+@keyframes slide-out-back {
+    0% {transform: translateX(0%)}
+    100% {transform: translateX(100%)}
+}

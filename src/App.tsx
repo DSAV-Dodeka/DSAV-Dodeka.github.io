@@ -6,17 +6,17 @@ import {
 } from "react-router-dom";
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
-import Nieuws from './pages/Nieuws/Nieuws';
-import Spike from './pages/Spike/Spike';
-import Vereniging from './pages/Vereniging/Vereniging';
+import Nieuws from './pages/Nieuws/Nieuws/Nieuws';
+import Spike from './pages/Nieuws/Spike/Spike';
+import Vereniging from './pages/Vereniging/Vereniging/Vereniging';
 import Trainingen from './pages/Trainingen/Trainingen';
 import WordLid from './pages/Word lid/WordLid';
-import Contact from './pages/Contact/Contact';
+import Contact from './pages/Contact/Contact/Contact';
 import ContactBar from "./components/Contact Bar/ContactBar";
-import Commissies from "./pages/Commissies/Commissies";
-import Bestuur from "./pages/Bestuur/Bestuur";
-import Sponsors from "./pages/Sponsors/Sponsors";
-import Wedstrijden from "./pages/Wedstrijden/Wedstrijden";
+import Commissies from "./pages/Vereniging/Commissies/Commissies";
+import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
+import Sponsors from "./pages/Contact/Sponsors/Sponsors";
+import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
 import Arnold from "./pages/Arnold/Arnold";
@@ -27,11 +27,9 @@ import "./App.scss";
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
 import {AuthProvider, AuthState, defaultAuthState, newAuthState, useAuth} from "./pages/Auth/AuthContext";
-import Protected from "./pages/Auth/Protected";
-import Login from "./components/Login/Login";
+import Profiel from "./pages/Profiel/Profiel";
 import Admin from "./pages/Admin/Admin";
 import Registered from "./pages/Auth/Registered";
-import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 
 function App() {
   const [authState, setAuthState] = useState(newAuthState());
@@ -105,10 +103,9 @@ function App() {
                   />
                   <Route path="/lg" element={<AuthRedirect />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
-                  <Route path="/profile" element={<Protected />} />
+                  <Route path="/profiel" element={<Profiel />} />
                   <Route path="/admin" element={<Admin />} />
                   <Route path="/registered" element={<Registered />}/>
-                  <Route path="/account/email" element={<ChangeEmail />}/>
                 </Routes>
                 <div id="app_flex_grow"/>
                 <ContactBar />

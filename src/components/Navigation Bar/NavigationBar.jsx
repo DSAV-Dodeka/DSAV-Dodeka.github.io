@@ -44,7 +44,7 @@ function NavigationBar() {
         <img id="home_logo" className={(location === "/" ? "" : "hidden")} onClick={() => count()} src={getUrl('logo.png')} alt=""/>
         <div id="navItems">
           <Item name="Home" path="/" />
-          <Item name="Nieuws" path="/nieuws" />
+          <Dropdown name="Nieuws" path="/nieuws" items={[{name: "De Spike", path: "/spike", protected: true}]} />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Arnold", path: "/arnold" }]} />
           <Item name="Trainingen" path="/trainingen" />
           <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})).concat([{name: "Records", path: "/records"}])} />
@@ -61,25 +61,25 @@ function NavigationBar() {
             <div className={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
             <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
-          <div className="navSpacing" />
           <img id="navMobileLogo" src={getUrl(`dodeka.png`)} alt="" />
-          <div className="navSpacing" />
-          <div className="hamburgerIconInvisible">
-          <div className={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}></div>
-            <div className={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
-            <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
+          <div className="mobileLogin">
+            <Login />
           </div>
         </div>
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
           <div className={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
-            <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
+            {(!authState.isLoaded || !authState.isAuthenticated )&&
+              <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
+            } 
+            {authState.isLoaded && authState.isAuthenticated && 
+              <MobileDropdown name="Nieuws" path="/nieuws" items={[{name: "Nieuwsarchief", path: ""}, { name: "De Spike", path: "/spike" }]} onClick={() => setActive(false)} />
+            }
             <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Arnold", path: "/arnold" }]} onClick={() => setActive(false)} />
             <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
             <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path}))).concat([{name: "Records", path: "/records"}])} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
-            <Item name="Account" path="/profile" onClick={() => setActive(false)} />
             {ac.isLoaded && ac.isAuthenticated && <MobileDropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }]} />}
           </div>
         </div>

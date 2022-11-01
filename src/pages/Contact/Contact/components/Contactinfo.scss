@@ -1,0 +1,33 @@
+@import "../../../../variables";
+
+#info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 75%;
+    margin-left: $margin_x;
+    margin-right: $margin_x;
+    row-gap: $margin_y;
+    @include respond(mobile) {
+        display: block;
+        margin-right: $margin_mobile;
+        margin-left: $margin_mobile;
+        padding-top: $margin_mobile;
+    }
+}
+
+.contact-type {
+    margin: 0;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+}
+
+.contact-value {
+    margin: 0;
+    color: $dodeka_rood;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    text-decoration: none;
+}
