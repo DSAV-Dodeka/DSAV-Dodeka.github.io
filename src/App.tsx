@@ -18,9 +18,9 @@ import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
 import Sponsors from "./pages/Contact/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
-import Wedstrijd from "./pages/Eigen wedstrijden/Wedstrijd";
-import Arnold from "./pages/Arnold/Arnold";
-import Records from "./pages/Records/Records";
+import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
+import Arnold from "./pages/Vereniging/Arnold/Arnold";
+import Records from "./pages/Wedstrijden/Records/Records";
 import Verjaardagen from "./pages/Verjaardagen/Verjaardagen";
 import "./App.scss";
 
