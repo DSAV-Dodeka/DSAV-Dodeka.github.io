@@ -39,3 +39,19 @@
     font-size: $font_medium;
     color: $dodeka_blauw;
 }
+
+.admin_mobile {
+    display: none;
+    @include respond(mobile) {
+        display: block;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 4rem;
+    }
+}
+
+.admin_pc {
+    @include respond(mobile) {
+        display: none;
+    }
+}
