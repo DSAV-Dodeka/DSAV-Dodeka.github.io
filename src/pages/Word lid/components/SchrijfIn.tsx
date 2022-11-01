@@ -6,7 +6,8 @@ const redirectUrl = "https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1
 
 const registerReducer = (state: RegisterState, action: RegisterAction): RegisterState => {
     switch (action.type) {
-        case 'change':
+        case 'change': // Both 'change' and 'change_bool' have same effect
+        case 'change_bool':
             return {
                 ...state,
                 [action.field]: action.value
@@ -25,18 +26,21 @@ type RegisterState = {
     firstname: string,
     lastname: string
     phone: string,
-    email: string
+    email: string,
+    privacy: boolean
 }
 
 type RegisterAction =
     | { type: 'reset'}
     | { type: 'change', field: string, value: string }
+    | { type: 'change_bool', field: string, value: boolean }
 
 const initialState: RegisterState = {
     firstname: "",
     lastname: "",
     phone: "",
-    email: ""
+    email: "",
+    privacy: false
 }
 
 const SchrijfIn = () => {
@@ -69,6 +73,10 @@ const SchrijfIn = () => {
             setStatus("Vul een correct emailadres in")
             return false;
         }
+        else if (!state.privacy) {
+            setStatus("Om lid te worden dien je akkoord te gaan met het privacybeleid.")
+            return false;
+        }
         return true;
     }
 
@@ -89,6 +97,11 @@ const SchrijfIn = () => {
         dispatch({type: 'change', field: name, value})
     }
 
+    const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { name, checked } = event.target
+        dispatch({type: 'change_bool', field: name, value: checked});
+    }
+
     const handleSignup = () => {
         setShow(true)
     }
@@ -105,6 +118,11 @@ const SchrijfIn = () => {
                            onChange={handleFormChange} />
                     <input type="text" name="email" placeholder="E-mail" value={state.email}
                            onChange={handleFormChange}/>
+                    <div className="checkbox">
+                        <label >Ik ga akkoord met het <a href="/files/privacyverklaring_dodeka_temp.pdf" target="_blank" rel="noreferrer" className="privacy_link">privacybeleid</a></label>
+                        <input id="student" type="checkbox" name="student"
+                                onChange={handleCheckboxChange}/>
+                    </div>
                     <p className="schrijfInStatus">{status}</p>
                 </div>
                 <button className="schrijfInButton" id="submit_button" type="submit">Schrijf je in via AV`40</button><br />
