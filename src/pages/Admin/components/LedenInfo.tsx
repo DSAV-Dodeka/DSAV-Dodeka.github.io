@@ -8,8 +8,8 @@ import {
     getCoreRowModel,
     useReactTable,
 } from '@tanstack/react-table'
-import {UserData, ud_request} from "../../functions/api";
-import AuthContext from "../Auth/AuthContext";
+import {UserData, ud_request} from "../../../functions/api";
+import AuthContext from "../../Auth/AuthContext";
 import "./LedenInfo.scss";
 
 const columnHelper = createColumnHelper<UserData>()

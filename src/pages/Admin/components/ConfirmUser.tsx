@@ -8,9 +8,9 @@ import {
     getCoreRowModel,
     useReactTable,
 } from '@tanstack/react-table'
-import {back_post_auth, SignedUp, su_request} from "../../functions/api";
-import AuthContext from "../Auth/AuthContext";
-import {back_post} from "../../functions/api";
+import {back_post_auth, SignedUp, su_request} from "../../../functions/api";
+import AuthContext from "../../Auth/AuthContext";
+import {back_post} from "../../../functions/api";
 
 const columnHelper = createColumnHelper<SignedUp>()
 

@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 import AuthContext from "../Auth/AuthContext";
 import {profile_request} from "../../functions/api";
-import ConfirmUser from "./ConfirmUser";
-import LedenInfo from "./LedenInfo";
+import ConfirmUser from "./components/ConfirmUser";
+import LedenInfo from "./components/LedenInfo";
 import PageTitle from "../../components/PageTitle";
 import "./Admin.scss";
 

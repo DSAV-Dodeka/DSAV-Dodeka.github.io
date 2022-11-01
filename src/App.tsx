@@ -26,10 +26,9 @@ import "./App.scss";
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
 import {AuthProvider, AuthState, defaultAuthState, newAuthState, useAuth} from "./pages/Auth/AuthContext";
-import Profiel from "./pages/Auth/Profiel";
+import Profiel from "./pages/Profiel/Profiel";
 import Admin from "./pages/Admin/Admin";
 import Registered from "./pages/Auth/Registered";
-import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 
 function App() {
   const [authState, setAuthState] = useState(newAuthState());
@@ -103,7 +102,6 @@ function App() {
                   <Route path="/profiel" element={<Profiel />} />
                   <Route path="/admin" element={<Admin />} />
                   <Route path="/registered" element={<Registered />}/>
-                  <Route path="/account/email" element={<ChangeEmail />}/>
                 </Routes>
                 <div id="app_flex_grow"/>
                 <ContactBar />
