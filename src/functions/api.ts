@@ -134,3 +134,20 @@ export const err_api = async (e: unknown) => {
     const err = await catch_api(e)
     return new PagesError(err.error, err.error_description, err.debug_key)
 }
+
+const BirthdayData = z.object({
+    firstname: z.string(),
+    lastname: z.string(),
+    birthdate: z.string()
+})
+
+export type BirthdayData = z.infer<typeof BirthdayData>;
+
+const Birthdays = z.array(BirthdayData);
+type Birthdays = z.infer<typeof Birthdays>;
+
+export const bd_request = async (auth: IAuth, options?: Options) => {
+    let response = await back_request('members/birthdays', auth, options)
+    const bds: Birthdays = Birthdays.parse(response)
+    return bds
+}

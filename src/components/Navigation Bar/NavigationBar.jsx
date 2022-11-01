@@ -17,7 +17,7 @@ function NavigationBar() {
   const [active, setActive] = useState(false);
   const location = useLocation().pathname;
   const [counter, setCounter]  = useState(0);
-  const {authState, setAuthState} = useContext(authContext)
+  const {authState: ac, setAuthState} = useContext(authContext)
 
   function count() {
     if (counter === 11) {
@@ -50,6 +50,7 @@ function NavigationBar() {
           <Dropdown name="Wedstrijden" path="/wedstrijden" items={wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})).concat([{name: "Records", path: "/records"}])} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }]} />
+          {ac.isLoaded && ac.isAuthenticated && <Dropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }]} />}
         </div>
         <Login />
       </nav>
@@ -79,6 +80,7 @@ function NavigationBar() {
             <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path}))).concat([{name: "Records", path: "/records"}])} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }]} onClick={() => setActive(false)} />
+            {ac.isLoaded && ac.isAuthenticated && <MobileDropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }]} />}
           </div>
         </div>
       </nav>

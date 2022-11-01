@@ -1,0 +1,31 @@
+@import "../../../variables";
+
+.verjaardag_container {
+    display: flex;
+    justify-content: space-between;
+    background-color: $dodeka_blauw90p;
+    color: white;
+    font-size: $font_medium;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    
+    margin-bottom: 1rem;
+}
+
+.verjaardag_container p {
+    padding: 1rem;
+}
+
+.verjaardag_datum {
+    width: 12rem;
+    margin-left: 1rem;
+    font-weight: $bold;
+}
+
+.verjaardag_leeftijd {
+    width: 12rem;
+    background-color: $dodeka_rood;
+    text-align: right;
+    padding-right: 2rem !important;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+}
