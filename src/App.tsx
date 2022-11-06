@@ -21,7 +21,8 @@ import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
 import Arnold from "./pages/Vereniging/Arnold/Arnold";
 import Records from "./pages/Wedstrijden/Records/Records";
-import Verjaardagen from "./pages/Verjaardagen/Verjaardagen";
+import Verjaardagen from "./pages/Leden/Verjaardagen/Verjaardagen";
+import Leden from "./pages/Leden/Leden";
 import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
@@ -97,6 +98,9 @@ function App() {
                   }/>
                   <Route path="/leden/verjaardagen" element={
                     <Verjaardagen />
+                  }/>
+                  <Route path="/leden" element={
+                    <Leden />
                   }/>
                   <Route path="/"
                     element={<Home />}
