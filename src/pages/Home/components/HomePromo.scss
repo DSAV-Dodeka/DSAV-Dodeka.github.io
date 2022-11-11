@@ -11,6 +11,14 @@
     width: 100%;
     font-weight: bold;
     cursor: pointer;
+    @include respond(mobile) {
+        font-size: $font-small;
+        line-height: $line_height_small;
+        text-align: left;
+        padding-left: 0.5rem;
+        padding-right: 4rem;
+        padding-top: 0.25rem;
+    }
 }
 
 .home_promo_arrow {
@@ -19,4 +27,9 @@
     top: 1rem;
     height: 2rem;
     fill: white;
+    @include respond(mobile) {
+        height: 1.5rem;
+        right: 0.5rem;
+        top: 1.25rem;
+    }
 }
