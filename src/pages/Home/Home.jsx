@@ -3,6 +3,7 @@ import HomeNieuws from './components/HomeNieuws';
 import TitleBar from './components/TitleBar';
 import HomeTrainingen from './components/HomeTrainingen';
 import HomeCommissies from './components/HomeCommissies';
+import HomePromo from './components/HomePromo';
 import "./Home.scss";
 import getUrl from "../../functions/links";
 
@@ -33,6 +34,7 @@ function Home() {
   return (
     <div>
       <TitleBar />
+      <HomePromo />
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
