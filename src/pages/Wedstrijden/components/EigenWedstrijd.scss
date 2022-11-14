@@ -19,9 +19,9 @@
 }
 
 .eigenWedstrijdOud {
-    border-left: 4rem solid #808080;
+    border-left: 4rem solid $dodeka_grijs;
     @include respond(mobile) {
-        border-left: 2rem solid #808080;
+        border-left: 2rem solid $dodeka_grijs;
     }
 }
 
@@ -42,7 +42,7 @@
 }
 
 .eigenWedstrijdDatumOud {
-    color: #808080;
+    color: $dodeka_grijs;
 }
 
 .eigenWedstrijdFoto {
@@ -79,5 +79,5 @@
 }
 
 .eigenWedstrijdLinkOud {
-    color: #808080;
+    color: $dodeka_grijs;
 }
