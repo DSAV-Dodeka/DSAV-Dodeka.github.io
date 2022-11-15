@@ -52,12 +52,8 @@
     }
 }
 
-.maltha {
-    height: 8rem;
-}
-
 .sponsoropties_5{ //lg:mx-12 w-36 h-32
-    width: 9rem;
+    width: 12rem;
     vertical-align: middle;
     margin-right: 2rem;
     @include respond(computerscherm){
@@ -83,4 +79,17 @@
 .linktomail_1{
     color: $dodeka_rood;
     text-decoration: none;
+}
+
+
+.maltha {
+    width: 7.5rem;
+}
+
+.kverneland {
+    width: 10.5rem;
+}
+
+.tsa {
+    width: 15rem;
 }
