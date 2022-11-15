@@ -8,7 +8,7 @@ import {
     getCoreRowModel,
     useReactTable,
 } from '@tanstack/react-table'
-import {UserData, ud_request} from "../../../functions/api";
+import {UserData, ud_request, catch_api} from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./LedenInfo.scss";
 
@@ -92,8 +92,13 @@ const LedenInfo = () => {
     }
 
     const loadBackend = async () => {
-        const uds = await ud_request({authState, setAuthState})
-        setData(uds)
+        try {
+            const uds = await ud_request({authState, setAuthState})
+            setData(uds)
+        } catch (e) {
+            const err_api = await catch_api(e)
+            console.error(err_api)
+        }
     }
 
     useEffect(() => {

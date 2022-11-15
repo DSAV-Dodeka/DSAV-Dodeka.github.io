@@ -3,11 +3,12 @@ import PageTitle from "../../../components/PageTitle";
 import Bestuursjaar from "./components/Bestuursjaar";
 import BestuurText from "../../../content/Bestuur.json";
 import "./Bestuur.scss";
+import {Logger} from "../../../functions/logger";
 
 function Bestuur() {
     function bart() {
         try {
-            console.log("bart");
+            Logger.info("bart");
             document.getElementById("bart").classList.remove("hidden");
             document.getElementById("laadBart").classList.add("hidden");
         } catch {}

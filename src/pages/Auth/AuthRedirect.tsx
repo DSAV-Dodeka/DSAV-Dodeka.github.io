@@ -4,6 +4,7 @@ import {computeCodeVerifier, computeRandom, encodedHashBin} from "./functions/OA
 import config from "../../config"
 import {PagesError} from "../../functions/error";
 import AuthContext, {useLogout} from "./AuthContext";
+import {Logger} from "../../functions/logger";
 
 export const redirect_uri = config.client_location + "/auth/callback"
 
@@ -34,9 +35,10 @@ const AuthRedirect = () => {
         }
 
         if (!signal.aborted) {
-            console.log("setStorage")
+            const state_verify_j = JSON.stringify(state_verifier)
+            Logger.debug(`Setting storage for state_verify ${state_verify_j} and nonce ${nonce_original}.`)
 
-            localStorage.setItem("state_verify", JSON.stringify(state_verifier))
+            localStorage.setItem("state_verify", state_verify_j)
             localStorage.setItem("nonce_original_transient", nonce_original)
 
             return `${config.auth_location}/oauth/authorize?` + params

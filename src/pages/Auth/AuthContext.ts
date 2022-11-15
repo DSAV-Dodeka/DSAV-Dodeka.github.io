@@ -9,6 +9,8 @@ import config from "../../config";
 import {redirect_uri} from "./AuthRedirect";
 import {string} from "zod";
 import {back_post, catch_api} from "../../functions/api";
+import {Logger} from "../../functions/logger";
+import {PagesError} from "../../functions/error";
 
 export const defaultAuthState: AuthState = {
     username: "",
@@ -52,6 +54,8 @@ export type AuthState = {
     invalidState: boolean
 }
 
+const idTokenLeeway = 1;
+
 /**
  * Loads access token, ID token and refresh token from local storage and validates them.
  * It sets invalidState to true and returns if any of them are empty, if there was a parsing failure or if the ID
@@ -68,7 +72,14 @@ const loadFromStorage = (): AuthState => {
     newState.refresh = localStorage.getItem("refresh") || ""
     newState.scope = localStorage.getItem("scope") || ""
 
-    if (!newState.id || !newState.access || !newState.refresh || !newState.scope) {
+    if (!newState.refresh) {
+        // Without refresh token, always logout
+        newState.loginRequired = true
+        return newState
+    }
+
+    if (!newState.id || !newState.access || !newState.scope) {
+        // In this case refresh does exist, so try to use refresh token to reload
         newState.invalidState = true
         return newState
     }
@@ -76,26 +87,30 @@ const loadFromStorage = (): AuthState => {
     try {
         newState.it = parseIdToken(newState.id)
     } catch (e) {
+        // Something wrong with ID Token, try to reload
         newState.invalidState = true
         return newState
     }
 
     // Time in seconds since UNIX Epoch
     const utc_now = Math.floor(Date.now()/1000)
-    // If true, expiry date is more than 1h in the past
-    if (utc_now > newState.it.exp - (60 * 60)) {
-        newState.invalidState = true
-        return newState
-    }
 
-    newState.username = newState.it.sub
     newState.updated_at = newState.it.auth_time
 
     if (utc_now > newState.updated_at + config.max_login) {
+        // In this case we are certain the refresh token is outdated, so also do new login
         newState.loginRequired = true
         return newState
     }
 
+    if (utc_now > newState.it.exp - idTokenLeeway) {
+        // ID token expired, so do refresh
+        newState.invalidState = true
+        Logger.debug("id expired")
+        return newState
+    }
+
+    newState.username = newState.it.sub
     newState.invalidState = false
     return newState
 }
@@ -146,7 +161,7 @@ export default AuthContext
 
 export const useAuth = async (signal: AbortSignal): Promise<AuthState> => {
     let as = loadFromStorage()
-
+    Logger.debug({"Loaded authState": as})
     if (as.invalidState) {
         // If it is invalid but there is a refresh token, renewal is attempted
         if (as.refresh) {
@@ -155,7 +170,8 @@ export const useAuth = async (signal: AbortSignal): Promise<AuthState> => {
                 // Successful renewal
                 as.isAuthenticated = true
             } catch (e) {
-                console.log(e)
+
+                Logger.debug(e)
                 // Failed renewal, logout
                 as = newAuthState()
                 clearStorage(signal)
@@ -198,7 +214,7 @@ export const useRenewal = async (as: AuthState): Promise<AuthState> => {
         as = await renewAuth(as)
         as.isLoaded = true
     } catch (e) {
-        console.log(e)
+        Logger.warn(e)
         as = useLogout()
     }
     saveStorage(as)
@@ -238,8 +254,7 @@ const doTokenRefresh = async (refresh: string, signal?: AbortSignal) => {
     } catch (e) {
         const err = await catch_api(e)
         if (err.error === "invalid_grant") {
-            //TODO
-            throw e
+            throw new PagesError("invalid_grant", err.error_description, "token_refresh_invalid")
         } else {
             throw e
         }

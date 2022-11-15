@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 import "./Login.scss";
 import Item from "../Navigation Bar/Item";
 import Dropdown from "../Navigation Bar/Dropdown";
+import {Logger} from "../../functions/logger";
 
 /**
  * Hook that alerts clicks outside of the passed ref
@@ -43,8 +44,8 @@ const Login = () => {
     }
 
     const handleLogout = () => {
+        Logger.debug("Logging out from button...")
         const newState = useLogout()
-        console.log(newState)
         setAuthState(newState)
     }
 

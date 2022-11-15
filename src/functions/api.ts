@@ -117,7 +117,7 @@ export const ud_request = async (auth: IAuth, options?: Options) => {
 const ApiError = z.object({
     error: z.string(),
     error_description: z.string(),
-    debug_key: z.string()
+    debug_key: z.string().optional()
 })
 export type ApiError = z.infer<typeof ApiError>;
 

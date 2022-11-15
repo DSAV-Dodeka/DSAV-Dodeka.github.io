@@ -31,12 +31,15 @@ import {AuthProvider, AuthState, defaultAuthState, newAuthState, useAuth} from "
 import Profiel from "./pages/Profiel/Profiel";
 import Admin from "./pages/Admin/Admin";
 import Registered from "./pages/Auth/Registered";
+import ProfielDebug from "./pages/Profiel/ProfielDebug";
+import {Logger} from "./functions/logger";
 
 function App() {
   const [authState, setAuthState] = useState(newAuthState());
   const contextValue = { authState, setAuthState }
 
   const authLoader = async (signal: AbortSignal) => {
+    Logger.debug("Loading auth...")
     let loadedState = await useAuth(signal)
     if (!signal.aborted) {
       setAuthState(loadedState)
@@ -46,7 +49,9 @@ function App() {
   useEffect(() => {
     const ac = new AbortController()
 
-    authLoader(ac.signal).then()
+    authLoader(ac.signal).then(() => {
+      Logger.debug("App AuthState loaded...")
+    })
 
     return () => {
       ac.abort()
@@ -108,6 +113,7 @@ function App() {
                   <Route path="/lg" element={<AuthRedirect />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/profiel" element={<Profiel />} />
+                  <Route path="/profiel/debug" element={<ProfielDebug />} />
                   <Route path="/admin" element={<Admin />} />
                   <Route path="/registered" element={<Registered />}/>
                 </Routes>

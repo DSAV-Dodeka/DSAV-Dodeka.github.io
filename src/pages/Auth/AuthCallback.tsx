@@ -6,11 +6,13 @@ import config from "../../config"
 import AuthContext, {handleTokenResponse, useLogin} from "./AuthContext";
 import {back_post, catch_api, err_api} from "../../functions/api";
 import {PagesError} from "../../functions/error";
+import {Logger} from "../../functions/logger";
 
 
 const AuthCallback = () => {
     const navigate = useNavigate()
     const {authState, setAuthState} = useContext(AuthContext)
+    const [isSet, changeSet] = useState(false)
 
     const handleCallback = async (signal: AbortSignal) => {
         let params = (new URLSearchParams(window.location.search))
@@ -54,33 +56,43 @@ const AuthCallback = () => {
         if (!signal.aborted) {
             localStorage.setItem("nonce_original", nonce_original_transient)
             const newState = useLogin(id_payload_raw, id_payload, access_token, refresh_token, scope)
+            Logger.debug({"Callback succesful state": newState})
             setAuthState(newState)
         } else {
-            throw new PagesError("abort_error", "Aborted as token was already received!",
+            throw new PagesError("abort_error", "Callback aborted in function as token was already received!",
                 "abort_callback")
         }
     }
 
     useEffect(() => {
-        const ac = new AbortController()
+        Logger.debug("Callback effect...")
+        // This ensures first the app loads its previous state, and only then does this load to prevent race conditions
+        if (!isSet && authState.isLoaded) {
+            Logger.debug("AuthState loaded and running AuthCallback...")
 
-        handleCallback(ac.signal).then(() => {
-            navigate("/", { replace: true} )
-        }).catch((e) => {
-            if (e instanceof PagesError) {
-                console.log(e.j())
-            } else if (e.name === 'AbortError') {
-                console.log((new PagesError("abort_error", "Aborted as token was already received!",
-                    "abort_callback")).j())
-            } else {
-                throw e
+            changeSet(true)
+
+            const ac = new AbortController()
+
+            handleCallback(ac.signal).then(() => {
+                navigate("/", { replace: true} )
+            }).catch((e) => {
+                if (e instanceof PagesError) {
+                    Logger.warn(e.j())
+                } else if (e.name === 'AbortError') {
+                    Logger.warn((new PagesError("abort_error", "Callback aborted as token was already received!",
+                        "abort_callback")).j())
+                } else {
+                    throw e
+                }
+            });
+
+            return () => {
+                ac.abort()
             }
-        });
-
-        return () => {
-            ac.abort()
         }
-    }, []);
+
+    }, [authState.isLoaded]);
 
     return (
         <>

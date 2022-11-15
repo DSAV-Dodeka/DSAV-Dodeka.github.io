@@ -65,19 +65,19 @@ const defaultData: BirthdayData[] = [
 ]
 
 function getAge(birthdate: string) {
-    var currentYear = new Date().getFullYear()
-    var dateCurrent = (new Date(birthdate))
+    const currentYear = new Date().getFullYear()
+    const dateCurrent = (new Date(birthdate))
     dateCurrent.setFullYear(currentYear)
     if (dateCurrent < new Date()) dateCurrent.setFullYear(currentYear + 1);
     return dateCurrent.getFullYear() - new Date(birthdate).getFullYear();
 }
 
 function sortBirthdays(a: string, b: string) {
-    var currentYear = new Date().getFullYear() 
-    var aCurrent = (new Date(a))
+    const currentYear = new Date().getFullYear() 
+    const aCurrent = (new Date(a))
     aCurrent.setFullYear(currentYear)
     if (aCurrent < new Date()) aCurrent.setFullYear(currentYear + 1);
-    var bCurrent = (new Date(b))
+    const bCurrent = (new Date(b))
     bCurrent.setFullYear(currentYear)
     if (bCurrent < new Date()) bCurrent.setFullYear(currentYear + 1);
     if (aCurrent < bCurrent) return -1;
@@ -86,8 +86,8 @@ function sortBirthdays(a: string, b: string) {
 }
 
 function getDay(birthdate: string) {
-    var currentYear = new Date().getFullYear()
-    var dateCurrent = (new Date(birthdate))
+    const currentYear = new Date().getFullYear()
+    const dateCurrent = (new Date(birthdate))
     dateCurrent.setFullYear(currentYear)
     if (dateCurrent < new Date()) dateCurrent.setFullYear(currentYear + 1);
     return dagen[dateCurrent.getDay()];

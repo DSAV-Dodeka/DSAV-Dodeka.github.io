@@ -52,7 +52,6 @@ const SchrijfIn = () => {
     )
 
     const validateInput = () => {
-        console.log(state.firstname)
         if (state.firstname === "") {
             setStatus("Vul je voornaam in")
             return false;
