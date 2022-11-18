@@ -119,7 +119,7 @@ const SchrijfIn = () => {
                            onChange={handleFormChange}/>
                     <div className="checkbox">
                         <label >Ik ga akkoord met het <a href="/files/privacyverklaring_dodeka_temp.pdf" target="_blank" rel="noreferrer" className="privacy_link">privacybeleid</a></label>
-                        <input id="student" type="checkbox" name="student"
+                        <input id="privacy" type="checkbox" name="privacy"
                                 onChange={handleCheckboxChange}/>
                     </div>
                     <p className="schrijfInStatus">{status}</p>
