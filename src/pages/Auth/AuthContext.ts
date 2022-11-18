@@ -166,7 +166,7 @@ export const useAuth = async (signal: AbortSignal): Promise<AuthState> => {
         // If it is invalid but there is a refresh token, renewal is attempted
         if (as.refresh) {
             try {
-                as = await renewAuth(as, signal)
+                as = await renewAuth(as.refresh, signal)
                 // Successful renewal
                 as.isAuthenticated = true
             } catch (e) {
@@ -211,7 +211,7 @@ export const useLogout = (): AuthState => {
 
 export const useRenewal = async (as: AuthState): Promise<AuthState> => {
     try {
-        as = await renewAuth(as)
+        as = await renewAuth(as.refresh)
         as.isLoaded = true
     } catch (e) {
         Logger.warn(e)
@@ -223,10 +223,10 @@ export const useRenewal = async (as: AuthState): Promise<AuthState> => {
     return as
 }
 
-export const renewAuth = async (as: AuthState, signal?: AbortSignal) => {
+export const renewAuth = async (refresh: string, signal?: AbortSignal) => {
     const {
         id_payload_raw, id_payload, access_token, refresh_token, scope
-    } = await doTokenRefresh(as.refresh, signal)
+    } = await doTokenRefresh(refresh, signal)
     return loadFromRenewal(id_payload_raw, id_payload, access_token, refresh_token, scope);
 }
 

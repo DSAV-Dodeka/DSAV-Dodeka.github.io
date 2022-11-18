@@ -27,13 +27,14 @@ import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
-import {AuthProvider, newAuthState, useAuth} from "./pages/Auth/AuthContext";
+import {AuthProvider, AuthState, newAuthState, renewAuth, useAuth, useLogout} from "./pages/Auth/AuthContext";
 import Profiel from "./pages/Profiel/Profiel";
 import Admin from "./pages/Admin/Admin";
 import Registered from "./pages/Auth/Registered";
 import ProfielDebug from "./pages/Profiel/ProfielDebug";
 import {Logger} from "./functions/logger";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {err_api} from "./functions/api";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -53,21 +54,59 @@ function App() {
     Logger.debug("Loading auth...")
     let loadedState = await useAuth(signal)
     if (!signal.aborted) {
+      Logger.debug(`Setting loaded AuthState...`)
       setAuthState(loadedState)
+      return loadedState
+    }
+  }
+
+  // This is called when localStorage is called in another document (i.e. ANOTHER tab, not current one)
+  // As a resul
+  const onStorageUpdate = (e: StorageEvent) => {
+    const { key, newValue } = e;
+    if (key === "refresh") {
+      const compareNew = newValue === null ? "" : newValue
+
+      if (authState.refresh !== compareNew) {
+        Logger.debug(`localStorage refresh token changed in another document!`)
+
+        if (compareNew === "" || compareNew === null) {
+          Logger.debug(`Logging out after localStorage update!`)
+          const as = useLogout()
+          setAuthState(as)
+        } else {
+          renewAuth(compareNew).then((as) => {
+            Logger.debug(`Logging in with new details after localStorage update!`)
+            setAuthState(as)
+          }).catch(async (e) => {
+            const err = await err_api(e)
+            Logger.warn({ "renewAuth after localStorage update error": err.j() })
+          })
+        }
+      }
     }
   }
 
   useEffect(() => {
     const ac = new AbortController()
 
-    authLoader(ac.signal).then(() => {
-      Logger.debug("App AuthState loaded...")
-    })
+    Logger.debug(`App update after load or AuthState Change. Loaded: ${authState.isLoaded}. Authenticated: ${authState.isAuthenticated}`)
+
+    if (!authState.isLoaded) {
+      authLoader(ac.signal).then((loadedAs) => {
+        if (loadedAs !== undefined) {
+          Logger.debug("App AuthState loaded...")
+        }
+      })
+    } else {
+      window.addEventListener("storage", onStorageUpdate)
+    }
 
     return () => {
       ac.abort()
+      window.removeEventListener("storage", onStorageUpdate)
     }
-  }, [])
+  }, [authState])
 
   return (
       <AuthProvider value={contextValue}>
