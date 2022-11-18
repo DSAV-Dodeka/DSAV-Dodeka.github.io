@@ -34,12 +34,16 @@ const AuthRedirect = () => {
             state
         }
 
+        Logger.debug(`Current local storage is ${localStorage.getItem("state_verify")}.`)
+
         if (!signal.aborted) {
             const state_verify_j = JSON.stringify(state_verifier)
             Logger.debug(`Setting storage for state_verify ${state_verify_j} and nonce ${nonce_original}.`)
 
             localStorage.setItem("state_verify", state_verify_j)
             localStorage.setItem("nonce_original_transient", nonce_original)
+
+            Logger.debug(`Current local storage is ${localStorage.getItem("state_verify")}.`)
 
             return `${config.auth_location}/oauth/authorize?` + params
         } else {

@@ -1,7 +1,7 @@
 import config from "../config"
-import ky, {HTTPError, Options, ResponsePromise} from "ky"
+import ky, {HTTPError, Options} from "ky"
 import {z} from "zod";
-import {IAuth, useRenewal} from "../pages/Auth/AuthContext";
+import {AuthUse, useRenewal} from "../pages/Auth/AuthContext";
 import {NormalizedOptions} from "ky/distribution/types/options";
 import {PagesError} from "./error";
 
@@ -15,7 +15,7 @@ export const back_post = async (endpoint: string, json: Object, options?: Option
     return await api.post(endpoint, {json: json, ...options}).json()
 }
 
-const renewHook = (auth: IAuth) => {
+const renewHook = (auth: AuthUse) => {
     return async (request: Request, options: NormalizedOptions, response: Response) => {
         const {error, error_description, debug_key = ""} = await response.json()
 
@@ -33,7 +33,7 @@ const renewHook = (auth: IAuth) => {
     }
 }
 
-export const back_post_auth = async (endpoint: string, json: Object, auth: IAuth, options?: Options) => {
+export const back_post_auth = async (endpoint: string, json: Object, auth: AuthUse, options?: Options) => {
     const bearer = 'Bearer ' + auth.authState.access
 
     return await api.post(endpoint, {
@@ -50,7 +50,7 @@ export const back_post_auth = async (endpoint: string, json: Object, auth: IAuth
     }).json()
 }
 
-export const back_request = async (endpoint: string, auth: IAuth, options?: Options) => {
+export const back_request = async (endpoint: string, auth: AuthUse, options?: Options) => {
     const bearer = 'Bearer ' + auth.authState.access
     return await api.get(endpoint, {
         headers: {
@@ -71,7 +71,7 @@ const Profile = z.object({
 })
 type Profile = z.infer<typeof Profile>;
 
-export const profile_request = async (auth: IAuth, options?: Options) => {
+export const profile_request = async (auth: AuthUse, options?: Options) => {
     let response = await back_request('res/profile/', auth, options)
     const profile: Profile = Profile.parse(response)
     return profile
@@ -88,7 +88,7 @@ export type SignedUp = z.infer<typeof SignedUp>;
 const SignedUps = z.array(SignedUp)
 type SignedUps = z.infer<typeof SignedUps>;
 
-export const su_request = async (auth: IAuth, options?: Options) => {
+export const su_request = async (auth: AuthUse, options?: Options) => {
     let response = await back_request('onboard/get/', auth, options)
     const sus: SignedUps = SignedUps.parse(response)
     return sus
@@ -110,12 +110,11 @@ const UserData = z.object({
 export type UserData = z.infer<typeof UserData>;
 
 const UsersData = z.array(UserData)
-type UsersData = z.infer<typeof UsersData>;
+export type UsersData = z.infer<typeof UsersData>;
 
-export const ud_request = async (auth: IAuth, options?: Options) => {
+export const ud_request = async (auth: AuthUse, options?: Options): Promise<UsersData> => {
     let response = await back_request('admin/users/', auth, options)
-    const uds: UsersData = UsersData.parse(response)
-    return uds
+    return UsersData.parse(response)
 }
 
 const ApiError = z.object({
@@ -150,7 +149,7 @@ export type BirthdayData = z.infer<typeof BirthdayData>;
 const Birthdays = z.array(BirthdayData);
 type Birthdays = z.infer<typeof Birthdays>;
 
-export const bd_request = async (auth: IAuth, options?: Options) => {
+export const bd_request = async (auth: AuthUse, options?: Options) => {
     let response = await back_request('members/birthdays', auth, options)
     const bds: Birthdays = Birthdays.parse(response)
     return bds

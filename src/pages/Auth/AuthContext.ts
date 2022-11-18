@@ -148,12 +148,12 @@ const clearStorage = (signal?: AbortSignal) => {
 }
 
 
-export interface IAuth {
+export type AuthUse = {
     authState: AuthState,
     setAuthState: Dispatch<SetStateAction<AuthState>>
 }
 
-const AuthContext = createContext({} as IAuth)
+const AuthContext = createContext({} as AuthUse)
 
 export const AuthProvider = AuthContext.Provider
 

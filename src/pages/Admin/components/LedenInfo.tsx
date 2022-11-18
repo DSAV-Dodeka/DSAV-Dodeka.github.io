@@ -12,6 +12,7 @@ import {UserData, ud_request, catch_api} from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./LedenInfo.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
+import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
 
 const columnHelper = createColumnHelper<UserData>()
 
@@ -68,55 +69,15 @@ const getData = () => {
 const LedenInfo = () => {
     const {authState, setAuthState} = useContext(AuthContext)
 
-    const queryClient = useQueryClient()
+    const q = useUserDataQuery({ authState, setAuthState })
+    const data = queryError(q, defaultData, "User Info Query Error")
 
-    // Queries
-    const { isLoading, error, data: d, isFetching } = useQuery({ queryKey: ['todos'], queryFn: getData })
-
-    const [data, setData] = useState(() => [...defaultData])
-    const rerender = useReducer(() => ({}), {})[1]
-
-    const [av40Id, setAv40Id] = useState("")
-    const [joined, setJoined] = useState("")
-
-    const [status, setStatus] = useState("")
-
-    const table = useReactTable({
+    const table = useReactTable<UserData>({
         data,
         columns,
         getRowCanExpand: () => true,
         getCoreRowModel: getCoreRowModel(),
     })
-
-    const handleFormChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target
-        if (name === "av40id") {
-            setAv40Id(value)
-        } else if (name === "joined") {
-            setJoined(value)
-        }
-    }
-
-    const doReload = () => {
-        loadBackend().then(() => rerender())
-    }
-
-    const loadBackend = async () => {
-        try {
-            const uds = await ud_request({authState, setAuthState})
-            setData(uds)
-        } catch (e) {
-            const err_api = await catch_api(e)
-            console.error(err_api)
-        }
-    }
-
-    useEffect(() => {
-        if (authState.isLoaded && authState.access) {
-            loadBackend().catch()
-        }
-
-    }, [authState.access]);
 
     return (
         <div>
@@ -167,7 +128,6 @@ const LedenInfo = () => {
                 </tbody>
             </table>
             <div/><br/>
-            <div className="confirmStatus">{status}</div>
         </div>
     )
 }

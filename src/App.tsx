@@ -71,6 +71,7 @@ function App() {
 
   return (
       <AuthProvider value={contextValue}>
+        <QueryClientProvider client={queryClient} >
           <Router>
             <div id="app_screen">
               <div id="app_container">
@@ -112,7 +113,6 @@ function App() {
                     <Route path="/contact" element={
                       <Contact />
                     }/>
-                    <QueryClientProvider client={queryClient} >
                       <Route path="/leden/verjaardagen" element={
                         <Verjaardagen />
                       }/>
@@ -128,7 +128,7 @@ function App() {
                       <Route path="/profiel/debug" element={<ProfielDebug />} />
                       <Route path="/admin" element={<Admin />} />
                       <Route path="/registered" element={<Registered />}/>
-                    </QueryClientProvider>
+
                   </Routes>
                   <div id="app_flex_grow"/>
                   <ContactBar />
@@ -136,6 +136,7 @@ function App() {
               </div>
             </div>
           </Router>
+        </QueryClientProvider>
       </AuthProvider>
   );
 }

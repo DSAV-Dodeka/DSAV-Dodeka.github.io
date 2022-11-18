@@ -8,9 +8,11 @@ import {
     getCoreRowModel,
     useReactTable,
 } from '@tanstack/react-table'
-import {back_post_auth, SignedUp, su_request} from "../../../functions/api";
+import {back_post_auth, catch_api, err_api, SignedUp, su_request} from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
 import {back_post} from "../../../functions/api";
+import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
+import {useQueryClient} from "@tanstack/react-query";
 
 const columnHelper = createColumnHelper<SignedUp>()
 
@@ -74,9 +76,10 @@ const ConfirmUser = () => {
     ]
 
     const {authState, setAuthState} = useContext(AuthContext)
+    const queryClient = useQueryClient()
 
-    const [data, setData] = useState(() => [...defaultData])
-    const rerender = useReducer(() => ({}), {})[1]
+    const q = useSignedUpQuery({authState, setAuthState})
+    const data = queryError(q, defaultData, "Confirm User Query Error")
 
     const [av40Id, setAv40Id] = useState("")
     const [joined, setJoined] = useState("")
@@ -100,20 +103,8 @@ const ConfirmUser = () => {
     }
 
     const doReload = () => {
-        loadBackend().then(() => rerender())
+        queryClient.invalidateQueries({ queryKey: ['su'] }).then()
     }
-
-    const loadBackend = async () => {
-        const sus = await su_request({authState, setAuthState})
-        setData(sus)
-    }
-
-    useEffect(() => {
-        if (authState.isLoaded && authState.access) {
-            loadBackend().catch()
-        }
-
-    }, [authState.access]);
 
     const handleSubmit = (e: FormEvent, su: SignedUp) => {
         e.preventDefault()
