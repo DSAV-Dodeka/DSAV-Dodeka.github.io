@@ -11,6 +11,7 @@ import {
 import {UserData, ud_request, catch_api} from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./LedenInfo.scss";
+import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 
 const columnHelper = createColumnHelper<UserData>()
 
@@ -60,8 +61,17 @@ const defaultData: UserData[] = [
     },
 ]
 
+const getData = () => {
+    return defaultData
+}
+
 const LedenInfo = () => {
     const {authState, setAuthState} = useContext(AuthContext)
+
+    const queryClient = useQueryClient()
+
+    // Queries
+    const { isLoading, error, data: d, isFetching } = useQuery({ queryKey: ['todos'], queryFn: getData })
 
     const [data, setData] = useState(() => [...defaultData])
     const rerender = useReducer(() => ({}), {})[1]

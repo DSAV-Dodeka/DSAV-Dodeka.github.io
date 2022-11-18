@@ -27,12 +27,23 @@ import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
-import {AuthProvider, AuthState, defaultAuthState, newAuthState, useAuth} from "./pages/Auth/AuthContext";
+import {AuthProvider, newAuthState, useAuth} from "./pages/Auth/AuthContext";
 import Profiel from "./pages/Profiel/Profiel";
 import Admin from "./pages/Admin/Admin";
 import Registered from "./pages/Auth/Registered";
 import ProfielDebug from "./pages/Profiel/ProfielDebug";
 import {Logger} from "./functions/logger";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
+const cacheTime = 1000 * 60 // 1 minute
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime,
+    },
+  },
+})
 
 function App() {
   const [authState, setAuthState] = useState(newAuthState());
@@ -60,69 +71,71 @@ function App() {
 
   return (
       <AuthProvider value={contextValue}>
-        <Router>
-          <div id="app_screen">
-            <div id="app_container">
-              <NavigationBar />
-              <div id="app_flex">
-                <Routes>
-                  <Route path="/nieuws/spike" element={
-                    <Spike />
-                  }/>
-                  <Route path="/nieuws" element={
-                    <Nieuws />
-                  }/>
-                  <Route path="/vereniging" element={<Vereniging />} />
-                  <Route path="/vereniging/commissies" element={<Commissies />} />
-                  <Route path="/vereniging/bestuur" element={<Bestuur />} />
-                  <Route path="/vereniging/arnold" element={<Arnold />} />
-                  <Route path="/trainingen" element={
-                    <Trainingen />
-                  }/>
-                  {WedstrijdText.wedstrijden.map((item) =>
-                      (item.path === "" ? "" :
-                              <Route path={"/wedstrijden" + item.path} key={"wdstr" + item.naam + item.datum} element={
-                                <Wedstrijd wedstrijd={item}/>
-                            }/>
-                      )
-                  )}
-                  <Route path="/wedstrijden" element={
-                    <Wedstrijden />
-                  }/>
-                  <Route path="/wedstrijden/records" element={
-                    <Records />
-                  }/>
-                  <Route path="/word_lid" element={
-                    <WordLid />
-                  }/>
-                  <Route path="/contact/sponsors" element={
-                    <Sponsors />
-                  }/>
-                  <Route path="/contact" element={
-                    <Contact />
-                  }/>
-                  <Route path="/leden/verjaardagen" element={
-                    <Verjaardagen />
-                  }/>
-                  <Route path="/leden" element={
-                    <Leden />
-                  }/>
-                  <Route path="/"
-                    element={<Home />}
-                  />
-                  <Route path="/lg" element={<AuthRedirect />} />
-                  <Route path="/auth/callback" element={<AuthCallback />} />
-                  <Route path="/profiel" element={<Profiel />} />
-                  <Route path="/profiel/debug" element={<ProfielDebug />} />
-                  <Route path="/admin" element={<Admin />} />
-                  <Route path="/registered" element={<Registered />}/>
-                </Routes>
-                <div id="app_flex_grow"/>
-                <ContactBar />
+          <Router>
+            <div id="app_screen">
+              <div id="app_container">
+                <NavigationBar />
+                <div id="app_flex">
+                  <Routes>
+                    <Route path="/nieuws/spike" element={
+                      <Spike />
+                    }/>
+                    <Route path="/nieuws" element={
+                      <Nieuws />
+                    }/>
+                    <Route path="/vereniging" element={<Vereniging />} />
+                    <Route path="/vereniging/commissies" element={<Commissies />} />
+                    <Route path="/vereniging/bestuur" element={<Bestuur />} />
+                    <Route path="/vereniging/arnold" element={<Arnold />} />
+                    <Route path="/trainingen" element={
+                      <Trainingen />
+                    }/>
+                    {WedstrijdText.wedstrijden.map((item) =>
+                        (item.path === "" ? "" :
+                                <Route path={"/wedstrijden" + item.path} key={"wdstr" + item.naam + item.datum} element={
+                                  <Wedstrijd wedstrijd={item}/>
+                              }/>
+                        )
+                    )}
+                    <Route path="/wedstrijden" element={
+                      <Wedstrijden />
+                    }/>
+                    <Route path="/wedstrijden/records" element={
+                      <Records />
+                    }/>
+                    <Route path="/word_lid" element={
+                      <WordLid />
+                    }/>
+                    <Route path="/contact/sponsors" element={
+                      <Sponsors />
+                    }/>
+                    <Route path="/contact" element={
+                      <Contact />
+                    }/>
+                    <QueryClientProvider client={queryClient} >
+                      <Route path="/leden/verjaardagen" element={
+                        <Verjaardagen />
+                      }/>
+                      <Route path="/leden" element={
+                        <Leden />
+                      }/>
+                      <Route path="/"
+                        element={<Home />}
+                      />
+                      <Route path="/lg" element={<AuthRedirect />} />
+                      <Route path="/auth/callback" element={<AuthCallback />} />
+                      <Route path="/profiel" element={<Profiel />} />
+                      <Route path="/profiel/debug" element={<ProfielDebug />} />
+                      <Route path="/admin" element={<Admin />} />
+                      <Route path="/registered" element={<Registered />}/>
+                    </QueryClientProvider>
+                  </Routes>
+                  <div id="app_flex_grow"/>
+                  <ContactBar />
+                </div>
               </div>
             </div>
-          </div>
-        </Router>
+          </Router>
       </AuthProvider>
   );
 }

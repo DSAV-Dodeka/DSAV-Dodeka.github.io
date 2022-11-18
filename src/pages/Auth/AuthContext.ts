@@ -215,6 +215,8 @@ export const useRenewal = async (as: AuthState): Promise<AuthState> => {
         as.isLoaded = true
     } catch (e) {
         Logger.warn(e)
+
+
         as = useLogout()
     }
     saveStorage(as)

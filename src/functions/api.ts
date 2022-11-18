@@ -7,6 +7,10 @@ import {PagesError} from "./error";
 
 const api = ky.create({prefixUrl: config.api_location});
 
+export const back_get = async (endpoint: string, options?: Options) => {
+    return await api.get(endpoint, {...options}).json()
+}
+
 export const back_post = async (endpoint: string, json: Object, options?: Options) => {
     return await api.post(endpoint, {json: json, ...options}).json()
 }

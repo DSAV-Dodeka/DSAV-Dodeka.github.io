@@ -4,6 +4,7 @@ import {decodeJwtPayload} from "../Auth/functions/OAuth";
 import Timer from "../Auth/Timer";
 import {back_post_auth, profile_request} from "../../functions/api";
 import "./Profiel.scss";
+import {useRootQuery} from "../../functions/queries";
 
 const ProfielDebug = () => {
     const {authState, setAuthState} = useContext(AuthContext)
