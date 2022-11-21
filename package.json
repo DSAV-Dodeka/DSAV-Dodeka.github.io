@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite --mode localdev",
     "build": "tsc && vite build --mode localdev",
-    "build-mode": "tsc && vite build",
+    "build-mode": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {

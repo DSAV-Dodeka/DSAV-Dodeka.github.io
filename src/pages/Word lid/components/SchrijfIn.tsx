@@ -82,11 +82,14 @@ const SchrijfIn = () => {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
         if (show && validateInput()) {
-            back_post('onboard/signup/', state).then()
-            setShow(false)
-            dispatch({type: 'reset'})
-            setStatus("")
-            window.location.assign(redirectUrl)
+            back_post('onboard/signup/', state).then(() => {
+                setShow(false)
+                dispatch({type: 'reset'})
+                setStatus("")
+                window.location.assign(redirectUrl)
+            }).catch(() => {
+                setStatus("Er is iets misgegaan!")
+            })
         }
 
     }
