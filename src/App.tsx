@@ -27,7 +27,15 @@ import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
 import AuthCallback from "./pages/Auth/AuthCallback";
-import {AuthProvider, AuthState, newAuthState, renewAuth, useAuth, useLogout} from "./pages/Auth/AuthContext";
+import {
+  AuthProvider,
+  AuthState,
+  clearSave,
+  newAuthState,
+  renewAuth,
+  useAuth,
+  useLogout
+} from "./pages/Auth/AuthContext";
 import Profiel from "./pages/Profiel/Profiel";
 import Admin from "./pages/Admin/Admin";
 import Registered from "./pages/Auth/Registered";
@@ -35,6 +43,7 @@ import ProfielDebug from "./pages/Profiel/ProfielDebug";
 import {Logger} from "./functions/logger";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {err_api} from "./functions/api";
+import {number} from "zod";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -50,14 +59,16 @@ function App() {
   const [authState, setAuthState] = useState(newAuthState());
   const contextValue = { authState, setAuthState }
 
-  const authLoader = async (signal: AbortSignal) => {
-    Logger.debug("Loading auth...")
-    let loadedState = await useAuth(signal)
-    if (!signal.aborted) {
-      Logger.debug(`Setting loaded AuthState...`)
-      setAuthState(loadedState)
-      return loadedState
-    }
+  const authLoader = (signal: AbortSignal, which: string) => {
+    Logger.debug(`Loading auth ${which}...`)
+    return useAuth(signal).then((loadedState) => {
+      if (!signal.aborted) {
+        Logger.debug(`Setting loaded signal ${signal.aborted} AuthState ${which}...`)
+        setAuthState(loadedState)
+        clearSave(loadedState)
+        return loadedState
+      }
+    })
   }
 
   // This is called when localStorage is called in another document (i.e. ANOTHER tab, not current one)
@@ -89,13 +100,14 @@ function App() {
 
   useEffect(() => {
     const ac = new AbortController()
+    const which = Math.random().toString().substring(0, 4)
 
-    Logger.debug(`App update after load or AuthState Change. Loaded: ${authState.isLoaded}. Authenticated: ${authState.isAuthenticated}`)
+    Logger.debug(`App update after load ${which} or AuthState Change. Loaded: ${authState.isLoaded}. Authenticated: ${authState.isAuthenticated ? authState.it.sub : "false"}`)
 
     if (!authState.isLoaded) {
-      authLoader(ac.signal).then((loadedAs) => {
+      authLoader(ac.signal, which).then((loadedAs) => {
         if (loadedAs !== undefined) {
-          Logger.debug("App AuthState loaded...")
+          Logger.debug(`App AuthState ${which} loaded...`)
         }
       })
     } else {
@@ -103,6 +115,7 @@ function App() {
     }
 
     return () => {
+      console.log(`Aborting ${which}`)
       ac.abort()
       window.removeEventListener("storage", onStorageUpdate)
     }
