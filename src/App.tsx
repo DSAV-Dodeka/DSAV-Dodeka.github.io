@@ -30,9 +30,8 @@ import AuthCallback from "./pages/Auth/AuthCallback";
 import {
   AuthProvider,
   AuthState,
-  clearSave,
   newAuthState,
-  renewAuth,
+  renewAuth, saveStorage,
   useAuth,
   useLogout
 } from "./pages/Auth/AuthContext";
@@ -44,6 +43,7 @@ import {Logger} from "./functions/logger";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {err_api} from "./functions/api";
 import {number} from "zod";
+import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -64,8 +64,9 @@ function App() {
     return useAuth(signal).then((loadedState) => {
       if (!signal.aborted) {
         Logger.debug(`Setting loaded signal ${signal.aborted} AuthState ${which}...`)
+        Logger.debug({[`LoadedState ${which}`]: loadedState})
         setAuthState(loadedState)
-        clearSave(loadedState)
+        saveStorage(loadedState)
         return loadedState
       }
     })
@@ -79,7 +80,7 @@ function App() {
       const compareNew = newValue === null ? "" : newValue
 
       if (authState.refresh !== compareNew) {
-        Logger.debug(`localStorage refresh token changed in another document!`)
+        Logger.debug(`localStorage refresh token changed in another document! new ${compareNew} old ${authState.refresh}`)
 
         if (compareNew === "" || compareNew === null) {
           Logger.debug(`Logging out after localStorage update!`)
@@ -88,6 +89,7 @@ function App() {
         } else {
           renewAuth(compareNew).then((as) => {
             Logger.debug(`Logging in with new details after localStorage update!`)
+            as.isLoaded = true
             setAuthState(as)
           }).catch(async (e) => {
             const err = await err_api(e)
@@ -100,7 +102,7 @@ function App() {
 
   useEffect(() => {
     const ac = new AbortController()
-    const which = Math.random().toString().substring(0, 4)
+    const which = Math.random().toString().substring(0, 5)
 
     Logger.debug(`App update after load ${which} or AuthState Change. Loaded: ${authState.isLoaded}. Authenticated: ${authState.isAuthenticated ? authState.it.sub : "false"}`)
 
@@ -174,6 +176,7 @@ function App() {
                       <Route path="/"
                         element={<Home />}
                       />
+                      <Route path="/account/email" element={<ChangeEmail />} />
                       <Route path="/lg" element={<AuthRedirect />} />
                       <Route path="/auth/callback" element={<AuthCallback />} />
                       <Route path="/profiel" element={<Profiel />} />

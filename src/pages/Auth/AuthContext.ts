@@ -130,20 +130,12 @@ const loadFromRenewal = (id_payload_raw: string, id_payload: IdToken, access_tok
     }
 }
 
-const saveStorage = (as: AuthState) => {
+export const saveStorage = (as: AuthState) => {
     localStorage.setItem("id_payload", as.id)
     localStorage.setItem("access", as.access)
     localStorage.setItem("refresh", as.refresh)
     localStorage.setItem("scope", as.scope)
 }
-
-const clearStorage = () => {
-    localStorage.removeItem("id_payload")
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    localStorage.removeItem("scope")
-}
-
 
 export type AuthUse = {
     authState: AuthState,
@@ -160,11 +152,6 @@ const loadedAs = () => {
     const as = newAuthState()
     as.isLoaded = true
     return as
-}
-
-export const clearSave = (as: AuthState) => {
-    clearStorage()
-    saveStorage(as)
 }
 
 export const useAuth = async (signal: AbortSignal): Promise<AuthState> => {
@@ -196,7 +183,6 @@ export const useLogin = (id_payload_raw: string, id_payload: IdToken, access_tok
 
 export const useLogout = (): AuthState => {
     let as = newAuthState()
-    clearStorage()
     saveStorage(as)
     as.isLoaded = true
     return as
