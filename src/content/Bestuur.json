@@ -1,6 +1,12 @@
 {
     "besturen": [
         {
+            "naam": "Bestuur 4",
+            "leden": ["Lianne Folkerts - Voorzitter", "Jefry el Bhwash - Secretaris", "Simon Loose - Penningmeester", "Saana Taal - Commissaris Atletiek"],
+            "jaar": "2022/2023",
+            "foto": "bestuur_4.jpg" 
+        },
+        {
             "naam": "Bestuur 3",
             "leden": ["Koen Stapel - Voorzitter", "Fieke Witte - Secretaris", "Stefan Pol - Penningmeester", "Aniek Sips - Commissaris Atletiek"],
             "jaar": "2021/2022",
