@@ -1,12 +1,13 @@
 import React, {useContext, useEffect, useState} from "react";
 import AuthContext from "../../Auth/AuthContext";
-import {profile_request} from "../../../functions/api";
+import {profile_request, UserData} from "../../../functions/api";
 import PageTitle from "../../../components/PageTitle";
 import {BirthdayData, bd_request} from "../../../functions/api";
 import Maand from "./components/Maand";
 import Verjaardag from "./components/Verjaardag";
 import "./Verjaardagen.scss";
 import { number } from "zod";
+import {queryError, useBirthdayDataQuery, useUserDataQuery} from "../../../functions/queries";
 
 const maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"]
 const dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"]
@@ -95,19 +96,24 @@ function getDay(birthdate: string) {
 
 const Verjaardagen = () => {
 
-    const {authState: ac, setAuthState} = useContext(AuthContext)
+    //const {authState: ac, setAuthState} = useContext(AuthContext)
+    const {authState, setAuthState} = useContext(AuthContext)
 
-    defaultData.sort((a,b) => sortBirthdays(a.birthdate, b.birthdate))
+    const q = useBirthdayDataQuery({ authState, setAuthState })
+    const data = queryError(q, defaultData, "User Info Query Error")
+
+    data.sort((a,b) => sortBirthdays(a.birthdate, b.birthdate))
+    //defaultData.sort((a,b) => sortBirthdays(a.birthdate, b.birthdate))
 
     return (
         <>
             <PageTitle title="Verjaardagen"/>
-            {!ac.isAuthenticated && (
+            {!authState.isAuthenticated && (
                 <p className="verjaardagen_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in om deze pagina te kunnen bekijken.</p>
             )}
-            {ac.isAuthenticated && (
+            {authState.isAuthenticated && (
                 <div>
-                    {defaultData.map((item, index, array) => {
+                    {data.map((item, index, array) => {
                         if (index == 0 || new Date(item.birthdate).getMonth() > new Date(array[index - 1].birthdate).getMonth()) {
                             return (
                             <>
@@ -120,7 +126,7 @@ const Verjaardagen = () => {
                         
                     )}
                 </div>
-                
+
             )}
         </>
     )

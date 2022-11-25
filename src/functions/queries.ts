@@ -1,7 +1,11 @@
-import {err_api, SignedUp, su_request, ud_request, UsersData} from "./api";
+import {bd_request, BirthdayData, err_api, SignedUp, su_request, ud_request, UsersData} from "./api";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {AuthUse} from "../pages/Auth/AuthContext";
 import {Logger} from "./logger";
+
+const fetchBirthdayData = async (au: AuthUse): Promise<BirthdayData[]> => {
+    return bd_request(au)
+}
 
 const fetchUserData = async (au: AuthUse): Promise<UsersData> => {
     return ud_request(au)
@@ -30,6 +34,13 @@ const staleTime = 1000 * 7 // 7 seconds
 
 export const useUserDataQuery = (au: AuthUse) =>
     useQuery(['ud'], () => fetchUserData(au),
+        {
+            staleTime,
+            enabled: au.authState.isAuthenticated,
+        })
+
+export const useBirthdayDataQuery = (au: AuthUse) =>
+    useQuery(['whatIsThis'], () => fetchBirthdayData(au),
         {
             staleTime,
             enabled: au.authState.isAuthenticated,
