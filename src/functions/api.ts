@@ -109,6 +109,15 @@ const UserData = z.object({
 })
 export type UserData = z.infer<typeof UserData>;
 
+
+// New data type for saving firstname, lastname and birthday of users.
+const UserBirthdayData = z.object({
+    firstname: z.string(),
+    lastname: z.string(),
+    birthdate: z.string(),
+})
+export type UserBirthdayData = z.infer<typeof UserBirthdayData>;
+
 const UsersData = z.array(UserData)
 export type UsersData = z.infer<typeof UsersData>;
 
