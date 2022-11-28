@@ -3,7 +3,7 @@ import "./Verjaardag.scss";
 
 function Verjaardag(props) {
     return (
-        <div class="verjaardag_container">
+        <div className="verjaardag_container">
             <p className="verjaardag_datum">{props.datum}</p>
             <p>{props.voornaam + " " + props.achternaam}</p>
             <p className="verjaardag_leeftijd">{props.leeftijd + " jaar"}</p>

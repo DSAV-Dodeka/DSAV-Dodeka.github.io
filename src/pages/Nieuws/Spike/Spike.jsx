@@ -21,7 +21,9 @@ function Spike() {
                 <>
                     <div className={"spike_2" + (nBerichten >= SpikeText.nieuwsberichten.length ? " spike_3" : "")}>
                         {SpikeText.nieuwsberichten.slice(0, nBerichten).map((bericht, index) =>
-                            <Nieuwsbericht key={bericht.titel} position={index % 2 === 0 ? "left" : "right"} page="spike" titel={bericht.titel} datum={bericht.datum} auteur={bericht.auteur} tekst={bericht.tekst} foto={bericht.foto}/>
+                            <Nieuwsbericht id={bericht.titel} key={bericht.titel} position={index % 2 === 0 ? "left" : "right"}
+                                           page="spike" titel={bericht.titel} datum={bericht.datum}
+                                           auteur={bericht.auteur} tekst={bericht.tekst} foto={bericht.foto}/>
                         )}
                     </div>
             

@@ -24,7 +24,7 @@ function Meetrainen(props) {
                 {/*    <p>Schrijf je in!</p>*/}
                 {/*</a>*/}
                 <p className="meetrainen_uitschrijven">Wil je je uitschrijven bij D.S.A.V. Dodeka? Stuur dan een mailtje naar de ledenadministratie van AV'40 (<a target="_blank" rel="noreferrer" href="mailto:ledenadministratie@av40.nl" className="meetrainen_uitschrijflink">ledenadministratie@av40.nl</a>).</p>
-                <p className="meetrainen_5">Mocht je nu nog vragen hebben, kijk dan in onze <Link smooth to="/contact#faq" className="meetrainen_6">F.A.Q.</Link>, of stuur een berichtje via de mail of Instagram!</p>
+                <p className="meetrainen_5">Mocht je nu nog vragen hebben, kijk dan in onze <Link smooth={true} to="/contact#faq" className="meetrainen_6">F.A.Q.</Link>, of stuur een berichtje via de mail of Instagram!</p>
                 <ContactButtons />
             </div>
             <img src={getUrl(`word_lid/${props.foto}`)} alt="" className="meetrainen_7" />
