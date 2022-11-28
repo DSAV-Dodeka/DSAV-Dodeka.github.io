@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import AuthContext, {AuthState, useRenewal} from "../Auth/AuthContext";
 import {decodeJwtPayload} from "../Auth/functions/OAuth";
 import Timer from "../Auth/Timer";
-import {back_post_auth, profile_request} from "../../functions/api";
+import {back_post_auth, delete_post, profile_request} from "../../functions/api";
 import "./Profiel.scss";
 
 const ProfielDebug = () => {
@@ -47,6 +47,12 @@ const ProfielDebug = () => {
         await back_post_auth("update/email/send/", req, {authState, setAuthState})
     }
 
+    const handleDeleteAccount = () => {
+        delete_post({authState, setAuthState}).then((url) => {
+            window.location.assign(url)
+        })
+    }
+
     return (
         <>
             <p>{!authState.isLoaded && "is loading"}</p>
@@ -70,6 +76,7 @@ const ProfielDebug = () => {
                         <li><button onClick={doRefresh}>Refresh</button></li>
 
                     </ul>
+                    <button onClick={handleDeleteAccount}>Account verwijderen</button>
                     <div>
                         <form onSubmit={handleNewEmailSubmit}>
                             <label htmlFor="newEmail">Vul je nieuwe emailadres in om een email te versturen om die te veranderen.</label>

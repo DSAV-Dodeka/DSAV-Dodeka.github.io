@@ -149,7 +149,27 @@ const Birthdays = z.array(BirthdayData);
 type Birthdays = z.infer<typeof Birthdays>;
 
 export const bd_request = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/birthdays', auth, options)
+    let response = await back_request('members/birthdays/', auth, options)
     const bds: Birthdays = Birthdays.parse(response)
     return bds
+}
+
+const DeleteUrl = z.object({
+    delete_url: z.string()
+})
+
+export const delete_post = async(auth: AuthUse, options?: Options) => {
+    let user_id = auth.authState.username
+    const req = {
+        user_id
+    }
+    const response = await back_post_auth('update/delete/url/', req, auth, options)
+    const delete_url = DeleteUrl.parse(response).delete_url
+    const url = new URL(delete_url)
+    const base = url.protocol + "//" + url.host
+    if (base === config.auth_location) {
+        return delete_url
+    } else {
+        throw new PagesError("invalid_url", `URL base ${base} is not valid.`)
+    }
 }
