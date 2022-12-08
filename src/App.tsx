@@ -118,7 +118,7 @@ function App() {
     }
 
     return () => {
-      console.log(`Aborting ${which}`)
+      Logger.debug(`Aborting ${which}`)
       ac.abort()
       window.removeEventListener("storage", onStorageUpdate)
     }

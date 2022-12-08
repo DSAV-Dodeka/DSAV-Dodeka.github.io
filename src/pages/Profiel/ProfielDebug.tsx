@@ -62,6 +62,7 @@ const ProfielDebug = () => {
                     <li><button onClick={loadScope}>Load Scope</button></li>
                     <li><strong>Username:</strong> {user}</li>
                     <li><strong>Access scope:</strong> {accessScope}</li>
+                    <li><strong>Username AuthState:</strong> {authState.username}</li>
                 </ul>
             </div>
             {authState.isAuthenticated && (
