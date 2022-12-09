@@ -181,7 +181,11 @@ export const useLogin = (id_payload_raw: string, id_payload: IdToken, access_tok
     return as
 }
 
-export const useLogout = (): AuthState => {
+export const useLogout = (oldState?: AuthState): AuthState => {
+    if (oldState !== undefined && oldState.refresh) {
+        back_post("auth/logout/", { "refresh_token": oldState.refresh}).catch()
+    }
+
     let as = newAuthState()
     saveStorage(as)
     as.isLoaded = true
@@ -194,7 +198,6 @@ export const useRenewal = async (as: AuthState): Promise<AuthState> => {
         as.isLoaded = true
     } catch (e) {
         Logger.warn(e)
-
 
         as = useLogout()
     }

@@ -54,21 +54,23 @@ const AuthRedirect = () => {
 
     useEffect(() => {
         const ac = new AbortController()
-        handleRedirect(ac.signal).then((url) => {
-            const newState = useLogout()
-            setAuthState(newState)
+        if (authState.isLoaded) {
+            handleRedirect(ac.signal).then((url) => {
+                const newState = useLogout(authState)
+                setAuthState(newState)
 
-            window.location.replace(url)
-        }).catch((e) => {
-            if (!(e instanceof PagesError && e.debug_key === "abort_redirect")) {
-                throw e
-            }
-        });
+                window.location.replace(url)
+            }).catch((e) => {
+                if (!(e instanceof PagesError && e.debug_key === "abort_redirect")) {
+                    throw e
+                }
+            });
+        }
 
         return () => {
             ac.abort()
         }
-    }, []);
+    }, [authState.isLoaded]);
 
     return (
         <>

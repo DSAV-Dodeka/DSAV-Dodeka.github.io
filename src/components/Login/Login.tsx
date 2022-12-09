@@ -45,7 +45,7 @@ const Login = () => {
 
     const handleLogout = () => {
         Logger.debug("Logging out from button...")
-        const newState = useLogout()
+        const newState = useLogout(ac)
         setAuthState(newState)
     }
 

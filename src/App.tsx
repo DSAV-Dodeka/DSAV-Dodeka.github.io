@@ -85,7 +85,7 @@ function App() {
 
         if (compareNew === "" || compareNew === null) {
           Logger.debug(`Logging out after localStorage update!`)
-          const as = useLogout()
+          const as = useLogout(authState)
           setAuthState(as)
         } else {
           renewAuth(compareNew).then((as) => {
