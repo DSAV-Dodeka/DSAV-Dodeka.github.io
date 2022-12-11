@@ -183,7 +183,7 @@ export const useLogin = (id_payload_raw: string, id_payload: IdToken, access_tok
 
 export const useLogout = (oldState?: AuthState): AuthState => {
     if (oldState !== undefined && oldState.refresh) {
-        back_post("auth/logout/", { "refresh_token": oldState.refresh}).catch()
+        back_post("logout/delete/", { "refresh_token": oldState.refresh}).catch()
     }
 
     let as = newAuthState()
