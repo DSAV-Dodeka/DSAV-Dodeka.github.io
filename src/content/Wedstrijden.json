@@ -1,6 +1,24 @@
 {
     "wedstrijden": [
         {
+            "naam": "NSK Ekiden",
+            "datum": "01/04/2023",
+            "tijd": "Nog niet bekend",
+            "locatie": "D.S.A.V. Dodeka",
+            "adres": "Sportring 12",
+            "postcode": "2616LK Delft",
+            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
+            "logo": "nsk_ekiden_algemeen.jpg",
+            "logo_rond": "",
+            "foto": "nsk_ekiden_algemeen.jpg",
+            "mail": "nskekiden@dsavdodeka.nl",
+            "instagram": "https://www.instagram.com/nskekiden/?hl=nl",
+            "bepalingen": "",
+            "info_kort": "Op 1 april (dit is geen grap) mogen wij het NSK Ekiden organiseren. Bij een Ekiden loop je als team een marathon in estafettevorm. Vorm dus snel een team van 6 atleten en begin maar alvast met trainen. Dan zien we jou in het begin van de lente op onze baan in Delft!",
+            "info_lang": "Op zaterdag 1 april (dit is geen grap) vindt weer het NSK Ekiden plaats, en dit keer mogen wij dat in Delft organiseren. <br/><br/> Het NSK Ekiden is een wedstrijd voor en door studenten waarbij er in een estafettevorm een marathon wordt gelopen. De teams nemen het tegen elkaar op om zo snel mogelijk de marathonafstand van 42,195 km af te leggen. Een team bestaat uit 6 personen en de afstanden zijn als volgt: 5, 10, 5, 10, 5 en 7,195 km. De route zal beginnen op de atletiekbaan van AV'40 en zal je leiden door het prachtige Delftse Hout. Bij terugkeer op de atletiekbaan mag je de tasuki (sjerp) overdragen aan je teamgenoot. <br/> Na de wedstrijd is iedereen welkom om mee te doen aan het ludieke onderdeel. Kom na de wedstrijd ook gezellig mee-eten en het feestje na afloop wil je zeker ook niet missen. Wil je niet lopen, maar wil je wel iets meepikken van de sfeer van het NSK? Meld je dan als vrijwilliger, want zonder vrijwilligers, geen NSK. <br/><br/> Schrijf de datum alvast in je agenda, want dit wil je niet missen! <br/><br/> Meer informatie volgt nog. Check @nskekiden op insta voor updates. Bij eventuele vragen kun je mailen naar nskekiden@dsavdodeka.nl",
+            "path": "/nskekiden"
+        },
+        {
             "naam": "NSK Teams",
             "datum": "17/09/2022",
             "tijd": "12.00 uur",
