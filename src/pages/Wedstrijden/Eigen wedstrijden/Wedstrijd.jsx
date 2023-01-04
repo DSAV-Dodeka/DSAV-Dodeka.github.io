@@ -10,7 +10,7 @@ function Wedstrijd(props) {
         <div>
             <PageTitle title={props.wedstrijd.naam}/>
             <div className="wedstrijd_container">
-                <img className="wedstrijd_logo" src={getUrl(`wedstrijden/${props.wedstrijd.logo_rond}`)} alt =""/>
+                {props.wedstrijd.logo_rond === "" ? "" : <img className="wedstrijd_logo" src={getUrl(`wedstrijden/${props.wedstrijd.logo_rond}`)} alt =""/>}
                 <WedstrijdAlgemeen wedstrijd={props.wedstrijd}/>
                 <WedstrijdBelangrijk wedstrijd={props.wedstrijd}/>
             </div>
