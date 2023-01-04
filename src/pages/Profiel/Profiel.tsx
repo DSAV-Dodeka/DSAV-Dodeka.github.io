@@ -12,6 +12,7 @@ const Profiel = () => {
     const [access, setAccess] = useState("")
     const [accessScope, setAccessScope] = useState("")
     const [newEmail, setNewEmail] = useState("")
+    const [edit, setEdit] = useState(false);
 
 
     const loadScope = async () => {
@@ -57,17 +58,31 @@ const Profiel = () => {
                     <p className="profiel_naam">{authState.it.given_name + " " + authState.it.family_name}</p>
                     <p className="profiel_info">Geboortedatum: {new Date(authState.it.birthdate).getDate() + "/" + (new Date(authState.it.birthdate).getMonth() + 1) + "/" + new Date(authState.it.birthdate).getFullYear()}</p>
                     <p className="profiel_info">Lid sinds:</p>
-                    <p className="profiel_info">E-mailadres: {authState.it.email}</p>
-                    <p className="profiel_info">Telefoonnummer:</p>
-                    <p className="profiel_info">Adres:</p>
-                    <p className="profiel_info">Student: </p>
-                    <p className="profiel_info">Onderwijsinstelling: </p>
-                    <div>
-                        <form onSubmit={handleNewEmailSubmit}>
-                            <label htmlFor="newEmail">Vul je nieuwe emailadres in om een email te versturen om die te veranderen.</label>
-                            <input id="newEmail" placeholder="Nieuwe email" type="text" value={newEmail}
-                                   onChange={e => setNewEmail(e.target.value)}/>
-                            <button id="newEmailSubmit" type="submit">Verzenden</button>
+                    <div className={edit ? "profiel_hidden" : ""}>
+                        <p className="profiel_info">E-mailadres: {authState.it.email}</p>
+                        <p className="profiel_info">Telefoonnummer:</p>
+                        <p className="profiel_info">Adres:</p>
+                        <p className="profiel_info">Student: </p>
+                        <p className="profiel_info">Onderwijsinstelling: </p>
+                        <div className="profiel_edit" onClick={() => setEdit(true)}>
+                            <p className="profiel_edit_text">Wijzig gegevens</p>
+                            <svg className="profiel_edit_icon" xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 117.74 122.88"><g><path d="M94.62,2c-1.46-1.36-3.14-2.09-5.02-1.99c-1.88,0-3.56,0.73-4.92,2.2L73.59,13.72l31.07,30.03l11.19-11.72 c1.36-1.36,1.88-3.14,1.88-5.02s-0.73-3.66-2.09-4.92L94.62,2L94.62,2L94.62,2z M41.44,109.58c-4.08,1.36-8.26,2.62-12.35,3.98 c-4.08,1.36-8.16,2.72-12.35,4.08c-9.73,3.14-15.07,4.92-16.22,5.23c-1.15,0.31-0.42-4.18,1.99-13.6l7.74-29.61l0.64-0.66 l30.56,30.56L41.44,109.58L41.44,109.58L41.44,109.58z M22.2,67.25l42.99-44.82l31.07,29.92L52.75,97.8L22.2,67.25L22.2,67.25z"/></g></svg>
+                        </div>
+                    </div>
+                    <div className={edit ? "" : "profiel_hidden"}>
+                        <form className="profiel_edit_info" onSubmit={handleNewEmailSubmit}>
+                            <label className="profiel_info" htmlFor="newEmail">E-mailadres:</label>
+                            <input className="profiel_input" id="newEmail" placeholder="Nieuwe email" type="text" value={newEmail}
+                                   onChange={e => setNewEmail(e.target.value)}/>                        
+                            <p className="profiel_info">Telefoonnummer:</p>
+                            <p className="profiel_info">Adres:</p>
+                            <p className="profiel_info">Student: </p>
+                            <p className="profiel_info">Onderwijsinstelling: </p>
+                            <div className="profiel_edit" onClick={() => setEdit(false)}>
+                                <p className="profiel_edit_text">Sluit</p>
+                                <svg className="profiel_edit_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.775 460.775" ><path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55  c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55  c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505  c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55  l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719 c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"/></svg>
+                        </div>
+                        <button id="newEmailSubmit" className="profiel_button" type="submit">Verzenden</button>
                         </form>
                     </div>
                     <div className="profiel_highlights">

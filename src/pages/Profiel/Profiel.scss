@@ -63,3 +63,73 @@
 .profiel_highlights p {
     padding-bottom: 0.5rem;
 }
+
+.profiel_edit {
+    background-color: $dodeka_rood;
+    width: fit-content;
+    display: flex;
+    padding: 0.5rem;
+    position: absolute;
+    top: 4rem;
+    right: 50%;
+    cursor: pointer;
+    border-radius: 0.75rem;
+}
+
+.profiel_edit_text {
+    color: white;
+    margin-right: 0.5rem;
+    font-size: $font_small;
+    line-height: $line_height_small;
+    font-weight: $bold;
+}
+
+.profiel_edit_icon {
+    height: 1rem;
+    fill: white;
+    vertical-align: middle;
+    margin-top: 0.25rem;
+}
+
+.profiel_hidden {
+    display: none;
+}
+
+.profiel_input {
+    display: block;
+    width: 25%;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.profiel_input:focus {
+    outline: none;
+}
+
+.profiel_input::placeholder {
+    color: #808080;
+}
+
+.profiel_button {
+    background-color: $dodeka_rood;
+    width: fit-content;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-top: 1rem;
+}
+
+// .profiel_edit_info{
+//     :
+// }
