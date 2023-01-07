@@ -8,6 +8,7 @@ import "./Login.scss";
 import Item from "../Navigation Bar/Item";
 import Dropdown from "../Navigation Bar/Dropdown";
 import {Logger} from "../../functions/logger";
+import getUrl from "../../functions/links";
 
 /**
  * Hook that alerts clicks outside of the passed ref
@@ -53,11 +54,11 @@ const Login = () => {
     return (
         <div  className="profile-box">
             {ac.isLoaded && !ac.isAuthenticated &&
-                <button className="login_button" onClick={handleLogin}>Log in</button>
+                <button className="login_button" onClick={handleLogin}><img className="login_icon" src={getUrl(`login/login.png`)} /></button>
             }
             {ac.isLoaded && ac.isAuthenticated &&
                 <div className="profile_dropdown" onClick={() => setActive(!active)}>
-                    <h2 ref={ref} className="profile_login">{ac.it.given_name}</h2>
+                    <h2 ref={ref} className="profile_login"><img className="login_icon" src={getUrl(`login/ingelogd.png`)} /></h2>
                     <div className={active ? "profile_drop" : "dropHide"}>
                         <Link className="profile_dropdownElement" to="/profiel">Profiel</Link>
                         {ac.scope.includes("admin") ? (<Link className="profile_dropdownElement" to="/admin">Admin</Link>) : ""}
