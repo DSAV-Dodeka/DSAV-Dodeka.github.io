@@ -8,8 +8,19 @@
 .verjaardagen_container {
     margin-bottom: 5rem;
     margin-top: -2rem;
+    @include respond(computerscherm) {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-left: 3rem;
+        margin-right: 4rem;
+    }
     @include respond(mobile) {
         margin-bottom: 3rem;
         margin-top: 0;
     }
+}
+
+.left {
+    grid-column: 1;
+    grid-row: 1;
 }

@@ -122,10 +122,10 @@ const Verjaardagen = () => {
 
 
                             return (
-                            <div key={maand+vkey}>
+                            <>
                                 <Maand maand={maand} />
                                 <Verjaardag datum={datum} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>
-                            </div>)
+                            </>)
                         }
                         return (<Verjaardag key={vkey} datum={datum} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>)
                     })}

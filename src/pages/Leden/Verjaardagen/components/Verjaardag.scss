@@ -6,8 +6,7 @@
     background-color: $dodeka_blauw90p;
     color: white;
     font-size: $font_medium;
-    margin-left: 4rem;
-    margin-right: 4rem;
+    margin-left: 1rem;
     margin-bottom: 1rem;
     @include respond(mobile) {
         height: calc(2 * $line_height_small + 0.5rem);

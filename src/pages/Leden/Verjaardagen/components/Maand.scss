@@ -15,6 +15,9 @@
     margin-top: 2rem;
     text-align: center;
     border-radius: 0.75rem;
+    @include respond(computerscherm) {
+        grid-column: span 2;
+    }
     @include respond(mobile) {
         font-size: $font_small;
         line-height: $line_height_small;
