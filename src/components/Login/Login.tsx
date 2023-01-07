@@ -47,6 +47,7 @@ const Login = () => {
         Logger.debug("Logging out from button...")
         const newState = useLogout(ac)
         setAuthState(newState)
+        navigate("/")
     }
 
     return (
