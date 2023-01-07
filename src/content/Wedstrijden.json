@@ -39,33 +39,17 @@
         },
         {
             "naam": "Dodekathlon",
-            "datum": "Jaarlijks",
-            "tijd": "Nog niet bekend",
-            "locatie": "D.S.A.V. Dodeka",
-            "adres": "Sportring 12",
-            "postcode": "2616LK Delft",
-            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
-            "foto": "dodekathlon.jpg",
-            "logo":"dodekathlon.jpg",
-            "instagram": "https://www.instagram.com/dsavdodeka/?hl=nl",
-            "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden.",
-            "info_lang": "Jaarlijks organiseert D.S.A.V. Dodeka haar eigen wedstrijden, waaronder de Dodekathlon. Dodeka betekent twaalf, vandaar dat er tijdens deze wedstrijd twaalf onderdelen worden gedaan. De onderdelen zijn alsvolgt: <br/><br/> - 100m <br/>- verspringen <br/>-  kogelwerpen <br/>-  hoogspringen <br/>-  400 meter sprint <br/>- hordelopen <br/>- discus werpen <br/>- polstokhoogspringen <br/>- 400 meter hordelopen <br/>- speerwerpen <br/>- hinkstapsprong <br/>- 1500 meter lopen <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>",
-            "path": "/dodekathlon"
+            "datum": "01/07/2023",
+            "logo": "dodekathlon.jpg",
+            "info_kort": "D.S.A.V. Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. Dodeka betekent namelijk twaalf in het grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter hordelopen en de hinkstapsprong onderdeel van dit evenement.",
+            "path": ""
         },
         {
         "naam": "Biertienkamp",
-        "datum": "Jaarlijks",
-        "tijd": "Nog niet bekend",
-        "locatie": "D.S.A.V. Dodeka",
-        "adres": "Sportring 12",
-        "postcode": "2616LK Delft",
-        "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
-        "foto": "biertienkamp.jpg",
+        "datum": "22/04/2023",
         "logo":"biertienkamp.jpg",
-        "instagram": "https://www.instagram.com/dsavdodeka/?hl=nl",
         "info_kort": "Jaarlijks wordt de Biertienkamp georganiseerd; naast het scoren van punten met de normale tienkamp onderdelen worden er ook punten gescoord door bier te drinken.",
-        "info_lang": "Jaarlijks organiseert D.S.A.V. Dodeka haar eigen wedstrijden, waaronder de Biertienkamp. Hierbij worden de normale onderdelen van de tienkamp uitgeoefend, met speerwerpen eerder in het schema dan normaal. Het schema is alsvolgt:<br/><br/>- 100 meter sprint <br/>- verspringen <br/>- speerwerpen <br/>- hoogspringen <br/>- 400 meter sprint <br/>- hordelopen <br/>- discus werpen <br/>- polstokhoogspringen <br/>- kogelstoten <br/>- 1500 meter lopen <br/> <br/> De tienkamp wordt in een dag uitgevoerd. Met de onderdelen kunnen punten gescoord worden zoals de atleet gewend is. Daarnaast worden er punten gescoord voor het drinken van bier. Met elke leeg gedronken bierfles kan de atleet een extra 100 punten verdienen. Op het aantal gedronken bier zit geen maximum, zolang het barpersoneel dit verantwoord acht.<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>",
-        "path": "/biertienkamp"
+        "path": ""
         }        
     ],
     "wedstrijden_oud": [
