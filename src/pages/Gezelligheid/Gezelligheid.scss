@@ -12,6 +12,10 @@
 .fotobalk{
     width: 100%;
     height: 20rem;
+    @include respond(mobile){
+        height: 15rem;
+        width: 100%;
+    }
 }
 
 .fotos{
@@ -20,7 +24,11 @@
     object-fit: cover;
     object-position: center;
     @include respond(mobile){
+        height: 15rem;
+        object-fit: cover;
+        object-position: center;
         width: 100%;
+        margin-bottom: 14rem;
     }
 }
 
@@ -28,6 +36,11 @@
     width: 100%;
     height: 30rem;
     background-color: white;
+    @include respond(mobile){
+        height: 30rem;
+        background-color: white;
+        width: 100%;
+    }
 }
 
 .textkolom{
@@ -40,15 +53,30 @@
     margin-left: 2%;
     margin-right: 2%;
     background-color: $dodeka_blauw;
+    @include respond(mobile){
+        object-fit: cover;
+        object-position: center;
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-top: 0rem;
+        margin-bottom: 14rem;
+        width: 100%;
+        height: 15rem;
+        padding: 2rem;
+        background-color: $dodeka_blauw;
+    }
 }
 
 .textvakheader{
     color: white;
     padding-bottom: 1rem;
     font-size: $font_large;
+    @include respond(mobile){
+        font-size: $font_medium;
+    }
 }
 
 .text{
     color: white;
-    font-size: $font_medium;
+    font-size: $font_small;
 }

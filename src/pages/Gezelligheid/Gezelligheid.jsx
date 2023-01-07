@@ -18,11 +18,12 @@ function Gezelligheid(){
             <div className="fotobalk">
                 <img className="fotos" src={Image1} alt="foto1"/>
                 <img className="fotos" src={Image2} alt="foto2"/>
-                <img className="fotos" src={Image3} alt="foto3"/>
                 <img className="fotos" src={Image4} alt="foto4"/>
+                <img className="fotos" src={Image3} alt="foto3"/>
+                {/* <img className="fotos" src={Image4} alt="foto4"/> */}
             </div>
 
-            <div className="textalgemeen">
+            {/* <div className="textalgemeen"> */}
                 <div className="textkolom">
                     <h1 className="textvakheader">Borrels</h1>
                     <p className="text">
@@ -42,7 +43,7 @@ function Gezelligheid(){
                     <p className="text">
                     Twee keer per jaar wordt er bij Dodeka een reis georganiseerd; de zomerreis en de wintersport!
                     </p>
-                </div>
+                {/* </div> */}
 
             </div>
             
