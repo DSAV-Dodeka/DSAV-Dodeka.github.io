@@ -18,6 +18,13 @@
     padding-top: 4rem;
     padding-bottom: 2rem;
     background-color: $dodeka_blauw90p;
+    @include respond(mobile) {
+        margin-top: 4rem;
+        padding-top: 0;
+        margin-bottom: 4rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
 
 .profiel_naam {
@@ -32,6 +39,14 @@
     line-height: $line_height_large;
     padding: 1rem;
     border-radius: 0.75rem;
+    @include respond(mobile) {
+        width: calc(100% - 2rem);
+        left: 1rem;
+        padding: 0.5rem;
+        font-size: $font_medium;
+        line-height: $line_height_medium;
+        top: -1.25rem;
+    }
 }
 
 .profiel_info {
@@ -39,6 +54,10 @@
     font-size: $font_medium;
     line-height: $line_height_medium;
     padding-bottom: 0.5rem;
+    @include respond(mobile) {
+        font-size: $font_small;
+        line-height: $line_height_small;
+    }
 }
 
 .profiel_highlights {
@@ -58,6 +77,15 @@
     font-size: $font_medium;
     line-height: $line_height_medium;
     border-radius: 0.75rem;
+    @include respond(mobile) {
+        display: block;
+        position: relative;
+        width: 100%;
+        
+        right: auto;
+        top: auto;
+        margin-top: 1rem;
+    }
 }
 
 .profiel_highlights p {
@@ -74,6 +102,10 @@
     right: 50%;
     cursor: pointer;
     border-radius: 0.75rem;
+    @include respond(mobile) {
+        right: 1rem;
+        top: 2rem;
+    }
 }
 
 .profiel_edit_text {
@@ -82,6 +114,9 @@
     font-size: $font_small;
     line-height: $line_height_small;
     font-weight: $bold;
+    @include respond(mobile) {
+        display: none;
+    }
 }
 
 .profiel_edit_icon {
@@ -106,6 +141,12 @@
     font-size: $font_medium;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    @include respond(mobile) {
+        width: 50%;
+        font-size: $font_small;
+        line-height: $line_height_small;
+        padding: 0.25rem;
+    }
 }
 
 .profiel_input:focus {
@@ -128,6 +169,11 @@
     font-size: $font_medium;
     font-weight: $bold;
     margin-top: 1rem;
+    @include respond(mobile) {
+        font-size: $font_small;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
 }
 
 // .profiel_edit_info{
