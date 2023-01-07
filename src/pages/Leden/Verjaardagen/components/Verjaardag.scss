@@ -8,18 +8,34 @@
     font-size: $font_medium;
     margin-left: 4rem;
     margin-right: 4rem;
-    
     margin-bottom: 1rem;
+    @include respond(mobile) {
+        height: calc(2 * $line_height_small + 0.5rem);
+        margin-left: 1rem;
+        margin-right: 1rem;
+        font-size: $font_small;
+        position: relative;
+    }
 }
 
 .verjaardag_container p {
     padding: 1rem;
+    @include respond(mobile) {
+        padding: 0.25rem;        
+        line-height: calc($line_height_small);
+    }
 }
 
 .verjaardag_datum {
     width: 12rem;
     margin-left: 1rem;
     font-weight: $bold;
+    @include respond(mobile) {
+        margin-left: 1rem;
+        width: 6rem;
+        line-height: calc(2* $line_height_small) !important;
+        vertical-align: middle;
+    }
 }
 
 .verjaardag_leeftijd {
@@ -28,4 +44,16 @@
     text-align: right;
     padding-right: 2rem !important;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+    @include respond(mobile) {
+        width: 6rem;
+        padding-right: 1rem !important;
+        line-height: calc(2* $line_height_small) !important;
+    }
+}
+
+.mobile_break {
+    display: none;
+    @include respond(mobile) {
+        display: block;
+    }
 }

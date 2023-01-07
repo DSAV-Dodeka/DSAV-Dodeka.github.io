@@ -15,8 +15,12 @@
     margin-top: 2rem;
     text-align: center;
     border-radius: 0.75rem;
-}
-
-.maand:first-of-type {
-    margin-top: 0;
+    @include respond(mobile) {
+        font-size: $font_small;
+        line-height: $line_height_small;
+        padding: 0.5rem;
+        width: 8rem;
+        margin-bottom: 1rem;
+        margin-top: 0;
+    }
 }

@@ -112,7 +112,7 @@ const Verjaardagen = () => {
                 <p className="verjaardagen_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in om deze pagina te kunnen bekijken.</p>
             )}
             {authState.isAuthenticated && (
-                <div>
+                <div className="verjaardagen_container">
                     {data.map((item, index, array) => {
                         const datum = getDay(item.birthdate) + " " + new Date(item.birthdate).getDate()
                         const vkey = datum + item.firstname + item.lastname

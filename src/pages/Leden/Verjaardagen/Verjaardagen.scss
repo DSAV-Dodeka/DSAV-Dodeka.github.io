@@ -4,3 +4,12 @@
     color: $dodeka_blauw;
     margin-left: 4rem;
 }
+
+.verjaardagen_container {
+    margin-bottom: 5rem;
+    margin-top: -2rem;
+    @include respond(mobile) {
+        margin-bottom: 3rem;
+        margin-top: 0;
+    }
+}
