@@ -29,13 +29,17 @@ function Vereniging() {
                     <h1 className="vereniging_7">Bestuur</h1>
                     <img src={getUrl(`over/overBestuur.jpg`)} className="vereniging_8" alt=""/>
                 </Link>
-                <Link className="vereniging_9" to='commissies' >
-                    <h1 className="vereniging_10">Commissies</h1>
-                    <img src={getUrl(`over/overCommissies.jpg`)} className="vereniging_11" alt=""/>
+                <Link className="vereniging_6" to='commissies' >
+                    <h1 className="vereniging_7">Commissies</h1>
+                    <img src={getUrl(`over/overCommissies.jpg`)} className="vereniging_8" alt=""/>
                 </Link>
-                <Link className="vereniging_9" to='arnold' >
-                    <h1 className="vereniging_10">Arnold</h1>
-                    <img src={getUrl(`over/arnold.jpg`)} className="vereniging_11" alt=""/>
+                <Link className="vereniging_6" to='arnold' >
+                    <h1 className="vereniging_7">Arnold</h1>
+                    <img src={getUrl(`over/arnold.jpg`)} className="vereniging_8" alt=""/>
+                </Link>
+                <Link className="vereniging_6" to='gezelligheid' >
+                    <h1 className="vereniging_7">Gezelligheid</h1>
+                    <img src={getUrl(`over/overGezelligheid.jpg`)} className="vereniging_8" alt=""/>
                 </Link>
             </div>
         </div>
