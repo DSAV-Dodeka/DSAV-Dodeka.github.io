@@ -36,7 +36,37 @@
             "info_kort": "Het NSK Weg is dé wedstrijd voor de studenten die van de langere afstanden houden. Bij deze wedstrijd kun je er namelijk voor kiezen om 5 of 10 kilometer te lopen op de weg. Dit jaar zullen de deelnemers een mooi rondje door Delft gaan lopen.",
             "info_lang": "Strik de veters van je hardloopschoenen, want op zaterdag 12 november organiseert D.S.A.V. Dodeka samen met TU Delft X het Studenten Kampioenschap Weg 2022. Het is een race voor lopers en zal plaatsvinden over de TU Delft campus. Dit is een mogelijkheid voor jou om een nieuw persoonlijk record te lopen op de 5 of 10 km. Na de atletische prestaties wordt er een ludiek onderdeel georganiseerd op X. Na de wedstrijd kunnen jullie mee-eten bij het sportcentrum. Er wordt ook nog een feest georganiseerd bij de Koperen Kat om het evenement samen af te sluiten. Voor zowel het eten als het feest kan je je inschrijven via <a target=\"_blank\" rel=\"noreferrer\" href=\"https://forms.gle/J1sF7cooS8xdZxoL8\" className=\"wedstrijd_algemeen_link\">deze link.</a> Niet lopen, maar wel eten en feesten? Meld je dan aan als vrijwilliger via <a target=\"_blank\" rel=\"noreferrer\" href=\"https://forms.gle/CgB9nqWwYh284BgeA\" className=\"wedstrijd_algemeen_link\">deze link.</a> <br/><br/> Volg ons op Instagram voor de laatste updates: @nsk_weg2022. Want wie op NSK Weg is, wordt gezien!",
             "path": "/nskweg"
-        }
+        },
+        {
+            "naam": "Dodekathlon",
+            "datum": "Jaarlijks",
+            "tijd": "Nog niet bekend",
+            "locatie": "D.S.A.V. Dodeka",
+            "adres": "Sportring 12",
+            "postcode": "2616LK Delft",
+            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
+            "foto": "dodekathlon.jpg",
+            "logo":"dodekathlon.jpg",
+            "instagram": "https://www.instagram.com/dsavdodeka/?hl=nl",
+            "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij 12 onderdelen gedaan worden.",
+            "info_lang": "",
+            "path": "/dodekathlon"
+        },
+        {
+        "naam": "Biertienkamp",
+        "datum": "Jaarlijks",
+        "tijd": "Nog niet bekend",
+        "locatie": "D.S.A.V. Dodeka",
+        "adres": "Sportring 12",
+        "postcode": "2616LK Delft",
+        "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
+        "foto": "biertienkamp.jpg",
+        "logo":"biertienkamp.jpg",
+        "instagram": "https://www.instagram.com/dsavdodeka/?hl=nl",
+        "info_kort": "Jaarlijks wordt de Biertienkamp georganiseerd; naast het scoren van punten met de normale tienkamp onderdelen worden er ook punten gescoord door bier te drinken.",
+        "info_lang": "",
+        "path": "/biertienkamp"
+        }        
     ],
     "wedstrijden_oud": [
         {
