@@ -23,6 +23,7 @@ import Arnold from "./pages/Vereniging/Arnold/Arnold";
 import Records from "./pages/Wedstrijden/Records/Records";
 import Verjaardagen from "./pages/Leden/Verjaardagen/Verjaardagen";
 import Leden from "./pages/Leden/Leden";
+import Gezelligheid from "./pages/Vereniging/Gezelligheid/Gezelligheid";
 import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
@@ -143,6 +144,7 @@ function App() {
                     <Route path="/vereniging/commissies" element={<Commissies />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
                     <Route path="/vereniging/arnold" element={<Arnold />} />
+                    <Route path="/vereniging/gezelligheid" element={<Gezelligheid />} />
                     <Route path="/trainingen" element={
                       <Trainingen />
                     }/>
