@@ -1,0 +1,162 @@
+@import "../../../variables.scss";
+
+.algemeen{
+    margin-top: 0rem;
+    width: 100%;
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.kolom {
+    float: left;
+    width: 50%;
+}
+
+
+.SoortKlassement {
+    width: 70%;
+    background-color: $dodeka_rood;
+    color: #fff;
+    border-radius: .75rem;
+    border: none;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: $bold;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 15%;
+    object-position: center;
+    text-align: center;
+}
+
+.EerstePersoonLinks{
+    object-position: left; 
+    clip-path: polygon(0% 0%,100% 0%,95% 100%,0% 100%);
+    text-align: right;
+    width: 95%;
+    height: 3rem;
+    background-color: $dodeka_blauw;
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+    padding-right: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+
+}
+
+.TweedePersoonLinks{
+    object-position: left;
+    clip-path: polygon(0% 0%,100% 0%,95% 100%,0% 100%); 
+    text-align: right;
+    width: 90%;
+    height: 3rem;
+    background-color: $dodeka_blauw;
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+    padding-right: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+
+}
+
+.DerdePersoonLinks{
+    object-position: left;
+    clip-path: polygon(0% 0%,100% 0%,95% 100%,0% 100%);
+    text-align: right; 
+    width: 85%;
+    height: 4rem;
+    background-color: $dodeka_blauw;
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+    padding-right: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+}
+
+.VierEnLagerLinks{
+    object-position: left; 
+    width: 80%;
+    height: 10rem;;
+    background-color: $dodeka_blauw;
+    color: #fff;
+    padding: 1rem;
+    font-size: $font_small;
+    margin-bottom: 2rem;
+    
+}
+
+.EerstePersoonRechts{
+    object-position: right; 
+    clip-path: polygon(0% 0%,100% 0%, 100% 100%,5% 100%);
+    text-align: left;
+    width: 95%;
+    height: 3rem;
+    background-color: $dodeka_blauw;
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+    margin-left: 5%;
+}
+    
+.TweedePersoonRechts{
+    object-position: right; 
+    clip-path: polygon(0% 0%,100% 0%, 100% 100%,5% 100%);
+    text-align: left;
+    width: 90%;
+    height: 3rem;
+    background-color: $dodeka_blauw;
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+    margin-left: 10%;
+}
+    
+.DerdePersoonRechts{
+    object-position: right; 
+    clip-path: polygon(0% 0%,100% 0%, 100% 100%,5% 100%);
+    text-align: left;
+    width: 85%;
+    height: 4rem;
+    background-color: $dodeka_blauw;
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+    margin-left: 15%;
+}
+    
+.VierEnLagerRechts{
+    object-position: right; 
+    width: 80%;
+    height: 10rem;;
+    background-color: $dodeka_blauw;
+    color: #fff;
+    padding: 1rem;
+    font-size: $font_small;
+    margin-bottom: 2rem;
+    margin-left: 20%;
+    
+}
+
