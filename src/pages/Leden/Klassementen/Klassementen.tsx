@@ -6,7 +6,7 @@ function Klassementen (){
     <div className="algemeen">
 
         <div>
-            <PageTitle title="Punten Klassementen"/>
+            <PageTitle title="Klassementen"/>
         </div>
 
         <div className="kolom">

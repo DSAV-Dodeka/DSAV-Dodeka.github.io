@@ -12,6 +12,9 @@
 .kolom {
     float: left;
     width: 50%;
+    @include respond(mobile) {
+        width: 100%;
+    }
 }
 
 
@@ -53,7 +56,7 @@
     object-position: left;
     clip-path: polygon(0% 0%,100% 0%,95% 100%,0% 100%); 
     text-align: right;
-    width: 90%;
+    width: 89.35%;
     height: 3rem;
     background-color: $dodeka_blauw;
     color: #fff;
@@ -71,7 +74,7 @@
     object-position: left;
     clip-path: polygon(0% 0%,100% 0%,95% 100%,0% 100%);
     text-align: right; 
-    width: 85%;
+    width: 83.7%;
     height: 4rem;
     background-color: $dodeka_blauw;
     color: white;
@@ -82,17 +85,24 @@
     font-size: $font_medium;
     font-weight: $bold;
     margin-bottom: 1rem;
+    @include respond(mobile){
+        margin-bottom: 0rem;
+    }
 }
 
 .VierEnLagerLinks{
     object-position: left; 
-    width: 80%;
-    height: 10rem;;
+    width: 79.5%;
+    height: 100rem;;
     background-color: $dodeka_blauw;
     color: #fff;
     padding: 1rem;
     font-size: $font_small;
     margin-bottom: 2rem;
+    @include respond(mobile){
+        height: 0rem;
+        background-color: white;
+    }
     
 }
 
@@ -117,7 +127,7 @@
     object-position: right; 
     clip-path: polygon(0% 0%,100% 0%, 100% 100%,5% 100%);
     text-align: left;
-    width: 90%;
+    width: 89.35%;
     height: 3rem;
     background-color: $dodeka_blauw;
     color: #fff;
@@ -127,14 +137,14 @@
     font-size: $font_medium;
     font-weight: $bold;
     margin-bottom: 1rem;
-    margin-left: 10%;
+    margin-left: 10.65%;
 }
     
 .DerdePersoonRechts{
     object-position: right; 
     clip-path: polygon(0% 0%,100% 0%, 100% 100%,5% 100%);
     text-align: left;
-    width: 85%;
+    width: 83.75%;
     height: 4rem;
     background-color: $dodeka_blauw;
     color: white;
@@ -144,19 +154,38 @@
     font-size: $font_medium;
     font-weight: $bold;
     margin-bottom: 1rem;
-    margin-left: 15%;
+    margin-left: 16.25%;
+    @include respond(mobile){
+        margin-bottom: 0rem;
+    }
 }
     
 .VierEnLagerRechts{
     object-position: right; 
-    width: 80%;
-    height: 10rem;;
+    width: 79.5%;
+    height: 100rem;;
     background-color: $dodeka_blauw;
     color: #fff;
     padding: 1rem;
     font-size: $font_small;
     margin-bottom: 2rem;
-    margin-left: 20%;
+    margin-left: 20.5%;
+    @include respond(mobile){
+        height: 0rem;
+        background-color: white;
+    }
     
+}
+
+.knop{
+    display: none;
+    @include respond(mobile) {
+        display: cover;
+        background-color: $dodeka_blauw;
+        color: white;
+        font-size: $font_medium;
+        margin: 1rem;
+    }
+
 }
 
