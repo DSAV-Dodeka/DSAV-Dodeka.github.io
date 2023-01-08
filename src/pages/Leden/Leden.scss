@@ -12,7 +12,7 @@
 }
 
 .leden_routes{
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     @include respond(computerscherm){
         display: flex;
         margin-bottom: 2rem;
@@ -45,7 +45,7 @@
     padding-bottom: 0.5rem;
     padding-left: 2rem;
     padding-right: 2rem;
-    width: 20rem;
+    width: calc(100% - 2rem);
     color: white;
     font-size: 1.75rem;
     line-height: $line_height_large;
@@ -55,6 +55,7 @@
     z-index: 6;
     left: 0rem;
     @include respond(computerscherm){
+        width: 20rem;
         margin-left: 0rem;
         top: 2rem;
         right: 0rem;
@@ -68,7 +69,7 @@
     padding-bottom: 0.5rem;
     padding-left: 2rem;
     padding-right: 2rem;
-    width: 20rem;
+    width: calc(100% - 2rem);
     color: white;
     font-size: 1.75rem;
     line-height: $line_height_large;
@@ -88,10 +89,14 @@
 .leden_link_image {//object-cover h-96 w-96 bg-blauw m-auto mt-16 lg:mt-24
     display: block;
     object-fit: cover;
-    height: 24rem;
-    width: 22rem;
+    height: 22rem;
+    width: 100%;
     background-color: $dodeka_blauw;
+    margin-bottom: 2rem;
     @include respond(computerscherm){
+        height: 24rem;
+        width: 22rem;
+        margin-bottom: 0;
         margin-left: auto;
         margin-right: auto;
     }
@@ -100,10 +105,14 @@
 .leden_link_double_image {
     display: block;
     object-fit: cover;
-    height: 24rem;
-    width: 46rem;
+    height: 22rem;
+    width: 100%;
     background-color: $dodeka_blauw;
+    margin-bottom: 2rem;
     @include respond(computerscherm){
+        height: 24rem;
+        margin-bottom: 0;
+        width: 46rem;
         margin-left: auto;
         margin-right: auto;
     }
