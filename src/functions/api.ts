@@ -154,6 +154,40 @@ export const bd_request = async (auth: AuthUse, options?: Options) => {
     return bds
 }
 
+
+const PuntenKlassementData = z.object({
+    firstname: z.string(),
+    lastname: z.string(),
+    aantalPunten: z.string()
+})
+export type PuntenKlassementData = z.infer<typeof PuntenKlassementData>;
+
+const PuntenKlassement = z.array(PuntenKlassementData);
+type PuntenKlassement = z.infer<typeof PuntenKlassement>;
+
+export const punten_klassement_request = async (auth: AuthUse, options?: Options) => {
+    let response = await back_request('members/rankings_general/', auth, options)
+    const punt_klas: PuntenKlassement = PuntenKlassement.parse(response)
+    return punt_klas
+}
+
+const TrainingsKlassementData = z.object({
+    firstname: z.string(),
+    lastname: z.string(),
+    aantalPunten: z.string()
+})
+export type TrainingsKlassementData = z.infer<typeof TrainingsKlassementData>;
+
+const TrainingsKlassement = z.array(TrainingsKlassementData);
+type TrainingsKlassement = z.infer<typeof TrainingsKlassement>;
+
+export const trainings_klassement_request = async (auth: AuthUse, options?: Options) => {
+    let response = await back_request('members/rankings_training/', auth, options)
+    const train_klas: TrainingsKlassement = TrainingsKlassement.parse(response)
+    return train_klas
+}
+
+
 const DeleteUrl = z.object({
     delete_url: z.string()
 })

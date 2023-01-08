@@ -1,4 +1,4 @@
-import {bd_request, BirthdayData, err_api, SignedUp, su_request, ud_request, UsersData} from "./api";
+import {bd_request, BirthdayData, err_api, SignedUp, su_request, ud_request, UsersData, punten_klassement_request, PuntenKlassementData, trainings_klassement_request, TrainingsKlassementData} from "./api";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {AuthUse} from "../pages/Auth/AuthContext";
 import {Logger} from "./logger";
@@ -13,6 +13,14 @@ const fetchUserData = async (au: AuthUse): Promise<UsersData> => {
 
 const fetchSignedUp = async (au: AuthUse): Promise<SignedUp[]> => {
     return su_request(au)
+}
+
+const fetchPuntenKlassementData = async (au: AuthUse): Promise<PuntenKlassementData[]> => {
+    return punten_klassement_request(au)
+}
+
+const fetchTrainingsKlassementData = async (au: AuthUse): Promise<TrainingsKlassementData[]> => {
+    return trainings_klassement_request(au)
 }
 
 export const queryError = <T>(q: UseQueryResult<T>, defaultData: T, error: string): T => {
@@ -52,3 +60,17 @@ export const useSignedUpQuery = (au: AuthUse) =>
             staleTime,
             enabled: au.authState.isAuthenticated,
         })
+
+export const usePuntenKlassementQuery = (au: AuthUse) =>
+    useQuery(['whatIsThis'], () => fetchPuntenKlassementData(au),
+        {
+            staleTime,
+            enabled: au.authState.isAuthenticated,
+        })
+
+export const useTrainingsKlassementQuery = (au: AuthUse) =>
+        useQuery(['whatIsThis'], () => fetchTrainingsKlassementData(au),
+            {
+                staleTime,
+                enabled: au.authState.isAuthenticated,
+            })
