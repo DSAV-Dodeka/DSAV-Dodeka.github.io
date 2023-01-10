@@ -148,6 +148,48 @@
             ],
             "fotos": "dies"
         },
+        {
+            "naam": "FOCUS",
+            "info": "Onze commissie zorgt ervoor dat alle mooie dingen die bij de vereniging gebeuren zo goed mogelijk vastgelegd worden doormiddel van foto's en video's. Ook zijn wij verantwoordelijk voor de promotie van Dodeka. Dit doen we onder andere met posters, stickers en foto's op diverse social media, dus volg ons vooral en misschien zie je jezelf nog eens terug op het instagram account!",
+		    "leden": [
+                {
+                    "naam": "Tim Wilmes",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Xylander Parqui",
+                    "functie": "Secretaris",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Cristian Reinprecht",
+                    "functie": "Commissaris Foto & Video",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Liam Timmerman",
+                    "functie": "Commissaris Grafisch",
+                    "foto": "placeholder"
+                },
+		    {
+                    "naam": "Stef Berends",
+                    "functie": "Commissaris Fotobeheer",
+                    "foto": "placeholder"
+                },
+		    {
+                    "naam": "Amber Kroon",
+                    "functie": "Commissaris Content & Socials",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "QQ",
+                    "foto": "placeholder"
+                }
+            ],
+            "fotos": "focus"
+        },
 	{
             "naam": "NSK Ekiden",
             "info": "Op 1 april (dit is geen grap) vindt alweer het 4e, door D.S.A.V. Dodeka georganiseerde, NSK plaats. Na het NSK Indoor, het NSK Teams en het NSK Weg, gaan wij, op en rond het sportcomplex van AV ‘40 het NSK Ekiden organiseren. Bij een ekiden loop je als team een marathon in estafettevorm, dus we gaan de twee voorgaande NSK’s combineren. Zoals altijd zullen we niet alleen zorgen voor een mooie wedstrijd, maar ook voor een heerlijk en gezellig diner en een spetterend eindfeest. Vorm dus snel een team van 6 atleten en begin maar alvast met trainen. Dan zien we jou in het begin van de lente op onze baan in Delft! Voor eventuele vragen kan je mailen naar nskekiden@dsavdodeka.nl",
@@ -258,6 +300,38 @@
                 }
             ],
             "fotos": "sax"
+        },
+        {
+            "naam": "Sunrice",
+            "info": "Wij zijn de sunrice en wij organiseren de dodeka zomerreis. In de zomervakantie gaan we met zn allen gezellig een weekje op vakantie. Wij zijn het hele jaar bezig met de voorbereidingen voor deze reis. We kiezen de locatie, zoeken een goede accomodatie en verzinnen een programma  met allemaal verschillende (vooral sportieve) activiteiten. ",
+		"leden": [
+                {
+                    "naam": "Lucy van Staalduine",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Thomas Albers",
+                    "functie": "Secretaris",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Marien Sips",
+                    "functie": "Penningmeester",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Danique Oost",
+                    "functie": "Commissaris Promo",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Saana Taal",
+                    "functie": "QQ",
+                    "foto": "placeholder"
+                }
+            ],
+            "fotos": "sunrice"
         },
 	{
             "naam": "Trainers",
