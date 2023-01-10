@@ -42,7 +42,7 @@ function Gezelligheid(){
                 <div className="textkolom">
                     <h1 className="textvakheader">Reizen</h1>
                     <p className="text">
-                    Twee keer per jaar wordt er bij Dodeka een reis georganiseerd; de zomerreis en de wintersport!
+                    Twee keer per jaar wordt er bij Dodeka een reis georganiseerd. Snowdeka organiseert elk jaar in de TU-vakantie tussen de twee semesters in een wintersport, en de Sunrice organiseert in de eerste week van de zomervakantie de zomerreis!
                     </p>
                 {/* </div> */}
 

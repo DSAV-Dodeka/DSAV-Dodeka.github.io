@@ -55,7 +55,6 @@ function Klassementen (){
 
     const q = useTrainingsKlassementQuery({ authState, setAuthState })
     const training = queryError(q, defaultTraining, "User Info Query Error").points
-    console.log(training)
 
     return (
     <div className="algemeen">
