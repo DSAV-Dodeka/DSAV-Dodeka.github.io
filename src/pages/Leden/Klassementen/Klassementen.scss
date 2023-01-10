@@ -40,7 +40,7 @@
     text-align: right;
     width: 95%;
     height: 3rem;
-    background-color: $dodeka_blauw;
+    background-color: $dodeka_blauw90p;
     color: #fff;
     padding-top: 1rem;
     padding-bottom: 3rem;
@@ -58,7 +58,7 @@
     text-align: right;
     width: 89.35%;
     height: 3rem;
-    background-color: $dodeka_blauw;
+    background-color: $dodeka_blauw90p;
     color: #fff;
     padding-top: 1rem;
     padding-bottom: 3rem;
@@ -76,7 +76,7 @@
     text-align: right; 
     width: 83.7%;
     height: 4rem;
-    background-color: $dodeka_blauw;
+    background-color: $dodeka_blauw90p;
     color: white;
     padding-top: 1rem;
     padding-bottom: 3rem;
@@ -91,14 +91,17 @@
 }
 
 .VierEnLagerLinks{
+    display: grid;
+    grid-template-columns: 50% 50%;
     object-position: left; 
+    text-align: left;
     width: 79.5%;
-    height: 100rem;;
-    background-color: $dodeka_blauw;
+    background-color: $dodeka_blauw90p;
     color: #fff;
     padding: 1rem;
-    font-size: $font_small;
+    font-size: $font_medium;
     margin-bottom: 2rem;
+    padding-left: 2rem;
     @include respond(mobile){
         height: 0rem;
         background-color: white;
@@ -112,7 +115,7 @@
     text-align: left;
     width: 95%;
     height: 3rem;
-    background-color: $dodeka_blauw;
+    background-color: $dodeka_blauw90p;
     color: #fff;
     padding-top: 1rem;
     padding-bottom: 3rem;
@@ -129,7 +132,7 @@
     text-align: left;
     width: 89.35%;
     height: 3rem;
-    background-color: $dodeka_blauw;
+    background-color: $dodeka_blauw90p;
     color: #fff;
     padding-top: 1rem;
     padding-bottom: 3rem;
@@ -146,7 +149,7 @@
     text-align: left;
     width: 83.75%;
     height: 4rem;
-    background-color: $dodeka_blauw;
+    background-color: $dodeka_blauw90p;
     color: white;
     padding-top: 1rem;
     padding-bottom: 3rem;
@@ -164,10 +167,10 @@
     object-position: right; 
     width: 79.5%;
     height: 100rem;;
-    background-color: $dodeka_blauw;
+    background-color: $dodeka_blauw90p;
     color: #fff;
     padding: 1rem;
-    font-size: $font_small;
+    font-size: $font_medium;
     margin-bottom: 2rem;
     margin-left: 20.5%;
     @include respond(mobile){
@@ -181,7 +184,7 @@
     display: none;
     @include respond(mobile) {
         display: cover;
-        background-color: $dodeka_blauw;
+        background-color: $dodeka_blauw90p;
         color: white;
         font-size: $font_medium;
         margin: 1rem;
@@ -189,3 +192,6 @@
 
 }
 
+.persoonMargin {
+    margin-bottom: 0.5rem;
+}

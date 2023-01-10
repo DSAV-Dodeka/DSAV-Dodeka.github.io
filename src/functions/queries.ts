@@ -1,4 +1,4 @@
-import {bd_request, BirthdayData, err_api, SignedUp, su_request, ud_request, UsersData, punten_klassement_request, PuntenKlassementData, trainings_klassement_request, TrainingsKlassementData} from "./api";
+import {bd_request, BirthdayData, err_api, SignedUp, su_request, ud_request, UsersData, punten_klassement_request, PuntenKlassementData, trainings_klassement_request, TrainingsKlassementData, TrainingsKlassement} from "./api";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {AuthUse} from "../pages/Auth/AuthContext";
 import {Logger} from "./logger";
@@ -19,7 +19,7 @@ const fetchPuntenKlassementData = async (au: AuthUse): Promise<PuntenKlassementD
     return punten_klassement_request(au)
 }
 
-const fetchTrainingsKlassementData = async (au: AuthUse): Promise<TrainingsKlassementData[]> => {
+const fetchTrainingsKlassementData = async (au: AuthUse): Promise<TrainingsKlassement> => {
     return trainings_klassement_request(au)
 }
 
