@@ -7,10 +7,34 @@ import { queryError, useBirthdayDataQuery, usePuntenKlassementQuery, useTraining
 
 const defaultTraining: TrainingsKlassement = {
     "points": [
+        {
+            "Naam": "",
+            "Punten": 0
+        },
+        {
+            "Naam": "",
+            "Punten": 0
+        },
+        {
+            "Naam": "",
+            "Punten": 0
+        }
 ]}
 
 const defaultPunten: PuntenKlassement = {
     "points": [
+        {
+            "Naam": "",
+            "Punten": 0
+        },
+        {
+            "Naam": "",
+            "Punten": 0
+        },
+        {
+            "Naam": "",
+            "Punten": 0
+        }
 ]}
 
 function capitalize(string: string) {
