@@ -102,9 +102,7 @@ const Verjaardagen = () => {
     const q = useBirthdayDataQuery({ authState, setAuthState })
     const data = queryError(q, defaultData, "User Info Query Error")
 
-    console.log({"d":data})
     data.sort((a,b) => sortBirthdays(a.birthdate, b.birthdate))
-    //defaultData.sort((a,b) => sortBirthdays(a.birthdate, b.birthdate))
 
     return (
         <>

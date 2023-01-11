@@ -39,6 +39,7 @@ export const queryError = <T>(q: UseQueryResult<T>, defaultData: T, error: strin
 }
 
 const staleTime = 1000 * 7 // 7 seconds
+const longStaleTime = 1000 * 60 * 30 // 30 minutes
 
 export const useUserDataQuery = (au: AuthUse) =>
     useQuery(['ud'], () => fetchUserData(au),
@@ -50,7 +51,7 @@ export const useUserDataQuery = (au: AuthUse) =>
 export const useBirthdayDataQuery = (au: AuthUse) =>
     useQuery(['bd'], () => fetchBirthdayData(au),
         {
-            staleTime,
+            staleTime: longStaleTime,
             enabled: au.authState.isAuthenticated,
         })
 
@@ -64,13 +65,13 @@ export const useSignedUpQuery = (au: AuthUse) =>
 export const usePuntenKlassementQuery = (au: AuthUse) =>
     useQuery(['pt_klass'], () => fetchPuntenKlassementData(au),
         {
-            staleTime,
+            staleTime: longStaleTime,
             enabled: au.authState.isAuthenticated,
         })
 
 export const useTrainingsKlassementQuery = (au: AuthUse) =>
         useQuery(['tr_klass'], () => fetchTrainingsKlassementData(au),
             {
-                staleTime,
+                staleTime: longStaleTime,
                 enabled: au.authState.isAuthenticated,
             })
