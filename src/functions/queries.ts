@@ -48,7 +48,7 @@ export const useUserDataQuery = (au: AuthUse) =>
         })
 
 export const useBirthdayDataQuery = (au: AuthUse) =>
-    useQuery(['whatIsThis'], () => fetchBirthdayData(au),
+    useQuery(['bd'], () => fetchBirthdayData(au),
         {
             staleTime,
             enabled: au.authState.isAuthenticated,
@@ -62,14 +62,14 @@ export const useSignedUpQuery = (au: AuthUse) =>
         })
 
 export const usePuntenKlassementQuery = (au: AuthUse) =>
-    useQuery(['whatIsThis'], () => fetchPuntenKlassementData(au),
+    useQuery(['pt_klass'], () => fetchPuntenKlassementData(au),
         {
             staleTime,
             enabled: au.authState.isAuthenticated,
         })
 
 export const useTrainingsKlassementQuery = (au: AuthUse) =>
-        useQuery(['whatIsThis'], () => fetchTrainingsKlassementData(au),
+        useQuery(['tr_klass'], () => fetchTrainingsKlassementData(au),
             {
                 staleTime,
                 enabled: au.authState.isAuthenticated,
