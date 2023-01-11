@@ -2,7 +2,7 @@ import PageTitle from "../../../components/PageTitle";
 import "./Klassementen.scss";
 import { PuntenKlassementData, TrainingsKlassement } from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { queryError, useBirthdayDataQuery, useTrainingsKlassementQuery } from "../../../functions/queries";
 
 const defaultTraining: TrainingsKlassement = {
@@ -18,27 +18,7 @@ const defaultTraining: TrainingsKlassement = {
     {
         "Naam": "arnold3",
         "Punten": 10
-    },
-    {
-        "Naam": "arnold4",
-        "Punten": 9
-    },
-    {
-        "Naam": "arnold4",
-        "Punten": 9
-    },
-    {
-        "Naam": "arnold4",
-        "Punten": 9
-    },
-    {
-        "Naam": "arnold4",
-        "Punten": 9
-    },
-    {
-        "Naam": "arnold4",
-        "Punten": 9
-    },
+    }
 ]}
 
 function capitalize(string: string) {
@@ -52,6 +32,8 @@ function capitalize(string: string) {
 function Klassementen (){
 
     const {authState, setAuthState} = useContext(AuthContext)
+
+    const [mobileVisible, setMobileVisible] = useState(false);
 
     const q = useTrainingsKlassementQuery({ authState, setAuthState })
     const training = queryError(q, defaultTraining, "User Info Query Error").points
@@ -76,12 +58,14 @@ function Klassementen (){
         <div className="DerdePersoonLinks">
             <p>3. {capitalize(training[2].Naam)} - {training[2].Punten}</p>
         </div>
-        <div className="VierEnLagerLinks">
+        
+        <div className={ "VierEnLagerLinks" + (mobileVisible ? "" : " klassementHidden")}>
             { training.slice(3).map((value, index) => 
-                <p className="persoonMargin">{index + 4}. {capitalize(value.Naam)} - {value.Punten}</p>
+                <p key={"training" + index} className="persoonMargin">{index + 4}. {capitalize(value.Naam)} - {value.Punten}</p>
             )
             }
         </div>
+        <button onClick={() => setMobileVisible(!mobileVisible)} className="klassementLaad">{(mobileVisible ? "Laat minder zien" : "Laat alles zien")}</button>
         </div>
         
         <div className="kolom">
@@ -97,9 +81,10 @@ function Klassementen (){
         <div className="DerdePersoonRechts">
             <p>Text idk</p>
         </div>
-        <div className="VierEnLagerRechts">
+        <div className={ "VierEnLagerRechts" + (mobileVisible ? "" : " klassementHidden")}>
             <p>Text idk</p>
         </div>
+        <button onClick={() => setMobileVisible(!mobileVisible)} className="klassementLaad">{(mobileVisible ? "Laat minder zien" : "Laat alles zien")}</button>
         </div>
     </div>
     

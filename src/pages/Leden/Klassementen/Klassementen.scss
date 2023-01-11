@@ -103,8 +103,11 @@
     margin-bottom: 2rem;
     padding-left: 2rem;
     @include respond(mobile){
-        height: 0rem;
-        background-color: white;
+        display: block;
+        text-align: left;
+        padding-left: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
     }
     
 }
@@ -164,9 +167,11 @@
 }
     
 .VierEnLagerRechts{
+    display: grid;
+    grid-template-columns: 50% 50%;
     object-position: right; 
+    text-align: left;
     width: 79.5%;
-    height: 100rem;;
     background-color: $dodeka_blauw90p;
     color: #fff;
     padding: 1rem;
@@ -174,8 +179,11 @@
     margin-bottom: 2rem;
     margin-left: 20.5%;
     @include respond(mobile){
-        height: 0rem;
-        background-color: white;
+        display: block;
+        text-align: left;
+        padding-left: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
     }
     
 }
@@ -194,4 +202,30 @@
 
 .persoonMargin {
     margin-bottom: 0.5rem;
+}
+
+.klassementHidden {
+    @include respond(mobile) {
+        display: none;
+    }
+}
+
+.klassementLaad {
+    background-color: $dodeka_rood;
+    color: #fff;
+    border-radius: .75rem;
+    border: none;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: $bold;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    object-position: center;
+    text-align: center;
+    cursor: pointer;
+    @include respond(computerscherm) {
+        display: none;
+    }
 }
