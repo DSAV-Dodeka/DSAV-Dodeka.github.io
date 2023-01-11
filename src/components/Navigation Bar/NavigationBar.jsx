@@ -51,7 +51,7 @@ function NavigationBar() {
             <div className={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
             <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
-          <img id="navMobileLogo" src={getUrl(`dodeka.png`)} alt="" />
+          {/* <img id="navMobileLogo" src={getUrl(`dodeka.png`)} alt="" /> */}
           <div className="mobileLogin">
             <Login />
           </div>
