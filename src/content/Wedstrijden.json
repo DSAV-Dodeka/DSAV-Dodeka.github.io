@@ -19,6 +19,20 @@
             "path": "/nskekiden"
         },
         {
+            "naam": "Biertienkamp",
+            "datum": "22/04/2023",
+            "logo":"biertienkamp.jpg",
+            "info_kort": "Jaarlijks wordt de Biertienkamp georganiseerd; naast het scoren van punten met de normale tienkamp onderdelen worden er ook punten gescoord door bier te drinken.",
+            "path": ""
+            }, 
+        {
+            "naam": "Dodekathlon",
+            "datum": "01/07/2023",
+            "logo": "dodekathlon.jpg",
+            "info_kort": "D.S.A.V. Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. Dodeka betekent namelijk twaalf in het grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter hordelopen en de hinkstapsprong onderdeel van dit evenement.",
+            "path": ""
+        },
+        {
             "naam": "NSK Weg",
             "datum": "12/11/2022",
             "tijd": "15:00",
@@ -36,21 +50,7 @@
             "info_kort": "Het NSK Weg is dé wedstrijd voor de studenten die van de langere afstanden houden. Bij deze wedstrijd kun je er namelijk voor kiezen om 5 of 10 kilometer te lopen op de weg. Dit jaar zullen de deelnemers een mooi rondje door Delft gaan lopen.",
             "info_lang": "Strik de veters van je hardloopschoenen, want op zaterdag 12 november organiseert D.S.A.V. Dodeka samen met TU Delft X het Studenten Kampioenschap Weg 2022. Het is een race voor lopers en zal plaatsvinden over de TU Delft campus. Dit is een mogelijkheid voor jou om een nieuw persoonlijk record te lopen op de 5 of 10 km. Na de atletische prestaties wordt er een ludiek onderdeel georganiseerd op X. Na de wedstrijd kunnen jullie mee-eten bij het sportcentrum. Er wordt ook nog een feest georganiseerd bij de Koperen Kat om het evenement samen af te sluiten. Voor zowel het eten als het feest kan je je inschrijven via <a target=\"_blank\" rel=\"noreferrer\" href=\"https://forms.gle/J1sF7cooS8xdZxoL8\" className=\"wedstrijd_algemeen_link\">deze link.</a> Niet lopen, maar wel eten en feesten? Meld je dan aan als vrijwilliger via <a target=\"_blank\" rel=\"noreferrer\" href=\"https://forms.gle/CgB9nqWwYh284BgeA\" className=\"wedstrijd_algemeen_link\">deze link.</a> <br/><br/> Volg ons op Instagram voor de laatste updates: @nsk_weg2022. Want wie op NSK Weg is, wordt gezien!",
             "path": "/nskweg"
-        },
-        {
-            "naam": "Dodekathlon",
-            "datum": "01/07/2023",
-            "logo": "dodekathlon.jpg",
-            "info_kort": "D.S.A.V. Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. Dodeka betekent namelijk twaalf in het grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter hordelopen en de hinkstapsprong onderdeel van dit evenement.",
-            "path": ""
-        },
-        {
-        "naam": "Biertienkamp",
-        "datum": "22/04/2023",
-        "logo":"biertienkamp.jpg",
-        "info_kort": "Jaarlijks wordt de Biertienkamp georganiseerd; naast het scoren van punten met de normale tienkamp onderdelen worden er ook punten gescoord door bier te drinken.",
-        "path": ""
-        }        
+        }     
     ],
     "wedstrijden_oud": [
         {
