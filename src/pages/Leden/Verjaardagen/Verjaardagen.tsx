@@ -13,56 +13,7 @@ const maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli",
 const dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"]
 
 const defaultData: BirthdayData[] = [
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        birthdate: '2022-02-25'
-    },
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        birthdate: '2022-03-25'
-    },
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        birthdate: '2022-01-25'
-    },
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        birthdate: '2022-05-25'
-    },
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        birthdate: '2022-10-25'
-    },
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        birthdate: '2022-10-26'
-    },
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        birthdate: '2022-10-27'
-    },
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        birthdate: '2022-12-25'
-    },
-    {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        birthdate: '2021-11-25'
-    },
-    {
-        firstname: 'Matthijs',
-        lastname: 'Arnoldus',
-        birthdate: '2000-12-10'
-    }
+    
 ]
 
 function getAge(birthdate: string) {
