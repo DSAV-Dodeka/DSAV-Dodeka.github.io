@@ -16,18 +16,8 @@ import Login from "../Login/Login";
 function NavigationBar() {
   const [active, setActive] = useState(false);
   const location = useLocation().pathname;
-  const [counter, setCounter]  = useState(0);
   const {authState, setAuthState} = useContext(authContext)
 
-  function count() {
-    if (counter === 11) {
-      setCounter(0);
-      var win = window.open("https://nl.wikipedia.org/wiki/12_(getal)", '_blank');
-      win.focus();
-    } else {
-      setCounter(counter + 1);
-    }
-  }
 
   if (active) {
     disableScroll.on();
@@ -41,7 +31,7 @@ function NavigationBar() {
         <Link to="/">
           <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={getUrl(`logo.png`)} alt="" />
         </Link>
-        <img id="home_logo" className={(location === "/" ? "" : "hidden")} onClick={() => count()} src={getUrl('logo.png')} alt=""/>
+        <img id="home_logo" className={(location === "/" ? "" : "hidden")} src={getUrl('logo.png')} alt=""/>
         <div id="navItems">
           <Item name="Home" path="/" />
           <Dropdown name="Nieuws" path="/nieuws" items={[{name: "De Spike", path: "/spike", protected: true}]} />

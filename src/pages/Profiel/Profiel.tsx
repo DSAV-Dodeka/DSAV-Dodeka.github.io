@@ -87,7 +87,7 @@ const Profiel = () => {
                     </div>
                     <div className="profiel_highlights">
                         <p>Eastereggs gevonden:</p>
-                        <p>0/12</p>
+                        <p>Later deze week beschikbaar</p>
                     </div>
                 </div>
             )}

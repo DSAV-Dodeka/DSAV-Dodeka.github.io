@@ -33,7 +33,7 @@ function Commissie(props) {
         props.position === "left" || window.innerWidth <= 1023 ? (<div id={props.name} className="commissieContainer">
         <img className="commissieLogo roundedRight" src={getUrl(`commissies/${props.fotos}/logo.jpg`)} alt="" />
         <div className="commissieInfo roundedLeft">
-        {props.name === ".ComCom" ? <a target="_blank" rel="noreferrer" className="commissieEasteregg" href="https://nl.wikipedia.org/wiki/Komkommer"><Header text={props.name} position="left" /></a> : <Header text={props.name} position="left" />}
+        <Header text={props.name} position="left" />
             <p className="commissieStukje">
                 {props.info}
             </p>
@@ -69,7 +69,7 @@ function Commissie(props) {
     (
             <div id={props.name} className="commissieContainer">
                 <div className="commissieInfo roundedRight inverseMargin">
-                    {props.name === ".ComCom" ? <a target="_blank" rel="noreferrer" className="cursor-default" href="https://nl.wikipedia.org/wiki/Komkommer"><Header text={props.name} position="left" /></a> : <Header text={props.name} position="left" />}
+                    <Header text={props.name} position="left" />
                     <p className="commissieStukje">
                         {props.info}
                     </p>
