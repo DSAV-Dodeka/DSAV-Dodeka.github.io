@@ -156,17 +156,18 @@ export const bd_request = async (auth: AuthUse, options?: Options) => {
 
 
 const PuntenKlassementData = z.object({
-    firstname: z.string(),
-    lastname: z.string(),
-    aantalPunten: z.string()
+    Naam: z.string(),
+    Punten: z.number()
 })
 export type PuntenKlassementData = z.infer<typeof PuntenKlassementData>;
 
-const PuntenKlassement = z.array(PuntenKlassementData);
-type PuntenKlassement = z.infer<typeof PuntenKlassement>;
+const PuntenKlassement = z.object({
+    points: z.array(PuntenKlassementData)
+})
+export type PuntenKlassement = z.infer<typeof PuntenKlassement>;
 
 export const punten_klassement_request = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/rankings/points/', auth, options)
+    let response = await back_request('members/rankings/points', auth, options)
     const punt_klas: PuntenKlassement = PuntenKlassement.parse(response)
     return punt_klas
 }

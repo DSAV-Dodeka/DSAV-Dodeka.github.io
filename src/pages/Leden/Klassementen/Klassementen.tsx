@@ -1,23 +1,39 @@
 import PageTitle from "../../../components/PageTitle";
 import "./Klassementen.scss";
-import { PuntenKlassementData, TrainingsKlassement } from "../../../functions/api";
+import { PuntenKlassement, TrainingsKlassement } from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
 import { useContext, useState } from "react";
-import { queryError, useBirthdayDataQuery, useTrainingsKlassementQuery } from "../../../functions/queries";
+import { queryError, useBirthdayDataQuery, usePuntenKlassementQuery, useTrainingsKlassementQuery } from "../../../functions/queries";
 
 const defaultTraining: TrainingsKlassement = {
     "points": [
+        {
+            "Naam": "Arnold",
+            "Punten": 12
+        },
+        {
+            "Naam": "Arnold",
+            "Punten": 12
+        },
+        {
+            "Naam": "Arnold",
+            "Punten": 12
+        }
+]}
+
+const defaultPunten: PuntenKlassement = {
+    "points": [
     {
-        "Naam": "arnold1",
+        "Naam": "Arnold",
         "Punten": 12
     },
     {
-        "Naam": "arnold2",
-        "Punten": 11
+        "Naam": "Arnold",
+        "Punten": 12
     },
     {
-        "Naam": "arnold3",
-        "Punten": 10
+        "Naam": "Arnold",
+        "Punten": 12
     }
 ]}
 
@@ -37,6 +53,9 @@ function Klassementen (){
 
     const q = useTrainingsKlassementQuery({ authState, setAuthState })
     const training = queryError(q, defaultTraining, "User Info Query Error").points
+
+    const qP = usePuntenKlassementQuery({ authState, setAuthState })
+    const punten = queryError(qP, defaultPunten, "User Info Query Error").points
 
     return (
     <div className="algemeen">
@@ -73,16 +92,19 @@ function Klassementen (){
             <p>Puntenklassement</p>
         </div>
         <div className="EerstePersoonRechts">
-            <p>Text idk</p>
+            <p>1. {capitalize(punten[0].Naam)} - {punten[0].Punten}</p>
         </div>
         <div className="TweedePersoonRechts">
-            <p>Text idk</p>
+            <p>2. {capitalize(punten[1].Naam)} - {punten[1].Punten}</p>
         </div>
         <div className="DerdePersoonRechts">
-            <p>Text idk</p>
+            <p>3. {capitalize(punten[2].Naam)} - {punten[2].Punten}</p>
         </div>
         <div className={ "VierEnLagerRechts" + (mobileVisible ? "" : " klassementHidden")}>
-            <p>Text idk</p>
+        { punten.slice(3).map((value, index) => 
+                <p key={"punten" + index} className="persoonMargin">{index + 4}. {capitalize(value.Naam)} - {value.Punten}</p>
+            )
+            }
         </div>
         <button onClick={() => setMobileVisible(!mobileVisible)} className="klassementLaad">{(mobileVisible ? "Laat minder zien" : "Laat alles zien")}</button>
         </div>
