@@ -31,7 +31,7 @@ const Leden = () => {
                     </Link>
                     <Link className="leden_link" to='verjaardagen' >
                         <h1 className="leden_link_header">Verjaardagen</h1>
-                        <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
+                        <img src={getUrl("leden/verjaardagen.jpg")} className="leden_link_image" alt=""/>
                     </Link>
                 </div>
                 <div className="leden_routes">
