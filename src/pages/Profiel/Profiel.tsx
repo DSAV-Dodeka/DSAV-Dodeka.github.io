@@ -86,10 +86,6 @@ const Profiel = () => {
                         </form>
                     </div>
                     <div className="profiel_highlights">
-                        <p>Trainingsklassement:</p>
-                        <p>12 punten</p>
-                        <p>Puntenklassement:</p>
-                        <p>12 punten</p>
                         <p>Eastereggs gevonden:</p>
                         <p>0/12</p>
                     </div>

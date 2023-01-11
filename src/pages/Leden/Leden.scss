@@ -95,7 +95,7 @@
     margin-bottom: 2rem;
     @include respond(computerscherm){
         height: 24rem;
-        width: 22rem;
+        width: 24rem;
         margin-bottom: 0;
         margin-left: auto;
         margin-right: auto;
@@ -112,7 +112,7 @@
     @include respond(computerscherm){
         height: 24rem;
         margin-bottom: 0;
-        width: 48rem;
+        width: 50rem;
         margin-left: auto;
         margin-right: auto;
     }

@@ -27,7 +27,7 @@ const Leden = () => {
                     </Link>
                     <Link className="leden_link" to='klassementen' >
                         <h1 className="leden_link_header">Klassementen</h1>
-                        <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
+                        <img src={getUrl("leden/klassementen.png")} className="leden_link_image" alt=""/>
                     </Link>
                     <Link className="leden_link" to='verjaardagen' >
                         <h1 className="leden_link_header">Verjaardagen</h1>
