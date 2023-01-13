@@ -4,25 +4,28 @@
   "scripts": {
     "dev": "vite --mode localdev",
     "build": "tsc && vite build --mode localdev",
-    "build-mode": "tsc && vite build",
+    "build-mode": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.22.0",
+    "@tanstack/react-table": "^8.7.6",
     "disable-scroll": "^0.6.0",
     "html-react-parser": "^1.4.14",
+    "ky": "^0.33.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.2.1",
-    "zod": "^3.19.1"
+    "react-router-dom": "^6.4.3",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
-    "@types/node": "^18.7.18",
-    "@types/react": "^18.0.20",
-    "@types/react-dom": "^18.0.6",
-    "@vitejs/plugin-react": "^2.1.0",
-    "sass": "^1.49.9",
-    "typescript": "^4.8.3",
-    "vite": "^3.1.0",
-    "vite-plugin-svgr": "^2.2.1"
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^2.2.0",
+    "sass": "^1.56.1",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.4",
+    "vite-plugin-svgr": "^2.2.2"
   }
 }

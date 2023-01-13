@@ -1,0 +1,57 @@
+@import "../../variables";
+
+.admin_status {
+    color: $dodeka_blauw;
+    margin-left: 4rem;
+}
+
+.admin_toggle {
+    display: flex;
+    margin-left: 4rem;
+}
+
+.admin_toggle h1 {
+    width: 12rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    padding: 0.5rem;
+    color: white;
+    background-color: $dodeka_blauw;
+    border-radius: 0.75rem 0.75rem 0 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.admin_toggle_active {
+    background-color: $dodeka_rood !important;
+}
+
+.table_container {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    width: calc(100% - 8rem);
+    margin-bottom: 6rem;
+}
+
+.table_title {
+    margin-left: 4rem;
+    margin-bottom: 1rem;
+    font-size: $font_medium;
+    color: $dodeka_blauw;
+}
+
+.admin_mobile {
+    display: none;
+    @include respond(mobile) {
+        display: block;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 4rem;
+    }
+}
+
+.admin_pc {
+    @include respond(mobile) {
+        display: none;
+    }
+}

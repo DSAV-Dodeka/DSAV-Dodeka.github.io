@@ -1,0 +1,96 @@
+@import "../../../variables";
+
+.schrijfInDiv {
+    width: 100%;
+}
+
+.schrijfInButton{
+    background-color: $dodeka_rood;
+    border-style: none;
+    width: calc(100% - 2rem);
+    padding-top: $margin_mobile;
+    padding-bottom: $margin_mobile;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-weight: $bold;
+    cursor: pointer;
+    margin-top: $margin_mobile;
+    margin-left: $margin_mobile;
+    margin-right: $margin_mobile;
+    box-shadow: 0 0 15px $dodeka_blauw;
+    // transition: 0.3s;
+    @include respond(computerscherm){
+        width: calc(100% - 2 * $margin_x);
+        margin-top: $margin_y;
+        margin-left: $margin_x;
+        margin-right: $margin_x;
+    }
+}
+
+.inputDiv {
+    width: calc(100% - 2 * $margin_x - 1rem);
+    margin-left: 4rem;
+    margin-right: 4rem;
+    padding-top: 1rem;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 50% 50%;
+    @include respond(mobile) {
+        width: calc(100% - 3rem);
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+.inputDiv input {
+    width: 100%;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+}
+
+.inputDiv input:focus {
+    outline: none;
+}
+
+.inputDiv input::placeholder {
+    color: #808080;
+}
+
+.schrijfInStatus {
+    font-size: $font_small;
+    line-height: $line_height_small;
+    color: $dodeka_rood;
+    grid-column: span 2;
+}
+
+.checkbox {
+    grid-column: span 2;
+    display: flex;
+    line-height: $line_height_small;
+}
+
+.checkbox label {
+    width: 100%;
+    font-size: $font_small;
+    line-height: $line_height_small;
+    color: white;
+}
+
+.checkbox input {
+    height: 1rem;
+    width: 1rem;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.privacy_link {
+    color: $dodeka_rood;
+    text-decoration: none;
+}

@@ -19,13 +19,13 @@ function Home() {
         setOffset(window.pageYOffset);
         try {
           document.getElementById("home_logo").style.width = Math.max(6, logoMax - (offset / maxOffset) * (logoMax - 6)) + 'rem';
-          document.getElementById("home_logo").style.marginLeft = Math.min(6, (4 + (offset / maxOffset) * 2)) + 'rem';
+          document.getElementById("home_logo").style.marginLeft = Math.max(2, (4 - (offset / maxOffset) * 2)) + 'rem';
           document.getElementById("home_logo").style.top = Math.max(0.5, 6 - (offset / maxOffset) * 5) + 'rem';
         } catch {}
     }
       try {
         document.getElementById("home_logo").style.width = Math.max(6, logoMax - (offset / maxOffset) * (logoMax - 6)) + 'rem';
-        document.getElementById("home_logo").style.marginLeft = Math.min(6, (4 + (offset / maxOffset) * 2)) + 'rem';
+        document.getElementById("home_logo").style.marginLeft = Math.max(2, (4 - (offset / maxOffset) * 2)) + 'rem';
         document.getElementById("home_logo").style.top = Math.max(0.5, 6 - (offset / maxOffset) * 5) + 'rem';
       } catch {}
     
@@ -34,7 +34,7 @@ function Home() {
   return (
     <div>
       <TitleBar />
-      <HomePromo />
+      {/* <HomePromo /> */}
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
