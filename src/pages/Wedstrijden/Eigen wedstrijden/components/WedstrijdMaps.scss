@@ -1,0 +1,22 @@
+@import "../../../../variables";
+
+#wedstrijd_locatie {
+    background-color: #F2F1F0;
+    background-image: url("../../../../images/maps.svg");
+    background-size: 25% 25%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 2rem;
+    width: 24rem;
+    height: 24rem;
+    border: none;
+    @include respond(mobile) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        width: calc(100vw - 2rem);
+        height: calc(100vw - 2rem);
+    }
+}

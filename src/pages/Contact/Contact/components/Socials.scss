@@ -1,0 +1,59 @@
+@import "../../../../variables";
+
+#socials {
+    margin-top: $margin_x;
+    margin-left: $margin_x;
+    @include respond(mobile) {
+        margin-left: $margin_mobile;
+        margin-top: $margin_mobile;
+        padding-bottom: $margin_mobile;
+    }
+}
+
+#social_text {
+    margin: 0;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+}
+
+#contact_social_buttons {
+    display: flex;
+    margin-top: $margin_y;
+    @include respond(mobile) {
+        margin-top: $margin_mobile;
+    }
+}
+
+.social_button {
+    width: 3rem;
+    color: white;
+    fill: currentColor;
+    cursor: pointer;
+    margin-left: $margin_x;
+    @include respond(mobile) {
+        width: 2rem;
+        margin-left: $margin_mobile;
+    }
+}
+
+#insta {
+    margin-left: 0;
+}
+
+#discord:hover {
+    color: #7289DA;
+}
+
+#insta:hover {
+    fill: url(#rg);
+}
+
+#youtube:hover {
+    color: #FF0000;
+}
+
+#facebook:hover {
+    color: #3b5998;
+}

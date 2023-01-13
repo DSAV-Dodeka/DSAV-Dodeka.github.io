@@ -1,0 +1,83 @@
+@import "../../variables";
+
+.profile-box {
+    position: relative;
+}
+
+.profile_login {
+    width: 8rem;
+    height: 4rem;
+    text-align: center;
+    color: white;
+    font-size: $font_medium;
+    line-height: 4rem;
+    cursor: pointer;
+    @include respond(mobile) {
+        width: 4rem;
+    }
+}
+
+.login_button {
+    border: none;
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 500;
+    width: 8rem;
+    height: 4rem;
+    text-align: center;
+    color: white;
+    background-color: $dodeka_blauw;
+    font-size: $font_medium;
+    line-height: 4rem;
+    cursor: pointer;
+    @include respond(mobile) {
+        width: 4rem;
+        font-size: $font_small;
+    }
+}
+
+.profile_drop {
+    position: absolute;
+    right: 0;
+    margin: 0;
+    top: 4rem;
+    width: 8rem;
+    z-index: 10;
+}
+
+
+.profile_dropdownElement {
+    border: none;
+    text-decoration: none;
+    font-family: inherit;
+    display: block;
+    height: 4rem;
+    width: 8rem;
+    line-height: 4rem;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: $dodeka_blauw;
+    font-size: $font_small;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.profile_dropdownElement:hover {
+    background-color: white;
+    color: $dodeka_blauw;
+}
+
+.dropLast {
+    border-bottom-left-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+
+.dropHide {
+    display: none;
+}
+
+.login_icon {
+    margin-top: 0.75rem;
+    width: 4rem;
+}
