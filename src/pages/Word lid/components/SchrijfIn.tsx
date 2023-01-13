@@ -127,7 +127,7 @@ const SchrijfIn = () => {
                     </div>
                     <p className="schrijfInStatus">{status}</p>
                 </div>
-                <button className="schrijfInButton" id="submit_button" type="submit">Schrijf je in via AV`40</button><br />
+                <button className="schrijfInButton" id="submit_button" type="submit">Schrijf je in via AV'40</button><br />
             </form>}
             {!show && <button className="schrijfInButton" onClick={handleSignup}>Schrijf je in!</button>}
         </div>
