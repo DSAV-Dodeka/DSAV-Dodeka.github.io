@@ -36,7 +36,7 @@ const columns = [
         header: () => 'Roepnaam',
     }),
     columnHelper.accessor('av40id', {
-        header: () => 'AV`40 nummer',
+        header: () => 'AV\'40 nummer',
     }),
     columnHelper.accessor('joined', {
         header: () => 'Lid sinds',

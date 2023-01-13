@@ -166,7 +166,7 @@ const ConfirmUser = () => {
                         {row.getIsExpanded() && (
                             <tr><td colSpan={row.getVisibleCells().length}>
                                 <form className="bevestig_inschrijving" onSubmit={(e) => handleSubmit(e, row.original)}>
-                                    <input id="av40id" type="text" placeholder="AV`40 lidnummer" name="av40id" value={av40Id} onChange={handleFormChange}/>
+                                    <input id="av40id" type="text" placeholder="AV'40 lidnummer" name="av40id" value={av40Id} onChange={handleFormChange}/>
                                     <br/>
                                     <input id="joined" type="text" placeholder="Lid sinds" name="joined" value={joined} onFocus={handleFocus} onBlur={handleBlur} onChange={handleFormChange}/>
                                     <br/>

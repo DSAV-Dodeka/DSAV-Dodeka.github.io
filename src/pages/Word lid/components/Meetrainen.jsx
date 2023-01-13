@@ -17,7 +17,7 @@ function Meetrainen(props) {
             <div className="meetrainen_2">
                 <Header text="Proeftrainen en inschrijven" position="left" />
                 <p className="meetrainen_3">
-                  Bij D.S.A.V. Dodeka krijg je het hele jaar door de mogelijkheid om drie keer gratis te komen proeftrainen. Zo kun je de sfeer proeven en erachter komen of atletiek iets voor jou is. Lijkt het je leuk om een keer mee te trainen? Geef je dan op via de mail of via een DM op Instagram. Heb je na de proeftrainingen de smaak te pakken en wil je lid worden? Inschrijvingen verlopen via AV`40 en hun inschrijfformulier vind je hieronder.
+                  Bij D.S.A.V. Dodeka krijg je het hele jaar door de mogelijkheid om drie keer gratis te komen proeftrainen. Zo kun je de sfeer proeven en erachter komen of atletiek iets voor jou is. Lijkt het je leuk om een keer mee te trainen? Geef je dan op via de mail of via een DM op Instagram. Heb je na de proeftrainingen de smaak te pakken en wil je lid worden? Inschrijvingen verlopen via AV'40 en hun inschrijfformulier vind je hieronder.
                 </p>
                 <SchrijfIn />
                 {/*<a target="_blank" rel="noreferrer" href="https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1" className="meetrainen_4">*/}
