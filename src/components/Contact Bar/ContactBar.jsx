@@ -30,7 +30,7 @@ function ContactBar() {
                     <p>Woensdag 18:15 - 19:45</p>
                     <p>Zaterdag 10:15 - 11:45</p>
                     <br/>
-                    <p>D.S.A.V. Dodeka is een ondervereniging van <a target="_blank" rel="noreferrer" href="https://www.av40.nl" className="bar_link">AV`40</a></p>
+                    <p>D.S.A.V. Dodeka is een ondervereniging van <a target="_blank" rel="noreferrer" href="https://www.av40.nl" className="bar_link">AV'40</a></p>
                 </div>
             </div>
             <div className="bar_container">

@@ -2,7 +2,7 @@
     "commissies": [
         {
             "naam": ".ComCom",
-            "info": "De .ComCom is de commissie die deze website in de afgelopen jaren heeft gemaakt en nog steeds onderhoudt. Zonder ons was deze website er nooit geweest en hadden alle andere commissies hier niet eens kunnen staan. Wij blijven bezig met de website uitbreiden, en nu het inlogsysteem werkend is gaan we dit jaar aan de slag met het maken van een inschrijfsysteem voor alle trainingen, borrels en activiteiten. Verder houden we jullie op de hoogte van alle nieuwtjes en wedstrijden die we organiseren. Mocht je een foutje vinden of een leuk idee hebben, spreek dan een van de commissieleden aan of stuur een mailtje naar comcom@dsavdodeka.nl.",
+            "info": "De .ComCom is de commissie die deze website in de afgelopen jaren heeft gemaakt en nog steeds onderhoudt. Zonder ons was deze website er nooit geweest en hadden alle andere commissies hier niet eens kunnen staan. Wij blijven bezig met de website uitbreiden, en nu het inlogsysteem werkend is gaan we dit jaar aan de slag met het maken van een inschrijfsysteem voor alle trainingen, borrels en activiteiten. Verder houden we jullie op de hoogte van alle nieuwtjes en wedstrijden die we organiseren. Mocht je een foutje vinden of een leuk idee hebben, spreek dan een van de commissieleden aan of stuur een mailtje naar content.comcom@dsavdodeka.nl.",
 		    "leden": [
                 {
                     "naam": "Matthijs Arnoldus",
@@ -290,6 +290,43 @@
                 }
             ],
             "fotos": "sax"
+        },
+        {
+            "naam": "Snowdeka",
+            "info": "Wij gaan (al bijna!) op wintersport! Dit jaar gaan we met 33 enthousiaste Dodekaëders naar het prachtige Risoul! Naast het organiseren en managen van de reis, zijn wij bezig om te gekke activiteiten te verzinnen voor vóór, tijdens, en na de reis om het onvergetelijk te maken!",
+		"leden": [
+                {
+                    "naam": "Sanne Cox",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Hugo ter Hoeven",
+                    "functie": "Secretaris",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Loek Sanders",
+                    "functie": "Penningmeester",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Job van der Kleij",
+                    "functie": "Commissaris Activiteiten",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Larissa Smit",
+                    "functie": "Commissaris Logistiek",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Simon Loose",
+                    "functie": "QQ",
+                    "foto": "placeholder"
+                }
+            ],
+            "fotos": "snowdeka"
         },
         {
             "naam": "Sunrice",
