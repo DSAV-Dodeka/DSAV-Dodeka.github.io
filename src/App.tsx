@@ -48,9 +48,9 @@ import {err_api} from "./functions/api";
 import {number} from "zod";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
-import Activiteiten from "./pages/Vereniging/Activiteiten/Activiteiten";
-import Activiteit from "./pages/Vereniging/Activiteiten/Activiteit";
-import ActiviteitPagina from "./pages/Vereniging/Activiteiten/ActiviteitPagina";
+import Activiteiten from "./pages/Activiteiten/Activiteiten";
+import Activiteit from "./pages/Activiteiten/components/Activiteit";
+import ActiviteitPagina from "./pages/Activiteiten/ActiviteitPagina";
 
 const cacheTime = 1000 * 60 // 1 minute
 

@@ -1,9 +1,9 @@
 import React from "react";
-import PageTitle from "../../../components/PageTitle";
-import "../../Wedstrijden/Eigen wedstrijden/Wedstrijd.scss";
-import getUrl from "../../../functions/links";
-import ActiviteitAlgemeen from "./ActiviteitAlgemeen";
-import ActiviteitBelangrijk from "./ActiviteitBelangrijk";
+import PageTitle from "../../components/PageTitle";
+import "../Wedstrijden/Eigen wedstrijden/Wedstrijd.scss";
+import getUrl from "../../functions/links";
+import ActiviteitAlgemeen from "./components/ActiviteitAlgemeen";
+import ActiviteitBelangrijk from "./components/ActiviteitBelangrijk";
 
 type Activiteit =  {
     wedstrijd: {

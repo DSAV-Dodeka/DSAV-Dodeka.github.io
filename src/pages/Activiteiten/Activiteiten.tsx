@@ -2,12 +2,11 @@ import React from "react";
 import {
     Link
 } from "react-router-dom";
-import PageTitle from "../../../components/PageTitle";
-import EigenWedstrijd from "../../Wedstrijden/Wedstrijden/components/EigenWedstrijd";
-import TextActiviteiten from "../../../content/Activiteiten.json";
-import "../../Wedstrijden/Wedstrijden/Wedstrijden.scss"
-import { wedstrijdGeweest } from "../../Wedstrijden/Wedstrijden/Wedstrijden";
-import Activiteit from "./Activiteit";
+import PageTitle from "../../components/PageTitle";
+import TextActiviteiten from "../../content/Activiteiten.json"
+import "../Wedstrijden/Wedstrijden/Wedstrijden.scss"
+import { wedstrijdGeweest } from "../Wedstrijden/Wedstrijden/Wedstrijden";
+import Activiteit from "./components/Activiteit";
 
 function Activiteiten() {
     return(
