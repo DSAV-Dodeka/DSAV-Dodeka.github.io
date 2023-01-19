@@ -8,7 +8,7 @@ import TextWedstrijden from "../../../content/Wedstrijden.json";
 import records from "../../../images/wedstrijden/records.png";
 import "./Wedstrijden.scss";
 
-function wedstrijdGeweest(dateString) {
+export function wedstrijdGeweest(dateString) {
     var date = new Date(dateString.split('/').reverse().join('-'));
     return date < new Date();
 }
