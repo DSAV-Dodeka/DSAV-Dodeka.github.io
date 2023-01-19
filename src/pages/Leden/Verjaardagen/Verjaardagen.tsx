@@ -67,7 +67,7 @@ const Verjaardagen = () => {
                         const datum = getDay(item.birthdate) + " " + new Date(item.birthdate).getDate()
                         const vkey = datum + item.firstname + item.lastname
 
-                        if (index == 0 || new Date(item.birthdate).getMonth() > new Date(array[index - 1].birthdate).getMonth()) {
+                        if (index == 0 || new Date(item.birthdate).getMonth() !== new Date(array[index - 1].birthdate).getMonth()) {
                             const maand = maanden[new Date(item.birthdate).getMonth()]
 
 
