@@ -2,7 +2,6 @@
 
 .verjaardag_container {
     display: flex;
-    justify-content: space-between;
     background-color: $dodeka_blauw90p;
     color: white;
     font-size: $font_medium;
@@ -21,8 +20,12 @@
     padding: 1rem;
     @include respond(mobile) {
         padding: 0.25rem;        
-        line-height: calc($line_height_small);
+        line-height: calc(2 * $line_height_small);
     }
+}
+
+.verjaardag_naam {
+    flex-grow: 1;
 }
 
 .verjaardag_datum {
@@ -30,11 +33,22 @@
     margin-left: 1rem;
     font-weight: $bold;
     @include respond(mobile) {
+        display: none;
         margin-left: 1rem;
         width: 6rem;
         line-height: calc(2* $line_height_small) !important;
         vertical-align: middle;
     }
+}
+
+.verjaardag_datum_mobile {
+    @include respond(computerscherm) {
+        display: none;
+    }
+    margin-left: 0.5rem;
+    font-weight: $bold;
+    line-height: calc(2* $line_height_small) !important;
+    vertical-align: middle;
 }
 
 .verjaardag_leeftijd {
@@ -47,12 +61,5 @@
         width: 6rem;
         padding-right: 1rem !important;
         line-height: calc(2* $line_height_small) !important;
-    }
-}
-
-.mobile_break {
-    display: none;
-    @include respond(mobile) {
-        display: block;
     }
 }
