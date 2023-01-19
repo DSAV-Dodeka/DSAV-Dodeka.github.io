@@ -18,7 +18,6 @@ import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
 import Sponsors from "./pages/Contact/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
-import ActiviteitenText from "./content/Activiteiten.json"
 import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
 import Arnold from "./pages/Vereniging/Arnold/Arnold";
 import Records from "./pages/Wedstrijden/Records/Records";
@@ -48,9 +47,6 @@ import {err_api} from "./functions/api";
 import {number} from "zod";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
-import Activiteiten from "./pages/Activiteiten/Activiteiten";
-import Activiteit from "./pages/Activiteiten/components/Activiteit";
-import ActiviteitPagina from "./pages/Activiteiten/ActiviteitPagina";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -150,9 +146,6 @@ function App() {
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
                     <Route path="/vereniging/arnold" element={<Arnold />} />
                     <Route path="/vereniging/gezelligheid" element={<Gezelligheid />} />
-                    <Route path="/vereniging/activiteiten" element={
-                      <Activiteiten />
-                    }/>
                     <Route path="/trainingen" element={
                       <Trainingen />
                     }/>
@@ -161,13 +154,6 @@ function App() {
                                 <Route path={"/wedstrijden" + item.path} key={"wdstr" + item.naam + item.datum} element={
                                   <Wedstrijd wedstrijd={item}/>
                               }/>
-                        )
-                    )}
-                    {ActiviteitenText.wedstrijden.map((item) =>
-                        (item.path === "" ? "" :
-                                <Route path={"/vereniging/activiteiten" + item.path} key={"actv" + item.naam + item.datum} element={
-                                  <ActiviteitPagina wedstrijd={item} typePath={"vereniging/activiteiten"}/>
-                                }/>
                         )
                     )}
                     <Route path="/wedstrijden" element={
