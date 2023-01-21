@@ -150,9 +150,9 @@ function App() {
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
                     <Route path="/vereniging/arnold" element={<Arnold />} />
                     <Route path="/vereniging/gezelligheid" element={<Gezelligheid />} />
-                    <Route path="/vereniging/activiteiten" element={
-                      <Activiteiten />
-                    }/>
+                    {/*<Route path="/vereniging/activiteiten" element={*/}
+                    {/*  <Activiteiten />*/}
+                    {/*}/>*/}
                     <Route path="/trainingen" element={
                       <Trainingen />
                     }/>
