@@ -31,7 +31,7 @@ function ActiviteitPagina(props: Activiteit) {
         <div>
             <PageTitle title={props.wedstrijd.naam}/>
             <div className="wedstrijd_container">
-                {props.wedstrijd.logo_rond === "" ? "" : <img className="wedstrijd_logo" src={getUrl(`${props.typePath}/${props.wedstrijd.logo_rond}`)} alt =""/>}
+                {/*{props.wedstrijd.logo_rond === "" ? "" : <img className="wedstrijd_logo" src={getUrl(`${props.typePath}/${props.wedstrijd.logo_rond}`)} alt =""/>}*/}
                 <ActiviteitAlgemeen wedstrijd={props.wedstrijd} typePath={props.typePath}/>
                 <ActiviteitBelangrijk wedstrijd={props.wedstrijd}/>
             </div>
