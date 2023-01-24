@@ -1,0 +1,10 @@
+@import "../../variables";
+
+.container {
+    z-index: 100;
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $dodeka_rood;
+}

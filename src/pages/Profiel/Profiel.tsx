@@ -21,7 +21,7 @@ const defaultData: UserData = {
 
 }
 
-const Profiel = () => {
+const Profiel = (props: any) => {
     const {authState, setAuthState} = useContext(AuthContext)
 
     const [newEmail, setNewEmail] = useState("")
@@ -83,8 +83,8 @@ const Profiel = () => {
                         </form>
                     </div>
                     <div className="profiel_highlights">
-                        <p>Eastereggs gevonden:</p>
-                        <p>Later deze week beschikbaar</p>
+                        <p><span className="easteregg_1" onClick={() => props.easteregg()}>Easteregg</span>s gevonden:</p>
+                        <p>0/12</p>
                     </div>
                 </div>
             )}

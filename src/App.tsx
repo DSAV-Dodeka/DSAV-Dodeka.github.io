@@ -51,6 +51,7 @@ import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
 import Activiteiten from "./pages/Activiteiten/Activiteiten";
 import Activiteit from "./pages/Activiteiten/components/Activiteit";
 import ActiviteitPagina from "./pages/Activiteiten/ActiviteitPagina";
+import Easteregg from "./components/Easteregg/Easteregg";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -64,6 +65,7 @@ const queryClient = new QueryClient({
 
 function App() {
   const [authState, setAuthState] = useState(newAuthState());
+  const [isEastereggVisible, setIsEastereggVisible] = useState(false);
   const contextValue = { authState, setAuthState }
 
   const authLoader = (signal: AbortSignal, which: string) => {
@@ -107,6 +109,15 @@ function App() {
     }
   }
 
+  const eastereggFound = () => {
+    console.log("test")
+    setIsEastereggVisible(true);
+
+    setTimeout(() => {
+      setIsEastereggVisible(false);
+    }, 5000);
+  }
+
   useEffect(() => {
     const ac = new AbortController()
     const which = Math.random().toString().substring(0, 5)
@@ -137,6 +148,7 @@ function App() {
             <div id="app_screen">
               <div id="app_container">
                 <NavigationBar />
+                {isEastereggVisible && <Easteregg />}
                 <div id="app_flex">
                   <Routes>
                     <Route path="/nieuws/spike" element={
@@ -201,7 +213,7 @@ function App() {
                       <Route path="/account/delete" element={<DeleteAccount />} />
                       <Route path="/lg" element={<AuthRedirect />} />
                       <Route path="/auth/callback" element={<AuthCallback />} />
-                      <Route path="/profiel" element={<Profiel />} />
+                      <Route path="/profiel" element={<Profiel easteregg={() => eastereggFound()} />} />
                       <Route path="/profiel/debug" element={<ProfielDebug />} />
                       <Route path="/admin" element={<Admin />} />
                       <Route path="/registered" element={<Registered />}/>
