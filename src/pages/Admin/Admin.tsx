@@ -3,6 +3,7 @@ import AuthContext from "../Auth/AuthContext";
 import {profile_request} from "../../functions/api";
 import ConfirmUser from "./components/ConfirmUser";
 import LedenInfo from "./components/LedenInfo";
+import Rollen from "./components/Rollen";
 import PageTitle from "../../components/PageTitle";
 import "./Admin.scss";
 
@@ -24,13 +25,15 @@ const Admin = () => {
                             <h1 className={activeTab == "Leden" ? "admin_toggle_active" : ""} onClick={() => setActiveTab("Leden")}>Leden</h1>
                             <h1 className={activeTab == "Aanmeldingen" ? "admin_toggle_active" : ""} onClick={() => setActiveTab("Aanmeldingen")}>Aanmeldingen</h1>
                             <h1 className={activeTab == "Klassementen" ? "admin_toggle_active" : ""} onClick={() => setActiveTab("Klassementen")}>Klassementen</h1>
+                            <h1 className={activeTab == "Rollen" ? "admin_toggle_active" : ""} onClick={() => setActiveTab("Rollen")}>Rollen</h1>
                         </div>
                         <div className="table_container">
                             {
                                 {
                                     "Leden": <LedenInfo />,
                                     "Aanmeldingen": <ConfirmUser />,
-                                    "Klassementen": <p>Coming soon</p>
+                                    "Klassementen": <p>Coming soon</p>,
+                                    "Rollen": <Rollen />
                                 }[activeTab]
                             }
                         </div>

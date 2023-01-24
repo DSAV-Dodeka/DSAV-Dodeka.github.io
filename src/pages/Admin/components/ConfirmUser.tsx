@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useReducer, useState, ChangeEvent, FocusEvent, Fragment, FormEvent} from "react";
 import {z} from "zod";
-import './ConfirmUser.scss'
+import './table.scss'
 
 import {
     createColumnHelper,
