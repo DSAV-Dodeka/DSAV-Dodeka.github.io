@@ -67,6 +67,21 @@
     line-height: $line_height_small;
 }
 
+.activiteitenLink {
+    color: $dodeka_rood;
+    text-decoration: none;
+    font-weight: $bold;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    bottom: 2rem;
+}
+
+.activiteitenLinkNormaal {
+    color: $dodeka_rood;
+    text-decoration: none;
+    font-weight: $bold;
+}
+
 .eigenWedstrijdLink {
     position: absolute;
     display: block;

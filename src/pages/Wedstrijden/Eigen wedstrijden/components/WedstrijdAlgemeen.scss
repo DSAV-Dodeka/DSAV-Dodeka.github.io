@@ -30,6 +30,18 @@
     }
 }
 
+.wedstrijd_algemeen_foto2 {
+    width: calc(100% - 8rem);
+    height: 36rem;
+    object-fit: cover;
+    margin: 2rem 4rem;
+    @include respond(mobile) {
+        width: calc(100% - 2rem);
+        margin: 1rem;
+        height: 16rem;
+    }
+}
+
 .wedstrijd_algemeen_info {
     margin-right: 4rem;
     margin-left: 4rem;
