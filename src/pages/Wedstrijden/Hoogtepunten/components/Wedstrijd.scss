@@ -1,0 +1,80 @@
+@import "../../../../variables";
+
+.wedstrijd_hoogtepunten {
+    position: relative;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-bottom: 4rem;
+    background-color: $dodeka_blauw90p;;
+    border-radius: 0.75rem;
+    height: 20rem;
+    
+}
+
+.hoogtepunten_wedstrijd {
+    width: 24rem;
+    height: 4rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $dodeka_rood;
+    color: white;
+    z-index: 10;
+    font-size: $font_ml;
+    line-height: 4rem;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 2rem;
+    border-radius: 0.75rem 0 0 0;
+    clip-path: polygon(0 0, 0 100%, 95% 100%, 100% 0);
+}
+
+.hoogtepunten_foto {
+    margin-top: 4rem;
+    height: 16rem;
+    width: 24rem;
+    object-fit: cover;
+    clip-path: polygon(0 0, 0 100%, 75% 100%, 95% 0);
+    background: none;
+    border-radius: 0.75rem 0 0 0.75rem;
+    display: inline-block;
+}
+
+.hoogtepunten_prijzen {
+    display: inline-block;
+    height: 100%;
+    width: calc((100% - 24rem - 1px) / 2);
+    vertical-align: top;
+}
+
+.hoogtepunten_prestaties {
+    display: inline-block;
+    height: 100%;
+    width: calc((100% - 24rem - 1px) / 2);
+    vertical-align: top;
+}
+
+.hoogtepunten_titel {
+    color: white;
+    font-weight: $bold;
+    font-size: $font_ml;
+    line-height: $line_height_large;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.hoogtepunten_divider {
+    display: inline-block;
+    background-color: white;
+    height: calc(100% - 2rem);
+    width: 1px;
+    margin-bottom: 1rem;
+}
+
+.hoogtepunten_text {
+    margin-left: 2rem;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+}
