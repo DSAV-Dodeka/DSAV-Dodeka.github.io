@@ -34,7 +34,7 @@ function Home() {
   return (
     <div>
       <TitleBar />
-      <HomePromo />
+      {/* <HomePromo /> */}
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
