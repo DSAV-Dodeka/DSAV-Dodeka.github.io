@@ -14,10 +14,10 @@ const Admin = () => {
     return (
         <div className="admin_container">
             <PageTitle title="Ledenadministratie"/>
-            {authState.isAuthenticated && (
+            {!authState.isAuthenticated && (
                 <p className="admin_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in met een geautorizeerd account om deze pagina te kunnen bekijken.</p>
             )}
-            {!authState.isAuthenticated && !authState.scope.includes("admin") && (
+            {authState.isAuthenticated && authState.scope.includes("admin") && (
                 <>
                     <p className="admin_status admin_mobile">Deze pagina is voorlopig alleen te gebruiken op pc.</p>
                     <div className="admin_pc">
