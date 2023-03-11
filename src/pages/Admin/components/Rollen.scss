@@ -1,0 +1,88 @@
+@import "../../../variables";
+
+.role_list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.role_icon {
+    display: inline-block;
+    margin-right: 1rem;
+    width: fit-content;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: white;
+    border-radius: 0.75rem;
+    font-weight: $bold;
+}
+
+.role_delete {
+    width: 1.5rem;
+    margin-left: 0.5rem;
+    stroke-width: 1px;
+    cursor: pointer;
+}
+
+.add_role * {
+    display: inline-block;
+}
+
+.add_role select {
+    // appearance: none;
+    background-color: white;
+    border-radius: 0.75rem;
+    border: none;
+    padding: 0.5rem;
+    font-family: inherit;
+    color: $dodeka_blauw;
+    // font-size: $font_medium;
+    cursor: pointer;
+    font-weight: $bold;
+    font-size: $font_small;
+    // line-height: $line_height_medium;
+    margin: 0 0 0.5rem;
+}
+
+.add_role button {
+    font-family: inherit;
+    margin-left: 1rem;
+}
+
+.manage_roles_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $dodeka_blauw;
+    width: 100%;
+    height: 100%;
+    opacity: 20%;
+}
+
+.manage_roles {
+    position: absolute;
+    top: 12.5%;
+    left: 25%;
+    background-color: $dodeka_blauw;
+    width: 50%;
+    height: 75%;
+    opacity: 100%;
+    z-index: 50;
+    border-radius: 0.75rem;
+    color: white;
+    padding: 2rem;
+}
+
+.manage_roles_title {
+    font-size: $font_medium;
+}
+
+.manage_roles_cross {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    fill: white;
+    width: 2rem;
+    cursor: pointer;
+}

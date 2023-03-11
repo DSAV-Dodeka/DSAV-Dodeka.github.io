@@ -190,6 +190,32 @@ export const trainings_klassement_request = async (auth: AuthUse, options?: Opti
     return train_klas
 }
 
+const RolesData = z.object({
+    name: z.string(),
+    user_id: z.string(),
+    roles: z.array(z.string()),
+})
+
+export type RolesData = z.infer<typeof RolesData>;
+
+const Roles = z.object({
+    roles: z.array(RolesData)
+})
+
+export type Roles = z.infer<typeof Roles>;
+
+const RoleInfo = z.object({
+    role: z.string(),
+    color: z.string(),
+})
+
+export type RoleInfo = z.infer<typeof RoleInfo>;
+
+const RolesInfo = z.object({
+    roles: z.array(RoleInfo)
+})
+
+export type RolesInfo = z.infer<typeof RolesInfo>;
 
 const DeleteUrl = z.object({
     delete_url: z.string()

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useReducer, useState, ChangeEvent, FocusEvent, Fragment, FormEvent} from "react";
 import {z} from "zod";
-import './ConfirmUser.scss'
+import './table.scss'
 
 import {
     createColumnHelper,
@@ -8,49 +8,76 @@ import {
     getCoreRowModel,
     useReactTable,
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api} from "../../../functions/api";
+import {UserData, ud_request, catch_api, RolesData, RoleInfo} from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
-import "./LedenInfo.scss";
+import "./Rollen.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
 
-const columnHelper = createColumnHelper<UserData>()
+const getColor = (role: string) => {
+    for (var i = 0; i < roleData.length; i++) {
+        if (roleData[i].role === role) {
+            return roleData[i].color;
+        }
+    }
+    return "#000000";
+}
+
+const handleSubmit = (e: FormEvent) => {
+    
+}
+
+const columnHelper = createColumnHelper<RolesData>()
 
 const columns = [
-    columnHelper.accessor('firstname', {
-        header: () => 'Voornaam',
+    columnHelper.accessor('name', {
+        header: () => 'Naam',
     }),
-    columnHelper.accessor('lastname', {
-        header: () => 'Achternaam',
-    }),
-    columnHelper.accessor('birthdate', {
-        header: () => 'Geboortedatum',
+    columnHelper.accessor('roles', {
+        header: () => 'Rollen',
+        cell: info => <div className="role_list">{info.getValue().map(item => <p className="role_icon" style={{backgroundColor: getColor(item)}}>{item} <svg xmlns="http://www.w3.org/2000/svg" className="role_delete" viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg></p>)}</div>
     })
 ]
 
-const defaultData: UserData[] = [
+const defaultData: RolesData[] = [
     {
-        firstname: 'Arnold',
-        lastname: 'Aardvarken',
-        phone: '+31612121212',
-        email: 'arnold@dsavdodeka.nl',
+        name: 'Arnold het Aardvarken',
         user_id: '0_arnold',
-        callname: 'Arnold',
-        av40id: 12,
-        joined: '2022-02-25',
-        eduinstitution: 'TU Delft',
-        birthdate: '2022-02-25',
-        registered: false
+        roles: ['Bestuur', '.ComCom']
+    },
+    {
+        name: 'Arnold het Aardvarken',
+        user_id: '0_arnold',
+        roles: ['Bestuur']
+    },
+    {
+        name: 'Arnold het Aardvarken',
+        user_id: '0_arnold',
+        roles: ['.ComCom']
+    },
+]
+
+const roleData: RoleInfo[] = [
+    {
+        role: 'Bestuur',
+        color: '#001f48',
+    },
+    {
+        role: '.ComCom',
+        color: '#73AF59',
     },
 ]
 
 const LedenInfo = () => {
     const {authState, setAuthState} = useContext(AuthContext)
+    const [addRole, setAddRole] = useState("none");
+    const [manageRoles, setManageRoles] = useState(false);
 
-    const q = useUserDataQuery({ authState, setAuthState })
-    const data = queryError(q, defaultData, "User Info Query Error")
+    // const q = useUserDataQuery({ authState, setAuthState })
+    // const data = queryError(q, defaultData, "User Info Query Error")
+    const data = defaultData;
 
-    const table = useReactTable<UserData>({
+    const table = useReactTable<RolesData>({
         data,
         columns,
         getRowCanExpand: () => true,
@@ -77,6 +104,7 @@ const LedenInfo = () => {
                                 </th>
                             )
                         })}
+                        <th ><p className="leden_table_header_button" onClick={() => setManageRoles(true)}>Beheer rollen</p></th>
                     </tr>
                 ))}
                 </thead>
@@ -100,12 +128,44 @@ const LedenInfo = () => {
                                     </td>
                                 )
                             })}
+                            <td>
+                                <>
+                                    {addRole !== row.id && (<p className="leden_table_row_button" onClick={() => setAddRole(row.id)}>Voeg rol toe</p>)}
+                                    {addRole === row.id && (
+                                        <form className="add_role" onSubmit={handleSubmit}>
+                                            <select>
+                                                {roleData.map((item) => {
+                                                    return <option>{item.role}</option>;
+                                                })}
+                                            </select>
+                                            <button className="leden_table_row_button">Voeg toe</button>
+                                        </form>
+                                    )}
+                                </>
+                            </td>
                         </tr>
                     </Fragment>
                 ))}
                 </tbody>
             </table>
             <div/><br/>
+            {manageRoles && 
+                <>
+                <div className="manage_roles_container" />
+                <div className="manage_roles">
+                <svg xmlns="http://www.w3.org/2000/svg" className="manage_roles_cross" onClick={() => setManageRoles(false)} viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg>
+                    <p className="manage_roles_title">Beheer hier welke rollen er zijn</p>
+                    <p className="manage_roles_title">Huidige rollen</p>
+                    <div>
+                        {roleData.map((role) => {
+                            return <p className="manage_roles_title">{role.role}</p>
+                        })}
+                    </div>
+
+                </div>
+                </>
+                
+            }
         </div>
     )
 }

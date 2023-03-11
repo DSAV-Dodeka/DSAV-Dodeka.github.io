@@ -1,5 +1,9 @@
 @import "../../variables";
 
+.admin_container {
+    position: relative;
+}
+
 .admin_status {
     color: $dodeka_blauw;
     margin-left: 4rem;
