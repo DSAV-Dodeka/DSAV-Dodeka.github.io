@@ -27,6 +27,14 @@ const handleSubmit = (e: FormEvent) => {
     
 }
 
+const handleSubmitRole = (e: FormEvent) => {
+
+}
+
+const handleDeleteRole = (e: FormEvent) => {
+
+}
+
 const columnHelper = createColumnHelper<RolesData>()
 
 const columns = [
@@ -154,13 +162,21 @@ const LedenInfo = () => {
                 <div className="manage_roles_container" />
                 <div className="manage_roles">
                 <svg xmlns="http://www.w3.org/2000/svg" className="manage_roles_cross" onClick={() => setManageRoles(false)} viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg>
-                    <p className="manage_roles_title">Beheer hier welke rollen er zijn</p>
-                    <p className="manage_roles_title">Huidige rollen</p>
-                    <div>
+                    <p className="manage_roles_title">Rollenbeheer</p>
+                    <p className="manage_roles_header">Huidige rollen</p>
+                    <div className="manage_roles_roles">
                         {roleData.map((role) => {
-                            return <p className="manage_roles_title">{role.role}</p>
+                            return <div className="manage_roles_role">
+                                <p className="manage_roles_icon" style={{backgroundColor: role.color}}>{role.role} </p>
+                                <button className="manage_roles_delete" onClick={handleDeleteRole}>Verwijder rol</button>
+                                </div>
                         })}
                     </div>
+                    <form className="submit_role">
+                        <input className="submit_role_input" type="text" placeholder="Nieuwe rol"></input>
+                        <input className="submit_role_color" type="color" value="#001f48"></input>
+                        <button className="leden_table_row_button" onClick={handleSubmitRole}>Voeg toe</button>
+                    </form>
 
                 </div>
                 </>
