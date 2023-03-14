@@ -1,0 +1,157 @@
+@import "../../../variables";
+
+
+.new_event_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $dodeka_blauw;
+    width: 100%;
+    height: 100%;
+    opacity: 20%;
+}
+
+.new_event {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 12.5%;
+    left: 25%;
+    background-color: $dodeka_blauw;
+    width: 50%;
+    height: 75%;
+    opacity: 100%;
+    z-index: 50;
+    border-radius: 0.75rem;
+    color: white;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.new_event_title {
+    font-size: $font_ml;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+}
+
+.new_event_header {
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+}
+
+.new_event_label {
+    display: inline-block;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+.new_event_label_type {
+    display: inline-block;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+}
+
+.new_event_half {
+    display: inline-block;
+    width: calc(50% - 1rem);
+}
+
+.new_event_date {
+    display: inline-block;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    flex-grow: 1;
+}
+
+.new_event_select {
+    display: inline-block;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+}
+
+.new_event_points {
+    display: inline-block;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+}
+
+.new_event_cross {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    fill: white;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.new_event_form {
+    width: calc(100%);
+}
+
+.new_event_input {
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: calc(50% - 1rem);
+}
+
+.new_event_input:focus {
+    outline: none;
+}
+
+.new_event_date:focus {
+    outline: none;
+}
+
+.new_event_points:focus {
+    outline: none;
+}
+
+.new_event_form button {
+    width: calc(25% - 0.5rem);
+    margin-left: 1rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    line-height: $line_height_medium;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border: none;
+}

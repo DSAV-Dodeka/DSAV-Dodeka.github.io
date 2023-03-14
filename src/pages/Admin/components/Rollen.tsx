@@ -76,7 +76,7 @@ const roleData: RoleInfo[] = [
     },
 ]
 
-const LedenInfo = () => {
+const Rollen = () => {
     const {authState, setAuthState} = useContext(AuthContext)
     const [addRole, setAddRole] = useState("none");
     const [manageRoles, setManageRoles] = useState(false);
@@ -119,7 +119,7 @@ const LedenInfo = () => {
                 <tbody>
                 {table.getRowModel().rows.length === 0 && (
                     <tr>
-                        <td colSpan={5}>Er zijn helaas geen nieuwe aanmeldingen</td>
+                        <td colSpan={5}>Er zijn helaas geen gegevens beschikbaar.</td>
                     </tr>
                 )}
                 {table.getRowModel().rows.map(row => (
@@ -186,4 +186,4 @@ const LedenInfo = () => {
     )
 }
 
-export default LedenInfo;
+export default Rollen;

@@ -172,6 +172,13 @@ export const punten_klassement_request = async (auth: AuthUse, options?: Options
     return punt_klas
 }
 
+const EventType = z.object({
+    type: z.string(),
+    default_points: z.number()
+})
+
+export type EventType = z.infer<typeof EventType>;
+
 const TrainingsKlassementData = z.object({
     Naam: z.string(),
     Punten: z.number()
