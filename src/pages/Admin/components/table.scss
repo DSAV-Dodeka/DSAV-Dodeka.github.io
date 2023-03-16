@@ -9,7 +9,7 @@
 }
 
 .leden_table th {
-  width: 20%;
+  // width: 20%;
   padding: 0;
   margin:0;
   background-color: $dodeka_rood;
@@ -108,5 +108,10 @@
   color: white;
   border-radius: 0.75rem;
   font-weight: $bold;
+  cursor: pointer;
+}
+
+.leden_table_row_link {
+  color: $dodeka_rood;
   cursor: pointer;
 }

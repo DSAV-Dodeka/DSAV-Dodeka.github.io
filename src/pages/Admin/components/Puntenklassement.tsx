@@ -28,7 +28,25 @@ const columns = [
     })
 ]
 
+const smallColumns = [
+    columnHelper.accessor('Naam', {
+        
+    })
+]
+
 const defaultData: PuntenKlassementData[] = [
+    {
+        Naam: 'Brnold het Aardvarken',
+        Punten: 11,
+    },
+    {
+        Naam: 'Arnold het Aardvarken',
+        Punten: 12,
+    },
+    {
+        Naam: 'Arnold het Aardvarken',
+        Punten: 12,
+    },
     {
         Naam: 'Brnold het Aardvarken',
         Punten: 11,
@@ -58,17 +76,6 @@ const eventTypes: EventType[] = [
     }
 ]
 
-// const roleData: RoleInfo[] = [
-//     {
-//         role: 'Bestuur',
-//         color: '#001f48',
-//     },
-//     {
-//         role: '.ComCom',
-//         color: '#73AF59',
-//     },
-// ]
-
 const Puntenklassement = () => {
     const {authState, setAuthState} = useContext(AuthContext);
     const [newEvent, setNewEvent] = useState(false);
@@ -79,6 +86,18 @@ const Puntenklassement = () => {
     const data = defaultData;
 
     const table = useReactTable<PuntenKlassementData>({
+        data,
+        columns,
+        state: {
+            sorting,
+        },
+        onSortingChange: setSorting,
+        getRowCanExpand: () => true,
+        getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel()
+    })
+
+    const smallTable = useReactTable<PuntenKlassementData>({
         data,
         columns,
         state: {
@@ -140,9 +159,7 @@ const Puntenklassement = () => {
                                 )
                             })}
                             <td>
-                                <>
-                                    
-                                </>
+                                <p className="leden_table_row_link">Bekijk behaalde punten</p>
                             </td>
                         </tr>
                     </Fragment>
@@ -177,6 +194,26 @@ const Puntenklassement = () => {
                         </div>
                         
                         <p className="new_event_header">Selecteer leden</p>
+                        <table>
+                            {smallTable.getRowModel().rows.map(row => (
+                                <Fragment key={row.id}>
+                                <tr>
+                                    {/* first row is a normal row */}
+                                    {row.getVisibleCells().map(cell => {
+                                        return (
+                                            <td key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext()
+                                                )}
+                                            </td>
+                                        )
+                                    })}
+                                    
+                                </tr>
+                            </Fragment>
+                            ))}
+                        </table>
                         <button className="leden_table_row_button">Voeg toe</button>
                     </form>
 

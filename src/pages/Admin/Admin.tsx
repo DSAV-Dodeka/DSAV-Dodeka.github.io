@@ -5,6 +5,7 @@ import ConfirmUser from "./components/ConfirmUser";
 import LedenInfo from "./components/LedenInfo";
 import Rollen from "./components/Rollen";
 import Puntenklassement from "./components/Puntenklassement";
+import PrCheck from "./components/PrCheck";
 import PageTitle from "../../components/PageTitle";
 import "./Admin.scss";
 
@@ -27,6 +28,7 @@ const Admin = () => {
                             <h1 className={activeTab == "Aanmeldingen" ? "admin_toggle_active" : ""} onClick={() => setActiveTab("Aanmeldingen")}>Aanmeldingen</h1>
                             <h1 className={activeTab == "Puntenklassement" ? "admin_toggle_active" : ""} onClick={() => setActiveTab("Puntenklassement")}>Puntenklassement</h1>
                             <h1 className={activeTab == "Rollen" ? "admin_toggle_active" : ""} onClick={() => setActiveTab("Rollen")}>Rollen</h1>
+                            <h1 className={activeTab == "PRs goedkeuren" ? "admin_toggle_active" : ""} onClick={() => setActiveTab("PRs goedkeuren")}>PRs goedkeuren</h1>
                         </div>
                         <div className="table_container">
                             {
@@ -34,7 +36,8 @@ const Admin = () => {
                                     "Leden": <LedenInfo />,
                                     "Aanmeldingen": <ConfirmUser />,
                                     "Puntenklassement": <Puntenklassement />,
-                                    "Rollen": <Rollen />
+                                    "Rollen": <Rollen />,
+                                    "PRs goedkeuren": <PrCheck />
                                 }[activeTab]
                             }
                         </div>

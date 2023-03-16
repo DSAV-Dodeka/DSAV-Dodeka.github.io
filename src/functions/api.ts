@@ -243,3 +243,20 @@ export const delete_post = async(auth: AuthUse, options?: Options) => {
         throw new PagesError("invalid_url", `URL base ${base} is not valid.`)
     }
 }
+
+const PR = z.object({
+    naam: z.string(),
+    onderdeel: z.string(),
+    prestatie: z.string(),
+    datum: z.string(),
+    plaats: z.string(),
+    link: z.string()
+})
+
+export type PR = z.infer<typeof PR>;
+
+const PRs = z.object({
+    prs: z.array(PR)
+})
+
+export type PRs = z.infer<typeof PRs>;
