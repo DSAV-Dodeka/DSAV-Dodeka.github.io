@@ -7,6 +7,8 @@ import {
     flexRender,
     getCoreRowModel,
     useReactTable,
+    SortingState,
+    getSortedRowModel
 } from '@tanstack/react-table'
 import {UserData, ud_request, catch_api, PuntenKlassementData, EventType, RoleInfo} from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
@@ -28,8 +30,8 @@ const columns = [
 
 const defaultData: PuntenKlassementData[] = [
     {
-        Naam: 'Arnold het Aardvarken',
-        Punten: 12,
+        Naam: 'Brnold het Aardvarken',
+        Punten: 11,
     },
     {
         Naam: 'Arnold het Aardvarken',
@@ -70,6 +72,7 @@ const eventTypes: EventType[] = [
 const Puntenklassement = () => {
     const {authState, setAuthState} = useContext(AuthContext);
     const [newEvent, setNewEvent] = useState(false);
+    const [sorting, setSorting] = useState<SortingState>([])
 
     // const q = useUserDataQuery({ authState, setAuthState })
     // const data = queryError(q, defaultData, "User Info Query Error")
@@ -78,8 +81,13 @@ const Puntenklassement = () => {
     const table = useReactTable<PuntenKlassementData>({
         data,
         columns,
+        state: {
+            sorting,
+        },
+        onSortingChange: setSorting,
         getRowCanExpand: () => true,
         getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel()
     })
 
     return (
@@ -92,12 +100,17 @@ const Puntenklassement = () => {
                             return (
                                 <th key={header.id} colSpan={header.colSpan}>
                                     {header.isPlaceholder ? null : (
-                                        <div>
-                                            {flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext()
-                                            )}
-                                        </div>
+                                        <div onClick={header.column.getToggleSortingHandler()} className={(header.column.getCanSort() ? "canSort" : "")}>
+                                            
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
+                                        {{
+                                            asc: ' ↑',
+                                            desc: ' ↓'
+                                        }[header.column.getIsSorted() as string] ?? null}
+                                    </div>
                                     )}
                                 </th>
                             )

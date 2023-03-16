@@ -7,6 +7,8 @@ import {
     flexRender,
     getCoreRowModel,
     useReactTable,
+    SortingState,
+    getSortedRowModel
 } from '@tanstack/react-table'
 import {UserData, ud_request, catch_api, RolesData, RoleInfo} from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
@@ -43,13 +45,14 @@ const columns = [
     }),
     columnHelper.accessor('roles', {
         header: () => 'Rollen',
+        enableSorting: false,
         cell: info => <div className="role_list">{info.getValue().map(item => <p className="role_icon" style={{backgroundColor: getColor(item)}}>{item} <svg xmlns="http://www.w3.org/2000/svg" className="role_delete" viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg></p>)}</div>
     })
 ]
 
 const defaultData: RolesData[] = [
     {
-        name: 'Arnold het Aardvarken',
+        name: 'Brnold het Aardvarken',
         user_id: '0_arnold',
         roles: ['Bestuur', '.ComCom']
     },
@@ -80,6 +83,7 @@ const Rollen = () => {
     const {authState, setAuthState} = useContext(AuthContext)
     const [addRole, setAddRole] = useState("none");
     const [manageRoles, setManageRoles] = useState(false);
+    const [sorting, setSorting] = useState<SortingState>([])
 
     // const q = useUserDataQuery({ authState, setAuthState })
     // const data = queryError(q, defaultData, "User Info Query Error")
@@ -88,8 +92,13 @@ const Rollen = () => {
     const table = useReactTable<RolesData>({
         data,
         columns,
+        state: {
+            sorting,
+        },
+        onSortingChange: setSorting,
         getRowCanExpand: () => true,
         getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel()
     })
 
     return (
@@ -102,11 +111,15 @@ const Rollen = () => {
                             return (
                                 <th key={header.id} colSpan={header.colSpan}>
                                     {header.isPlaceholder ? null : (
-                                        <div>
+                                        <div onClick={header.column.getToggleSortingHandler()} className={(header.column.getCanSort() ? "canSort" : "")}>
                                             {flexRender(
                                                 header.column.columnDef.header,
                                                 header.getContext()
                                             )}
+                                            {{
+                                                asc: ' ↑',
+                                                desc: ' ↓'
+                                            }[header.column.getIsSorted() as string] ?? null}
                                         </div>
                                     )}
                                 </th>
