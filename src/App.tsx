@@ -163,13 +163,14 @@ function App() {
                               }/>
                         )
                     )}
-                    {ActiviteitenText.wedstrijden.map((item) =>
-                        (item.path === "" ? "" :
-                                <Route path={"/vereniging/activiteiten" + item.path} key={"actv" + item.naam + item.datum} element={
-                                  <ActiviteitPagina wedstrijd={item} typePath={"vereniging/activiteiten"}/>
-                                }/>
-                        )
-                    )}
+                    {/* Op dit moment zijn er geen activiteitenpagina's*/}
+                    {/*{ActiviteitenText.wedstrijden.map((item) =>*/}
+                    {/*    (item.path === "" ? "" :*/}
+                    {/*            <Route path={"/vereniging/activiteiten" + item.path} key={"actv" + item.naam + item.datum} element={*/}
+                    {/*              <ActiviteitPagina wedstrijd={item} typePath={"vereniging/activiteiten"}/>*/}
+                    {/*            }/>*/}
+                    {/*    )*/}
+                    {/*)}*/}
                     <Route path="/wedstrijden" element={
                       <Wedstrijden />
                     }/>
