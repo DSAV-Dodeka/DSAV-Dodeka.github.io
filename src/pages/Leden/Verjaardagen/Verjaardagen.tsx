@@ -67,17 +67,17 @@ const Verjaardagen = () => {
                         const datum = getDay(item.birthdate) + " " + new Date(item.birthdate).getDate()
                         const vkey = datum + item.firstname + item.lastname
 
-                        if (index == 0 || new Date(item.birthdate).getMonth() > new Date(array[index - 1].birthdate).getMonth()) {
+                        if (index == 0 || new Date(item.birthdate).getMonth() !== new Date(array[index - 1].birthdate).getMonth()) {
                             const maand = maanden[new Date(item.birthdate).getMonth()]
 
 
                             return (
                             <>
                                 <Maand maand={maand} />
-                                <Verjaardag datum={datum} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>
+                                <Verjaardag dag={new Date(item.birthdate).getDate()} datum={datum} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>
                             </>)
                         }
-                        return (<Verjaardag key={vkey} datum={datum} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>)
+                        return (<Verjaardag key={vkey} dag={new Date(item.birthdate).getDate()} datum={datum} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>)
                     })}
                 </div>
 

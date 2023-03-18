@@ -1,4 +1,4 @@
-import {bd_request, BirthdayData, err_api, SignedUp, su_request, ud_request, UsersData, punten_klassement_request, PuntenKlassement, trainings_klassement_request, TrainingsKlassementData, TrainingsKlassement} from "./api";
+import {bd_request, BirthdayData, err_api, SignedUp, su_request, ud_request, UsersData, punten_klassement_request, PuntenKlassement, trainings_klassement_request, TrainingsKlassementData, TrainingsKlassement, UserData, profile_request} from "./api";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {AuthUse} from "../pages/Auth/AuthContext";
 import {Logger} from "./logger";
@@ -21,6 +21,10 @@ const fetchPuntenKlassementData = async (au: AuthUse): Promise<PuntenKlassement>
 
 const fetchTrainingsKlassementData = async (au: AuthUse): Promise<TrainingsKlassement> => {
     return trainings_klassement_request(au)
+}
+
+const fetchProfileData = async (au: AuthUse): Promise<UserData> => {
+    return profile_request(au)
 }
 
 export const queryError = <T>(q: UseQueryResult<T>, defaultData: T, error: string): T => {
@@ -79,3 +83,11 @@ export const useTrainingsKlassementQuery = (au: AuthUse) =>
                 cacheTime: longCacheTime,
                 enabled: au.authState.isAuthenticated,
             })
+
+export const useProfileQuery = (au: AuthUse) =>
+    useQuery(['profile'], () => fetchProfileData(au),
+        {
+            staleTime: longStaleTime,
+            cacheTime: longCacheTime,
+            enabled: au.authState.isAuthenticated,
+        })
