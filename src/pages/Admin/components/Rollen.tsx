@@ -10,14 +10,14 @@ import {
     SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api, RolesData, RoleInfo} from "../../../functions/api";
+import {UserData, ud_request, catch_api, RolesData, RoleInfo, back_post_auth} from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./Rollen.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
 
 const getColor = (role: string) => {
-    for (var i = 0; i < roleData.length; i++) {
+    for (let i = 0; i < roleData.length; i++) {
         if (roleData[i].role === role) {
             return roleData[i].color;
         }
@@ -25,16 +25,12 @@ const getColor = (role: string) => {
     return "#000000";
 }
 
-const handleSubmit = (e: FormEvent) => {
-    
-}
-
 const handleSubmitRole = (e: FormEvent) => {
-
+    e.preventDefault()
 }
 
 const handleDeleteRole = (e: FormEvent) => {
-
+    e.preventDefault()
 }
 
 const columnHelper = createColumnHelper<RolesData>()
@@ -58,12 +54,12 @@ const defaultData: RolesData[] = [
     },
     {
         name: 'Arnold het Aardvarken',
-        user_id: '0_arnold',
+        user_id: '1_arnold',
         roles: ['Bestuur']
     },
     {
         name: 'Arnold het Aardvarken',
-        user_id: '0_arnold',
+        user_id: '2_arnold',
         roles: ['.ComCom']
     },
 ]
@@ -81,9 +77,25 @@ const roleData: RoleInfo[] = [
 
 const Rollen = () => {
     const {authState, setAuthState} = useContext(AuthContext)
-    const [addRole, setAddRole] = useState("none");
+    const [addRoleUser, setAddRoleUser] = useState("none");
+    const [roleToAdd, setRoleToAdd] = useState("none")
     const [manageRoles, setManageRoles] = useState(false);
     const [sorting, setSorting] = useState<SortingState>([])
+
+    const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        setRoleToAdd(event.target.value)
+    }
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault()
+
+        const req = {
+            "user_id": addRoleUser,
+            "scope": roleToAdd
+        }
+
+        await back_post_auth("admin/scope/add/", req, {authState, setAuthState})
+    }
 
     // const q = useUserDataQuery({ authState, setAuthState })
     // const data = queryError(q, defaultData, "User Info Query Error")
@@ -144,17 +156,17 @@ const Rollen = () => {
                                     <td key={cell.id}>
                                         {flexRender(
                                             cell.column.columnDef.cell,
-                                            cell.getContext()
+                                            cell.getContext(),
                                         )}
                                     </td>
                                 )
                             })}
                             <td>
                                 <>
-                                    {addRole !== row.id && (<p className="leden_table_row_button" onClick={() => setAddRole(row.id)}>Voeg rol toe</p>)}
-                                    {addRole === row.id && (
+                                    {addRoleUser !== row.original.user_id && (<p className="leden_table_row_button" onClick={() => setAddRoleUser(row.original.user_id)}>Voeg rol toe</p>)}
+                                    {addRoleUser === row.original.user_id && (
                                         <form className="add_role" onSubmit={handleSubmit}>
-                                            <select>
+                                            <select value={roleToAdd} onChange={handleSelectChange}>
                                                 {roleData.map((item) => {
                                                     return <option>{item.role}</option>;
                                                 })}
