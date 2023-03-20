@@ -10,11 +10,11 @@ import {
     SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api, RolesData, RoleInfo, back_post_auth} from "../../../functions/api";
+import {UserData, ud_request, catch_api, RoleData, RoleInfo, back_post_auth} from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./Rollen.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
-import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
+import {queryError, useSignedUpQuery, useUserDataQuery, useUserScopeQuery} from "../../../functions/queries";
 
 const getColor = (role: string) => {
     for (let i = 0; i < roleData.length; i++) {
@@ -33,34 +33,34 @@ const handleDeleteRole = (e: FormEvent) => {
     e.preventDefault()
 }
 
-const columnHelper = createColumnHelper<RolesData>()
+const columnHelper = createColumnHelper<RoleData>()
 
 const columns = [
     columnHelper.accessor('name', {
         header: () => 'Naam',
     }),
-    columnHelper.accessor('roles', {
+    columnHelper.accessor('scope', {
         header: () => 'Rollen',
         enableSorting: false,
         cell: info => <div className="role_list">{info.getValue().map(item => <p className="role_icon" style={{backgroundColor: getColor(item)}}>{item} <svg xmlns="http://www.w3.org/2000/svg" className="role_delete" viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg></p>)}</div>
     })
 ]
 
-const defaultData: RolesData[] = [
+const defaultData: RoleData[] = [
     {
         name: 'Brnold het Aardvarken',
         user_id: '0_arnold',
-        roles: ['Bestuur', '.ComCom']
+        scope: ['Bestuur', '.ComCom']
     },
     {
         name: 'Arnold het Aardvarken',
         user_id: '1_arnold',
-        roles: ['Bestuur']
+        scope: ['Bestuur']
     },
     {
         name: 'Arnold het Aardvarken',
         user_id: '2_arnold',
-        roles: ['.ComCom']
+        scope: ['.ComCom']
     },
 ]
 
@@ -76,9 +76,11 @@ const roleData: RoleInfo[] = [
 ]
 
 const Rollen = () => {
+    const rerender = React.useReducer(() => ({}), {})[1]
+
     const {authState, setAuthState} = useContext(AuthContext)
     const [addRoleUser, setAddRoleUser] = useState("none");
-    const [roleToAdd, setRoleToAdd] = useState("none")
+    const [roleToAdd, setRoleToAdd] = useState(roleData[0].role)
     const [manageRoles, setManageRoles] = useState(false);
     const [sorting, setSorting] = useState<SortingState>([])
 
@@ -89,19 +91,25 @@ const Rollen = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
+        console.log({addRoleUser, roleToAdd})
+
         const req = {
             "user_id": addRoleUser,
             "scope": roleToAdd
         }
 
-        await back_post_auth("admin/scope/add/", req, {authState, setAuthState})
+        await back_post_auth("admin/scopes/add/", req, {authState, setAuthState})
+
+        await refetch()
     }
 
     // const q = useUserDataQuery({ authState, setAuthState })
     // const data = queryError(q, defaultData, "User Info Query Error")
-    const data = defaultData;
+    const q = useUserScopeQuery({ authState, setAuthState })
+    const refetch = () => q.refetch()
+    const data = queryError(q, defaultData, "User Scope Data Query Error")
 
-    const table = useReactTable<RolesData>({
+    const table = useReactTable<RoleData>({
         data,
         columns,
         state: {

@@ -197,18 +197,19 @@ export const trainings_klassement_request = async (auth: AuthUse, options?: Opti
     return train_klas
 }
 
-const RolesData = z.object({
+const RoleData = z.object({
     name: z.string(),
     user_id: z.string(),
-    roles: z.array(z.string()),
+    scope: z.array(z.string()),
 })
+export type RoleData = z.infer<typeof RoleData>;
 
-export type RolesData = z.infer<typeof RolesData>;
+export const u_ud_scopes_request = async (auth: AuthUse, options?: Options): Promise<Roles> => {
+    let response = await back_request('admin/scopes/all/', auth, options)
+    return Roles.parse(response)
+}
 
-const Roles = z.object({
-    roles: z.array(RolesData)
-})
-
+const Roles = z.array(RoleData)
 export type Roles = z.infer<typeof Roles>;
 
 const RoleInfo = z.object({

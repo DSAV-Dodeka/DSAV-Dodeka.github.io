@@ -16,8 +16,8 @@ const ProfielDebug = () => {
 
     const loadScope = async () => {
         const profile = await profile_request({authState, setAuthState})
-        setUser(profile.username)
-        setAccessScope(profile.scope)
+        setUser(profile.user_id)
+        setAccessScope(authState.scope)
     }
 
     const setProfile = async () => {
