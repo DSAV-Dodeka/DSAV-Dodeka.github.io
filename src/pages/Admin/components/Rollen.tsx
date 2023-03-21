@@ -15,14 +15,24 @@ import AuthContext from "../../Auth/AuthContext";
 import "./Rollen.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useSignedUpQuery, useUserDataQuery, useUserScopeQuery} from "../../../functions/queries";
+import RollenInfo from "../../../content/Rollen.json";
 
 const getColor = (role: string) => {
-    for (let i = 0; i < roleData.length; i++) {
-        if (roleData[i].role === role) {
-            return roleData[i].color;
+    for (let i = 0; i < RollenInfo.rollen.length; i++) {
+        if (RollenInfo.rollen[i].rol === role) {
+            return RollenInfo.rollen[i].kleur;
         }
     }
     return "#000000";
+}
+
+const getTextColor = (role: string) => {
+    for (let i = 0; i < RollenInfo.rollen.length; i++) {
+        if (RollenInfo.rollen[i].rol === role) {
+            return (RollenInfo.rollen[i].light ? "#000000": "#ffffff");
+        }
+    }
+    return "#ffffff";
 }
 
 const handleSubmitRole = (e: FormEvent) => {
@@ -42,7 +52,7 @@ const columns = [
     columnHelper.accessor('scope', {
         header: () => 'Rollen',
         enableSorting: false,
-        cell: info => <div className="role_list">{info.getValue().map(item => <p className="role_icon" style={{backgroundColor: getColor(item)}}>{item} <svg xmlns="http://www.w3.org/2000/svg" className="role_delete" viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg></p>)}</div>
+        cell: info => <div className="role_list">{info.getValue().map(item => <p className="role_icon" style={{backgroundColor: getColor(item), color: getTextColor(item)}}>{item} <svg xmlns="http://www.w3.org/2000/svg" className="role_delete" style={{fill: getTextColor(item)}} viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg></p>)}</div>
     })
 ]
 
@@ -145,8 +155,8 @@ const Rollen = () => {
                                 </th>
                             )
                         })}
-                        <th/>
-                        {/* <th ><p className="leden_table_header_button" onClick={() => setManageRoles(true)}>Beheer rollen</p></th> */}
+                        {/* <th/> */}
+                        <th ><p className="leden_table_header_button" onClick={() => setManageRoles(true)}>Beheer rollen</p></th>
                     </tr>
                 ))}
                 </thead>
@@ -176,8 +186,8 @@ const Rollen = () => {
                                     {addRoleUser === row.original.user_id && (
                                         <form className="add_role" onSubmit={handleSubmit}>
                                             <select value={roleToAdd} onChange={handleSelectChange}>
-                                                {roleData.map((item) => {
-                                                    return <option>{item.role}</option>;
+                                                {RollenInfo.rollen.map((item) => {
+                                                    return <option>{item.rol}</option>;
                                                 })}
                                             </select>
                                             <button className="leden_table_row_button">Voeg toe</button>
@@ -199,9 +209,9 @@ const Rollen = () => {
                     <p className="manage_roles_title">Rollenbeheer</p>
                     <p className="manage_roles_header">Huidige rollen</p>
                     <div className="manage_roles_roles">
-                        {roleData.map((role) => {
+                        {RollenInfo.rollen.map((role) => {
                             return <div className="manage_roles_role">
-                                <p className="manage_roles_icon" style={{backgroundColor: role.color}}>{role.role} </p>
+                                <p className="manage_roles_icon" style={{backgroundColor: role.kleur, color: (role.light ? "black" : "white")}}>{role.rol} </p>
                                 <button className="manage_roles_delete" onClick={handleDeleteRole}>Verwijder rol</button>
                                 </div>
                         })}
