@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useReducer, useState, ChangeEvent, FocusEvent, Fragment, FormEvent} from "react";
 import {z} from "zod";
-import './table.scss'
+import './table.scss';
+import Papa from "papaparse";
 
 import {
     createColumnHelper,
@@ -79,7 +80,8 @@ const eventTypes: EventType[] = [
 const Puntenklassement = () => {
     const {authState, setAuthState} = useContext(AuthContext);
     const [newEvent, setNewEvent] = useState(false);
-    const [sorting, setSorting] = useState<SortingState>([])
+    const [sorting, setSorting] = useState<SortingState>([]);
+    const [CSVData, setCSVData] = useState();
 
     // const q = useUserDataQuery({ authState, setAuthState })
     // const data = queryError(q, defaultData, "User Info Query Error")
@@ -109,34 +111,57 @@ const Puntenklassement = () => {
         getSortedRowModel: getSortedRowModel()
     })
 
+    const handleFileUpload = (e: any) => {
+        const files = e.target.files;
+        console.log(files);
+        if (files) {
+            Papa.parse(files[0], {
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    console.log(results.data);
+                    const rowsArray = [];
+                    const valuesArray = [];
+
+                    // Iterating data to get column name and their values
+                    results.data.map((d) => {
+                        rowsArray.push(Object.keys(d));
+                        valuesArray.push(Object.values(d));
+                    });
+                    console.log(valuesArray);
+                }
+            })
+        }
+    }
+
     return (
         <div>
             <table className="leden_table">
                 <thead>
-                {table.getHeaderGroups().map(headerGroup => (
-                    <tr key={headerGroup.id}>
-                        {headerGroup.headers.map(header => {
-                            return (
-                                <th key={header.id} colSpan={header.colSpan}>
-                                    {header.isPlaceholder ? null : (
-                                        <div onClick={header.column.getToggleSortingHandler()} className={(header.column.getCanSort() ? "canSort" : "")}>
-                                            
-                                        {flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
+                    {table.getHeaderGroups().map(headerGroup => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map(header => {
+                                return (
+                                    <th key={header.id} colSpan={header.colSpan}>
+                                        {header.isPlaceholder ? null : (
+                                            <div onClick={header.column.getToggleSortingHandler()} className={(header.column.getCanSort() ? "canSort" : "")}>
+                                                
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext()
+                                            )}
+                                            {{
+                                                asc: ' ↑',
+                                                desc: ' ↓'
+                                            }[header.column.getIsSorted() as string] ?? null}
+                                        </div>
                                         )}
-                                        {{
-                                            asc: ' ↑',
-                                            desc: ' ↓'
-                                        }[header.column.getIsSorted() as string] ?? null}
-                                    </div>
-                                    )}
-                                </th>
-                            )
-                        })}
-                        <th ><p className="leden_table_header_button" onClick={() => setNewEvent(true)}>Nieuw evenement</p></th>
-                    </tr>
-                ))}
+                                    </th>
+                                )
+                            })}
+                            <th ><p className="leden_table_header_button" onClick={() => setNewEvent(true)}>Nieuw evenement</p></th>
+                        </tr>
+                    ))}
                 </thead>
                 <tbody>
                 {table.getRowModel().rows.length === 0 && (
@@ -194,11 +219,10 @@ const Puntenklassement = () => {
                         </div>
                         
                         <p className="new_event_header">Selecteer leden</p>
-                        <table>
+                        {/* <table>
                             {smallTable.getRowModel().rows.map(row => (
                                 <Fragment key={row.id}>
                                 <tr>
-                                    {/* first row is a normal row */}
                                     {row.getVisibleCells().map(cell => {
                                         return (
                                             <td key={cell.id}>
@@ -213,7 +237,8 @@ const Puntenklassement = () => {
                                 </tr>
                             </Fragment>
                             ))}
-                        </table>
+                        </table> */}
+                        <input type="file" accept=".csv,.xlsx,.xls" onChange={handleFileUpload}></input>
                         <button className="leden_table_row_button">Voeg toe</button>
                     </form>
 

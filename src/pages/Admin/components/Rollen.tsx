@@ -145,7 +145,8 @@ const Rollen = () => {
                                 </th>
                             )
                         })}
-                        <th ><p className="leden_table_header_button" onClick={() => setManageRoles(true)}>Beheer rollen</p></th>
+                        <th/>
+                        {/* <th ><p className="leden_table_header_button" onClick={() => setManageRoles(true)}>Beheer rollen</p></th> */}
                     </tr>
                 ))}
                 </thead>
