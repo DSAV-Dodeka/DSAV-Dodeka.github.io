@@ -73,7 +73,7 @@ type Profile = z.infer<typeof Profile>;
 
 export const profile_request = async (auth: AuthUse, options?: Options) => {
     let response = await back_request('res/profile/', auth, options)
-    const profile: Profile = Profile.parse(response)
+    const profile: UserData = UserData.parse(response)
     return profile
 }
 
