@@ -5,6 +5,25 @@ import Timer from "../Auth/Timer";
 import {back_post_auth, profile_request, UserData} from "../../functions/api";
 import "./Profiel.scss";
 import { queryError, useProfileQuery } from "../../functions/queries";
+import RollenInfo from "../../content/Rollen.json";
+
+const getColor = (role: string) => {
+    for (let i = 0; i < RollenInfo.rollen.length; i++) {
+        if (RollenInfo.rollen[i].rol === role) {
+            return RollenInfo.rollen[i].kleur;
+        }
+    }
+    return "#000000";
+}
+
+const getTextColor = (role: string) => {
+    for (let i = 0; i < RollenInfo.rollen.length; i++) {
+        if (RollenInfo.rollen[i].rol === role) {
+            return (RollenInfo.rollen[i].light ? "#000000": "#ffffff");
+        }
+    }
+    return "#ffffff";
+}
 
 const defaultData: UserData = {
     firstname: "",
@@ -47,6 +66,24 @@ const Profiel = () => {
         await back_post_auth("update/email/send/", req, {authState, setAuthState})
     }
 
+    const getRollen = () => {
+        var rollen: string[] = [];
+        authState.scope.split(" ").forEach((item) => {
+            if (item !== "member" && item !== "admin") {
+                if (item === "~2eComCom") {
+                    rollen.push(".ComCom")
+                }
+                else if (item === "NSKEkiden") {
+                    rollen.push("NSK Ekiden")
+                }
+                else {
+                    rollen.push(item)
+                }
+            }
+        }) 
+        return rollen;
+    }
+
     return (
         <>
             {!authState.isAuthenticated && (
@@ -55,6 +92,7 @@ const Profiel = () => {
             {authState.isAuthenticated && (
                 <div className="profiel">
                     <p className="profiel_naam">{profile.firstname + " " + profile.lastname}</p>
+                    <div className="profiel_role_list">{getRollen().map(item => <p className="profiel_role_icon" style={{backgroundColor: getColor(item), color: getTextColor(item)}}>{item}</p>)}</div>
                     <p className="profiel_info">Geboortedatum: {new Date(profile.birthdate).getDate() + "/" + (new Date(profile.birthdate).getMonth() + 1) + "/" + new Date(profile.birthdate).getFullYear()}</p>
                     <p className="profiel_info">Lid sinds: {new Date(profile.joined).getDate() + "/" + (new Date(profile.joined).getMonth() + 1) + "/" + new Date(profile.joined).getFullYear()}</p>
                     <div className={edit ? "profiel_hidden" : ""}>

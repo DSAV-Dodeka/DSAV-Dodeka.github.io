@@ -176,6 +176,19 @@
     }
 }
 
-// .profiel_edit_info{
-//     :
-// }
+.profiel_role_list {
+    width: calc(100% / 3);
+}
+
+.profiel_role_icon {
+    display: inline-block;
+    margin-right: 1rem;
+    width: fit-content;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.75rem;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+}
