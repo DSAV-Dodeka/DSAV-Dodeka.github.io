@@ -3,6 +3,7 @@ import { z } from "zod";
 import { AuthUse } from "../../pages/Auth/AuthContext";
 import { back_request } from "./api";
 
+//Current situation with hardcoded rankings in file on server
 
 const PuntenKlassementData = z.object({
     Naam: z.string(),
@@ -45,3 +46,19 @@ export const trainings_klassement_request = async (auth: AuthUse, options?: Opti
     const train_klas: TrainingsKlassement = TrainingsKlassement.parse(response)
     return train_klas
 }
+
+
+
+// New situation with uploads from admin page. Todo when replacing old: remove new from names.
+
+const PuntenKlassementDataNew = z.object({
+    user_id: z.string(),
+    name: z.string(),
+    points: z.number()
+})
+export type PuntenKlassementDataNew = z.infer<typeof PuntenKlassementDataNew>;
+
+const PuntenKlassementNew = z.object({
+    points: z.array(PuntenKlassementDataNew)
+})
+export type PuntenKlassementNew = z.infer<typeof PuntenKlassementNew>;
