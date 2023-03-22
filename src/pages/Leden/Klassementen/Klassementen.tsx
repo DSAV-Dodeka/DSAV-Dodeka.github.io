@@ -1,6 +1,6 @@
 import PageTitle from "../../../components/PageTitle";
 import "./Klassementen.scss";
-import { PuntenKlassement, TrainingsKlassement } from "../../../functions/api";
+import { PuntenKlassement, TrainingsKlassement } from "../../../functions/api/klassementen";
 import AuthContext from "../../Auth/AuthContext";
 import { useContext, useState } from "react";
 import { queryError, useBirthdayDataQuery, usePuntenKlassementQuery, useTrainingsKlassementQuery } from "../../../functions/queries";

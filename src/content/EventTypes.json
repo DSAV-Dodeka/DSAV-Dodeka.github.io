@@ -1,0 +1,20 @@
+{
+    "event_types": [
+        {
+            "type": "Borrel",
+            "default_points": 1
+        },
+        {
+            "type": "Saxiviteit",
+            "default_points": 3
+        },
+        {
+            "type": "NSK",
+            "default_points": 10
+        },
+        {
+            "type": "Overig",
+            "default_points": 1
+        }
+    ]
+}

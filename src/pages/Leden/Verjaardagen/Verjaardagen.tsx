@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 import AuthContext from "../../Auth/AuthContext";
-import {profile_request, UserData} from "../../../functions/api";
+import {profile_request, UserData} from "../../../functions/api/api";
 import PageTitle from "../../../components/PageTitle";
-import {BirthdayData, bd_request} from "../../../functions/api";
+import {BirthdayData, bd_request} from "../../../functions/api/api";
 import Maand from "./components/Maand";
 import Verjaardag from "./components/Verjaardag";
 import "./Verjaardagen.scss";

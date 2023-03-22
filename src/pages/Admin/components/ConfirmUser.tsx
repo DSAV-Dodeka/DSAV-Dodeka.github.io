@@ -8,9 +8,9 @@ import {
     getCoreRowModel,
     useReactTable,
 } from '@tanstack/react-table'
-import {back_post_auth, catch_api, err_api, SignedUp, su_request} from "../../../functions/api";
+import {back_post_auth, catch_api, err_api, SignedUp, su_request} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
-import {back_post} from "../../../functions/api";
+import {back_post} from "../../../functions/api/api";
 import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
 import {useQueryClient} from "@tanstack/react-query";
 

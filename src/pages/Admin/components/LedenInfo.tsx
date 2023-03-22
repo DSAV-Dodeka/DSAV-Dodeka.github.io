@@ -9,7 +9,7 @@ import {
     SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api} from "../../../functions/api";
+import {UserData, ud_request, catch_api} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./table.scss";
 import "./LedenInfo.scss";

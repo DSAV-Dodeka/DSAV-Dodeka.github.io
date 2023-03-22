@@ -1,5 +1,5 @@
 import React, {useReducer, ChangeEvent, useState, FormEvent} from "react";
-import {back_post} from "../../../functions/api";
+import {back_post} from "../../../functions/api/api";
 import "./SchrijfIn.scss";
 
 const redirectUrl = "https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1"

@@ -44,7 +44,7 @@ import Registered from "./pages/Auth/Registered";
 import ProfielDebug from "./pages/Profiel/ProfielDebug";
 import {Logger} from "./functions/logger";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {err_api} from "./functions/api";
+import {err_api} from "./functions/api/api";
 import {number} from "zod";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 import DeleteAccount from "./pages/Account/Delete/DeleteAccount";

@@ -10,7 +10,7 @@ import {
     SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api, PR} from "../../../functions/api";
+import {UserData, ud_request, catch_api, PR} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./PrCheck.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";

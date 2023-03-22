@@ -59,9 +59,18 @@
     margin-bottom: 1rem;
 }
 
+.new_event_label_members {
+    display: inline-block;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    margin-bottom: 0.5rem;
+}
+
 .new_event_half {
     display: inline-block;
     width: calc(50% - 1rem);
+    vertical-align: top;
 }
 
 .new_event_date {
@@ -147,11 +156,25 @@
 
 .new_event_form button {
     width: calc(25% - 0.5rem);
-    margin-left: 1rem;
+    margin-left: 0rem;
     font-size: $font_medium;
     font-weight: $bold;
     line-height: $line_height_medium;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     border: none;
+    display: block;
+    
+}
+
+.new_event_file {
+    padding-left: 1rem;
+}
+
+.onherkend {
+    color: $dodeka_rood;
+}
+
+.new_event_selected {
+    margin-bottom: 1rem;
 }

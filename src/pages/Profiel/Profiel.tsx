@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import AuthContext, {AuthState, useRenewal} from "../Auth/AuthContext";
 import {decodeJwtPayload} from "../Auth/functions/OAuth";
 import Timer from "../Auth/Timer";
-import {back_post_auth, profile_request, UserData} from "../../functions/api";
+import {back_post_auth, profile_request, UserData} from "../../functions/api/api";
 import "./Profiel.scss";
 import { queryError, useProfileQuery } from "../../functions/queries";
 import RollenInfo from "../../content/Rollen.json";

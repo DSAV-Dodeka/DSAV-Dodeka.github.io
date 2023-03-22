@@ -10,7 +10,7 @@ import {
     SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api, RoleData, RoleInfo, back_post_auth} from "../../../functions/api";
+import {UserData, ud_request, catch_api, RoleData, RoleInfo, back_post_auth} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./Rollen.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import AuthContext from "../Auth/AuthContext";
-import {profile_request} from "../../functions/api";
+import {profile_request} from "../../functions/api/api";
 import ConfirmUser from "./components/ConfirmUser";
 import LedenInfo from "./components/LedenInfo";
 import Rollen from "./components/Rollen";

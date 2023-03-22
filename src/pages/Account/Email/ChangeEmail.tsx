@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {back_post, err_api} from "../../../functions/api";
+import {back_post, err_api} from "../../../functions/api/api";
 import {z} from "zod";
 import {PagesError} from "../../../functions/error";
 

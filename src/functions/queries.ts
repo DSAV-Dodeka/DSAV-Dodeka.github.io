@@ -6,15 +6,17 @@ import {
     su_request,
     ud_request,
     UsersData,
+    UserData,
+    profile_request,
+    u_ud_scopes_request
+} from "./api/api";
+import {
     punten_klassement_request,
     PuntenKlassement,
     trainings_klassement_request,
     TrainingsKlassementData,
-    TrainingsKlassement,
-    UserData,
-    profile_request,
-    u_ud_scopes_request
-} from "./api";
+    TrainingsKlassement
+} from "./api/klassementen";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {AuthUse} from "../pages/Auth/AuthContext";
 import {Logger} from "./logger";
