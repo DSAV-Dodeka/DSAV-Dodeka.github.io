@@ -178,6 +178,10 @@
 
 .profiel_role_list {
     width: calc(100% / 3);
+    @include respond(mobile) {
+        margin-top: 2rem;
+        width: 75%;
+    }
 }
 
 .profiel_role_icon {
