@@ -10,7 +10,7 @@ import {
     SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api, RoleData, RoleInfo, back_post_auth} from "../../../functions/api/api";
+import {UserData, ud_request, catch_api, RoleData, RoleInfo, back_post_auth, back_post} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./Rollen.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
@@ -35,26 +35,11 @@ const getTextColor = (role: string) => {
     return "#ffffff";
 }
 
-const handleSubmitRole = (e: FormEvent) => {
-    e.preventDefault()
-}
-
-const handleDeleteRole = (e: FormEvent) => {
-    e.preventDefault()
-}
+// const handleSubmitRole = (e: FormEvent) => {
+//     e.preventDefault()
+// }
 
 const columnHelper = createColumnHelper<RoleData>()
-
-const columns = [
-    columnHelper.accessor('name', {
-        header: () => 'Naam',
-    }),
-    columnHelper.accessor('scope', {
-        header: () => 'Rollen',
-        enableSorting: false,
-        cell: info => <div className="role_list">{info.getValue().map(item => <p className="role_icon" style={{backgroundColor: getColor(item), color: getTextColor(item)}}>{item} <svg xmlns="http://www.w3.org/2000/svg" className="role_delete" style={{fill: getTextColor(item)}} viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg></p>)}</div>
-    })
-]
 
 const defaultData: RoleData[] = [
     {
@@ -74,23 +59,22 @@ const defaultData: RoleData[] = [
     },
 ]
 
-const roleData: RoleInfo[] = [
-    {
-        role: 'Bestuur',
-        color: '#001f48',
-    },
-    {
-        role: '.ComCom',
-        color: '#73AF59',
-    },
-]
-
 const Rollen = () => {
+    const columns = [
+        columnHelper.accessor('name', {
+            header: () => 'Naam',
+        }),
+        columnHelper.accessor('scope', {
+            header: () => 'Rollen',
+            enableSorting: false,
+            cell: info => <div className="role_list">{info.getValue().map(item => <p className="role_icon" style={{backgroundColor: getColor(item), color: getTextColor(item)}}>{item} <svg xmlns="http://www.w3.org/2000/svg" className="role_delete" onClick={() => handleDeleteRole(item, info.row.original.user_id)} style={{fill: getTextColor(item)}} viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg></p>)}</div>
+        })
+    ]
     const rerender = React.useReducer(() => ({}), {})[1]
 
     const {authState, setAuthState} = useContext(AuthContext)
     const [addRoleUser, setAddRoleUser] = useState("none");
-    const [roleToAdd, setRoleToAdd] = useState(roleData[0].role)
+    const [roleToAdd, setRoleToAdd] = useState(RollenInfo.rollen[0].rol)
     const [manageRoles, setManageRoles] = useState(false);
     const [sorting, setSorting] = useState<SortingState>([])
 
@@ -110,6 +94,20 @@ const Rollen = () => {
 
         await back_post_auth("admin/scopes/add/", req, {authState, setAuthState})
 
+        await refetch()
+    }
+
+    const handleDeleteRole = async (rol: string, user_id: string) => {
+        console.log(rol);
+        console.log(user_id);
+    
+        const req = {
+            "user_id": user_id,
+            "scope": rol
+        }
+    
+        await back_post_auth("admin/scopes/remove/", req, {authState, setAuthState})
+    
         await refetch()
     }
 
@@ -155,8 +153,8 @@ const Rollen = () => {
                                 </th>
                             )
                         })}
-                        {/* <th/> */}
-                        <th ><p className="leden_table_header_button" onClick={() => setManageRoles(true)}>Beheer rollen</p></th>
+                        <th/>
+                        {/* <th ><p className="leden_table_header_button" onClick={() => setManageRoles(true)}>Beheer rollen</p></th> */}
                     </tr>
                 ))}
                 </thead>
@@ -201,7 +199,7 @@ const Rollen = () => {
                 </tbody>
             </table>
             <div/><br/>
-            {manageRoles && 
+            {/* {manageRoles && 
                 <>
                 <div className="manage_roles_container" />
                 <div className="manage_roles">
@@ -225,7 +223,7 @@ const Rollen = () => {
                 </div>
                 </>
                 
-            }
+            } */}
         </div>
     )
 }
