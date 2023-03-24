@@ -54,27 +54,99 @@
     vertical-align: top;
 }
 
-.hoogtepunten_titel {
+.hoogtepunten_titel_container {
+    height: 4rem;
     color: white;
     font-weight: $bold;
     font-size: $font_ml;
-    line-height: $line_height_large;
-    margin-left: 2rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-left: calc(-1 * 0.05 * 24rem);
+    // margin-bottom: 1rem;
+    border-bottom: solid 1px white;
+}
+
+.hoogtepunten_titel {
+    margin-left: calc(2rem + 0.025 * 24rem);
+    line-height: 4rem;
 }
 
 .hoogtepunten_divider {
     display: inline-block;
     background-color: white;
-    height: calc(100% - 2rem);
+    height: calc(100% );
     width: 1px;
-    margin-bottom: 1rem;
+    transform: translateX(-2rem) rotate(16.7deg);
 }
 
 .hoogtepunten_text {
-    margin-left: 2rem;
+    // margin-left: 2rem;
     color: white;
     font-size: $font_medium;
     line-height: $line_height_medium;
+    height: 4rem;
+    margin-top: 1rem;
+    vertical-align: top;
+    overflow-y: auto;
+}
+
+.hoogtepunten_text_prestatie {
+    // margin-left: 2rem;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    height: 4rem;
+    margin-top: 1rem;
+    vertical-align: top;
+    overflow-y: auto;
+}
+
+@for $i from 1 through 3 {
+    .hoogtepunten_text:nth-of-type(#{$i}) {
+        margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 1rem);
+    }
+}
+
+@for $i from 1 through 3 {
+    .hoogtepunten_text_prestatie:nth-of-type(#{$i}) {
+        margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 2rem);
+    }
+}
+
+.hoogtepunten_medaille_container {
+    display: inline-block;
+    height: 16rem;
+    width: 4rem;
+    border-right: solid 1px white;
+    clip-path: polygon(-100% 0, -100% 100%, 75% 100%, 95% 0);
+}
+
+.hoogtepunten_medaille {
+    display: block;
+    height: 4rem;
+    margin-top: 1rem;
+}
+
+// .hoogtepunten_medaille:nth-of-type()
+
+@for $i from 1 through 3 {
+    .hoogtepunten_medaille:nth-of-type(#{$i}) {
+        margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 2rem);
+    }
+}
+
+.hoogtepunten_text_container {
+    display: inline-block;
+    // width: 10rem;
+    width: calc(100% - 5rem);
+    height: 16rem;
+    vertical-align: top;
+    margin-left: 1rem;
+}
+
+.hoogtepunten_prestaties_container {
+    display: inline-block;
+    // width: 10rem;
+    width: 100%;
+    height: 16rem;
+    vertical-align: top;
+    margin-left: 1rem;
 }
