@@ -70,9 +70,9 @@ function Wedstrijd(props) {
                     <p className="hoogtepunten_titel">Bijzondere prestaties</p>
                 </div>
                 <div className="hoogtepunten_prestaties_container">
-                    <p className="hoogtepunten_text_prestatie">Arnold verbetert 60m PR met 12 seconden</p>
-                    <p className="hoogtepunten_text_prestatie">Arnold wint het ludieke onderdeel</p>
-                    <p className="hoogtepunten_text_prestatie">Arnold verbetert 5 PR's</p>
+                    <p className="hoogtepunten_text_prestatie">{props.prestaties[0]}</p>
+                    <p className="hoogtepunten_text_prestatie">{props.prestaties[1]}</p>
+                    <p className="hoogtepunten_text_prestatie">{props.prestaties[2]}</p>
                 </div>
             </div>
         </div>

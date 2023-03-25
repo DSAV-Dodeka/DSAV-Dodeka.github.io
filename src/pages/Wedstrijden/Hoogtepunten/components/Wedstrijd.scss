@@ -8,6 +8,11 @@
     background-color: $dodeka_blauw90p;;
     border-radius: 0.75rem;
     height: 20rem;
+    @include respond(mobile) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        height: auto;
+    }
     
 }
 
@@ -19,7 +24,7 @@
     left: 0;
     background-color: $dodeka_rood;
     color: white;
-    z-index: 10;
+    z-index: 2;
     font-size: $font_ml;
     line-height: 4rem;
     text-align: right;
@@ -27,6 +32,17 @@
     padding-right: 2rem;
     border-radius: 0.75rem 0 0 0;
     clip-path: polygon(0 0, 0 100%, 95% 100%, 100% 0);
+    @include respond(mobile) {
+        position: unset;
+        width: 100%;
+        clip-path: none;
+        border-radius: 0.75rem 0.75rem 0 0;
+        text-align: left;
+        font-size: $font_medium;
+        padding-left: 1rem;
+        height: 3rem;
+        line-height: 3rem;
+    }
 }
 
 .hoogtepunten_foto {
@@ -38,6 +54,13 @@
     background: none;
     border-radius: 0.75rem 0 0 0.75rem;
     display: inline-block;
+    @include respond(mobile) {
+        display: block;
+        margin-top: 0;
+        width: 100%;
+        height: auto;
+        clip-path: polygon(0 0, 0 75%, 100% 95%, 100% 0);
+    }
 }
 
 .hoogtepunten_prijzen {
@@ -45,6 +68,12 @@
     height: 100%;
     width: calc((100% - 24rem - 1px) / 2);
     vertical-align: top;
+    @include respond(mobile) {
+        display: block;
+        height: auto;
+        width: 100%;
+        transform: translateY(-3rem);
+    }
 }
 
 .hoogtepunten_prestaties {
@@ -52,6 +81,12 @@
     height: 100%;
     width: calc((100% - 24rem - 1px) / 2);
     vertical-align: top;
+    @include respond(mobile) {
+        display: block;
+        height: auto;
+        width: 100%;
+        transform: translateY(-3rem);
+    }
 }
 
 .hoogtepunten_titel_container {
@@ -60,13 +95,22 @@
     font-weight: $bold;
     font-size: $font_ml;
     margin-left: calc(-1 * 0.05 * 24rem);
-    // margin-bottom: 1rem;
     border-bottom: solid 1px white;
+    @include respond(mobile) {
+        height: 3rem;
+        line-height: 3rem;
+        font-size: $font_medium;
+        margin-left: 0;
+    }
 }
 
 .hoogtepunten_titel {
     margin-left: calc(2rem + 0.025 * 24rem);
     line-height: 4rem;
+    @include respond(mobile) {
+        line-height: 3rem;
+        margin-left: 1rem;
+    }
 }
 
 .hoogtepunten_divider {
@@ -75,10 +119,12 @@
     height: calc(100% );
     width: 1px;
     transform: translateX(-2rem) rotate(16.7deg);
+    @include respond(mobile) {
+        display: none;
+    }
 }
 
 .hoogtepunten_text {
-    // margin-left: 2rem;
     color: white;
     font-size: $font_medium;
     line-height: $line_height_medium;
@@ -86,10 +132,14 @@
     margin-top: 1rem;
     vertical-align: top;
     overflow-y: auto;
+    @include respond(mobile) {
+        font-size: $font_small;
+        line-height: $line_height_small;
+        height: 3rem;
+    }
 }
 
 .hoogtepunten_text_prestatie {
-    // margin-left: 2rem;
     color: white;
     font-size: $font_medium;
     line-height: $line_height_medium;
@@ -97,17 +147,26 @@
     margin-top: 1rem;
     vertical-align: top;
     overflow-y: auto;
+    @include respond(mobile) {
+        font-size: $font_small;
+        line-height: $line_height_small;
+        height: 3rem;
+    }
 }
 
 @for $i from 1 through 3 {
     .hoogtepunten_text:nth-of-type(#{$i}) {
-        margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 1rem);
+        @include respond(computerscherm) {
+            margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 1rem);
+        }
     }
 }
 
 @for $i from 1 through 3 {
     .hoogtepunten_text_prestatie:nth-of-type(#{$i}) {
-        margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 2rem);
+        @include respond(computerscherm) {
+            margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 2rem);
+        }
     }
 }
 
@@ -117,36 +176,49 @@
     width: 4rem;
     border-right: solid 1px white;
     clip-path: polygon(-100% 0, -100% 100%, 75% 100%, 95% 0);
+    @include respond(mobile) {
+        width: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        height: 12rem;
+    }
 }
 
 .hoogtepunten_medaille {
     display: block;
     height: 4rem;
     margin-top: 1rem;
+    @include respond(mobile) {
+        height: 3rem;
+    }
 }
-
-// .hoogtepunten_medaille:nth-of-type()
 
 @for $i from 1 through 3 {
     .hoogtepunten_medaille:nth-of-type(#{$i}) {
-        margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 2rem);
+        @include respond(computerscherm) {
+            margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 2rem);
+        }
     }
 }
 
 .hoogtepunten_text_container {
     display: inline-block;
-    // width: 10rem;
     width: calc(100% - 5rem);
     height: 16rem;
     vertical-align: top;
     margin-left: 1rem;
+    @include respond(mobile) {
+        height: 12rem;
+    }
 }
 
 .hoogtepunten_prestaties_container {
     display: inline-block;
-    // width: 10rem;
     width: 100%;
     height: 16rem;
     vertical-align: top;
     margin-left: 1rem;
+    @include respond(mobile) {
+        height: 12rem;
+    }
 }

@@ -1,0 +1,45 @@
+{
+    "wedstrijden": [
+        {
+            "wedstrijd": "NSK Indoor 2023",
+            "foto": "test",
+            "prijzen": [
+                {
+                    "naam": "Arnold",
+                    "plaats": 1,
+                    "afstand": "60m"
+                },
+                {
+                    "naam": "Arnold",
+                    "plaats": 1,
+                    "afstand": "200m"
+                },
+                {
+                    "naam": "Arnold",
+                    "plaats": 1,
+                    "afstand": "200m"
+                },
+                {
+                    "naam": "Arnold",
+                    "plaats": 1,
+                    "afstand": "200m"
+                },
+                {
+                    "naam": "Arnold",
+                    "plaats": 2,
+                    "afstand": "1500m"
+                },
+                {
+                    "naam": "Arnold",
+                    "plaats": 3,
+                    "afstand": "1500m"
+                }
+            ],
+            "prestaties": [
+                "Arnold verbetert 60m PR met 12 seconden", 
+                "Arnold wint het ludieke onderdeel",
+                "Arnold verbetert 5 PR's"
+            ]
+        }
+    ]
+}
