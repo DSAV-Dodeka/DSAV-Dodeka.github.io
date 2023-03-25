@@ -79,7 +79,7 @@
 .hoogtepunten_prestaties {
     display: inline-block;
     height: 100%;
-    width: calc((100% - 24rem - 1px) / 2);
+    width: calc((100% - 24rem - 8px) / 2);
     vertical-align: top;
     @include respond(mobile) {
         display: block;
@@ -95,12 +95,13 @@
     font-weight: $bold;
     font-size: $font_ml;
     margin-left: calc(-1 * 0.05 * 24rem);
-    border-bottom: solid 1px white;
+    border-bottom: solid 3px white;
     @include respond(mobile) {
         height: 3rem;
         line-height: 3rem;
         font-size: $font_medium;
         margin-left: 0;
+        border-bottom: solid 1px white;
     }
 }
 
@@ -116,8 +117,8 @@
 .hoogtepunten_divider {
     display: inline-block;
     background-color: white;
-    height: calc(100% );
-    width: 1px;
+    height: calc(100%);
+    width: 3px;
     transform: translateX(-2rem) rotate(16.7deg);
     @include respond(mobile) {
         display: none;
