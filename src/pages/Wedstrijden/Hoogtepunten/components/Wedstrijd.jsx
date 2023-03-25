@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
 import "./Wedstrijd.scss";
-import foto from "../../../../images/wedstrijden/nsk_indoor_algemeen.jpeg";
 import getUrl from "../../../../functions/links";
 
 function getGold(prijzen) {
@@ -45,7 +44,7 @@ function Wedstrijd(props) {
             <div className="hoogtepunten_wedstrijd">
                 {props.naam}
             </div>
-            <img className="hoogtepunten_foto" src={foto}/>
+            <img className="hoogtepunten_foto" src={getUrl('wedstrijden/' + props.foto)}/>
             
             <div className="hoogtepunten_prijzen">
                 <div className="hoogtepunten_titel_container">
