@@ -51,6 +51,7 @@ export const trainings_klassement_request = async (auth: AuthUse, options?: Opti
 
 // New situation with uploads from admin page. Todo when replacing old: remove new from names.
 
+
 const PuntenKlassementDataNew = z.object({
     user_id: z.string(),
     name: z.string(),
@@ -58,7 +59,29 @@ const PuntenKlassementDataNew = z.object({
 })
 export type PuntenKlassementDataNew = z.infer<typeof PuntenKlassementDataNew>;
 
-const PuntenKlassementNew = z.object({
-    points: z.array(PuntenKlassementDataNew)
-})
+const PuntenKlassementNew = z.array(PuntenKlassementDataNew)
+
 export type PuntenKlassementNew = z.infer<typeof PuntenKlassementNew>;
+
+export const punten_klassement_request_new = async (auth: AuthUse, options?: Options) => {
+    let response = await back_request('members/rankings/points', auth, options)
+    const punt_klas: PuntenKlassementNew = PuntenKlassementNew.parse(response)
+    return punt_klas
+}
+
+const TrainingsKlassementDataNew = z.object({
+    user_id: z.string(),
+    name: z.string(),
+    points: z.number()
+})
+export type TrainingsKlassementDataNew = z.infer<typeof PuntenKlassementDataNew>;
+
+const TrainingsKlassementNew = z.array(PuntenKlassementDataNew)
+
+export type TrainingsKlassementNew = z.infer<typeof PuntenKlassementNew>;
+
+export const trainings_klassement_request_new = async (auth: AuthUse, options?: Options) => {
+    let response = await back_request('members/rankings/training', auth, options)
+    const punt_klas: TrainingsKlassementNew = TrainingsKlassementNew.parse(response)
+    return punt_klas
+}

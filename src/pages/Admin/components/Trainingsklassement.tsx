@@ -12,26 +12,26 @@ import {
     getSortedRowModel
 } from '@tanstack/react-table'
 import {UserData, ud_request, catch_api, RoleInfo} from "../../../functions/api/api";
-import { PuntenKlassementDataNew, EventType } from "../../../functions/api/klassementen";
+import { TrainingsKlassementDataNew, EventType } from "../../../functions/api/klassementen";
 import AuthContext from "../../Auth/AuthContext";
 import "./Puntenklassement.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
-import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
+import {queryError, useTrainingsKlassementQueryNew} from "../../../functions/queries";
 import EventTypes from "../../../content/EventTypes.json";
 
 
-const columnHelper = createColumnHelper<PuntenKlassementDataNew>()
+const columnHelper = createColumnHelper<TrainingsKlassementDataNew>()
 
 const columns = [
     columnHelper.accessor('name', {
         header: () => 'Naam',
     }),
     columnHelper.accessor('points', {
-        header: () => 'Punten',
+        header: () => 'Aantal trainingen',
     })
 ]
 
-const defaultData: PuntenKlassementDataNew[] = [
+const defaultData: TrainingsKlassementDataNew[] = [
     {
         user_id: '1_arnold',
         name: 'Arnold het Aardvarken',
@@ -59,7 +59,7 @@ const defaultData: PuntenKlassementDataNew[] = [
     },
 ]
 
-const Puntenklassement = () => {
+const Trainingsklassement = () => {
     const {authState, setAuthState} = useContext(AuthContext);
     const [newEvent, setNewEvent] = useState(false);
     const [sorting, setSorting] = useState<SortingState>([]);
@@ -67,11 +67,10 @@ const Puntenklassement = () => {
     const [onherkend, setOnherkend] = useState<string[]>([]);
     const [fileUploaded, setFileUploaded] = useState(false);
 
-    // const q = useUserDataQuery({ authState, setAuthState })
-    // const data = queryError(q, defaultData, "User Info Query Error")
-    const data = defaultData;
+    const q = useTrainingsKlassementQueryNew({ authState, setAuthState })
+    const data = queryError(q, defaultData, "User Info Query Error")
 
-    const table = useReactTable<PuntenKlassementDataNew>({
+    const table = useReactTable<TrainingsKlassementDataNew>({
         data,
         columns,
         state: {
@@ -152,7 +151,7 @@ const Puntenklassement = () => {
                                     </th>
                                 )
                             })}
-                            <th ><p className="leden_table_header_button" onClick={() => setNewEvent(true)}>Nieuw evenement</p></th>
+                            <th ><p className="leden_table_header_button" onClick={() => setNewEvent(true)}>Voeg trainingen toe</p></th>
                         </tr>
                     ))}
                 </thead>
@@ -177,7 +176,7 @@ const Puntenklassement = () => {
                                 )
                             })}
                             <td>
-                                <p className="leden_table_row_link">Bekijk behaalde punten</p>
+                                <p className="leden_table_row_link">Bekijk trainingen</p>
                             </td>
                         </tr>
                     </Fragment>
@@ -190,27 +189,15 @@ const Puntenklassement = () => {
                 <div className="new_event_container" />
                 <div className="new_event">
                 <svg xmlns="http://www.w3.org/2000/svg" className="new_event_cross" onClick={() => {setNewEvent(false); setGeselecteerdeLeden([]); setOnherkend([]); setFileUploaded(false)}} viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg>
-                    <p className="new_event_title">Voeg een nieuw evenement toe</p>
+                    <p className="new_event_title">Voeg trainingen toe</p>
                     <form className="new_event_form">
-                        <input className="new_event_input" type="text" placeholder="Naam evenement"></input>
+                        <input className="new_event_input" type="text" placeholder="Omschrijving"></input>
                         <div className="new_event_half">
                             <p className="new_event_label">Datum:</p>
                             <input className="new_event_date" type="date"></input><br/>
                         </div>
                         
-                        <div className="new_event_half">
-                        <p className="new_event_label_type">Type:</p>
-                        <select className="new_event_select">
-                            {EventTypes.event_types.map((item) => {
-                                return <option>{item.type}</option>;
-                            })}
-                        </select>
-                        </div>
-                        <div className="new_event_half">
-                            <p className="new_event_label">Aantal punten:</p>
-                            <input className="new_event_points" type="number" min="1" max="12" defaultValue="1"></input>
-                        </div>
-                        <p className="new_event_label_type">Selecteer leden:</p>
+                        <p className="new_event_label_type">Upload bestand met punten:</p>
                         <input className="new_event_file" type="file" accept=".csv,.xlsx,.xls" onChange={handleFileUpload}></input>
                         {fileUploaded && <div className="new_event_selected">
                             <div className="new_event_half">
@@ -246,4 +233,4 @@ const Puntenklassement = () => {
     )
 }
 
-export default Puntenklassement;
+export default Trainingsklassement;
