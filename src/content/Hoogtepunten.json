@@ -1,0 +1,30 @@
+{
+    "wedstrijden": [
+        {
+            "wedstrijd": "NSK Ekiden 2023",
+            "foto": "hoogtepunten_ekiden_2023.jpg",
+            "prijzen": [
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 1,
+                    "afstand": "Marathon estafette mixed"
+                },
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 2,
+                    "afstand": "Marathon estafette vrouwen"
+                },
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 3,
+                    "afstand": "Marathon estafette mannen"
+                }
+            ],
+            "prestaties": [
+                "Dit NSK is georganiseerd door onze eigen commissie", 
+                "Het Dodeka mixed team is 3e overall geworden",
+                "Dodeka aanwezig met in totaal 6 teams"
+            ]
+        }
+    ]
+}
