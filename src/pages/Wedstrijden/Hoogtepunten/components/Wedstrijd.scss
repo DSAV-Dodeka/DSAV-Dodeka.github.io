@@ -52,7 +52,7 @@
     object-fit: cover;
     clip-path: polygon(0 0, 0 100%, 75% 100%, 95% 0);
     background: none;
-    border-radius: 0.75rem 0 0 0.75rem;
+    border-radius: 0 0 0 0.75rem;
     display: inline-block;
     @include respond(mobile) {
         display: block;
