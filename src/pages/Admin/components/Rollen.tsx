@@ -76,7 +76,10 @@ const Rollen = () => {
     const [addRoleUser, setAddRoleUser] = useState("none");
     const [roleToAdd, setRoleToAdd] = useState(RollenInfo.rollen[0].rol)
     const [manageRoles, setManageRoles] = useState(false);
-    const [sorting, setSorting] = useState<SortingState>([])
+    const [sorting, setSorting] = useState<SortingState>([{
+        id: "name",
+        desc: false
+    }])
 
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setRoleToAdd(event.target.value)
@@ -123,10 +126,11 @@ const Rollen = () => {
         state: {
             sorting,
         },
+        
         onSortingChange: setSorting,
         getRowCanExpand: () => true,
         getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel()
+        getSortedRowModel: getSortedRowModel(),
     })
 
     return (
