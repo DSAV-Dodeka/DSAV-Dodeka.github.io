@@ -27,6 +27,7 @@ import Leden from "./pages/Leden/Leden";
 import Gezelligheid from "./pages/Vereniging/Gezelligheid/Gezelligheid";
 import Klassementen from "./pages/Leden/Klassementen/Klassementen";
 import Hoogtepunten from "./pages/Wedstrijden/Hoogtepunten/Hoogtepunten";
+import Vetrouwenscontactpersoon from "./pages/Contact/VCP/VCP"
 import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
@@ -189,6 +190,9 @@ function App() {
                     }/>
                     <Route path="/contact" element={
                       <Contact />
+                    }/>
+                    <Route path="/vertrouwenscontactpersoon" element={
+                      <Vetrouwenscontactpersoon />
                     }/>
                       <Route path="/leden/verjaardagen" element={
                         <Verjaardagen />
