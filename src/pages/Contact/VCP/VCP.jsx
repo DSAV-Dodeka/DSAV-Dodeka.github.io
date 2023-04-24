@@ -7,9 +7,24 @@ function Vertrouwenscontactpersoon(){
         <div className="algemeen">
                 <PageTitle title="Vertrouwenscontactpersonen"/>
 
-            <div className="textkolom1"> </div>    
-            <div className="textkolom2"> </div>
-            <div className="textkolom2"> </div>
+            <div className="textkolom1">
+                <h>Vertrouwenscontactpersoon</h>
+                <p>
+                    Hier komt info over de vertrouwenscontactpersonen, wat ze doen enzo.
+                </p>
+            </div>    
+            <div className="textkolom2">
+                <h>naam</h>
+                <p>
+                    Hier komt info over de vertrouwenscontactpersoon, hoe ze te bereiken.
+                </p> 
+            </div>
+            <div className="textkolom2"> 
+                <h>naam</h>
+                <p>
+                    Hier komt info over de vertrouwenscontactpersoon, hoe ze te bereiken.
+                </p> 
+            </div>
             
         </div>
     )
