@@ -26,6 +26,7 @@ import Verjaardagen from "./pages/Leden/Verjaardagen/Verjaardagen";
 import Leden from "./pages/Leden/Leden";
 import Gezelligheid from "./pages/Vereniging/Gezelligheid/Gezelligheid";
 import Klassementen from "./pages/Leden/Klassementen/Klassementen";
+import Hoogtepunten from "./pages/Wedstrijden/Hoogtepunten/Hoogtepunten";
 import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
@@ -171,6 +172,9 @@ function App() {
                     {/*            }/>*/}
                     {/*    )*/}
                     {/*)}*/}
+                    <Route path="/wedstrijden/hoogtepunten" element={
+                      <Hoogtepunten />
+                    }/>
                     <Route path="/wedstrijden" element={
                       <Wedstrijden />
                     }/>
