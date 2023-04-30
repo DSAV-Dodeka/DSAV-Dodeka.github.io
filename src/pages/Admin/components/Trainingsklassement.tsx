@@ -18,6 +18,7 @@ import "./Puntenklassement.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useTrainingsKlassementQueryNew} from "../../../functions/queries";
 import EventTypes from "../../../content/EventTypes.json";
+import {parseFile} from "./parse";
 
 
 const columnHelper = createColumnHelper<TrainingsKlassementDataNew>()
@@ -91,39 +92,31 @@ const Trainingsklassement = () => {
         return null;
     }
 
-    const handleFileUpload = (e: any) => {
-        setFileUploaded(true);
-        const files = e.target.files;
-        if (files) {
-            Papa.parse(files[0], {
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results) {
-                    var values: string[] = [];
-
-                    // TODO: Try catch loop beter maken met error handling.
-                    try {
-                        results.data.map((d) => {
-                            values.push(d.user_id);
-                        });
-                    } catch (error) {
-                        console.log("Invalid file")
-                    }
-                    var namesFound: string[] = [];
-                    var unknown: string[] = [];
-                    values.forEach((value) => {
-                        const name = getName(value);
-                        if (name) {
-                            namesFound.push(name);
-                        } else {
-                            unknown.push(value);
-                        }
-                    })
-                    setGeselecteerdeLeden(namesFound);
-                    setOnherkend(unknown);
-                }
-            })
+    const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        if (files === null) {
+            console.log("Files are null!")
+            return
         }
+
+        setFileUploaded(true);
+
+        const rowSchema = z.object({
+            user_id: z.string(),
+            points: z.coerce.number()
+        })
+
+        type Row = z.infer<typeof rowSchema>
+
+        const errCallback = (e: unknown) => {
+            console.log(JSON.stringify(e))
+        }
+
+        const resultCallback = (found: Row[]) => {
+            console.log(JSON.stringify(found))
+        }
+
+        parseFile(files, rowSchema, resultCallback, errCallback)
     }
 
     return (
