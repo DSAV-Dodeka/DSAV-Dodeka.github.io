@@ -12,11 +12,11 @@ import {
     getSortedRowModel
 } from '@tanstack/react-table'
 import {UserData, ud_request, catch_api, RoleInfo} from "../../../functions/api/api";
-import { TrainingsKlassementDataNew, EventType } from "../../../functions/api/klassementen";
+import {TrainingsKlassementDataNew, EventType, UserIDData} from "../../../functions/api/klassementen";
 import AuthContext from "../../Auth/AuthContext";
 import "./Puntenklassement.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
-import {queryError, useTrainingsKlassementQueryNew} from "../../../functions/queries";
+import {queryError, useTrainingsKlassementQueryNew, useUserIdQuery} from "../../../functions/queries";
 import EventTypes from "../../../content/EventTypes.json";
 import {parseFile} from "./parse";
 
@@ -31,6 +31,12 @@ const columns = [
         header: () => 'Aantal trainingen',
     })
 ]
+
+const defaultIds: Set<string> = new Set([
+    '1_arnold',
+    '2_arnold',
+    '3_arnold'
+])
 
 const defaultData: TrainingsKlassementDataNew[] = [
     {
@@ -69,7 +75,10 @@ const Trainingsklassement = () => {
     const [fileUploaded, setFileUploaded] = useState(false);
 
     const q = useTrainingsKlassementQueryNew({ authState, setAuthState })
-    const data = queryError(q, defaultData, "User Info Query Error")
+    const data = queryError(q, defaultData, "Traingsklassement Query Error")
+
+    const qIds = useUserIdQuery({ authState, setAuthState })
+    const idData = queryError(qIds, defaultIds, "User Id Admin Query Error")
 
     const table = useReactTable<TrainingsKlassementDataNew>({
         data,
@@ -94,8 +103,8 @@ const Trainingsklassement = () => {
 
     const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
-        if (files === null) {
-            console.log("Files are null!")
+        if (files === null || files.length === 0) {
+            setFileUploaded(false)
             return
         }
 
@@ -113,6 +122,18 @@ const Trainingsklassement = () => {
         }
 
         const resultCallback = (found: Row[]) => {
+            let namesFound: string[] = [];
+            let unknownNames: string[] = [];
+            found.forEach((r) => {
+                console.log({"hi this is ids": JSON.stringify(idData)})
+                if (idData.has(r.user_id)) {
+                    namesFound.push(r.user_id)
+                } else {
+                    unknownNames.push(r.user_id)
+                }
+            })
+            setGeselecteerdeLeden(namesFound)
+            setOnherkend(unknownNames)
             console.log(JSON.stringify(found))
         }
 
