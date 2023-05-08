@@ -5,11 +5,11 @@ export const parseFile = <S extends ZodTypeAny>(files: FileList, rowSchema: S, r
     Papa.parse(files[0], {
         header: true,
         skipEmptyLines: true,
+        worker: true,
         error(error: Error, _file: unknown) {
             errorCallback(error)
         },
         complete: function(results) {
-            console.log("parsed: " + JSON.stringify(results.data))
             try {
                 const parsedRows: z.infer<S> = rowSchema.array().parse(results.data)
                 resultCallback(parsedRows)
@@ -53,6 +53,9 @@ export const matchNames = <T extends Name>(users: UserName[], names: T[]): {noMa
             const firstLast = (u.firstname + " " + u.lastname)
 
             if (u.firstname === name) {
+                if (matchLevel > 0) {
+                    matched = []
+                }
                 matched.push({ ...nameInfo, user_id: u.user_id, matchedName: firstLast})
                 matchLevel = 0
             }
@@ -63,6 +66,9 @@ export const matchNames = <T extends Name>(users: UserName[], names: T[]): {noMa
 
             if (firstLast === name) {
                 matched.push({ ...nameInfo, user_id: u.user_id, matchedName: firstLast})
+                if (matchLevel > 1) {
+                    matched = []
+                }
                 matchLevel = 1
             }
 
