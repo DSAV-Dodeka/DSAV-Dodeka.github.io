@@ -19,7 +19,7 @@
     left: 25%;
     background-color: $dodeka_blauw;
     width: 50%;
-    max-height: calc(min(75%, 75vh));
+    max-height: calc(min(90%, 75vh));
     opacity: 100%;
     z-index: 2;
     border-radius: 0.75rem;
@@ -125,9 +125,12 @@
     cursor: pointer;
 }
 
-.new_event_form {
-    width: calc(100%);
-}
+//.new_event_form {
+//    width: calc(100%);
+//    //overflow: scroll;
+//    max-height: 100%;
+//    display: inline-block;
+//}
 
 .new_event_input {
     border-style: none;
@@ -154,7 +157,7 @@
     outline: none;
 }
 
-.new_event_form button {
+.new_event button {
     width: calc(25% - 0.5rem);
     margin-left: 0rem;
     font-size: $font_medium;
@@ -164,7 +167,7 @@
     padding-bottom: 0.5rem;
     border: none;
     display: block;
-    
+
 }
 
 .new_event_file {
@@ -177,4 +180,5 @@
 
 .new_event_selected {
     margin-bottom: 1rem;
+    overflow: scroll;
 }

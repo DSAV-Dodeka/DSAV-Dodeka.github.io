@@ -9,6 +9,7 @@ export const parseFile = <S extends ZodTypeAny>(files: FileList, rowSchema: S, r
             errorCallback(error)
         },
         complete: function(results) {
+            console.log("parsed: " + JSON.stringify(results.data))
             try {
                 const parsedRows: z.infer<S> = rowSchema.array().parse(results.data)
                 resultCallback(parsedRows)
@@ -19,31 +20,40 @@ export const parseFile = <S extends ZodTypeAny>(files: FileList, rowSchema: S, r
     })
 }
 
-type IdName = {
-    user_id: string,
+type Name = {
     name: string
+}
+export type MultiMatch = {
+    name: string
+    matchedNames: string[]
+}
+
+type IdMatch= {
+    user_id: string,
+    matchedName: string
 }
 
 type UserName = {
-    callname: string,
     firstname: string,
     lastname: string,
     user_id: string
 }
 
-const matchNames = (users: UserName[], names: string[]) => {
-    const uniqueMatch = new Map<string, IdName>()
-    const multipleMatch = new Map<string, IdName[]>()
+export const matchNames = <T extends Name>(users: UserName[], names: T[]): {noMatch: string[], uniqueMatch: (IdMatch & T)[], multipleMatch: MultiMatch[]} => {
+    type Match = IdMatch & T
+    const uniqueMatch: Match[] =[]
+    const multipleMatch: MultiMatch[] = []
+
     const noMatch: string[] = []
-    for (const name of names) {
-        let matched: IdName[] = []
+    for (const nameInfo of names) {
+        const name = nameInfo.name
+        let matched: Match[] = []
         let matchLevel = -1
         for (const u of users) {
             const firstLast = (u.firstname + " " + u.lastname)
-            const fullName = firstLast + ` (${u.callname})`
 
-            if (u.callname === name || u.firstname === name) {
-                matched.push({ user_id: u.user_id, name: fullName })
+            if (u.firstname === name) {
+                matched.push({ ...nameInfo, user_id: u.user_id, matchedName: firstLast})
                 matchLevel = 0
             }
 
@@ -51,11 +61,8 @@ const matchNames = (users: UserName[], names: string[]) => {
                 continue
             }
 
-            const callLast = (u.callname + " " + u.lastname)
-
-
-            if (callLast === name || firstLast === name) {
-                matched.push({ user_id: u.user_id, name: fullName })
+            if (firstLast === name) {
+                matched.push({ ...nameInfo, user_id: u.user_id, matchedName: firstLast})
                 matchLevel = 1
             }
 
@@ -64,23 +71,23 @@ const matchNames = (users: UserName[], names: string[]) => {
             }
             const nameWithoutDot = name.replace('.', '')
 
-            if (callLast.includes(nameWithoutDot) || firstLast.includes(nameWithoutDot)) {
-                matched.push({ user_id: u.user_id, name: fullName })
+            if (firstLast.includes(nameWithoutDot)) {
+                matched.push({ ...nameInfo, user_id: u.user_id, matchedName: firstLast})
                 matchLevel = 2
             }
         }
         if (matched.length === 0) {
             noMatch.push(name)
         } else if (matched.length === 1) {
-            uniqueMatch.set(name, matched[0])
+            uniqueMatch.push(matched[0])
         } else {
-            multipleMatch.set(name, matched)
+            multipleMatch.push({name, matchedNames: matched.map(m => m.matchedName) })
         }
 
     }
     return {
         noMatch,
-        uniqueMatch: Object.fromEntries(uniqueMatch),
-        multipleMatch: Object.fromEntries(multipleMatch)
+        uniqueMatch,
+        multipleMatch
     }
 }

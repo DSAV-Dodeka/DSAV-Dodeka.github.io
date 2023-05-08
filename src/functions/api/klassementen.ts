@@ -98,6 +98,19 @@ const UserIDList = z.array(UserIDData)
 export const user_id_request = async (auth: AuthUse, options?: Options): Promise<Set<string>> => {
     let response = await back_request('admin/users/ids', auth, options)
     const user_ids = UserIDList.parse(response).map(s => s.user_id)
-    console.log("SETSS " + user_ids)
     return new Set(user_ids)
+}
+
+const UserNames = z.object({
+    user_id: z.string(),
+    firstname: z.string(),
+    lastname: z.string()
+})
+export type UserNames = z.infer<typeof UserNames>
+
+const UserNamesList = z.array(UserNames)
+
+export const user_names_request = async (auth: AuthUse, options?: Options): Promise<UserNames[]> => {
+    let response = await back_request('admin/users/names', auth, options)
+    return UserNamesList.parse(response)
 }

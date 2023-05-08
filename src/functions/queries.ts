@@ -17,7 +17,7 @@ import {
     TrainingsKlassementData,
     TrainingsKlassement,
     punten_klassement_request_new,
-    trainings_klassement_request_new, user_id_request
+    trainings_klassement_request_new, user_id_request, user_names_request
 } from "./api/klassementen";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {AuthUse} from "../pages/Auth/AuthContext";
@@ -90,6 +90,14 @@ export const usePuntenKlassementQueryNew = (au: AuthUse) =>
 
 export const useUserIdQuery = (au: AuthUse) =>
     useQuery(['u_id'], () => user_id_request(au),
+        {
+            staleTime: longStaleTime,
+            cacheTime: longCacheTime,
+            enabled: au.authState.isAuthenticated,
+        })
+
+export const useUserNamesQuery = (au: AuthUse) =>
+    useQuery(['u_names'], () => user_names_request(au),
         {
             staleTime: longStaleTime,
             cacheTime: longCacheTime,
