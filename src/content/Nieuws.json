@@ -9,14 +9,6 @@
             "foto": "Tour_du_chambre.jpg"
         },
         {
-            "id": "schoolreisje_23",
-            "titel": "Dodeka ging op schoolreisje!",
-            "datum": "8-04-2023",
-            "auteur": "Sanne D.",
-            "tekst": "Op 7 april gingen we met een groep Dodekaëders op schoolreisje. Met het schoolreisje gingen we naar Duinrell en het tikibad. Nadat we waren aangekomen kreeg iedereen een zakje snoep en gingen we het park in. Na een aantal achtbanen te hebben gehad gingen we met zijn allen lekker zwemmen in het tikibad. Na tientallen keren de glijbanen af geweest te zijn gingen we weer terug het pretpark in. We sloten vervolgens de dag met zijn allen af in de botsautootjes. Waarna iedereen weer terug naar huis ging.",
-            "foto": "Schoolreisje.jpg"
-        },
-        {
             "id": "biertienkamp_23_Saana",
             "titel": "Biertienkamp 2023 - De ervaring van Saana",
             "datum": "24-04-2023",
@@ -31,6 +23,14 @@
             "auteur": "Lars S.",
             "tekst": "22 april, het was een dag voor vele om nooit meer te vergeten en voor sommige om niet meer te herinneren. Op deze dag was namelijk alweer de derde editie van de biertienkamp. Alhoewel menig atleet nog zenuwen vertoonde voor deze ultieme test in de studentenatletiek, zat de stemming er al gauw goed in. Mede door de openingsspies na afloop van de 100m.  Zeker de eerste helft van de dag verliep soepel dankzij de vele vrijwilligers en het redelijk droge weer. Maar, tegen het einde van de wedstrijd was het effect van de competitie goed te merken. Bij het polsstokhoogspringen is het slechts zes (of vijf) van de 16 (of 15) atleten gelukt een hoogte te halen. Ook bij het kogelstoten was de frustratie bij meerdere atleten hoog opgelopen door de teleurstellende resultaten en echt veel te zware kogels. Hierna bleek de 1500m te ver voor 5 atleten en bleef de baan nog even doordraaien, voor sommigen lang na het laatste rondje. Na het hoognodige eten was de prijsuitreiking waar bekend werd dat Saana en Koen opnieuw de beste studentenatleten van Dodeka in 2023 zijn geworden. Echter, de grootste prestatie van de dag is wel dat de 16 atleten gezamenlijk 174 biertjes gedronken hebben. Dit komt uit op 11.6 per persoon, waar we met zijn allen ontzettend trots op mogen zijn!",
             "foto": "Biertienkamp_lars.jpg"
+        },
+        {
+            "id": "schoolreisje_23",
+            "titel": "Dodeka ging op schoolreisje!",
+            "datum": "8-04-2023",
+            "auteur": "Sanne D.",
+            "tekst": "Op 7 april gingen we met een groep Dodekaëders op schoolreisje. Met het schoolreisje gingen we naar Duinrell en het tikibad. Nadat we waren aangekomen kreeg iedereen een zakje snoep en gingen we het park in. Na een aantal achtbanen te hebben gehad gingen we met zijn allen lekker zwemmen in het tikibad. Na tientallen keren de glijbanen af geweest te zijn gingen we weer terug het pretpark in. We sloten vervolgens de dag met zijn allen af in de botsautootjes. Waarna iedereen weer terug naar huis ging.",
+            "foto": "Schoolreisje.jpg"
         },
         {
             "id": "website_login",
