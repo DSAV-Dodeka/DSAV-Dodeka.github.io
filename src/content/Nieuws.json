@@ -1,6 +1,38 @@
 {
     "nieuwsberichten": [
         {
+            "id": "tour_du_chambre",
+            "titel": "De Dodeka-huizentour!",
+            "datum": "07-05-2023",
+            "auteur": "Sanne D.",
+            "tekst": "We begonnen de avond allemaal samen in het huis van Jesper waar een intens potje Halli Galli werd gespeeld. Daarnaast werd er ook een potje Jenga gespeeld. Na een uurtje splitsten we op in twee groepen die elk naar een ander huis gingen. Ook in deze twee huizen werden weer leuke spelletjes gespeeld. We sloten vervolgens de dag ook weer samen af in het huis van Marin. Hier werd de laatste cocktail van de avond gedronken en vervolgens was er een feest waar DJ abrikoos ook nog ging draaien.",
+            "foto": "Tour_du_chambre.jpg"
+        },
+        {
+            "id": "schoolreisje_23",
+            "titel": "Dodeka ging op schoolreisje!",
+            "datum": "8-04-2023",
+            "auteur": "Sanne D.",
+            "tekst": "Op 7 april gingen we met een groep Dodekaëders op schoolreisje. Met het schoolreisje gingen we naar Duinrell en het tikibad. Nadat we waren aangekomen kreeg iedereen een zakje snoep en gingen we het park in. Na een aantal achtbanen te hebben gehad gingen we met zijn allen lekker zwemmen in het tikibad. Na tientallen keren de glijbanen af geweest te zijn gingen we weer terug het pretpark in. We sloten vervolgens de dag met zijn allen af in de botsautootjes. Waarna iedereen weer terug naar huis ging.",
+            "foto": "Schoolreisje.jpg"
+        },
+        {
+            "id": "biertienkamp_23_Saana",
+            "titel": "Biertienkamp 2023 - De ervaring van Saana",
+            "datum": "24-04-2023",
+            "auteur": "Saana",
+            "tekst": "Op zaterdag 22 april, de dag na de tentamens kwamen 15 (of 16) atleten dapper naar de baan met maar één doel: de adtleet van het jaar worden. Na de openingsspies mocht het spektakel beginnen. Voor sommigen begon de dag met een paar herstelbiertjes voor de brakke ochtend, anderen scheurden hun hamstring in op de 100m (rip Ivo) en anderen dachten hun tactieken uit voor de biercomsumptie. Na 3 onderdelen werd er al een ding duidelijk; het drinktempo lag veel hoger dan vorig jaar. Al voor de 400m waren er deelnemers met 8 bier in de maag, wat de prestaties op dat (regenachtige) onderdeel niet ten goede kwam. Na de hordes begon het harde drinken pas echt en werd al snel de 12 bier door velen gepasseerd. Dat maar vijf (of zes) mensen de aanvang van polsstok hebben gehaald is dan ook wellicht niet al te verrassend. Op het kogelstoten zijn verrassende technieken behaald en teleurstellende afstanden geworpen want ‘Die kogel is nog nooit zo zwaar geweest’. De laatste pilsjes zijn nog gauw naar binnen gegooid voor de start van de 1500m waarbij het gemiddelde aantal op 11 uitkomt, vier meer dan afgelopen jaar, en het maximum op 18, twee meer dan het bierrecord. De 1500m was niet de snelste wedstrijd ooit op onze baan gelopen en had ook niet evenveel finishers als starters, maar onvergetelijk was het wel (of juist niet?). Het was een spannende strijd maar uiteindelijk hebben Koen en Saana hun titels weten te prolongeren.",
+            "foto": "Biertienkamp_saana.jpg"
+        },
+        {
+            "id": "biertienkamp_23_Lars",
+            "titel": "Biertienkamp 2023 - De ervaring van Lars",
+            "datum": "23-04-2023",
+            "auteur": "Lars S.",
+            "tekst": "22 april, het was een dag voor vele om nooit meer te vergeten en voor sommige om niet meer te herinneren. Op deze dag was namelijk alweer de derde editie van de biertienkamp. Alhoewel menig atleet nog zenuwen vertoonde voor deze ultieme test in de studentenatletiek, zat de stemming er al gauw goed in. Mede door de openingsspies na afloop van de 100m.  Zeker de eerste helft van de dag verliep soepel dankzij de vele vrijwilligers en het redelijk droge weer. Maar, tegen het einde van de wedstrijd was het effect van de competitie goed te merken. Bij het polsstokhoogspringen is het slechts zes (of vijf) van de 16 (of 15) atleten gelukt een hoogte te halen. Ook bij het kogelstoten was de frustratie bij meerdere atleten hoog opgelopen door de teleurstellende resultaten en echt veel te zware kogels. Hierna bleek de 1500m te ver voor 5 atleten en bleef de baan nog even doordraaien, voor sommigen lang na het laatste rondje. Na het hoognodige eten was de prijsuitreiking waar bekend werd dat Saana en Koen opnieuw de beste studentenatleten van Dodeka in 2023 zijn geworden. Echter, de grootste prestatie van de dag is wel dat de 16 atleten gezamenlijk 174 biertjes gedronken hebben. Dit komt uit op 11.6 per persoon, waar we met zijn allen ontzettend trots op mogen zijn!",
+            "foto": "Biertienkamp_lars.jpg"
+        },
+        {
             "id": "website_login",
             "titel": ".ComCom presenteert loginsysteem voor de website",
             "datum": "11-01-2023",
