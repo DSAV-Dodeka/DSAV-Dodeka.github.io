@@ -223,43 +223,38 @@
             "fotos": "nskekiden"
         },
 	{
-        "naam": "RedaXII",
-        "info": "De RedaXII schrijft en publiceerd de nieuwsbrieven en het jaarboek. Hiervoor verzamelen we stukjes en fotos en hierdoor blijven de leden geinformeerd over wat er de afgelopen periode is gebeurd. Daarnaast is er voor iedereen die dat wil aan het einde van het jaar een jaarboek als samenvatting en herinnering van wat vast weer een geweldig jaar bij de vereniging wordt. Heb jij nu een goed idee of een leuk verhaal voor in de nieuwsbrief of het jaarboek, schroom dan niet om een van de RedaXII leden een keer aan te spreken of te mailen naar redaxii@dsavdodeka.nl. Mocht je een leuke quote hebben van iemand dan kan je die sturen naar Juliet.", 
+            "naam": "RedaXII",
+            "info": "De RedaXII schrijft en publiceerd de nieuwsbrieven en het jaarboek. Hiervoor verzamelen we stukjes en fotos en hierdoor blijven de leden geinformeerd over wat er de afgelopen periode is gebeurd. Daarnaast is er voor iedereen die dat wil aan het einde van het jaar een jaarboek als samenvatting en herinnering van wat vast weer een geweldig jaar bij de vereniging wordt. Heb jij nu een goed idee of een leuk verhaal voor in de nieuwsbrief of het jaarboek, schroom dan niet om een van de RedaXII leden een keer aan te spreken of te mailen naar redaxii@dsavdodeka.nl. Mocht je een leuke quote hebben van iemand dan kan je die sturen naar Juliet.", 
 		"leden": [
                 {
                     "naam": "Thomas Albers",
                     "functie": "Voorzitter",
-                    "foto": "thomas"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Tim Creusen",
+                    "naam": "Juliet Driessens",
                     "functie": "Secretaris",
-                    "foto": "tim"
-                },
-                {
-                    "naam": "Anne Hinrichs",
-                    "functie": "Penningmeester",
-                    "foto": "anne"
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Marea Warmenhoven",
                     "functie": "Commissaris Inhoud",
-                    "foto": "marea"
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Robin Beijer",
                     "functie": "Commissaris Vormgeving",
-                    "foto": "robin"
+                    "foto": "placeholder"
                 },
 		    {
-                    "naam": "Anna Lusthof",
+                    "naam": "Florence Estublier",
                     "functie": "Commissaris Flexibel",
-                    "foto": "anna"
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Simon Loose",
                     "functie": "QQ",
-                    "foto": "simon"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "redaxii"
@@ -332,55 +327,6 @@
                 }
             ],
             "fotos": "snowdeka"
-        },
-        {
-            "naam": "Startco",
-            "info": "Wij zijn de Startco misschien wel de belangrijkste commissie van Dodeka. Wij zorgen er namelijk voor dat onze mooie vereniging gerepresenteerd wordt op de Ladies intro en de Owee, zodat er veel nieuwe leden komen. Daarnaast organiseren wij het startweekend, waar alle nieuwe en oude leden elkaar eens goed leren kennen.",
-		    "leden": [
-                {
-                    "naam": "Joris Gudde",
-                    "functie": "Voorzitter",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Merel Blaauw",
-                    "functie": "Secretaris",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Sanne Diepen",
-                    "functie": "Penningmeester",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Niels Verheugd",
-                    "functie": "Vice voorzitter en com. startweekend",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Suze de Vries",
-                    "functie": "Commissaris feest/promo",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Hannah Busse",
-                    "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
-                }
-                ,
-                {
-                    "naam": "Jefry el Bhwash",
-                    "functie": "QQ 1",
-                    "foto": "placeholder"
-                }
-                ,
-                {
-                    "naam": "Lianne Folkerts",
-                    "functie": "QQ 2",
-                    "foto": "placeholder"
-                }
-            ],
-            "fotos": "startco"
         },
         {
             "naam": "Sunrice",
