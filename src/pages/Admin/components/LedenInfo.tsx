@@ -15,6 +15,7 @@ import "./table.scss";
 import "./LedenInfo.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
+import { exportCSV } from "./parse";
 
 const columnHelper = createColumnHelper<UserData>()
 
@@ -88,6 +89,7 @@ const LedenInfo = () => {
 
     return (
         <div>
+            <button className="export_button" onClick={() => exportCSV(data, "Ledeninformatie.csv")}>Exporteer</button>
             <table className="leden_table">
                 <thead>
                 {table.getHeaderGroups().map(headerGroup => (

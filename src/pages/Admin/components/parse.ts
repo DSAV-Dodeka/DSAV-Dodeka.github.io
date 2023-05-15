@@ -97,3 +97,14 @@ export const matchNames = <T extends Name>(users: UserName[], names: T[]): {noMa
         multipleMatch
     }
 }
+
+export const exportCSV = (data: any, file_name: string) => {
+    const csv = Papa.unparse(data)
+    const blob = new Blob([csv]);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = file_name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}

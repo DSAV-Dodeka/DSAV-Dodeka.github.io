@@ -15,10 +15,13 @@
 }
 
 .admin_toggle h1 {
-    width: 14rem;
+    width: fit-content;
+    padding-left: 2rem;
+    padding-right: 2rem;
     font-size: $font_medium;
     line-height: $line_height_medium;
-    padding: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     color: white;
     background-color: $dodeka_blauw;
     border-radius: 0.75rem 0.75rem 0 0;
