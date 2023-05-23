@@ -7,32 +7,32 @@
                 {
                     "naam": "Matthijs Arnoldus",
                     "functie": "CEO",
-                    "foto": "placeholder"
+                    "foto": "matthijs"
                 },
                 {
                     "naam": "Tip ten Brink",
                     "functie": "Lead Senior Backend Developer",
-                    "foto": "placeholder"
+                    "foto": "tip"
                 },
                 {
                     "naam": "Nathan Douenburg",
                     "functie": "Senior Lead UX Designer",
-                    "foto": "placeholder"
+                    "foto": "nathan"
                 },
                 {
                     "naam": "Pien Abbink",
                     "functie": "Frontend Developer/Content Manager",
-                    "foto": "placeholder"
+                    "foto": "pien"
                 },
                 {
                     "naam": "Leander Bindt",
                     "functie": "Secretaris en DataFeutje",
-                    "foto": "placeholder"
+                    "foto": "leander"
                 },
                 {
                     "naam": "Jefry el Bhwash",
                     "functie": "QomQommer",
-                    "foto": "placeholder"
+                    "foto": "jefry"
                 }
             ],
             "fotos": "comcom"
@@ -303,39 +303,39 @@
                 {
                     "naam": "Sanne Cox",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "sanne"
                 },
                 {
                     "naam": "Hugo ter Hoeven",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "hugo"
                 },
                 {
                     "naam": "Loek Sanders",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "loek"
                 },
                 {
                     "naam": "Job van der Kleij",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "placeholder"
+                    "foto": "job"
                 },
                 {
                     "naam": "Larissa Smit",
                     "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
+                    "foto": "larissa"
                 },
                 {
                     "naam": "Simon Loose",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "simon"
                 }
             ],
             "fotos": "snowdeka"
         },
         {
             "naam": "Startco",
-            "info": "Wij zijn de Startco misschien wel de belangrijkste commissie van Dodeka. Wij zorgen er namelijk voor dat onze mooie vereniging gerepresenteerd wordt op de Ladies intro en de Owee, zodat er veel nieuwe leden komen. Daarnaast organiseren wij het startweekend, waar alle nieuwe en oude leden elkaar eens goed leren kennen.",
+            "info": "De StartCommissie heeft als belangrijke taak dat alle nieuwe studenten de naam \"D.S.A.V. Dodeka\" kennen en dat ze weten waar onze prachtige vereniging voor staat. Dit doen we door tijdens de OWee epische activiteiten te organiseren waarbij de nieuwe studenten op een leuke manier kennis maken met de atletiek en de vereniging. Zo is de StartCo aanwezig op de parade, de infomarkt en de activiteitenmarkt en heeft de StartCo afgelopen OWee een biermijlestafette en een TrackFeest georganiseerd op de atletiekbaan. Na de OWee zorgt de StartCo ervoor dat alle nieuwe leden zich thuisvoelen op de vereniging door het leukste weekend van het jaar te organiseren: het StartWeekend. Hier kunnen nieuwe en oude leden elkaar (nog) beter leren kennen door samen leuke (en sportieve) activiteiten te doen en, natuurlijk, te partyen. Wordt D.S.A.V. Dodeka ook jouw startschot voor een geweldige studententijd?",
 		    "leden": [
                 {
                     "naam": "Joris Gudde",
