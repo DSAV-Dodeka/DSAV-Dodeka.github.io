@@ -7,72 +7,35 @@
                 {
                     "naam": "Matthijs Arnoldus",
                     "functie": "CEO",
-                    "foto": "placeholder"
+                    "foto": "matthijs"
                 },
                 {
                     "naam": "Tip ten Brink",
                     "functie": "Lead Senior Backend Developer",
-                    "foto": "placeholder"
+                    "foto": "tip"
                 },
                 {
                     "naam": "Nathan Douenburg",
                     "functie": "Senior Lead UX Designer",
-                    "foto": "placeholder"
+                    "foto": "nathan"
                 },
                 {
                     "naam": "Pien Abbink",
                     "functie": "Frontend Developer/Content Manager",
-                    "foto": "placeholder"
+                    "foto": "pien"
                 },
                 {
                     "naam": "Leander Bindt",
                     "functie": "Secretaris en DataFeutje",
-                    "foto": "placeholder"
+                    "foto": "leander"
                 },
                 {
                     "naam": "Jefry el Bhwash",
                     "functie": "QomQommer",
-                    "foto": "placeholder"
+                    "foto": "jefry"
                 }
             ],
             "fotos": "comcom"
-      },
-	{
-            "naam": "BaCo",
-            "info": "Als BaCo organiseren wij de epische batavierenrace voor het mega gezellige Dodeka team. De bata vindt plaats op 28/29/30 april 2023 in het oosten van het land (rond Nijmegen en Enschede). In dit prachtige weekend kan je hardlopen en feesten combineren wat supergaaf is. Met een team van 25 personen ren je in estafettevorm een afstand van in totaal 175 kilometer. Ons team draait om prestatie maar nog meer om gezelligheid. Omdat je met zijn allen in tentjes slaapt is het erg knus en ontmoet je mensen uit het hele land. Kortom, een topweekend dus! Voor bereikbaarheid zijn wij aanspreekbaar op trainingen en bereikbaar per fax op 121212.",
-		"leden": [
-                {
-                    "naam": "Robin Beijer",
-                    "functie": "Voorzitter",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Joris Gudde",
-                    "functie": "Secretaris",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Anne Hinrichs",
-                    "functie": "Penningmeester",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Itse Veltmeijer",
-                    "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Rik Palings",
-                    "functie": "Raadsman",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Lianne Folkerts",
-                    "functie": "QQ",
-                    "foto": "placeholder"
-                }
-            ],
-            "fotos": "baco"
       },
 	{
             "naam": "BarCo",
@@ -81,31 +44,68 @@
                 {
                     "naam": "Marien Sips",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "marien"
                 },
                 {
                     "naam": "Mark Huisman",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "mark"
                 },
                 {
                     "naam": "Sacha Ruf",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "sacha"
                 },
                 {
                     "naam": "Jorrit Vulgers",
                     "functie": "Commissaris Eten",
-                    "foto": "placeholder"
+                    "foto": "jorrit"
                 },
                 {
                     "naam": "Simon Loose",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "simon"
                 }
             ],
             "fotos": "barco"
       },
+      {
+        "naam": "BatCie",
+        "info": "Als BatCie organiseren wij de epische batavierenrace voor het mega gezellige Dodeka team. De bata vindt plaats op 28/29/30 april 2023 in het oosten van het land (rond Nijmegen en Enschede). In dit prachtige weekend kan je hardlopen en feesten combineren wat supergaaf is. Met een team van 25 personen ren je in estafettevorm een afstand van in totaal 175 kilometer. Ons team draait om prestatie maar nog meer om gezelligheid. Omdat je met zijn allen in tentjes slaapt is het erg knus en ontmoet je mensen uit het hele land. Kortom, een topweekend dus! Voor bereikbaarheid zijn wij aanspreekbaar op trainingen en bereikbaar per fax op 121212.",
+    "leden": [
+            {
+                "naam": "Robin Beijer",
+                "functie": "Voorzitter",
+                "foto": "robin"
+            },
+            {
+                "naam": "Joris Gudde",
+                "functie": "Secretaris",
+                "foto": "joris"
+            },
+            {
+                "naam": "Anne Hinrichs",
+                "functie": "Penningmeester",
+                "foto": "anne"
+            },
+            {
+                "naam": "Itse Veltmeijer",
+                "functie": "Commissaris Logistiek",
+                "foto": "itse"
+            },
+            {
+                "naam": "Rik Palings",
+                "functie": "Raadsman",
+                "foto": "rik"
+            },
+            {
+                "naam": "Lianne Folkerts",
+                "functie": "QQ",
+                "foto": "lianne"
+            }
+        ],
+        "fotos": "baco"
+  },
 	{
             "naam": "DIES",
             "info": "Als commissie, maar ook samen met de rest van Dodeka, zullen we tijdens de DIES vieren dat onze lieve Arnold 4 jaar wordt. Dat maakt ons juist zo gaaf; dat wij het privilege hebben gekregen om een hele week lang feestelijke activiteiten te organiseren, zodat Arnold een weekje niet alleen een aardvarken maar ook een feestvarken is. En dat wil hij graag vieren met alle andere aardvarkentjes!",
@@ -113,37 +113,37 @@
                 {
                     "naam": "Martha Chapple",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "martha"
                 },
                 {
                     "naam": "Henriëtta Gussenhoven",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "henrietta"
                 },
                 {
                     "naam": "Tip ten Brink",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "tip"
                 },
                 {
                     "naam": "Jeroen van der Velde",
                     "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
+                    "foto": "jeroen"
                 },
 		    {
                     "naam": "Sylke van der Kleij",
                     "functie": "Commissaris Promo",
-                    "foto": "placeholder"
+                    "foto": "sylke"
                 },
 		    {
                     "naam": "Nicoline van Vught",
                     "functie": "Commissaris Extern",
-                    "foto": "placeholder"
+                    "foto": "nicoline"
                 },
                 {
                     "naam": "Saana Taal",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "saana"
                 }
             ],
             "fotos": "dies"
@@ -197,64 +197,69 @@
                 {
                     "naam": "Yulan van Es",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "yulan"
                 },
                 {
                     "naam": "Tobias Steevensz",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "tobias"
                 },
                 {
                     "naam": "Kyllian van Leeuwen",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "kyllian"
                 },
                 {
                     "naam": "Anne-Wil van Werkhoven",
                     "functie": "Commissaris Wedstrijd",
-                    "foto": "placeholder"
+                    "foto": "annewil"
                 },
                 {
                     "naam": "Simon Loose",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "simon"
                 }
             ],
             "fotos": "nskekiden"
         },
 	{
-            "naam": "RedaXII",
-            "info": "De RedaXII schrijft en publiceerd de nieuwsbrieven en het jaarboek. Hiervoor verzamelen we stukjes en fotos en hierdoor blijven de leden geinformeerd over wat er de afgelopen periode is gebeurd. Daarnaast is er voor iedereen die dat wil aan het einde van het jaar een jaarboek als samenvatting en herinnering van wat vast weer een geweldig jaar bij de vereniging wordt. Heb jij nu een goed idee of een leuk verhaal voor in de nieuwsbrief of het jaarboek, schroom dan niet om een van de RedaXII leden een keer aan te spreken of te mailen naar redaxii@dsavdodeka.nl. Mocht je een leuke quote hebben van iemand dan kan je die sturen naar Juliet.", 
+        "naam": "RedaXII",
+        "info": "De RedaXII schrijft en publiceert de nieuwsbrieven en het jaarboek. Hiervoor verzamelen we stukjes en foto's en hierdoor blijven de leden geïnformeerd over wat er de afgelopen periode is gebeurd. Daarnaast is er voor iedereen die dat wil aan het einde van het jaar een jaarboek als samenvatting en herinnering van wat vast weer een geweldig jaar bij de vereniging wordt. Heb jij nu een goed idee of een leuk verhaal voor in de nieuwsbrief of het jaarboek, schroom dan niet om een van de RedaXII leden een keer aan te spreken of te mailen naar redaxii@dsavdodeka.nl. Mocht je een leuke quote hebben van iemand dan kan je die sturen naar Juliet.", 
 		"leden": [
                 {
                     "naam": "Thomas Albers",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "thomas"
                 },
                 {
-                    "naam": "Juliet Driessens",
+                    "naam": "Tim Creusen",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "tim"
+                },
+                {
+                    "naam": "Anne Hinrichs",
+                    "functie": "Penningmeester",
+                    "foto": "anne"
                 },
                 {
                     "naam": "Marea Warmenhoven",
                     "functie": "Commissaris Inhoud",
-                    "foto": "placeholder"
+                    "foto": "marea"
                 },
                 {
                     "naam": "Robin Beijer",
                     "functie": "Commissaris Vormgeving",
-                    "foto": "placeholder"
+                    "foto": "robin"
                 },
 		    {
-                    "naam": "Florence Estublier",
+                    "naam": "Anna Lusthof",
                     "functie": "Commissaris Flexibel",
-                    "foto": "placeholder"
+                    "foto": "anna"
                 },
                 {
                     "naam": "Simon Loose",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "simon"
                 }
             ],
             "fotos": "redaxii"
@@ -266,27 +271,27 @@
                 {
                     "naam": "Marin Nijenhuis",
                     "functie": "Voorcretaris",
-                    "foto": "placeholder"
+                    "foto": "marin"
                 },
                 {
                     "naam": "Sanne Diepen",
                     "functie": "Secrezitter",
-                    "foto": "placeholder"
+                    "foto": "sanne"
                 },
                 {
                     "naam": "Jelmer Stuijt",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "jelmer"
                 },
                 {
                     "naam": "Temba Reitsma",
                     "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
+                    "foto": "temba"
                 },
                 {
                     "naam": "Lianne Folkerts",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "lianne"
                 }
             ],
             "fotos": "sax"
@@ -298,35 +303,84 @@
                 {
                     "naam": "Sanne Cox",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "sanne"
                 },
                 {
                     "naam": "Hugo ter Hoeven",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "hugo"
                 },
                 {
                     "naam": "Loek Sanders",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "loek"
                 },
                 {
                     "naam": "Job van der Kleij",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "placeholder"
+                    "foto": "job"
                 },
                 {
                     "naam": "Larissa Smit",
                     "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
+                    "foto": "larissa"
                 },
                 {
                     "naam": "Simon Loose",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "simon"
                 }
             ],
             "fotos": "snowdeka"
+        },
+        {
+            "naam": "Startco",
+            "info": "De StartCommissie heeft als belangrijke taak dat alle nieuwe studenten de naam \"D.S.A.V. Dodeka\" kennen en dat ze weten waar onze prachtige vereniging voor staat. Dit doen we door tijdens de OWee epische activiteiten te organiseren waarbij de nieuwe studenten op een leuke manier kennis maken met de atletiek en de vereniging. Zo is de StartCo aanwezig op de parade, de infomarkt en de activiteitenmarkt en heeft de StartCo afgelopen OWee een biermijlestafette en een TrackFeest georganiseerd op de atletiekbaan. Na de OWee zorgt de StartCo ervoor dat alle nieuwe leden zich thuisvoelen op de vereniging door het leukste weekend van het jaar te organiseren: het StartWeekend. Hier kunnen nieuwe en oude leden elkaar (nog) beter leren kennen door samen leuke (en sportieve) activiteiten te doen en, natuurlijk, te partyen. Wordt D.S.A.V. Dodeka ook jouw startschot voor een geweldige studententijd?",
+		    "leden": [
+                {
+                    "naam": "Joris Gudde",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Merel Blaauw",
+                    "functie": "Secretaris",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Sanne Diepen",
+                    "functie": "Penningmeester",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Niels Verheugd",
+                    "functie": "Vice voorzitter en com. startweekend",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Suze de Vries",
+                    "functie": "Commissaris feest/promo",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Hannah Busse",
+                    "functie": "Commissaris Logistiek",
+                    "foto": "placeholder"
+                }
+                ,
+                {
+                    "naam": "Jefry el Bhwash",
+                    "functie": "QQ 1",
+                    "foto": "placeholder"
+                }
+                ,
+                {
+                    "naam": "Lianne Folkerts",
+                    "functie": "QQ 2",
+                    "foto": "placeholder"
+                }
+            ],
+            "fotos": "startco"
         },
         {
             "naam": "Sunrice",
