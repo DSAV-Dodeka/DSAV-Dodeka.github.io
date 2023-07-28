@@ -1,0 +1,32 @@
+@import "../../../variables";
+
+.OWeeText {
+    background-color: $dodeka_blauw90p;
+    width: 100%;
+    padding-top: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-bottom: 2rem;
+    color: white;
+    margin-bottom: 8rem;
+}
+
+.OWeeTitle {
+    font-size: $font_ml;
+    font-weight: $bold;
+    line-height: $line_height_large;
+}
+
+.OWeeSubtitle {
+    font-size: $font_medium;
+    font-weight: $normal;
+    color: $dodeka_rood;
+    line-height: $line_height_medium;
+    margin-bottom: 1rem;
+}
+
+.OWeeParagraph {
+    column-count: 2;
+    font-size: $font_small;
+    line-height: 1.25rem;
+}

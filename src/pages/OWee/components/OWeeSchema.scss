@@ -1,0 +1,59 @@
+@import "../../../variables";
+
+.OWeeSchema {
+    background-color: $dodeka_blauw90p;
+    width: 100%;
+    padding-top: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-bottom: 2rem;
+    margin-bottom: 8rem;
+}
+
+.OWeeDag {
+    display: inline-block;
+    width: calc(25% - 1rem);
+    color: white;
+    vertical-align: top;
+    margin-right: 1rem;
+    padding-right: 1rem;
+}
+
+.OWeeDatum {
+    color: $dodeka_rood;
+    font-size: $font_medium;
+    margin-bottom: 1rem;
+    font-weight: $normal;
+}
+
+.OWeeDatumDag {
+    font-size: $font_ml;
+    margin-bottom: 0;
+    
+    font-weight: $normal;
+}
+
+.OWeeActiviteit {
+    background-color: $dodeka_rood;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.OWeeActiviteitNaam {
+    font-size: $font_ml;
+    color: $dodeka_blauw90p;
+    // font-weight: $normal;
+}
+
+.OWeeActiviteitTijd {
+    font-size: $font_small;
+    padding-bottom: 0.5rem;
+    // font-weight: $bold;
+}
+
+.OWeeActiviteitOmschrijving {
+    font-size: $font_small;
+    color: $dodeka_blauw90p;
+    
+}
