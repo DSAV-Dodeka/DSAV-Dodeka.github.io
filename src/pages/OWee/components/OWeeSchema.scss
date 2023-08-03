@@ -19,6 +19,8 @@
         display: flex;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
+        border-top: 2rem solid $dodeka_blauw90p;
+        border-bottom: 2rem solid $dodeka_blauw90p;
     }
 }
 
