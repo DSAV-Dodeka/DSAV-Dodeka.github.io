@@ -5,6 +5,11 @@
     margin-bottom: 2rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    @include respond(mobile) {
+        display: flex;
+        overflow-x: hidden;
+        padding: 0;
+    }
 }
 
 .OWeeImage {
@@ -14,4 +19,11 @@
     margin-right: 0.5rem;
     clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100% );
     object-fit: cover;
+    @include respond(mobile) {
+        // display: inline-block;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        clip-path: none;
+    }
 }

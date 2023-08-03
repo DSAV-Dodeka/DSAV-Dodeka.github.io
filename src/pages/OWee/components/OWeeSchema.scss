@@ -8,6 +8,22 @@
     padding-right: 4rem;
     padding-bottom: 2rem;
     margin-bottom: 8rem;
+    @include respond(mobile) {
+        padding-top: 1rem;
+        padding-left: 1rem;
+        padding-right: 0;
+        padding-bottom: 1rem;
+        margin-bottom: 4rem;
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+    }
+}
+
+.OWeeSchema > * {
+    @include respond(mobile) {
+        scroll-snap-align: center;
+    }
 }
 
 .OWeeDag {
@@ -17,6 +33,11 @@
     vertical-align: top;
     margin-right: 1rem;
     padding-right: 1rem;
+    @include respond(mobile) {
+        display: auto;
+        width: 100%;
+        min-width: 80vw;
+    }
 }
 
 .OWeeDatum {
