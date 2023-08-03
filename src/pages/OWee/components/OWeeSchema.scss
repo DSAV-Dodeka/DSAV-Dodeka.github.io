@@ -1,12 +1,14 @@
 @import "../../../variables";
 
 .OWeeSchema {
-    background-color: $dodeka_blauw90p;
+    background-color: white;
+    border-top: 4rem solid $dodeka_blauw90p;
+    border-bottom: 4rem solid $dodeka_blauw90p;
     width: 100%;
-    padding-top: 2rem;
+    padding-top: 1rem;
     padding-left: 4rem;
-    padding-right: 4rem;
-    padding-bottom: 2rem;
+    padding-right: 3rem;
+    padding-bottom: 1rem;
     margin-bottom: 8rem;
     @include respond(mobile) {
         padding-top: 1rem;
@@ -29,7 +31,7 @@
 .OWeeDag {
     display: inline-block;
     width: calc(25% - 1rem);
-    color: white;
+    color: $dodeka_blauw90p;
     vertical-align: top;
     margin-right: 1rem;
     padding-right: 1rem;
@@ -70,11 +72,12 @@
 .OWeeActiviteitTijd {
     font-size: $font_small;
     padding-bottom: 0.5rem;
+    color: white;
     // font-weight: $bold;
 }
 
 .OWeeActiviteitOmschrijving {
     font-size: $font_small;
     color: $dodeka_blauw90p;
-    
+    color: white;
 }
