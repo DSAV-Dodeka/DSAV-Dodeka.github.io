@@ -26,6 +26,7 @@ import Verjaardagen from "./pages/Leden/Verjaardagen/Verjaardagen";
 import Leden from "./pages/Leden/Leden";
 import Gezelligheid from "./pages/Vereniging/Gezelligheid/Gezelligheid";
 import Klassementen from "./pages/Leden/Klassementen/Klassementen";
+import InschrijvenTraining from "./pages/Leden/Inschrijven training/Inschrijven_training";
 import Hoogtepunten from "./pages/Wedstrijden/Hoogtepunten/Hoogtepunten";
 import "./App.scss";
 
@@ -195,6 +196,9 @@ function App() {
                       }/>
                       <Route path="/leden/klassementen" element={
                         <Klassementen />
+                      }/>
+                      <Route path="/leden/inschrijven_training" element={
+                        <InschrijvenTraining />
                       }/>
                       <Route path="/leden" element={
                         <Leden />

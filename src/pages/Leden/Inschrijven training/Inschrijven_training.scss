@@ -1,0 +1,24 @@
+@import "../../../variables";
+
+
+.trainingen_container {
+    margin-bottom: 6rem;
+    color: $dodeka_blauw90p;
+}
+
+.schema_link {
+    color: $dodeka_rood;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: 0;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+}
+
+.schema_link_container {
+    width: calc(100% - 4rem);
+    color: $dodeka_rood;
+    text-decoration: none;
+    margin-right: 4rem;
+    text-align: right;
+}

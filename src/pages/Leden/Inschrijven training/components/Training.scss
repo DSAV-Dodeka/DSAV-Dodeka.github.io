@@ -1,0 +1,96 @@
+@import "../../../../variables";
+
+.training_inschrijven {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    display: flex;
+    border-bottom: 1px solid $dodeka_blauw90p;
+    border-left: 1px solid $dodeka_blauw90p;
+}
+
+.training_inschrijven:first-of-type {
+    border-top: 1px solid $dodeka_blauw90p;
+    border-radius: 1rem 0 0 0;
+}
+
+.training_inschrijven:last-of-type {
+    border-radius: 0 0 0 1rem;
+}
+
+.training_inschrijven:first-of-type .training_datum {
+    border-top: 1px solid $dodeka_blauw90p;
+    border-radius: 1rem 0 0 0;
+}
+
+.training_inschrijven:last-of-type .training_datum {
+    border-radius: 0 0 0 1rem;
+}
+
+.training_datum {
+    color: white;
+    font-weight: bold;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    background-color: $dodeka_rood;
+    padding: 1rem;
+    min-width: 8rem;
+    text-align: center;
+}
+
+.training_onderdelen {
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    padding: 1rem;
+    min-width: 25%;
+    flex-grow: 1;
+}
+
+.training_inschrijvers {
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    padding: 1rem;
+    min-width: 25%;
+}
+
+.doorgestreept {
+    text-decoration: line-through;
+}
+
+.training_cancelled {
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    padding: 1rem;
+    min-width: 25%;
+}
+
+
+.training_active_inschrijvers {
+    flex-grow: 1;
+}
+
+.training_active_signup {
+    display: flex;
+    margin-left: 1rem;
+    border-bottom: 1px solid $dodeka_blauw90p;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: $dodeka_blauw90p;
+    width: calc(100% - 2rem);
+}
+
+.training_active_signup:last-of-type {
+    border-bottom: none;
+}
+
+.training_active_onderdeel {
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    min-width: 8rem;
+}
+
+.training_active_ingeschreven {
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin-left: 1rem;
+}
