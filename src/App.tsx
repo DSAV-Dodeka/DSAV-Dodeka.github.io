@@ -27,6 +27,7 @@ import Leden from "./pages/Leden/Leden";
 import Gezelligheid from "./pages/Vereniging/Gezelligheid/Gezelligheid";
 import Klassementen from "./pages/Leden/Klassementen/Klassementen";
 import Hoogtepunten from "./pages/Wedstrijden/Hoogtepunten/Hoogtepunten";
+import OWee from "./pages/OWee/OWee";
 import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
@@ -146,6 +147,7 @@ function App() {
                     <Route path="/nieuws" element={
                       <Nieuws />
                     }/>
+                    <Route path="/owee" element={<OWee />} />
                     <Route path="/vereniging" element={<Vereniging />} />
                     <Route path="/vereniging/commissies" element={<Commissies />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
