@@ -34,7 +34,7 @@ function NavigationBar() {
         <img id="home_logo" className={(location === "/" ? "" : "hidden")} src={getUrl('logo.png')} alt=""/>
         <div id="navItems">
           <Item name="Home" path="/" />
-          <Item name="OWee" path="/owee" />
+          {/* <Item name="OWee" path="/owee" /> */}
           <Dropdown name="Nieuws" path="/nieuws" items={[{name: "De Spike", path: "/spike", protected: true}]} />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Gezelligheid", path: "/gezelligheid" }, { name: "Arnold", path: "/arnold" }]} />
           <Item name="Trainingen" path="/trainingen" />
@@ -60,7 +60,7 @@ function NavigationBar() {
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
           <div className={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
-            <Item name="OWee" path="/owee" onClick={() => setActive(false)} />
+            {/* <Item name="OWee" path="/owee" onClick={() => setActive(false)} /> */}
             {(!authState.isLoaded || !authState.isAuthenticated )&&
               <Item name="Nieuws" path="/nieuws" onClick={() => setActive(false)} />
             } 

@@ -147,7 +147,7 @@ function App() {
                     <Route path="/nieuws" element={
                       <Nieuws />
                     }/>
-                    <Route path="/owee" element={<OWee />} />
+                    {/* <Route path="/owee" element={<OWee />} /> */}
                     <Route path="/vereniging" element={<Vereniging />} />
                     <Route path="/vereniging/commissies" element={<Commissies />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
