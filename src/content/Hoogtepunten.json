@@ -1,6 +1,32 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Teams 2023",
+            "foto": "hoogtepunten_teams_2023.jpg",
+            "prijzen": [
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 1,
+                    "afstand": "Mannen NSK Teams"
+                },
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 2,
+                    "afstand": "Vrouwen NSK Teams"
+                },
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 1,
+                    "afstand": "NSK Teams klassement"
+                }
+            ],
+            "prestaties": [
+                "Dodeka wint voor het eerst de NSK Teams wisselbeker!", 
+                "De mannen hebben 8 van de 11 onderdelen gewonnen",
+                "Met 38 atleten waren we het best vertegenwoordigd van alle studentensteden"
+            ]
+        },
+        {
             "wedstrijd": "NSK Ekiden 2023",
             "foto": "hoogtepunten_ekiden_2023.jpg",
             "prijzen": [
