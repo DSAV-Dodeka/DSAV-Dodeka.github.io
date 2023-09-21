@@ -5,19 +5,13 @@ import {
     SignedUp,
     su_request,
     ud_request,
-    UsersData,
-    UserData,
     profile_request,
     u_ud_scopes_request
 } from "./api/api";
 import {
     punten_klassement_request,
-    PuntenKlassement,
     trainings_klassement_request,
-    TrainingsKlassementData,
-    TrainingsKlassement,
-    punten_klassement_request_new,
-    trainings_klassement_request_new, user_id_request, user_names_request
+    user_id_request, user_names_request
 } from "./api/klassementen";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {AuthUse} from "../pages/Auth/AuthContext";
@@ -64,14 +58,6 @@ export const useSignedUpQuery = (au: AuthUse) =>
             enabled: au.authState.isAuthenticated,
         })
 
-export const usePuntenKlassementQuery = (au: AuthUse) =>
-    useQuery(['pt_klass'], () => punten_klassement_request(au),
-        {
-            staleTime: longStaleTime,
-            cacheTime: longCacheTime,
-            enabled: au.authState.isAuthenticated,
-        })
-
 export const useTrainingsKlassementQuery = (au: AuthUse) =>
         useQuery(['tr_klass'], () => trainings_klassement_request(au),
             {
@@ -80,8 +66,8 @@ export const useTrainingsKlassementQuery = (au: AuthUse) =>
                 enabled: au.authState.isAuthenticated,
             })
 
-export const usePuntenKlassementQueryNew = (au: AuthUse) =>
-            useQuery(['pt_klass_new'], () => punten_klassement_request_new(au),
+export const usePuntenKlassementQuery = (au: AuthUse) =>
+            useQuery(['pt_klass_new'], () => punten_klassement_request(au),
                 {
                     staleTime: longStaleTime,
                     cacheTime: longCacheTime,
@@ -103,14 +89,6 @@ export const useUserNamesQuery = (au: AuthUse) =>
             cacheTime: longCacheTime,
             enabled: au.authState.isAuthenticated,
         })
-
-export const useTrainingsKlassementQueryNew = (au: AuthUse) =>
-            useQuery(['tr_klass_new'], () => trainings_klassement_request_new(au),
-                    {
-                        staleTime: longStaleTime,
-                        cacheTime: longCacheTime,
-                        enabled: au.authState.isAuthenticated,
-                    })
 
 export const useProfileQuery = (au: AuthUse) =>
     useQuery(['profile'], () => profile_request(au),

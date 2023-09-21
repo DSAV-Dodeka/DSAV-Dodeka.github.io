@@ -3,25 +3,6 @@ import {z} from "zod";
 import {AuthUse} from "../../pages/Auth/AuthContext";
 import {back_request} from "./api";
 
-//Current situation with hardcoded rankings in file on server
-
-const PuntenKlassementData = z.object({
-    Naam: z.string(),
-    Punten: z.number()
-})
-export type PuntenKlassementData = z.infer<typeof PuntenKlassementData>;
-
-const PuntenKlassement = z.object({
-    points: z.array(PuntenKlassementData)
-})
-export type PuntenKlassement = z.infer<typeof PuntenKlassement>;
-
-export const punten_klassement_request = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/rankings/points', auth, options)
-    const punt_klas: PuntenKlassement = PuntenKlassement.parse(response)
-    return punt_klas
-}
-
 const EventType = z.object({
     type: z.string(),
     default_points: z.number()
@@ -29,60 +10,42 @@ const EventType = z.object({
 
 export type EventType = z.infer<typeof EventType>;
 
-const TrainingsKlassementData = z.object({
-    Naam: z.string(),
-    Punten: z.number()
-})
-export type TrainingsKlassementData = z.infer<typeof TrainingsKlassementData>;
-
-const TrainingsKlassement = z.object({
-    points: z.array(TrainingsKlassementData)
-})
-export type TrainingsKlassement = z.infer<typeof TrainingsKlassement>;
-
-
-export const trainings_klassement_request = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/rankings/training', auth, options)
-    const train_klas: TrainingsKlassement = TrainingsKlassement.parse(response)
-    return train_klas
-}
-
-
-
-// New situation with uploads from admin page. Todo when replacing old: remove new from names.
-
-
-const PuntenKlassementDataNew = z.object({
+const PuntenKlassementData = z.object({
+    firstname: z.string(),
+    lastname: z.string(),
     user_id: z.string(),
-    name: z.string(),
     points: z.number()
 })
-export type PuntenKlassementDataNew = z.infer<typeof PuntenKlassementDataNew>;
+export type PuntenKlassementData = z.infer<typeof PuntenKlassementData>;
 
-const PuntenKlassementNew = z.array(PuntenKlassementDataNew)
+const PuntenKlassement = z.array(PuntenKlassementData)
+export type PuntenKlassement = z.infer<typeof PuntenKlassement>;
 
-export type PuntenKlassementNew = z.infer<typeof PuntenKlassementNew>;
 
-export const punten_klassement_request_new = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/rankings/points', auth, options)
-    const punt_klas: PuntenKlassementNew = PuntenKlassementNew.parse(response)
+export const punten_klassement_request = async (auth: AuthUse, options?: Options) => {
+    let response = await back_request('members/classification/points', auth, options)
+    const punt_klas: PuntenKlassement = PuntenKlassement.parse(response)
+    punt_klas.sort((a, b) => {
+        return b.points - a.points
+    })
     return punt_klas
 }
 
-const TrainingsKlassementDataNew = z.object({
+const TrainingsKlassementData = z.object({
+    firstname: z.string(),
+    lastname: z.string(),
     user_id: z.string(),
-    name: z.string(),
     points: z.number()
 })
-export type TrainingsKlassementDataNew = z.infer<typeof PuntenKlassementDataNew>;
+export type TrainingsKlassementData = z.infer<typeof PuntenKlassementData>;
 
-const TrainingsKlassementNew = z.array(PuntenKlassementDataNew)
+const TrainingsKlassement = z.array(PuntenKlassementData)
 
-export type TrainingsKlassementNew = z.infer<typeof PuntenKlassementNew>;
+export type TrainingsKlassement = z.infer<typeof PuntenKlassement>;
 
-export const trainings_klassement_request_new = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/rankings/training', auth, options)
-    const punt_klas: TrainingsKlassementNew = TrainingsKlassementNew.parse(response)
+export const trainings_klassement_request = async (auth: AuthUse, options?: Options) => {
+    let response = await back_request('members/classification/training', auth, options)
+    const punt_klas: TrainingsKlassement = TrainingsKlassement.parse(response)
     return punt_klas
 }
 
