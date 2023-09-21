@@ -9,8 +9,7 @@ import {
     u_ud_scopes_request
 } from "./api/api";
 import {
-    punten_klassement_request,
-    trainings_klassement_request,
+    klassement_request,
     user_id_request, user_names_request
 } from "./api/klassementen";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
@@ -58,16 +57,16 @@ export const useSignedUpQuery = (au: AuthUse) =>
             enabled: au.authState.isAuthenticated,
         })
 
-export const useTrainingsKlassementQuery = (au: AuthUse) =>
-        useQuery(['tr_klass'], () => trainings_klassement_request(au),
+export const useKlassementQuery = (au: AuthUse, rank_type: 'punten'|'training') =>
+        useQuery(['tr_klass'], () => klassement_request(au, false, rank_type),
             {
                 staleTime: longStaleTime,
                 cacheTime: longCacheTime,
                 enabled: au.authState.isAuthenticated,
             })
 
-export const usePuntenKlassementQuery = (au: AuthUse) =>
-            useQuery(['pt_klass_new'], () => punten_klassement_request(au),
+export const useAdminKlassementQuery = (au: AuthUse, rank_type: 'punten'|'training') =>
+            useQuery(['pt_klass_new'], () => klassement_request(au, false, rank_type),
                 {
                     staleTime: longStaleTime,
                     cacheTime: longCacheTime,

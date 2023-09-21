@@ -11,16 +11,13 @@ import {
     SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api, RoleInfo} from "../../../functions/api/api";
-import { PuntenKlassementDataNew, EventType } from "../../../functions/api/klassementen";
+import {EventType, KlassementData} from "../../../functions/api/klassementen";
 import AuthContext from "../../Auth/AuthContext";
 import "./Puntenklassement.scss";
-import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
-import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
 import EventTypes from "../../../content/EventTypes.json";
 
 
-const columnHelper = createColumnHelper<PuntenKlassementDataNew>()
+const columnHelper = createColumnHelper<KlassementData>()
 
 const columns = [
     columnHelper.accessor('name', {

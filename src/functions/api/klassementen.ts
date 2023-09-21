@@ -10,42 +10,31 @@ const EventType = z.object({
 
 export type EventType = z.infer<typeof EventType>;
 
-const PuntenKlassementData = z.object({
+const KlassementData = z.object({
     firstname: z.string(),
     lastname: z.string(),
     user_id: z.string(),
     points: z.number()
 })
-export type PuntenKlassementData = z.infer<typeof PuntenKlassementData>;
+export type KlassementData = z.infer<typeof KlassementData>;
 
-const PuntenKlassement = z.array(PuntenKlassementData)
-export type PuntenKlassement = z.infer<typeof PuntenKlassement>;
+const Klassement = z.array(KlassementData)
+export type Klassement = z.infer<typeof Klassement>;
 
 
-export const punten_klassement_request = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/classification/points', auth, options)
-    const punt_klas: PuntenKlassement = PuntenKlassement.parse(response)
+export const klassement_request = async (auth: AuthUse, is_admin: boolean, rank_type: 'punten'|'training', options?: Options) => {
+    let role;
+    if (is_admin) {
+        role = "admin"
+    } else {
+        role = "members"
+    }
+
+    let response = await back_request(`${role}/classification/${rank_type}/`, auth, options)
+    const punt_klas: Klassement = Klassement.parse(response)
     punt_klas.sort((a, b) => {
         return b.points - a.points
     })
-    return punt_klas
-}
-
-const TrainingsKlassementData = z.object({
-    firstname: z.string(),
-    lastname: z.string(),
-    user_id: z.string(),
-    points: z.number()
-})
-export type TrainingsKlassementData = z.infer<typeof PuntenKlassementData>;
-
-const TrainingsKlassement = z.array(PuntenKlassementData)
-
-export type TrainingsKlassement = z.infer<typeof PuntenKlassement>;
-
-export const trainings_klassement_request = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/classification/training', auth, options)
-    const punt_klas: TrainingsKlassement = TrainingsKlassement.parse(response)
     return punt_klas
 }
 

@@ -1,15 +1,13 @@
 import PageTitle from "../../../components/PageTitle";
 import "./Klassementen.scss";
-import {PuntenKlassement, TrainingsKlassement} from "../../../functions/api/klassementen";
+import {Klassement} from "../../../functions/api/klassementen";
 import AuthContext from "../../Auth/AuthContext";
 import { useContext, useState } from "react";
 import {
-    queryError,
-    usePuntenKlassementQuery,
-    useTrainingsKlassementQuery
+    queryError, useKlassementQuery,
 } from "../../../functions/queries";
 
-const defaultTraining: TrainingsKlassement = [
+const defaultTraining: Klassement = [
     {
         "firstname": "",
         "user_id": "0",
@@ -30,7 +28,7 @@ const defaultTraining: TrainingsKlassement = [
     },
 ]
 
-const defaultPunten: PuntenKlassement = [
+const defaultPunten: Klassement = [
     {
         "firstname": "",
         "user_id": "0",
@@ -65,10 +63,10 @@ function Klassementen (){
 
     const [mobileVisible, setMobileVisible] = useState(false);
 
-    const q = useTrainingsKlassementQuery({ authState, setAuthState })
+    const q = useKlassementQuery({ authState, setAuthState }, 'training')
     const training = queryError(q, defaultTraining, "Class Training Query Error")
 
-    const qP = usePuntenKlassementQuery({ authState, setAuthState })
+    const qP = useKlassementQuery({ authState, setAuthState }, 'punten')
     const punten = queryError(qP, defaultPunten, "Class Points Query Error")
 
     return (
