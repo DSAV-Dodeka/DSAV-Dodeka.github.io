@@ -1,31 +1,24 @@
 {
     "wedstrijden": [
         {
-            "naam": "NSK Ekiden",
-            "datum": "01/04/2023",
-            "tijd": "12:00",
+            "naam": "NK Biermijl",
+            "datum": "13/10/2023",
+            "tijd": "18.30 uur",
             "locatie": "D.S.A.V. Dodeka",
             "adres": "Sportring 12",
             "postcode": "2616LK Delft",
             "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
-            "logo": "nsk_ekiden_logo.png",
-            "logo_rond": "nsk_ekiden_logo_rond.png",
-            "foto": "nsk_ekiden_algemeen.jpg", 
-            "mail": "nskekiden@dsavdodeka.nl",
-            "instagram": "https://www.instagram.com/nskekiden/?hl=nl",
-            "uitslagen": "/files/uitslagen_nsk_ekiden_2023.pdf",
-            "bepalingen": "/files/wedstrijdbepalingen_nsk_ekiden_2023.pdf",
-            "info_kort": "Op 1 april (dit is geen grap) mogen wij het NSK Ekiden organiseren. Bij een Ekiden loop je als team een marathon in estafettevorm. Vorm dus snel een team van 6 atleten en begin maar alvast met trainen. Dan zien we jou in het begin van de lente op onze baan in Delft!",
-            "info_lang": "Afgelopen zaterdag 1 april organiseerden wij NSK Ekiden! Het NSK Ekiden is een wedstrijd voor en door studenten waarbij er in een estafettevorm een marathon wordt gelopen. De teams namen het tegen elkaar op om zo snel mogelijk de marathonafstand van 42,195 km af te leggen. Een team bestaat uit 6 personen en de afstanden zijn als volgt: 5, 10, 5, 10, 5 en 7,195 km. De route begon op de atletiekbaan van AV'40 en vervolgde in het prachtige Delftse Hout. <br/><br/> We willen alle deelnemers en vrijwilligers hartelijk bedanken. Wij vonden het een geslaagde dag (en nacht) en we hebben ervan genoten! <br/><br/> Check <a target=\"_blank\" rel=\"noreferrer\" href=\"https://uitslagen.nl/uitslag?id=2023040151382\" className=\"wedstrijd_algemeen_link\">deze link</a> voor de uitslagen of download <a target=\"_blank\" rel=\"noreferrer\" href=\"/files/uitslagen_nsk_ekiden_2023.pdf\" className=\"wedstrijd_algemeen_link\">deze pdf</a>. <br/><br/> Check <a target=\"_blank\" rel=\"noreferrer\" href=\"https://www.flickr.com/photos/larsvandervalk/sets/72177720307192921/\" className=\"wedstrijd_algemeen_link\">deze link</a> voor de foto’s van Lars van der Valk. Mocht je de foto’s gebruiken, vermeld @lars_v_d_v_photography. <br/> Check <a target=\"_blank\" rel=\"noreferrer\" href=\"https://drive.google.com/drive/folders/1F2JRIm198SCSLcOBAxXjmC8V0ztistYY\" className=\"wedstrijd_algemeen_link\">deze link</a> voor de foto’s van FOCUS. <br/><br/> Ben je iets verloren of heb je nog andere vragen? Mail naar  nskekiden@dsavdodeka.nl of DM @nskekiden.",
-            "path": "/nskekiden"
+            "logo": "biermijl_logo.png",
+            "logo_rond": "biermijl_logo_rond.png",
+            "foto": "biermijl.jpg",
+            "inschrijven": "https://www.atletiek.nu/wedstrijd/main/39528/",
+            "mail": "biermijl@dsavdodeka.nl",
+            "instagram": "https://www.instagram.com/dsavdodeka/?hl=nl",
+            "bepalingen": "",
+            "info_kort": "Elk jaar in oktober vindt de biermijl plaats en dit jaar is het het NK! De biermijl is het ultieme sportevenement voor studenten, waarbij je 4 rondjes moet lopen en voor elk rondje een biertje moet drinken. Ook kun je er voor kiezen om in een duo mee te doen, waarbij je allebei 2 rondjes loopt en 2 biertjes drinkt.",
+            "info_lang": "De Nederlandse kampioenschappen Biermijl vinden dit jaar plaats bij D.S.A.V. Dodeka. <br/> 4 bier, 4 rondjes, durf jij het aan? <br/><br/> Deelname kan individueel of in duo's (M/M, M/V, V/V, anders). Zorg dat beide atleten van het duo zijn ingeschreven. Vergeet ook niet een verwachte prestatie op te geven als je al eerder een biermijl hebt gelopen. Elke deelnemer ontvangt een shirt en in elke categorie zijn er medailles te verdienen. Voor de beste man en beste vrouw is er nog een epische verrassingsprijs.<br/><br> Na de biermijl zijn we nog niet klaar. Dan organiseert Dodeka nog het openingsfeest van ons lustrumjaar. Alle deelnemers, vrijwilligers en supporters zijn daar welkom en het zal een geweldig feest worden met jullie favoriete DJ's, hitjes en meer!<br/><br> Mocht je nou niet weten hoe de biermijl werkt, dan staan hieronder nog alle regels uitgelegd:<br/> 1. Deelname onder de 18 jaar met alcoholvrij bier.<br/> 2. Kom je met de auto, neem iemand mee die nuchter blijft<br/> 3. Deelnemers drinken vier bier en lopen vier rondes. <br/> 4. Bier wordt gedronken voordat wordt begonnen aan de ronde binnen de 10m-zone voor de start.<br/>5. De race begint met het drinken van een bier in de laatste meter van de 10m-zone.<br/>6. Hulpmiddelen en technieken die adten verbeteren zijn verboden.<br/>7. Een bier wordt pas geopend indien de deelnemer de 10m-zone binnenkomt.<br/>8. Indien een deelnemer kotst moet deze een extra ronde lopen. Een extra bier is niet nodig. Indien meer dan een keer wordt gekotst is nog steeds één extra ronde vereist.<br/> 9. Indien een deelnemer kotst, ruimt deze het zelf op.<br/><br/>",
+            "path": "/biermijl"
         },
-        {
-            "naam": "Biertienkamp",
-            "datum": "22/04/2023",
-            "logo":"biertienkamp.jpg",
-            "info_kort": "Jaarlijks wordt de Biertienkamp georganiseerd; naast het scoren van punten met de normale tienkamp onderdelen worden er ook punten gescoord door bier te drinken.",
-            "path": ""
-            }, 
         {
             "naam": "Dodekathlon",
             "datum": "01/07/2023",
