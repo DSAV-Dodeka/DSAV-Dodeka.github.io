@@ -39,6 +39,7 @@ function ContactBar() {
                     <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getUrl(`sponsors/maltha.png`)} alt="" className="bar_sponsor maltha_bar"></img></a>
                     <a target="_blank" rel="noreferrer" href="https://kernengineers.nl/"><img src={getUrl(`sponsors/kern.svg`)} alt="" className="bar_sponsor kverneland_bar"></img></a>
                     <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getUrl(`sponsors/tsa.png`)} alt="" className="bar_sponsor tsa_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.studentendrukwerk.nl/"><img src={getUrl(`sponsors/studentendrukwerk.png`)} alt="" className="bar_sponsor tsa_bar"></img></a>
                 </div>
                 
             </div>
