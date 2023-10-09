@@ -71,6 +71,7 @@
     display: inline-block;
     width: calc(50% - 1rem);
     vertical-align: top;
+    overflow: scroll;
 }
 
 .new_event_date {
@@ -159,7 +160,7 @@
 
 .new_event button {
     width: calc(25% - 0.5rem);
-    margin-left: 0rem;
+    margin-left: 0;
     font-size: $font_medium;
     font-weight: $bold;
     line-height: $line_height_medium;
@@ -167,7 +168,6 @@
     padding-bottom: 0.5rem;
     border: none;
     display: block;
-
 }
 
 .new_event_file {
@@ -181,4 +181,9 @@
 .new_event_selected {
     margin-bottom: 1rem;
     overflow: scroll;
+}
+
+.new_event_submit_error {
+    color: $dodeka_rood;
+    margin-bottom: 1rem;
 }

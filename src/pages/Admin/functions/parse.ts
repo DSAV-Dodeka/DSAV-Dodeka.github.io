@@ -4,7 +4,7 @@ import {ZodTypeAny, z} from "zod"
 export const parseFile = <S extends ZodTypeAny>(files: FileList, rowSchema: S, resultCallback: (found: z.infer<S>[]) => void, errorCallback: (e: unknown) => void) => {
     Papa.parse(files[0], {
         header: true,
-        skipEmptyLines: true,
+        skipEmptyLines: 'greedy',
         worker: true,
         error(error: Error, _file: unknown) {
             errorCallback(error)
@@ -23,15 +23,14 @@ export const parseFile = <S extends ZodTypeAny>(files: FileList, rowSchema: S, r
 type Name = {
     name: string
 }
-export type MultiMatch = {
-    name: string
+export type MultiMatch<T extends Name> = {
     matchedNames: string[]
-}
+} & T
 
-type IdMatch= {
+type Match<T extends Name> = {
     user_id: string,
     matchedName: string
-}
+} & T
 
 type UserName = {
     firstname: string,
@@ -39,20 +38,34 @@ type UserName = {
     user_id: string
 }
 
-export const matchNames = <T extends Name>(users: UserName[], names: T[]): {noMatch: string[], uniqueMatch: (IdMatch & T)[], multipleMatch: MultiMatch[]} => {
-    type Match = IdMatch & T
-    const uniqueMatch: Match[] =[]
-    const multipleMatch: MultiMatch[] = []
+/**
+ *
+ * @param users The names that we try to match
+ * @param names The data containing unmatched names
+ */
+export const matchNames = <T extends Name>(users: UserName[], names: T[]): {noMatch: T[], uniqueMatch: Match<T>[], multipleMatch: MultiMatch<T>[]} => {
+    // We want to allow the data to contain other fields that we also want to return back
+    const uniqueMatch: Match<T>[] =[]
+    // List of names that could match multiple names
+    const multipleMatch: MultiMatch<T>[] = []
+    const noMatch: T[] = []
 
-    const noMatch: string[] = []
     for (const nameInfo of names) {
         const name = nameInfo.name
-        let matched: Match[] = []
+        let matched: Match<T>[] = []
+        // We first try to perform exact matches and progressively increase the 'level', looking at more loose matches
+        // This ensures that a partial match has lower priority over an exact match
         let matchLevel = -1
+        // Don't try to match on empty strings
+        if (name.length === 0) {
+            noMatch.push(nameInfo)
+            continue
+        }
         for (const u of users) {
             const firstLast = (u.firstname + " " + u.lastname)
 
             if (u.firstname === name) {
+                // If it found another match at a higher (worse) level, reset it and add only this match
                 if (matchLevel > 0) {
                     matched = []
                 }
@@ -83,11 +96,11 @@ export const matchNames = <T extends Name>(users: UserName[], names: T[]): {noMa
             }
         }
         if (matched.length === 0) {
-            noMatch.push(name)
+            noMatch.push(nameInfo)
         } else if (matched.length === 1) {
             uniqueMatch.push(matched[0])
         } else {
-            multipleMatch.push({name, matchedNames: matched.map(m => m.matchedName) })
+            multipleMatch.push({...nameInfo, matchedNames: matched.map(m => m.matchedName) })
         }
 
     }

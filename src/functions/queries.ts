@@ -58,7 +58,7 @@ export const useSignedUpQuery = (au: AuthUse) =>
         })
 
 export const useKlassementQuery = (au: AuthUse, rank_type: 'punten'|'training') =>
-        useQuery(['tr_klass'], () => klassement_request(au, false, rank_type),
+        useQuery([`tr_klass_${rank_type}`], () => klassement_request(au, false, rank_type),
             {
                 staleTime: longStaleTime,
                 cacheTime: longCacheTime,

@@ -1,14 +1,28 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import AuthContext from "../Auth/AuthContext";
-import {profile_request} from "../../functions/api/api";
 import ConfirmUser from "./components/ConfirmUser";
 import LedenInfo from "./components/LedenInfo";
 import Rollen from "./components/Rollen";
-import Puntenklassement from "./components/Puntenklassement";
-import Trainingsklassement from "./components/Trainingsklassement";
+import Klassement, {KlassementProps} from "./components/Klassement";
 import PrCheck from "./components/PrCheck";
 import PageTitle from "../../components/PageTitle";
 import "./Admin.scss";
+
+
+const trainingProps: KlassementProps = {
+    typeName: "training",
+    addText: "Voeg trainingen toe",
+    headerText: "Aantal trainingen",
+    viewEventText: "Bekijk trainingen"
+}
+
+const pointsProps: KlassementProps = {
+    typeName: "punten",
+    addText: "Voeg evenement toe",
+    headerText: "Aantal punten",
+    viewEventText: "Bekijk evenementen"
+}
+
 
 const Admin = () => {
     const [activeTab, setActiveTab] = useState("Leden");
@@ -37,8 +51,8 @@ const Admin = () => {
                                 {
                                     "Leden": <LedenInfo />,
                                     "Aanmeldingen": <ConfirmUser />,
-                                    "Puntenklassement": <Puntenklassement />,
-                                    "Trainingsklassement": <Trainingsklassement />,
+                                    "Puntenklassement": <Klassement {...pointsProps} />,
+                                    "Trainingsklassement": <Klassement {...trainingProps} />,
                                     "Rollen": <Rollen />,
                                     "PRs goedkeuren": <PrCheck />
                                 }[activeTab]

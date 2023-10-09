@@ -15,7 +15,7 @@ import "./table.scss";
 import "./LedenInfo.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
-import { exportCSV } from "./parse";
+import { exportCSV } from "../functions/parse";
 
 const columnHelper = createColumnHelper<UserData>()
 
