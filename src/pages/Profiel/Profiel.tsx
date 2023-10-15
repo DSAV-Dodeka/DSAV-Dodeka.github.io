@@ -92,7 +92,7 @@ const Profiel = () => {
             {authState.isAuthenticated && (
                 <div className="profiel">
                     <p className="profiel_naam">{profile.firstname + " " + profile.lastname}</p>
-                    <div className="profiel_role_list">{getRollen().map(item => <p className="profiel_role_icon" style={{backgroundColor: getColor(item), color: getTextColor(item)}}>{item}</p>)}</div>
+                    <div className="profiel_role_list">{getRollen().map(item => <p key={item} className="profiel_role_icon" style={{backgroundColor: getColor(item), color: getTextColor(item)}}>{item}</p>)}</div>
                     <p className="profiel_info">Geboortedatum: {new Date(profile.birthdate).getDate() + "/" + (new Date(profile.birthdate).getMonth() + 1) + "/" + new Date(profile.birthdate).getFullYear()}</p>
                     <p className="profiel_info">Lid sinds: {new Date(profile.joined).getDate() + "/" + (new Date(profile.joined).getMonth() + 1) + "/" + new Date(profile.joined).getFullYear()}</p>
                     <div className={edit ? "profiel_hidden" : ""}>

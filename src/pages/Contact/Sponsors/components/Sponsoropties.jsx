@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../../../../components/Header";
-import {ReactComponent as Maltha} from "../../../../images/contact/maltha.svg";
 import "./Sponsoropties.scss"
 import getUrl from "../../../../functions/links";
 

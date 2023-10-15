@@ -14,6 +14,18 @@ const defaultKlassement: KlassementList = [
         "lastname": "het Aardvarken",
         "points": 12
     },
+    {
+        "firstname": "Arnold",
+        "user_id": "1_arnold",
+        "lastname": "het Aardvarken 2",
+        "points": 12
+    },
+    {
+        "firstname": "Arnold",
+        "user_id": "2_arnold",
+        "lastname": "het Aardvarken 3",
+        "points": 12
+    },
 ]
 
 function capitalize(string: string) {

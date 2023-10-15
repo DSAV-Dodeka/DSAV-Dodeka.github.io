@@ -1,14 +1,10 @@
 import React from "react";
-// import {
-//   HashLink as Link
-// } from "react-router-hash-link";
 import {
     Link
 } from "react-router-dom";
 import "./ContactBar.scss";
   
 import Heading from "./Heading";
-import {ReactComponent as Maltha} from "../../images/contact/maltha.svg";
 import getUrl from "../../functions/links";
 
 function ContactBar() {

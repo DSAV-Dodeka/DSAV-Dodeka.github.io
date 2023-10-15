@@ -1,19 +1,21 @@
 import React, {useContext, useEffect, useState} from "react";
 import AuthContext from "../../Auth/AuthContext";
-import {profile_request, UserData} from "../../../functions/api/api";
 import PageTitle from "../../../components/PageTitle";
 import {BirthdayData, bd_request} from "../../../functions/api/api";
 import Maand from "./components/Maand";
 import Verjaardag from "./components/Verjaardag";
 import "./Verjaardagen.scss";
-import { number } from "zod";
-import {queryError, useBirthdayDataQuery, useUserDataQuery} from "../../../functions/queries";
+import {queryError, useBirthdayDataQuery} from "../../../functions/queries";
 
 const maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"]
 const dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"]
 
 const defaultData: BirthdayData[] = [
-    
+    {
+        firstname: "Arnold",
+        lastname: "het Aardvarken",
+        birthdate: "2019-02-25"
+    }
 ]
 
 function getAge(birthdate: string) {
@@ -70,12 +72,11 @@ const Verjaardagen = () => {
                         if (index == 0 || new Date(item.birthdate).getMonth() !== new Date(array[index - 1].birthdate).getMonth()) {
                             const maand = maanden[new Date(item.birthdate).getMonth()]
 
-
                             return (
-                            <>
-                                <Maand maand={maand} />
-                                <Verjaardag dag={new Date(item.birthdate).getDate()} datum={datum} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>
-                            </>)
+                            <div key={maand + vkey} className="verjaardagen_contents">
+                                <Maand key={maand} maand={maand} />
+                                <Verjaardag key={vkey} dag={new Date(item.birthdate).getDate()} datum={datum} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>
+                            </div>)
                         }
                         return (<Verjaardag key={vkey} dag={new Date(item.birthdate).getDate()} datum={datum} voornaam={item.firstname} achternaam={item.lastname} leeftijd={getAge(item.birthdate)}/>)
                     })}

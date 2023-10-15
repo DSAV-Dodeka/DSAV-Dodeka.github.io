@@ -68,7 +68,7 @@ const Rollen = () => {
         columnHelper.accessor('scope', {
             header: () => 'Rollen',
             enableSorting: false,
-            cell: info => <div className="role_list">{info.getValue().map(item => <p className="role_icon" style={{backgroundColor: getColor(item), color: getTextColor(item)}}>{item} <svg xmlns="http://www.w3.org/2000/svg" className="role_delete" onClick={() => handleDeleteRole(item, info.row.original.user_id)} style={{fill: getTextColor(item)}} viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg></p>)}</div>
+            cell: info => <div className="role_list">{info.getValue().map(item => <p key={item} className="role_icon" style={{backgroundColor: getColor(item), color: getTextColor(item)}}>{item} <svg xmlns="http://www.w3.org/2000/svg" className="role_delete" onClick={() => handleDeleteRole(item, info.row.original.user_id)} style={{fill: getTextColor(item)}} viewBox="0 0 1024 1024" version="1.1"><path d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"/></svg></p>)}</div>
         })
     ]
     const rerender = React.useReducer(() => ({}), {})[1]
@@ -161,19 +161,17 @@ const Rollen = () => {
                                 )
                             })}
                             <td>
-                                <>
-                                    {addRoleUser !== row.original.user_id && (<p className="leden_table_row_button" onClick={() => setAddRoleUser(row.original.user_id)}>Voeg rol toe</p>)}
-                                    {addRoleUser === row.original.user_id && (
-                                        <form className="add_role" onSubmit={handleSubmit}>
-                                            <select value={roleToAdd} onChange={handleSelectChange}>
-                                                {RollenInfo.rollen.map((item) => {
-                                                    return <option>{item.rol}</option>;
-                                                })}
-                                            </select>
-                                            <button className="leden_table_row_button">Voeg toe</button>
-                                        </form>
-                                    )}
-                                </>
+                                {addRoleUser !== row.original.user_id && (<p key={row.id+'btn'} className="leden_table_row_button" onClick={() => setAddRoleUser(row.original.user_id)}>Voeg rol toe</p>)}
+                                {addRoleUser === row.original.user_id && (
+                                    <form className="add_role" onSubmit={handleSubmit}>
+                                        <select value={roleToAdd} onChange={handleSelectChange}>
+                                            {RollenInfo.rollen.map((item) => {
+                                                return <option key={row.id + item.rol}>{item.rol}</option>;
+                                            })}
+                                        </select>
+                                        <button className="leden_table_row_button">Voeg toe</button>
+                                    </form>
+                                )}
                             </td>
                         </tr>
                     </Fragment>
