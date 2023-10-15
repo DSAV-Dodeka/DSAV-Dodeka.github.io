@@ -1,51 +1,18 @@
 import PageTitle from "../../../components/PageTitle";
 import "./Klassementen.scss";
-import {Klassement} from "../../../functions/api/klassementen";
 import AuthContext from "../../Auth/AuthContext";
 import { useContext, useState } from "react";
 import {
     queryError, useKlassementQuery,
 } from "../../../functions/queries";
+import {KlassementList} from "../../../functions/api/klassementen";
 
-const defaultTraining: Klassement = [
+const defaultKlassement: KlassementList = [
     {
-        "firstname": "",
-        "user_id": "0",
-        "lastname": "",
-        "points": 0
-    },
-    {
-        "firstname": "",
-        "user_id": "0",
-        "lastname": "",
-        "points": 0
-    },
-    {
-        "firstname": "",
-        "user_id": "0",
-        "lastname": "",
-        "points": 0
-    },
-]
-
-const defaultPunten: Klassement = [
-    {
-        "firstname": "",
-        "user_id": "0",
-        "lastname": "",
-        "points": 0
-    },
-    {
-        "firstname": "",
-        "user_id": "0",
-        "lastname": "",
-        "points": 0
-    },
-    {
-        "firstname": "",
-        "user_id": "0",
-        "lastname": "",
-        "points": 0
+        "firstname": "Arnold",
+        "user_id": "0_arnold",
+        "lastname": "het Aardvarken",
+        "points": 12
     },
 ]
 
@@ -64,10 +31,10 @@ function Klassementen (){
     const [mobileVisible, setMobileVisible] = useState(false);
 
     const q = useKlassementQuery({ authState, setAuthState }, 'training')
-    const training = queryError(q, defaultTraining, "Class Training Query Error")
+    const training = queryError(q, defaultKlassement, "Class Training Query Error")
 
-    const qP = useKlassementQuery({ authState, setAuthState }, 'punten')
-    const punten = queryError(qP, defaultPunten, "Class Points Query Error")
+    const qP = useKlassementQuery({ authState, setAuthState }, 'points')
+    const punten = queryError(qP, defaultKlassement, "Class Points Query Error")
 
     return (
     <div className="algemeen">

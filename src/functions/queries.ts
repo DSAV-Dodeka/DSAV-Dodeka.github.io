@@ -57,7 +57,7 @@ export const useSignedUpQuery = (au: AuthUse) =>
             enabled: au.authState.isAuthenticated,
         })
 
-export const useKlassementQuery = (au: AuthUse, rank_type: 'punten'|'training') =>
+export const useKlassementQuery = (au: AuthUse, rank_type: 'points'|'training') =>
         useQuery([`tr_klass_${rank_type}`], () => klassement_request(au, false, rank_type),
             {
                 staleTime: longStaleTime,
@@ -65,8 +65,8 @@ export const useKlassementQuery = (au: AuthUse, rank_type: 'punten'|'training') 
                 enabled: au.authState.isAuthenticated,
             })
 
-export const useAdminKlassementQuery = (au: AuthUse, rank_type: 'punten'|'training') =>
-            useQuery(['pt_klass_new'], () => klassement_request(au, false, rank_type),
+export const useAdminKlassementQuery = (au: AuthUse, rank_type: 'points'|'training') =>
+            useQuery([`tr_klass_admin_${rank_type}`], () => klassement_request(au, true, rank_type),
                 {
                     staleTime: longStaleTime,
                     cacheTime: longCacheTime,

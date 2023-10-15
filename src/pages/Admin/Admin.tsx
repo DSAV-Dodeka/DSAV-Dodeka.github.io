@@ -17,7 +17,7 @@ const trainingProps: KlassementProps = {
 }
 
 const pointsProps: KlassementProps = {
-    typeName: "punten",
+    typeName: "points",
     addText: "Voeg evenement toe",
     headerText: "Aantal punten",
     viewEventText: "Bekijk evenementen"

@@ -17,17 +17,19 @@ export const back_post = async (endpoint: string, json: Object, options?: Option
 
 const renewHook = (auth: AuthUse) => {
     return async (request: Request, options: NormalizedOptions, response: Response) => {
-        const {error, error_description, debug_key = ""} = await response.json()
+        if (!response.ok) {
+            const {error, error_description, debug_key = ""} = await response.json()
 
-        if (debug_key === "expired_access_token") {
-            const newState = await useRenewal(auth.authState)
+            if (debug_key === "expired_access_token") {
+                const newState = await useRenewal(auth.authState)
 
-            auth.setAuthState(newState)
+                auth.setAuthState(newState)
 
-            if (newState.isAuthenticated) {
-                request.headers.set('Authorization', `Bearer ${newState.access}`)
+                if (newState.isAuthenticated) {
+                    request.headers.set('Authorization', `Bearer ${newState.access}`)
 
-                return api(request);
+                    return api(request);
+                }
             }
         }
     }

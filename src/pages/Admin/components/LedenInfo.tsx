@@ -16,6 +16,7 @@ import "./LedenInfo.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
 import { exportCSV } from "../functions/parse";
+import SortHeader from "./SortHeader";
 
 const columnHelper = createColumnHelper<UserData>()
 
@@ -91,31 +92,7 @@ const LedenInfo = () => {
         <div>
             <button className="export_button" onClick={() => exportCSV(data, "Ledeninformatie.csv")}>Exporteer</button>
             <table className="leden_table">
-                <thead>
-                {table.getHeaderGroups().map(headerGroup => (
-                    <tr key={headerGroup.id}>
-                        {headerGroup.headers.map(header => {
-                            return (
-                                <th key={header.id} colSpan={header.colSpan}>
-                                    {header.isPlaceholder ? null : (
-                                        <div onClick={header.column.getToggleSortingHandler()} className={(header.column.getCanSort() ? "canSort" : "")}>
-                                            
-                                            {flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext()
-                                            )}
-                                            {{
-                                                asc: ' ↑',
-                                                desc: ' ↓'
-                                            }[header.column.getIsSorted() as string] ?? null}
-                                        </div>
-                                    )}
-                                </th>
-                            )
-                        })}
-                    </tr>
-                ))}
-                </thead>
+                <SortHeader table={table} />
                 <tbody>
                 {table.getRowModel().rows.length === 0 && (
                     <tr>

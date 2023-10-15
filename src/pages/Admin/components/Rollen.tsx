@@ -16,6 +16,7 @@ import "./Rollen.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useSignedUpQuery, useUserDataQuery, useUserScopeQuery} from "../../../functions/queries";
 import RollenInfo from "../../../content/Rollen.json";
+import SortHeader from "./SortHeader";
 
 const getColor = (role: string) => {
     for (let i = 0; i < RollenInfo.rollen.length; i++) {
@@ -133,35 +134,12 @@ const Rollen = () => {
         getSortedRowModel: getSortedRowModel(),
     })
 
+    const emptyHeader = <th />
+
     return (
         <div>
             <table className="leden_table">
-                <thead>
-                {table.getHeaderGroups().map(headerGroup => (
-                    <tr key={headerGroup.id}>
-                        {headerGroup.headers.map(header => {
-                            return (
-                                <th key={header.id} colSpan={header.colSpan}>
-                                    {header.isPlaceholder ? null : (
-                                        <div onClick={header.column.getToggleSortingHandler()} className={(header.column.getCanSort() ? "canSort" : "")}>
-                                            {flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext()
-                                            )}
-                                            {{
-                                                asc: ' ↑',
-                                                desc: ' ↓'
-                                            }[header.column.getIsSorted() as string] ?? null}
-                                        </div>
-                                    )}
-                                </th>
-                            )
-                        })}
-                        <th/>
-                        {/* <th ><p className="leden_table_header_button" onClick={() => setManageRoles(true)}>Beheer rollen</p></th> */}
-                    </tr>
-                ))}
-                </thead>
+                <SortHeader table={table} OtherHeader={emptyHeader} />
                 <tbody>
                 {table.getRowModel().rows.length === 0 && (
                     <tr>

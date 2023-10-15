@@ -3,13 +3,6 @@ import {z} from "zod";
 import {AuthUse} from "../../pages/Auth/AuthContext";
 import {back_request} from "./api";
 
-const EventType = z.object({
-    type: z.string(),
-    default_points: z.number()
-})
-
-export type EventType = z.infer<typeof EventType>;
-
 const KlassementData = z.object({
     firstname: z.string(),
     lastname: z.string(),
@@ -22,7 +15,7 @@ const KlassementList = z.array(KlassementData)
 export type KlassementList = z.infer<typeof KlassementList>;
 
 
-export const klassement_request = async (auth: AuthUse, is_admin: boolean, rank_type: 'punten'|'training', options?: Options): Promise<KlassementList> => {
+export const klassement_request = async (auth: AuthUse, is_admin: boolean, rank_type: 'points'|'training', options?: Options): Promise<KlassementList> => {
     let role;
     if (is_admin) {
         role = "admin"
@@ -59,7 +52,6 @@ const UserNames = z.object({
     lastname: z.string()
 })
 export type UserNames = z.infer<typeof UserNames>
-
 const UserNamesList = z.array(UserNames)
 
 export const user_names_request = async (auth: AuthUse, options?: Options): Promise<UserNames[]> => {
