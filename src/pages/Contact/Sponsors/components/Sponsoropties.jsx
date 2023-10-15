@@ -17,6 +17,7 @@ function Sponsoropties() {
                     <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getUrl(`sponsors/maltha.png`)} alt="" className="sponsoropties_5 maltha"></img></a>
                     <a target="_blank" rel="noreferrer" href="https://kernengineers.nl/"><img src={getUrl(`sponsors/kern.svg`)} alt="" className="sponsoropties_5 kverneland"></img></a>
                     <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getUrl(`sponsors/tsa.png`)} alt="" className="sponsoropties_5 tsa"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.studentendrukwerk.nl/"><img src={getUrl(`sponsors/studentendrukwerk.png`)} alt="" className="sponsoropties_5 tsa"></img></a>
                 </div>
                
             </div>
