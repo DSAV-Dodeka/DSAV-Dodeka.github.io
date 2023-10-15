@@ -8,7 +8,6 @@ import {
 import "./ContactBar.scss";
   
 import Heading from "./Heading";
-import {ReactComponent as Maltha} from "../../images/contact/maltha.svg";
 import getUrl from "../../functions/links";
 
 function ContactBar() {
