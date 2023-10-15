@@ -7,7 +7,7 @@ import {
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
 import Nieuws from './pages/Nieuws/Nieuws/Nieuws';
-import Spike from './pages/Nieuws/Spike/Spike';
+const Spike = React.lazy(() => import('./pages/Nieuws/Spike/Spike'));
 import Vereniging from './pages/Vereniging/Vereniging/Vereniging';
 import Trainingen from './pages/Trainingen/Trainingen';
 import WordLid from './pages/Word lid/WordLid';
@@ -20,7 +20,7 @@ import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
 const Arnold = React.lazy(() => import("./pages/Vereniging/Arnold/Arnold"));
-import Records from "./pages/Wedstrijden/Records/Records";
+const Records = React.lazy(() => import("./pages/Wedstrijden/Records/Records"));
 
 const Verjaardagen = React.lazy(() => import("./pages/Leden/Verjaardagen/Verjaardagen"));
 const Klassementen = React.lazy(() => import("./pages/Leden/Klassementen/Klassementen"));
@@ -51,7 +51,6 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {err_api} from "./functions/api/api";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
-import Activiteiten from "./pages/Activiteiten/Activiteiten";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -141,7 +140,9 @@ function App() {
                 <div id="app_flex">
                   <Routes>
                     <Route path="/nieuws/spike" element={
-                      <Spike />
+                      <Suspense fallback={<div>Loading Spike...</div>}>
+                        <Spike />
+                      </Suspense>
                     }/>
                     <Route path="/nieuws" element={
                       <Nieuws />
@@ -184,7 +185,9 @@ function App() {
                       <Wedstrijden />
                     }/>
                     <Route path="/wedstrijden/records" element={
-                      <Records />
+                      <Suspense fallback={<div>Loading records...</div>}>
+                        <Records />
+                      </Suspense>
                     }/>
                     <Route path="/word_lid" element={
                       <WordLid />

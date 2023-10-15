@@ -1,4 +1,5 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite'
+import { visualizer } from "rollup-plugin-visualizer";
 import react from '@vitejs/plugin-react'
 import svgrPlugin from 'vite-plugin-svgr'
 
@@ -11,7 +12,8 @@ export default defineConfig({
           icon: true,
         },
       }),
-      splitVendorChunkPlugin()
+      splitVendorChunkPlugin(),
+      visualizer()
   ],
   server: {
     port: 3000
