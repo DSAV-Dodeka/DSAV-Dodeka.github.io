@@ -36,8 +36,8 @@ const ChangeEmail = () => {
     useEffect(() => {
         const ac = new AbortController()
 
-        handleLoad(ac.signal).then(() => {
-            setEmails(emails)
+        handleLoad(ac.signal).then((checkedEmail) => {
+            setEmails(checkedEmail)
         }).catch((e) => {
             if (e instanceof PagesError) {
                 console.log(e.j())
