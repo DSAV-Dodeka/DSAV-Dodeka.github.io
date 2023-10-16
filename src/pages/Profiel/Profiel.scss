@@ -60,6 +60,22 @@
     }
 }
 
+.profiel_edit_sent {
+    color: green;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    font-size: $font_small;
+    line-height: $line_height_small;
+}
+
+.profiel_edit_sent_bad {
+    color: $dodeka_rood;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    font-size: $font_small;
+    line-height: $line_height_small;
+}
+
 .profiel_highlights {
     display: flex;
     flex-direction: column;
@@ -162,10 +178,9 @@
     width: fit-content;
     color: white;
     border: none;
-    padding: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 0.75rem;
+    cursor: pointer;
     font-size: $font_medium;
     font-weight: $bold;
     margin-top: 1rem;
@@ -175,6 +190,7 @@
         margin-bottom: 1rem;
     }
 }
+
 
 .profiel_role_list {
     width: calc(100% / 3);

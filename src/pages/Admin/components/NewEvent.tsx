@@ -12,6 +12,7 @@ const rowSchema = z.object({
 })
 
 type Row = z.infer<typeof rowSchema>
+type DuplicateRow = Row & { num: number }
 interface Matched {
     name: string
     points: number
@@ -45,7 +46,7 @@ const NewEvent = ({namesData, typeName, addText, clearEvent}: NewEventProps) => 
     const [geselecteerdeLeden, setGeselecteerdeLeden] = useState<Matched[]>([]);
     const [multiLeden, setMultiLeden] = useState<MultiMatch<Row>[]>([]);
     const [onherkend, setOnherkend] = useState<Row[]>([]);
-    const [duplicateLeden, setDuplicateLeden] = useState<(Row & { num: number })[]>([])
+    const [duplicateLeden, setDuplicateLeden] = useState<DuplicateRow[]>([])
     const [uploadError, setUploadError] = useState("")
     const [fileUploaded, setFileUploaded] = useState(false);
 
@@ -66,7 +67,7 @@ const NewEvent = ({namesData, typeName, addText, clearEvent}: NewEventProps) => 
         setFileUploaded(true);
 
         const errCallback = (e: unknown) => {
-            console.log(JSON.stringify(e))
+            console.error('err reading file ' + JSON.stringify(e))
             setUploadError("Fout met het inlezen van het bestand! Is het een .csv en is de eerste kolom 'name' en de tweede 'points'?")
         }
 
@@ -74,14 +75,19 @@ const NewEvent = ({namesData, typeName, addText, clearEvent}: NewEventProps) => 
             const sortedFound = found
                 .sort((r1, r2) => r1.name.localeCompare(r2.name))
             const foundLength = sortedFound.length
-            const duplicates = sortedFound.filter((v, i, a) => {
-                // If i > i we look at the previous value, if they are equal, it is a duplicate
-                if (i === 0 && foundLength > 1) {
-                    return a[i+1].name === v.name
-                } else {
-                    return a[i-1].name === v.name
-                }
-            }).map((v, i) => { return {...v, num: i} })
+            let duplicates: DuplicateRow[];
+            if (foundLength > 1) {
+                duplicates = sortedFound.filter((v, i, a) => {
+                    // If i > i we look at the previous value, if they are equal, it is a duplicate
+                    if (i === 0 && foundLength > 1) {
+                        return a[i+1].name === v.name
+                    } else {
+                        return a[i-1].name === v.name
+                    }
+                }).map((v, i) => { return {...v, num: i} })
+            } else {
+                duplicates = []
+            }
 
             if (duplicates.length > 0) {
                 setDuplicateLeden(duplicates)

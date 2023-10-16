@@ -7,13 +7,16 @@ export const parseFile = <S extends ZodTypeAny>(files: FileList, rowSchema: S, r
         skipEmptyLines: 'greedy',
         worker: true,
         error(error: Error, _file: unknown) {
+            console.error("papaParse error")
             errorCallback(error)
         },
         complete: function(results) {
+            console.error("res " + JSON.stringify(results.data))
             try {
                 const parsedRows: z.infer<S> = rowSchema.array().parse(results.data)
                 resultCallback(parsedRows)
             } catch (e) {
+                console.error("zod error")
                 errorCallback(e)
             }
         }
