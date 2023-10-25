@@ -1,41 +1,32 @@
 import PageTitle from "../../../components/PageTitle";
 import "./Klassementen.scss";
-import { PuntenKlassement, TrainingsKlassement } from "../../../functions/api";
 import AuthContext from "../../Auth/AuthContext";
 import { useContext, useState } from "react";
-import { queryError, useBirthdayDataQuery, usePuntenKlassementQuery, useTrainingsKlassementQuery } from "../../../functions/queries";
+import {
+    queryError, useKlassementQuery,
+} from "../../../functions/queries";
+import {KlassementList} from "../../../functions/api/klassementen";
 
-const defaultTraining: TrainingsKlassement = {
-    "points": [
-        {
-            "Naam": "",
-            "Punten": 0
-        },
-        {
-            "Naam": "",
-            "Punten": 0
-        },
-        {
-            "Naam": "",
-            "Punten": 0
-        }
-]}
-
-const defaultPunten: PuntenKlassement = {
-    "points": [
-        {
-            "Naam": "",
-            "Punten": 0
-        },
-        {
-            "Naam": "",
-            "Punten": 0
-        },
-        {
-            "Naam": "",
-            "Punten": 0
-        }
-]}
+const defaultKlassement: KlassementList = [
+    {
+        "firstname": "Arnold",
+        "user_id": "0_arnold",
+        "lastname": "het Aardvarken",
+        "points": 12
+    },
+    {
+        "firstname": "Arnold",
+        "user_id": "1_arnold",
+        "lastname": "het Aardvarken 2",
+        "points": 12
+    },
+    {
+        "firstname": "Arnold",
+        "user_id": "2_arnold",
+        "lastname": "het Aardvarken 3",
+        "points": 12
+    },
+]
 
 function capitalize(string: string) {
     if (string.includes(" ")) {
@@ -51,11 +42,11 @@ function Klassementen (){
 
     const [mobileVisible, setMobileVisible] = useState(false);
 
-    const q = useTrainingsKlassementQuery({ authState, setAuthState })
-    const training = queryError(q, defaultTraining, "User Info Query Error").points
+    const q = useKlassementQuery({ authState, setAuthState }, 'training')
+    const training = queryError(q, defaultKlassement, "Class Training Query Error")
 
-    const qP = usePuntenKlassementQuery({ authState, setAuthState })
-    const punten = queryError(qP, defaultPunten, "User Info Query Error").points
+    const qP = useKlassementQuery({ authState, setAuthState }, 'points')
+    const punten = queryError(qP, defaultKlassement, "Class Points Query Error")
 
     return (
     <div className="algemeen">
@@ -68,19 +59,19 @@ function Klassementen (){
         <div className="SoortKlassement">
             <p>Trainingsklassement</p>
         </div>
-        <div className="EerstePersoonLinks">
-            <p>1. {capitalize(training[0].Naam)} - {training[0].Punten}</p>
-        </div>
-        <div className="TweedePersoonLinks">
-            <p>2. {capitalize(training[1].Naam)} - {training[1].Punten}</p>
-        </div>
-        <div className="DerdePersoonLinks">
-            <p>3. {capitalize(training[2].Naam)} - {training[2].Punten}</p>
-        </div>
+            <div className="EerstePersoonLinks">
+                <p>1. {capitalize(training[0].firstname)} {capitalize(training[0].lastname)} - {training[0].points}</p>
+            </div>
+            <div className="TweedePersoonLinks">
+                <p>2. {capitalize(training[1].firstname)} {capitalize(training[1].lastname)} - {training[1].points}</p>
+            </div>
+            <div className="DerdePersoonLinks">
+                <p>3. {capitalize(training[2].firstname)} {capitalize(training[2].lastname)} - {training[2].points}</p>
+            </div>
         
         <div className={ "VierEnLagerLinks" + (mobileVisible ? "" : " klassementHidden")}>
             { training.slice(3).map((value, index) => 
-                <p key={"training" + index} className="persoonMargin">{index + 4}. {capitalize(value.Naam)} - {value.Punten}</p>
+                <p key={"training" + index} className="persoonMargin">{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname)} - {value.points}</p>
             )
             }
         </div>
@@ -92,17 +83,17 @@ function Klassementen (){
             <p>Puntenklassement</p>
         </div>
         <div className="EerstePersoonRechts">
-            <p>1. {capitalize(punten[0].Naam)} - {punten[0].Punten}</p>
+            <p>1. {capitalize(punten[0].firstname)} {capitalize(punten[0].lastname)} - {punten[0].points}</p>
         </div>
         <div className="TweedePersoonRechts">
-            <p>2. {capitalize(punten[1].Naam)} - {punten[1].Punten}</p>
+            <p>2. {capitalize(punten[1].firstname)} {capitalize(punten[1].lastname)} - {punten[1].points}</p>
         </div>
         <div className="DerdePersoonRechts">
-            <p>3. {capitalize(punten[2].Naam)} - {punten[2].Punten}</p>
+            <p>3. {capitalize(punten[2].firstname)} {capitalize(punten[2].lastname)} - {punten[2].points}</p>
         </div>
         <div className={ "VierEnLagerRechts" + (mobileVisible ? "" : " klassementHidden")}>
         { punten.slice(3).map((value, index) => 
-                <p key={"punten" + index} className="persoonMargin">{index + 4}. {capitalize(value.Naam)} - {value.Punten}</p>
+                <p key={"punten" + index} className="persoonMargin">{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname)} - {value.points}</p>
             )
             }
         </div>
