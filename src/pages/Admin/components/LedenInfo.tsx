@@ -12,7 +12,6 @@ import {
 import {UserData, ud_request, catch_api} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./table.scss";
-import "./LedenInfo.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
 import { exportCSV } from "../functions/parse";
