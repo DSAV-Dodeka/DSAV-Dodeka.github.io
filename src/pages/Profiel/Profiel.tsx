@@ -2,9 +2,28 @@ import React, {useContext, useEffect, useState} from "react";
 import AuthContext, {AuthState, useRenewal} from "../Auth/AuthContext";
 import {decodeJwtPayload} from "../Auth/functions/OAuth";
 import Timer from "../Auth/Timer";
-import {back_post_auth, profile_request, UserData} from "../../functions/api";
+import {back_post_auth, profile_request, UserData} from "../../functions/api/api";
 import "./Profiel.scss";
 import { queryError, useProfileQuery } from "../../functions/queries";
+import RollenInfo from "../../content/Rollen.json";
+
+const getColor = (role: string) => {
+    for (let i = 0; i < RollenInfo.rollen.length; i++) {
+        if (RollenInfo.rollen[i].rol === role) {
+            return RollenInfo.rollen[i].kleur;
+        }
+    }
+    return "#000000";
+}
+
+const getTextColor = (role: string) => {
+    for (let i = 0; i < RollenInfo.rollen.length; i++) {
+        if (RollenInfo.rollen[i].rol === role) {
+            return (RollenInfo.rollen[i].light ? "#000000": "#ffffff");
+        }
+    }
+    return "#ffffff";
+}
 
 const defaultData: UserData = {
     firstname: "",
@@ -26,6 +45,8 @@ const Profiel = () => {
 
     const [newEmail, setNewEmail] = useState("")
     const [edit, setEdit] = useState(false);
+    const [editStatus, setEditStatus] = useState("")
+    const editStatusClass = editStatus === "Verzonden!" ? "profiel_edit_sent" : "profiel_edit_sent_bad"
 
 
     const q = useProfileQuery({authState, setAuthState})
@@ -44,7 +65,27 @@ const Profiel = () => {
             "new_email": newEmail
         }
 
-        await back_post_auth("update/email/send/", req, {authState, setAuthState})
+        try {
+            await back_post_auth("update/email/send/", req, {authState, setAuthState})
+            setEditStatus("Verzonden!")
+        } catch (e) {
+
+        }
+    }
+
+    const getRollen = () => {
+        var rollen: string[] = [];
+        authState.scope.split(" ").forEach((item) => {
+            if (item !== "member" && item !== "admin") {
+                if (item === "~2eComCom") {
+                    rollen.push(".ComCom")
+                }
+                else {
+                    rollen.push(item)
+                }
+            }
+        }) 
+        return rollen;
     }
 
     return (
@@ -55,6 +96,7 @@ const Profiel = () => {
             {authState.isAuthenticated && (
                 <div className="profiel">
                     <p className="profiel_naam">{profile.firstname + " " + profile.lastname}</p>
+                    <div className="profiel_role_list">{getRollen().map(item => <p key={item} className="profiel_role_icon" style={{backgroundColor: getColor(item), color: getTextColor(item)}}>{item}</p>)}</div>
                     <p className="profiel_info">Geboortedatum: {new Date(profile.birthdate).getDate() + "/" + (new Date(profile.birthdate).getMonth() + 1) + "/" + new Date(profile.birthdate).getFullYear()}</p>
                     <p className="profiel_info">Lid sinds: {new Date(profile.joined).getDate() + "/" + (new Date(profile.joined).getMonth() + 1) + "/" + new Date(profile.joined).getFullYear()}</p>
                     <div className={edit ? "profiel_hidden" : ""}>
@@ -80,12 +122,13 @@ const Profiel = () => {
                                 <svg className="profiel_edit_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.775 460.775" ><path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55  c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55  c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505  c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55  l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719 c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"/></svg>
                         </div>
                         <button id="newEmailSubmit" className="profiel_button" type="submit">Verzenden</button>
+                            <p className={editStatusClass}>{editStatus}</p>
                         </form>
                     </div>
-                    <div className="profiel_highlights">
-                        <p>Eastereggs gevonden:</p>
-                        <p>Later deze week beschikbaar</p>
-                    </div>
+                    {/*<div className="profiel_highlights">*/}
+                    {/*    <p>Eastereggs gevonden:</p>*/}
+                    {/*    <p>Later deze week beschikbaar</p>*/}
+                    {/*</div>*/}
                 </div>
             )}
         </>

@@ -13,9 +13,9 @@ import getUrl from "../../functions/links";
 /**
  * Hook that alerts clicks outside of the passed ref
  */
-function useOutsideClick(ref, callback) {
-    const handleClick = e => {
-        if (ref.current && !ref.current.contains(e.target)) {
+function useOutsideClick(ref: React.RefObject<HTMLElement>, callback: () => void) {
+    const handleClick = (e: MouseEvent) => {
+        if (ref.current && !ref.current.contains(e.target as Node)) {
             callback();
         }
     }
@@ -35,7 +35,7 @@ const Login = () => {
     const [active, setActive] = useState(false);
     const {authState: ac, setAuthState} = useContext(AuthContext)
     const navigate = useNavigate()
-    const ref = useRef();
+    const ref = useRef<HTMLHeadingElement>(null);
     useOutsideClick(ref, () => {
         setActive(false)
     })
