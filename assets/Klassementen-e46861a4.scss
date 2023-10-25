@@ -1,0 +1,231 @@
+@import "../../../variables.scss";
+
+.algemeen{
+    margin-top: 0rem;
+    width: 100%;
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.kolom {
+    float: left;
+    width: 50%;
+    @include respond(mobile) {
+        width: 100%;
+    }
+}
+
+
+.SoortKlassement {
+    width: 70%;
+    background-color: $dodeka_rood;
+    color: #fff;
+    border-radius: .75rem;
+    border: none;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: $bold;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 15%;
+    object-position: center;
+    text-align: center;
+}
+
+.EerstePersoonLinks{
+    object-position: left; 
+    clip-path: polygon(0% 0%,100% 0%,95% 100%,0% 100%);
+    text-align: right;
+    width: 95%;
+    height: 3rem;
+    background-color: $dodeka_blauw90p;
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+    padding-right: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+
+}
+
+.TweedePersoonLinks{
+    object-position: left;
+    clip-path: polygon(0% 0%,100% 0%,95% 100%,0% 100%); 
+    text-align: right;
+    width: 89.35%;
+    height: 3rem;
+    background-color: $dodeka_blauw90p;
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+    padding-right: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+
+}
+
+.DerdePersoonLinks{
+    object-position: left;
+    clip-path: polygon(0% 0%,100% 0%,95% 100%,0% 100%);
+    text-align: right; 
+    width: 83.7%;
+    height: 4rem;
+    background-color: $dodeka_blauw90p;
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+    padding-right: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+    @include respond(mobile){
+        margin-bottom: 0rem;
+    }
+}
+
+.VierEnLagerLinks{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    object-position: left; 
+    text-align: left;
+    width: 79.5%;
+    background-color: $dodeka_blauw90p;
+    color: #fff;
+    padding: 1rem;
+    font-size: $font_medium;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    @include respond(mobile){
+        display: block;
+        text-align: left;
+        padding-left: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+    
+}
+
+.EerstePersoonRechts{
+    object-position: right; 
+    clip-path: polygon(0% 0%,100% 0%, 100% 100%,5% 100%);
+    text-align: left;
+    width: 95%;
+    height: 3rem;
+    background-color: $dodeka_blauw90p;
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+    margin-left: 5%;
+}
+    
+.TweedePersoonRechts{
+    object-position: right; 
+    clip-path: polygon(0% 0%,100% 0%, 100% 100%,5% 100%);
+    text-align: left;
+    width: 89.35%;
+    height: 3rem;
+    background-color: $dodeka_blauw90p;
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+    margin-left: 10.65%;
+}
+    
+.DerdePersoonRechts{
+    object-position: right; 
+    clip-path: polygon(0% 0%,100% 0%, 100% 100%,5% 100%);
+    text-align: left;
+    width: 83.75%;
+    height: 4rem;
+    background-color: $dodeka_blauw90p;
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    font-size: $font_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+    margin-left: 16.25%;
+    @include respond(mobile){
+        margin-bottom: 0rem;
+    }
+}
+    
+.VierEnLagerRechts{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    object-position: right; 
+    text-align: left;
+    width: 79.5%;
+    background-color: $dodeka_blauw90p;
+    color: #fff;
+    padding: 1rem;
+    font-size: $font_medium;
+    margin-bottom: 2rem;
+    margin-left: 20.5%;
+    @include respond(mobile){
+        display: block;
+        text-align: left;
+        padding-left: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+    
+}
+
+.knop{
+    display: none;
+    @include respond(mobile) {
+        display: cover;
+        background-color: $dodeka_blauw90p;
+        color: white;
+        font-size: $font_medium;
+        margin: 1rem;
+    }
+
+}
+
+.persoonMargin {
+    margin-bottom: 0.5rem;
+}
+
+.klassementHidden {
+    @include respond(mobile) {
+        display: none;
+    }
+}
+
+.klassementLaad {
+    background-color: $dodeka_rood;
+    color: #fff;
+    border-radius: .75rem;
+    border: none;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: $bold;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    object-position: center;
+    text-align: center;
+    cursor: pointer;
+    @include respond(computerscherm) {
+        display: none;
+    }
+}
