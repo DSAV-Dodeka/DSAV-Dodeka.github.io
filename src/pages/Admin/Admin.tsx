@@ -4,7 +4,6 @@ import ConfirmUser from "./components/ConfirmUser";
 import LedenInfo from "./components/LedenInfo";
 import Rollen from "./components/Rollen";
 import Klassement, {KlassementProps} from "./components/Klassement";
-import PrCheck from "./components/PrCheck";
 import PageTitle from "../../components/PageTitle";
 import "./Admin.scss";
 
@@ -54,7 +53,6 @@ const Admin = () => {
                                     "Puntenklassement": <Klassement {...pointsProps} />,
                                     "Trainingsklassement": <Klassement {...trainingProps} />,
                                     "Rollen": <Rollen />,
-                                    "PRs goedkeuren": <PrCheck />
                                 }[activeTab]
                             }
                         </div>

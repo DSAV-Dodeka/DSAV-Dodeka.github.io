@@ -21,7 +21,7 @@
             "light": false
         },
         {
-            "rol": "Dies",
+            "rol": "Lustrum",
             "kleur": "#EEABC4",
             "light": true
         },
@@ -29,11 +29,6 @@
             "rol": "Focus",
             "kleur": "#F5FDC6",
             "light": true
-        },
-        {
-            "rol": "NSK Ekiden",
-            "kleur": "#08A4BD",
-            "light": false
         },
         {
             "rol": "RedaXII",
