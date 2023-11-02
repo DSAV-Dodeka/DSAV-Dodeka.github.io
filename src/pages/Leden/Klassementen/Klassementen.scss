@@ -1,6 +1,7 @@
 @import "../../../variables.scss";
 
 .algemeen{
+    position: relative;
     margin-top: 0rem;
     width: 100%;
     content: "";
@@ -228,4 +229,45 @@
     @include respond(computerscherm) {
         display: none;
     }
+}
+
+.points_info {
+    display: flex;
+}
+
+.points_info_column {
+    width: calc(50% - 2rem);
+    margin-right: 1rem;
+}
+
+.points_info_column h1 {
+    font-size: $font_ml;
+}
+
+.points_info_colum p {
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+}
+
+.points_info_row {
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+.points_info_category {
+    flex-grow: 1;
+}
+
+.points_info_points {
+    color: $dodeka_rood;
+}
+
+.show_info_link {
+    position: absolute;
+    top: 10rem;
+    left: auto;
+    transform: translate(-50%, -50%);
+    color: $dodeka_rood;
+    font-size: $font_small;
+    cursor: pointer;
 }
