@@ -5,6 +5,7 @@ import {matchNames, MultiMatch, parseFile} from "../functions/parse";
 import {z} from "zod";
 import {UserNames} from "../../../functions/api/klassementen";
 import {formReducer, handleFormChange, handleSelectChange, handleTextAreaChange} from "../../../functions/forms";
+import EventCategories from "../../../content/EventTypes.json";
 
 const rowSchema = z.object({
     name: z.string(),
@@ -163,9 +164,7 @@ const NewEvent = ({namesData, typeName, addText, clearEvent}: NewEventProps) => 
                         <select className="new_event_select" id="eventCategory" name="eventCategory" value={formState.eventCategory}
                                 onChange={(event) => handleSelectChange(event, dispatch)}>
                             <option disabled value={"none"}>-- Kies een optie --</option>
-                            <option>NSK</option>
-                            <option>Borrel</option>
-                            <option>Anders</option>
+                            {EventCategories.event_types.map((item) => <option>{item.type}</option>)}
                         </select>
                     </div>}
                     <div className="new_event_half_input">

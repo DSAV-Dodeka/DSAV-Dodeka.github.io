@@ -6,15 +6,43 @@
         },
         {
             "type": "Saxiviteit",
+            "default_points": 2
+        },
+        {
+            "type": "NSK/Dodeka wedstrijd",
+            "default_points": 5
+        },
+        {
+            "type": "Brassen",
+            "default_points": 4
+        },
+        {
+            "type": "Laten brassen",
+            "default_points": -4
+        },
+        {
+            "type": "Brassen terugverdienen",
             "default_points": 3
         },
         {
-            "type": "NSK",
-            "default_points": 10
+            "type": "Weekend/reis",
+            "default_points": 8
         },
         {
-            "type": "Overig",
-            "default_points": 1
+            "type": "ALV Dodeka",
+            "default_points": 8
+        },
+        {
+            "type": "ALV AV'40",
+            "default_points": 3
+        },
+        {
+            "type": "Onderhoudsdag",
+            "default_points": 3
+        },
+        {
+            "type": "Lid maken",
+            "default_points": 3
         }
     ]
 }
