@@ -80,6 +80,9 @@ const Profiel = () => {
                 if (item === "~2eComCom") {
                     rollen.push(".ComCom")
                 }
+                else if (item === "NSKMeerkamp") {
+                    rollen.push(("NSK Meerkamp"))
+                }
                 else {
                     rollen.push(item)
                 }
