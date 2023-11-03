@@ -29,11 +29,17 @@ const defaultKlassement: KlassementList = [
     },
 ]
 
-function capitalize(string: string) {
-    if (string.includes(" ")) {
-        return string.charAt(0).toUpperCase() + string.slice(1).split(" ")[0] + " " + string.slice(1).split(" ")[1].toUpperCase();
+function capitalize(string: string, firstname: boolean = true) {
+    string = string.toLowerCase()
+    if (firstname) {
+        return string.charAt(0).toUpperCase() + string.slice(1).split(" ")[0]
+    } else if (string.split(" ").length == 1) {
+        return string.charAt(0).toUpperCase() + string.slice(1).split(" ")[0]
+    } else {
+        let names = string.split(" ")
+        names[names.length -1] = names[names.length -1].charAt(0).toUpperCase() + names[names.length - 1].slice(1)
+        return names.join(" ")
     }
-    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
 
@@ -64,18 +70,18 @@ function Klassementen (){
             <p>Trainingsklassement</p>
         </div>
             <div className="EerstePersoonLinks">
-                <p>1. {capitalize(training[0].firstname)} {capitalize(training[0].lastname)} - {training[0].points}</p>
+                <p>1. {capitalize(training[0].firstname)} {capitalize(training[0].lastname, false)} - {training[0].points}</p>
             </div>
             <div className="TweedePersoonLinks">
-                <p>2. {capitalize(training[1].firstname)} {capitalize(training[1].lastname)} - {training[1].points}</p>
+                <p>2. {capitalize(training[1].firstname)} {capitalize(training[1].lastname, false)} - {training[1].points}</p>
             </div>
             <div className="DerdePersoonLinks">
-                <p>3. {capitalize(training[2].firstname)} {capitalize(training[2].lastname)} - {training[2].points}</p>
+                <p>3. {capitalize(training[2].firstname)} {capitalize(training[2].lastname, false)} - {training[2].points}</p>
             </div>
         
         <div className={ "VierEnLagerLinks" + (mobileVisible ? "" : " klassementHidden")}>
             { training.slice(3).map((value, index) => 
-                <p key={"training" + index} className="persoonMargin">{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname)} - {value.points}</p>
+                <p key={"training" + index} className="persoonMargin">{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname, false)} - {value.points}</p>
             )
             }
         </div>
@@ -89,17 +95,17 @@ function Klassementen (){
             <p>Puntenklassement</p>
         </div>
         <div className="EerstePersoonRechts">
-            <p>1. {capitalize(punten[0].firstname)} {capitalize(punten[0].lastname)} - {punten[0].points}</p>
+            <p>1. {capitalize(punten[0].firstname)} {capitalize(punten[0].lastname, false)} - {punten[0].points}</p>
         </div>
         <div className="TweedePersoonRechts">
-            <p>2. {capitalize(punten[1].firstname)} {capitalize(punten[1].lastname)} - {punten[1].points}</p>
+            <p>2. {capitalize(punten[1].firstname)} {capitalize(punten[1].lastname, false)} - {punten[1].points}</p>
         </div>
         <div className="DerdePersoonRechts">
-            <p>3. {capitalize(punten[2].firstname)} {capitalize(punten[2].lastname)} - {punten[2].points}</p>
+            <p>3. {capitalize(punten[2].firstname)} {capitalize(punten[2].lastname, false)} - {punten[2].points}</p>
         </div>
         <div className={ "VierEnLagerRechts" + (mobileVisible ? "" : " klassementHidden")}>
         { punten.slice(3).map((value, index) => 
-                <p key={"punten" + index} className="persoonMargin">{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname)} - {value.points}</p>
+                <p key={"punten" + index} className="persoonMargin">{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname, false)} - {value.points}</p>
             )
             }
         </div>
