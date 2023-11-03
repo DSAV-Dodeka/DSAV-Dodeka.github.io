@@ -31,6 +31,11 @@
             "light": true
         },
         {
+            "rol": "NSK Meerkamp",
+            "kleur": "#08a4bd",
+            "light": false
+        },
+        {
             "rol": "RedaXII",
             "kleur": "#0B7A75",
             "light": false
