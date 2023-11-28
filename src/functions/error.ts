@@ -1,4 +1,4 @@
-import {ApiError} from "./api";
+import {ApiError} from "./api/api";
 
 export class PagesError extends Error {
     err: string
