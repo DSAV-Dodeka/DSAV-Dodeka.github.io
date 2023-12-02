@@ -1,6 +1,7 @@
 @import "../../../../variables";
 
 .training_inschrijven {
+    position: relative;
     margin-left: 4rem;
     margin-right: 4rem;
     display: flex;
@@ -54,11 +55,13 @@
 
 .doorgestreept {
     text-decoration: line-through;
+    text-decoration-thickness: 0.2rem;
 }
 
 .training_cancelled {
     font-size: $font_medium;
     line-height: $line_height_medium;
+    font-weight: $bold;
     padding: 1rem;
     min-width: 25%;
 }
@@ -66,6 +69,7 @@
 
 .training_active_inschrijvers {
     flex-grow: 1;
+    position: relative;
 }
 
 .training_active_signup {
@@ -75,7 +79,7 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     color: $dodeka_blauw90p;
-    width: calc(100% - 2rem);
+    width: calc(100% - 5rem);
 }
 
 .training_active_signup:last-of-type {
@@ -93,4 +97,41 @@
     font-size: $font_medium;
     line-height: $line_height_medium;
     margin-left: 1rem;
+    flex-grow: 1;
+}
+
+.training_active_submit {
+    color: white;
+    background-color: $dodeka_rood;
+    text-decoration: none;
+    border: none;
+    font-size: $font_small;
+    font-weight: $bold;
+    padding: 0.5rem;
+    border-radius: 0.50rem;
+    width: max-content;
+    margin-right: 0.5rem;
+}
+
+
+.arrowDownTraining {
+    position: absolute;
+    fill: $dodeka_blauw;
+    right: 1rem;
+    width: 2rem;
+    top: 1.25rem;
+    z-index: 3;
+}
+
+.arrowUpTraining {
+    position: absolute;
+    fill: $dodeka_blauw;
+    right: 1rem;
+    width: 2rem;
+    top: 1.25rem;
+    z-index: 3;
+}
+
+.trainingCursor {
+    cursor: pointer;
 }

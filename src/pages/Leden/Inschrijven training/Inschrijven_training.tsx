@@ -14,35 +14,35 @@ const trainingen = [
         "signed_up": []
     },
     {
-        "training_id": "0_training",
+        "training_id": "2_training",
         "date_time": "Ma 7 aug",
         "events": [],
         "cancelled": "vakantie",
         "signed_up": []
     },
     {
-        "training_id": "0_training",
+        "training_id": "3_training",
         "date_time": "Wo 9 aug",
         "events": ["Sprint", "MiLa", "Loopgroep", "Kogel", "Ver"],
         "cancelled": "",
         "signed_up": []
     },
     {
-        "training_id": "0_training",
+        "training_id": "4_training",
         "date_time": "Za 12 aug",
         "events": ["Sprint", "MiLa", "Loopgroep", "Hinkstap", "Horde"],
         "cancelled": "",
         "signed_up": []
     },
     {
-        "training_id": "0_training",
+        "training_id": "5_training",
         "date_time": "Ma 14 aug",
         "events": ["Sprint", "MiLa", "Loopgroep", "Kogel", "Ver"],
         "cancelled": "",
         "signed_up": []
     },
     {
-        "training_id": "0_training",
+        "training_id": "6_training",
         "date_time": "Wo 16 aug",
         "events": [],
         "cancelled": "NSK Teams",
@@ -55,7 +55,15 @@ const trainingen = [
 function InschrijvenTraining (){
 
     const {authState, setAuthState} = useContext(AuthContext)
-    const [activeTraining, setActiveTraining] = useState("1_training")
+    const [activeTraining, setActiveTraining] = useState(trainingen[0].training_id)
+
+    function openTraining(training_id: string) {
+        if (activeTraining === training_id) {
+            setActiveTraining("none");
+        } else {
+            setActiveTraining(training_id)
+        }
+    }
 
     return (
         <div>
@@ -64,7 +72,7 @@ function InschrijvenTraining (){
                 <a className="schema_link" href="https://docs.google.com/spreadsheets/d/1ciyiBdMRWJJDbawQ6BwbT79nse-rXx9-uYF3qLIZTdU/edit#gid=334315521" rel="noreferrer" target="_blank">Bekijk hier de trainingsschema's</a>
             </div>
             <div className="trainingen_container">
-                {trainingen.map((item) => <Training id={item.training_id} date_time={item.date_time} cancelled={item.cancelled} events={item.events} signed_up={item.signed_up} active={activeTraining === item.training_id}/>)}
+                {trainingen.map((item) => <Training id={item.training_id} date_time={item.date_time} cancelled={item.cancelled} events={item.events} signed_up={item.signed_up} active={activeTraining === item.training_id} setActive={openTraining} />)}
             </div>
 
         </div>
