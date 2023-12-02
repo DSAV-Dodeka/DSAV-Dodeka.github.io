@@ -1,30 +1,52 @@
 @import "../../../../variables";
 
 .training_inschrijven {
+    overflow: hidden;
     position: relative;
     margin-left: 4rem;
     margin-right: 4rem;
     display: flex;
     border-bottom: 1px solid $dodeka_blauw90p;
     border-left: 1px solid $dodeka_blauw90p;
+
+    @include respond(mobile) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        border-right: 1px solid $dodeka_blauw90p;
+    }
 }
 
 .training_inschrijven:first-of-type {
     border-top: 1px solid $dodeka_blauw90p;
     border-radius: 1rem 0 0 0;
+    overflow: hidden;
+
+    @include respond(mobile) {
+        border-radius: 1rem 1rem 0 0;
+    }
 }
+
 
 .training_inschrijven:last-of-type {
     border-radius: 0 0 0 1rem;
+
+    @include respond(mobile) {
+        border-radius: 0 0 1rem 1rem;
+    }
 }
 
-.training_inschrijven:first-of-type .training_datum {
-    border-top: 1px solid $dodeka_blauw90p;
-    border-radius: 1rem 0 0 0;
+.training_item {
+    display: contents;
 }
 
-.training_inschrijven:last-of-type .training_datum {
-    border-radius: 0 0 0 1rem;
+.training_inschrijven.training_inschrijven_active {
+    @include respond(mobile) {
+        flex-wrap: wrap;
+    }
+}
+
+.training_item_closed {
+    cursor: pointer;
 }
 
 .training_datum {
@@ -36,6 +58,12 @@
     padding: 1rem;
     min-width: 8rem;
     text-align: center;
+}
+
+.training_inschrijven_active .training_datum {
+    @include respond(mobile) {
+        width: 100%;
+    }
 }
 
 .training_onderdelen {
@@ -51,6 +79,10 @@
     line-height: $line_height_medium;
     padding: 1rem;
     min-width: 25%;
+
+    @include respond(mobile) {
+        display: none;
+    }
 }
 
 .doorgestreept {
@@ -96,8 +128,12 @@
 .training_active_ingeschreven {
     font-size: $font_medium;
     line-height: $line_height_medium;
-    margin-left: 1rem;
+    margin-left: 2rem;
     flex-grow: 1;
+
+    @include respond(mobile) {
+        display: none;
+    }
 }
 
 .training_active_submit {
@@ -121,6 +157,10 @@
     width: 2rem;
     top: 1.25rem;
     z-index: 3;
+
+    @include respond(mobile) {
+        display: none;
+    }
 }
 
 .arrowUpTraining {
@@ -130,6 +170,10 @@
     width: 2rem;
     top: 1.25rem;
     z-index: 3;
+
+    @include respond(mobile) {
+        display: none;
+    }
 }
 
 .trainingCursor {
