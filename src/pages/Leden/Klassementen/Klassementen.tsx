@@ -42,6 +42,11 @@ function capitalize(string: string, firstname: boolean = true) {
     }
   }
 
+  function highlight(authState: any, person: any) {
+    if (person.firstname.toLowerCase() === authState.it.given_name.toLowerCase() && person.lastname.toLowerCase() === authState.it.family_name.toLowerCase()) return true;
+    return false
+  }
+
 
 function Klassementen (){
 
@@ -69,19 +74,19 @@ function Klassementen (){
         <div className="SoortKlassement">
             <p>Trainingsklassement</p>
         </div>
-            <div className="EerstePersoonLinks">
+            <div className={"EerstePersoonLinks" + (highlight(authState, punten[0]) ? " person_highlight" : "")}>
                 <p>1. {capitalize(training[0].firstname)} {capitalize(training[0].lastname, false)} - {training[0].points}</p>
             </div>
-            <div className="TweedePersoonLinks">
+            <div className={"TweedePersoonLinks" + (highlight(authState, punten[1]) ? " person_highlight" : "")}>
                 <p>2. {capitalize(training[1].firstname)} {capitalize(training[1].lastname, false)} - {training[1].points}</p>
             </div>
-            <div className="DerdePersoonLinks">
+            <div className={"DerdePersoonLinks" + (highlight(authState, punten[2]) ? " person_highlight" : "")}>
                 <p>3. {capitalize(training[2].firstname)} {capitalize(training[2].lastname, false)} - {training[2].points}</p>
             </div>
         
         <div className={ "VierEnLagerLinks" + (mobileVisible ? "" : " klassementHidden")}>
             { training.slice(3).map((value, index) => 
-                <p key={"training" + index} className="persoonMargin">{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname, false)} - {value.points}</p>
+                <p key={"training" + index} className={"persoonMargin" + (highlight(authState, value) ? " person_highlight" : "")}>{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname, false)} - {value.points}</p>
             )
             }
         </div>
@@ -94,18 +99,18 @@ function Klassementen (){
         <div className="SoortKlassement">
             <p>Puntenklassement</p>
         </div>
-        <div className="EerstePersoonRechts">
+        <div className={"EerstePersoonRechts" + (highlight(authState, punten[0]) ? " person_highlight" : "")}>
             <p>1. {capitalize(punten[0].firstname)} {capitalize(punten[0].lastname, false)} - {punten[0].points}</p>
         </div>
-        <div className="TweedePersoonRechts">
+        <div className={"TweedePersoonRechts" + (highlight(authState, punten[1]) ? " person_highlight" : "")}>
             <p>2. {capitalize(punten[1].firstname)} {capitalize(punten[1].lastname, false)} - {punten[1].points}</p>
         </div>
-        <div className="DerdePersoonRechts">
+        <div className={"DerdePersoonRechts" + (highlight(authState, punten[2]) ? " person_highlight" : "")}>
             <p>3. {capitalize(punten[2].firstname)} {capitalize(punten[2].lastname, false)} - {punten[2].points}</p>
         </div>
         <div className={ "VierEnLagerRechts" + (mobileVisible ? "" : " klassementHidden")}>
         { punten.slice(3).map((value, index) => 
-                <p key={"punten" + index} className="persoonMargin">{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname, false)} - {value.points}</p>
+                <p key={"punten" + index} className={"persoonMargin" + (highlight(authState, value) ? " person_highlight" : "")}>{index + 4}. {capitalize(value.firstname)} {capitalize(value.lastname, false)} - {value.points}</p>
             )
             }
         </div>
