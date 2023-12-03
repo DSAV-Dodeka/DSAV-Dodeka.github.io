@@ -28,6 +28,7 @@ const Leden = React.lazy(() => import("./pages/Leden/Leden"));
 
 import Gezelligheid from "./pages/Vereniging/Gezelligheid/Gezelligheid";
 import Hoogtepunten from "./pages/Wedstrijden/Hoogtepunten/Hoogtepunten";
+import Vetrouwenscontactpersoon from "./pages/Contact/VCP/VCP"
 import "./App.scss";
 
 import AuthRedirect from "./pages/Auth/AuthRedirect";
@@ -197,6 +198,9 @@ function App() {
                     }/>
                     <Route path="/contact" element={
                       <Contact />
+                    }/>
+                    <Route path="/contact/vertrouwenscontactpersoon" element={
+                      <Vetrouwenscontactpersoon />
                     }/>
                       <Route path="/leden/verjaardagen" element={
                         <Suspense fallback={<div>Loading verjaardagen...</div>}>
