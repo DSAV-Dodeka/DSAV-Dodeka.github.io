@@ -199,7 +199,7 @@ function App() {
                     <Route path="/contact" element={
                       <Contact />
                     }/>
-                    <Route path="/contact/vertrouwenscontactpersoon" element={
+                    <Route path="/contact/vcp" element={
                       <Vetrouwenscontactpersoon />
                     }/>
                       <Route path="/leden/verjaardagen" element={
