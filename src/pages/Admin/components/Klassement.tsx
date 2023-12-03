@@ -21,6 +21,7 @@ import {matchNames, MultiMatch, parseFile} from "../functions/parse";
 import {back_post_auth} from "../../../functions/api/api";
 import SortHeader from "./SortHeader";
 import NewEvent from "./NewEvent";
+import { exportCSV } from "../functions/parse";
 
 const columnHelper = createColumnHelper<KlassementData>()
 
@@ -120,6 +121,7 @@ const Klassement = ({typeName, addText, headerText, viewEventText}: KlassementPr
 
     return (
         <div>
+            <button className="export_button" onClick={() => exportCSV(pointsData, (typeName === "points" ? "Puntenklassement.csv" : "Trainingsklassement.csv"))}>Exporteer</button>
             <table className="leden_table">
                 <SortHeader table={table} OtherHeader={addEventHeader} />
                 <tbody>
