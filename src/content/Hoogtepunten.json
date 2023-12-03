@@ -1,6 +1,27 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Weg 2023",
+            "foto": "nsk_weg_2023.jpg",
+            "prijzen": [
+                {
+                    "naam": "Suze de Vries",
+                    "plaats": 1,
+                    "afstand": "5 kilometer"
+                },
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 3,
+                    "afstand": "4x400 estafette"
+                }
+            ],
+            "prestaties": [
+                "Bij dit NSK heeft Dodeka de ZeuS Bokaal binnengesleept!", 
+                "Koen Stapel loopt de 10 kilometer binnen het uur",
+                "Dodeka was aanwezig met maar liefst 19 individuele atleten"
+            ]
+        },
+        {
             "wedstrijd": "NSK Teams 2023",
             "foto": "hoogtepunten_teams_2023.jpg",
             "prijzen": [

@@ -1,6 +1,12 @@
 {
     "besturen": [
         {
+            "naam": "Bestuur 5",
+            "leden": ["Anne-Wil van Werkhoven - Voorzitter", "Sanne van Beek - Secretaris", "Marien Sips - Penningmeester", "Sanne Diepen - Commissaris Atletiek", "Tim Creusen - Commissaris Intern"],
+            "jaar": "2023/2024",
+            "foto": "bestuur_5.jpg" 
+        },
+        {
             "naam": "Bestuur 4",
             "leden": ["Lianne Folkerts - Voorzitter", "Jefry el Bhwash - Secretaris", "Simon Loose - Penningmeester", "Saana Taal - Commissaris Atletiek"],
             "jaar": "2022/2023",
