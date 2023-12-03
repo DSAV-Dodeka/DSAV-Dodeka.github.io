@@ -9,6 +9,7 @@
     margin-top: $margin_y;
     margin-bottom: $margin_y;
     text-align: left;
+    word-wrap: break-word;
     @include respond(mobile) {
         margin-left: $margin_mobile;
         margin-top: $margin_mobile;

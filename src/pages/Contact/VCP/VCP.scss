@@ -1,67 +1,95 @@
 @import "../../../variables";
 
-.algemeen{
+.vcp_container{
     margin-top: 0rem;
+    margin-bottom: 2rem;
 }
 
-.textalgemeen{
+
+.vcp_algemeen{
+    width: calc(100% - 8rem);
+    // display: inline-table;
+    // height: 16rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    background-color: $dodeka_blauw90p;
+    color: white;
+    border-radius: 0.75rem;
+    @include respond(mobile){
+        margin-left: 1rem;
+        margin-right: 1rem;
+        width: calc(100% - 2rem);
+        padding-bottom: 2rem;
+    }
+}
+
+.vcp_algemeen p {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 2rem;
+    font-size: $font_small;
+    @include respond(mobile) {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem;
+    }
+}
+
+.vcp_persoon {
+    margin-bottom: 6rem;
+    padding: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    width: calC(50% - 5rem);
+    display: inline-block;
+    // height: 20rem;
+    background-color: $dodeka_blauw90p;
+    color: white;
+    border-radius: 0.75rem;
+    @include respond(mobile){
+        display: block;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 0rem;
+        margin-bottom: 2rem;
+        width: calc(100% - 2rem);
+        padding: 1rem;
+    }
+}
+
+.vcp_left {
+    margin-left: 4rem;
+    margin-right: 1rem;
+    @include respond(mobile) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+.vcp_right {
+    margin-left: 1rem;
+    margin-right: 4rem;
+    @include respond(mobile) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+.vcp_img {
     width: 100%;
-    height: 30rem;
-    background-color: white;
-    @include respond(mobile){
-        height: 30rem;
-        background-color: white;
-        width: 100%;
-    }
+    padding-bottom: 1rem;
 }
 
-.textkolom1{
-    width: 90%;
-    display: inline-table;
-    height: 20rem;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    padding: 5%;
-    background-color: $dodeka_blauw90p;
-    color: white;
-    border-radius: 0.75rem;
-    object-position: center;
-    @include respond(mobile){
-        object-fit: cover;
-        object-position: center;
-        margin-left: 0%;
-        margin-right: 0%;
-        margin-top: 0rem;
-        margin-bottom: 14rem;
-        width: 100%;
-        height: 15rem;
-        padding: 2rem;
-        background-color: $dodeka_blauw;
-    }
+.vcp_naam {
+    font-size: $font_medium;
+    font-weight: $bold;
+    padding-bottom: 0.5rem;
 }
 
-.textkolom2{
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    padding: 2%;
-    width: 40%;
-    display: inline-table;
-    height: 20rem;
-    background-color: $dodeka_blauw90p;
-    color: white;
-    border-radius: 0.75rem;
-    @include respond(mobile){
-        object-fit: cover;
-        object-position: center;
-        margin-left: 0%;
-        margin-right: 0%;
-        margin-top: 0rem;
-        margin-bottom: 14rem;
-        width: 100%;
-        height: 15rem;
-        padding: 2rem;
-        background-color: $dodeka_blauw;
-    }
+.vcp_mail {
+    text-decoration: none;
+    color: $dodeka_rood;
 }
