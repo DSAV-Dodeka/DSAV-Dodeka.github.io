@@ -1,0 +1,54 @@
+@import "../../../variables";
+
+.OWeeText {
+    background-color: $dodeka_blauw90p;
+    width: 100%;
+    padding-top: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-bottom: 2rem;
+    color: white;
+    margin-bottom: 2rem;
+    @include respond(mobile) {
+        padding-top: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+
+.OWeeTitle {
+    font-size: $font_ml;
+    font-weight: $bold;
+    line-height: $line_height_large;
+    @include respond(mobile) {
+        font-size: $font_medium;
+        line-height: $line_height_medium;
+    }
+}
+
+.OWeeSubtitle {
+    font-size: $font_medium;
+    font-weight: $normal;
+    color: $dodeka_rood;
+    line-height: $line_height_medium;
+    margin-bottom: 1rem;
+    @include respond(mobile) {
+        font-size: $font_small;
+        line-height: 1.25rem;
+    }
+}
+
+.OWeeParagraph {
+    column-count: 2;
+    font-size: $font_small;
+    line-height: 1.25rem;
+    @include respond(mobile) {
+        column-count: 1;
+    }
+}
+
+.OWeeLink {
+    color: $dodeka_rood;
+    text-decoration: none;
+}

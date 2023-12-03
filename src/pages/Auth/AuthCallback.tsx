@@ -4,7 +4,7 @@ import {decodeJwtPayload, TokenError, validateIdToken} from "./functions/OAuth";
 import {redirect_uri} from "./AuthRedirect";
 import config from "../../config"
 import AuthContext, {handleTokenResponse, useLogin} from "./AuthContext";
-import {back_post, catch_api, err_api} from "../../functions/api";
+import {back_post, catch_api, err_api} from "../../functions/api/api";
 import {PagesError} from "../../functions/error";
 import {Logger} from "../../functions/logger";
 

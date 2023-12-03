@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../../../../components/Header";
-import {ReactComponent as Maltha} from "../../../../images/contact/maltha.svg";
 import "./Sponsoropties.scss"
 import getUrl from "../../../../functions/links";
 
@@ -16,8 +15,9 @@ function Sponsoropties() {
                 <Header text="Huidige sponsors" position="left"/>
                 <div className="sponsoropties_4">
                     <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getUrl(`sponsors/maltha.png`)} alt="" className="sponsoropties_5 maltha"></img></a>
-                    <a target="_blank" rel="noreferrer" href="https://nl.kvernelandgroup.com/"><img src={getUrl(`sponsors/kverneland.png`)} alt="" className="sponsoropties_5 kverneland"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://kernengineers.nl/"><img src={getUrl(`sponsors/kern.svg`)} alt="" className="sponsoropties_5 kverneland"></img></a>
                     <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getUrl(`sponsors/tsa.png`)} alt="" className="sponsoropties_5 tsa"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.studentendrukwerk.nl/"><img src={getUrl(`sponsors/studentendrukwerk.png`)} alt="" className="sponsoropties_5 tsa"></img></a>
                 </div>
                
             </div>

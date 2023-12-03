@@ -1,14 +1,10 @@
 import React from "react";
-// import {
-//   HashLink as Link
-// } from "react-router-hash-link";
 import {
     Link
 } from "react-router-dom";
 import "./ContactBar.scss";
   
 import Heading from "./Heading";
-import {ReactComponent as Maltha} from "../../images/contact/maltha.svg";
 import getUrl from "../../functions/links";
 
 function ContactBar() {
@@ -37,8 +33,9 @@ function ContactBar() {
                 <Link className="no_underline" to="/contact/sponsors#"><Heading title="Sponsors" /></ Link>
                 <div className="bar_info">
                     <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getUrl(`sponsors/maltha.png`)} alt="" className="bar_sponsor maltha_bar"></img></a>
-                    <a target="_blank" rel="noreferrer" href="https://nl.kvernelandgroup.com/"><img src={getUrl(`sponsors/kverneland.png`)} alt="" className="bar_sponsor kverneland_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://kernengineers.nl/"><img src={getUrl(`sponsors/kern.svg`)} alt="" className="bar_sponsor kverneland_bar"></img></a>
                     <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getUrl(`sponsors/tsa.png`)} alt="" className="bar_sponsor tsa_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.studentendrukwerk.nl/"><img src={getUrl(`sponsors/studentendrukwerk.png`)} alt="" className="bar_sponsor tsa_bar"></img></a>
                 </div>
                 
             </div>

@@ -1,0 +1,64 @@
+{
+    "rollen": [
+        {
+            "rol": "Bestuur",
+            "kleur": "#001f48",
+            "light": false
+        },
+        {
+            "rol": ".ComCom",
+            "kleur": "#4D8B31",
+            "light": false
+        },
+        {
+            "rol": "BatCie",
+            "kleur": "#94FBAB",
+            "light": true
+        },
+        {
+            "rol": "BarCo",
+            "kleur": "#FB3640",
+            "light": false
+        },
+        {
+            "rol": "Lustrum",
+            "kleur": "#EEABC4",
+            "light": true
+        },
+        {
+            "rol": "Focus",
+            "kleur": "#F5FDC6",
+            "light": true
+        },
+        {
+            "rol": "NSK Meerkamp",
+            "kleur": "#08a4bd",
+            "light": false
+        },
+        {
+            "rol": "RedaXII",
+            "kleur": "#0B7A75",
+            "light": false
+        },
+        {
+            "rol": "SAX",
+            "kleur": "#9B5DE5",
+            "light": false
+        },
+        {
+            "rol": "Snowdeka",
+            "kleur": "#87F1FF",
+            "light": true
+        },
+        {
+            "rol": "Sunrice",
+            "kleur": "#F9CB40",
+            "light": true
+        },
+        {
+            "rol": "Trainers",
+            "kleur": "#F58A07",
+            "light": false
+        }
+    ]
+}

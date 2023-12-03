@@ -1,5 +1,5 @@
 import React, {useReducer, ChangeEvent, useState, FormEvent} from "react";
-import {back_post} from "../../../functions/api";
+import {back_post} from "../../../functions/api/api";
 import "./SchrijfIn.scss";
 
 const redirectUrl = "https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1"
@@ -88,7 +88,7 @@ const SchrijfIn = () => {
                 setStatus("")
                 window.location.assign(redirectUrl)
             }).catch(() => {
-                setStatus("Er is iets misgegaan!")
+                setStatus("De server is tijdelijk niet beschikbaar. Je kunt je alsnog inschrijven via https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1 en door een mailtje te sturen naar bestuur@dsavdodeka.nl!")
             })
         }
 

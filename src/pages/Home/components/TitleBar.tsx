@@ -3,7 +3,7 @@ import {
   Link
 } from "react-router-dom";
 import "./TitleBar.scss";
-import {ReactComponent as D} from "../../../images/groteD.svg";
+import D from "../../../images/groteD.svg?react";
 import getUrl from "../../../functions/links";
 
 

@@ -8,7 +8,7 @@ import {
 import config from "../../config";
 import {redirect_uri} from "./AuthRedirect";
 import {string} from "zod";
-import {back_post, catch_api} from "../../functions/api";
+import {back_post, catch_api} from "../../functions/api/api";
 import {Logger} from "../../functions/logger";
 import {PagesError} from "../../functions/error";
 

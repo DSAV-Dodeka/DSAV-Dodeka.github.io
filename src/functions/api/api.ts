@@ -1,9 +1,9 @@
-import config from "../config"
+import config from "../../config"
 import ky, {HTTPError, Options} from "ky"
 import {z} from "zod";
-import {AuthUse, useRenewal} from "../pages/Auth/AuthContext";
+import {AuthUse, useRenewal} from "../../pages/Auth/AuthContext";
 import {NormalizedOptions} from "ky/distribution/types/options";
-import {PagesError} from "./error";
+import {PagesError} from "../error";
 
 const api = ky.create({prefixUrl: config.api_location});
 
@@ -17,17 +17,19 @@ export const back_post = async (endpoint: string, json: Object, options?: Option
 
 const renewHook = (auth: AuthUse) => {
     return async (request: Request, options: NormalizedOptions, response: Response) => {
-        const {error, error_description, debug_key = ""} = await response.json()
+        if (!response.ok) {
+            const {error, error_description, debug_key = ""} = await response.json()
 
-        if (debug_key === "expired_access_token") {
-            const newState = await useRenewal(auth.authState)
+            if (debug_key === "expired_access_token") {
+                const newState = await useRenewal(auth.authState)
 
-            auth.setAuthState(newState)
+                auth.setAuthState(newState)
 
-            if (newState.isAuthenticated) {
-                request.headers.set('Authorization', `Bearer ${newState.access}`)
+                if (newState.isAuthenticated) {
+                    request.headers.set('Authorization', `Bearer ${newState.access}`)
 
-                return api(request);
+                    return api(request);
+                }
             }
         }
     }
@@ -154,42 +156,33 @@ export const bd_request = async (auth: AuthUse, options?: Options) => {
     return bds
 }
 
-
-const PuntenKlassementData = z.object({
-    Naam: z.string(),
-    Punten: z.number()
+const RoleData = z.object({
+    name: z.string(),
+    user_id: z.string(),
+    scope: z.array(z.string()),
 })
-export type PuntenKlassementData = z.infer<typeof PuntenKlassementData>;
+export type RoleData = z.infer<typeof RoleData>;
 
-const PuntenKlassement = z.object({
-    points: z.array(PuntenKlassementData)
-})
-export type PuntenKlassement = z.infer<typeof PuntenKlassement>;
-
-export const punten_klassement_request = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/rankings/points', auth, options)
-    const punt_klas: PuntenKlassement = PuntenKlassement.parse(response)
-    return punt_klas
+export const u_ud_scopes_request = async (auth: AuthUse, options?: Options): Promise<Roles> => {
+    let response = await back_request('admin/scopes/all/', auth, options)
+    return Roles.parse(response)
 }
 
-const TrainingsKlassementData = z.object({
-    Naam: z.string(),
-    Punten: z.number()
+const Roles = z.array(RoleData)
+export type Roles = z.infer<typeof Roles>;
+
+const RoleInfo = z.object({
+    role: z.string(),
+    color: z.string(),
 })
-export type TrainingsKlassementData = z.infer<typeof TrainingsKlassementData>;
 
-const TrainingsKlassement = z.object({
-    points: z.array(TrainingsKlassementData)
+export type RoleInfo = z.infer<typeof RoleInfo>;
+
+const RolesInfo = z.object({
+    roles: z.array(RoleInfo)
 })
-export type TrainingsKlassement = z.infer<typeof TrainingsKlassement>;
 
-
-export const trainings_klassement_request = async (auth: AuthUse, options?: Options) => {
-    let response = await back_request('members/rankings/training', auth, options)
-    const train_klas: TrainingsKlassement = TrainingsKlassement.parse(response)
-    return train_klas
-}
-
+export type RolesInfo = z.infer<typeof RolesInfo>;
 
 const DeleteUrl = z.object({
     delete_url: z.string()
@@ -210,3 +203,20 @@ export const delete_post = async(auth: AuthUse, options?: Options) => {
         throw new PagesError("invalid_url", `URL base ${base} is not valid.`)
     }
 }
+
+const PR = z.object({
+    naam: z.string(),
+    onderdeel: z.string(),
+    prestatie: z.string(),
+    datum: z.string(),
+    plaats: z.string(),
+    link: z.string()
+})
+
+export type PR = z.infer<typeof PR>;
+
+const PRs = z.object({
+    prs: z.array(PR)
+})
+
+export type PRs = z.infer<typeof PRs>;

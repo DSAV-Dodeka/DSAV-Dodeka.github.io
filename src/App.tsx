@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {Suspense, useEffect, useState} from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,7 +7,7 @@ import {
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
 import Nieuws from './pages/Nieuws/Nieuws/Nieuws';
-import Spike from './pages/Nieuws/Spike/Spike';
+const Spike = React.lazy(() => import('./pages/Nieuws/Spike/Spike'));
 import Vereniging from './pages/Vereniging/Vereniging/Vereniging';
 import Trainingen from './pages/Trainingen/Trainingen';
 import WordLid from './pages/Word lid/WordLid';
@@ -18,14 +18,15 @@ import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
 import Sponsors from "./pages/Contact/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
-import ActiviteitenText from "./content/Activiteiten.json"
 import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
-import Arnold from "./pages/Vereniging/Arnold/Arnold";
-import Records from "./pages/Wedstrijden/Records/Records";
-import Verjaardagen from "./pages/Leden/Verjaardagen/Verjaardagen";
-import Leden from "./pages/Leden/Leden";
+const Arnold = React.lazy(() => import("./pages/Vereniging/Arnold/Arnold"));
+const Records = React.lazy(() => import("./pages/Wedstrijden/Records/Records"));
+
+const Verjaardagen = React.lazy(() => import("./pages/Leden/Verjaardagen/Verjaardagen"));
+const Klassementen = React.lazy(() => import("./pages/Leden/Klassementen/Klassementen"));
+const Leden = React.lazy(() => import("./pages/Leden/Leden"));
+
 import Gezelligheid from "./pages/Vereniging/Gezelligheid/Gezelligheid";
-import Klassementen from "./pages/Leden/Klassementen/Klassementen";
 import Hoogtepunten from "./pages/Wedstrijden/Hoogtepunten/Hoogtepunten";
 import Vetrouwenscontactpersoon from "./pages/Contact/VCP/VCP"
 import "./App.scss";
@@ -40,19 +41,17 @@ import {
   useAuth,
   useLogout
 } from "./pages/Auth/AuthContext";
-import Profiel from "./pages/Profiel/Profiel";
-import Admin from "./pages/Admin/Admin";
+const Profiel = React.lazy(() => import("./pages/Profiel/Profiel"));
+const Admin = React.lazy(() => import('./pages/Admin/Admin'));
 import Registered from "./pages/Auth/Registered";
+
 import ProfielDebug from "./pages/Profiel/ProfielDebug";
+
 import {Logger} from "./functions/logger";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {err_api} from "./functions/api";
-import {number} from "zod";
+import {err_api} from "./functions/api/api";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
-import Activiteiten from "./pages/Activiteiten/Activiteiten";
-import Activiteit from "./pages/Activiteiten/components/Activiteit";
-import ActiviteitPagina from "./pages/Activiteiten/ActiviteitPagina";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -142,15 +141,22 @@ function App() {
                 <div id="app_flex">
                   <Routes>
                     <Route path="/nieuws/spike" element={
-                      <Spike />
+                      <Suspense fallback={<div>Loading Spike...</div>}>
+                        <Spike />
+                      </Suspense>
                     }/>
                     <Route path="/nieuws" element={
                       <Nieuws />
                     }/>
+                    {/* <Route path="/owee" element={<OWee />} /> */}
                     <Route path="/vereniging" element={<Vereniging />} />
                     <Route path="/vereniging/commissies" element={<Commissies />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
-                    <Route path="/vereniging/arnold" element={<Arnold />} />
+                    <Route path="/vereniging/arnold" element={
+                      <Suspense fallback={<div>Loading Arnold...</div>}>
+                      <Arnold />
+                      </Suspense>
+                    } />
                     <Route path="/vereniging/gezelligheid" element={<Gezelligheid />} />
                     {/*<Route path="/vereniging/activiteiten" element={*/}
                     {/*  <Activiteiten />*/}
@@ -180,7 +186,9 @@ function App() {
                       <Wedstrijden />
                     }/>
                     <Route path="/wedstrijden/records" element={
-                      <Records />
+                      <Suspense fallback={<div>Loading records...</div>}>
+                        <Records />
+                      </Suspense>
                     }/>
                     <Route path="/word_lid" element={
                       <WordLid />
@@ -195,13 +203,19 @@ function App() {
                       <Vetrouwenscontactpersoon />
                     }/>
                       <Route path="/leden/verjaardagen" element={
+                        <Suspense fallback={<div>Loading verjaardagen...</div>}>
                         <Verjaardagen />
+                        </Suspense>
                       }/>
                       <Route path="/leden/klassementen" element={
+                        <Suspense fallback={<div>Loading klassement...</div>}>
                         <Klassementen />
+                        </Suspense>
                       }/>
                       <Route path="/leden" element={
+                        <Suspense fallback={<div>Loading leden...</div>}>
                         <Leden />
+                        </Suspense>
                       }/>
                       <Route path="/"
                         element={<Home />}
@@ -210,9 +224,16 @@ function App() {
                       <Route path="/account/delete" element={<DeleteAccount />} />
                       <Route path="/lg" element={<AuthRedirect />} />
                       <Route path="/auth/callback" element={<AuthCallback />} />
-                      <Route path="/profiel" element={<Profiel />} />
+                      <Route path="/profiel" element={
+                        <Suspense fallback={<div>Loading profiel...</div>}>
+                        <Profiel />
+                        </Suspense>
+                      } />
                       <Route path="/profiel/debug" element={<ProfielDebug />} />
-                      <Route path="/admin" element={<Admin />} />
+                      <Route path="/admin" element={
+                        <Suspense fallback={<div>Loading admin...</div>}>
+                          <Admin /></Suspense>
+                      } />
                       <Route path="/registered" element={<Registered />}/>
 
                   </Routes>

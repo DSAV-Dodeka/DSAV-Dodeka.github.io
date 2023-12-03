@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {back_post, err_api} from "../../../functions/api";
+import {back_post, err_api} from "../../../functions/api/api";
 import {z} from "zod";
 import {PagesError} from "../../../functions/error";
 
@@ -36,8 +36,8 @@ const ChangeEmail = () => {
     useEffect(() => {
         const ac = new AbortController()
 
-        handleLoad(ac.signal).then(() => {
-            setEmails(emails)
+        handleLoad(ac.signal).then((checkedEmail) => {
+            setEmails(checkedEmail)
         }).catch((e) => {
             if (e instanceof PagesError) {
                 console.log(e.j())
