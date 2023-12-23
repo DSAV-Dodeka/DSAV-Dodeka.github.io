@@ -5,12 +5,15 @@ import {
 import "./TitleBar.scss";
 import D from "../../../images/groteD.svg?react";
 import getUrl from "../../../functions/links";
+import Sneeuw from "../../../images/home/sneeuw.svg?react";
 
 
 function TitleBar() {  
   return (
     <div id="home_title_container">
-        <div id="home_title_left" ></div>
+        <div id="home_title_left" >
+          <Sneeuw className="sneeuw_bar"/>
+        </div>
         <div id="home_title_right">
             <img id="home_title_background" src={getUrl("home/titlebar.jpg")} alt=""/>
 
