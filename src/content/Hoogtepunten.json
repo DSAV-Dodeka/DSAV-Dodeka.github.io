@@ -1,6 +1,37 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Trappenloop 2023",
+            "foto": "nsk_trappenloop2023_landscape.JPG",
+            "prijzen": [
+                {
+                    "naam": "Robin Beijer, Marien Sips",
+                    "plaats": 1,
+                    "afstand": "10 verdiepingen"
+                }, 
+                {
+                    "naam": "Robin Beijer",
+                    "plaats": 1,
+                    "afstand": "20 verdiepingen"
+                }, 
+                {
+                    "naam": "Team LadderZat",
+                    "plaats": 2,
+                    "afstand": "Beerchase Mix"
+                },
+                {
+                    "naam": "Vera Schuurman",
+                    "plaats": 3,
+                    "afstand": "10 verdiepingen"
+                }
+            ],
+            "prestaties": [
+                "Robin Beijer wint de dubbel!", 
+                "Het hoogtepunt was bovenaan de trap van de 20\u1D49 verdieping.",
+                "Maar liefst 20 Dodekaleden hebben de trappen van het Erasmusgebouw beklommen."
+            ]
+        },
+        {
             "wedstrijd": "NSK Weg 2023",
             "foto": "nsk_weg_2023.jpg",
             "prijzen": [
