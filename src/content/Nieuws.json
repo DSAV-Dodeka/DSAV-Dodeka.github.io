@@ -1,6 +1,14 @@
 {
     "nieuwsberichten": [
         {
+            "id": "lustrum_gala",
+            "titel": "Het eerste lustrumgala van Dodeka",
+            "datum": "15-12-2023",
+            "auteur": "Lars Priester",
+            "tekst": "Zaterdag 18 november 2023 was het eindelijk zover. Dodeka had haar allereerste lustrumgala! Met een groep van 84 leden en aanhang reisden we met bussen naar kasteel Aldendriel in het plaatsje Mill, gelegen in Oost-Brabant. Bij aankomst kreeg iedereen een welkomstdrankje en werd de fotobooth geopend voor leuke foto's met vrienden en met je date. Na een tijdje begaf iedereen zich naar de eetzaal om daar te genieten van een heerlijk driegangendiner. Tussendoor werd er nog door Bart gespeecht over de oprichting van onze mooie vereniging, hield Jefry een praatje over het lustrum en zorgden Simon en Lars voor vermaak met het 'wie van de twee'-spel. Na het diner begon het feest waar een bandje voor leuke live muziek zorgde. Daarna namen de welbekende DJ's van Dodeka het over om de rest van de avond van hitjes te voorzien. Na afloop begon de busrit terug naar Delft, die niet voor iedereen even prettig was. Toch kunnen we terugkijken op een mooi en geslaagd gala!",
+            "foto": "lustrumgala.jpg"
+        },
+        {
             "id": "kb5_bekendmaking",
             "titel": "Kandidaatsbestuur 5 is bekend!",
             "datum": "25-05-2023",
