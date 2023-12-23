@@ -54,7 +54,7 @@
                 {
                     "naam": "Marco Barco",
                     "functie": "Voorzitter",
-                    "foto": "mark"
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Antony",
@@ -91,35 +91,35 @@
             {
                 "naam": "Niels V",
                 "functie": "Voorzitter",
-                "foto": "placeholder"
+                "foto": "nielsv"
             },
             {
                 "naam": "Roy",
                 "functie": "Secretaris",
-                "foto": "placeholder"
+                "foto": "roy"
             },
             {
                 "naam": "Eric",
                 "functie": "Penningmeester",
-                "foto": "placeholder"
+                "foto": "eric"
             },
             {
                 "naam": "Renée",
                 "functie": "Commissaris Logistiek",
-                "foto": "placeholder"
+                "foto": "renée"
             },
             {
                 "naam": "Marin",
                 "functie": "Commissaris Promo",
-                "foto": "placeholder"
+                "foto": "marin"
             },
             {
                 "naam": "Marien",
                 "functie": "QQ",
-                "foto": "placeholder"
+                "foto": "marien"
             }
         ],
-        "fotos": "baco"
+        "fotos": "batcie"
   },
         {
             "naam": "FOCUS",
@@ -127,37 +127,37 @@
 		    "leden": [
                 {
                     "naam": "Mieke",
-                    "functie": "Voorzitter",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Jeroen",
-                    "functie": "",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Julius",
-                    "functie": "",
+                    "functie": "Kapitein",
                     "foto": "placeholder"
                 },
                 {
                     "naam": "Kimmo",
-                    "functie": "",
-                    "foto": "placeholder"
-                },
-		        {
-                    "naam": "",
-                    "functie": "",
-                    "foto": "placeholder"
-                },
-		        {
-                    "naam": "",
-                    "functie": "",
+                    "functie": "Secretavis",
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "",
-                    "functie": "",
+                    "naam": "Niek",
+                    "functie": "Kommiszeevis Bil",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Roman B",
+                    "functie": "Kommiszeevis Beer",
+                    "foto": "placeholder"
+                },
+		        {
+                    "naam": "Julius",
+                    "functie": "Kommiszeevis Vies",
+                    "foto": "placeholder"
+                },
+		        {
+                    "naam": "Matthew",
+                    "functie": "Kommiszeevis Kont",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Jeroen",
+                    "functie": "Kommiszeevis Gladde Paling",
                     "foto": "placeholder"
                 },
                 {
@@ -170,7 +170,7 @@
         },
         {
             "naam": "Lustrum",
-            "info": "Als commissie, maar ook samen met de rest van Dodeka, zullen we tijdens de DIES vieren dat onze lieve Arnold 4 jaar wordt. Dat maakt ons juist zo gaaf; dat wij het privilege hebben gekregen om een hele week lang feestelijke activiteiten te organiseren, zodat Arnold een weekje niet alleen een aardvarken maar ook een feestvarken is. En dat wil hij graag vieren met alle andere aardvarkentjes!",
+            "info": "De lustrumcommissie zorgt ervoor dat het eerste lustrum van Dodeka er één gaat worden om nooit te vergeten. Met vijf activiteiten gedurende het hele jaar vieren we de vijfde verjaardag van onze geliefde mascotte Arnold. Het hoogtepunt wordt de lustrumweek in februari, waarin de hele week geweldige activiteiten plaats zullen vinden en veel gefeest zal worden. Wij voelen ons vereerd dat we dit hele jaar Arnold mogen helpen niet alleen een aardvarken te zijn maar ook een feestvarken! ",
 		    "leden": [
                 {
                     "naam": "Jefry",
@@ -222,7 +222,7 @@
         },
 	{
             "naam": "NSK Meerkamp",
-            "info": "Op 1 april (dit is geen grap) vindt alweer het 4e, door D.S.A.V. Dodeka georganiseerde, NSK plaats. Na het NSK Indoor, het NSK Teams en het NSK Weg, gaan wij, op en rond het sportcomplex van AV ‘40 het NSK Ekiden organiseren. Bij een ekiden loop je als team een marathon in estafettevorm, dus we gaan de twee voorgaande NSK’s combineren. Zoals altijd zullen we niet alleen zorgen voor een mooie wedstrijd, maar ook voor een heerlijk en gezellig diner en een spetterend eindfeest. Vorm dus snel een team van 6 atleten en begin maar alvast met trainen. Dan zien we jou in het begin van de lente op onze baan in Delft! Voor eventuele vragen kan je mailen naar nskekiden@dsavdodeka.nl",
+            "info": "Het is weer zo ver. Een nieuw jaar en een nieuw jaar dat Dodeka een NSK mag organiseren. Namelijk het NSK Meerkamp! Dit zal plaatsvinden van zaterdag 11 mei tot zondag 12 mei, op de atletiekbaan van AV'40. Zoals de naam al verklapt zal iedereen strijden om de beste all-round aleet of atlete te worden. Net als elk NSK Meerkamp zijn er voor de mannen en de vrouwen de gewoonlijke meerkamp en loopmeerkamp. Als je nu denkt: 'Ik ben helemaal niet klaar voor zo'n volledige meerkamp :(' Wees niet getreurd! Vanaf dit jaar is er ook een Intermediate meerkamp voor de mannen en de vrouwen. Hier zijn minder onderdelen, en de hordes zijn lager en de gewichten zijn lichter. Met deze twee nieuwe varianten wordt het NSK Meerkamp voor iedereen toegankelijk! Naast al dat competitief zijn is er natuurlijk ook nog de gezelligheid. 's Avonds tijdens het eten zal er een demonstratiewedstrijd plaatsvinden met daarna een episch feest! Zet 11-12 mei maar alvast in je agenda en dan zien we je daar!",
 		    "leden": [
                 {
                     "naam": "Sylke",
@@ -306,7 +306,7 @@
         },
 	{
             "naam": "SAX",
-            "info": "Heee! Wij zijn de SAX. Wij zullen dit jaar super leuke SAXiviteiten organiseren voor de leukste Dodekaëders. Onze eerste SAXiviteit was al een groot succes namelijk het Sintenkerstennieuw diner. De SAX gaat helemaal wild dit jaar en we zullen de hele wereld over reizen met jullie. Wij zullen er alles aan doen om dit jaar de leukste, gezelligste en mooiste SAXiviteiten te organiseren. In onze commissie zitten alleen fanatieke dieren, met elk een eigen talent. Zo hebben we een lieve Teddy die het overzicht behoudt, een vrolijke Bambi die goed kan plannen, een oplettende Pingu die alles bijhoudt, een scherpe Freek die super goed is met geld en een Knor die deze wilde beestenbende binnen de modder plassen houdt. Dit jaar zullen wij ervoor zorgen dat Dodeka veel plezier heeft tijdens spannende, relaxende en leukste avonturen. Dit zal zeker goed komen want onthoudt, wij zijn ~ Born to be wild ~",
+            "info": "Heee! Wij zijn de SAX. Wij zullen dit jaar super leuke SAXiviteiten organiseren voor de leukste Dodekaëders. De activiteiten die wij organiseren zijn heel divers, van een Sinter-kerst-en-nieuw diner tot springen in een trampolinepark. Zien we jou bij de volgende SAXiviteit?",
 		"leden": [
                 {
                     "naam": "Xylander",
@@ -469,7 +469,7 @@
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Sanne vB",
+                    "naam": "Sanne B",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
                 },
@@ -479,17 +479,17 @@
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Niels V",
-                    "functie": "Baantrainer",
-                    "foto": "placeholder"
-                },
-                {
                     "naam": "Gijs",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
-                },
+                },               
                 {
                     "naam": "Marien",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Jefry",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
                 },
@@ -505,12 +505,12 @@
                 },
                 {
                     "naam": "Stan",
-                    "functie": "Milatrainer",
+                    "functie": "MiLatrainer",
                     "foto": "placeholder"
                 },
                 {
                     "naam": "Thijmen",
-                    "functie": "Milatrainer",
+                    "functie": "MiLatrainer",
                     "foto": "placeholder"
                 },
                 {
