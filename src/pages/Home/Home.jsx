@@ -12,6 +12,47 @@ const logoMax = Math.min((6 * window.innerWidth / 15), 614.4) / parseFloat(getCo
 
 function Home() {
   const [offset, setOffset] = useState(0);
+  const snowContent = ['&#10052', '&#10053', '&#10054'];
+  
+
+  const random = (num) => {
+    return Math.floor(Math.random() * num);
+  }
+
+  const getRandomStyles = () => {
+    const top = random(100) - 20;
+    const left = random(100);
+    const dur = random(10) + 15;
+    const size = random(25) + 25;
+    return ` 
+      top: -${top}%; 
+      left: ${left}%; 
+      font-size: ${size}px; 
+      animation-duration: ${dur}s; 
+    `;
+  }
+
+  const createSnow = (n) => {
+    for (var i = 0; i < n; i++) {
+      var snowContainer = document.getElementById("sneeuw_container");
+      while(!snowContainer) {
+        snowContainer = document.getElementById("sneeuw_container");
+      } 
+      var snow = document.createElement("div");
+      snow.className = "snow";
+      snow.style.cssText = getRandomStyles();
+      snow.innerHTML = snowContent[random(2)]
+      snowContainer.append(snow);
+    }
+  }
+
+  
+  useEffect(() => {
+    
+    window.addEventListener("load", () => {
+      createSnow(50)
+    });
+  }, [])
 
   useEffect(() => {
     setOffset(window.pageYOffset);
@@ -38,6 +79,7 @@ function Home() {
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
+      <div id="sneeuw_container"></div>
     </div>
   );
 }
