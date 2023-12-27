@@ -227,3 +227,22 @@
     font-size: $font_small;
     margin: 0 0 0.5rem;
 }
+
+.edit-button {
+    position: absolute;
+    right: 4rem;
+    top: 6rem;
+    background-color: $dodeka_rood;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 3rem;
+    line-height: 3rem;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+  }
