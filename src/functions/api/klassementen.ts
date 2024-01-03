@@ -58,3 +58,20 @@ export const user_names_request = async (auth: AuthUse, options?: Options): Prom
     let response = await back_request('admin/users/names/', auth, options)
     return UserNamesList.parse(response)
 }
+
+const ClassMetaList = z.object({
+    type: z.enum(["training", "points"]),
+    end_date: z.coerce.date(),
+    hidden_date: z.coerce.date(),
+    start_date: z.coerce.date(),
+    classification_id: z.number()
+}).array()
+export type ClassMetaList = z.infer<typeof ClassMetaList>;
+
+export const class_get_meta_request = async (auth: AuthUse, options?: Options): Promise<ClassMetaList> => {
+    let response = await back_request(`admin/class/get_meta/10/`, auth, options)
+    const class_list: ClassMetaList = ClassMetaList.parse(response)
+    console.log(class_list)
+    class_list.sort((a, b) => b.start_date.getTime() - a.start_date.getTime())
+    return class_list
+}

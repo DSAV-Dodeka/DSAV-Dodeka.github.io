@@ -1,62 +1,113 @@
 @import "../../variables.scss";
 
-.modal-form-label {
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
-    margin-bottom: 1rem;
-    margin-left: 1rem;
+.modal-form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        font-size: $font_medium;
+        line-height: $line_height_medium;
+        font-weight: $bold;
+        margin-bottom: 1rem;
+    
+        input, select {
+            margin-left: 1rem;
+        }
+    }
+
+    input, select {
+        border-style: none;
+        background-color: white;
+        color: $dodeka_blauw;
+        padding: 0.5rem;
+        border-radius: 0.75rem;
+        font-size: $font_medium;
+    }
+
+    button {
+        border-style: none;
+        width: fit-content;
+        background-color: $dodeka_rood;
+        padding: 0.5rem 1rem;
+        color: white;
+        border-radius: 0.75rem;
+        font-weight: $bold;
+        cursor: pointer;
+    }
 }
 
-// .modal-form-date {
-//     display: inline-block;
+// // .modal-form-label {
+// //     font-size: $font_medium;
+// //     line-height: $line_height_medium;
+// //     font-weight: $bold;
+// //     margin-bottom: 1rem;
+
+// //     input, select {
+// //         margin-left: 1rem;
+// //     }
+// // }
+
+// .modal-form-input {
 //     border-style: none;
 //     background-color: white;
 //     color: $dodeka_blauw;
 //     padding: 0.5rem;
 //     border-radius: 0.75rem;
 //     font-size: $font_medium;
-//     line-height: $line_height_medium;
-//     margin-top: 0.5rem;
-//     margin-bottom: 0.5rem;
-//     margin-left: 1rem;
-//     flex-grow: 1;
 // }
 
-// .modal-input {
+// .modal-form-select {
 //     border-style: none;
 //     background-color: white;
 //     color: $dodeka_blauw;
 //     padding: 0.5rem;
 //     border-radius: 0.75rem;
 //     font-size: $font_medium;
-//     line-height: $line_height_medium;
-//     margin: 0.5rem 4rem 0.5rem 0;
-//     width: calc(50% - 5rem);
 // }
 
-// .new_event_select {
-//     display: inline-block;
+// .modal-form-button {
 //     border-style: none;
-//     background-color: white;
-//     color: $dodeka_blauw;
-//     padding: 0.5rem;
+//     width: fit-content;
+//     background-color: $dodeka_rood;
+//     padding: 0.5rem 1rem;
+//     color: white;
 //     border-radius: 0.75rem;
-//     font-size: $font_medium;
-//     line-height: $line_height_medium;
-//     margin-top: 0.5rem;
-//     margin-bottom: 0.5rem;
-//     margin-left: 1rem;
-// }
-
-// .modal-form button {
-//     width: calc(25% - 0.5rem);
-//     margin-left: 0;
-//     font-size: $font_medium;
 //     font-weight: $bold;
+//     cursor: pointer;
+//   }
+
+
+
+// // .modal-input {
+// //     border-style: none;
+// //     background-color: white;
+// //     color: $dodeka_blauw;
+// //     padding: 0.5rem;
+// //     border-radius: 0.75rem;
+// //     font-size: $font_medium;
+// //     line-height: $line_height_medium;
+// //     margin: 0.5rem 4rem 0.5rem 0;
+// //     width: calc(50% - 5rem);
+// // }
+
+// .modal-form-select {
+//     border-style: none;
+//     background-color: white;
+//     color: $dodeka_blauw;
+//     padding: 0.5rem;
+//     border-radius: 0.75rem;
+//     font-size: $font_medium;
 //     line-height: $line_height_medium;
-//     padding-top: 0.5rem;
-//     padding-bottom: 0.5rem;
-//     border: none;
-//     display: block;
 // }
+
+// // .modal-form button {
+// //     width: calc(25% - 0.5rem);
+// //     margin-left: 0;
+// //     font-size: $font_medium;
+// //     font-weight: $bold;
+// //     line-height: $line_height_medium;
+// //     padding-top: 0.5rem;
+// //     padding-bottom: 0.5rem;
+// //     border: none;
+// //     display: block;
+// // }

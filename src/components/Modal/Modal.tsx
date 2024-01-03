@@ -17,8 +17,14 @@ const Modal = (props: ModalProps) => {
     }
 
     useEffect(() => {
-        if (props.show && dialog.current) {
+        if (!dialog.current) {
+            return
+        }
+
+        if (props.show) {
             dialog.current.showModal()
+        } else {
+            dialog.current.close()
         }
     }, [props.show, dialog])
 

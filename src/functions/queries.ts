@@ -9,6 +9,7 @@ import {
     u_ud_scopes_request
 } from "./api/api";
 import {
+    class_get_meta_request,
     klassement_request,
     user_id_request, user_names_request
 } from "./api/klassementen";
@@ -99,6 +100,13 @@ export const useProfileQuery = (au: AuthUse) =>
 
 export const useUserScopeQuery = (au: AuthUse) =>
     useQuery(['u_ud_scope'], () => u_ud_scopes_request(au),
+        {
+            staleTime,
+            enabled: au.authState.isAuthenticated,
+        })
+
+export const useClassMetaQuery = (au: AuthUse) =>
+    useQuery(['u_ud_scope'], () => class_get_meta_request(au),
         {
             staleTime,
             enabled: au.authState.isAuthenticated,

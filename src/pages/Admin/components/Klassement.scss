@@ -136,13 +136,6 @@
     cursor: pointer;
 }
 
-//.new_event_form {
-//    width: calc(100%);
-//    //overflow: scroll;
-//    max-height: 100%;
-//    display: inline-block;
-//}
-
 .new_event_input {
     border-style: none;
     background-color: white;
@@ -246,3 +239,47 @@
     border-radius: 0.75rem;
     cursor: pointer;
   }
+
+.edit-class-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    hr {
+        color: white;
+        border-color: white;
+    }
+}
+
+.new-class-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+
+    p {
+        text-align: center;
+        max-width: 20vw;
+        font-size: $font_medium;
+    }
+}
+
+.new-class-button {
+    border-style: none;
+    width: fit-content;
+    background-color: $dodeka_rood;
+    padding: 0.5rem 1rem;
+    color: white;
+    border-radius: 0.75rem;
+    font-weight: $bold;
+    cursor: pointer;
+    font-size: $font_medium;
+}
+
+.okStatus {
+    color: green;
+}
+
+.badStatus {
+    color: $dodeka_rood
+}

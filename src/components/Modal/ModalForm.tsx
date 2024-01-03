@@ -1,16 +1,18 @@
-import { FormEvent } from "react";
+import { FormEvent } from 'react'
 import './ModalForm.scss'
 
-const ModalForm = () => {
-    const onSubmit = (e: FormEvent) => {
-        e.preventDefault()
+
+interface ModalFormProps {
+    Content: React.ReactNode
+    onSubmit: (e: FormEvent) => void
+}
 
 
-    }
+const ModalForm = (props: ModalFormProps) => {
     
     return (
-        <form onSubmit={onSubmit}>
-            <label className="modal-form-label" htmlFor="mod1">Label</label><input id='mod1' type='text'></input>
+        <form className="modal-form" onSubmit={props.onSubmit}>            
+            {props.Content}
         </form>
     )
 }

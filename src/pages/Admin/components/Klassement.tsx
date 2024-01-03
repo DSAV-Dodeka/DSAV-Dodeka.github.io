@@ -23,6 +23,7 @@ import SortHeader from "./SortHeader";
 import NewEvent from "./NewEvent";
 import Modal from "../../../components/Modal/Modal";
 import ModalForm from "../../../components/Modal/ModalForm";
+import EditKlassement from "./EditKlassement";
 
 const columnHelper = createColumnHelper<KlassementData>()
 
@@ -81,7 +82,7 @@ const Klassement = ({typeName, addText, headerText, viewEventText}: KlassementPr
     const {authState, setAuthState} = useContext(AuthContext);
     const [newEvent, setNewEvent] = useState(false);
     const [sorting, setSorting] = useState<SortingState>([]);
-    const [showEdit, setShowEdit] = useState(false)
+    
 
 
 
@@ -123,8 +124,7 @@ const Klassement = ({typeName, addText, headerText, viewEventText}: KlassementPr
 
     return (
         <div>
-            <button className="edit-button" onClick={() => setShowEdit(true)}>Pas aan</button>
-            <Modal Title={"Pas aan"} Content={<ModalForm />} show={showEdit} setShow={setShowEdit} />
+            <EditKlassement />
             <table className="leden_table">
                 <SortHeader table={table} OtherHeader={addEventHeader} />
                 <tbody>
