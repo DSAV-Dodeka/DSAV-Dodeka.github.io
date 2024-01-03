@@ -279,7 +279,7 @@
 .show_info_link {
     position: absolute;
     top: 10rem;
-    left: auto;
+    left: 50%;
     transform: translate(-50%, -50%);
     color: $dodeka_rood;
     font-size: $font_small;
@@ -342,4 +342,9 @@
     @include respond(mobile) {
         width: 1.5rem;
     }
+}
+
+.klassementen_status {
+    color: $dodeka_blauw;
+    margin-left: 4rem;
 }
