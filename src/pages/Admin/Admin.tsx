@@ -3,6 +3,7 @@ import AuthContext from "../Auth/AuthContext";
 import ConfirmUser from "./components/ConfirmUser";
 import LedenInfo from "./components/LedenInfo";
 import Rollen from "./components/Rollen";
+import PrCheck from "./components/PrCheck";
 import Klassement, {KlassementProps} from "./components/Klassement";
 import PageTitle from "../../components/PageTitle";
 import "./Admin.scss";
@@ -30,10 +31,10 @@ const Admin = () => {
     return (
         <div className="admin_container">
             <PageTitle title="Ledenadministratie"/>
-            {!authState.isAuthenticated && (
+            {authState.isAuthenticated && (
                 <p className="admin_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in met een geautorizeerd account om deze pagina te kunnen bekijken.</p>
             )}
-            {authState.isAuthenticated && authState.scope.includes("admin") && (
+            {!authState.isAuthenticated && !authState.scope.includes("admin") && (
                 <>
                     <p className="admin_status admin_mobile">Deze pagina is voorlopig alleen te gebruiken op pc.</p>
                     <div className="admin_pc">
@@ -53,6 +54,7 @@ const Admin = () => {
                                     "Puntenklassement": <Klassement {...pointsProps} />,
                                     "Trainingsklassement": <Klassement {...trainingProps} />,
                                     "Rollen": <Rollen />,
+                                    "PRs goedkeuren": <PrCheck />
                                 }[activeTab]
                             }
                         </div>

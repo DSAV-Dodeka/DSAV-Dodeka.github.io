@@ -12,7 +12,7 @@ import {
 } from '@tanstack/react-table'
 import {UserData, ud_request, catch_api, PR} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
-import "./PrCheck.scss";
+// import "./PrCheck.scss";
 import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
 import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
 import SortHeader from "./SortHeader";
@@ -37,6 +37,7 @@ const columns = [
     }),
     columnHelper.accessor('link', {
         header: () => 'Link',
+        cell: props => <a className="table_link" target="_blank" rel="noreferrer" href={"https://" + props.getValue()}>{props.getValue()}</a>
     }),
 ]
 
@@ -100,7 +101,7 @@ const Rollen = () => {
                             })}
                             <td>
                                 <>
-                                    {addRole !== row.id && (<p className="leden_table_row_button" onClick={() => setAddRole(row.id)}>✓</p>)}
+                                    <p className="leden_table_row_button" onClick={() => setAddRole(row.id)}>✓</p>
                                 </>
                             </td>
                         </tr>
