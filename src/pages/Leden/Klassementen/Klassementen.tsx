@@ -62,10 +62,10 @@ function Klassementen (){
         <div>
             <PageTitle title="Klassementen"/>
         </div>
-        {authState.isAuthenticated && (
+        {!authState.isAuthenticated && (
             <p className="klassementen_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in om deze pagina te kunnen bekijken.</p>
         )}
-        {!authState.isAuthenticated && (
+        {authState.isAuthenticated && (
             <>
                 <div className="kolom">
                 <div className="SoortKlassement">
