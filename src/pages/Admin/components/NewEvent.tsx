@@ -139,7 +139,7 @@ const NewEvent = ({namesData, typeName, addText, clearEvent}: NewEventProps) => 
             'description': formState.eventDesc
         }
         try {
-            await back_post_auth("admin/ranking/update/", req, {authState, setAuthState})
+            await back_post_auth("admin/class/update/", req, {authState, setAuthState})
             await clearUpload()
         } catch (e) {
             const err = await catch_api(e)

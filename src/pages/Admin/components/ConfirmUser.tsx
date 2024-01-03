@@ -114,7 +114,7 @@ const ConfirmUser = () => {
             joined: joined
         }
         back_post_auth("onboard/confirm/", signup_confirm, {authState, setAuthState}).then(() => {
-            setStatus(`Inschrijving for ${su.firstname} ${su.lastname} bevestigd!`)
+            setStatus(`Inschrijving voor ${su.firstname} ${su.lastname} bevestigd!`)
             doReload()
         })
     }

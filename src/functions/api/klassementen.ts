@@ -23,7 +23,7 @@ export const klassement_request = async (auth: AuthUse, is_admin: boolean, rank_
         role = "members"
     }
 
-    let response = await back_request(`${role}/classification/${rank_type}/`, auth, options)
+    let response = await back_request(`${role}/class/get/${rank_type}/`, auth, options)
     const punt_klas: KlassementList = KlassementList.parse(response)
     punt_klas.sort((a, b) => {
         return b.points - a.points
