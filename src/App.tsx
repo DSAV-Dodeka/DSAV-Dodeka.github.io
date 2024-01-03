@@ -19,6 +19,7 @@ import Sponsors from "./pages/Contact/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
+import Lustrum from "./pages/Lustrum/Lustrum";
 const Arnold = React.lazy(() => import("./pages/Vereniging/Arnold/Arnold"));
 const Records = React.lazy(() => import("./pages/Wedstrijden/Records/Records"));
 
@@ -149,6 +150,7 @@ function App() {
                       <Nieuws />
                     }/>
                     {/* <Route path="/owee" element={<OWee />} /> */}
+                    <Route path="/lustrum" element={<Lustrum />} />
                     <Route path="/vereniging" element={<Vereniging />} />
                     <Route path="/vereniging/commissies" element={<Commissies />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
