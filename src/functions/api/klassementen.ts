@@ -11,11 +11,15 @@ const KlassementData = z.object({
 })
 export type KlassementData = z.infer<typeof KlassementData>;
 
-const KlassementList = z.array(KlassementData)
+const KlassementList = z.object({
+    last_updated: z.coerce.date(),
+    frozen: z.boolean(),
+    points: z.array(KlassementData)
+})
 export type KlassementList = z.infer<typeof KlassementList>;
 
 
-export const klassement_request = async (auth: AuthUse, is_admin: boolean, rank_type: 'points'|'training', options?: Options): Promise<KlassementList> => {
+export const klassement_request = async (auth: AuthUse, is_admin: boolean, rank_type: 'points'|'training', options?: Options): Promise<KlassementData[]> => {
     let role;
     if (is_admin) {
         role = "admin"
@@ -24,12 +28,23 @@ export const klassement_request = async (auth: AuthUse, is_admin: boolean, rank_
     }
 
     let response = await back_request(`${role}/class/get/${rank_type}/`, auth, options)
-    const punt_klas: KlassementList = KlassementList.parse(response)
+    const punt_klas: KlassementData[] = KlassementData.array().parse(response)
     punt_klas.sort((a, b) => {
         return b.points - a.points
     })
     return punt_klas
 }
+
+export const klassement_with_info_request = async (auth: AuthUse, rank_type: 'points'|'training', options?: Options): Promise<KlassementList> => {
+    let response = await back_request(`members/class/get_with_info/${rank_type}/`, auth, options)
+    const punt_klas: KlassementList = KlassementList.parse(response)
+    punt_klas.points.sort((a, b) => {
+        return b.points - a.points
+    })
+    return punt_klas
+}
+
+
 
 const UserIDData = z.object({
     user_id: z.string(),

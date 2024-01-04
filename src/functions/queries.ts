@@ -11,6 +11,7 @@ import {
 import {
     class_get_meta_request,
     klassement_request,
+    klassement_with_info_request,
     user_id_request, user_names_request
 } from "./api/klassementen";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
@@ -59,7 +60,7 @@ export const useSignedUpQuery = (au: AuthUse) =>
         })
 
 export const useKlassementQuery = (au: AuthUse, rank_type: 'points'|'training') =>
-        useQuery([`tr_klass_${rank_type}`], () => klassement_request(au, false, rank_type),
+        useQuery([`tr_klass_info_${rank_type}`], () => klassement_with_info_request(au, rank_type),
             {
                 staleTime: longStaleTime,
                 cacheTime: longCacheTime,
