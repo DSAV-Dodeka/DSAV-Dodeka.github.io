@@ -69,7 +69,7 @@ const ClassMetaList = z.object({
 export type ClassMetaList = z.infer<typeof ClassMetaList>;
 
 export const class_get_meta_request = async (auth: AuthUse, options?: Options): Promise<ClassMetaList> => {
-    let response = await back_request(`admin/class/get_meta/10/`, auth, options)
+    let response = await back_request(`admin/class/get_meta/4/`, auth, options)
     const class_list: ClassMetaList = ClassMetaList.parse(response)
     console.log(class_list)
     class_list.sort((a, b) => b.start_date.getTime() - a.start_date.getTime())

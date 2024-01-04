@@ -106,7 +106,7 @@ export const useUserScopeQuery = (au: AuthUse) =>
         })
 
 export const useClassMetaQuery = (au: AuthUse) =>
-    useQuery(['u_ud_scope'], () => class_get_meta_request(au),
+    useQuery(['class_meta'], () => class_get_meta_request(au),
         {
             staleTime,
             enabled: au.authState.isAuthenticated,

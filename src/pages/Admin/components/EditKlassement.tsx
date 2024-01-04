@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useMemo, useState } from "react";
 import Modal from "../../../components/Modal/Modal";
 import ModalForm from "../../../components/Modal/ModalForm";
 import './Klassement.scss'
@@ -7,9 +7,11 @@ import AuthContext from "../../Auth/AuthContext";
 import { ClassMetaList } from "../../../functions/api/klassementen";
 import { ISODate } from "../../../functions/date";
 import { back_post_auth, catch_api } from "../../../functions/api/api";
+import { useQueryClient } from "@tanstack/react-query";
 
 const EditKlassement = () => {
     const {authState, setAuthState} = useContext(AuthContext);
+    const queryClient = useQueryClient()
     
     const defaultClass: ClassMetaList = [
         { "classification_id": 1, "type": "training", "start_date": new Date("2023-01-01"), "hidden_date": new Date("2024-01-01"), "end_date": new Date("2024-01-01") },
@@ -26,10 +28,18 @@ const EditKlassement = () => {
 
     const [showEdit, setShowEdit] = useState(false)
     const [showNewClass, setShowNewClass] = useState(false)
+    const [showRemoveClass, setShowRemoveClass] = useState(false)
 
     const mostRecentClass = classData[0]
 
     const [openClass, setOpenClass] = useState(mostRecentClass.classification_id)
+    const selectedClass = useMemo(() => {
+        const selected = classData.find(c => c.classification_id === openClass)
+        if (selected === undefined) {
+            throw new Error("Cannot find selected classId!")
+        }
+        return selected
+    }, [openClass]);
 
     const [hiddenDate, setHiddenDate] = useState(ISODate(mostRecentClass.hidden_date))
     const [endDate, setEndDate] = useState(ISODate(mostRecentClass.end_date))
@@ -56,6 +66,7 @@ const EditKlassement = () => {
         }
         try {
             await back_post_auth("admin/class/modify/", req, {authState, setAuthState})
+            await queryClient.invalidateQueries({ queryKey: ['class_meta'] })
             setPostStatus({ isOk: true, msg: "Klassement aangepast!"})
         } catch (e) {
             const err = await catch_api(e)
@@ -66,7 +77,19 @@ const EditKlassement = () => {
     const newClasses = async () => {
         try {
             await back_post_auth("admin/class/new/", {}, {authState, setAuthState})
+            await queryClient.invalidateQueries({ queryKey: ['class_meta'] })
             setPostStatus({ isOk: true, msg: "Nieuwe klassementen toegevoegd!"})
+        } catch (e) {
+            const err = await catch_api(e)
+            setPostStatus({ isOk: true, msg: err.error_description})
+        }
+    }
+
+    const removeClasses = async () => {
+        try {
+            await back_post_auth(`admin/class/remove/${openClass}`, {}, {authState, setAuthState})
+            await queryClient.invalidateQueries({ queryKey: ['class_meta'] })
+            setPostStatus({ isOk: true, msg: "Klassement verwijderd!"})
         } catch (e) {
             const err = await catch_api(e)
             setPostStatus({ isOk: true, msg: err.error_description})
@@ -76,6 +99,12 @@ const EditKlassement = () => {
     const clickNewClass = () => {
         setShowEdit(false)
         setShowNewClass(true)
+        setPostStatus({ isOk: true, msg: ""})
+    }
+
+    const clickRemoveClass = () => {
+        setShowEdit(false)
+        setShowRemoveClass(true)
         setPostStatus({ isOk: true, msg: ""})
     }
 
@@ -108,22 +137,35 @@ const EditKlassement = () => {
 
     return (
         <>
+            {mostRecentClass.classification_id}
             <button className="edit-button" onClick={() => {
                 setShowEdit(true)
                 setPostStatus({ isOk: true, msg: ""})
             }}>Pas aan</button>
+            <Modal Title={"Verwijder klassement"} Content={
+                <div className="new-class-container">
+                    <p>
+                        Weet je zeker dat je het {`${selectedClass.type === 'points'}` ? 'punten' : 'trainings'}klassement (id {openClass}) dat gestart 
+                        is op {ISODate(selectedClass.start_date)} wil verwijderen?
+                    </p>
+                    <button className="edit-class-button" onClick={removeClasses}>Verwijder</button>
+                    <span className={postStatus.isOk ? "okStatus" : "badStatus"}>{postStatus.msg}</span>
+                </div>
+            } show={showRemoveClass} setShow={setShowRemoveClass} />
             <Modal Title={"Nieuw klassement"} Content={
                 <div className="new-class-container">
                     <p>
                         Weet je zeker dat je nieuwe klassementen wil starten? 
                         Dit maakt het oude klassement onzichtbaar en start een nieuw traings- en puntenklassement.
                     </p>
-                    <button className="new-class-button" onClick={newClasses}>Maak aan</button>
+                    <button className="edit-class-button" onClick={newClasses}>Maak aan</button>
                     <span className={postStatus.isOk ? "okStatus" : "badStatus"}>{postStatus.msg}</span>
                 </div>
             } show={showNewClass} setShow={setShowNewClass} />
             <Modal Title={"Pas aan"} Content={<div className="edit-class-container">
-                <button className="new-class-button" onClick={clickNewClass}>Maak nieuwe klassementen aan</button>
+                <button className="edit-class-button" onClick={clickNewClass}>Maak nieuwe klassementen aan</button>
+                <hr />
+                <button className="edit-class-button" onClick={clickRemoveClass}>Verwijder klassement</button>
                 <hr />
                 <ModalForm Content={
                     <>
@@ -131,8 +173,8 @@ const EditKlassement = () => {
                         <select id="publishHidden" value={openClass} onChange={handleSelectChange}>
                             {classData.map(k => {
                                 return (
-                                    <option id={`classOption${k.classification_id}`} value={`${k.classification_id}`}>
-                                        {`${k.type === 'training' ? 'Punten' : 'Trainings'}klassement ${k.start_date.toLocaleDateString('nl-NL')}`}
+                                    <option key={`classOption${k.classification_id}`} value={`${k.classification_id}`}>
+                                        {`${k.type === 'training' ? 'Punten' : 'Trainings'}klassement ${k.start_date.toLocaleDateString('nl-NL')} (${k.classification_id})`}
                                     </option>
 
                                 )
