@@ -1,4 +1,4 @@
-import{r as j,j as g,h as $t,i as At,l as Ft,R as kt,z as Ne}from"./vendor-44375bc4.js";import{A as Fe,b as Ve,c as bt,P as Et}from"./index-306c5761.js";import{c as Mt,q as Ee,d as jt,e as It,f as Pt,g as Vt}from"./queries-20d33eff.js";import{R as we}from"./Rollen-83d067d1.js";import{E as Dt}from"./EventTypes-0d7b577d.js";/**
+import{r as j,j as g,h as $t,i as At,l as Ft,R as kt,z as Ne}from"./vendor-44375bc4.js";import{A as Fe,b as Ve,c as bt,P as Et}from"./index-618aea1d.js";import{c as Mt,q as Ee,d as jt,e as It,f as Pt,g as Vt}from"./queries-2579b03b.js";import{R as we}from"./Rollen-83d067d1.js";import{E as Dt}from"./EventTypes-0d7b577d.js";/**
  * table-core
  *
  * Copyright (c) TanStack
