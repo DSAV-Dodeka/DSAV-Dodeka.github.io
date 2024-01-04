@@ -1,6 +1,6 @@
 @import "../../../../variables";
 
-.training_inschrijven {
+.TrainingItem {
     overflow: hidden;
     position: relative;
     margin-left: 4rem;
@@ -10,43 +10,70 @@
     border-left: 1px solid $dodeka_blauw90p;
 
     @include respond(mobile) {
-        margin-left: 1rem;
-        margin-right: 1rem;
         border-right: 1px solid $dodeka_blauw90p;
+        font-size: small;
+
+        margin: 0.75rem 1rem;
+
+        border-radius: 1rem;
+        border: 1px solid $dodeka_blauw90p;
     }
 }
 
-.training_inschrijven:first-of-type {
-    border-top: 1px solid $dodeka_blauw90p;
-    border-radius: 1rem 0 0 0;
-    overflow: hidden;
-
-    @include respond(mobile) {
-        border-radius: 1rem 1rem 0 0;
+.TrainingItem:first-of-type {
+    @include respond(computerscherm) {
+        border-top: 1px solid $dodeka_blauw90p;
+        border-radius: 1rem 0 0 0;
+        overflow: hidden;
     }
 }
 
-
-.training_inschrijven:last-of-type {
-    border-radius: 0 0 0 1rem;
-
-    @include respond(mobile) {
-        border-radius: 0 0 1rem 1rem;
+.TrainingItem:last-of-type {
+    @include respond(computerscherm) {
+        border-radius: 0 0 0 1rem;
     }
 }
 
-.training_item {
-    display: contents;
+.TrainingItem .training_data_active {
+    position: relative;
 }
 
-.training_inschrijven.training_inschrijven_active {
+.TrainingItem:not(.TrainingItem_cancelled) .training_data_cancelled,
+.TrainingItem:not(.TrainingItem_active) .training_data_active,
+.TrainingItem:not(.TrainingItem_closed) .training_data_closed {
+    display: none;
+}
+
+.TrainingItem.TrainingItem_active {
     @include respond(mobile) {
         flex-wrap: wrap;
+        box-shadow: 0.025rem 0.05rem 0.5rem rgba(0, 0, 0, 0.3);
     }
 }
 
-.training_item_closed {
+.TrainingItem.TrainingItem_closed,
+.TrainingItem.TrainingItem_cancelled {
+    @include respond(mobile) {
+        box-shadow: 0.025rem 0.05rem 0.2rem rgba(0, 0, 0, 0.3);
+    }
+}
+
+.TrainingItem_closed {
     cursor: pointer;
+}
+
+.training_datum_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-basis: 8rem;
+    flex-shrink: 0;
+    background-color: $dodeka_rood;
+
+    @include respond(mobile) {
+        flex-basis: 7rem;
+    }
 }
 
 .training_datum {
@@ -54,31 +81,66 @@
     font-weight: bold;
     font-size: $font_medium;
     line-height: $line_height_medium;
-    background-color: $dodeka_rood;
-    padding: 1rem;
-    min-width: 8rem;
-    text-align: center;
 }
 
-.training_inschrijven_active .training_datum {
+.TrainingItem_active .training_datum_container {
     @include respond(mobile) {
-        width: 100%;
+        flex-basis: 100%;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
     }
+}
+
+.TrainingItem_cancelled {
+    @include respond(mobile) {
+        border-width: 0;
+    }
+}
+
+.TrainingItem_cancelled .training_datum {
+    text-decoration: line-through;
+    text-decoration-thickness: 0.2rem;
+}
+
+.training_datum_container,
+.training_info_container {
+    padding: 0.75rem 1rem;
+
+    @include respond(mobile) {
+        padding: 0.75rem 0.25rem;
+    }
+}
+
+.TrainingItem_active .training_info_container {
+    padding: 0 1rem;
+}
+
+.training_info_container {
+    flex-grow: 1;
+}
+
+.training_data_closed {
+    display: flex;
 }
 
 .training_onderdelen {
     font-size: $font_medium;
     line-height: $line_height_medium;
-    padding: 1rem;
     min-width: 25%;
     flex-grow: 1;
 }
 
-.training_inschrijvers {
+.training_onderdelen_long {
+    @include respond(mobile) {
+        display: none;
+    }
+}
+
+.training_inschrijvers_kort {
     font-size: $font_medium;
     line-height: $line_height_medium;
-    padding: 1rem;
-    min-width: 25%;
+    min-width: 10rem;
+    text-align: right;
 
     @include respond(mobile) {
         display: none;
@@ -90,89 +152,154 @@
     text-decoration-thickness: 0.2rem;
 }
 
-.training_cancelled {
+.training_data_cancelled {
     font-size: $font_medium;
     line-height: $line_height_medium;
     font-weight: $bold;
-    padding: 1rem;
     min-width: 25%;
 }
 
 
-.training_active_inschrijvers {
+.training_data_active {
     flex-grow: 1;
-    position: relative;
 }
 
-.training_active_signup {
+.training_data_active {
+    @include respond(mobile) {
+        width: 100%;
+        flex-grow: 3;
+    }
+}
+
+.training_onderdeel {
+    position: relative;
     display: flex;
-    margin-left: 1rem;
     border-bottom: 1px solid $dodeka_blauw90p;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     color: $dodeka_blauw90p;
-    width: calc(100% - 5rem);
+    width: 100%;
 }
 
-.training_active_signup:last-of-type {
+.training_onderdeel:last-of-type {
     border-bottom: none;
 }
 
-.training_active_onderdeel {
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
-    min-width: 8rem;
-}
-
-.training_active_ingeschreven {
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    margin-left: 2rem;
-    flex-grow: 1;
+.training_onderdeel_basicinfo {
+    display: flex;
 
     @include respond(mobile) {
-        display: none;
+        width: 100%;
     }
 }
 
-.training_active_submit {
-    color: white;
+.training_onderdeel_naam {
+    flex-shrink: 2;
+    flex-grow: 3;
+
+    display: flex;
+    align-items: center;
+
+    min-width: 8rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+
+    @include respond(computerscherm) {
+        justify-content: center;
+        text-align: center;
+    }
+
+    @include respond(mobile) {
+        cursor: pointer;
+    }
+}
+
+.training_onderdeel_inschrijfbutton {
+    flex-shrink: 1;
+    width: 8rem;
+    cursor: pointer;
+
     background-color: $dodeka_rood;
+    border: solid 0.25rem $dodeka_rood;
+    border-radius: 0.50rem;
+
+    color: white;
     text-decoration: none;
-    border: none;
     font-size: $font_small;
     font-weight: $bold;
+    text-align: center;
+    white-space: nowrap;
+
     padding: 0.5rem;
-    border-radius: 0.50rem;
-    width: max-content;
+    margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
+.shadow-on-hover:hover {
+    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.5);
+}
 
-.arrowDownTraining {
-    position: absolute;
-    fill: $dodeka_blauw;
-    right: 1rem;
-    width: 2rem;
-    top: 1.25rem;
-    z-index: 3;
+.training_onderdeel_inschrijfbutton_ingeschreven {
+    background-color: unset;
+    color: $dodeka_rood;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
+.training_onderdeel_inschrijvers {
+    font-size: $font_small;
+    margin-left: 2rem;
+    flex-grow: 1;
+
+    max-height: 4rem;
+    overflow: hidden;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    @include respond(mobile) {
+        min-width: 100%;
+        max-width: 100%;
+        margin: 0;
+        margin-top: 0.25rem;
+    }
+}
+
+.training_onderdeel.training_onderdeel_active .arrowDownOnderdeel,
+.training_onderdeel.training_onderdeel_closed .arrowUpOnderdeel {
+    display: none;
+}
+
+.training_onderdeel_closed .training_onderdeel_inschrijvers {
     @include respond(mobile) {
         display: none;
     }
 }
 
-.arrowUpTraining {
-    position: absolute;
+.training_onderdeel_active {
+    @include respond(mobile) {
+        flex-wrap: wrap;
+    }
+}
+
+.arrowOnderdeel {
+    position: relative;
     fill: $dodeka_blauw;
-    right: 1rem;
-    width: 2rem;
-    top: 1.25rem;
-    z-index: 3;
+    width: 1.5rem;
+    flex-shrink: 0;
+    align-self: center;
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    display: none;
 
     @include respond(mobile) {
-        display: none;
+        display: inherit;
     }
 }
 

@@ -19,6 +19,11 @@
     width: calc(100% - 4rem);
     color: $dodeka_rood;
     text-decoration: none;
-    margin-right: 4rem;
-    text-align: right;
+    margin-left: 4rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+
+    @include respond(mobile) {
+        margin-left: 1rem;
+    }
 }
