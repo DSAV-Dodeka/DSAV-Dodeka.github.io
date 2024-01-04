@@ -306,7 +306,7 @@
         },
 	{
             "naam": "SAX",
-            "info": "Heee! Wij zijn de SAX. Wij zullen dit jaar super leuke SAXiviteiten organiseren voor de leukste Dodekaëders. De activiteiten die wij organiseren zijn heel divers, van een Sinter-kerst-en-nieuw diner tot springen in een trampolinepark. Zien we jou bij de volgende SAXiviteit?",
+            "info": "Heee! Wij zijn de SAX. Wij zullen dit jaar fantastische SAXiviteiten organiseren voor de leukste Dodekaëders. Met de SAX verzinnen we SAXiviteiten, plannen we ze in en dan is er natuurlijk nog de uitvoering van de plannen op de dag zelf. Jaarlijks worden er veel verschillende SAXiviteiten georganiseerd bijvoorbeeld een Sintenkerstennieuw diner, huizenrace en verschillende soorten uitjes. Bij het Sinterkerstennieuw diner, de eerste SAXiviteit die wij zullen organiseren, zal iedereen zijn kookkunsten kunnen laten zien (en veel wijn kunnen drinken). Deze supergezellige commissie zit dit jaar vol Pixar karakters. Dus misschien zie je wel een van je favoriete karakters op een SAXiviteit. Bij de SAX komen enthousiasme en creativiteit samen in het organiseren van de SAXiviteiten en is het altijd gezellig!",
 		"leden": [
                 {
                     "naam": "Xylander",
@@ -464,6 +464,11 @@
             "info": "Als commissie geven wij epische trainingen die we ook heel goed voorbereiden zodat we altijd weten wat we gaan doen. Wij zorgen ieder jaar voor tientallen fenomenale NSK-medailles door ons dag en nacht in te zetten. We hebben de ZeuS-bokaal twee keer op rij gewonnen dankzij de trainers. We hebben natuurlijk alleen maar dankzij onze commissie zoveel leden. Dit kunnen we bereiken doordat we met maar liefst 11 trainers zijn en daarmee de grootste commissie. Wij organiseren meer activiteiten dan alle andere commissies samen en onze activiteiten hebben de meeste inschrijvingen.",
 		"leden": [
                 {
+                    "naam": "Pelle",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },
+                {
                     "naam": "Jasper",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
@@ -509,13 +514,8 @@
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Thijmen",
+                    "naam": "Tijmen",
                     "functie": "MiLatrainer",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Bart",
-                    "functie": "Erelid",
                     "foto": "placeholder"
                 },
                 {
