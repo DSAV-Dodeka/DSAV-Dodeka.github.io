@@ -39,22 +39,43 @@
 
 #bestuursjaarRight {
     display: inline-block;
+
     width: 50%;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 5rem;
+    margin-bottom: 0.5rem;
+
     @include respond(mobile) {
         width: 100%;
         margin-top: 0.5rem;
+        margin-bottom: 2rem;
     }
 }
 
-#bestuurLid {
-    color: white;
-    margin: 4rem;
-    margin-bottom: 0;
+.bestuursjaarLeden {
+    margin-left: 4rem;
     margin-top: 1rem;
+    margin-right: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1.5rem;
+    column-gap: 2rem;
+
+    align-items: center;
+}
+
+.bestuursjaarLeden > * {
+    color: white;
     font-size: $font_medium;
     font-weight: normal;
+}
+
+.BestuurLid_naam {
+    grid-column: 1;
+}
+
+.BestuurLid_functie {
+    grid-column: 2;
 }
 
 #jaarBestuur {
@@ -62,9 +83,10 @@
     margin: 4rem;
     margin-bottom: 0;
     font-size: $font_medium;
-    font-weight: normal;
+    font-weight: bold;
+
     @include respond(mobile) {
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 }
 

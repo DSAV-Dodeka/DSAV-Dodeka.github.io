@@ -2,31 +2,31 @@
     "besturen": [
         {
             "naam": "Bestuur 5",
-            "leden": ["Anne-Wil van Werkhoven - Voorzitter", "Sanne van Beek - Secretaris", "Marien Sips - Penningmeester", "Sanne Diepen - Commissaris Atletiek", "Tim Creusen - Commissaris Intern"],
+            "leden": [["Anne-Wil van Werkhoven","Voorzitter"],["Sanne van Beek","Secretaris"], ["Marien Sips","Penningmeester"],["Sanne Diepen","Commissaris Atletiek"], ["Tim Creusen","Commissaris Intern"]],
             "jaar": "2023/2024",
             "foto": "bestuur_5.jpg" 
         },
         {
             "naam": "Bestuur 4",
-            "leden": ["Lianne Folkerts - Voorzitter", "Jefry el Bhwash - Secretaris", "Simon Loose - Penningmeester", "Saana Taal - Commissaris Atletiek"],
+            "leden": [["Lianne Folkerts","Voorzitter"], ["Jefry el Bhwash","Secretaris"], ["Simon Loose","Penningmeester"], ["Saana Taal","Commissaris Atletiek"]],
             "jaar": "2022/2023",
             "foto": "bestuur_4.jpg" 
         },
         {
             "naam": "Bestuur 3",
-            "leden": ["Koen Stapel - Voorzitter", "Fieke Witte - Secretaris", "Stefan Pol - Penningmeester", "Aniek Sips - Commissaris Atletiek"],
+            "leden": [["Koen Stapel","Voorzitter"],["Fieke Witte","Secretaris"],["Stefan Pol","Penningmeester"], ["Aniek Sips","Commissaris Atletiek"]],
             "jaar": "2021/2022",
             "foto": "bestuur_3.jpg" 
         },
         {
             "naam": "Bestuur 2",
-            "leden": ["Koen Stapel", "Donne Gerlich", "Jasper Rou", "Stefan Pol"],
+            "leden": [["Koen Stapel"],["Donne Gerlich"],["Jasper Rou"],["Stefan Pol"]],
             "jaar": "2020/2021",
             "foto": "bestuur_2.jpg" 
         },
         {
             "naam": "Bestuur 1",
-            "leden": ["Bart Groeneveld", "Emile Vink", "Abel Kappenburg", "Jasper Rou"],
+            "leden": [["Bart Groeneveld"],["Emile Vink"],["Abel Kappenburg"],["Jasper Rou"]],
             "jaar": "2019/2020",
             "foto": "bestuur_1.jpg" 
         }
