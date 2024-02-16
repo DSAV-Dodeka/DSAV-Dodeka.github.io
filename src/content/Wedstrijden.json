@@ -1,6 +1,54 @@
 {
     "wedstrijden": [
         {
+            "naam": "NSK meerkamp",
+            "datum": "11 en 12 mei 2024",
+            "tijd": "volgt",
+            "locatie": "D.S.A.V. Dodeka",
+            "adres": "Sportring 12",
+            "postcode": "2616LK Delft",
+            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
+            "logo": "nsk_meerkamp.jpg",
+            "logo_rond": "nsk_meerkamp_logo.jpg",
+            "foto": "nsk_meerkamp_2.jpg",
+            "inschrijven": "",
+            "mail": "bestuur@dsavdodeka.nl",
+            "instagram": "https://www.instagram.com/nskmeerkamp2024/",
+            "bepalingen": "",
+            "info_kort": "Zaterdag 11 en zondag 12 mei 2024 is het zo ver, dan zal het NSK Meerkamp plaatsvinden in het prachtige Delft, georganiseerd door DSAV Dodeka. Tijdens dit evenement zullen de beste studenten van Nederland het tegen elkaar opnemen en proberen om een zo hoog mogelijke meerkampscore te behalen.",
+            "info_lang": "Zaterdag 11 en zondag 12 mei 2024 is het zo ver, dan zal het NSK Meerkamp plaatsvinden in het prachtige Delft, georganiseerd door DSAV Dodeka. Tijdens dit evenement zullen de beste studenten van Nederland het tegen elkaar opnemen en proberen om een zo hoog mogelijke score te behalen op de conventionele tienkamp of zevenkamp, of op de loopmeerkamp, waarbij hardlopers 5 verschillende afstanden trotseren. Deze editie zal extra speciaal zijn, want Dodeka bestaat 5 jaar en viert haar eerste lustrum!<br/>Daarom zal op zaterdagavond een groots feest gehouden worden, waarbij je kunt blijven eten en blijven slapen.<br/><br/>Als kers op de taart kun je tijdens je heerlijke avondeten op zaterdag kijken naar een demonstratiewedstrijd polsstokhoogspringen die zal plaatsvinden na de officiële NSK-onderdelen.",
+            "path": "/nskmeerkamp"
+        },
+        {
+            "naam": "Dodekathlon",
+            "datum": "29 juni 2024",
+            "logo": "dodekathlon.jpg",
+            "info_kort": "D.S.A.V. Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. 'Dodeka' betekent namelijk twaalf in het Grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter horden en de hink-stap-sprong onderdeel van dit evenement.",
+            "path": ""
+        },
+        {
+            "naam": "Biermijl",
+            "datum": "oktober 2024",
+            "tijd": "volgt",
+            "locatie": "D.S.A.V. Dodeka",
+            "adres": "Sportring 12",
+            "postcode": "2616LK Delft",
+            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
+            "logo": "biermijl.jpg",
+            "logo_rond": "",
+            "foto": "biermijl_2023.jpg",
+            "inschrijven": "",
+            "mail": "biermijl@dsavdodeka.nl",
+            "instagram": "https://www.instagram.com/dsavdodeka/?hl=nl",
+            "bepalingen": "",
+            "info_kort": "Elk jaar in oktober vindt de biermijl plaats bij D.S.A.V. Dodeka! De biermijl is het ultieme sportevenement voor studenten, waarbij je 4 rondjes moet lopen en voor elk rondje een biertje moet drinken. Ook kun je er voor kiezen om in een duo mee te doen, waarbij je allebei 2 rondjes loopt en 2 biertjes drinkt.",
+            "info_lang": "Elk jaar in oktober vindt de biermijl plaats bij D.S.A.V. Dodeka. 4 bier, 4 rondjes: durf jij het aan? Mocht je nou niet weten hoe de biermijl werkt, dan staan hieronder alle regels uitgelegd:<br/><br/> 1. Deelname onder de 18 jaar met alcoholvrij bier.<br/> 2. Kom je met de auto, neem iemand mee die nuchter blijft<br/> 3. Deelnemers drinken vier bier en lopen vier rondes. <br/> 4. Bier wordt gedronken voordat wordt begonnen aan de ronde binnen de 10m-zone voor de start.<br/>5. De race begint met het drinken van een bier in de laatste meter van de 10m-zone.<br/>6. Hulpmiddelen en technieken die adten verbeteren zijn verboden.<br/>7. Een bier wordt pas geopend indien de deelnemer de 10m-zone binnenkomt.<br/>8. Indien een deelnemer kotst moet deze een extra ronde lopen. Een extra bier is niet nodig. Indien meer dan een keer wordt gekotst is nog steeds één extra ronde vereist.<br/> 9. Indien een deelnemer kotst, ruimt deze het zelf op.<br/><br/>",
+            "path": ""
+        }
+          
+    ],
+    "wedstrijden_oud": [
+        {
             "naam": "NK Biermijl",
             "datum": "13/10/2023",
             "tijd": "18.30 uur",
@@ -19,15 +67,6 @@
             "info_lang": "De Nederlandse kampioenschappen Biermijl vinden dit jaar plaats bij D.S.A.V. Dodeka. <br/> 4 bier, 4 rondjes, durf jij het aan? <br/><br/> Deelname kan individueel of in duo's (M/M, M/V, V/V, anders). Zorg dat beide atleten van het duo zijn ingeschreven. Vergeet ook niet een verwachte prestatie op te geven als je al eerder een biermijl hebt gelopen. Elke deelnemer ontvangt een shirt en in elke categorie zijn er medailles te verdienen. Voor de beste man en beste vrouw is er nog een epische verrassingsprijs.<br/><br> Na de biermijl zijn we nog niet klaar. Dan organiseert Dodeka nog het openingsfeest van ons lustrumjaar. Alle deelnemers, vrijwilligers en supporters zijn daar welkom en het zal een geweldig feest worden met jullie favoriete DJ's, hitjes en meer!<br/><br> Mocht je nou niet weten hoe de biermijl werkt, dan staan hieronder nog alle regels uitgelegd:<br/> 1. Deelname onder de 18 jaar met alcoholvrij bier.<br/> 2. Kom je met de auto, neem iemand mee die nuchter blijft<br/> 3. Deelnemers drinken vier bier en lopen vier rondes. <br/> 4. Bier wordt gedronken voordat wordt begonnen aan de ronde binnen de 10m-zone voor de start.<br/>5. De race begint met het drinken van een bier in de laatste meter van de 10m-zone.<br/>6. Hulpmiddelen en technieken die adten verbeteren zijn verboden.<br/>7. Een bier wordt pas geopend indien de deelnemer de 10m-zone binnenkomt.<br/>8. Indien een deelnemer kotst moet deze een extra ronde lopen. Een extra bier is niet nodig. Indien meer dan een keer wordt gekotst is nog steeds één extra ronde vereist.<br/> 9. Indien een deelnemer kotst, ruimt deze het zelf op.<br/><br/>",
             "path": "/biermijl"
         },
-        {
-            "naam": "Dodekathlon",
-            "datum": "01/07/2023",
-            "logo": "dodekathlon.jpg",
-            "info_kort": "D.S.A.V. Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. Dodeka betekent namelijk twaalf in het grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter hordelopen en de hinkstapsprong onderdeel van dit evenement.",
-            "path": ""
-        }  
-    ],
-    "wedstrijden_oud": [
         {
             "naam": "NSK Indoor",
             "datum": "12/03/2022",
