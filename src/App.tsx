@@ -52,6 +52,7 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {err_api} from "./functions/api/api";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
+import OLD from "./pages/Vereniging/OLD/OLD";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -220,6 +221,7 @@ function App() {
                       <Route path="/"
                         element={<Home />}
                       />
+                      <Route path="/old" element={<OLD />} />
                       <Route path="/account/email" element={<ChangeEmail />} />
                       <Route path="/account/delete" element={<DeleteAccount />} />
                       <Route path="/lg" element={<AuthRedirect />} />
