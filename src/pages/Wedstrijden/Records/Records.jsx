@@ -8,10 +8,10 @@ function Records() {
     const [locatie, setLocatie] = useState("Outdoor");
     const [geslacht, setGeslacht] = useState("Vrouwen");
     const [activeRecord, setActiveRecord] = useState("none");
-    const vrouwenoutdoor = RecordText.vrouwen.outdoor;
-    const vrouwenindoor = RecordText.vrouwen.indoor;
-    const mannenoutdoor = RecordText.mannen.outdoor;
-    const mannenindoor = RecordText.mannen.indoor;
+    const vrouwenoutdoor = RecordText.vrouw.outdoor;
+    const vrouwenindoor = RecordText.vrouw.indoor;
+    const mannenoutdoor = RecordText.man.outdoor;
+    const mannenindoor = RecordText.man.indoor;
 
     return(
         <div className="records">
