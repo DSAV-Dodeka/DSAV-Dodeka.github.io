@@ -162,6 +162,7 @@ function App() {
                     {/*<Route path="/vereniging/activiteiten" element={*/}
                     {/*  <Activiteiten />*/}
                     {/*}/>*/}
+                    <Route path="/vereniging/old" element={<OLD />} />
                     <Route path="/trainingen" element={
                       <Trainingen />
                     }/>
@@ -221,7 +222,7 @@ function App() {
                       <Route path="/"
                         element={<Home />}
                       />
-                      <Route path="/old" element={<OLD />} />
+                      
                       <Route path="/account/email" element={<ChangeEmail />} />
                       <Route path="/account/delete" element={<DeleteAccount />} />
                       <Route path="/lg" element={<AuthRedirect />} />
