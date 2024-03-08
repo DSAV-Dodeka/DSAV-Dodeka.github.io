@@ -1,0 +1,52 @@
+@import "../../../variables.scss";
+
+.oldInfo {
+    display: flex;
+    width: 100%;
+    background-color: $dodeka_blauw90p;
+    margin-bottom: 6rem;
+    @include respond(mobile) {
+        display: block;
+        margin-bottom: 4rem;
+    }
+}
+
+.oldText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    width: 50%;
+    color: white;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    @include respond(mobile) {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+    }
+}
+
+.oldText p {
+    font-size: $font_small;
+    line-height: $line_height_small;
+    
+    @include respond(mobile) {
+
+    }
+}
+
+a {
+    color: $dodeka_rood;
+}
+
+.oldFoto {
+    display: inline;
+    width: 50%;
+    @include respond(mobile) {
+        display: block;
+        width: 100%;
+    }
+}
