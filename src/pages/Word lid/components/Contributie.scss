@@ -65,6 +65,11 @@
         margin-right: 3rem;
         margin-top: 5rem;
     }
+    @include respond(mobile){
+        font-size: 1.1rem;
+        line-height: 2rem;  
+        text-align: left;
+    }
 }
 .contributieTabel2{
     color: white;
@@ -80,6 +85,11 @@
         margin-right: 3rem;
         margin-top: 5rem;
     }
+    @include respond(mobile){
+        font-size: 1.1rem;
+        line-height: 2.25rem;  
+        text-align: right;
+    }
 }
 
 .vl {
@@ -89,10 +99,20 @@
     border-radius: 0.5rem;
     margin: 0 0.2rem;
     margin-top: 4rem;
+    @include respond(mobile){
+        height: 10rem;
+        width: 0.5rem;
+        background-color: $dodeka_rood;
+        border-radius: 0.25rem;
+        margin-top: 1rem;
+    }
   }
   .jaapie {
     font-weight: normal;
     font-size: 1.5rem;
+    @include respond(mobile){
+        font-size: 0.8rem;
+    }
   }
   .footnote_contributie {
     color: white;
@@ -106,5 +126,19 @@
     flex-direction: column;
     @include respond(computerscherm){
         margin-left: 1rem;
+    }
+    @include respond(mobile){
+        font-weight: normal;
+        font-size: 0.8rem;
+    }
+  }
+  .jesper_probeert_flex{
+    @include respond(computerscherm){
+        display: contents
+    }
+    @include respond(mobile){
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
     }
   }
