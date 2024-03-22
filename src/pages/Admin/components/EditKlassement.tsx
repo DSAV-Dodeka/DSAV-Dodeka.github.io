@@ -137,7 +137,6 @@ const EditKlassement = () => {
 
     return (
         <>
-            {mostRecentClass.classification_id}
             <button className="edit-button" onClick={() => {
                 setShowEdit(true)
                 setPostStatus({ isOk: true, msg: ""})
@@ -163,18 +162,16 @@ const EditKlassement = () => {
                 </div>
             } show={showNewClass} setShow={setShowNewClass} />
             <Modal Title={"Pas aan"} Content={<div className="edit-class-container">
-                <button className="edit-class-button" onClick={clickNewClass}>Maak nieuwe klassementen aan</button>
-                <hr />
-                <button className="edit-class-button" onClick={clickRemoveClass}>Verwijder klassement</button>
+                <button className="edit-class-button edit-center" onClick={clickNewClass}>Start nieuwe klassementen</button>
                 <hr />
                 <ModalForm Content={
                     <>
-                        <label htmlFor="publishHidden">Klassement:
-                        <select id="publishHidden" value={openClass} onChange={handleSelectChange}>
+                        <label htmlFor="selectClass">Pas klassement aan:<br />
+                        <select className="class-margin-before" id="selectClass" value={openClass} onChange={handleSelectChange}>
                             {classData.map(k => {
                                 return (
                                     <option key={`classOption${k.classification_id}`} value={`${k.classification_id}`}>
-                                        {`${k.type === 'training' ? 'Punten' : 'Trainings'}klassement ${k.start_date.toLocaleDateString('nl-NL')} (${k.classification_id})`}
+                                        {`${k.type === 'training' ? 'Trainings' : 'Punten'}klassement ${k.start_date.toLocaleDateString('nl-NL')} (${k.classification_id})`}
                                     </option>
 
                                 )
@@ -182,18 +179,6 @@ const EditKlassement = () => {
                         </select></label>
                     </>
                 } onSubmit={(e) => { e.preventDefault() }} />
-                <hr />
-                <ModalForm Content={
-                    <>
-                        <label htmlFor="publishHidden">Verborgen punten:
-                        <select id="publishHidden" value={hiddenPublish} onChange={handleChangeHiddenPublish}>
-                            <option value="hide">Hide</option>
-                            <option value="publish">Publish</option>
-                        </select></label>
-                        <button>Synchronizeer</button>
-                    </>
-                } onSubmit={syncClass} />
-                <hr />
                 <ModalForm Content={
                     <>
                         <label htmlFor="startDate">Startdatum:
@@ -211,6 +196,17 @@ const EditKlassement = () => {
                         <button>Sla op</button>
                     </>
                 } onSubmit={modifyClass} />
+                <ModalForm Content={
+                    <>
+                        <label htmlFor="publishHidden">Verborgen punten:
+                        <select id="publishHidden" value={hiddenPublish} onChange={handleChangeHiddenPublish}>
+                            <option value="hide">Verberg</option>
+                            <option value="publish">Publiceer</option>
+                        </select>&nbsp;&nbsp;<button>Synchronizeer</button></label>
+                        
+                    </>
+                } onSubmit={syncClass} />
+                <button className="edit-class-button-dissuade" onClick={clickRemoveClass}>Verwijder klassement</button>
                 <span className={postStatus.isOk ? "okStatus" : "badStatus"}>{postStatus.msg}</span>
             </div>} show={showEdit} setShow={setShowEdit} />
         </>

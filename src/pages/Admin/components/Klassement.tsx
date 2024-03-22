@@ -47,7 +47,7 @@ const defaultIds: UserNames[] = [
     },
 ]
 
-const defaultTraining: KlassementList = [
+const defaultTraining = [
     {
         user_id: '1_arnold',
         firstname: 'Arnold',
