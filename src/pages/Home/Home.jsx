@@ -12,7 +12,7 @@ const logoMax = Math.min((6 * window.innerWidth / 15), 614.4) / parseFloat(getCo
 
 function Home() {
   const [offset, setOffset] = useState(0);
-  const snowContent = ['&#10052', '&#10053', '&#10054'];
+  const snowContent = ['&#127800', '&#127802', '&#127808'];
   
 
   const random = (num) => {
@@ -23,7 +23,7 @@ function Home() {
     const top = random(100) - 20;
     const left = random(100);
     const dur = random(10) + 15;
-    const size = random(25) + 25;
+    const size = random(25) + 10;
     return ` 
       top: -${top}%; 
       left: ${left}%; 
@@ -41,7 +41,7 @@ function Home() {
       var snow = document.createElement("div");
       snow.className = "snow";
       snow.style.cssText = getRandomStyles();
-      snow.innerHTML = snowContent[random(2)]
+      snow.innerHTML = snowContent[random(3)]
       snowContainer.append(snow);
     }
   }

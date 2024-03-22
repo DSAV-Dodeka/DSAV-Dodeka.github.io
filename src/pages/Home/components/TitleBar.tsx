@@ -5,7 +5,7 @@ import {
 import "./TitleBar.scss";
 import D from "../../../images/groteD.svg?react";
 import getUrl from "../../../functions/links";
-import Sneeuw from "../../../images/home/sneeuw.svg?react";
+import Sneeuw from "../../../images/home/grass.svg?react";
 
 
 function TitleBar() {  
