@@ -53,6 +53,7 @@ import {err_api} from "./functions/api/api";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
 import OLD from "./pages/Vereniging/OLD/OLD";
+import Hordes from "./pages/Leden/Hordes/Hordes";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -212,6 +213,11 @@ function App() {
                       <Route path="/leden/klassementen" element={
                         <Suspense fallback={<div>Loading klassement...</div>}>
                         <Klassementen />
+                        </Suspense>
+                      }/>
+                      <Route path="/leden/hordes" element={
+                        <Suspense fallback={<div>Loading hordes...</div>}>
+                        <Hordes />
                         </Suspense>
                       }/>
                       <Route path="/leden" element={

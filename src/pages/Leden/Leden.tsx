@@ -35,12 +35,12 @@ const Leden = () => {
                     </Link>
                 </div>
                 <div className="leden_routes">
-                    <Link className="leden_link" to='' >
-                        <h1 className="leden_link_header">Agenda</h1>
-                        <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
+                    <Link className="leden_link" to='hordes' >
+                        <h1 className="leden_link_header">Hordes</h1>
+                        <img src={getUrl("leden/hordes.jpg")} className="leden_link_image" alt=""/>
                     </Link>
                     <Link className="leden_link" to='' >
-                        <h1 className="leden_link_header">Foto's</h1>
+                        <h1 className="leden_link_header">Agenda</h1>
                         <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
                     </Link>
                     <Link className="leden_link" to='' >
