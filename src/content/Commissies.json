@@ -227,37 +227,37 @@
                 {
                     "naam": "Sylke",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "sylke"
                 },
                 {
                     "naam": "Sasha",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "sasha"
                 },
                 {
                     "naam": "Jamie",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "jamie"
                 },
                 {
                     "naam": "Jonas",
                     "functie": "Commissaris Wedstrijd",
-                    "foto": "placeholder"
+                    "foto": "jonas"
                 },
                 {
                     "naam": "Isabel",
                     "functie": "Commissaris Vrijwilligers",
-                    "foto": "placeholder"
+                    "foto": "isabel"
                 },
                 {
                     "naam": "Chiem",
                     "functie": "Commissaris PR",
-                    "foto": "placeholder"
+                    "foto": "chiem"
                 },
                 {
                     "naam": "Sanne D",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "sanne"
                 }
             ],
             "fotos": "nskmeerkamp"
@@ -311,32 +311,32 @@
                 {
                     "naam": "Xylander",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "xylander"
                 },
                 {
                     "naam": "Anna",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "anna"
                 },
                 {
                     "naam": "Merel",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "merel"
                 },
                 {
                     "naam": "Itse",
                     "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
+                    "foto": "itse"
                 },
                 {
                     "naam": "Anne",
                     "functie": "Commissaris Promo",
-                    "foto": "placeholder"
+                    "foto": "anne"
                 },
                 {
                     "naam": "Sanne D",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "sanne"
                 }
             ],
             "fotos": "sax"
@@ -471,57 +471,67 @@
                 {
                     "naam": "Jasper",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "Jasper"
                 },
                 {
                     "naam": "Sanne B",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "Sanne B"
                 },
                 {
                     "naam": "Koen",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "Koen"
                 },
                 {
                     "naam": "Gijs",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "Gijs"
                 },               
                 {
                     "naam": "Marien",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "Marien"
                 },
                 {
                     "naam": "Jefry",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "Jefry"
+                },
+                {
+                    "naam": "Joris",
+                    "functie": "Baantrainer",
+                    "foto": "Joris"
                 },
                 {
                     "naam": "Aniek",
                     "functie": "Looptrainer",
-                    "foto": "placeholder"
+                    "foto": "Aniek"
                 },
                 {
-                    "naam": "Rik",
+                    "naam": "Robert",
+                    "functie": "Looptrainer",
+                    "foto": "Robert"
+                },
+                {
+                    "naam": "Suze",
                     "functie": "Looptrainer",
                     "foto": "placeholder"
                 },
                 {
                     "naam": "Stan",
                     "functie": "MiLatrainer",
-                    "foto": "placeholder"
+                    "foto": "Stan"
                 },
                 {
                     "naam": "Tijmen",
                     "functie": "MiLatrainer",
-                    "foto": "placeholder"
+                    "foto": "Tijmen"
                 },
                 {
                     "naam": "Sanne D",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "Sanne D"
                 }
                 
             ],
