@@ -1,0 +1,37 @@
+@import "../../variables.scss";
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        font-size: $font_medium;
+        line-height: $line_height_medium;
+        font-weight: $bold;
+        margin-bottom: 1rem;
+    
+        input, select {
+            margin-left: 1rem;
+        }
+    }
+
+    input, select {
+        border-style: none;
+        background-color: white;
+        color: $dodeka_blauw;
+        padding: 0.5rem;
+        border-radius: 0.75rem;
+        font-size: $font_medium;
+    }
+
+    button {
+        border-style: none;
+        width: fit-content;
+        background-color: $dodeka_rood;
+        padding: 0.5rem 1rem;
+        color: white;
+        border-radius: 0.75rem;
+        font-weight: $bold;
+        cursor: pointer;
+    }
+}

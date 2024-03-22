@@ -33,10 +33,10 @@
     font-size: 1.25rem;
     font-weight: $bold;
     margin-top: 2rem;
-    margin-bottom: 2rem;
     margin-left: 15%;
     object-position: center;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 .EerstePersoonLinks{
@@ -347,4 +347,12 @@
 .klassementen_status {
     color: $dodeka_blauw;
     margin-left: 4rem;
+}
+
+.classUpdated {
+    display: flex;
+    color: $dodeka_blauw;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
 }
