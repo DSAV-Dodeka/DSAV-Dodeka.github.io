@@ -1,6 +1,93 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK indoor 2024",
+            "foto": "nsk_indoor_2024.jpg",
+            "prijzen": [
+                {
+                    "naam": "Tijmen Hoedjes",
+                    "plaats": 2,
+                    "afstand": "1500 m"
+                },
+                {
+                    "naam": "Niels Verheugd",
+                    "plaats": 1,
+                    "afstand": "Verspringen"
+                },
+                {
+                    "naam": "Bestafette 2.0",
+                    "plaats": 1,
+                    "afstand": "4x400 m"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "plaats": 2,
+                    "afstand": "Polsstok"
+                },
+                {
+                    "naam": "Suze de Vries",
+                    "plaats": 3,
+                    "afstand": "3000 m"
+                },
+                {
+                    "naam": "Robina Negenman",
+                    "plaats": 3,
+                    "afstand": "Kogelstoten"
+                }
+            ],
+            "prestaties": [
+                "Niels Verheugd wint individueel goud!",
+                "34 enthousiaste leden reisden af naar Apeldoorn", 
+                "Ook de squashbaan was weer een groot succes"
+            ]
+        },
+        {
+            "wedstrijd": "NSK cross 2024",
+            "foto": "nsk_cross_2024.jpg",
+            "prijzen": [
+                {
+                    "naam": "Tijmen Hoedjes",
+                    "plaats": 3,
+                    "afstand": "Korte cross & Sprint cross"
+                }, 
+                {
+                    "naam": "Robert Meier",
+                    "plaats": 1,
+                    "afstand": "Lange cross"
+                }, 
+                {
+                    "naam": "Robin Beijer",
+                    "plaats": 1,
+                    "afstand": "Sprint cross"
+                },
+                {
+                    "naam": "Robin Beijer",
+                    "plaats": 2,
+                    "afstand": "Korte cross"
+                },
+                {
+                    "naam": "Sanne van Beek",
+                    "plaats": 3,
+                    "afstand": "Korte cross"
+                },
+                {
+                    "naam": "Suze de Vries",
+                    "plaats": 3,
+                    "afstand": "Lange cross"
+                },
+                {
+                    "naam": "Dodekampioenen",
+                    "plaats": 1,
+                    "afstand": "Estafette"
+                }
+            ],
+            "prestaties": [
+                "Veel medailles gewonnen door onze toppers!",
+                "Veel Dodekaëders hebben de lange reis naar Maastricht gemaakt", 
+                "Tijmen en Robin hebben zelfs 2 individuele medailles gewonnen!"
+            ]
+        },
+        {
             "wedstrijd": "NSK Trappenloop 2023",
             "foto": "nsk_trappenloop2023_landscape.JPG",
             "prijzen": [
