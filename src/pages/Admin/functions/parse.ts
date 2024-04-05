@@ -54,7 +54,7 @@ export const matchNames = <T extends Name>(users: UserName[], names: T[]): {noMa
     const noMatch: T[] = []
 
     for (const nameInfo of names) {
-        const name = nameInfo.name
+        const name = nameInfo.name.toLowerCase()
         let matched: Match<T>[] = []
         // We first try to perform exact matches and progressively increase the 'level', looking at more loose matches
         // This ensures that a partial match has lower priority over an exact match
@@ -65,9 +65,9 @@ export const matchNames = <T extends Name>(users: UserName[], names: T[]): {noMa
             continue
         }
         for (const u of users) {
-            const firstLast = (u.firstname + " " + u.lastname)
+            const firstLast = (u.firstname + " " + u.lastname).toLowerCase()
 
-            if (u.firstname === name) {
+            if (u.firstname.toLowerCase() === name) {
                 // If it found another match at a higher (worse) level, reset it and add only this match
                 if (matchLevel > 0) {
                     matched = []

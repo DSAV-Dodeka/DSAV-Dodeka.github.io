@@ -1,0 +1,48 @@
+@import "../../variables.scss";
+
+.modal-main {
+    border-radius: 0.75rem;
+    border-style: none;
+    background-color: $dodeka_blauw;
+    position: fixed;
+    top: 15vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: white;
+    padding: 1rem 2rem;
+    min-width: 30%;
+    min-height: 30%;
+}
+.modal-main::backdrop {
+    background-color: rgb(0 0 0 / 0.2);
+}
+.modal-inner-container {
+    display: flex;
+    flex-direction: column;
+}
+.modal-title-container {
+    display: flex;
+    margin-bottom: 1rem;
+}
+.modal-title {
+    font-size: $font_ml;
+    font-weight: $bold;
+}
+.modal-close-btn {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    flex-grow: 1;
+    text-align: right;
+    background: none;
+    border: none;
+}
+.modal-close-icon {
+    fill: white;
+    width: 2rem;
+    cursor: pointer;
+}
+.modal-close-icon:hover {
+    fill: #ACACAC;
+}
+// "rounded-md p-0 backdrop:bg-black/30
+// "mx-2 grow text-right text-3xl font-bold hover:text-darkergray"
