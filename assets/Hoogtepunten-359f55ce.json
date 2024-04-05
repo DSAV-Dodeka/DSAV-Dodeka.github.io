@@ -1,6 +1,22 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Ekiden 2024",
+            "foto": "nsk_ekiden_2024.jpg",
+            "prijzen": [
+                {
+                    "naam": "Ekidenderend",
+                    "plaats": 1,
+                    "afstand": "Marathon estafette mixed"
+                }
+            ],
+            "prestaties": [
+                "3 Dodeka teams reisden af naar Twente!",
+                "Matthijs loopt zelfs voor twee teams mee", 
+                "Team Ekidenderend is slechts 40 minuten langzamer dan het wereldrecord!"
+            ]
+        },
+        {
             "wedstrijd": "NSK indoor 2024",
             "foto": "nsk_indoor_2024.jpg",
             "prijzen": [
@@ -48,7 +64,7 @@
                 {
                     "naam": "Tijmen Hoedjes",
                     "plaats": 3,
-                    "afstand": "Korte cross & Sprint cross"
+                    "afstand": "Korte & Sprint cross"
                 }, 
                 {
                     "naam": "Robert Meier",
