@@ -21,6 +21,9 @@ import {matchNames, MultiMatch, parseFile} from "../functions/parse";
 import {back_post_auth} from "../../../functions/api/api";
 import SortHeader from "./SortHeader";
 import NewEvent from "./NewEvent";
+import Modal from "../../../components/Modal/Modal";
+import ModalForm from "../../../components/Modal/ModalForm";
+import EditKlassement from "./EditKlassement";
 
 const columnHelper = createColumnHelper<KlassementData>()
 
@@ -44,7 +47,7 @@ const defaultIds: UserNames[] = [
     },
 ]
 
-const defaultTraining: KlassementList = [
+const defaultTraining = [
     {
         user_id: '1_arnold',
         firstname: 'Arnold',
@@ -79,6 +82,7 @@ const Klassement = ({typeName, addText, headerText, viewEventText}: KlassementPr
     const {authState, setAuthState} = useContext(AuthContext);
     const [newEvent, setNewEvent] = useState(false);
     const [sorting, setSorting] = useState<SortingState>([]);
+    
 
 
 
@@ -120,6 +124,7 @@ const Klassement = ({typeName, addText, headerText, viewEventText}: KlassementPr
 
     return (
         <div>
+            <EditKlassement />
             <table className="leden_table">
                 <SortHeader table={table} OtherHeader={addEventHeader} />
                 <tbody>

@@ -136,13 +136,6 @@
     cursor: pointer;
 }
 
-//.new_event_form {
-//    width: calc(100%);
-//    //overflow: scroll;
-//    max-height: 100%;
-//    display: inline-block;
-//}
-
 .new_event_input {
     border-style: none;
     background-color: white;
@@ -226,4 +219,95 @@
     font-weight: $bold;
     font-size: $font_small;
     margin: 0 0 0.5rem;
+}
+
+.edit-center {
+    margin: 0 auto;
+}
+
+.class-margin-left {
+    margin-left: 0.5rem;
+}
+
+.class-margin-before {
+    margin-top: 0.5rem;
+}
+
+#publishHidden {
+    font-size: 1rem;
+}
+
+.edit-button {
+    position: absolute;
+    right: 4rem;
+    top: 6rem;
+    background-color: $dodeka_rood;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 3rem;
+    line-height: 3rem;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+  }
+
+.edit-class-container {
+    display: flex;
+    flex-direction: column;
+
+    hr {
+        color: white;
+        border-color: white;
+        margin: 1rem 0;
+    }
+}
+
+.new-class-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+
+    p {
+        text-align: center;
+        max-width: 20vw;
+        font-size: $font_medium;
+    }
+}
+
+.edit-class-button {
+    border-style: none;
+    width: fit-content;
+    background-color: $dodeka_rood;
+    padding: 0.5rem 1rem;
+    color: white;
+    border-radius: 0.75rem;
+    font-weight: $bold;
+    cursor: pointer;
+    font-size: $font_medium;
+}
+
+.edit-class-button-dissuade {
+    border-style: none;
+    width: fit-content;
+    background-color: gray;
+    padding: 0.5rem 1rem;
+    color: white;
+    border-radius: 0.75rem;
+    font-weight: $bold;
+    cursor: pointer;
+    font-size: $font_small;
+}
+
+.okStatus {
+    color: green;
+}
+
+.badStatus {
+    color: $dodeka_rood
 }
