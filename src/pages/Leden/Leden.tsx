@@ -36,6 +36,10 @@ const Leden = () => {
                 </div>
                 <div className="leden_routes">
                     <Link className="leden_link" to='' >
+                        <h1 className="leden_link_header">Documenten</h1>
+                        <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
+                    </Link>
+                    <Link className="leden_link" to='' >
                         <h1 className="leden_link_header">Agenda</h1>
                         <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
                     </Link>
@@ -47,10 +51,7 @@ const Leden = () => {
                         <h1 className="leden_link_header">Smoelenboek</h1>
                         <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
                     </Link>
-                    <Link className="leden_link" to='' >
-                        <h1 className="leden_link_header">Documenten</h1>
-                        <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
-                    </Link>
+                    
                 </div>
                 </div>
                 </>

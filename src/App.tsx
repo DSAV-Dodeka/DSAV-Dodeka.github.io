@@ -53,6 +53,7 @@ import {err_api} from "./functions/api/api";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
 import OLD from "./pages/Vereniging/OLD/OLD";
+import Archief from "./pages/Leden/Archief/Archief";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -151,6 +152,7 @@ function App() {
                     }/>
                     {/* <Route path="/owee" element={<OWee />} /> */}
                     <Route path="/vereniging" element={<Vereniging />} />
+                    <Route path="/archief" element={<Archief />} />
                     <Route path="/vereniging/commissies" element={<Commissies />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
                     <Route path="/vereniging/arnold" element={
