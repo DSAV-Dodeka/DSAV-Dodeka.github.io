@@ -1,0 +1,61 @@
+@import "../../../../variables.scss";
+
+.erelid {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 30%;
+    padding-bottom: calc($line_height_medium + 2rem);
+    transition: all 1s ease-in-out;
+    overflow-y: hidden;
+}
+
+.erelid_foto {
+    display: block;
+    width: 100%;
+    transition: all 1s ease-in-out;
+}
+
+.erelid_naam {
+    position: absolute;
+    top: calc(100% - $line_height_medium - 2rem);
+    width: 100%;
+    background-color: $dodeka_rood;
+    color: white;
+    font-size: $font_ml;
+    line-height: $line_height_medium;
+    padding: 1rem;
+    font-weight: $bold;
+    transition: all 1s ease-in-out;
+}
+
+.erelid_info {
+    // display: none;
+    position: absolute;
+    top: 100%;
+    padding: 1rem;
+    z-index: 10;
+    height: calc(100% - $line_height_medium - 2rem);
+    background-color: $dodeka_blauw;
+    opacity: 70%;
+    color: white;
+    transition: all 1s ease-in-out;
+}
+
+.erelid:hover {
+    padding-bottom: 0;
+}
+
+.erelid:hover .erelid_info {
+    // display: block;
+    top: calc($line_height_medium + 2rem);
+}
+
+.erelid:hover .erelid_foto {
+    padding-top: calc($line_height_medium + 2rem);
+}
+
+.erelid:hover .erelid_naam {
+    position: absolute;
+    top: 0;
+}

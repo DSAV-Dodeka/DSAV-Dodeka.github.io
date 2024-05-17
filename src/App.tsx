@@ -19,6 +19,7 @@ import Sponsors from "./pages/Contact/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
+import Eregalerij from "./pages/Vereniging/Eregalerij/Eregalerij";
 const Arnold = React.lazy(() => import("./pages/Vereniging/Arnold/Arnold"));
 const Records = React.lazy(() => import("./pages/Wedstrijden/Records/Records"));
 
@@ -153,6 +154,7 @@ function App() {
                     <Route path="/vereniging" element={<Vereniging />} />
                     <Route path="/vereniging/commissies" element={<Commissies />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
+                    <Route path="/vereniging/eregalerij" element={<Eregalerij />} />
                     <Route path="/vereniging/arnold" element={
                       <Suspense fallback={<div>Loading Arnold...</div>}>
                       <Arnold />
