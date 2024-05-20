@@ -30,9 +30,9 @@ function Contributie(props) {
                 <p className="contributie_4">
                 Naast dat wij trainen op hun atletiekbaan, is D.S.A.V. Dodeka ook een ondervereniging van AV'40. De inschrijvingen en contributie worden daarom via hen geregeld.
                 <br/><br/>
-                Als student vallen wij onder de baanatleten, en is de contributie daarmee <span>&#8364;</span>57,95 per kwartaal. Om mee te mogen doen met wedstrijden, zoals de competitie of de Nederlandse Studenten Kampioenschappen, moet je in het bezit zijn van een wedstrijdlicentie. Ben je al wedstrijdlid bij een andere atletiekvereniging? Dan kan je ervoor kiezen om je wedstrijdlicentie om te zetten naar AV'40, of om gastlid bij ons te worden.
+                Als student vallen wij onder de baanatleten en is de contributie daarmee <span>&#8364;</span>57,95 per kwartaal. Om mee te mogen doen met wedstrijden, zoals de competitie of de Nederlandse Studenten Kampioenschappen, moet je in het bezit zijn van een wedstrijdlicentie. Ben je al wedstrijdlid bij een andere atletiekvereniging? Dan kan je ervoor kiezen om je wedstrijdlicentie om te zetten naar AV'40, of om gastlid bij ons te worden.
                 <br/><br/>
-                Vergeet bij het inschrijven niet aan te vinken dat je student bent, want studentenleden krijgen jaarlijks <span>&#8364;</span>10 korting op de contributie! Als je dit niet aanvinkt worden de prijzen duurder dan in de prijzentabel hiernaast.
+                Vergeet bij het inschrijven niet aan te vinken dat je student bent, want studentenleden krijgen jaarlijks <span>&#8364;</span>10 korting op de contributie! Als je dit niet aanvinkt worden de prijzen hoger dan in de prijzentabel hiernaast.
                 </p>
             </div>
         </div>
