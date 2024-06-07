@@ -2,12 +2,26 @@ import React from "react";
 import "./Erelid.scss";
 import getUrl from "../../../../functions/links";
 
-function Erelid() {
+export interface ErelidProps {
+    naam: string
+    redenen: string[]
+    foto: string
+}
+
+function Erelid({naam, redenen, foto} : ErelidProps) {
+    console.log(redenen.map((text) => text))
     return(
         <div className="erelid">
-            <img className="erelid_foto" src={getUrl("vereniging/abel.jpg")}/>
-            <p className="erelid_naam">Abel Kappenburg</p>
-            <p className="erelid_info">Oprichter als commissaris A, Gezorgd voor sterke promotie van DSAV40, Kennis van commissies overgedragen vanuit andere studentenverenigingen.</p>
+            <img className="erelid_foto" src={getUrl(foto)}/>
+            <p className="erelid_naam">{naam}</p>
+            <div className="erelid_info">
+                {
+                    redenen.map((text) =>
+                        <p>- {text}</p>
+                    )
+                }
+            </div>
+            
         </div>
     )
 }
