@@ -1,0 +1,77 @@
+@import "../../../../variables.scss";
+
+.erelid {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: calc((100% - 16rem) / 3);
+    padding-bottom: calc($line_height_medium + 2rem);
+    transition: all 0.5s ease-in-out;
+    overflow-y: hidden;
+    @include respond(mobile) {
+        display: block;
+        width: calc(100% - 4rem);
+    }
+}
+
+.erelid_foto {
+    display: block;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.erelid_naam {
+    position: absolute;
+    top: calc(100% - $line_height_medium - 2rem);
+    width: 100%;
+    background-color: $dodeka_rood;
+    color: white;
+    font-size: $font_ml;
+    line-height: $line_height_medium;
+    padding: 1rem;
+    font-weight: $bold;
+    transition: all 0.5s ease-in-out;
+}
+
+.erelid_info {
+    position: absolute;
+    top: 100%;
+    padding: 1rem;
+    z-index: 10;
+    height: calc(100% - $line_height_medium - 2rem);
+    background-color: $dodeka_blauw;
+    opacity: 80%;
+    color: white;
+    transition: all 0.5s ease-in-out;
+    font-size: $font_medium;
+    @include respond(mobile) {
+        padding: 0;
+        font-size: $font_small;
+    }
+}
+
+.erelid_info p {
+    padding: 1rem;
+}
+
+.erelid:hover {
+    padding-bottom: 0;
+}
+
+.erelid:active { 
+    padding-bottom: 0;
+}
+
+.erelid:hover .erelid_info {
+    top: calc($line_height_medium + 2rem);
+}
+
+.erelid:hover .erelid_foto {
+    padding-top: calc($line_height_medium + 2rem);
+    object-fit: cover;
+}
+
+.erelid:hover .erelid_naam {
+    position: absolute;
+    top: 0;
+}
