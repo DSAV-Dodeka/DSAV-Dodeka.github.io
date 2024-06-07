@@ -1,0 +1,70 @@
+@import "../../../variables.scss";
+
+.ere_container {
+    width: 100%;
+    margin: 4rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+    @include respond(mobile) {
+        margin: 2rem;
+        gap: 2rem;
+    }
+}
+
+.toggle_container {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+    @include respond(mobile) {
+        display: block;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}
+
+.eretoggle {
+    display: flex;
+    border: none;
+    vertical-align: middle;
+    @include respond(mobile) {
+        justify-content: center;
+        align-content: center;
+        margin-bottom: 1rem;
+    }
+}
+
+.eretoggle p {
+    width: 16rem;
+    text-align: center;
+    font-size: $font_medium;
+    font-weight: $bold;
+    line-height: $line_height_medium;
+    color: white;
+    padding: 1rem;
+    cursor: pointer;
+    @include respond(mobile) {  
+        font-size: 0.85rem;
+        line-height: $line_height_small;
+        padding: 0.5rem;
+    }
+}
+
+.toggleLeft {
+    border-radius: 0.75rem 0 0 0.75rem;
+}
+
+.toggleRight {
+    border-radius: 0 0.75rem 0.75rem 0;
+}
+
+.toggleActive {
+    background-color: $dodeka_rood;
+}
+
+.toggleInactive {
+    background-color: $dodeka_blauw90p;
+}

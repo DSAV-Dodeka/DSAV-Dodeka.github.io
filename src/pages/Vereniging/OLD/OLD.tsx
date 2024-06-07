@@ -17,9 +17,6 @@ function OLD() {
                 </div>
                 <img className="oldFoto" src={old_foto} alt="" />
             </div>
-
-
-            
         </div>
     )
 }
