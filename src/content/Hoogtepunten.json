@@ -1,6 +1,37 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Meerkamp 2024",
+            "foto": "nsk_meerkamp_2024.jpg",
+            "prijzen": [
+                {
+                    "naam": "Tijmen Hoedjes, Robin Beijer",
+                    "plaats": 1,
+                    "afstand": "Loopmeerkamp"
+                },
+                {
+                    "naam": "Aniek Sips",
+                    "plaats": 2,
+                    "afstand": "Loopmeerkamp"
+                },
+                {
+                    "naam": "Robina Negenman",
+                    "plaats": 2,
+                    "afstand": "Regulier"
+                },
+                {
+                    "naam": "Vera Schuurman",
+                    "plaats": 3,
+                    "afstand": "Intermediate"
+                }
+            ],
+            "prestaties": [
+                "Er waren in totaal 6 gouden medailles te winnen dit NSK",
+                "31 Dodekaëders deden mee aan deze thuiswedstrijd", 
+                "Jefry el Bhwash springt hoger bij polsstok dan aartsrivaal Koen Stapel"
+            ]
+        },
+        {
             "wedstrijd": "NSK Ekiden 2024",
             "foto": "nsk_ekiden_2024.jpg",
             "prijzen": [
