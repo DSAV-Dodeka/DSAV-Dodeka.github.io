@@ -269,37 +269,37 @@
                 {
                     "naam": "Anna",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "anna"
                 },
                 {
                     "naam": "Inez",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "inez"
                 },
                 {
                     "naam": "Robert",
                     "functie": "Commissaris Inhoud",
-                    "foto": "placeholder"
+                    "foto": "robert"
                 },
                 {
                     "naam": "Kyllian",
                     "functie": "Commissaris Flexibel",
-                    "foto": "placeholder"
+                    "foto": "kyllian"
                 },
                 {
                     "naam": "Robin",
                     "functie": "Commissaris Vormgeving Nieuwsbrief",
-                    "foto": "placeholder"
+                    "foto": "robin"
                 },
 		    {
                     "naam": "Anne",
                     "functie": "Commissaris Vormgeving Jaarboek",
-                    "foto": "placeholder"
+                    "foto": "anne"
                 },
                 {
                     "naam": "Tim C",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "tim"
                 }
             ],
             "fotos": "redaxii"
@@ -348,27 +348,27 @@
                 {
                     "naam": "Merel",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "Merel"
                 },
                 {
                     "naam": "Marea",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "Marea"
                 },
                 {
                     "naam": "Thomas",
                     "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
+                    "foto": "Thomas"
                 },
                 {
                     "naam": "Roy",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "placeholder"
+                    "foto": "Roy"
                 },
                 {
                     "naam": "Marien",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "Marien"
                 }
             ],
             "fotos": "snowdeka"
