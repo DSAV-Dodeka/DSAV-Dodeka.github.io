@@ -19,7 +19,7 @@ function Gezelligheid(){
             <div className="fotobalk">
                 <img className="fotos" src={getUrl(`gezelligheid/biermijl.jpg`)} alt="foto1"/>
                 <img className="fotos" src={getUrl(`gezelligheid/nsk_teams_algemeen.jpeg`)} alt="foto2"/>
-                <img className="fotos" src={getUrl(`gezelligheid/nskCrossGroep.jpg`)} alt="foto4"/>
+                <img className="fotos" src={getUrl(`gezelligheid/gala1.jpg`)} alt="foto4"/>
                 <img className="fotos" src={getUrl(`gezelligheid/uithof.jpg`)} alt="foto3"/>
                 {/* <img className="fotos" src={Image4} alt="foto4"/> */}
             </div>
