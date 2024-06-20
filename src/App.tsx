@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  useLocation
 } from "react-router-dom";
 import NavigationBar from './components/Navigation Bar/NavigationBar'
 import Home from './pages/Home/Home';
@@ -64,6 +65,16 @@ const queryClient = new QueryClient({
     },
   },
 })
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const [authState, setAuthState] = useState(newAuthState());
@@ -137,6 +148,7 @@ function App() {
       <AuthProvider value={contextValue}>
         <QueryClientProvider client={queryClient} >
           <Router>
+            <ScrollToTop />
             <div id="app_screen">
               <div id="app_container">
                 <NavigationBar />
