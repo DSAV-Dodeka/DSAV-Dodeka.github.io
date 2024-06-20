@@ -103,9 +103,10 @@
 .sneeuw_bar {
     position: absolute;
     display: inline;
-    width: 85%;
-    height: 42%;
-    bottom: -3rem;
+    width: 100%;
+    height: 80%;
+    bottom: -12rem;
+    transform: scaleX(-1);
 }
 
 .sneeuw_bar .g {
