@@ -12,7 +12,7 @@ function Vereniging() {
         <div className="vereniging_1">
             <PageTitle title="vereniging" />
             <div className="vereniging_2">
-                <p className="vereniging_3">D.S.A.V. Dodeka is dé Delfste Studenten AtletiekVereniging! Er wordt drie keer per week een training aangeboden samen met genoeg borrels, activiteiten em reizen om de leuke dodekaëders te leren kennen.<br></br><br></br>
+                <p className="vereniging_3">D.S.A.V. Dodeka is dé Delfste Studenten Atletiekgroep! Er wordt drie keer per week een training aangeboden samen met genoeg borrels, activiteiten em reizen om de leuke dodekaëders te leren kennen.<br></br><br></br>
                     D.S.A.V. Dodeka is aangesloten bij de Nederlandse Studenten Atletiek Federatie ZeuS.
 
                     De atleten van Dodeka zijn niet bang voor wat competitie en gaan vaak in groepjes naar allerlei verschillende wedstrijden toe. De grootste opkomst is te vinden bij alle Nederlands Studenten Kampioenschappen (NSK) waar wij altijd aan meedoen.<br></br><br></br>
