@@ -7,42 +7,33 @@
                 {
                     "naam": "Tip",
                     "functie": "CEO",
-                    "foto": "placeholder"
+                    "foto": "tip"
                 },
                 {
                     "naam": "Matthijs",
                     "functie": "Senior Frontend Developer",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Leander",
-                    "functie": "Senior Backend Developer",
-                    "foto": "placeholder"
+                    "foto": "matthijs"
                 },
                 {
                     "naam": "Liam",
                     "functie": "Design & Frontend Developer",
-                    "foto": "placeholder"
+                    "foto": "liam"
                 },
                 {
                     "naam": "Jesper",
                     "functie": "Junior Frontend Developer",
-                    "foto": "placeholder"
+                    "foto": "jesper"
                 },
                 {
                     "naam": "Senne",
                     "functie": "Junior Backend Developer",
-                    "foto": "placeholder"
+                    "foto": "senne"
                 },
-                {
-                    "naam": "Jefry",
-                    "functie": "Data scientist",
-                    "foto": "placeholder"
-                },
+
                 {
                     "naam": "Sanne vB",
                     "functie": "QomQommer",
-                    "foto": "placeholder"
+                    "foto": "sanne"
                 }
             ],
             "fotos": "comcom"
@@ -128,17 +119,17 @@
                 {
                     "naam": "Mieke",
                     "functie": "Kapitein",
-                    "foto": "placeholder"
+                    "foto": "mieke"
                 },
                 {
                     "naam": "Kimmo",
                     "functie": "Secretavis",
-                    "foto": "placeholder"
+                    "foto": "kimmo"
                 },
                 {
                     "naam": "Niek",
                     "functie": "Kommiszeevis Bil",
-                    "foto": "placeholder"
+                    "foto": "niek"
                 },
                 {
                     "naam": "Roman B",
@@ -148,7 +139,7 @@
 		        {
                     "naam": "Julius",
                     "functie": "Kommiszeevis Vies",
-                    "foto": "placeholder"
+                    "foto": "julius"
                 },
 		        {
                     "naam": "Matthew",
@@ -158,12 +149,12 @@
                 {
                     "naam": "Jeroen",
                     "functie": "Kommiszeevis Gladde Paling",
-                    "foto": "placeholder"
+                    "foto": "jeroen"
                 },
                 {
                     "naam": "Sanne vB",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "sanne"
                 }
             ],
             "fotos": "focus"
@@ -348,27 +339,27 @@
                 {
                     "naam": "Merel",
                     "functie": "Voorzitter",
-                    "foto": "Merel"
+                    "foto": "merel"
                 },
                 {
                     "naam": "Marea",
                     "functie": "Secretaris",
-                    "foto": "Marea"
+                    "foto": "marea"
                 },
                 {
                     "naam": "Thomas",
                     "functie": "Commissaris Logistiek",
-                    "foto": "Thomas"
+                    "foto": "thomas"
                 },
                 {
                     "naam": "Roy",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "Roy"
+                    "foto": "roy"
                 },
                 {
                     "naam": "Marien",
                     "functie": "QQ",
-                    "foto": "Marien"
+                    "foto": "marien"
                 }
             ],
             "fotos": "snowdeka"
