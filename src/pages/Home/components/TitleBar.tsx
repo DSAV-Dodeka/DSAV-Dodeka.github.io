@@ -5,7 +5,7 @@ import {
 import "./TitleBar.scss";
 import D from "../../../images/groteD.svg?react";
 import getUrl from "../../../functions/links";
-import Sneeuw from "../../../images/home/grass.svg?react";
+import Sneeuw from "../../../images/home/zand.svg?react";
 
 
 function TitleBar() {  
@@ -20,7 +20,7 @@ function TitleBar() {
         </div>
         <div id="home_title_right_over">
             <div id="home_title_right_pos">
-                <h1 id="home_title_right_text">Dé Delftse Studenten <br/>Atletiek Vereniging!</h1>
+                <h1 id="home_title_right_text">Dé Delftse Studenten <br/>Atletiek Groep!</h1>
                 <Link to="/word_lid"><button id="home_title_right_button">Train 3x gratis mee!</button></Link>
                 <D id="home_title_d"></D>
             </div>

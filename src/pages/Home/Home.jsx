@@ -12,7 +12,7 @@ const logoMax = Math.min((6 * window.innerWidth / 15), 614.4) / parseFloat(getCo
 
 function Home() {
   const [offset, setOffset] = useState(0);
-  const snowContent = ['&#127800', '&#127802', '&#127808'];
+  const snowContent = ['&#127846', '🍉', '🍸'];
   
 
   const random = (num) => {
