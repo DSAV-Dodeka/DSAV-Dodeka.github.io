@@ -3,14 +3,14 @@
 #navDropdown {
     position: relative;
     height: 4rem;
-    width: 8rem;
+    width: 8.5rem;
 }
 
 .dropdownNav {
     text-decoration: none;
     position: absolute;
     height: 4rem;
-    width: 8rem;
+    width: inherit;
     color: white;
     text-align: center;
     line-height: 4rem;
@@ -34,7 +34,7 @@
     position: absolute;
     left: 0;
     top: 4rem;
-    width: 8rem;
+    width: inherit;
     z-index: 10;
 }
 
@@ -44,15 +44,15 @@
 
 .dropdownElement {
     display: block;
-    height: 4rem;
-    width: 8rem;
-    line-height: 4rem;
+    padding: 1rem 0.1rem;
+    width: inherit;
     text-align: center;
     text-decoration: none;
     color: white;
     background-color: $dodeka_blauw;
     font-size: $font_small;
     font-weight: 500;
+    overflow-wrap: break-word;
 }
 
 .dropdownElement:hover {
