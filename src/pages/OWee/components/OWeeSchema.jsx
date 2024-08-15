@@ -6,7 +6,7 @@ function OWeeSchema() {
         <div className="OWeeSchema">
             <div className="OWeeDag">
                 <h1 className="OWeeDatumDag">Zondag</h1>
-                <h1 className="OWeeDatum">14 augustus</h1>
+                <h1 className="OWeeDatum">18 augustus</h1>
                 <div className="OWeeActiviteit">
                     <h1 className="OWeeActiviteitNaam">Parade</h1>
                     <p className="OWeeActiviteitTijd">17:30-18:30</p>
@@ -25,7 +25,7 @@ function OWeeSchema() {
             </div>
             <div className="OWeeDag">
                 <h1 className="OWeeDatumDag">Maandag</h1>
-                <h1 className="OWeeDatum">15 augustus</h1>
+                <h1 className="OWeeDatum">19 augustus</h1>
                 <div className="OWeeActiviteit">
                     <h1 className="OWeeActiviteitNaam">Infomarkt</h1>
                     <p className="OWeeActiviteitTijd">13:00-17:45</p>
@@ -44,7 +44,7 @@ function OWeeSchema() {
             </div>
             <div className="OWeeDag">
                 <h1 className="OWeeDatumDag">Dinsdag</h1>
-                <h1 className="OWeeDatum">16 augustus</h1>
+                <h1 className="OWeeDatum">20 augustus</h1>
                 <div className="OWeeActiviteit">
                     <h1 className="OWeeActiviteitNaam">OWlympics</h1>
                     <p className="OWeeActiviteitTijd">10:30-17:30</p>
@@ -52,13 +52,13 @@ function OWeeSchema() {
                 </div>
                 <div className="OWeeActiviteit">
                     <h1 className="OWeeActiviteitNaam">Sportfeest bij Proteus</h1>
-                    <p className="OWeeActiviteitTijd">21:00-3:30</p>
+                    <p className="OWeeActiviteitTijd">20:30-3:30</p>
                     <p className="OWeeActiviteitOmschrijving">Dodeka mag natuurlijk niet ontbreken op het sportfeest bij Proteus!</p>
                 </div>
             </div>
             <div className="OWeeDag">
                 <h1 className="OWeeDatumDag">Woensdag</h1>
-                <h1 className="OWeeDatum">17 augustus</h1>
+                <h1 className="OWeeDatum">21 augustus</h1>
                 <div className="OWeeActiviteit">
                     <h1 className="OWeeActiviteitNaam">Activiteitenmarkt bij X</h1>
                     <p className="OWeeActiviteitTijd">12:00-15:00</p>
