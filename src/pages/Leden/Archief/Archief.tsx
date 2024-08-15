@@ -18,9 +18,9 @@ const Archief = () => {
             )} */}
             {true &&(
                 <>
-                <PageTitle title={"Welkom, "} />
+                <PageTitle title={"Archief "} />
                 <div className="leden_container">
-                <div className="leden_routes">
+                {/* <div className="leden_routes">
                     <Link className="leden_link_double" to="" >
                         <h1 className="leden_link_double_header">Inschrijven trainingen</h1>
                         <img src={getUrl("leden/soon.jpg")} className="leden_link_double_image" alt=""/>
@@ -33,22 +33,22 @@ const Archief = () => {
                         <h1 className="leden_link_header">Verjaardagen</h1>
                         <img src={getUrl("leden/verjaardagen.jpg")} className="leden_link_image" alt=""/>
                     </Link>
-                </div>
+                </div> */}
                 <div className="leden_routes">
                     <Link className="leden_link" to='' >
-                        <h1 className="leden_link_header">Documenten</h1>
+                        <h1 className="leden_link_header">Nieuwsbrieven</h1>
                         <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
                     </Link>
-                    <Link className="leden_link" to='' >
+                    {/* <Link className="leden_link" to='' >
                         <h1 className="leden_link_header">Agenda</h1>
                         <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
-                    </Link>
+                    </Link> */}
                     <Link className="leden_link" to='' >
                         <h1 className="leden_link_header">Foto's</h1>
                         <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
                     </Link>
                     <Link className="leden_link" to='' >
-                        <h1 className="leden_link_header">Smoelenboek</h1>
+                        <h1 className="leden_link_header">Smoelenposters</h1>
                         <img src={getUrl("leden/soon.jpg")} className="leden_link_image" alt=""/>
                     </Link>
                     
