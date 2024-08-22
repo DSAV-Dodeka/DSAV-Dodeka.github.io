@@ -13,7 +13,7 @@ function OWeeText() {
                 <br/><br/>
                 Bereid je als nieuw lid voor op onder andere een super gezellig trainingsweekend, geweldige Dodeka merch, NSK’s, gala’s, friettafels, borrels, quizavonden, de jaarlijkse ski- en zomerreis, feesten in Delft en andere studentensteden en nog veel meer! Zien we jou binnenkort ook op onze atletiekbaan en bij de borrel?
                 <br/><br/>
-                Heb je interesse om proeftrainingen te volgen of lid te worden? Vul dan <a class="OWeeLink" rel="noreferrer" target="_blank" href="https://forms.gle/SWSkYtroWNL27fih9">dit interesseformulier</a> in en geef je <a class="OWeeLink" rel="noreferrer" target="_blank" href="https://forms.gle/MwUuoEcFKzLT7PmU6">hier</a> op voor de trainingen! Je zult hierna een mail krijgen met meer informatie over de vereniging en hoe je lid kunt worden.
+                Heb je interesse om proeftrainingen te volgen of lid te worden? Vul dan <a class="OWeeLink" rel="noreferrer" target="_blank" href="https://forms.gle/SWSkYtroWNL27fih9">dit interesseformulier</a> in en geef je <a class="OWeeLink" rel="noreferrer" target="_blank" href="https://forms.gle/MwUuoEcFKzLT7PmU6">hier</a> op voor de trainingen! Je zult hierna een mail krijgen met meer informatie over ons en hoe je lid kunt worden.
             </p>
             
             
