@@ -28,7 +28,7 @@ function Gezelligheid(){
                 <div className="textkolom">
                     <h1 className="textvakheader">Borrels</h1>
                     <p className="text">
-                    Een studenten(sport)vereniging is natuurlijk niet compleet zonder borrels! Elke woensdag wordt er een borrel georganiseerd waarbij er ook de mogelijkheid is om mee te eten!
+                    Elke woensdag wordt er een borrel georganiseerd waarbij er ook de mogelijkheid is om mee te eten!
                     </p>
                 </div>
 
