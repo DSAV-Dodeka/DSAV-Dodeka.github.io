@@ -1,6 +1,68 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Teams 2024",
+            "foto": "nsk_teams_2024.jpg",
+            "prijzen": [
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 3,
+                    "afstand": "Mannen"
+                },
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 3,
+                    "afstand": "Vrouwen"
+                }
+            ],
+            "prestaties": [
+                "De mannen- en vrouwenteams behalen de bronzen medaille",
+                "Robert wint met een PR de 5000m", 
+                "Er waren zoveel enthousiaste leden dat er 2 mannenteams gevormd werden"
+            ]
+        },
+        {
+            "wedstrijd": "NSK Baan 2024",
+            "foto": "nsk_baan_2024.jpg",
+            "prijzen": [
+                {
+                    "naam": "Jeroen van het Hof",
+                    "plaats": 1,
+                    "afstand": "Speerwerpen"
+                },
+                {
+                    "naam": "Bestafette, Dodeka Dames",
+                    "plaats": 1,
+                    "afstand": "4x100m"
+                },
+                {
+                    "naam": "Sven van Weezep",
+                    "plaats": 2,
+                    "afstand": "Hoogspringen"
+                },
+                {
+                    "naam": "Robina Negenman",
+                    "plaats": 2,
+                    "afstand": "400mh"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "plaats": 3,
+                    "afstand": "Polsstok"
+                },
+                {
+                    "naam": "Robina Negenman",
+                    "plaats": 3,
+                    "afstand": "Kogelstoten"
+                }
+            ],
+            "prestaties": [
+                "Er zijn weer de maximale 12 punten behaald voor de Zeus-bokaal",
+                "Maar liefst 49 Dodekaëders zijn naar Eindhoven afgereisd voor dit NSK!", 
+                "Op de Eindhovense baan sneuvelden weer een hoop PR's"
+            ]
+        },
+        {
             "wedstrijd": "NSK Meerkamp 2024",
             "foto": "nsk_meerkamp_2024.jpg",
             "prijzen": [
