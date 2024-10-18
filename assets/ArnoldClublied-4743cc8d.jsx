@@ -69,7 +69,7 @@ function ArnoldClublied() {
                     Je kan ons niet verslaan<br/><br/>
                     (10, 11, 12, 'Vo)<br/>
                     [Refrein]<br/>
-                    Aard-var-ken<br/>
+                    Aard-var-ken🥒🥒🥒🥒<br/>
                     Het allermooiste diertje<br/>
                     We delen een biertje<br/>
                     Aard-var-ken<br/>
