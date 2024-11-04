@@ -47,6 +47,7 @@
     margin-left: 4rem;
     color: white;
     column-count: 2;
+    list-style: inside;
     @include respond(mobile) {
         margin-left: 1rem;
         margin-right: 1rem;
