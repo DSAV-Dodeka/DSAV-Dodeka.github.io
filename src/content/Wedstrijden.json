@@ -1,5 +1,24 @@
 {
     "wedstrijden": [
+        {
+            "naam": "NSK Trappenloop",
+            "datum": "13 december 2024",
+            "tijd": "Vrijdag 17:00",
+            "locatie": "EWI-toren",
+            "adres": "Mekelweg 4",
+            "postcode": "2628 CD Delft",
+            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3399.9936754873074!2d4.370934177237337!3d51.998868374681074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b59735b7475b%3A0x9055bdc663dea6bb!2sMekelweg%204%2C%202628%20CD%20Delft!5e1!3m2!1snl!2snl!4v1729843558567!5m2!1snl!2snlH",
+            "logo": "nsk_trappenloop_2024_foto.jpg",
+            "logo_rond": "nsk_trappenloop_2024_logo.png",
+            "foto": "nsk_trappenloop_2024_foto.jpg",
+            "inschrijven": "https://inschrijven.nl/form/2024121351382-nl",
+            "mail": "nsktrappenloop@dsavdodeka.nl",
+            "instagram": "https://www.instagram.com/nsktrappenloop/",
+            "bepalingen": "/files/wedstrijdregelement_nsk_trappenloop_2024.pdf",
+            "info_kort": "Op vrijdag 13 december wordt het NSK Trappenloop gehouden in de faculteit voor Elektrotechniek, Wiskunde en Informatica (EWI) in Delft. Hier zullen de beste studenten tegen elkaar strijden voor de gouden medaille op de trappen. Dus waar wacht je nog op? Zet je schrap voor de trap, naar de top we geven niet op!",
+            "info_lang": "Op vrijdag 13 december is het alweer tijd voor het mooie NSK Trappenloop. Dit jaar zal het NSK trappenloop voor de eerste keer georganiseerd worden door Dodeka in het prachtige gebouw voor Elektrotechniek, Wiskunde en Informatica (EWI). Het NSK Trappenloop is een NSK waarbij de beste studenten van Nederland de atletiekbaan inruilen voor een duizelingwekkend hoge trap. Op de verschillende onderdelen zullen de studenten uitmaken wie er met de gouden medaille naar huis gaat. Dit jaar kan er gekozen worden uit 10 verdiepingen, 20 verdiepingen en 4x5 verdiepingen estafette. Denk jij dat je het in je hebt om al deze trappen te overwinnen en jezelf te kronen tot DE studentenkampioen van het NSK Trappenloop? Schrijf je dan snel in en zet je schrap voor de trap!<br/><br/>Daarnaast kun je je natuurlijk ook zoals altijd inschrijven voor het eten, slapen en het feest door middel van de links hieronder en kan je je aanmelden om te vrijwilligen op deze onvergetelijke avond. Het feest zal gehouden worden op een echte toplocatie die op de insta bekendgemaakt zal worden.<br/><br/>BELANGRIJKE LINKS:<br/><a target=\"_blank\" rel=\"noreferrer\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSdE9EtjiAGyXOO2ZGVUFHsIAk12PTgOyz3FjCHoEo-QdpRRhw/viewform\">Aanmelden estafette</a><br/><a target=\"_blank\" rel=\"noreferrer\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSf0OX1L5LRAaGwpX5F4ohThwQHYo3Hvpex4is_azkIW8px0WQ/viewform\" className=\"wedstrijd_algemeen_link\">Bewijs van inschrijving</a><br/><a target=\"_blank\" rel=\"noreferrer\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSfFn_FATdVmDMOBOFLbnkYeNh23rgxWWBnnz2OWghZ_r7AjrA/viewform\" className=\"wedstrijd_algemeen_link\">Vrijwilligen</a><br><p>Disclaimers:<br></p><ul><li>Geen alcohol meenemen in het gebouw, dit zal leiden tot het ontzeggen van de toegang tot het gebouw.</li><li>Niet in het gebouw rondzwerven.</li><li>Luister ten alle tijden naar de instructies van de vrijwilligers.</li></ul>",
+            "path": "/nsktrappenloop"
+        },
        {
             "naam": "NSK Meerkamp",
             "datum": "11 en 12 mei 2024",
@@ -20,6 +39,13 @@
             "path": "/nskmeerkamp"
         },
         {
+            "naam": "Dodekathlon",
+            "datum": "29 juni 2024",
+            "logo": "dodekathlon.jpg",
+            "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. 'Dodeka' betekent namelijk twaalf in het Grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter horden en de hink-stap-sprong onderdeel van dit evenement.",
+            "path": ""
+        },
+        {
             "naam": "Demonstratiewedstrijd",
             "datum": "11 mei 2024",
             "tijd": "19:00",
@@ -34,14 +60,10 @@
             "info_kort": "Ter ere van het eerste lustrum van Dodeka wordt zaterdag 11 mei de speciale lustrumdemowedstrijd gehouden. Hier zullen er ongeveer 8 polsstok atleten van hoog niveau strijden om de winst! Het belooft een epische show te worden en het is helemaal gratis!",
             "info_lang": "Ter ere van het eerste lustrum van Dodeka wordt zaterdag 11 mei de speciale lustrumdemowedstrijd gehouden. Hier zullen er ongeveer 8 polsstok atleten van hoog niveau strijden om de winst! Er wordt een buitenbar opgesteld waar u drankjes kan halen. Het belooft een epische show te worden en het is helemaal gratis! Om 19:00 zal het spektakel losbarsten, zorg dat je erbij bent!<br/><br/> De volgende atleten zullen gaan springen: <br/> <b>Stan Does</b> (PR 4.71 | SB 4.13) <br/> <b>Bjorn Sloot</b> (PR 4.84 | SB 4.80) <br/> <b>Jip Haest</b> (PR 5.00 | SB 4.80)<br/><b>Twan van Rijn</b> (PR 4.72 | SB 4.71)<br/><b>Alex van der Voort</b> (PR 4.45 | SB 4.30) <br/><b>Benjamin Coolen</b> (PR 4.70)",
             "path": "/demowedstrijd"
-        },
-        {
-            "naam": "Dodekathlon",
-            "datum": "29 juni 2024",
-            "logo": "dodekathlon.jpg",
-            "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. 'Dodeka' betekent namelijk twaalf in het Grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter horden en de hink-stap-sprong onderdeel van dit evenement.",
-            "path": ""
-        },
+        }
+    ],
+    "wedstrijden_oud": [
+
         {
             "naam": "Biermijl",
             "datum": "oktober 2024",
@@ -77,10 +99,7 @@
             "info_kort": "De dag voordat Dodeka haar vijfde verjaardag viert is het tijd voor de allereerste lustrumwedstrijd! Er is voor elke atleet wat wils met een 12km LustRun en een vijfkamp met onconventionele onderdelen als de vijfsprong en de 555 meter. Wie worden de eerste lustrumkampioenen der Dodeka?",
             "info_lang": "Op zaterdag 24 februari vindt de allereerste lustrumwedstrijd van Dodeka plaats. Deze wordt om 12:50 feestelijk geopend, dus zorg dat je op tijd voor de kantine aanwezig bent! <br/><br/> Na de opening mogen de atleten zich opmaken voor twee verschillende wedstrijden: een vijfkamp en een 12km LustRun! Om de spieren gedurende de hele dag warm te houden zal er ook voor alle atleten én vrijwilligers warme chocolademelk zijn. Ook is de fysiotherapeut van ReaXion aanwezig om jullie te masseren.<br/><br/><b>Lustrummeerkamp</b><br/>De lustrummeerkamp zal stipt om 13:00 beginnen en startnummers kunnen tussen 12:12 en 12:50 worden opgehaald bij het wedstrijdsecretariaat. De atleten zullen de volgende onderdelen afleggen:<br/>- 12 meter<br/>- Gewichtwerpen<br/>- 100 meter met vijf horden<br/>- Vijfsprong<br/>-  555 meter<br/> De onderdelen gaan achter elkaar door met weinig pauze en er is geen mogelijkheid om eigen materiaal mee te nemen.<br/><br/><b>LustRun</b><br/> De LustRun bestaat uit een individuele 12km en een 5x2400m estafette. Het startschot zal om 15:15 klinken en startnummers kunnen tussen 12:12 en 12:50, of tussen 14:45 en 15:05 worden opgehaald bij het wedstrijdsecretariaat. De <a target=\"_blank\" rel=\"noreferrer\" href=\"https://www.afstandmeten.nl/index.php?id=3638258\" className=\"wedstrijd_algemeen_link\">route</a> loopt vanaf de baan rondom het hertenkamp. Individuele lopers lopen 5 rondes. In het geval van de estafette loopt elke loper van het team 1 of 2 rondes (in geval van 2 rondes hoeft dit niet achter elkaar gelopen te worden maar het mag wel). Een estafetteteam bestaat minimaal uit 3 lopers. Elke loper mag maximaal 2 rondes rennen, het maakt niet uit of deze achter elkaar gerend worden of er nog andere lopers tussen komen. <br/><br/>Nadat de Lustrumwedstrijd is afgelopen, zouden we graag willen dat er gezamenlijk opgeruimd wordt. Vele handen maken licht werk! Hierna zal spoedig de prijsuitreiking plaatsvinden voor de kantine.",
             "path": "/lustrumwedstrijd"
-        }
-          
-    ],
-    "wedstrijden_oud": [
+        },
         {
             "naam": "NK Biermijl",
             "datum": "13/10/2023",
