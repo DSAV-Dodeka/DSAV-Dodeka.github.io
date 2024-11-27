@@ -4,6 +4,7 @@ import AuthContext from "../../Auth/AuthContext";
 import { useContext, useState } from "react";
 import { queryError } from "../../../functions/queries";
 import Training from "./components/Training";
+import getUrl from "../../../functions/links";
 
 const trainingen = [
     {
@@ -49,12 +50,12 @@ const trainingen = [
         "signed_up": []
     }
 ]
-    
 
 
-function InschrijvenTraining (){
 
-    const {authState, setAuthState} = useContext(AuthContext)
+function InschrijvenTraining() {
+
+    const { authState, setAuthState } = useContext(AuthContext)
     const [activeTraining, setActiveTraining] = useState(trainingen[0].training_id)
 
     function openTraining(training_id: string) {
@@ -65,16 +66,37 @@ function InschrijvenTraining (){
         }
     }
 
+    
+    const [editModeActive, setEditMode] = useState(false)
+
+    function toggleEditMode() {
+        if (editModeActive) {
+            setEditMode(false);
+        }
+        else {
+            setEditMode(true);
+        }
+    }
+
+
     return (
         <div>
-            <PageTitle title="Inschrijven trainingen"/>
-            <div className="schema_link_container">
-                <a className="schema_link" href="https://docs.google.com/spreadsheets/d/1ciyiBdMRWJJDbawQ6BwbT79nse-rXx9-uYF3qLIZTdU/edit#gid=334315521" rel="noreferrer" target="_blank">Bekijk hier de trainingsschema's</a>
+            <PageTitle title="Inschrijven trainingen" />
+            <div id="training-additional-controls" className="schema_link_container">
+                <a id="trainingschema-link" className="schema_link" href="https://docs.google.com/spreadsheets/d/1ciyiBdMRWJJDbawQ6BwbT79nse-rXx9-uYF3qLIZTdU/edit#gid=334315521" rel="noreferrer" target="_blank">Bekijk hier de trainingsschema's</a>
             </div>
-            <div className="trainingen_container">
-                {trainingen.map((item) => <Training id={item.training_id} date_time={item.date_time} cancelled={item.cancelled} events={item.events} signed_up={item.signed_up} active={activeTraining === item.training_id} setActive={openTraining} />)}
+            <div className={editModeActive ? "trainingen_container editmode" : "trainingen_container"}>
+                {trainingen.map((item) => <Training id={item.training_id} date_time={item.date_time} cancelled={item.cancelled} events={item.events} signed_up={item.signed_up} active={activeTraining === item.training_id} setActive={openTraining} editModeActive={editModeActive} />)}
+                <div className="training-meta-button-container">
+                    <div id="training-edit-button" className={editModeActive ? "training-meta-button shadow-on-hover editmode" : "training-meta-button shadow-on-hover"} onClick={() => toggleEditMode()}><img src={getUrl("leden/EditIcon.svg")}></img></div>
+                    <div id="training-add-button" className="training-meta-button shadow-on-hover"><img src={getUrl("leden/AddIcon.svg")}></img></div>
+                    <div id="training-add-popup">
+                        <p>Trainingen toevoegen tot:</p>
+                        <input type="date"></input>
+                        <input type="submit" value="&#10003;" className="training-meta-button shadow-on-hover"></input>
+                    </div>
+                </div>
             </div>
-
         </div>
     );
 }

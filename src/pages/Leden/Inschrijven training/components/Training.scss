@@ -116,6 +116,7 @@
 }
 
 .training_info_container {
+    position: relative;
     flex-grow: 1;
 }
 
@@ -200,14 +201,15 @@
     display: flex;
     align-items: center;
 
-    min-width: 8rem;
     font-size: $font_medium;
     line-height: $line_height_medium;
     font-weight: $bold;
+    overflow-wrap: anywhere;
 
     @include respond(computerscherm) {
         justify-content: center;
         text-align: center;
+        min-width: 8rem;
     }
 
     @include respond(mobile) {
@@ -237,7 +239,7 @@
 }
 
 .shadow-on-hover:hover {
-    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.5);
 }
 
 .training_onderdeel_inschrijfbutton_ingeschreven {
@@ -305,4 +307,67 @@
 
 .trainingCursor {
     cursor: pointer;
+}
+
+// EditMode
+.training-meta-button-small {
+    width: 1rem;
+    height: 1rem;
+    color: $dodeka_rood;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.training-meta-button-small:hover {
+    filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.5));
+}
+
+.editItemText,
+.editmode .training_onderdeel_naam > p,
+#training_onderdeel_add_button,
+#training_onderdeel_remove_button {
+    display: none;
+}
+
+// Make space for add button
+.editmode .TrainingItem_active .training_info_container {
+    padding-bottom: 3rem;
+}
+
+.editmode .training_onderdeel:last-of-type {
+    border-bottom: 1px solid $dodeka_blauw90p;
+}
+
+
+
+.editmode .training_onderdeel_inschrijfbutton {
+    background-color: gray;
+    border-color: gray;
+    color: white;
+    cursor: unset;
+}
+
+.editmode .training_onderdeel_naam {
+    cursor: text;
+}
+
+
+.editmode .editItemText,
+.editmode .TrainingItem_active #training_onderdeel_add_button,
+.editmode #training_onderdeel_remove_button {
+    display: unset;
+}
+
+#training_onderdeel_add_button {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+}
+
+#training_onderdeel_remove_button {
+    position: relative;
+    flex-shrink: 0;
+    align-self: center;
+
+    margin-right: 1rem;
 }

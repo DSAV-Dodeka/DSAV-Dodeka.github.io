@@ -1,21 +1,7 @@
 @import "../../../variables";
 
 
-.trainingen_container {
-    margin-bottom: 6rem;
-    color: $dodeka_blauw90p;
-}
-
-.schema_link {
-    color: $dodeka_rood;
-    text-decoration: none;
-    margin-left: auto;
-    margin-right: 0;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-}
-
-.schema_link_container {
+#training-additional-controls {
     width: calc(100% - 4rem);
     color: $dodeka_rood;
     text-decoration: none;
@@ -23,7 +9,71 @@
     margin-bottom: 0.5rem;
     text-align: left;
 
+    display: flex;
+    justify-content: left;
+
     @include respond(mobile) {
         margin-left: 1rem;
     }
+}
+
+#trainingschema-link {
+    color: $dodeka_rood;
+    text-decoration: none;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+}
+
+#trainingschema-link:hover {
+    text-decoration: underline;
+}
+
+.training-meta-button-container {
+    margin-left: 4rem;
+    display: flex;
+}
+
+.training-meta-button {
+    width: 2.5em;
+    height: 2.5em;
+    color: white;
+    font-weight: 900;
+    background-color: $dodeka_rood;
+    border: $dodeka_rood solid .2em;
+    border-radius: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 0.2em;
+    margin-right: 0.5em;
+}
+
+.training-meta-button img {
+    width: 60%;
+    height: 60%;
+}
+
+
+#training-edit-button.editmode {
+    filter: opacity(80%);
+}
+
+#training-add-popup {
+    height: 2.5em;
+    display: flex;
+}
+
+#training-add-popup>* {
+    flex-basis: 0;
+    margin-right: 0.3em;
+}
+
+.trainingen_container {
+    margin-bottom: 6rem;
+    color: $dodeka_blauw90p;
+}
+
+.trainingen_container.editmode{
+    
 }
