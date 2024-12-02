@@ -21,30 +21,33 @@
         },
        {
             "naam": "NSK Meerkamp",
-            "datum": "11 en 12 mei 2024",
-            "tijd": "Zaterdag 11:30, Zondag 9:30",
-            "locatie": "Dodeka",
+            "datum": "Mei 2025",
+            "tijd": "Volgt",
+            "locatie": "D.S.A.V. Dodeka",
             "adres": "Sportring 12",
             "postcode": "2616LK Delft",
             "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
             "logo": "nsk_meerkamp.jpg",
             "logo_rond": "nsk_meerkamp_logo.jpg",
             "foto": "nsk_meerkamp_2.jpg",
-            "inschrijven": "https://www.atletiek.nu/wedstrijd/main/40175/",
+            "inschrijven": "",
             "mail": "bestuur@dsavdodeka.nl",
             "instagram": "https://www.instagram.com/nskmeerkamp2024/",
             "bepalingen": "",
-            "info_kort": "Zaterdag 11 en zondag 12 mei 2024 is het zo ver, dan zal het NSK Meerkamp plaatsvinden in het prachtige Delft, georganiseerd door Dodeka. Tijdens dit evenement zullen de beste studenten van Nederland het tegen elkaar opnemen en proberen om een zo hoog mogelijke meerkampscore te behalen.",
-            "info_lang": "Zaterdag 11 en zondag 12 mei 2024 is het zo ver, dan zal het NSK Meerkamp plaatsvinden in het prachtige Delft, georganiseerd door Dodeka. Tijdens dit evenement zullen de beste studenten van Nederland het tegen elkaar opnemen en proberen om een zo hoog mogelijke score te behalen op de conventionele tienkamp of zevenkamp, of op de loopmeerkamp, waarbij hardlopers 5 verschillende afstanden trotseren.<br/><br/>Daarnaast zal bij deze editie de gloednieuwe Intermediate meerkamp gehouden worden, met minder en makkelijkere onderdelen, perfect als je nog nooit eerder een meerkamp hebt gedaan, nieuwe onderdelen wilt zoeken, of voor een vriend die je wilt overtuigen om atletiek te gaan doen!<br/>Deze editie zal extra speciaal zijn, want Dodeka bestaat 5 jaar en viert haar eerste lustrum!<br/><br/>Daarom zal op zaterdagavond een groots feest gehouden worden, waarbij je kunt blijven eten en blijven slapen. De inschrijflinks voor het vrijwilligen, eten, slapen en het feest volgen later.<br/><br/>Als kers op de taart kun je tijdens je heerlijke avondeten op zaterdag kijken naar een demonstratiewedstrijd polsstokhoogspringen die zal plaatsvinden na de officiële NSK-onderdelen.<br/><br/>BELANGRIJKE LINKS:<br/><a target=\"_blank\" rel=\"noreferrer\" href=\"https://forms.gle/AuEmAj1qPmucNncQ6\" className=\"wedstrijd_algemeen_link\">Bewijs van Inschrijving</a><br/><a target=\"_blank\" rel=\"noreferrer\" href=\"https://forms.gle/5vQQXQdnxCHzzf7D9\" className=\"wedstrijd_algemeen_link\">Vrijwilligen</a><br/><a target=\"_blank\" rel=\"noreferrer\" href=\"https://forms.gle/FrUbzv9bSG6ccokG8\" className=\"wedstrijd_algemeen_link\">Eten, slapen en feest</a>",
+            "info_kort": "In mei 2025 is het weer zo ver, dan zal het NSK Meerkamp plaatsvinden in het prachtige Delft, georganiseerd door D.S.A.V. Dodeka. Tijdens dit evenement zullen de beste studenten van Nederland het tegen elkaar opnemen en proberen om een zo hoog mogelijke meerkampscore te behalen.",
+            "info_lang": "In mei 2025 is het zo ver, dan zal het NSK Meerkamp plaatsvinden in het prachtige Delft, georganiseerd door D.S.A.V. Dodeka. Tijdens dit evenement zullen de beste studenten van Nederland het tegen elkaar opnemen en proberen om een zo hoog mogelijke score te behalen op de conventionele tienkamp of zevenkamp, of op de loopmeerkamp, waarbij hardlopers 5 verschillende afstanden trotseren.<br/><br/>Daarnaast zal bij deze editie de Intermediate meerkamp gehouden worden, met minder en makkelijkere onderdelen, perfect als je nog nooit eerder een meerkamp hebt gedaan, nieuwe onderdelen wilt zoeken, of voor een vriend die je wilt overtuigen om atletiek te gaan doen!<br/> De inschrijflinks voor deelname, vrijwilligen, eten, slapen en het feest volgen later.",
             "path": "/nskmeerkamp"
         },
         {
             "naam": "Dodekathlon",
-            "datum": "29 juni 2024",
+            "datum": "Juni 2025",
             "logo": "dodekathlon.jpg",
             "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. 'Dodeka' betekent namelijk twaalf in het Grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter horden en de hink-stap-sprong onderdeel van dit evenement.",
             "path": ""
-        },
+        }
+        
+    ],
+    "wedstrijden_oud": [
         {
             "naam": "Demonstratiewedstrijd",
             "datum": "11 mei 2024",
@@ -60,10 +63,7 @@
             "info_kort": "Ter ere van het eerste lustrum van Dodeka wordt zaterdag 11 mei de speciale lustrumdemowedstrijd gehouden. Hier zullen er ongeveer 8 polsstok atleten van hoog niveau strijden om de winst! Het belooft een epische show te worden en het is helemaal gratis!",
             "info_lang": "Ter ere van het eerste lustrum van Dodeka wordt zaterdag 11 mei de speciale lustrumdemowedstrijd gehouden. Hier zullen er ongeveer 8 polsstok atleten van hoog niveau strijden om de winst! Er wordt een buitenbar opgesteld waar u drankjes kan halen. Het belooft een epische show te worden en het is helemaal gratis! Om 19:00 zal het spektakel losbarsten, zorg dat je erbij bent!<br/><br/> De volgende atleten zullen gaan springen: <br/> <b>Stan Does</b> (PR 4.71 | SB 4.13) <br/> <b>Bjorn Sloot</b> (PR 4.84 | SB 4.80) <br/> <b>Jip Haest</b> (PR 5.00 | SB 4.80)<br/><b>Twan van Rijn</b> (PR 4.72 | SB 4.71)<br/><b>Alex van der Voort</b> (PR 4.45 | SB 4.30) <br/><b>Benjamin Coolen</b> (PR 4.70)",
             "path": "/demowedstrijd"
-        }
-    ],
-    "wedstrijden_oud": [
-
+        },
         {
             "naam": "Biermijl",
             "datum": "oktober 2024",
