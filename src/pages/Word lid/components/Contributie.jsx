@@ -18,7 +18,7 @@ function Contributie(props) {
                     <span>&#8364;</span>57,95 <span className="jaapie">per kwartaal</span><br/>
                     <span>&#8364;</span>52,90 <span className="jaapie">per kwartaal</span><br/>
                     <span>&#8364;</span>42,75 <span className="jaapie">per kwartaal</span><br/>
-                    <span>&#8364;</span>20,- <span className="jaapie">eenmalig</span><br/>
+                    <span>&#8364;</span>20,00,- <span className="jaapie">eenmalig</span><br/>
                     <span className="footnote_contributie">
                         <div><sup>1</sup>:Inclusief wedstrijdlicentie</div>
                         <div><sup>2</sup>:Exclusief wedstrijdlicentie</div>
