@@ -6,7 +6,7 @@
 		    "leden": [
                 {
                     "naam": "Tip",
-                    "functie": "CEO",
+                    "functie": "CTO",
                     "foto": "tip"
                 },
                 {
@@ -16,24 +16,29 @@
                 },
                 {
                     "naam": "Liam",
-                    "functie": "Design & Frontend Developer",
+                    "functie": "Software Engineer",
                     "foto": "liam"
                 },
                 {
                     "naam": "Jesper",
-                    "functie": "Junior Frontend Developer",
+                    "functie": "Software Engineer",
                     "foto": "jesper"
                 },
                 {
-                    "naam": "Senne",
-                    "functie": "Junior Backend Developer",
-                    "foto": "senne"
+                    "naam": "Sanne D",
+                    "functie": "Software Engineer",
+                    "foto": "placeholder"
                 },
 
                 {
-                    "naam": "Sanne vB",
+                    "naam": "Xylander",
+                    "functie": "Software Engineer",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Tijmen",
                     "functie": "QomQommer",
-                    "foto": "sanne"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "comcom"
@@ -42,35 +47,32 @@
             "naam": "BarCo",
             "info": "De BarCo is de belangrijkste commissie binnen Dodeka. Binnen deze vereniging zorgen wij ervoor dat onze atleten niet te sportief worden zodat de sfeer een beetje gemoedelijk blijft. Elke woensdag kun je bij ons terecht voor een koud drankje en een warm bord eten. Daarnaast fiksen wij om de zoveel tijd een gezellige themaborrel en sporen iedereen aan om nieuwe mensen te leren kennen! Als BarCo lid kun je elk dom idee wel uitwerken tot een leuke borrel en kun je op een eenvoudige manier mensen leren kennen binnen de vereniging. 12 dikke kusjes van de BarCo",
 		"leden": [
-                {
-                    "naam": "Marco Barco",
-                    "functie": "Voorzitter",
-                    "foto": "mark"
-                },
+                
                 {
                     "naam": "Antony",
-                    "functie": "Secretaris",
+                    "functie": "Voorzitter",
                     "foto": "Antony"
                 },
                 {
-                    "naam": "Kika",
-                    "functie": "Commissaris Themaborrels",
-                    "foto": "Kika"
+                    "naam": "Chiem",
+                    "functie": "Secretaris",
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Sebastiaan",
+                    "naam": "Marco Barco",
+                    "functie": "Penningmeester",
+                    "foto": "mark"
+                },
+                
+                {
+                    "naam": "Luc",
                     "functie": "Commissaris Eten",
-                    "foto": "Sebastiaan"
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Joris",
-                    "functie": "Hypermeister",
-                    "foto": "Joris"
-                },
-                {
-                    "naam": "Tim C",
                     "functie": "QQ",
-                    "foto": "Tim"
+                    "foto": "Joris"
                 }
             ],
             "fotos": "barco"
@@ -112,143 +114,114 @@
         ],
         "fotos": "batcie"
   },
+  {
+    "naam": "Dies",
+    "info": "De diescommissie zorgt ervoor dat de zesde verjaardag van Dodeka er één gaat worden om nooit te vergeten. Wij voelen ons vereerd dat we tijdens de diesweek Arnold mogen helpen niet alleen een aardvarken te zijn maar ook een feestvarken! ",
+    "leden": [
+        {
+            "naam": "Vera",
+            "functie": "Voorzitter",
+            "foto": "placeholder"
+        },
+        {
+            "naam": "Antony",
+            "functie": "Secretaris",
+            "foto": "placeholder"
+        },
+        {
+            "naam": "Youri",
+            "functie": "Penningmeester",
+            "foto": "placeholder"
+        },
+        {
+            "naam": "Vicky",
+            "functie": "Commissaris Logistiek",
+            "foto": "placeholder"
+        },
+    {
+            "naam": "Lou",
+            "functie": "Commissaris Promo",
+            "foto": "placeholder"
+        },
+        {
+            "naam": "Tobias",
+            "functie": "QQ",
+            "foto": "placeholder"
+        }
+    ],
+    "fotos": "dies"
+},
         {
             "naam": "FOCUS",
             "info": "Onze commissie zorgt ervoor dat alle mooie dingen die bij de vereniging gebeuren zo goed mogelijk vastgelegd worden doormiddel van foto's en video's. Ook zijn wij verantwoordelijk voor de promotie van Dodeka. Dit doen we onder andere met posters, stickers en foto's op diverse social media, dus volg ons vooral en misschien zie je jezelf nog eens terug op het instagram account!",
 		    "leden": [
                 {
-                    "naam": "Mieke",
-                    "functie": "Kapitein",
-                    "foto": "mieke"
-                },
-                {
-                    "naam": "Kimmo",
-                    "functie": "Secretavis",
-                    "foto": "kimmo"
-                },
-                {
-                    "naam": "Niek",
-                    "functie": "Kommiszeevis Bil",
-                    "foto": "niek"
-                },
-                {
-                    "naam": "Roman B",
-                    "functie": "Kommiszeevis Beer",
-                    "foto": "placeholder"
-                },
-		        {
-                    "naam": "Julius",
-                    "functie": "Kommiszeevis Vies",
-                    "foto": "julius"
-                },
-		        {
-                    "naam": "Matthew",
-                    "functie": "Kommiszeevis Kont",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Jeroen",
-                    "functie": "Kommiszeevis Gladde Paling",
-                    "foto": "jeroen"
-                },
-                {
-                    "naam": "Sanne vB",
-                    "functie": "QQ",
-                    "foto": "sanne"
-                }
-            ],
-            "fotos": "focus"
-        },
-        {
-            "naam": "Lustrum",
-            "info": "De lustrumcommissie zorgt ervoor dat het eerste lustrum van Dodeka er één gaat worden om nooit te vergeten. Met vijf activiteiten gedurende het hele jaar vieren we de vijfde verjaardag van onze geliefde mascotte Arnold. Het hoogtepunt wordt de lustrumweek in februari, waarin de hele week geweldige activiteiten plaats zullen vinden en veel gefeest zal worden. Wij voelen ons vereerd dat we dit hele jaar Arnold mogen helpen niet alleen een aardvarken te zijn maar ook een feestvarken! ",
-		    "leden": [
-                {
-                    "naam": "Jefry",
+                    "naam": "Robin",
                     "functie": "Voorzitter",
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Simon",
+                    "naam": "Lucija",
                     "functie": "Secretaris",
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Lars P",
-                    "functie": "Penningmeester",
+                    "naam": "Melle",
+                    "functie": "Commissaris Beer",
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Stefan",
-                    "functie": "Commissaris Planning",
+                    "naam": "Wyna",
+                    "functie": "Commissaris Bil",
+                    "foto": "placeholder"
+                },
+		        {
+                    "naam": "Roman",
+                    "functie": "Commissaris Vies",
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Koen",
-                    "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
-                },
-		    {
-                    "naam": "Temba",
-                    "functie": "Commissaris Promo",
-                    "foto": "placeholder"
-                },
-		    {
-                    "naam": "Abel",
-                    "functie": "Commissaris Extern",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Anne-Wil",
-                    "functie": "Vice-voorzitter & QQ",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Sanne D",
+                    "naam": "Tijmen",
                     "functie": "QQ",
                     "foto": "placeholder"
                 }
             ],
-            "fotos": "lustrum"
+            "fotos": "focus"
         },
+        
 	{
             "naam": "NSK Meerkamp",
             "info": "Het is weer zo ver. Een nieuw jaar en een nieuw jaar dat Dodeka een NSK mag organiseren. Namelijk het NSK Meerkamp! Dit zal plaatsvinden van zaterdag 11 mei tot zondag 12 mei, op de atletiekbaan van AV'40. Zoals de naam al verklapt zal iedereen strijden om de beste all-round aleet of atlete te worden. Net als elk NSK Meerkamp zijn er voor de mannen en de vrouwen de gewoonlijke meerkamp en loopmeerkamp. Als je nu denkt: 'Ik ben helemaal niet klaar voor zo'n volledige meerkamp :(' Wees niet getreurd! Vanaf dit jaar is er ook een Intermediate meerkamp voor de mannen en de vrouwen. Hier zijn minder onderdelen, en de hordes zijn lager en de gewichten zijn lichter. Met deze twee nieuwe varianten wordt het NSK Meerkamp voor iedereen toegankelijk! Naast al dat competitief zijn is er natuurlijk ook nog de gezelligheid. 's Avonds tijdens het eten zal er een demonstratiewedstrijd plaatsvinden met daarna een episch feest! Zet 11-12 mei maar alvast in je agenda en dan zien we je daar!",
 		    "leden": [
                 {
-                    "naam": "Sylke",
+                    "naam": "Roy",
                     "functie": "Voorzitter",
-                    "foto": "sylke"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Sasha",
+                    "naam": "Larissa",
                     "functie": "Secretaris",
-                    "foto": "sasha"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Jamie",
+                    "naam": "Sven",
                     "functie": "Penningmeester",
-                    "foto": "jamie"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Jonas",
+                    "naam": "Robert",
                     "functie": "Commissaris Wedstrijd",
-                    "foto": "jonas"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Isabel",
-                    "functie": "Commissaris Vrijwilligers",
-                    "foto": "isabel"
-                },
-                {
-                    "naam": "Chiem",
+                    "naam": "Youri",
                     "functie": "Commissaris PR",
-                    "foto": "chiem"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Sanne D",
+                    "naam": "Anna",
                     "functie": "QQ",
-                    "foto": "sanne"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "nskmeerkamp"
