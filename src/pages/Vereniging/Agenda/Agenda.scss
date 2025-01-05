@@ -1,0 +1,37 @@
+@import "../../../variables";
+
+.agendaContainer {
+    width: 100%;
+    height: 100%;
+    margin-left: $margin_x;
+    margin-right: $margin_x;
+    @include respond(mobile) {
+        margin-left: $margin_mobile;
+        margin-right: $margin_mobile;
+    }
+}
+
+.agendaPC {
+    width: calc(100% - 2 * $margin_x);
+    min-height: 36rem;
+    border-radius: 1rem;
+    margin-bottom: 6rem;
+    border: 0.1rem solid $dodeka_blauw;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    @include respond(mobile) {
+        display: none;
+    }
+}
+
+.agendaMobile {
+    display: none;
+    @include respond(mobile) {
+        display: block;
+        width: calc(100% - 2 * $margin_mobile);
+        min-height: 36rem;
+        border-radius: 1rem;
+        margin-bottom: 4rem;
+        border: 0.1rem solid $dodeka_blauw;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+}

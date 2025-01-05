@@ -11,6 +11,7 @@ import Nieuws from './pages/Nieuws/Nieuws/Nieuws';
 import OWee from './pages/OWee/OWee';
 const Spike = React.lazy(() => import('./pages/Nieuws/Spike/Spike'));
 import Vereniging from './pages/Vereniging/Vereniging/Vereniging';
+import Agenda from './pages/Vereniging/Agenda/Agenda';
 import Trainingen from './pages/Trainingen/Trainingen';
 import WordLid from './pages/Word lid/WordLid';
 import Contact from './pages/Contact/Contact/Contact';
@@ -148,7 +149,7 @@ function App() {
   return (
       <AuthProvider value={contextValue}>
         <QueryClientProvider client={queryClient} >
-          <Router>
+          <Router basename="/">
             <ScrollToTop />
             <div id="app_screen">
               <div id="app_container">
@@ -165,6 +166,7 @@ function App() {
                     }/>
                     <Route path="/owee" element={<OWee />} />
                     <Route path="/vereniging" element={<Vereniging />} />
+                    <Route path="/vereniging/agenda" element={<Agenda />} />
                     <Route path="/vereniging/commissies" element={<Commissies />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
                     <Route path="/vereniging/eregalerij" element={<Eregalerij />} />
