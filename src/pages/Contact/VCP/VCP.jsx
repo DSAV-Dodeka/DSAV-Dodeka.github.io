@@ -22,12 +22,20 @@ function Vertrouwenscontactpersoon(){
             <div className="vcp_persoon vcp_left">
                 <img className="vcp_img" src={getUrl("vcp/vcp_lisa.jpg")}/>
                 <p className="vcp_naam">Lisa Meijndert</p>
-                E-mail: <a className="vcp_mail" href="mailto:vcp-lisa@av40.nl">vcp-lisa@av40.nl</a>
+                E-mail: <a className="vcp_mail" href="mailto:vcp.lisa@dsavdodeka.nl">vcp-lisa@dsavdodeka.nl</a>
             </div>
             <div className="vcp_persoon vcp_right">
                 <img className="vcp_img" src={getUrl("vcp/vcp_niels.jpg")}/> 
                 <p className="vcp_naam">Niels Verheugd</p>
-                E-mail: <a className="vcp_mail" href="mailto:vcp-niels@av40.nl">vcp-niels@av40.nl</a>
+                E-mail: <a className="vcp_mail" href="mailto:vcp.niels@dsavdodeka.nl">vcp.niels@dsavdodeka.nl</a>
+            </div>
+            <div className="vcp_persoon vcp_left">
+                <p className="vcp_naam">Annejet van Dam</p>
+                E-mail: <a className="vcp_mail" href="mailto:vcp.annejet@dsavdodeka.nl">vcp.annejet@dsavdodeka.nl</a>
+            </div>
+            <div className="vcp_persoon vcp_right">
+                <p className="vcp_naam">Roy Peters</p>
+                E-mail: <a className="vcp_mail" href="mailto:vcp.roy@dsavdodeka.nl">vcp.roy@dsavdodeka.nl</a>
             </div>
             
         </div>

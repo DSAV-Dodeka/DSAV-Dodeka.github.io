@@ -28,7 +28,7 @@ function Gezelligheid(){
                 <div className="textkolom">
                     <h1 className="textvakheader">Borrels</h1>
                     <p className="text">
-                    Elke woensdag wordt er een borrel georganiseerd waarbij er ook de mogelijkheid is om mee te eten!
+                    Een studenten(sport)vereniging is natuurlijk niet compleet zonder borrels! Elke woensdag wordt er een borrel georganiseerd waarbij er ook de mogelijkheid is om mee te eten!
                     </p>
                 </div>
 
@@ -42,7 +42,7 @@ function Gezelligheid(){
                 <div className="textkolom">
                     <h1 className="textvakheader">Reizen</h1>
                     <p className="text">
-                    Twee keer per jaar wordt er door Dodekaleden een reis georganiseerd. Elk jaar in de TU vakantie organiseren Dodekaleden een wintersport, en in de eerste week van de zomervakantie een zomerreis!
+                    Twee keer per jaar wordt er bij Dodeka een reis georganiseerd. Snowdeka organiseert elk jaar in de TU-vakantie tussen de twee semesters in een wintersport, en de Sunrice organiseert in de eerste week van de zomervakantie de zomerreis!
                     </p>
                 {/* </div> */}
 

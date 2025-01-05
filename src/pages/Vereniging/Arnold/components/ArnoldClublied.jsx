@@ -7,7 +7,7 @@ function ArnoldClublied() {
             <iframe className="clubliedVideo" src="https://www.youtube.com/embed/jLPQCp_OC8w?loop=1&playlist=jLPQCp_OC8w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen></iframe>
             <div className="clubliedLyrics">
-                <h2>Aardvarken - Clublied Dodeka</h2>
+                <h2>Aardvarken - Clublied D.S.A.V. Dodeka</h2>
                 <br/>
                 <p>
                     [Eerste couplet]<br/>
