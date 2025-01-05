@@ -6,7 +6,7 @@ function Socials() {
         <div id="socials">
             <h1 id="social_text">Socials</h1>
             <div id="contact_social_buttons">
-                <a className="cursor-pointer" target="_blank" rel="noreferrer" href="https://www.instagram.com/dsavdodeka/?hl=nl"><svg id="insta" href="www.av40.nl" className="social_button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><use xlinkHref='www.av40.nl' /><radialGradient id="rg" r="150%" cx="30%" cy="107%">
+                <a className="cursor-pointer" target="_blank" rel="noreferrer" href="https://www.instagram.com/dsavdodeka/?hl=nl"><svg id="insta" href="" className="social_button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><use xlinkHref='' /><radialGradient id="rg" r="150%" cx="30%" cy="107%">
                     <stop stopColor="#fdf497" offset="0" />
                     <stop stopColor="#fdf497" offset="0.05" />
                     <stop stopColor="#fd5949" offset="0.45" />
