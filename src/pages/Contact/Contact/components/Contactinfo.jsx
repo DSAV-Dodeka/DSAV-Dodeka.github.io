@@ -8,8 +8,6 @@ function Contactinfo() {
             <div><a href="mailto:bestuur@dsavdodeka.nl" className="contact-value">bestuur@dsavdodeka.nl</a></div>
             <h1 className="contact-type">Adres</h1>
             <h1 className="contact-value">Sportring 12, 2616LK Delft</h1>
-            <h1 className="contact-type">AV'40 Website</h1>
-            <div><a target="_blank" rel="noreferrer" href="https://www.av40.nl" className="contact-value">www.av40.nl</a></div>
 
         </div>
     )

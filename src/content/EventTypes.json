@@ -41,16 +41,6 @@
             "omschrijving": "Aanwezig op ALV Dodeka"
         },
         {
-            "type": "ALV AV'40",
-            "default_points": 3,
-            "omschrijving": "Aanwezig op ALV AV'40"
-        },
-        {
-            "type": "Onderhoudsdag",
-            "default_points": 3,
-            "omschrijving": "Aanwezig op onderhoudsdag AV'40"
-        },
-        {
             "type": "Lid maken",
             "default_points": 3,
             "omschrijving": "Iemand lid maken"
