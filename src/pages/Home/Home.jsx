@@ -20,12 +20,12 @@ function Home() {
   }
 
   const getRandomStyles = () => {
-    const top = random(100) - 50;
+    const top = random(100) - 20;
     const left = random(100);
     const dur = random(10) + 15;
     const size = random(25) + 10;
     return ` 
-      top: ${top}%; 
+      top: -${top}%; 
       left: ${left}%; 
       font-size: ${size}px; 
       animation-duration: ${dur}s; 
