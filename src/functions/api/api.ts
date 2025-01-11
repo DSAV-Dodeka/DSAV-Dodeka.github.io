@@ -99,15 +99,10 @@ export const su_request = async (auth: AuthUse, options?: Options) => {
 const UserData = z.object({
     firstname: z.string(),
     lastname: z.string(),
-    phone: z.string(),
     email: z.string(),
     user_id: z.string(),
-    callname: z.string(),
-    av40id: z.number(),
     joined: z.string(),
-    eduinstitution: z.string(),
     birthdate: z.string(),
-    registered: z.boolean()
 })
 export type UserData = z.infer<typeof UserData>;
 
