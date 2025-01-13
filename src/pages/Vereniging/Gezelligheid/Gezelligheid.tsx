@@ -5,7 +5,7 @@ import Image2 from "../../images/gezelligheid/nsk_teams_algemeen.jpeg";
 import Image3 from "../../images/gezelligheid/nskCrossGroep.jpg";
 import Image4 from "../../images/gezelligheid/uithof.jpg";
 import PageTitle from "../../../components/PageTitle";
-import getUrl from "../../../functions/links";
+import {getNestedImagesUrl} from "../../../functions/links";
 
 function Gezelligheid(){
 
@@ -17,10 +17,10 @@ function Gezelligheid(){
             </div>
 
             <div className="fotobalk">
-                <img className="fotos" src={getUrl(`gezelligheid/biermijl.jpg`)} alt="foto1"/>
-                <img className="fotos" src={getUrl(`gezelligheid/nsk_teams_algemeen.jpeg`)} alt="foto2"/>
-                <img className="fotos" src={getUrl(`gezelligheid/gala1.jpg`)} alt="foto4"/>
-                <img className="fotos" src={getUrl(`gezelligheid/uithof.jpg`)} alt="foto3"/>
+                <img className="fotos" src={getNestedImagesUrl(`gezelligheid/biermijl.jpg`)} alt="foto1"/>
+                <img className="fotos" src={getNestedImagesUrl(`gezelligheid/nsk_teams_algemeen.jpeg`)} alt="foto2"/>
+                <img className="fotos" src={getNestedImagesUrl(`gezelligheid/gala1.jpg`)} alt="foto4"/>
+                <img className="fotos" src={getNestedImagesUrl(`gezelligheid/uithof.jpg`)} alt="foto3"/>
                 {/* <img className="fotos" src={Image4} alt="foto4"/> */}
             </div>
 

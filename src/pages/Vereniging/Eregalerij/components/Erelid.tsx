@@ -1,6 +1,6 @@
 import React from "react";
 import "./Erelid.scss";
-import getUrl from "../../../../functions/links";
+import {getImagesUrl, getNestedImagesUrl} from "../../../../functions/links";
 
 export interface ErelidProps {
     naam: string
@@ -12,7 +12,7 @@ function Erelid({naam, redenen, foto} : ErelidProps) {
     console.log(redenen.map((text) => text))
     return(
         <div className="erelid">
-            <img className="erelid_foto" src={getUrl(foto)}/>
+            <img className="erelid_foto" src={getImagesUrl(foto)}/>
             <p className="erelid_naam">{naam}</p>
             <div className="erelid_info">
                 {

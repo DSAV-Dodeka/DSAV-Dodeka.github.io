@@ -1,13 +1,13 @@
 import React from "react";
 import Title from "./Title";
 import "./Nieuwsbericht.scss";
-import getUrl from "../../../../functions/links";
+import {getNestedImagesUrl} from "../../../../functions/links";
 
 function Nieuwsbericht(props) {
     return (
         <div id={props.id} className="nieuwsbericht_1">
             {(props.position === "left" || window.innerWidth <= 1023) ? (
-                <img className="nieuwsbericht_2" src={getUrl(`${props.page}/${props.foto}`)} alt="" />
+                <img className="nieuwsbericht_2" src={getNestedImagesUrl(`${props.page}/${props.foto}`)} alt="" />
             ) : ""}
                 <div className="nieuwsbericht_3">
                 <Title title={props.titel.toUpperCase()} position={props.position} />
@@ -25,7 +25,7 @@ function Nieuwsbericht(props) {
                 </p>
             </div>
             {(props.position === "left" || window.innerWidth <= 1023) ? "" : (
-                <img className="nieuwsbericht_6" src={getUrl(`${props.page}/${props.foto}`)} alt="" />)}
+                <img className="nieuwsbericht_6" src={getNestedImagesUrl(`${props.page}/${props.foto}`)} alt="" />)}
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React from "react";
 import PageTitle from "../../../components/PageTitle";
 import Header from "../../../components/Header";
 import "./VCP.scss"
-import getUrl from "../../../functions/links";
+import {getNestedImagesUrl} from "../../../functions/links";
 
 function Vertrouwenscontactpersoon(){
     return (
@@ -20,12 +20,12 @@ function Vertrouwenscontactpersoon(){
                 </p>
             </div>    
             <div className="vcp_persoon vcp_left">
-                <img className="vcp_img" src={getUrl("vcp/vcp_lisa.jpg")}/>
+                <img className="vcp_img" src={getNestedImagesUrl("vcp/vcp_lisa.jpg")}/>
                 <p className="vcp_naam">Lisa Meijndert</p>
                 E-mail: <a className="vcp_mail" href="mailto:vcp.lisa@dsavdodeka.nl">vcp-lisa@dsavdodeka.nl</a>
             </div>
             <div className="vcp_persoon vcp_right">
-                <img className="vcp_img" src={getUrl("vcp/vcp_niels.jpg")}/> 
+                <img className="vcp_img" src={getNestedImagesUrl("vcp/vcp_niels.jpg")}/> 
                 <p className="vcp_naam">Niels Verheugd</p>
                 E-mail: <a className="vcp_mail" href="mailto:vcp.niels@dsavdodeka.nl">vcp.niels@dsavdodeka.nl</a>
             </div>

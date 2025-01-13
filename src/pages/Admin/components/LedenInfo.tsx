@@ -33,22 +33,8 @@ const columns = [
         header: () => 'E-mailadres',
         enableSorting: false,
     }),
-    columnHelper.accessor('phone', {
-        header: () => 'Telefoonnummer',
-        enableSorting: false,
-    }),
-    columnHelper.accessor('callname', {
-        header: () => 'Roepnaam',
-    }),
-    columnHelper.accessor('av40id', {
-        header: () => 'AV\'40 nummer',
-    }),
     columnHelper.accessor('joined', {
         header: () => 'Lid sinds',
-    }),
-    columnHelper.accessor('eduinstitution', {
-        header: () => 'Onderwijsinstelling',
-        
     }),
 ]
 
