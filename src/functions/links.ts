@@ -1,5 +1,7 @@
-const getUrl = (loc: string, dir: string='images') => {
-    return new URL(`../${dir}/${loc}`, import.meta.url).href
+const getUrl = (loc: string, srcDir: string = 'images') => {
+    const base = "../"
+    const result = base + srcDir + "/" + loc
+    return new URL(result, import.meta.url)
 }
 
 export default getUrl;

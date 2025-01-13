@@ -9,6 +9,10 @@ import "./HomeNieuws.scss";
 import Nieuws from "../../../content/Nieuws.json";
 import getUrl from "../../../functions/links";
 
+console.log(getUrl("home/nieuws.jpg"))
+console.log(getUrl(""))
+console.log(`${new URL(`../home`, import.meta.url)}`)
+
 function HomeNieuws() {
     let maxNieuws = 3;
     if (window.innerWidth <= 1023) maxNieuws = 1; 
