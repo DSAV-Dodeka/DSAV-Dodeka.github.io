@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import "./TitleBar.scss";
 import D from "../../../images/groteD.svg?react";
-import getUrl from "../../../functions/links";
+import {getNestedImagesUrl} from "../../../functions/links";
 import Sneeuw from "../../../images/home/zand.svg?react";
 
 
@@ -15,7 +15,7 @@ function TitleBar() {
           <Sneeuw className="sneeuw_bar"/>
         </div>
         <div id="home_title_right">
-            <img id="home_title_background" src={getUrl("home/titlebar.jpg")} alt=""/>
+            <img id="home_title_background" src={getNestedImagesUrl("home/titlebar.jpg")} alt=""/>
 
         </div>
         <div id="home_title_right_over">

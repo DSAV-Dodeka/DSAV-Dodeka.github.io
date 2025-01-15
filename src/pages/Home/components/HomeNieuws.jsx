@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import "./HomeNieuws.scss";
 import Nieuws from "../../../content/Nieuws.json";
-import getUrl from "../../../functions/links";
+import {getNestedImagesUrl} from "../../../functions/links";
 
 function HomeNieuws() {
     let maxNieuws = 3;
@@ -15,7 +15,7 @@ function HomeNieuws() {
   return (
     <div id="home_nieuws_container">
         <div id="home_nieuws_foto">
-            <img id="home_nieuws_foto_2" src={getUrl("home/nieuws.jpg")} alt=""/>
+            <img id="home_nieuws_foto_2" src={getNestedImagesUrl("home/nieuws.jpg")} alt=""/>
 
         </div>
         <div id="home_nieuws_info">

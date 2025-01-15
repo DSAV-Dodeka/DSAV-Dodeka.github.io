@@ -6,13 +6,13 @@ import {
     Link
 } from "react-router-dom";
 import "./HomeCommissies.scss";
-import getUrl from "../../../functions/links";
+import {getNestedImagesUrl} from "../../../functions/links";
 
 function HomeCommissies() {
   return (
     <div id="home_commissies_container">
         <div id="home_commissies_foto" >
-            <img id="home_commissies_foto_2" src={getUrl("home/commissie.jpg")} alt=""/>
+            <img id="home_commissies_foto_2" src={getNestedImagesUrl("home/commissie.jpg")} alt=""/>
 
         </div>
         <div id="home_commissies_info">

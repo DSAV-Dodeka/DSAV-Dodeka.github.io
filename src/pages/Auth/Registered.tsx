@@ -6,7 +6,7 @@ const Registered = () => {
     return (
         <>
             <PageTitle title="Registered" />
-            <p>Welkom bij D.S.A.V. Dodeka! Je bent nu officieel geregistreerd! Klik <Link to="/lg">hier</Link> om in te loggen.</p>
+            <p>Welkom bij D.S.A.V. Dodeka! Het bestuur gaat je aanmelding nu verwerken. Je ontvangt een e-mail als dit succesvol is verlopen.</p>
         </>
     )
 }

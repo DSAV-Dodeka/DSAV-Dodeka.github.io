@@ -33,22 +33,8 @@ const columns = [
         header: () => 'E-mailadres',
         enableSorting: false,
     }),
-    columnHelper.accessor('phone', {
-        header: () => 'Telefoonnummer',
-        enableSorting: false,
-    }),
-    columnHelper.accessor('callname', {
-        header: () => 'Roepnaam',
-    }),
-    columnHelper.accessor('av40id', {
-        header: () => 'AV\'40 nummer',
-    }),
     columnHelper.accessor('joined', {
         header: () => 'Lid sinds',
-    }),
-    columnHelper.accessor('eduinstitution', {
-        header: () => 'Onderwijsinstelling',
-        
     }),
 ]
 
@@ -56,15 +42,10 @@ const defaultData: UserData[] = [
     {
         firstname: 'Arnold',
         lastname: 'Aardvarken',
-        phone: '+31612121212',
         email: 'arnold@dsavdodeka.nl',
         user_id: '0_arnold',
-        callname: 'Arnold',
-        av40id: 12,
         joined: '2022-02-25',
-        eduinstitution: 'TU Delft',
         birthdate: '2022-02-25',
-        registered: false
     },
 ]
 

@@ -111,3 +111,29 @@
         width: 50%;
     }
 }
+
+.schrijfInButton{
+    background-color: $dodeka_rood;
+    border-style: none;
+    width: calc(100% - 2rem);
+    padding-top: $margin_mobile;
+    padding-bottom: $margin_mobile;
+    color: white;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-weight: $bold;
+    cursor: pointer;
+    margin-top: $margin_mobile;
+    margin-left: $margin_mobile;
+    margin-right: $margin_mobile;
+    box-shadow: 0 0 15px $dodeka_blauw;
+    // transition: 0.3s;
+    @include respond(computerscherm){
+        width: calc(100% - 2 * $margin_x);
+        margin-top: $margin_y;
+        margin-left: $margin_x;
+        margin-right: $margin_x;
+    }
+}

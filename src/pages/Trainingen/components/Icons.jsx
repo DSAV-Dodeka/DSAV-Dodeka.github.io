@@ -1,10 +1,10 @@
 import React from "react";
 import "./Icons.scss";
-import getUrl from "../../../functions/links";
+import {getNestedImagesUrl} from "../../../functions/links";
 
 function Icons() {
     return(
-        <div id="icons" className="icons_1" style={{ backgroundImage: `url(${getUrl(`trainingen/icons.svg`)})` }} />
+        <div id="icons" className="icons_1" style={{ backgroundImage: `url(${getNestedImagesUrl(`trainingen/icons.svg`)})` }} />
     )
 }
 export default Icons;

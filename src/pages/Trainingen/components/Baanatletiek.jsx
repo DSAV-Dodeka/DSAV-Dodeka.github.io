@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../../../components/Header";
 import "./Baanatletiek.scss"
-import getUrl from "../../../functions/links";
+import {getNestedImagesUrl} from "../../../functions/links";
 
 function Baanatletiek(props) {
     return(
         <div className="baanatletiek_1">
-            <img src={getUrl(`trainingen/${props.foto}`)} alt="" className="baanatletiek_2" />
+            <img src={getNestedImagesUrl(`trainingen/${props.foto}`)} alt="" className="baanatletiek_2" />
             <div className="baanatletiek_3">
                 <Header text="Baanatletiek" position="left"/>
                 <p className="baanatletiek_4">

@@ -5,7 +5,7 @@ import {
 import "./ContactBar.scss";
   
 import Heading from "./Heading";
-import getUrl from "../../functions/links";
+import {getNestedImagesUrl} from "../../functions/links";
 
 function ContactBar() {
     return (
@@ -30,10 +30,10 @@ function ContactBar() {
             <div className="bar_container">
                 <Link className="no_underline" to="/contact/sponsors#"><Heading title="Sponsors" /></ Link>
                 <div className="bar_info">
-                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getUrl(`sponsors/maltha.png`)} alt="" className="bar_sponsor maltha_bar"></img></a>
-                    <a target="_blank" rel="noreferrer" href="https://kernengineers.nl/"><img src={getUrl(`sponsors/kern.svg`)} alt="" className="bar_sponsor kverneland_bar"></img></a>
-                    {/* <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getUrl(`sponsors/tsa.png`)} alt="" className="bar_sponsor tsa_bar"></img></a> */}
-                    <a target="_blank" rel="noreferrer" href="https://www.studentendrukwerk.nl/"><img src={getUrl(`sponsors/studentendrukwerk.png`)} alt="" className="bar_sponsor tsa_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getNestedImagesUrl(`sponsors/maltha.png`)} alt="" className="bar_sponsor maltha_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://kernengineers.nl/"><img src={getNestedImagesUrl(`sponsors/kern.svg`)} alt="" className="bar_sponsor kverneland_bar"></img></a>
+                    {/* <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getNestedImagesUrl(`sponsors/tsa.png`)} alt="" className="bar_sponsor tsa_bar"></img></a> */}
+                    <a target="_blank" rel="noreferrer" href="https://www.studentendrukwerk.nl/"><img src={getNestedImagesUrl(`sponsors/studentendrukwerk.png`)} alt="" className="bar_sponsor tsa_bar"></img></a>
                 </div>
                 
             </div>

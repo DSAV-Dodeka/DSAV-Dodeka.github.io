@@ -45,8 +45,8 @@ const IdToken = z.object({
     name: z.string(),
     given_name: z.string(),
     family_name: z.string(),
-    nickname: z.string(),
-    preferred_username: z.string(),
+    nickname: z.string().optional(),
+    preferred_username: z.string().optional(),
     birthdate: z.string()
 })
 export type IdToken = z.infer<typeof IdToken>

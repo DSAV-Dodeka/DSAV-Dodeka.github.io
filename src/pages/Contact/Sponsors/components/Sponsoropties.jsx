@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../../../components/Header";
 import "./Sponsoropties.scss"
-import getUrl from "../../../../functions/links";
+import {getNestedImagesUrl} from "../../../../functions/links";
 
 function Sponsoropties() {
     return(
@@ -14,14 +14,14 @@ function Sponsoropties() {
                </p>
                 <Header text="Huidige sponsors" position="left"/>
                 <div className="sponsoropties_4">
-                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getUrl(`sponsors/maltha.png`)} alt="" className="sponsoropties_5 maltha"></img></a>
-                    <a target="_blank" rel="noreferrer" href="https://kernengineers.nl/"><img src={getUrl(`sponsors/kern.svg`)} alt="" className="sponsoropties_5 kverneland"></img></a>
-                    {/* <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getUrl(`sponsors/tsa.png`)} alt="" className="sponsoropties_5 tsa"></img></a> */}
-                    <a target="_blank" rel="noreferrer" href="https://www.studentendrukwerk.nl/"><img src={getUrl(`sponsors/studentendrukwerk.png`)} alt="" className="sponsoropties_5 tsa"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getNestedImagesUrl(`sponsors/maltha.png`)} alt="" className="sponsoropties_5 maltha"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://kernengineers.nl/"><img src={getNestedImagesUrl(`sponsors/kern.svg`)} alt="" className="sponsoropties_5 kverneland"></img></a>
+                    {/* <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getNestedImagesUrl(`sponsors/tsa.png`)} alt="" className="sponsoropties_5 tsa"></img></a> */}
+                    <a target="_blank" rel="noreferrer" href="https://www.studentendrukwerk.nl/"><img src={getNestedImagesUrl(`sponsors/studentendrukwerk.png`)} alt="" className="sponsoropties_5 tsa"></img></a>
                 </div>
                
             </div>
-            <img src={getUrl(`sponsors/sponsoropties.jpg`)} alt="" className="sponsoropties_6" />
+            <img src={getNestedImagesUrl(`sponsors/sponsoropties.jpg`)} alt="" className="sponsoropties_6" />
         </div>
     )
 }

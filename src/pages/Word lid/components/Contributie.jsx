@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../../components/Header";
 import "./Contributie.scss";
-import getUrl from "../../../functions/links";
+import {getNestedImagesUrl} from "../../../functions/links";
 
 function Contributie(props) {
     return(

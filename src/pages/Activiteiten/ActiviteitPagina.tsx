@@ -1,7 +1,7 @@
 import React from "react";
 import PageTitle from "../../components/PageTitle";
 import "../Wedstrijden/Eigen wedstrijden/Wedstrijd.scss";
-import getUrl from "../../functions/links";
+import {getNestedImagesUrl} from "../../functions/links";
 import ActiviteitAlgemeen from "./components/ActiviteitAlgemeen";
 import ActiviteitBelangrijk from "./components/ActiviteitBelangrijk";
 
@@ -31,7 +31,7 @@ function ActiviteitPagina(props: Activiteit) {
         <div>
             <PageTitle title={props.wedstrijd.naam}/>
             <div className="wedstrijd_container">
-                {/*{props.wedstrijd.logo_rond === "" ? "" : <img className="wedstrijd_logo" src={getUrl(`${props.typePath}/${props.wedstrijd.logo_rond}`)} alt =""/>}*/}
+                {/*{props.wedstrijd.logo_rond === "" ? "" : <img className="wedstrijd_logo" src={getNestedImagesUrl(`${props.typePath}/${props.wedstrijd.logo_rond}`)} alt =""/>}*/}
                 <ActiviteitAlgemeen wedstrijd={props.wedstrijd} typePath={props.typePath}/>
                 <ActiviteitBelangrijk wedstrijd={props.wedstrijd}/>
             </div>

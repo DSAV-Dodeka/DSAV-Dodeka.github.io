@@ -5,7 +5,7 @@ import HomeTrainingen from './components/HomeTrainingen';
 import HomeCommissies from './components/HomeCommissies';
 import HomePromo from './components/HomePromo';
 import "./Home.scss";
-import getUrl from "../../functions/links";
+import {getNestedImagesUrl} from "../../functions/links";
 
 const maxOffset = 24 * parseFloat(getComputedStyle(document.documentElement).fontSize);
 const logoMax = Math.min((6 * window.innerWidth / 15), 614.4) / parseFloat(getComputedStyle(document.documentElement).fontSize);

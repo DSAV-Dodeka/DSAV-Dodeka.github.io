@@ -9,7 +9,7 @@ import MobileDropdown from "./MobileDropdown";
 import disableScroll from 'disable-scroll';
 import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss"
-import getUrl from "../../functions/links";
+import {getNestedImagesUrl, getImagesUrl} from "../../functions/links";
 import authContext from "../../pages/Auth/AuthContext";
 import Login from "../Login/Login";
 
@@ -29,9 +29,9 @@ function NavigationBar() {
     <div id="navBar">
       <nav id="navPc">
         <Link to="/">
-          <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={getUrl(`logo.png`)} alt="" />
+          <img id="navLogo" className={(location === "/" ? "hidden" : "")} src={getImagesUrl(`logo.png`)} alt="" />
         </Link>
-        <img id="home_logo" className={(location === "/" ? "" : "hidden")} src={getUrl('logo.png')} alt=""/>
+        <img id="home_logo" className={(location === "/" ? "" : "hidden")} src={getImagesUrl('logo.png')} alt=""/>
         <div id="navItems">
           <Item name="Home" path="/" />
           <Item name="OWee" path="/owee" />
@@ -52,7 +52,7 @@ function NavigationBar() {
             <div className={"hamburgerStreepje" + (active ? " hamburgerMiddle" : "")}></div>
             <div className={"hamburgerStreepje" + (active ? " hamburgerBottom" : "")}></div>
           </div>
-          {/* <img id="navMobileLogo" src={getUrl(`dodeka.png`)} alt="" /> */}
+          {/* <img id="navMobileLogo" src={getNestedImagesUrl(`dodeka.png`)} alt="" /> */}
           <div className="mobileLogin">
             <Login />
           </div>

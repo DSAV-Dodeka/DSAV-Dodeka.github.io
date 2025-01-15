@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Nieuwsbericht from "../Nieuws/components/Nieuwsbericht";
 import SpikeText from "../../../content/Spike.json";
 import "./Spike.scss";
-import getUrl from "../../../functions/links";
+import {getNestedImagesUrl} from "../../../functions/links";
 import authContext from "../../Auth/AuthContext";
 
 function Spike() {
@@ -12,7 +12,7 @@ function Spike() {
     return(
         <div className="spikeContainer">
             <div className="spikeLogoContainer">
-                <img src={getUrl("spike/logo.png")} alt="De Spike" className="spike_1"/>
+                <img src={getNestedImagesUrl("spike/logo.png")} alt="De Spike" className="spike_1"/>
             </div>
             {!authState.isAuthenticated && (
                 <p className="spike_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in om deze pagina te kunnen bekijken.</p>

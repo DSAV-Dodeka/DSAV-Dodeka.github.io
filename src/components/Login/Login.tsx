@@ -8,14 +8,14 @@ import "./Login.scss";
 import Item from "../Navigation Bar/Item";
 import Dropdown from "../Navigation Bar/Dropdown";
 import {Logger} from "../../functions/logger";
-import getUrl from "../../functions/links";
+import {getImagesUrl, getNestedImagesUrl} from "../../functions/links";
 
 /**
  * Hook that alerts clicks outside of the passed ref
  */
-function useOutsideClick(ref: React.RefObject<HTMLElement>, callback: () => void) {
+function useOutsideClick(ref: React.RefObject<HTMLElement | null>, callback: () => void) {
     const handleClick = (e: MouseEvent) => {
-        if (ref.current && !ref.current.contains(e.target as Node)) {
+        if (ref !== null && ref.current !== null && !ref.current.contains(e.target as Node)) {
             callback();
         }
     }
@@ -54,11 +54,11 @@ const Login = () => {
     return (
         <div  className="profile-box">
             {ac.isLoaded && !ac.isAuthenticated &&
-                <button className="login_button" onClick={handleLogin}><img className="login_icon" src={getUrl(`login/login.png`)} /></button>
+                <button className="login_button" onClick={handleLogin}><img className="login_icon" src={getNestedImagesUrl(`login/login.png`)} /></button>
             }
             {ac.isLoaded && ac.isAuthenticated &&
                 <div className="profile_dropdown" onClick={() => setActive(!active)}>
-                    <h2 ref={ref} className="profile_login"><img className="login_icon" src={getUrl(`login/ingelogd.png`)} /></h2>
+                    <h2 ref={ref} className="profile_login"><img className="login_icon" src={getNestedImagesUrl(`login/ingelogd.png`)} /></h2>
                     <div className={active ? "profile_drop" : "dropHide"}>
                         <Link className="profile_dropdownElement" to="/profiel">Profiel</Link>
                         {ac.scope.includes("admin") ? (<Link className="profile_dropdownElement" to="/admin">Admin</Link>) : ""}
