@@ -24,7 +24,7 @@ function ContactBar() {
                 <div className="bar_info">
                     <p>Maandag 18:15 - 19:45</p>
                     <p>Woensdag 18:15 - 19:45</p>
-                    <p>Zaterdag 10:00 - 11:30</p>
+                    <p>Zaterdag 10:15 - 11:45</p>
                 </div>
             </div>
             <div className="bar_container">
