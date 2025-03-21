@@ -1,5 +1,34 @@
 {
     "wedstrijden": [
+       {
+            "naam": "NSK Meerkamp",
+            "datum": "3 en 4 Mei 2025",
+            "tijd": "Volgt",
+            "locatie": "D.S.A.V. Dodeka",
+            "adres": "Sportring 12",
+            "postcode": "2616LK Delft",
+            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
+            "logo": "nsk_meerkamp.jpg",
+            "logo_rond": "nsk_meerkamp_logo_2025.png",
+            "foto": "nsk_meerkamp_2.jpg",
+            "inschrijven": "https://www.atletiek.nu/wedstrijd/main/42142/",
+            "mail": "nskmeerkamp@gmail.com",
+            "instagram": "https://www.instagram.com/nskmeerkamp2025/",
+            "bepalingen": "/files/Wedstrijdbepalingen_NSK_Meerkamp_2025.pdf",
+            "info_kort": "Het NSK Meerkamp mag dit jaar opnieuw in Delft plaatsvinden! Dit zal plaatsvinden op 3 en 4 mei 2025. Dit jaar zal het NSK Meerkamp bestaan uit drie verschillende meerkampen: de reguliere zeven- of tienkamp, de loopmeerkamp, en als nieuwkomer de werpmeerkamp!",
+            "info_lang": "Het NSK Meerkamp mag dit jaar opnieuw in Delft plaatsvinden! Dit zal plaatsvinden op 3 en 4 mei 2025. <br><br>Wij als commissie zullen ons uiterste best doen om dit weekend soepel te laten verlopen, en er een geweldige wedstrijd van te maken, in combinatie met een spectaculair feest. <br><br>Dit jaar zal het NSK Meerkamp bestaan uit drie verschillende meerkampen: de reguliere zeven- of tienkamp, de loopmeerkamp, en als nieuwkomer de werpmeerkamp! Voor ieder wat wils, zodat we allemaal onze beste kant kunnen laten zien. En je kunt het zo competitief maken als je zelf wilt, maar houd er rekening mee, een meerkamp is natuurlijk niet niks! Wij gaan in ieder geval uit van een hoop gesneuvelde PR's en blije gezichten. <br><br>Tot het eerste weekend van mei!",
+            "path": "/nskmeerkamp"
+        },
+        {
+            "naam": "Dodekathlon",
+            "datum": "Juni 2025",
+            "logo": "dodekathlon.jpg",
+            "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. 'Dodeka' betekent namelijk twaalf in het Grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter horden en de hink-stap-sprong onderdeel van dit evenement.",
+            "path": ""
+        }
+        
+    ],
+    "wedstrijden_oud": [
         {
             "naam": "NSK Trappenloop",
             "datum": "13 december 2024",
@@ -19,35 +48,6 @@
             "info_lang": "Op vrijdag 13 december is het alweer tijd voor het mooie NSK Trappenloop. Dit jaar zal het NSK trappenloop voor de eerste keer georganiseerd worden door Dodeka in het prachtige gebouw voor Elektrotechniek, Wiskunde en Informatica (EWI). Het NSK Trappenloop is een NSK waarbij de beste studenten van Nederland de atletiekbaan inruilen voor een duizelingwekkend hoge trap. Op de verschillende onderdelen zullen de studenten uitmaken wie er met de gouden medaille naar huis gaat. Dit jaar kan er gekozen worden uit 10 verdiepingen, 20 verdiepingen en 4x5 verdiepingen estafette. Denk jij dat je het in je hebt om al deze trappen te overwinnen en jezelf te kronen tot DE studentenkampioen van het NSK Trappenloop? Schrijf je dan snel in en zet je schrap voor de trap!<br/><br/>Daarnaast kun je je natuurlijk ook zoals altijd inschrijven voor het eten, slapen en het feest door middel van de links hieronder en kan je je aanmelden om te vrijwilligen op deze onvergetelijke avond. Het feest zal gehouden worden op een echte toplocatie die op de insta bekendgemaakt zal worden.<br/><br/>BELANGRIJKE LINKS:<br/><a target=\"_blank\" rel=\"noreferrer\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSdE9EtjiAGyXOO2ZGVUFHsIAk12PTgOyz3FjCHoEo-QdpRRhw/viewform\">Aanmelden estafette</a><br/><a target=\"_blank\" rel=\"noreferrer\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSf0OX1L5LRAaGwpX5F4ohThwQHYo3Hvpex4is_azkIW8px0WQ/viewform\" className=\"wedstrijd_algemeen_link\">Bewijs van inschrijving</a><br/><a target=\"_blank\" rel=\"noreferrer\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSfFn_FATdVmDMOBOFLbnkYeNh23rgxWWBnnz2OWghZ_r7AjrA/viewform\" className=\"wedstrijd_algemeen_link\">Vrijwilligen</a><br><a target=\"_blank\" rel=\"noreferrer\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSdzWUePP6IPt4HMQ8Wl911pvcXcY0vpECIcITsulctYIj9epA/viewform\" className=\"wedstrijd_algemeen_link\">Eten, feest, slapen</a><br><br><p>Disclaimers:<br></p><ul><li>Geen alcohol meenemen in het gebouw, dit zal leiden tot het ontzeggen van de toegang tot het gebouw.</li><li>Niet in het gebouw rondzwerven.</li><li>Luister ten alle tijden naar de instructies van de vrijwilligers.</li><li>Geen stickers plakken!</li></ul>",
             "path": "/nsktrappenloop"
         },
-       {
-            "naam": "NSK Meerkamp",
-            "datum": "Mei 2025",
-            "tijd": "Volgt",
-            "locatie": "D.S.A.V. Dodeka",
-            "adres": "Sportring 12",
-            "postcode": "2616LK Delft",
-            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.76308928639!2d4.365573151907881!3d52.029413480121534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b71b1ed00f3d%3A0xb952856aa5bdefd3!2sD.S.A.V.%20Dodeka!5e0!3m2!1sen!2snl!4v1638359828973!5m2!1sen!2snl",
-            "logo": "nsk_meerkamp.jpg",
-            "logo_rond": "nsk_meerkamp_logo.jpg",
-            "foto": "nsk_meerkamp_2.jpg",
-            "inschrijven": "",
-            "mail": "bestuur@dsavdodeka.nl",
-            "instagram": "https://www.instagram.com/nskmeerkamp2024/",
-            "bepalingen": "",
-            "info_kort": "In mei 2025 is het weer zo ver, dan zal het NSK Meerkamp plaatsvinden in het prachtige Delft, georganiseerd door D.S.A.V. Dodeka. Tijdens dit evenement zullen de beste studenten van Nederland het tegen elkaar opnemen en proberen om een zo hoog mogelijke meerkampscore te behalen.",
-            "info_lang": "In mei 2025 is het zo ver, dan zal het NSK Meerkamp plaatsvinden in het prachtige Delft, georganiseerd door D.S.A.V. Dodeka. Tijdens dit evenement zullen de beste studenten van Nederland het tegen elkaar opnemen en proberen om een zo hoog mogelijke score te behalen op de conventionele tienkamp of zevenkamp, of op de loopmeerkamp, waarbij hardlopers 5 verschillende afstanden trotseren.<br/><br/>Daarnaast zal bij deze editie de Intermediate meerkamp gehouden worden, met minder en makkelijkere onderdelen, perfect als je nog nooit eerder een meerkamp hebt gedaan, nieuwe onderdelen wilt zoeken, of voor een vriend die je wilt overtuigen om atletiek te gaan doen!<br/> De inschrijflinks voor deelname, vrijwilligen, eten, slapen en het feest volgen later.",
-            "path": "/nskmeerkamp"
-        },
-        {
-            "naam": "Dodekathlon",
-            "datum": "Juni 2025",
-            "logo": "dodekathlon.jpg",
-            "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. 'Dodeka' betekent namelijk twaalf in het Grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter horden en de hink-stap-sprong onderdeel van dit evenement.",
-            "path": ""
-        }
-        
-    ],
-    "wedstrijden_oud": [
         {
             "naam": "Demonstratiewedstrijd",
             "datum": "11 mei 2024",
