@@ -25,7 +25,7 @@ function Meetrainen(props) {
                 {/*<a target="_blank" rel="noreferrer" href="https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1" className="meetrainen_4">*/}
                 {/*    <p>Schrijf je in!</p>*/}
                 {/*</a>*/}
-                {/* <p className="meetrainen_uitschrijven">Wil je je uitschrijven bij D.S.A.V. Dodeka? Stuur dan een mailtje naar de ledenadministratie van AV'40 (<a target="_blank" rel="noreferrer" href="mailto:ledenadministratie@av40.nl" className="meetrainen_uitschrijflink">ledenadministratie@av40.nl</a>).</p> */}
+                <p className="meetrainen_uitschrijven">Wil je je uitschrijven bij D.S.A.V. Dodeka? Stuur dan uiterlijk 4 weken voor het einde van het kwartaal een mailtje naar <a target="_blank" rel="noreferrer" href="mailto:bestuur@dsavdodeka.nl" className="meetrainen_uitschrijflink">bestuur@dsavdodeka.nl</a>. Onze kwartalen lopen van september t/m november, december t/m februari, maart t/m mei en juni t/m augustus.</p>
                 <p className="meetrainen_5">Mocht je nu nog vragen hebben, kijk dan in onze <Link to="/contact#faq" className="meetrainen_6">F.A.Q.</Link>, of stuur een berichtje via de mail of Instagram!</p>
                 <ContactButtons />
             </div>
