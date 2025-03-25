@@ -77,43 +77,7 @@
             ],
             "fotos": "barco"
       },
-      {
-        "naam": "BatCie",
-        "info": "Als BatCie organiseren wij de epische batavierenrace voor het mega gezellige Dodeka team. De bata vindt plaats op 24/25/30 mei 2024 in het oosten van het land (rond Nijmegen en Enschede). In dit prachtige weekend kan je hardlopen en feesten combineren wat supergaaf is. Met een team van 25 personen ren je in estafettevorm een afstand van in totaal 175 kilometer. Ons team draait om prestatie maar nog meer om gezelligheid. Omdat je met zijn allen in tentjes slaapt is het erg knus en ontmoet je mensen uit het hele land. Kortom, een topweekend dus! Voor bereikbaarheid zijn wij aanspreekbaar op trainingen en bereikbaar per fax op 121212.",
-    "leden": [
-            {
-                "naam": "Niels V",
-                "functie": "Voorzitter",
-                "foto": "nielsv"
-            },
-            {
-                "naam": "Roy",
-                "functie": "Secretaris",
-                "foto": "roy"
-            },
-            {
-                "naam": "Eric",
-                "functie": "Penningmeester",
-                "foto": "eric"
-            },
-            {
-                "naam": "Renée",
-                "functie": "Commissaris Logistiek",
-                "foto": "renée"
-            },
-            {
-                "naam": "Marin",
-                "functie": "Commissaris Promo",
-                "foto": "marin"
-            },
-            {
-                "naam": "Marien",
-                "functie": "QQ",
-                "foto": "marien"
-            }
-        ],
-        "fotos": "batcie"
-  },
+     
   {
     "naam": "Dies",
     "info": "De diescommissie zorgt ervoor dat de zesde verjaardag van Dodeka er één gaat worden om nooit te vergeten. Wij voelen ons vereerd dat we tijdens de diesweek Arnold mogen helpen niet alleen een aardvarken te zijn maar ook een feestvarken! ",
@@ -231,39 +195,39 @@
         "info": "De RedaXII schrijft en publiceert de nieuwsbrieven en het jaarboek. Hiervoor verzamelen we stukjes en foto's en hierdoor blijven de leden geïnformeerd over wat er de afgelopen periode is gebeurd. Daarnaast is er voor iedereen die dat wil aan het einde van het jaar een jaarboek als samenvatting en herinnering van wat vast weer een geweldig jaar bij de vereniging wordt. Heb jij nu een goed idee of een leuk verhaal voor in de nieuwsbrief of het jaarboek, schroom dan niet om een van de RedaXII leden een keer aan te spreken of te mailen naar redaxii@dsavdodeka.nl. Mocht je een leuke quote hebben van iemand dan kan je die sturen naar Anne.", 
 		"leden": [
                 {
-                    "naam": "Anna",
-                    "functie": "Voorzitter",
-                    "foto": "anna"
-                },
-                {
-                    "naam": "Inez",
-                    "functie": "Penningmeester",
-                    "foto": "inez"
-                },
-                {
-                    "naam": "Robert",
-                    "functie": "Commissaris Inhoud",
-                    "foto": "robert"
-                },
-                {
                     "naam": "Kyllian",
-                    "functie": "Commissaris Flexibel",
+                    "functie": "Voorzitter",
                     "foto": "kyllian"
                 },
                 {
-                    "naam": "Robin",
-                    "functie": "Commissaris Vormgeving Nieuwsbrief",
-                    "foto": "robin"
+                    "naam": "mano",
+                    "functie": "Secretaris",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Aron",
+                    "functie": "Commissaris Inhoud",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Sander",
+                    "functie": "Commissaris Flexibel",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Marea",
+                    "functie": "Commissaris Frunnik",
+                    "foto": "placeholder"
                 },
 		    {
                     "naam": "Anne",
-                    "functie": "Commissaris Vormgeving Jaarboek",
+                    "functie": "Commissaris Fröbel",
                     "foto": "anne"
                 },
                 {
-                    "naam": "Tim C",
+                    "naam": "Anna",
                     "functie": "QQ",
-                    "foto": "tim"
+                    "foto": "anna"
                 }
             ],
             "fotos": "redaxii"
@@ -273,46 +237,51 @@
             "info": "Heee! Wij zijn de SAX. Wij zullen dit jaar fantastische SAXiviteiten organiseren voor de leukste Dodekaëders. Met de SAX verzinnen we SAXiviteiten, plannen we ze in en dan is er natuurlijk nog de uitvoering van de plannen op de dag zelf. Jaarlijks worden er veel verschillende SAXiviteiten georganiseerd bijvoorbeeld een Sintenkerstennieuw diner, huizenrace en verschillende soorten uitjes. Bij het Sinterkerstennieuw diner, de eerste SAXiviteit die wij zullen organiseren, zal iedereen zijn kookkunsten kunnen laten zien (en veel wijn kunnen drinken). Deze supergezellige commissie zit dit jaar vol Pixar karakters. Dus misschien zie je wel een van je favoriete karakters op een SAXiviteit. Bij de SAX komen enthousiasme en creativiteit samen in het organiseren van de SAXiviteiten en is het altijd gezellig!",
 		"leden": [
                 {
-                    "naam": "Xylander",
+                    "naam": "Stan",
                     "functie": "Voorzitter",
-                    "foto": "xylander"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Anna",
+                    "naam": "Mieke",
                     "functie": "Secretaris",
-                    "foto": "anna"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Merel",
+                    "naam": "Sacha",
                     "functie": "Penningmeester",
-                    "foto": "merel"
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Vera",
+                    "functie": "Commissaris extern",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Sven",
+                    "functie": "Commissaris Promo",
+                    "foto": "placeholder"
+                },
+                { 
+                    "naam": "Simon",
+                    "functie": "Ouwe lul",
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Itse",
-                    "functie": "Commissaris Logistiek",
-                    "foto": "itse"
-                },
-                {
-                    "naam": "Anne",
-                    "functie": "Commissaris Promo",
-                    "foto": "anne"
-                },
-                {
-                    "naam": "Sanne D",
                     "functie": "QQ",
-                    "foto": "sanne"
+                    "foto": "itse"
                 }
             ],
             "fotos": "sax"
         },
         {
             "naam": "Snowdeka",
-            "info": "In februari is het weer zo ver, een groep van 30 Dodekaëders gaat skiën in het prachtige Tignes! Naast veel sneeuwpret zal Snowdeka ervoor zorgen dat er heel veel leuke activiteiten te doen zijn. We gaan met z’n allen lekker skiën, snowboarden en niet te vergeten feesten! Het wordt een drukke en gezellige week, zelfs zo leuk dat iedereen na de wispo eigenlijk nog een weekje vakantie nodig heeft. We zorgen er als commissie voor dat het voor iedereen een onvergetelijke reis zal hebben!",
+            "info": "In februari is het weer zo ver, een groep van 30 Dodekaëders gaat skiën in de prachtige Alpen! Naast veel sneeuwpret zal Snowdeka ervoor zorgen dat er heel veel leuke activiteiten te doen zijn. We gaan met z’n allen lekker skiën, snowboarden en niet te vergeten feesten! Het wordt een drukke en gezellige week, zelfs zo leuk dat iedereen na de wispo eigenlijk nog een weekje vakantie nodig heeft. We zorgen er als commissie voor dat het voor iedereen een onvergetelijke reis zal hebben!",
 		"leden": [
                 {
-                    "naam": "Merel",
+                    "naam": "Eric",
                     "functie": "Voorzitter",
-                    "foto": "merel"
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Marea",
@@ -320,19 +289,24 @@
                     "foto": "marea"
                 },
                 {
-                    "naam": "Thomas",
-                    "functie": "Commissaris Logistiek",
-                    "foto": "thomas"
+                    "naam": "Xylander",
+                    "functie": "penningmeester",
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Roy",
+                    "naam": "Julius",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "roy"
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Marien",
                     "functie": "QQ",
                     "foto": "marien"
+                },
+                {
+                    "naam": "Joris",
+                    "functie": "QQ",
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "snowdeka"
@@ -342,45 +316,50 @@
             "info": "De StartCommissie heeft als belangrijke taak dat alle nieuwe studenten de naam \"D.S.A.V. Dodeka\" kennen en dat ze weten waar onze prachtige vereniging voor staat. Dit doen we door tijdens de OWee epische activiteiten te organiseren waarbij de nieuwe studenten op een leuke manier kennis maken met de atletiek en de vereniging. Zo is de StartCo aanwezig op de parade, de infomarkt en de activiteitenmarkt en heeft de StartCo afgelopen OWee een biermijlestafette en een TrackFeest georganiseerd op de atletiekbaan. Na de OWee zorgt de StartCo ervoor dat alle nieuwe leden zich thuisvoelen op de vereniging door het leukste weekend van het jaar te organiseren: het StartWeekend. Hier kunnen nieuwe en oude leden elkaar (nog) beter leren kennen door samen leuke (en sportieve) activiteiten te doen en, natuurlijk, te partyen. Wordt D.S.A.V. Dodeka ook jouw startschot voor een geweldige studententijd?",
 		    "leden": [
                 {
-                    "naam": "Joris",
+                    "naam": "Temba",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "temba"
                 },
                 {
-                    "naam": "Merel",
+                    "naam": "Kyllian",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "kyllian"
                 },
                 {
-                    "naam": "Sanne D",
+                    "naam": "Itse",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "itse"
                 },
                 {
-                    "naam": "Niels V",
-                    "functie": "Vice voorzitter en com. startweekend",
-                    "foto": "placeholder"
+                    "naam": "Stan",
+                    "functie": "Commissaris logistiek I",
+                    "foto": "stan"
                 },
                 {
-                    "naam": "Suze",
-                    "functie": "Commissaris feest/promo",
-                    "foto": "placeholder"
+                    "naam": "Marin",
+                    "functie": "Commissaris logistiek II",
+                    "foto": "marin"
                 },
                 {
-                    "naam": "Hannah",
-                    "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
+                    "naam": "Vera",
+                    "functie": "Commissaris Startweekend",
+                    "foto": "vera"
                 }
                 ,
                 {
-                    "naam": "Jefry",
-                    "functie": "QQ 1",
-                    "foto": "placeholder"
+                    "naam": "Anne-Wil",
+                    "functie": "QQ/Commissaris Promo",
+                    "foto": "annewil"
                 }
                 ,
                 {
-                    "naam": "Lianne",
-                    "functie": "QQ 2",
+                    "naam": "Marien",
+                    "functie": "QQ",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Sanne",
+                    "functie": "QQ",
                     "foto": "placeholder"
                 }
             ],
@@ -391,34 +370,34 @@
             "info": "Als SunRice organiseren wij de meest epische zomerreis voor Dodeka. Aangezien het zware studiejaar dan eindelijk afgelopen is, willen wij onze leden belonen met een heerlijke vakantie. In dit bijzondere lustrumjaar gaan wij de beste en leukste week van de zomer voor Dodekaëders neerzetten! Wij zorgen voor leuke activiteiten op de reis, een vette locatie en bovendien dat de reis soepel en stressvrij verloopt. Als trotse leden van Dodeka zijn we natuurlijke wel fan van sportieve trip, dus dat zal zeker niet ontbreken. Kortom, een perfecte reis dus! We zien jullie daar hè. Kusjes, de SunRice!",
 		"leden": [
                 {
-                    "naam": "Tobias",
+                    "naam": "Niek",
                     "functie": "Voorzitter",
-                    "foto": "tobias"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Mark",
+                    "naam": "Open positie?",
                     "functie": "Secretaris",
-                    "foto": "mark"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Sven",
+                    "naam": "Sanne",
                     "functie": "Penningmeester",
-                    "foto": "sven"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Ingmar",
+                    "naam": "Merel",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "ingmar"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Melle",
+                    "naam": "Kyllian",
                     "functie": "Commissaris Logistiek",
-                    "foto": "melle"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Marien",
+                    "naam": "Itse",
                     "functie": "QQ",
-                    "foto": "marien"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "sunrice"
@@ -427,21 +406,13 @@
             "naam": "Trainers",
             "info": "Als commissie geven wij epische trainingen die we ook heel goed voorbereiden zodat we altijd weten wat we gaan doen. Wij zorgen ieder jaar voor tientallen fenomenale NSK-medailles door ons dag en nacht in te zetten. We hebben de ZeuS-bokaal twee keer op rij gewonnen dankzij de trainers. We hebben natuurlijk alleen maar dankzij onze commissie zoveel leden. Dit kunnen we bereiken doordat we met maar liefst 11 trainers zijn en daarmee de grootste commissie. Wij organiseren meer activiteiten dan alle andere commissies samen en onze activiteiten hebben de meeste inschrijvingen.",
 		"leden": [
-                {
-                    "naam": "Pelle",
-                    "functie": "Baantrainer",
-                    "foto": "placeholder"
-                },
+               
                 {
                     "naam": "Jasper",
                     "functie": "Baantrainer",
                     "foto": "Jasper"
                 },
-                {
-                    "naam": "Sanne B",
-                    "functie": "Baantrainer",
-                    "foto": "Sanne B"
-                },
+            
                 {
                     "naam": "Koen",
                     "functie": "Baantrainer",
@@ -452,11 +423,7 @@
                     "functie": "Baantrainer",
                     "foto": "Gijs"
                 },               
-                {
-                    "naam": "Marien",
-                    "functie": "Baantrainer",
-                    "foto": "Marien"
-                },
+            
                 {
                     "naam": "Jefry",
                     "functie": "Baantrainer",
@@ -468,6 +435,15 @@
                     "foto": "Joris"
                 },
                 {
+                    "naam": "Thom",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },{
+                    "naam": "Eric",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },
+                {
                     "naam": "Aniek",
                     "functie": "Looptrainer",
                     "foto": "Aniek"
@@ -476,12 +452,12 @@
                     "naam": "Robert",
                     "functie": "Looptrainer",
                     "foto": "Robert"
-                },
-                {
-                    "naam": "Suze",
-                    "functie": "Looptrainer",
+                },{
+                    "naam": "Jamie",
+                    "functie": "Baantrainer",
                     "foto": "placeholder"
                 },
+            
                 {
                     "naam": "Stan",
                     "functie": "MiLatrainer",
@@ -491,15 +467,115 @@
                     "naam": "Tijmen",
                     "functie": "MiLatrainer",
                     "foto": "Tijmen"
+                },{
+                    "naam": "Bart",
+                    "functie": "Erelid",
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Sanne D",
+                    "naam": "Anna",
                     "functie": "QQ",
-                    "foto": "Sanne D"
+                    "foto": "placeholder"
+                }
+                
+            ],
+            "fotos": "trainers"
+        },
+        {
+            "naam": "Quico",
+            "info": "Als commissie geven wij epische trainingen die we ook heel goed voorbereiden zodat we altijd weten wat we gaan doen. Wij zorgen ieder jaar voor tientallen fenomenale NSK-medailles door ons dag en nacht in te zetten. We hebben de ZeuS-bokaal twee keer op rij gewonnen dankzij de trainers. We hebben natuurlijk alleen maar dankzij onze commissie zoveel leden. Dit kunnen we bereiken doordat we met maar liefst 11 trainers zijn en daarmee de grootste commissie. Wij organiseren meer activiteiten dan alle andere commissies samen en onze activiteiten hebben de meeste inschrijvingen.",
+		"leden": [
+               
+                {
+                    "naam": "??",
+                    "functie": "Geldwolf",
+                    "foto": "placeholder"
+                },
+            
+                {
+                    "naam": "??",
+                    "functie": "Moneymaker",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "??",
+                    "functie": "penning 1",
+                    "foto": "placeholder"
+                },               
+            
+                {
+                    "naam": "??",
+                    "functie": "penning 2",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "??",
+                    "functie": "penning 3",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "??",
+                    "functie": "incasso",
+                    "foto": "placeholder"
+                },{
+                    "naam": "??",
+                    "functie": "sponsor",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "??",
+                    "functie": "ceo",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "??",
+                    "functie": "manager",
+                    "foto": "placeholder"
+                },{
+                    "naam": "??",
+                    "functie": "bankier",
+                    "foto": "placeholder"
                 }
                 
             ],
             "fotos": "trainers"
         }
-]
+],
+"oude commissies":[ {
+    "naam": "BatCie",
+    "info": "Als BatCie organiseren wij de epische batavierenrace voor het mega gezellige Dodeka team. De bata vindt plaats op 24/25/30 mei 2024 in het oosten van het land (rond Nijmegen en Enschede). In dit prachtige weekend kan je hardlopen en feesten combineren wat supergaaf is. Met een team van 25 personen ren je in estafettevorm een afstand van in totaal 175 kilometer. Ons team draait om prestatie maar nog meer om gezelligheid. Omdat je met zijn allen in tentjes slaapt is het erg knus en ontmoet je mensen uit het hele land. Kortom, een topweekend dus! Voor bereikbaarheid zijn wij aanspreekbaar op trainingen en bereikbaar per fax op 121212.",
+"leden": [
+        {
+            "naam": "Niels V",
+            "functie": "Voorzitter",
+            "foto": "nielsv"
+        },
+        {
+            "naam": "Roy",
+            "functie": "Secretaris",
+            "foto": "roy"
+        },
+        {
+            "naam": "Eric",
+            "functie": "Penningmeester",
+            "foto": "eric"
+        },
+        {
+            "naam": "Renée",
+            "functie": "Commissaris Logistiek",
+            "foto": "renée"
+        },
+        {
+            "naam": "Marin",
+            "functie": "Commissaris Promo",
+            "foto": "marin"
+        },
+        {
+            "naam": "Marien",
+            "functie": "QQ",
+            "foto": "marien"
+        }
+    ],
+    "fotos": "batcie"
+}]
 }
