@@ -15,3 +15,23 @@
         bottom: -5rem;
     }
 }
+
+#logoContainer {
+    position: relative;
+    height: 8rem;
+
+    @include respond(mobile) {
+        display: none;
+    }
+}
+
+#logoContainer img {
+    position: absolute;
+    top: -6rem;
+    left: 50%;
+    width: 8rem;
+
+    transform: translateX(-4.5rem);
+
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+}
