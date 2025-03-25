@@ -1,0 +1,230 @@
+@import "../../../variables";
+
+
+.new_event_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $dodeka_blauw;
+    width: 100%;
+    height: 100%;
+    opacity: 20%;
+}
+
+.new_event {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 10vh;
+    left: 25%;
+    background-color: $dodeka_blauw;
+    width: 50%;
+    max-height: calc(min(90%, 75vh));
+    opacity: 100%;
+    z-index: 2;
+    border-radius: 0.75rem;
+    color: white;
+    padding: 1rem 2rem;
+    z-index: 10;
+}
+
+.new_event_title {
+    font-size: $font_ml;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+}
+
+.new_event_header {
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+}
+
+.new_event_label {
+    display: inline-block;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+.new_event_label_type {
+    display: inline-block;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    margin-bottom: 1rem;
+}
+
+.new_event_label_members {
+    display: inline-block;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    font-weight: $bold;
+    margin-bottom: 0.5rem;
+}
+
+.new_event_label_full_container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.new_event_half_input {
+    display: inline-block;
+    width: calc(50% - 1rem);
+    vertical-align: top;
+}
+
+.new_event_half {
+    display: inline-block;
+    width: calc(50% - 1rem);
+    vertical-align: top;
+    overflow: auto;
+}
+
+.new_event_date {
+    display: inline-block;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    flex-grow: 1;
+}
+
+.new_event_select {
+    display: inline-block;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+}
+
+.new_event_points {
+    display: inline-block;
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+}
+
+.new_event_cross {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    fill: white;
+    width: 2rem;
+    cursor: pointer;
+}
+
+//.new_event_form {
+//    width: calc(100%);
+//    //overflow: scroll;
+//    max-height: 100%;
+//    display: inline-block;
+//}
+
+.new_event_input {
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    margin: 0.5rem 4rem 0.5rem 0;
+    width: calc(50% - 5rem);
+}
+
+.new_event_textarea {
+    border-style: none;
+    background-color: white;
+    color: $dodeka_blauw;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    font-size: $font_medium;
+    line-height: $line_height_medium;
+    height: calc(2*$line_height_medium + 1rem);
+    margin: 0.5rem 4rem 0.5rem 0;
+    resize: none;
+    width: calc(50% - 5rem);
+}
+
+.new_event_textarea:focus {
+    outline: none;
+}
+
+.new_event_input:focus {
+    outline: none;
+}
+
+.new_event_date:focus {
+    outline: none;
+}
+
+.new_event_points:focus {
+    outline: none;
+}
+
+.new_event button {
+    width: calc(25% - 0.5rem);
+    margin-left: 0;
+    font-size: $font_medium;
+    font-weight: $bold;
+    line-height: $line_height_medium;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border: none;
+    display: block;
+}
+
+.new_event_file {
+    padding-left: 1rem;
+}
+
+.onherkend {
+    color: $dodeka_rood;
+}
+
+.new_event_selected {
+    margin-bottom: 1rem;
+    overflow: auto;
+}
+
+.new_event_submit_error {
+    color: $dodeka_rood;
+    margin-bottom: 1rem;
+}
+
+.new_event_select {
+    background-color: white;
+    border-radius: 0.75rem;
+    border: none;
+    padding: 0.5rem;
+    font-family: inherit;
+    color: $dodeka_blauw;
+    cursor: pointer;
+    font-weight: $bold;
+    font-size: $font_small;
+    margin: 0 0 0.5rem;
+}

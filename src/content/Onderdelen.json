@@ -1,0 +1,45 @@
+{
+    "indoor": [
+        "60m",
+        "200m",
+        "400m",
+        "800m",
+        "1500m",
+        "3000m",
+        "60m horden",
+        "Kogelstoten",
+        "Verspringen",
+        "Hoogspringen",
+        "Hinkstapspringen",
+        "Polsstokhoogspringen"
+    ],
+    "outdoor": [ 
+        "100m",
+        "200m",
+        "400m",
+        "800m",
+        "1500m",
+        "3000m",
+        "5000m",
+        "10km weg",
+        "Halve marathon weg",
+        "Marathon weg",
+        ["110m horden", "100m horden"],
+        "400m horden",
+        "4x100m",
+        "4x400m",
+        "Kogelstoten",
+        "Speerwerpen",
+        "Discuswerpen",
+        "Kogelslingeren",
+        "Verspringen",
+        "Hinkstapspringen",
+        "Hoogspringen",
+        "Polsstokhoogspringen",
+        ["Decathlon", "Heptathlon"],
+        "Dodekathlon",
+        "Biermijl"
+
+
+    ]
+}

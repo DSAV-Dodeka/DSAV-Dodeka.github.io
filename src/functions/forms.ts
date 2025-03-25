@@ -37,6 +37,12 @@ export const handleCheckboxChange = <T>(event: ChangeEvent<HTMLInputElement>, di
     dispatch({type: 'change_bool', field: name, value: checked});
 }
 
+export const handleRadioChange = <T>(event: ChangeEvent<HTMLInputElement>, dispatch: React.Dispatch<FormAction<T>>) => {
+    const { name, value } = event.currentTarget
+    console.log(name);
+    console.log(value);
+    dispatch({type: 'change', field: name, value});
+}
 
 export type FormAction<T> =
     | { type: 'reload', new_state: T}
