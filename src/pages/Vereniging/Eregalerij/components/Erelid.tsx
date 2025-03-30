@@ -1,27 +1,30 @@
 import React from "react";
 import "./Erelid.scss";
-import {getImagesUrl, getNestedImagesUrl} from "../../../../functions/links";
+import { getImagesUrl, getNestedImagesUrl, getDeepImagesUrl } from "../../../../functions/links";
 
-export interface ErelidProps {
-    naam: string
-    redenen: string[]
-    foto: string
+interface ErelidProps {
+    naam: string;
+    redenen: string[];
+    foto: string;
+    showdetails: boolean;
+    onClick: () => void;
+    onMouseEnter: () => void;
+    onMouseLeave: () => void;
 }
 
-function Erelid({naam, redenen, foto} : ErelidProps) {
-    console.log(redenen.map((text) => text))
-    return(
-        <div className="erelid">
-            <img className="erelid_foto" src={getImagesUrl(foto)}/>
+function Erelid({ naam, redenen, foto, showdetails, onClick, onMouseEnter, onMouseLeave }: ErelidProps) {
+    return (
+        <div className={`erelid ${showdetails ? 'showdetails' : ''}`} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+            <img className="erelid_foto" src={getDeepImagesUrl(foto)} />
             <p className="erelid_naam">{naam}</p>
             <div className="erelid_info">
                 {
                     redenen.map((text) =>
-                        <p>- {text}</p>
+                        <li>{text}</li>
                     )
                 }
             </div>
-            
+
         </div>
     )
 }

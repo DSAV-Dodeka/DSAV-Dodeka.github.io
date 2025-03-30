@@ -160,35 +160,77 @@
                 {
                     "naam": "Roy",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "roy"
                 },
                 {
                     "naam": "Larissa",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "larissa"
                 },
                 {
                     "naam": "Sven",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "sven"
                 },
                 {
                     "naam": "Robert",
                     "functie": "Commissaris Wedstrijd",
-                    "foto": "placeholder"
+                    "foto": "robert"
                 },
                 {
                     "naam": "Youri",
                     "functie": "Commissaris PR",
-                    "foto": "placeholder"
+                    "foto": "youri"
                 },
                 {
                     "naam": "Anna",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "anna"
                 }
             ],
             "fotos": "nskmeerkamp"
+        },
+        {
+            "naam": "Nsk Trap",
+            "info": "Waddup, wij vinden traplopen, ladders, liften, alles waarbij je omhoog gaat heel vet. Wij hebben afgelopen jaar het Nederlands studentenkampioenschap trappenloop georganiseerd, dus eigenlijk is het een beetje laat dat we nu op de website komen, maar de foto's zijn wel heel leuk, dus we mogen nog wel even op de site shine pakken.",
+		    "leden": [
+                {
+                    "naam": "Melle",
+                    "functie": "Voorzitter",
+                    "foto": "melle"
+                },
+                {
+                    "naam": "Mano",
+                    "functie": "Secretaris",
+                    "foto": "mano"
+                },
+                {
+                    "naam": "Maaike ",
+                    "functie": "Penningmeester",
+                    "foto": "maaike"
+                },
+                {
+                    "naam": "Donne",
+                    "functie": "Commissaris Wedstrijd",
+                    "foto": "donne"
+                },
+                {
+                    "naam": "Annejet",
+                    "functie": "Commissaris eten, feest en slapen",
+                    "foto": "annejet"
+                },
+                {
+                    "naam": "Marien",
+                    "functie": "QQ",
+                    "foto": "marien"
+                },
+                {
+                    "naam": "Tijmen",
+                    "functie": "QQ",
+                    "foto": "tijmen"
+                }
+            ],
+            "fotos": "nsktrap"
         },
 	{
         "naam": "RedaXII",
@@ -202,22 +244,22 @@
                 {
                     "naam": "mano",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "mano"
                 },
                 {
                     "naam": "Aron",
                     "functie": "Commissaris Inhoud",
-                    "foto": "placeholder"
+                    "foto": "aron"
                 },
                 {
                     "naam": "Sander",
                     "functie": "Commissaris Flexibel",
-                    "foto": "placeholder"
+                    "foto": "sander"
                 },
                 {
                     "naam": "Marea",
                     "functie": "Commissaris Frunnik",
-                    "foto": "placeholder"
+                    "foto": "marea"
                 },
 		    {
                     "naam": "Anne",
@@ -232,6 +274,7 @@
             ],
             "fotos": "redaxii"
         },
+        
 	{
             "naam": "SAX",
             "info": "Heee! Wij zijn de SAX. Wij zullen dit jaar fantastische SAXiviteiten organiseren voor de leukste Dodekaëders. Met de SAX verzinnen we SAXiviteiten, plannen we ze in en dan is er natuurlijk nog de uitvoering van de plannen op de dag zelf. Jaarlijks worden er veel verschillende SAXiviteiten georganiseerd bijvoorbeeld een Sintenkerstennieuw diner, huizenrace en verschillende soorten uitjes. Bij het Sinterkerstennieuw diner, de eerste SAXiviteit die wij zullen organiseren, zal iedereen zijn kookkunsten kunnen laten zien (en veel wijn kunnen drinken). Deze supergezellige commissie zit dit jaar vol Pixar karakters. Dus misschien zie je wel een van je favoriete karakters op een SAXiviteit. Bij de SAX komen enthousiasme en creativiteit samen in het organiseren van de SAXiviteiten en is het altijd gezellig!",
@@ -441,7 +484,7 @@
                 },{
                     "naam": "Eric",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "eric"
                 },
                 {
                     "naam": "Aniek",
@@ -455,7 +498,7 @@
                 },{
                     "naam": "Jamie",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "jamie"
                 },
             
                 {
@@ -475,7 +518,7 @@
                 {
                     "naam": "Anna",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "anna"
                 }
                 
             ],
@@ -483,7 +526,7 @@
         },
         {
             "naam": "Quico",
-            "info": "Als commissie geven wij epische trainingen die we ook heel goed voorbereiden zodat we altijd weten wat we gaan doen. Wij zorgen ieder jaar voor tientallen fenomenale NSK-medailles door ons dag en nacht in te zetten. We hebben de ZeuS-bokaal twee keer op rij gewonnen dankzij de trainers. We hebben natuurlijk alleen maar dankzij onze commissie zoveel leden. Dit kunnen we bereiken doordat we met maar liefst 11 trainers zijn en daarmee de grootste commissie. Wij organiseren meer activiteiten dan alle andere commissies samen en onze activiteiten hebben de meeste inschrijvingen.",
+            "info": "Wij zijn de commissie die over geld harken gaat, dus als je Dodeka wil sponseren (en dat wil je) moet je bij ons zijn.",
 		"leden": [
                
                 {
@@ -532,13 +575,13 @@
                     "functie": "manager",
                     "foto": "placeholder"
                 },{
-                    "naam": "??",
-                    "functie": "bankier",
+                    "naam": "Tobias",
+                    "functie": "QQ",
                     "foto": "placeholder"
                 }
                 
             ],
-            "fotos": "trainers"
+            "fotos": "quico"
         }
 ],
 "oude commissies":[ {

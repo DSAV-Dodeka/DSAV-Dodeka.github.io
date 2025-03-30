@@ -3,6 +3,7 @@ import PageTitle from "../../../components/PageTitle";
 import Bestuursjaar from "./components/Bestuursjaar";
 import BestuurText from "../../../content/Bestuur.json";
 import "./Bestuur.scss";
+import {getImagesUrl} from "../../../functions/links";
 
 function Bestuur() {
 
@@ -13,6 +14,9 @@ function Bestuur() {
                 {BestuurText.besturen.map(bestuur => 
                     <Bestuursjaar key={"bestuur" + bestuur.jaar} naam={bestuur.naam} jaar={bestuur.jaar} leden={bestuur.leden} foto={bestuur.foto} />
                 )}
+                <div id="logoContainer" className="flex justify-center">
+                    <img src={getImagesUrl('groteD.svg')}></img>
+                </div>
             </div>
         </div>
     )
