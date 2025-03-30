@@ -56,6 +56,7 @@ import {err_api} from "./functions/api/api";
 import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
 import OLD from "./pages/Vereniging/OLD/OLD";
+import PR from "./pages/Leden/PR/PR";
 
 const cacheTime = 1000 * 60 // 1 minute
 
@@ -227,6 +228,11 @@ function App() {
                       <Route path="/leden/klassementen" element={
                         <Suspense fallback={<div>Loading klassement...</div>}>
                         <Klassementen />
+                        </Suspense>
+                      }/>
+                      <Route path="/leden/pr_indienen" element={
+                        <Suspense fallback={<div>Loading PR indienen...</div>}>
+                        <PR />
                         </Suspense>
                       }/>
                       <Route path="/leden" element={
