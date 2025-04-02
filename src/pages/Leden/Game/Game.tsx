@@ -1,13 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
+import bg from './background.png';
+import avr1 from './Aardvark-run1.png';
+import avr2 from './Aardvark-run2.png';
+import avr3 from './Aardvark-run3.png';
+import avr4 from './Aardvark-run4.png';
+import avj from './Aardvark-jump.png';
 
 const Game = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const isJumpingRef = useRef(false);
     const [jumpHeight, setJumpHeight] = useState(0);
     const gravity = 1;
-    const groundHeight = 20;
+    const groundHeight = 50;
     const obstaclesRef = useRef([{ x: 800, width: 20, height: 30 }]);
-    const characterRef = useRef({ x: 50, y: 0, width: 30, height: 30 });
+    const characterRef = useRef({ x: 50, y: 0, width: 120, height: 150 });
+    const [difficulty, setDifficulty] = useState(1); // Difficulty level
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -17,18 +24,36 @@ const Game = () => {
         if (!ctx) return;
 
         let animationFrameId: number;
-        let jumpVelocity = -10;
+        let jumpVelocity = -30;
+        let frameCounter = 0; // Counter to track animation frames
+        let obstacleSpeed = 7; // Initial speed of obstacles
+        const minObstacleSpacing = 300; // Minimum distance between obstacles
+        const spawnChance = 0.01; // Initial spawn chance
+
         
         let isJumping = isJumpingRef.current;
         let obstacles = obstaclesRef.current;
         let character = characterRef.current;
-        character.y = canvas.height - groundHeight - 30;
-        console.log(obstacles);
+        character.y = canvas.height - groundHeight - character.height; 
+
+        const characterImages = [avr1, avr2, avr3, avr4].map((src) => {
+            const img = new Image();
+            img.src = src;
+            return img;
+        });
+
+        const jumpImage = new Image();
+        jumpImage.src = avj;
+        
+        const bgImage = new Image();
+        bgImage.src = bg;
+        bgImage.onload = () => {
+            animationFrameId = requestAnimationFrame(update);
+        };
 
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.code === 'Space' && !isJumping) {
-                console.log('Jump!');
-                jumpVelocity = -15;
+                jumpVelocity = -20;
                 isJumping = true;
                  // Jump velocity
             }
@@ -39,25 +64,21 @@ const Game = () => {
             character.y = canvas.height - groundHeight - character.height; // Reset character position
             isJumping = false; // Reset jumping state
             jumpVelocity = 0; // Reset jump velocity
-            // cancelAnimationFrame(animationFrameId); // Stop the game loop
-            // animationFrameId = requestAnimationFrame(update); // Restart the game loop
+            setDifficulty(1); // Reset difficulty
+            obstacleSpeed = 7; // Reset obstacle speed
         };
 
         const update = () => {
-            // Clear canvas
-            ctx.fillStyle = '#f4f4f4';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+           // Clear canvas
+           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw ground
-            ctx.fillStyle = '#555';
-            ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
+           // Draw background image
+           ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
 
             // Update character position
             if (isJumping) {
                 jumpVelocity += gravity;
                 character.y =  character.y + jumpVelocity;
-                console.log(isJumping)
-                console.log(character.y, canvas.height - groundHeight - character.height, jumpVelocity);
                 if (character.y >= canvas.height - groundHeight - character.height) {
                     character.y = canvas.height - groundHeight - character.height;
                     isJumping = false;
@@ -65,15 +86,22 @@ const Game = () => {
                 }
             }
 
+            // Cycle through character images
+            let currentImage = characterImages[Math.floor(frameCounter / 10) % characterImages.length];
+            frameCounter++;
+
+            if (isJumping) {
+                currentImage = jumpImage;
+            }
+
             // Draw character
-            ctx.fillStyle = '#000';
-            ctx.fillRect(character.x, character.y, character.width, character.height);
+            ctx.drawImage(currentImage, character.x, character.y, character.width, character.height);
 
              // Update obstacles
              obstacles = obstacles
              .map((obstacle) => ({
                  ...obstacle,
-                 x: obstacle.x - 5, // Move obstacles to the left
+                 x: obstacle.x - obstacleSpeed, // Move obstacles to the left
              }))
              .filter((obstacle) => obstacle.x + obstacle.width > 0); // Remove off-screen obstacles
 
@@ -97,7 +125,11 @@ const Game = () => {
             });
 
             // Spawn new obstacles
-            if (Math.random() < 0.01) {
+            let lastObstacle = obstacles[obstacles.length - 1];
+            if (
+                Math.random() < spawnChance &&
+                (!lastObstacle || lastObstacle.x < canvas.width - minObstacleSpacing)
+            ) {
                 obstacles.push({
                     x: canvas.width,
                     width: 20 + Math.random() * 30,
@@ -105,11 +137,15 @@ const Game = () => {
                 });
             }
 
+            // Gradually increase difficulty
+            if (frameCounter % 500 === 0) {
+                // setDifficulty((prev) => prev + 1);
+                obstacleSpeed += 0.5; // Increase obstacle speed
+                console.log("difficulty increased to: ", difficulty);
+            }
+
             animationFrameId = requestAnimationFrame(update);
         };
-
-        // Start game loop
-        animationFrameId = requestAnimationFrame(update);
 
         // Add event listener for jump
         window.addEventListener('keydown', handleKeyDown);
