@@ -42,6 +42,8 @@
 }
 
 .sponsoropties_4{ //pt-4 px-4 text-white lg:text-center
+    display: flex;
+    flex-wrap: wrap;
     padding-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;    
@@ -50,16 +52,20 @@
     @include respond(computerscherm){
         text-align: left;
     }
+    @include respond(mobile){
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .sponsoropties_5{ //lg:mx-12 w-36 h-32
     width: 12rem;
-    vertical-align: middle;
-    margin-right: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     @include respond(computerscherm){
-        margin-left: 2rem;
-        margin-right: 2rem
-    }   
+        margin-left: 1rem;
+        margin-right: 1rem
+    }
 }
 
 .sponsoropties_6{ //lg:inline w-full lg:w-1/3 pt-16 lg:pt-0 lg:pl-16 bg-white
@@ -83,13 +89,13 @@
 
 
 .maltha {
-    width: 7.5rem;
+    width: 10.05rem;
 }
 
-.kverneland {
-    width: 10.5rem;
+.muconsult {
+    width: 13.05rem;
 }
 
-.tsa {
-    width: 15rem;
+.boozed {
+    width: 16.26rem;
 }
