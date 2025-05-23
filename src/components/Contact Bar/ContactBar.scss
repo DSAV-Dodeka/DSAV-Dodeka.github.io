@@ -51,18 +51,19 @@
     margin-right: 1rem;
     vertical-align: middle;
     @include respond(mobile) {
-        margin-left: 0;
+        margin: 0;
+        transform: scale(0.9);
     }
 }
 
 .maltha_bar {
-    width: 5rem;
+    width: 5.03rem;
 }
 
-.kverneland_bar {
-    width: 7rem;
+.muconsult_bar {
+    width: 6.53rem;
 }
 
-.tsa_bar {
-    width: 10rem;
+.boozed_bar {
+    width: 8.13rem;
 }
