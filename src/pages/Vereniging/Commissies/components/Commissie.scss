@@ -17,6 +17,7 @@
     height: 32rem;
     display: inline-block;
     vertical-align: top;
+    background-color: $dodeka_blauw;
     @include respond(mobile) {
         width: 50%;
         height: auto;
@@ -93,11 +94,9 @@
 }
 
 .commissieFoto {
-    object-fit: cover;
-    width: 32rem;
-    @include respond(mobile) {
-        width: 100%;
-    }
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
 }
 
 .commissieLeden {
