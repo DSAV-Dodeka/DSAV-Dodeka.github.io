@@ -129,6 +129,7 @@
     color: white;
     font-size: $font_medium;
     line-height: $line_height_medium;
+    width: calc(100% + 3rem);
     height: 4rem;
     margin-top: 1rem;
     vertical-align: top;
@@ -158,7 +159,7 @@
 @for $i from 1 through 3 {
     .hoogtepunten_text:nth-of-type(#{$i}) {
         @include respond(computerscherm) {
-            margin-left: calc(-0.25 * 24rem * ((4 + 5 * #{$i}) / 20) + 1rem);
+            margin-left: calc(-0.25 * 28rem * ((4 + 5 * #{$i}) / 20) + 1rem);
         }
     }
 }
