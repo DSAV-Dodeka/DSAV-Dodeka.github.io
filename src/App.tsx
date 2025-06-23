@@ -17,6 +17,7 @@ import Contact from './pages/Contact/Contact/Contact';
 import ContactBar from "./components/Contact Bar/ContactBar";
 import Commissies from "./pages/Vereniging/Commissies/Commissies";
 import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
+import Trainers from "./pages/Vereniging/Trainers/Trainers";
 import Sponsors from "./pages/Contact/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
@@ -166,6 +167,7 @@ function App() {
                     <Route path="/owee" element={<OWee />} />
                     <Route path="/vereniging" element={<Vereniging />} />
                     <Route path="/vereniging/commissies" element={<Commissies />} />
+                    <Route path="/vereniging/trainers" element={<Trainers />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
                     <Route path="/vereniging/eregalerij" element={<Eregalerij />} />
                     <Route path="/vereniging/arnold" element={
