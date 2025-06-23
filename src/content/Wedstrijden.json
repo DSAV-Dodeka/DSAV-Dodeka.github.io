@@ -1,9 +1,16 @@
 {
     "wedstrijden": [
-       {
+        {
+            "naam": "Dodekathlon",
+            "datum": "28 juni 2025",
+            "logo": "dodekathlon.jpg",
+            "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. 'Dodeka' betekent namelijk twaalf in het Grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter horden en de hink-stap-sprong onderdeel van dit evenement.",
+            "path": ""
+        },
+        {
             "naam": "NSK Meerkamp",
-            "datum": "3 en 4 Mei 2025",
-            "tijd": "Volgt",
+            "datum": "3 en 4 mei 2025",
+            "tijd": "",
             "locatie": "D.S.A.V. Dodeka",
             "adres": "Sportring 12",
             "postcode": "2616LK Delft",
@@ -11,20 +18,13 @@
             "logo": "nsk_meerkamp.jpg",
             "logo_rond": "nsk_meerkamp_logo_2025.png",
             "foto": "nsk_meerkamp_2.jpg",
-            "inschrijven": "https://www.atletiek.nu/wedstrijd/main/42142/",
+            "uitslagen": "https://www.atletiek.nu/wedstrijd/main/42142/",
             "mail": "nskmeerkamp@gmail.com",
             "instagram": "https://www.instagram.com/nskmeerkamp2025/",
             "bepalingen": "/files/Wedstrijdbepalingen_NSK_Meerkamp_2025.pdf",
             "info_kort": "Het NSK Meerkamp mag dit jaar opnieuw in Delft plaatsvinden! Dit zal plaatsvinden op 3 en 4 mei 2025. Dit jaar zal het NSK Meerkamp bestaan uit drie verschillende meerkampen: de reguliere zeven- of tienkamp, de loopmeerkamp, en als nieuwkomer de werpmeerkamp!",
             "info_lang": "Het NSK Meerkamp mag dit jaar opnieuw in Delft plaatsvinden! Dit zal plaatsvinden op 3 en 4 mei 2025. <br><br>Wij als commissie zullen ons uiterste best doen om dit weekend soepel te laten verlopen, en er een geweldige wedstrijd van te maken, in combinatie met een spectaculair feest. <br><br>Dit jaar zal het NSK Meerkamp bestaan uit drie verschillende meerkampen: de reguliere zeven- of tienkamp, de loopmeerkamp, en als nieuwkomer de werpmeerkamp! Voor ieder wat wils, zodat we allemaal onze beste kant kunnen laten zien. En je kunt het zo competitief maken als je zelf wilt, maar houd er rekening mee, een meerkamp is natuurlijk niet niks! Wij gaan in ieder geval uit van een hoop gesneuvelde PR's en blije gezichten. <br><br>Tot het eerste weekend van mei!",
             "path": "/nskmeerkamp"
-        },
-        {
-            "naam": "Dodekathlon",
-            "datum": "Juni 2025",
-            "logo": "dodekathlon.jpg",
-            "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. 'Dodeka' betekent namelijk twaalf in het Grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter horden en de hink-stap-sprong onderdeel van dit evenement.",
-            "path": ""
         }
         
     ],
