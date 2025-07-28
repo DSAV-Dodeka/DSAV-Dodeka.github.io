@@ -7,38 +7,38 @@
                 {
                     "naam": "Tip",
                     "functie": "CTO",
-                    "foto": "tip"
+                    "foto": "Tip"
                 },
                 {
                     "naam": "Matthijs",
                     "functie": "Senior Frontend Developer",
-                    "foto": "matthijs"
+                    "foto": "Matthijs"
                 },
                 {
                     "naam": "Liam",
                     "functie": "Software Engineer",
-                    "foto": "liam"
+                    "foto": "Liam"
                 },
                 {
                     "naam": "Jesper",
                     "functie": "Software Engineer",
-                    "foto": "jesper"
+                    "foto": "Jesper"
                 },
                 {
-                    "naam": "Sanne D",
+                    "naam": "Sanne",
                     "functie": "Software Engineer",
-                    "foto": "placeholder"
+                    "foto": "Sanne"
                 },
 
                 {
                     "naam": "Xylander",
                     "functie": "Software Engineer",
-                    "foto": "placeholder"
+                    "foto": "Xylander"
                 },
                 {
                     "naam": "Tijmen",
                     "functie": "QomQommer",
-                    "foto": "placeholder"
+                    "foto": "Tijmen"
                 }
             ],
             "fotos": "comcom"
@@ -84,32 +84,32 @@
         {
             "naam": "Vera",
             "functie": "Voorzitter",
-            "foto": "placeholder"
+            "foto": "Vera"
         },
         {
-            "naam": "Antony",
+            "naam": "Anthony",
             "functie": "Secretaris",
-            "foto": "placeholder"
+            "foto": "Anthony"
         },
         {
             "naam": "Youri",
             "functie": "Penningmeester",
-            "foto": "placeholder"
+            "foto": "Youri"
         },
         {
             "naam": "Vicky",
             "functie": "Commissaris Logistiek",
-            "foto": "placeholder"
+            "foto": "Vicky"
         },
     {
             "naam": "Lou",
             "functie": "Commissaris Promo",
-            "foto": "placeholder"
+            "foto": "Lou"
         },
         {
             "naam": "Tobias",
             "functie": "QQ",
-            "foto": "placeholder"
+            "foto": "Tobias"
         }
     ],
     "fotos": "dies"
@@ -121,32 +121,32 @@
                 {
                     "naam": "Robin",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "Robin"
                 },
                 {
                     "naam": "Lucija",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "Lucija"
                 },
                 {
                     "naam": "Melle",
                     "functie": "Commissaris Beer",
-                    "foto": "placeholder"
+                    "foto": "Melle"
                 },
                 {
                     "naam": "Wyna",
                     "functie": "Commissaris Bil",
-                    "foto": "placeholder"
+                    "foto": "Wyna"
                 },
 		        {
                     "naam": "Roman",
                     "functie": "Commissaris Vies",
-                    "foto": "placeholder"
+                    "foto": "Roman"
                 },
                 {
                     "naam": "Tijmen",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "Tijmen"
                 }
             ],
             "fotos": "focus"
@@ -231,6 +231,46 @@
             ],
             "fotos": "nsktrap"
         },
+        {
+            "naam": "Quico",
+            "info": "Wij zijn de commissie die over geld harken gaat, dus als je Dodeka wil sponseren (en dat wil je) moet je bij ons zijn.",
+		"leden": [
+               
+                {
+                    "naam": "Stan",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+            
+                {
+                    "naam": "Tim",
+                    "functie": "Secretaris",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Anne",
+                    "functie": "Commissielid",
+                    "foto": "placeholder"
+                },               
+                {
+                    "naam": "Lou",
+                    "functie": "Commissielid",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Mark",
+                    "functie": "Commissielid",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Tobias",
+                    "functie": "Bankier",
+                    "foto": "placeholder"
+                }
+                
+            ],
+            "fotos": "quico"
+        },
 	{
         "naam": "RedaXII",
         "info": "De RedaXII schrijft en publiceert de nieuwsbrieven en het jaarboek. Hiervoor verzamelen we stukjes en foto's en hierdoor blijven de leden geïnformeerd over wat er de afgelopen periode is gebeurd. Daarnaast is er voor iedereen die dat wil aan het einde van het jaar een jaarboek als samenvatting en herinnering van wat vast weer een geweldig jaar bij de vereniging wordt. Heb jij nu een goed idee of een leuk verhaal voor in de nieuwsbrief of het jaarboek, schroom dan niet om een van de RedaXII leden een keer aan te spreken of te mailen naar redaxii@dsavdodeka.nl. Mocht je een leuke quote hebben van iemand dan kan je die sturen naar Anne.", 
@@ -276,7 +316,7 @@
         
 	{
             "naam": "SAX",
-            "info": "Heee! Wij zijn de SAX. Wij zullen dit jaar fantastische SAXiviteiten organiseren voor de leukste Dodekaëders. Met de SAX verzinnen we SAXiviteiten, plannen we ze in en dan is er natuurlijk nog de uitvoering van de plannen op de dag zelf. Jaarlijks worden er veel verschillende SAXiviteiten georganiseerd bijvoorbeeld een Sintenkerstennieuw diner, huizenrace en verschillende soorten uitjes. Bij het Sinterkerstennieuw diner, de eerste SAXiviteit die wij zullen organiseren, zal iedereen zijn kookkunsten kunnen laten zien (en veel wijn kunnen drinken). Deze supergezellige commissie zit dit jaar vol Pixar karakters. Dus misschien zie je wel een van je favoriete karakters op een SAXiviteit. Bij de SAX komen enthousiasme en creativiteit samen in het organiseren van de SAXiviteiten en is het altijd gezellig!",
+            "info": "Yoooo! Wij zijn de SAX! Wij zullen dit jaar fantastische SAXiviteiten organiseren voor de leukste Dodekaëders. Met de SAX verzinnen we SAXiviteiten, plannen we ze in en dan is er natuurlijk nog de uitvoering van de plannen op de dag zelf. Jaarlijks worden er veel verschillende SAXiviteiten georganiseerd bijvoorbeeld een Sintenkerstennieuw diner, huizenrace en verschillende soorten uitjes. Bij het Sinterkerstennieuw diner, de eerste SAXiviteit die wij zullen organiseren, zal iedereen zijn kookkunsten kunnen laten zien (en heel veel wijn kunnen drinken). Dit jaar is de seSAXstraat, dus zit deze commissie vol Sesamstraat karakters. Dus misschien kom je wel Pinot, Bert&Ernie, Tommie, Oscar, Meneer Aart of Koekiemonster tegen! Elke borrel wordt een Saxbax getrokken, waarbij je ons ook zal herkennen (of doe gezellig mee): “SAX SAX SAX TREKT EEN BAX!” Bij de SAX komt enthousiasme en creativiteit samen in het organiseren van de SAXiviteiten en is het altijd gezellig!",
 		"leden": [
                 {
                     "naam": "Stan",
@@ -414,32 +454,32 @@
                 {
                     "naam": "Niek",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "Niek"
                 },
                 {
-                    "naam": "Open positie?",
+                    "naam": "Vera",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "Vera"
                 },
                 {
                     "naam": "Sanne",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "Sanne"
                 },
                 {
                     "naam": "Merel",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "placeholder"
+                    "foto": "Merel"
                 },
                 {
                     "naam": "Kyllian",
                     "functie": "Commissaris Logistiek",
-                    "foto": "placeholder"
+                    "foto": "Kyllian"
                 },
                 {
                     "naam": "Itse",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "Itse"
                 }
             ],
             "fotos": "sunrice"
@@ -521,67 +561,7 @@
                 }
                 
             ],
-            "fotos": "trainers"
-        },
-        {
-            "naam": "Quico",
-            "info": "Wij zijn de commissie die over geld harken gaat, dus als je Dodeka wil sponseren (en dat wil je) moet je bij ons zijn.",
-		"leden": [
-               
-                {
-                    "naam": "??",
-                    "functie": "Geldwolf",
-                    "foto": "placeholder"
-                },
-            
-                {
-                    "naam": "??",
-                    "functie": "Moneymaker",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "??",
-                    "functie": "penning 1",
-                    "foto": "placeholder"
-                },               
-            
-                {
-                    "naam": "??",
-                    "functie": "penning 2",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "??",
-                    "functie": "penning 3",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "??",
-                    "functie": "incasso",
-                    "foto": "placeholder"
-                },{
-                    "naam": "??",
-                    "functie": "sponsor",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "??",
-                    "functie": "ceo",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "??",
-                    "functie": "manager",
-                    "foto": "placeholder"
-                },{
-                    "naam": "Tobias",
-                    "functie": "QQ",
-                    "foto": "placeholder"
-                }
-                
-            ],
-            "fotos": "quico"
-        }
+            "fotos": "trainers"}
 ],
 "oude commissies":[ {
     "naam": "BatCie",
@@ -619,5 +599,41 @@
         }
     ],
     "fotos": "batcie"
-}]
+},
+        {
+            "naam": "Trap",
+            "info": "Hey! Wij zijn de commissie die ",
+		"leden": [
+               
+                {
+                    "naam": "Maaike",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+            
+                {
+                    "naam": "Anne",
+                    "functie": "Secretaris/QQ",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Stan",
+                    "functie": "Penningmeester",
+                    "foto": "placeholder"
+                },               
+            
+                {
+                    "naam": "Kyllian",
+                    "functie": "Commissaris Wedstrijd",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Tijmen",
+                    "functie": "QQ/secretaris",
+                    "foto": "placeholder"
+                }
+                
+            ],
+            "fotos": "trap"
+        }]
 }
