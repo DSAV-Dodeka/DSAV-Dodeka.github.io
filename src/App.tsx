@@ -18,6 +18,7 @@ import ContactBar from "./components/Contact Bar/ContactBar";
 import Commissies from "./pages/Vereniging/Commissies/Commissies";
 import Reglementen from "./pages/Vereniging/Reglementen/Reglementen";
 import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
+import Trainers from "./pages/Vereniging/Trainers/Trainers";
 import Sponsors from "./pages/Contact/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
@@ -180,9 +181,8 @@ function App() {
                     {/*}/>*/}
                     <Route path="/vereniging/old" element={<OLD />} />
                     <Route path="/vereniging/reglementen" element={<Reglementen />} />
-                    <Route path="/trainingen" element={
-                      <Trainingen />
-                    }/>
+                    <Route path="/trainingen" element={<Trainingen />} />
+                    <Route path="/trainingen/trainers" element={<Trainers />} />
                     {WedstrijdText.wedstrijden.map((item) =>
                         (item.path === "" ? "" :
                                 <Route path={"/wedstrijden" + item.path} key={"wdstr" + item.naam + item.datum} element={

@@ -37,7 +37,7 @@ function NavigationBar() {
           <Item name="OWee" path="/owee" />
           <Dropdown name="Nieuws" path="/nieuws" items={[{name: "De Spike", path: "/spike", protected: true}]} />
           <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Gezelligheid", path: "/gezelligheid" }, { name: "Eregalerij", path: "/eregalerij" }, { name: "Arnold", path: "/arnold" }, { name: "OLD", path: "/old"}, { name: "Reglementen", path: "/reglementen"}]} />
-          <Item name="Trainingen" path="/trainingen" />
+          <Dropdown name="Trainingen" path="/trainingen" items={[{ name: "Trainers", path: "/trainers" }]} />
           <Dropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Hoogtepunten", path: "/hoogtepunten"}, {name: "Records", path: "/records"}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})))} />
           <Item name="Word lid!" path="/word_lid" />
           <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }, { name: "VCP", path: "/vcp" }]} />
@@ -68,7 +68,7 @@ function NavigationBar() {
               <MobileDropdown name="Nieuws" path="/nieuws" items={[{name: "Nieuwsarchief", path: ""}, { name: "De Spike", path: "/spike" }]} onClick={() => setActive(false)} />
             }
             <MobileDropdown name="Vereniging" path="/vereniging" items={[{name: "Informatie", path: ""}, { name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Gezelligheid", path: "/gezelligheid" }, { name: "Eregalerij", path: "/eregalerij" }, { name: "Arnold", path: "/arnold" }, { name: "OLD", path: "/old"}]} onClick={() => setActive(false)} />
-            <Item name="Trainingen" path="/trainingen" onClick={() => setActive(false)} />
+            <MobileDropdown name="Trainingen" path="/trainingen" items={[{name: "Trainingen", path: ""}, { name: "Trainers", path: "/trainers"}]} onClick={() => setActive(false)} />
             <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}, {name: "Hoogtepunten", path: "/hoogtepunten"}, {name: "Records", path: "/records"}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})))} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
             <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }, { name: "VCP", path: "/vcp" }]} onClick={() => setActive(false)} />

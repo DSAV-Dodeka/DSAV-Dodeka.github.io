@@ -1,0 +1,139 @@
+@import "../../../../variables";
+
+.trainerContainer {
+    position: relative; 
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: $dodeka_blauw90p;
+    width: 100%;
+    margin-bottom: 6rem;
+
+    @include respond(mobile) {
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+}
+
+.trainerContainer:nth-child(even) {
+    @include respond(computerscherm) {
+        flex-direction: row;
+    }
+}
+
+.trainerText{
+    width: 50%;
+    // display: inline;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+
+    @include respond(computerscherm) {
+        margin-top: $margin_y;
+        margin-bottom: $margin_y;
+    }
+
+    @include respond(mobile) {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+.trainerContainer:nth-child(odd) .headerText {
+    @include respond(computerscherm) {
+        text-align: right;
+    }
+}
+
+.trainerPhotoContainer {
+    @include respond(computerscherm) {
+        min-height: 30rem;
+        height: 100%;
+        width: 50%;
+    }
+
+    @include respond(mobile) {
+        max-height: 20rem;
+    }
+}
+
+.trainerPhoto{
+    object-fit: contain;
+    
+    @include respond(computerscherm) {
+        position: absolute;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        max-width: calc(50% - 8rem);
+        left: calc(50%);
+        margin-right: 6rem;
+        object-position: left;
+    }
+
+    @include respond(mobile) {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.trainerContainer:nth-child(even) .trainerPhoto {
+    @include respond(computerscherm) {
+        left: unset;
+        right: calc(50%);
+        margin-right: 0;
+        margin-left: 6rem;
+        object-position: right;
+    }
+}
+
+.trainer-detail-list {
+    color: white;
+    font-size: $font_small;
+    line-height: $line_height_small;
+
+    @include respond(computerscherm) {
+        margin-left: 10vw;
+        margin-right: $margin_x;
+        margin-top: $margin_y;
+    }
+
+    @include respond(mobile) {
+        margin: $margin_mobile;
+    }
+}
+
+.trainerContainer:nth-child(even) .trainer-detail-list {
+    @include respond(computerscherm) {
+        margin-left: $margin_x;
+        margin-right: 10vw;
+    }
+}
+
+.trainer-type {
+    font-size: $font_medium;
+    font-weight: $bold;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.trainer-detail {
+    margin-top: .5rem;
+}
+
+.favoriete-onderdeel:not(:empty)::before {
+    content: "Favoriete onderdeel: ";
+    font-weight: bold;
+    color: white;
+}
+
+.trainer-sinds:not(:empty)::before {
+    content: "Trainer sinds: ";
+    font-weight: bold;
+    color: white;
+}
+
+.expertise:not(:empty)::before {
+    content: "Expertise: ";
+    font-weight: bold;
+    color: white;
+}
