@@ -167,7 +167,6 @@ function App() {
                     <Route path="/owee" element={<OWee />} />
                     <Route path="/vereniging" element={<Vereniging />} />
                     <Route path="/vereniging/commissies" element={<Commissies />} />
-                    <Route path="/vereniging/trainers" element={<Trainers />} />
                     <Route path="/vereniging/bestuur" element={<Bestuur />} />
                     <Route path="/vereniging/eregalerij" element={<Eregalerij />} />
                     <Route path="/vereniging/arnold" element={
@@ -180,9 +179,8 @@ function App() {
                     {/*  <Activiteiten />*/}
                     {/*}/>*/}
                     <Route path="/vereniging/old" element={<OLD />} />
-                    <Route path="/trainingen" element={
-                      <Trainingen />
-                    }/>
+                    <Route path="/trainingen" element={<Trainingen />} />
+                    <Route path="/trainingen/trainers" element={<Trainers />} />
                     {WedstrijdText.wedstrijden.map((item) =>
                         (item.path === "" ? "" :
                                 <Route path={"/wedstrijden" + item.path} key={"wdstr" + item.naam + item.datum} element={

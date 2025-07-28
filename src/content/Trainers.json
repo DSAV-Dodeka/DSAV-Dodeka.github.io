@@ -1,22 +1,6 @@
 {
     "Trainers": [
         {
-            "naam": "Jasper Rou",
-            "foto": "jasper.jpg",
-            "trainerType": "Baantrainer",
-            "favorieteOnderdeel": "Als atleet vond ik het leuk om de 400m te doen, maar als trainer geef ik graag alle onderdelen.",
-            "trainerSinds": "Sinds de oprichting in 2019 geef ik training bij Dodeka.",
-            "expertise": "Ik denk graag na over periodiseren en structureren en daarom heb ik ook het prachtige trainingsschema gebouwd. Verder probeer ik mij constant te verbeteren als trainer door cursussen te volgen, naar de Dag van de Atletiek te gaan en te luisteren naar andere trainers en atleten."
-        },
-        {
-            "naam": "Koen Stapel",
-            "foto": "koen.jpg",
-            "trainerType": "Baantrainer",
-            "favorieteOnderdeel": "Als voormalig tienkamper ben ik een echte allrounder, maar polsstokhoogspringen laat mijn hart echt sneller laat kloppen.",
-            "trainerSinds": "Ik ben al twaalf jaar actief als trainer. De afgelopen vijf jaar geef ik met veel plezier training bij Dodeka.",
-            "expertise": "Ik haal veel voldoening uit het persoonlijk begeleiden van atleten, ongeacht hun niveau. Het is altijd mooi om samen te werken aan hun ontwikkeling en hen te helpen zichzelf te verbeteren."
-        },
-        {
             "naam": "Gijs Tops",
             "foto": "gijs.jpg",
             "trainerType": "Baantrainer",
@@ -30,7 +14,7 @@
             "trainerType": "Baantrainer",
             "favorieteOnderdeel": "Ik doe zelf het liefst polsstokhoogspringen, maar ik help mensen het liefst met nóg betere sprinters worden.",
             "trainerSinds": "2023",
-            "expertise": "Ik houd ervan om je te vertellen waarom je bepaalde dingen doet tijdens mijn trainingen. Dat maakt het naar mijn idee niet alleen veel effectiever, maar ook makkelijker om uit te voeren.<br><br>Soms sta ik met een iPad langs de baan om je in detail te laten zien wat je aan het doen bent en zodat je een beter beeld hebt van waar je naartoe wil en kan met je techniek.<br><br>Zeker voor de beginnende atleet kan ik je snel helpen om als een èchte atleet te bewegen!"
+            "expertise": "Ik houd ervan om je te vertellen waarom je bepaalde dingen doet tijdens mijn trainingen. Dat maakt het naar mijn idee niet alleen veel effectiever, maar ook makkelijker om uit te voeren.Soms sta ik met een iPad langs de baan om je in detail te laten zien wat je aan het doen bent en zodat je een beter beeld hebt van waar je naartoe wil en kan met je techniek. Zeker voor de beginnende atleet kan ik je snel helpen om als een èchte atleet te bewegen!"
         },
         {
             "naam": "Joris Gudde",
@@ -50,7 +34,7 @@
         },
         {
             "naam": "Thom Kortenoever",
-            "foto": "thom.jpg",
+            "foto": "placeholder.jpg",
             "trainerType": "Baantrainer",
             "favorieteOnderdeel": "Het machtige gevoel dat gepaard gaat met het discuswerpen is voor mij onovertroffen. Daarom is dit het onderdeel waar ik me het meest op richt.",
             "trainerSinds": "2016",
@@ -82,7 +66,9 @@
         },
         {
             "naam": "Stan van Tilburg",
-            "trainerType": "MiLa Trainer"
+            "trainerType": "MiLa Trainer",
+            "trainerSinds": "2018",
+            "expertise": "Ik sta altijd met veel plezier langs de atletiekbaan als trainer. Ik begon met het trainen van pupillen en junioren en heb daarna twee jaar looptraining gegeven bij de Loopgroep Galder. Sinds 2023 ben ik MiLa-trainer ('vo) bij D.S.A.V. Dodeka! Ik weet veel over sport-EHBO, blessures en belastbaarheid, dus als je een pijntje hebt of twijfelt over je training, stap gerust op me af!"
         },
         {
             "naam": "Tijmen Hoedjes",

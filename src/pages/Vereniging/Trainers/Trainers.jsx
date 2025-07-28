@@ -10,7 +10,7 @@ function Trainers() {
             <PageTitle title="Trainers" />
             <div id="trainerContainer" className="relative space-y-16 lg:space-y-24 pb-16 lg:pb-24">
                 {TrainersText.Trainers.map(trainer => 
-                        <Trainer key={trainer.naam} naam={trainer.naam} foto={trainer.foto} trainerType={trainer.trainerType} favorieteOnderdeel={trainer.favorieteOnderdeel} trainerSinds={trainer.favorieteOnderdeel} expertise={trainer.expertise} />
+                        <Trainer key={trainer.naam} naam={trainer.naam} foto={trainer.foto} trainerType={trainer.trainerType} favorieteOnderdeel={trainer.favorieteOnderdeel} trainerSinds={trainer.trainerSinds} expertise={trainer.expertise} />
                 )}
             </div>
         </div>
