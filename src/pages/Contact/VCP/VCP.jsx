@@ -22,8 +22,7 @@ function Vertrouwenscontactpersoon(){
             <div className="vcp_persoon vcp_left">
                 <img className="vcp_img" src={getNestedImagesUrl("vcp/vcp_lisa.jpg")}/>
                 <p className="vcp_naam">Lisa Meijndert</p>
-                Lisa is tot maart 2025 niet beschikbaar
-                {/* E-mail: <a className="vcp_mail" href="mailto:vcp.lisa@dsavdodeka.nl">vcp-lisa@dsavdodeka.nl</a> */}
+                E-mail: <a className="vcp_mail" href="mailto:vcplisa.dsavdodeka@gmail.com">vcplisa.dsavdodeka@gmail.com</a>
             </div>
             <div className="vcp_persoon vcp_right">
                 <img className="vcp_img" src={getNestedImagesUrl("vcp/vcp_niels.jpg")}/> 

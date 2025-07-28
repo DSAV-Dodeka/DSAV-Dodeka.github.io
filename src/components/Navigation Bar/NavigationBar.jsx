@@ -36,7 +36,7 @@ function NavigationBar() {
           <Item name="Home" path="/" />
           <Item name="OWee" path="/owee" />
           <Dropdown name="Nieuws" path="/nieuws" items={[{name: "De Spike", path: "/spike", protected: true}]} />
-          <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Gezelligheid", path: "/gezelligheid" }, { name: "Eregalerij", path: "/eregalerij" }, { name: "Arnold", path: "/arnold" }, { name: "OLD", path: "/old"}]} />
+          <Dropdown name="Vereniging" path="/vereniging" items={[{ name: "Bestuur", path: "/bestuur" }, { name: "Commissies", path: "/commissies" }, { name: "Gezelligheid", path: "/gezelligheid" }, { name: "Eregalerij", path: "/eregalerij" }, { name: "Arnold", path: "/arnold" }, { name: "OLD", path: "/old"}, { name: "Reglementen", path: "/reglementen"}]} />
           <Dropdown name="Trainingen" path="/trainingen" items={[{ name: "Trainers", path: "/trainers" }]} />
           <Dropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Hoogtepunten", path: "/hoogtepunten"}, {name: "Records", path: "/records"}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})))} />
           <Item name="Word lid!" path="/word_lid" />

@@ -1,6 +1,78 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Baan 2025",
+            "foto": "nsk_baan_2025.jpg",
+            "prijzen": [
+                {
+                    "naam": "Robert",
+                    "plaats": 3,
+                    "afstand": "5000m"
+                },
+                {
+                    "naam": "Stefan",
+                    "plaats": 3,
+                    "afstand": "400mH"
+                },
+                {
+                    "naam": "Tobias",
+                    "plaats": 1,
+                    "afstand": "HSS"
+                },
+                {
+                    "naam": "Tobias",
+                    "plaats": 3,
+                    "afstand": "Ver"
+                },
+                {
+                    "naam": "Dodeka vrouwen",
+                    "plaats": 3,
+                    "afstand": "Olym estafette"
+                },
+                {
+                    "naam": "Dodeka vrouwen",
+                    "plaats": 2,
+                    "afstand": "4x100m"
+                },
+                {
+                    "naam": "Dodeka vrouwen",
+                    "plaats": 1,
+                    "afstand": "4x1500m"
+                },
+                {
+                    "naam": "Sanne",
+                    "plaats": 2,
+                    "afstand": "Speer"
+                },
+                {
+                    "naam": "Koen",
+                    "plaats": 3,
+                    "afstand": "Polshoog"
+                }
+            ],
+            "prestaties": [
+                "De 4x1500m vrouwen liepen meer dan een ronde voor",
+                "Robert liep een clubrecord op de 5000m",
+                "We waren weer goed vertegendwoordigd met 35 Dodekaëders"
+            ]
+        },
+        {
+            "wedstrijd": "NSK Ekiden 2025",
+            "foto": "nsk_ekiden_2025.jpg",
+            "prijzen": [
+                {
+                    "naam": "Dodekampioenen",
+                    "plaats": 3,
+                    "afstand": "Mannen"
+                }
+            ],
+            "prestaties": [
+                "Kyllian en Robert vonden het zo leuk dat ze beiden dubbel liepen",
+                "Dodekapot hard rennen wordt 4e bij de mixed categorie",
+                "Dodeka was met 3 teams aanwezig in het verre Groningen"
+            ]
+        },
+        {
             "wedstrijd": "NSK Teams 2024",
             "foto": "nsk_teams_2024.jpg",
             "prijzen": [

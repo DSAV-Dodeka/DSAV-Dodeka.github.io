@@ -14,10 +14,9 @@ function Sponsoropties() {
                </p>
                 <Header text="Huidige sponsors" position="left"/>
                 <div className="sponsoropties_4">
-                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getNestedImagesUrl(`sponsors/maltha.png`)} alt="" className="sponsoropties_5 maltha"></img></a>
-                    <a target="_blank" rel="noreferrer" href="https://kernengineers.nl/"><img src={getNestedImagesUrl(`sponsors/kern.svg`)} alt="" className="sponsoropties_5 kverneland"></img></a>
-                    {/* <a target="_blank" rel="noreferrer" href="https://www.tsagroup.nl/"><img src={getNestedImagesUrl(`sponsors/tsa.png`)} alt="" className="sponsoropties_5 tsa"></img></a> */}
-                    <a target="_blank" rel="noreferrer" href="https://www.studentendrukwerk.nl/"><img src={getNestedImagesUrl(`sponsors/studentendrukwerk.png`)} alt="" className="sponsoropties_5 tsa"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getNestedImagesUrl(`sponsors/maltha.png`)} alt="Maltha Sport" className="sponsoropties_5 maltha"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://muconsult.nl/"><img src={getNestedImagesUrl(`sponsors/muconsult.png`)} alt="MuConsult" className="sponsoropties_5 muconsult"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.boozed.nl/"><img src={getNestedImagesUrl(`sponsors/boozed.png`)} alt="Boozed" className="sponsoropties_5 boozed"></img></a>
                 </div>
                
             </div>
