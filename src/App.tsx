@@ -16,6 +16,7 @@ import WordLid from './pages/Word lid/WordLid';
 import Contact from './pages/Contact/Contact/Contact';
 import ContactBar from "./components/Contact Bar/ContactBar";
 import Commissies from "./pages/Vereniging/Commissies/Commissies";
+import Reglementen from "./pages/Vereniging/Reglementen/Reglementen";
 import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
 import Sponsors from "./pages/Contact/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
@@ -178,6 +179,7 @@ function App() {
                     {/*  <Activiteiten />*/}
                     {/*}/>*/}
                     <Route path="/vereniging/old" element={<OLD />} />
+                    <Route path="/vereniging/reglementen" element={<Reglementen />} />
                     <Route path="/trainingen" element={
                       <Trainingen />
                     }/>
