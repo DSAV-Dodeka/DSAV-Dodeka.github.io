@@ -599,5 +599,41 @@
         }
     ],
     "fotos": "batcie"
-}]
+},
+        {
+            "naam": "Trap",
+            "info": "Hey! Wij zijn de commissie die ",
+		"leden": [
+               
+                {
+                    "naam": "Maaike",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+            
+                {
+                    "naam": "Anne",
+                    "functie": "Secretaris/QQ",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Stan",
+                    "functie": "Penningmeester",
+                    "foto": "placeholder"
+                },               
+            
+                {
+                    "naam": "Kyllian",
+                    "functie": "Commissaris Wedstrijd",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Tijmen",
+                    "functie": "QQ/secretaris",
+                    "foto": "placeholder"
+                }
+                
+            ],
+            "fotos": "trap"
+        }]
 }
