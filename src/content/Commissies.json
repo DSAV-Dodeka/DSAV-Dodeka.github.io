@@ -7,38 +7,38 @@
                 {
                     "naam": "Tip",
                     "functie": "CTO",
-                    "foto": "Tip"
+                    "foto": "tip"
                 },
                 {
                     "naam": "Matthijs",
                     "functie": "Senior Frontend Developer",
-                    "foto": "Matthijs"
+                    "foto": "matthijs"
                 },
                 {
                     "naam": "Liam",
                     "functie": "Software Engineer",
-                    "foto": "Liam"
+                    "foto": "liam"
                 },
                 {
                     "naam": "Jesper",
                     "functie": "Software Engineer",
-                    "foto": "Jesper"
+                    "foto": "jesper"
                 },
                 {
                     "naam": "Sanne",
                     "functie": "Software Engineer",
-                    "foto": "Sanne"
+                    "foto": "sanne"
                 },
 
                 {
                     "naam": "Xylander",
                     "functie": "Software Engineer",
-                    "foto": "Xylander"
+                    "foto": "xylander"
                 },
                 {
                     "naam": "Tijmen",
                     "functie": "QomQommer",
-                    "foto": "Tijmen"
+                    "foto": "tijmen"
                 }
             ],
             "fotos": "comcom"
@@ -239,33 +239,33 @@
                 {
                     "naam": "Stan",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "stan"
                 },
             
                 {
                     "naam": "Tim",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "tim"
                 },
                 {
                     "naam": "Anne",
                     "functie": "Commissielid",
-                    "foto": "placeholder"
+                    "foto": "anne"
                 },               
                 {
                     "naam": "Lou",
                     "functie": "Commissielid",
-                    "foto": "placeholder"
+                    "foto": "lou"
                 },
                 {
                     "naam": "Mark",
                     "functie": "Commissielid",
-                    "foto": "placeholder"
+                    "foto": "mark"
                 },
                 {
                     "naam": "Tobias",
                     "functie": "Bankier",
-                    "foto": "placeholder"
+                    "foto": "tobias"
                 }
                 
             ],
@@ -363,7 +363,7 @@
                 {
                     "naam": "Eric",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "eric"
                 },
                 {
                     "naam": "Marea",
@@ -373,12 +373,12 @@
                 {
                     "naam": "Xylander",
                     "functie": "penningmeester",
-                    "foto": "placeholder"
+                    "foto": "xylander"
                 },
                 {
                     "naam": "Julius",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "placeholder"
+                    "foto": "julius"
                 },
                 {
                     "naam": "Marien",
@@ -388,7 +388,7 @@
                 {
                     "naam": "Joris",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "joris"
                 }
             ],
             "fotos": "snowdeka"
