@@ -775,6 +775,98 @@
                    "prestatie":"06:47.49"
                 }
              ]
+          },
+          {
+             "onderdeel":"5km Weg",
+             "prestaties":[
+                {
+                   "naam":"Tijmen Hoedjes",
+                   "datum":"2024-11-02",
+                   "plaats":"Wageningen ",
+                   "prestatie":"15:42"
+                },
+                {
+                   "naam":"Chiem Denen",
+                   "datum":"2024-09-22",
+                   "plaats":"Venlo ",
+                   "prestatie":"17:20"
+                },
+                {
+                   "naam":"Sven van Weezep",
+                   "datum":"2025-04-27",
+                   "plaats":"Nootdorp",
+                   "prestatie":"20:30"
+                }
+             ]
+          },
+          {
+             "onderdeel":"10km Weg",
+             "prestaties":[
+                {
+                   "naam":"Kyllian van Leeuwen",
+                   "datum":"2024-11-02",
+                   "plaats":"Wageningen",
+                   "prestatie":"35:56"
+                },
+                {
+                   "naam":"Chiem Denen",
+                   "datum":"2024-11-02",
+                   "plaats":"Venlo ",
+                   "prestatie":"37:31"
+                },
+                {
+                   "naam":"Stan van Tilburg",
+                   "datum":"2023-05-18",
+                   "plaats":"Delft",
+                   "prestatie":"39:52"
+                },
+                {
+                   "naam":"Lars Smit",
+                   "datum":"2022-11-12",
+                   "plaats":"Delft",
+                   "prestatie":"45:31"
+                }
+             ]
+          },
+          {
+             "onderdeel":"Halve Marathon",
+             "prestaties":[
+                {
+                   "naam":"Thymo Westerhof",
+                   "datum":"2024-10-06",
+                   "plaats":"Breda",
+                   "prestatie":"01:16:49"
+                },
+                {
+                   "naam":"Roy Peters",
+                   "datum":"2024-02-18",
+                   "plaats":"Berkel en Rodenrijs",
+                   "prestatie":"01:39:13"
+                }
+             ]
+          },
+          {
+             "onderdeel":"Marathon",
+             "prestaties":[
+                {
+                   "naam":"Thymo Westerhof",
+                   "datum":"2025-04-13",
+                   "plaats":"Rotterdam",
+                   "prestatie":"02:46:00"
+                },
+                {
+                   "naam":"Jochem van de Kamp",
+                   "datum":"2025-04-13",
+                   "plaats":"Rotterdam",
+                   "prestatie":"02:59:25"
+                },
+                {
+                   "naam":"Roy Peters",
+                   "datum":"2024-04-14",
+                   "plaats":"Rotterdam",
+                   "prestatie":"04:10:21"
+                }
+             ]
           }
        ],
        "indoor":[
@@ -1800,6 +1892,39 @@
                    "datum":"2021-10-08",
                    "plaats":"Delft",
                    "prestatie":"15:19.57"
+                }
+             ]
+          },
+          {
+             "onderdeel":"10km Weg",
+             "prestaties":[
+                {
+                   "naam":"Florence Estublier",
+                   "datum":"2022-09-25",
+                   "plaats":"Den Haag",
+                   "prestatie":"39:04"
+                }
+             ]
+          },
+          {
+             "onderdeel":"Halve Marathon",
+             "prestaties":[
+                {
+                   "naam":"Florence Estublier",
+                   "datum":"2022-05-15",
+                   "plaats":"Leiden",
+                   "prestatie":"01:37:40"
+                }
+             ]
+          },
+          {
+             "onderdeel":"Marathon",
+             "prestaties":[
+                {
+                   "naam":"Aniek Sips",
+                   "datum":"2025-04-13",
+                   "plaats":"Rotterdam",
+                   "prestatie":"03:31:23"
                 }
              ]
           }
