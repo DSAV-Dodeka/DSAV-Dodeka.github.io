@@ -1,9 +1,17 @@
 {
     "nieuwsberichten": [
         {
+            "id": "aug_2025",
+            "titel": "Inschrijfsysteem doet het weer! // Subscription system has been fixed!",
+            "datum": "20-08-2025",
+            "auteur": "Tijmen",
+            "tekst": "Vanwege een technische fout was het de afgelopen dagen helaas niet mogelijk om in te schrijven voor Dodeka. We hebben dit verholpen en vanaf nu kan je je weer inschrijven voor Dodeka! Iedereen die twijfelt of die zich heeft ingeschreven, kan een mail sturen naar bestuur@dsavdodeka.nl. \n\n Unfortunately, the subscription system has been down for the past few days due to a technical issue. The problem has now been resolved, and it is once again possible to subscribe to Dodeka! If you are unsure whether your registration was successful, please contact us at bestuur@dsavdodeka.nl.",
+            "foto": "stagairArnold.jpg"
+        },
+        {
             "id": "jul_2025",
             "titel": "Dodeka promoveert naar de 2e divisie!",
-            "datum": "12-07-2024",
+            "datum": "12-07-2025",
             "auteur": "Jesper",
             "tekst": "Tijdens het eerste jaar waarin D.S.A.V. Dodeka onder eigen naam meedoet aan de landelijke competitie, is gelijk promotie afgedwongen! Een grote groep mannelijke en vrouwelijke atleten heeft geweldige prestaties geleverd tijdens de drie competitiedagen, waarvan de laatste afgelopen zondag plaatsvond. De mannen zijn landelijk op de derde plek geëindigd, en de vrouwen zelfs als tweede! Hierdoor is Dodeka voor de gecombineerde competitie van volgend jaar direct gepromoveerd. Gefeliciteerd iedereen, en op naar nóg mooiere prestaties volgend jaar!",
             "foto": "promotie_2025.jpg"
