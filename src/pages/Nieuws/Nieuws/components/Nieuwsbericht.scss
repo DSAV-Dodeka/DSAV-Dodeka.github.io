@@ -1,12 +1,12 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 .nieuwsbericht_1{ //relative lg:flex
     position: relative;
     margin-top: 6rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: flex;
     }
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-top: 4rem;
     }
 }
@@ -21,7 +21,7 @@
     width: 100%;
     object-fit: cover;
     display: block;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         width: 33.333333%;
     }
 }
@@ -30,8 +30,8 @@
     width: 100%;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: $dodeka_blauw90p;
-    @include respond(computerscherm){
+    background-color: variables.$dodeka_blauw90p;
+    @include variables.respond(computerscherm){
         width: 66.666667%;
         padding-top: 2rem;
         padding-bottom: 2rem;
@@ -44,7 +44,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     color: white;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         padding-left: 4rem;
         padding-right: 4rem;
     }
@@ -59,7 +59,7 @@
     text-align: left;
     font-size: 1rem;
     line-height: 1.5rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         margin-top: 2rem;
         margin-bottom: 2rem;
         padding-left: 4rem;
@@ -71,7 +71,7 @@
     width: 100%;
     object-fit: cover;
     overflow: hidden;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         width: 33.333333%;
         display: block;
     }

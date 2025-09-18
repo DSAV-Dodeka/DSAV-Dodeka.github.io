@@ -1,10 +1,10 @@
-@import "../../variables.scss";
+@use "../../variables.scss";
 
 .profiel_status {
     margin-left: 4rem;
     margin-right: 4rem;
     margin-top: 2rem;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     text-align: left;
 }
 
@@ -17,8 +17,8 @@
     padding-right: 4rem;
     padding-top: 4rem;
     padding-bottom: 2rem;
-    background-color: $dodeka_blauw90p;
-    @include respond(mobile) {
+    background-color: variables.$dodeka_blauw90p;
+    @include variables.respond(mobile) {
         margin-top: 4rem;
         padding-top: 0;
         margin-bottom: 4rem;
@@ -32,31 +32,31 @@
     top: -2.25rem;
     left: 4rem;
     position: absolute;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     color: white;
-    font-size: $font_large;
-    font-weight: $bold;
-    line-height: $line_height_large;
+    font-size: variables.$font_large;
+    font-weight: variables.$bold;
+    line-height: variables.$line_height_large;
     padding: 1rem;
     border-radius: 0.75rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: calc(100% - 2rem);
         left: 1rem;
         padding: 0.5rem;
-        font-size: $font_medium;
-        line-height: $line_height_medium;
+        font-size: variables.$font_medium;
+        line-height: variables.$line_height_medium;
         top: -1.25rem;
     }
 }
 
 .profiel_info {
     color: white;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     padding-bottom: 0.5rem;
-    @include respond(mobile) {
-        font-size: $font_small;
-        line-height: $line_height_small;
+    @include variables.respond(mobile) {
+        font-size: variables.$font_small;
+        line-height: variables.$line_height_small;
     }
 }
 
@@ -64,16 +64,16 @@
     color: green;
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
-    font-size: $font_small;
-    line-height: $line_height_small;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
 }
 
 .profiel_edit_sent_bad {
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
-    font-size: $font_small;
-    line-height: $line_height_small;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
 }
 
 .profiel_highlights {
@@ -87,13 +87,13 @@
     top: 8rem;
     padding: 1rem;
     background-color: white;
-    color: $dodeka_rood;
-    font-weight: $bold;
+    color: variables.$dodeka_rood;
+    font-weight: variables.$bold;
     text-align: center;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     border-radius: 0.75rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         position: relative;
         width: 100%;
@@ -109,7 +109,7 @@
 }
 
 .profiel_edit {
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     width: fit-content;
     display: flex;
     padding: 0.5rem;
@@ -118,7 +118,7 @@
     right: 50%;
     cursor: pointer;
     border-radius: 0.75rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         right: 1rem;
         top: 2rem;
     }
@@ -127,10 +127,10 @@
 .profiel_edit_text {
     color: white;
     margin-right: 0.5rem;
-    font-size: $font_small;
-    line-height: $line_height_small;
-    font-weight: $bold;
-    @include respond(mobile) {
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
+    font-weight: variables.$bold;
+    @include variables.respond(mobile) {
         display: none;
     }
 }
@@ -151,16 +151,16 @@
     width: 25%;
     border-style: none;
     background-color: white;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     padding: 0.5rem;
     border-radius: 0.75rem;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 50%;
-        font-size: $font_small;
-        line-height: $line_height_small;
+        font-size: variables.$font_small;
+        line-height: variables.$line_height_small;
         padding: 0.25rem;
     }
 }
@@ -174,18 +174,18 @@
 }
 
 .profiel_button {
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     width: fit-content;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 0.75rem;
     cursor: pointer;
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     margin-top: 1rem;
-    @include respond(mobile) {
-        font-size: $font_small;
+    @include variables.respond(mobile) {
+        font-size: variables.$font_small;
         margin-top: 0;
         margin-bottom: 1rem;
     }
@@ -194,7 +194,7 @@
 
 .profiel_role_list {
     width: calc(100% / 3);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-top: 2rem;
         width: 75%;
     }
@@ -209,6 +209,6 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     border-radius: 0.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
 }

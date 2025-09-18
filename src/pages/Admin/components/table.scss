@@ -1,7 +1,7 @@
-@import "../../../variables";
+@use "../../../variables";
 
 .leden_table {
-  background-color: $dodeka_blauw90p;
+  background-color: variables.$dodeka_blauw90p;
   color: white;
   width: 100%;
   border-collapse: collapse;
@@ -12,9 +12,9 @@
   // width: 20%;
   padding: 0;
   margin:0;
-  background-color: $dodeka_rood;
+  background-color: variables.$dodeka_rood;
   height: 4rem;
-  font-size: $font_medium;
+  font-size: variables.$font_medium;
 }
 
 .leden_table th:last-of-type {
@@ -23,8 +23,8 @@
 
 .leden_table tr {
   height: 4rem;
-  font-size: $font_small;
-  line-height: $line_height_small;
+  font-size: variables.$font_small;
+  line-height: variables.$line_height_small;
   text-align: center;
 }
 
@@ -34,9 +34,9 @@
   text-decoration: none;
   color: white;
   cursor: pointer;
-  font-size: $font_small;
-  line-height: $line_height_small;
-  font-weight: $bold;
+  font-size: variables.$font_small;
+  line-height: variables.$line_height_small;
+  font-weight: variables.$bold;
 }
 
 .leden_table svg {
@@ -66,16 +66,16 @@
   height: 2rem;
   border-style: none;
   background-color: white;
-  color: $dodeka_blauw;
+  color: variables.$dodeka_blauw;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border-radius: 0.5rem;
-  font-size: $font_small;
-  line-height: $line_height_small;
+  font-size: variables.$font_small;
+  line-height: variables.$line_height_small;
 }
 
 .bevestig_inschrijving button {
-  color: $dodeka_rood !important;
+  color: variables.$dodeka_rood !important;
 }
 
 .canSort {
@@ -91,13 +91,13 @@
   padding-right: 1rem;
   height: 3rem;
   line-height: 3rem;
-  color: $dodeka_rood;
+  color: variables.$dodeka_rood;
   border-radius: 0.75rem;
   cursor: pointer;
 }
 
 .leden_table_row_button {
-  background-color: $dodeka_rood !important;
+  background-color: variables.$dodeka_rood !important;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
@@ -107,12 +107,12 @@
   padding-bottom: 0.5rem;
   color: white;
   border-radius: 0.75rem;
-  font-weight: $bold;
+  font-weight: variables.$bold;
   cursor: pointer;
 }
 
 .leden_table_row_link {
-  color: $dodeka_rood;
+  color: variables.$dodeka_rood;
   cursor: pointer;
 }
 
@@ -120,7 +120,7 @@
   position: absolute;
   right: 4rem;
   top: 6rem;
-  background-color: $dodeka_rood;
+  background-color: variables.$dodeka_rood;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;

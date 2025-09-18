@@ -1,8 +1,8 @@
-@import "../../../variables";
+@use "../../../variables";
 
 .spikeContainer {
     text-align: center;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-bottom: 0rem;
     }
     
@@ -13,7 +13,7 @@
     height: 0;
     margin: 0;
     padding: 0;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         height: 3rem;
     }
 }
@@ -23,7 +23,7 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     width: 10rem;  
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         margin-left: 3.5rem;
         margin-top: 2rem;
         margin-bottom: 2rem;
@@ -33,7 +33,7 @@
 .spike_2{ //space-y-8 lg:space-y-24 mb-4 lg:mb-12
     margin-top: 2rem;
     margin-bottom: 1rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         margin-top: 6rem;
         margin-bottom: 3rem;
     }
@@ -43,19 +43,19 @@
 
 .spike_3{ //mb-8 lg:mb-24
     margin-bottom: 2rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         margin-bottom: 6rem;
     }    
 }
 
 .spike_4{ //bg-rood text-white text-xl font-bold rounded-xl py-2 px-4 lg:py-4 mb-4 lg:mb-12
     cursor: pointer;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     text-decoration: none;
     border: none;
     color: white;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     font-weight: 700;
     border-radius: 0.75rem;
     padding-top: 0.5rem;
@@ -64,7 +64,7 @@
     padding-right: 1rem;
     text-align: center;
     margin-bottom: 1rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         padding-top: 1rem;
         padding-bottom: 1rem;
         margin-bottom: 3rem
@@ -72,11 +72,11 @@
 }
 
 .spike_status {
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     margin-left: 4rem;
     margin-top: 6rem;
     text-align: left;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-left: 2rem;
         margin-top: 2rem;
     }

@@ -1,8 +1,8 @@
-@import "./variables";
+@use "variables";
 
 #app_screen {
     width: 100%;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
 }
 
 #app_container {
@@ -11,7 +11,7 @@
     background-color: white;
     margin-right: auto;
     margin-left: auto;
-    @include respond(too_large) {
+    @include variables.respond(too_large) {
         border-right: solid white 8px;
         border-left: solid white 8px;
     }

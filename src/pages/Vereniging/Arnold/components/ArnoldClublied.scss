@@ -1,11 +1,11 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 .arnoldClublied {
     display: flex;
     width: 100%;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     margin-bottom: 6rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         margin-bottom: 4rem;
     }
@@ -21,7 +21,7 @@
     padding-bottom: 2rem;
     overflow-y: scroll;
     height: calc(50vw * 0.5625 - 2rem);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         width: 100%;
         padding: 1rem;
@@ -30,10 +30,10 @@
 }
 
 .clubliedLyrics p {
-    font-size: $font_small;
-    line-height: $line_height_small;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
     height: calc(100% - 4rem);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         padding-bottom: 1rem;
         height: auto;
     }
@@ -44,7 +44,7 @@
     border: 0;
     width: 50%;
     height: calc(50vw * 0.5625);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         height: calc(100vw * 0.5625);
         display: block;
         width: 100%;

@@ -1,4 +1,4 @@
-@import "../../variables";
+@use "../../variables";
 
 .hidden {
     display: none;
@@ -17,8 +17,8 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    background-color: $dodeka_blauw;
-    @include respond(mobile) {
+    background-color: variables.$dodeka_blauw;
+    @include variables.respond(mobile) {
         display: none;
     }
 }
@@ -28,7 +28,7 @@
     cursor: pointer;
     position: fixed;
     z-index: 5;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         visibility: hidden;
     }
 }
@@ -49,9 +49,9 @@
 #navMobile {
     display: none;
     width: 100%;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     z-index: 2;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
     }
 }
@@ -117,7 +117,7 @@
     top: 4rem;
     width: 100vw;
     height: 100vh;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
 }
 
 .inactive {

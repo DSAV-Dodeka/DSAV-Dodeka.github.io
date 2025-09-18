@@ -1,4 +1,4 @@
-@import "../../../variables";
+@use "../../../variables";
 
 #home_nieuws_container {
     width: 100%;
@@ -6,7 +6,7 @@
     height: 24rem;
     margin-top: 6rem;
     margin-bottom: 6rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         height: auto;
         margin-top: 4rem;
         margin-bottom: 4rem;
@@ -19,7 +19,7 @@
     width: calc(100%/3);
     height: 24rem;
     clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         position: relative;
         clip-path: none;
@@ -36,15 +36,15 @@
     position: absolute;
     width: 75%;
     right: 0;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     height: 24rem;
     padding-left: 10rem;
     padding-right: 4rem;
     padding-top: 8rem;
     clip-path: polygon(15% 0%, 100% 0%, 100% 100%, calc(1/60 * 100%) 100%);
     color: white;
-    line-height: $line_height_small;
-    @include respond(mobile) {
+    line-height: variables.$line_height_small;
+    @include variables.respond(mobile) {
         position: relative;
         width: 100%;
         height: auto;
@@ -61,16 +61,16 @@
     right: 0;
     top: 2rem;
     width: 75%;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     height: 4rem;
     color: white;
     text-align: left;
     font-size: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     padding-top: 0.75rem;
     padding-left: 4rem;
     padding-right: 4rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         text-align: left;
         padding-left: 2rem;
         padding-right: 2rem;
@@ -86,7 +86,7 @@
     height: 16rem;
     border: rgba(255,255,255,0.5);
     
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         margin-top: 0;
 
@@ -98,7 +98,7 @@
     border-right-width: 2px;
     border-right-style: solid;
     
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         border-right-width: 0;
 
     }
@@ -110,11 +110,11 @@
 }
 
 .home_nieuwstitel {
-    font-weight: $bold;
+    font-weight: variables.$bold;
     margin-right: 1rem;
     margin-left: 1rem;
     height: 4rem;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
 }
 
 .home_nieuwsstukje {
@@ -126,17 +126,17 @@
     height: 9rem;
     margin-left: 1rem;
     margin-right: 1rem;
-    font-size: $font_small;
-    line-height: $line_height_small;
-    font-weight: $normal;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
+    font-weight: variables.$normal;
 }
 
 .home_nieuws_link {
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     text-decoration: none;
     margin-left: 1rem;
     margin-right: 1rem;
-    font-size: $font_small;
+    font-size: variables.$font_small;
 }
 
 .no_underline {

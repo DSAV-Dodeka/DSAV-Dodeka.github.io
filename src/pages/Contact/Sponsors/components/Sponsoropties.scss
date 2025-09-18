@@ -1,10 +1,10 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 .sponsoropties_1{ //lg:flex bg-blauw bg-opacity-90 w-full mb-16 lg:mb-24
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     width: 100%;
     margin-bottom: 4rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: flex;
         margin-bottom: 6rem;
     }
@@ -16,7 +16,7 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
     width: 100%;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: inline;
         padding-top: 0px;
         padding-bottom: 0px;
@@ -27,13 +27,13 @@
 .sponsoropties_3{ //text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8 mb-16 lg:mb-24
     --tw-text-opacity: 1;
     color: rgba(255, 255, 255, var(--tw-text-opacity));
-    font-size: $font_small;
-    line-height: $line_height_small;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
     margin-left: 1rem;
     margin-right: 1rem;
     margin-top: 1rem;
     margin-bottom: 4rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         margin-left: 4rem;
         margin-right: 4rem;
         margin-top: 2rem;
@@ -49,10 +49,10 @@
     padding-right: 1rem;    
     --tw-text-opacity: 1;
     color: rgba(255, 255, 255, var(--tw-text-opacity));
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         text-align: left;
     }
-    @include respond(mobile){
+    @include variables.respond(mobile){
         flex-direction: column;
         align-items: center;
     }
@@ -62,7 +62,7 @@
     width: 12rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         margin-left: 1rem;
         margin-right: 1rem
     }
@@ -73,7 +73,7 @@
     padding-top: 4rem;
     --tw-opacity: 1;
     background-color: white;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: inline;
         width: 33.333333%;
         padding-top: 0px;
@@ -83,7 +83,7 @@
 
 
 .linktomail_1{
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     text-decoration: none;
 }
 

@@ -1,11 +1,11 @@
-@import "../variables";
+@use "../variables";
 
 #contactButtonsContainer {
     display: flex;
     margin-left: 4rem;
     margin-right: 4rem;
     margin-top: 2rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         margin-left: 1rem;
         margin-right: 1rem;
@@ -23,13 +23,13 @@
     color: white;
     text-align: center;
     border-radius: 0.25rem;
-    font-weight: $bold;
-    font-size: $font_medium;
+    font-weight: variables.$bold;
+    font-size: variables.$font_medium;
     text-decoration: none;
     cursor: pointer;
     background: radial-gradient(circle at -20% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
     box-shadow: 0 0 15px #001F48;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         width: 100%;
     }
@@ -50,13 +50,13 @@
     color: white;
     text-align: center;
     border-radius: 0.25rem;
-    font-weight: $bold;
-    font-size: $font_medium;
+    font-weight: variables.$bold;
+    font-size: variables.$font_medium;
     text-decoration: none;
     cursor: pointer;
     background: radial-gradient(circle at -20% 150%, #26D0CE 0%, #1A2980 100%);
     box-shadow: 0 0 15px #001F48;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         width: 100%;
         margin-right: 0;

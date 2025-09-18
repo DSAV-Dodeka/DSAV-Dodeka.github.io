@@ -1,4 +1,4 @@
-@import "../../../variables";
+@use "../../../variables";
 
 #bestuurContainer {
     position: relative;
@@ -9,9 +9,9 @@
     position: absolute;
     right: 0;
     bottom: -7rem;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     opacity: 10%;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         bottom: -5rem;
     }
 }
@@ -20,7 +20,7 @@
     position: relative;
     height: 8rem;
 
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: none;
     }
 }

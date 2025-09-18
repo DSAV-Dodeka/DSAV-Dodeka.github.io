@@ -1,4 +1,4 @@
-@import "../../../variables";
+@use "../../../variables";
 
 @media screen and (min-width: 1024px) {
 
@@ -11,7 +11,7 @@
     width: 100%;
     height: 24rem;
     position: relative;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     margin-top: 0rem;
 }
 
@@ -22,8 +22,8 @@
     left: 0;
     width: 60%;
     height: 24rem;
-    background-color: $dodeka_blauw;
-    @include respond(mobile) {
+    background-color: variables.$dodeka_blauw;
+    @include variables.respond(mobile) {
         visibility: hidden;
     }
 }
@@ -34,7 +34,7 @@
     width: 50%;
     right: 0;
     height: 24rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         clip-path: none;
     }
@@ -52,7 +52,7 @@
     right: 0;
     height: 24rem;
     background-color: rgba(255,255,255,0.5);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         clip-path: none;
     }
@@ -64,27 +64,27 @@
     width: 60%;
     text-align: center;
     transform: translate(40%, -50%);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         transform: translateY(-50%);
     }
 }
 
 #home_title_right_text {
-    color: $dodeka_blauw;
-    font-size: $font_large;
-    font-weight: $bold;
+    color: variables.$dodeka_blauw;
+    font-size: variables.$font_large;
+    font-weight: variables.$bold;
     margin: 0;
 }
 
 #home_title_right_button {
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     color: white;
     border-radius: 0.75rem;
     border: none;
     padding: 1rem;
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     margin-top: 2rem;
 }
 
@@ -94,7 +94,7 @@
     margin-right: auto;
     width: 100px;
     margin-top: 2rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         height: 100px;
     }

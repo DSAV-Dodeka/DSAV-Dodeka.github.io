@@ -1,4 +1,4 @@
-@import "../../variables";
+@use "../../variables";
 
 .profile-box {
     position: relative;
@@ -9,10 +9,10 @@
     height: 4rem;
     text-align: center;
     color: white;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
     line-height: 4rem;
     cursor: pointer;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 4rem;
     }
 }
@@ -26,13 +26,13 @@
     height: 4rem;
     text-align: center;
     color: white;
-    background-color: $dodeka_blauw;
-    font-size: $font_medium;
+    background-color: variables.$dodeka_blauw;
+    font-size: variables.$font_medium;
     line-height: 4rem;
     cursor: pointer;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 4rem;
-        font-size: $font_small;
+        font-size: variables.$font_small;
     }
 }
 
@@ -57,15 +57,15 @@
     text-align: center;
     text-decoration: none;
     color: white;
-    background-color: $dodeka_blauw;
-    font-size: $font_small;
+    background-color: variables.$dodeka_blauw;
+    font-size: variables.$font_small;
     font-weight: 500;
     cursor: pointer;
 }
 
 .profile_dropdownElement:hover {
     background-color: white;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
 }
 
 .dropLast {

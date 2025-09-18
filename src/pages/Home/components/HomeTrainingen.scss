@@ -1,11 +1,11 @@
-@import "../../../variables";
+@use "../../../variables";
 
 #home_trainingen_container {
     width: 100%;
     position: relative;
     height: 24rem;
     margin-top: 6rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         height: auto;
         margin-top: 2rem;
     }
@@ -17,7 +17,7 @@
     width: calc(100%/3);
     height: 24rem;
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 30% 100%);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         position: relative;
         clip-path: none;
@@ -34,15 +34,15 @@
     position: absolute;
     width: 75%;
     left: 0;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     height: 24rem;
     padding-left: 4rem;
     padding-right: 10rem;
     padding-top: 8rem;
     clip-path: polygon(0% 0%, 85% 0%, calc((1 - (1/60)) * 100%) 100%, 0% 100%);
     color: white;
-    line-height: $line_height_small;
-    @include respond(mobile) {
+    line-height: variables.$line_height_small;
+    @include variables.respond(mobile) {
         position: relative;
         width: 100%;
         height: auto;
@@ -59,16 +59,16 @@
     left: 0;
     top: 2rem;
     width: 75%;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     height: 4rem;
     color: white;
     text-align: right;
     font-size: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     padding-top: 0.75rem;
     padding-left: 4rem;
     padding-right: 4rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         text-align: left;
         padding-left: 2rem;
         padding-right: 2rem;
@@ -76,10 +76,10 @@
 }
 
 #home_trainingen_button {
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     color: white;
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     border-radius: 0.75rem;
     padding: 0.5rem;
     border: none;

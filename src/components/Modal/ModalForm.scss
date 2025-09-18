@@ -1,13 +1,13 @@
-@import "../../variables.scss";
+@use "../../variables.scss";
 
 .modal-form {
     display: flex;
     flex-direction: column;
 
     label {
-        font-size: $font_medium;
-        line-height: $line_height_medium;
-        font-weight: $bold;
+        font-size: variables.$font_medium;
+        line-height: variables.$line_height_medium;
+        font-weight: variables.$bold;
         margin-bottom: 1rem;
     
         input, select {
@@ -18,20 +18,20 @@
     input, select {
         border-style: none;
         background-color: white;
-        color: $dodeka_blauw;
+        color: variables.$dodeka_blauw;
         padding: 0.5rem;
         border-radius: 0.75rem;
-        font-size: $font_medium;
+        font-size: variables.$font_medium;
     }
 
     button {
         border-style: none;
         width: fit-content;
-        background-color: $dodeka_rood;
+        background-color: variables.$dodeka_rood;
         padding: 0.5rem 1rem;
         color: white;
         border-radius: 0.75rem;
-        font-weight: $bold;
+        font-weight: variables.$bold;
         cursor: pointer;
     }
 }

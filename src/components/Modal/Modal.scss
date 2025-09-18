@@ -1,9 +1,9 @@
-@import "../../variables.scss";
+@use "../../variables.scss";
 
 .modal-main {
     border-radius: 0.75rem;
     border-style: none;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     position: fixed;
     top: 15vh;
     left: 50%;
@@ -25,8 +25,8 @@
     margin-bottom: 1rem;
 }
 .modal-title {
-    font-size: $font_ml;
-    font-weight: $bold;
+    font-size: variables.$font_ml;
+    font-weight: variables.$bold;
 }
 .modal-close-btn {
     margin-left: 0.5rem;

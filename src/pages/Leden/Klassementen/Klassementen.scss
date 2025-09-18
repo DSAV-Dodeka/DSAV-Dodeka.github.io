@@ -1,4 +1,4 @@
-@import "../../../variables.scss";
+@use "../../../variables.scss";
 
 .algemeen{
     position: relative;
@@ -8,7 +8,7 @@
     display: table;
     clear: both;
     margin-bottom: 6rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-bottom: 2rem;
     }
 }
@@ -17,7 +17,7 @@
 .kolom {
     float: left;
     width: 50%;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
     }
 }
@@ -25,13 +25,13 @@
 
 .SoortKlassement {
     width: 70%;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     color: #fff;
     border-radius: .75rem;
     border: none;
     padding: 1rem;
     font-size: 1.25rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     margin-top: 2rem;
     margin-left: 15%;
     object-position: center;
@@ -45,14 +45,14 @@
     text-align: right;
     width: 95%;
     height: 3rem;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: #fff;
     padding-top: 1rem;
     padding-bottom: 3rem;
     padding-left: 2rem;
     padding-right: 3rem;
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
 
 }
@@ -63,14 +63,14 @@
     text-align: right;
     width: 89.35%;
     height: 3rem;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: #fff;
     padding-top: 1rem;
     padding-bottom: 3rem;
     padding-left: 2rem;
     padding-right: 3rem;
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
 
 }
@@ -81,16 +81,16 @@
     text-align: right; 
     width: 83.7%;
     height: 4rem;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: white;
     padding-top: 1rem;
     padding-bottom: 3rem;
     padding-left: 2rem;
     padding-right: 3rem;
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
-    @include respond(mobile){
+    @include variables.respond(mobile){
         margin-bottom: 0rem;
     }
 }
@@ -101,13 +101,13 @@
     object-position: left; 
     text-align: left;
     width: 79.5%;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: #fff;
     padding: 1rem;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
     margin-bottom: 2rem;
     padding-left: 2rem;
-    @include respond(mobile){
+    @include variables.respond(mobile){
         display: block;
         text-align: left;
         padding-left: 1rem;
@@ -123,13 +123,13 @@
     text-align: left;
     width: 95%;
     height: 3rem;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: #fff;
     padding-top: 1rem;
     padding-bottom: 3rem;
     padding-left: 3rem;
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
     margin-left: 5%;
 }
@@ -140,13 +140,13 @@
     text-align: left;
     width: 89.35%;
     height: 3rem;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: #fff;
     padding-top: 1rem;
     padding-bottom: 3rem;
     padding-left: 3rem;
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
     margin-left: 10.65%;
 }
@@ -157,16 +157,16 @@
     text-align: left;
     width: 83.75%;
     height: 4rem;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: white;
     padding-top: 1rem;
     padding-bottom: 3rem;
     padding-left: 3rem;
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
     margin-left: 16.25%;
-    @include respond(mobile){
+    @include variables.respond(mobile){
         margin-bottom: 0rem;
     }
 }
@@ -177,13 +177,13 @@
     object-position: right; 
     text-align: left;
     width: 79.5%;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: #fff;
     padding: 1rem;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
     margin-bottom: 2rem;
     margin-left: 20.5%;
-    @include respond(mobile){
+    @include variables.respond(mobile){
         display: block;
         text-align: left;
         padding-left: 1rem;
@@ -195,11 +195,11 @@
 
 .knop{
     display: none;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: cover;
-        background-color: $dodeka_blauw90p;
+        background-color: variables.$dodeka_blauw90p;
         color: white;
-        font-size: $font_medium;
+        font-size: variables.$font_medium;
         margin: 1rem;
     }
 
@@ -210,19 +210,19 @@
 }
 
 .klassementHidden {
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: none;
     }
 }
 
 .klassementLaad {
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     color: #fff;
     border-radius: .75rem;
     border: none;
     padding: 1rem;
     font-size: 1.25rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     margin-top: 2rem;
     margin-bottom: 2rem;
     margin-left: 50%;
@@ -230,14 +230,14 @@
     object-position: center;
     text-align: center;
     cursor: pointer;
-    @include respond(computerscherm) {
+    @include variables.respond(computerscherm) {
         display: none;
     }
 }
 
 .points_info {
     display: flex;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: unset;
     }
 }
@@ -245,19 +245,19 @@
 .points_info_column {
     width: calc(50% - 2rem);
     margin-right: 1rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         margin-bottom: 2rem;
     }
 }
 
 .points_info_column h1 {
-    font-size: $font_ml;
+    font-size: variables.$font_ml;
 }
 
 .points_info_colum p {
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
 }
 
 .points_info_row {
@@ -270,8 +270,8 @@
 }
 
 .points_info_points {
-    color: $dodeka_rood;
-    @include respond(mobile) {
+    color: variables.$dodeka_rood;
+    @include variables.respond(mobile) {
         min-width: max-content;
     }
 }
@@ -281,10 +281,10 @@
     top: 10rem;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: $dodeka_rood;
-    font-size: $font_small;
+    color: variables.$dodeka_rood;
+    font-size: variables.$font_small;
     cursor: pointer;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         right: 1rem;
         left: unset;
         transform: none;
@@ -296,7 +296,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     width: 100%;
     height: 100%;
     opacity: 20%;
@@ -308,7 +308,7 @@
     flex-direction: column;
     top: 10vh;
     left: 25%;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     width: 50%;
     max-height: calc(min(90%, 75vh));
     opacity: 100%;
@@ -316,7 +316,7 @@
     border-radius: 0.75rem;
     color: white;
     padding: 1rem 2rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: calc(100% - 2rem);
         left: 1rem;
         overflow-y: scroll;
@@ -324,10 +324,10 @@
 }
 
 .points_info_title {
-    font-size: $font_ml;
-    font-weight: $bold;
+    font-size: variables.$font_ml;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         max-width: calc(100% - 2rem);
     }
 }
@@ -339,19 +339,19 @@
     fill: white;
     width: 2rem;
     cursor: pointer;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 1.5rem;
     }
 }
 
 .klassementen_status {
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     margin-left: 4rem;
 }
 
 .classUpdated {
     display: flex;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     align-items: center;
     flex-direction: column;
     margin-bottom: 1rem;

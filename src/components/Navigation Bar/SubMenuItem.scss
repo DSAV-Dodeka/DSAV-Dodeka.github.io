@@ -1,4 +1,4 @@
-@import "../../variables";
+@use "../../variables";
 
 .itemNav {
     text-decoration: none;
@@ -8,9 +8,9 @@
     color: white;
     text-align: center;
     line-height: 4rem;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
     font-weight: 500;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
     }
 }
