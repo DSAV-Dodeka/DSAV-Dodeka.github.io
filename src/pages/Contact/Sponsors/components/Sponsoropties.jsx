@@ -2,6 +2,10 @@ import React from "react";
 import Header from "../../../../components/Header";
 import "./Sponsoropties.scss"
 import {getNestedImagesUrl} from "../../../../functions/links";
+import maltha from "$images/sponsors/maltha.png";
+import muconsult from "$images/sponsors/muconsult.png";
+import boozed from "$images/sponsors/boozed.png";
+import sponsoropties from "$images/sponsors/sponsoropties.jpg";
 
 function Sponsoropties() {
     return(
@@ -14,13 +18,13 @@ function Sponsoropties() {
                </p>
                 <Header text="Huidige sponsors" position="left"/>
                 <div className="sponsoropties_4">
-                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getNestedImagesUrl(`sponsors/maltha.png`)} alt="Maltha Sport" className="sponsoropties_5 maltha"></img></a>
-                    <a target="_blank" rel="noreferrer" href="https://muconsult.nl/"><img src={getNestedImagesUrl(`sponsors/muconsult.png`)} alt="MuConsult" className="sponsoropties_5 muconsult"></img></a>
-                    <a target="_blank" rel="noreferrer" href="https://www.boozed.nl/"><img src={getNestedImagesUrl(`sponsors/boozed.png`)} alt="Boozed" className="sponsoropties_5 boozed"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={maltha} alt="Maltha Sport" className="sponsoropties_5 maltha"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://muconsult.nl/"><img src={muconsult} alt="MuConsult" className="sponsoropties_5 muconsult"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.boozed.nl/"><img src={boozed} alt="Boozed" className="sponsoropties_5 boozed"></img></a>
                 </div>
                
             </div>
-            <img src={getNestedImagesUrl(`sponsors/sponsoropties.jpg`)} alt="" className="sponsoropties_6" />
+            <img src={sponsoropties} alt="" className="sponsoropties_6" />
         </div>
     )
 }

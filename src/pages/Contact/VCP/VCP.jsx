@@ -3,6 +3,10 @@ import PageTitle from "../../../components/PageTitle";
 import Header from "../../../components/Header";
 import "./VCP.scss"
 import {getNestedImagesUrl} from "../../../functions/links";
+import vcpLisa from "$images/vcp/vcp_lisa.jpg";
+import vcpNiels from "$images/vcp/vcp_niels.jpg";
+import vcpAnnejet from "$images/vcp/vcp_annejet.jpg";
+import vcpRoy from "$images/vcp/vcp_roy.jpg";
 
 function Vertrouwenscontactpersoon(){
     return (
@@ -20,22 +24,22 @@ function Vertrouwenscontactpersoon(){
                 </p>
             </div>    
             <div className="vcp_persoon vcp_left">
-                <img className="vcp_img" src={getNestedImagesUrl("vcp/vcp_lisa.jpg")}/>
+                <img className="vcp_img" src={vcpLisa}/>
                 <p className="vcp_naam">Lisa Meijndert</p>
                 E-mail: <a className="vcp_mail" href="mailto:vcplisa.dsavdodeka@gmail.com">vcplisa.dsavdodeka@gmail.com</a>
             </div>
             <div className="vcp_persoon vcp_right">
-                <img className="vcp_img" src={getNestedImagesUrl("vcp/vcp_niels.jpg")}/> 
+                <img className="vcp_img" src={vcpNiels}/> 
                 <p className="vcp_naam">Niels Verheugd</p>
                 E-mail: <a className="vcp_mail" href="mailto:vcpniels.dsavdodeka@gmail.com">vcpniels.dsavdodeka@gmail.com</a>
             </div>
             <div className="vcp_persoon vcp_left">
-            <img className="vcp_img" src={getNestedImagesUrl("vcp/vcp_annejet.jpg")}/>
+            <img className="vcp_img" src={vcpAnnejet}/>
                 <p className="vcp_naam">Annejet van Dam</p>
                 E-mail: <a className="vcp_mail" href="mailto:vcpannejet.dsavdodeka@gmail.com">vcpannejet.dsavdodeka@gmail.com</a>
             </div>
             <div className="vcp_persoon vcp_right">
-            <img className="vcp_img" src={getNestedImagesUrl("vcp/vcp_roy.jpg")}/>
+            <img className="vcp_img" src={vcpRoy}/>
                 <p className="vcp_naam">Roy Peters</p>
                 E-mail: <a className="vcp_mail" href="mailto:vcproy.dsavdodeka@gmail.com">vcproy.dsavdodeka@gmail.com</a>
             </div>

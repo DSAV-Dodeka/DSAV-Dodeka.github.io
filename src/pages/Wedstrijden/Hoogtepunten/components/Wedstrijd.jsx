@@ -1,6 +1,9 @@
 import React, {useContext, useEffect, useState} from "react";
 import "./Wedstrijd.scss";
 import {getNestedImagesUrl} from "../../../../functions/links";
+import goud from "$images/wedstrijden/goud.png";
+import zilver from "$images/wedstrijden/zilver.png";
+import brons from "$images/wedstrijden/brons.png";
 
 function getGold(prijzen) {
     const gold = prijzen.filter(prijs => {
@@ -51,9 +54,9 @@ function Wedstrijd(props) {
                     <p className="hoogtepunten_titel">Prijzen</p>
                 </div>
                 <div className="hoogtepunten_medaille_container">
-                    <img className="hoogtepunten_medaille" src={getNestedImagesUrl('wedstrijden/goud.png')} alt=""/>
-                    <img className="hoogtepunten_medaille" src={getNestedImagesUrl('wedstrijden/zilver.png')} alt=""/>
-                    <img className="hoogtepunten_medaille" src={getNestedImagesUrl('wedstrijden/brons.png')} alt=""/>
+                    <img className="hoogtepunten_medaille" src={goud} alt=""/>
+                    <img className="hoogtepunten_medaille" src={zilver} alt=""/>
+                    <img className="hoogtepunten_medaille" src={brons} alt=""/>
                 </div>
                 <div className="hoogtepunten_text_container">
                     <p className="hoogtepunten_text">{getGold(props.prijzen)}</p>

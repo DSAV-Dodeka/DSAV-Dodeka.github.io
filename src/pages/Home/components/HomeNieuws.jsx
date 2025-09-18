@@ -7,6 +7,7 @@ import "./HomeNieuws.scss";
 import Nieuws from "../../../content/Nieuws.json";
 import { getNestedImagesUrl } from "../../../functions/links";
 import { innerWidth } from "../../../functions/sizes";
+import nieuws from "$images/home/nieuws.jpg";
 
 function HomeNieuws() {
   let maxNieuws = 3;
@@ -16,7 +17,7 @@ function HomeNieuws() {
       <div id="home_nieuws_foto">
         <img
           id="home_nieuws_foto_2"
-          src={getNestedImagesUrl("home/nieuws.jpg")}
+          src={nieuws}
           alt=""
         />
       </div>

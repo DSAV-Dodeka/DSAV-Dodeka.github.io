@@ -8,6 +8,7 @@ import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss";
 import logo from "$images/logo.png";
 import { isClient } from "../../functions/sizes";
+import dodeka from "$images/dodeka.png";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
@@ -111,8 +112,8 @@ function NavigationBar() {
               }
             ></div>
           </div>
-          {/* <img id="navMobileLogo" src={getNestedImagesUrl(`dodeka.png`)} alt="" /> */}
-          <div className="mobileLogin">{/*<Login />*/}</div>
+          <img id="navMobileLogo" src={dodeka} alt="" />
+          {/*<div className="mobileLogin">{/*<Login /></div>*/}
         </div>
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
           <div className={active ? "" : "inactive"}>

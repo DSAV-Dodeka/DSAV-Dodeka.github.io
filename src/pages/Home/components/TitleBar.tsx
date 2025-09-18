@@ -4,8 +4,8 @@ import {
 } from "react-router";
 import "./TitleBar.scss";
 import D from "../../../images/groteD.svg?react";
-import {getNestedImagesUrl} from "../../../functions/links";
 import Sneeuw from "../../../images/home/zand.svg?react";
+import titlebar from "$images/home/titlebar.jpg";
 
 
 function TitleBar() {  
@@ -15,7 +15,7 @@ function TitleBar() {
           <Sneeuw className="sneeuw_bar"/>
         </div>
         <div id="home_title_right">
-            <img id="home_title_background" src={getNestedImagesUrl("home/titlebar.jpg")} alt=""/>
+            <img id="home_title_background" src={titlebar} alt=""/>
 
         </div>
         <div id="home_title_right_over">

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Nieuwsbericht from "../Nieuws/components/Nieuwsbericht";
 import SpikeText from "../../../content/Spike.json";
 import "./Spike.scss";
-import { getNestedImagesUrl } from "../../../functions/links";
+import logo from "$images/spike/logo.png";
 
 function Spike() {
   const [nBerichten, setNBerichten] = useState(3);
@@ -11,7 +11,7 @@ function Spike() {
     <div className="spikeContainer">
       <div className="spikeLogoContainer">
         <img
-          src={getNestedImagesUrl("spike/logo.png")}
+          src={logo}
           alt="De Spike"
           className="spike_1"
         />

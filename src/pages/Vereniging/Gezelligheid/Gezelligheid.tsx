@@ -1,7 +1,10 @@
 import React from "react";
 import "./Gezelligheid.scss";
 import PageTitle from "../../../components/PageTitle";
-import { getNestedImagesUrl } from "../../../functions/links";
+import biermijl from "$images/gezelligheid/biermijl.jpg";
+import nskTeamsAlgemeen from "$images/gezelligheid/nsk_teams_algemeen.jpeg";
+import gala1 from "$images/gezelligheid/gala1.jpg";
+import uithof from "$images/gezelligheid/uithof.jpg";
 
 function Gezelligheid() {
   return (
@@ -13,22 +16,22 @@ function Gezelligheid() {
       <div className="fotobalk">
         <img
           className="fotos"
-          src={getNestedImagesUrl(`gezelligheid/biermijl.jpg`)}
+          src={biermijl}
           alt="foto1"
         />
         <img
           className="fotos"
-          src={getNestedImagesUrl(`gezelligheid/nsk_teams_algemeen.jpeg`)}
+          src={nskTeamsAlgemeen}
           alt="foto2"
         />
         <img
           className="fotos"
-          src={getNestedImagesUrl(`gezelligheid/gala1.jpg`)}
+          src={gala1}
           alt="foto4"
         />
         <img
           className="fotos"
-          src={getNestedImagesUrl(`gezelligheid/uithof.jpg`)}
+          src={uithof}
           alt="foto3"
         />
         {/* <img className="fotos" src={Image4} alt="foto4"/> */}

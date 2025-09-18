@@ -6,6 +6,9 @@ import "./ContactBar.scss";
   
 import Heading from "./Heading";
 import {getNestedImagesUrl} from "../../functions/links";
+import maltha from "$images/sponsors/maltha.png";
+import muconsult from "$images/sponsors/muconsult.png";
+import boozed from "$images/sponsors/boozed.png";
 
 function ContactBar() {
     return (
@@ -30,9 +33,9 @@ function ContactBar() {
             <div className="bar_container">
                 <Link className="no_underline" to="/contact/sponsors#"><Heading title="Sponsors" /></ Link>
                 <div className="bar_info">
-                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={getNestedImagesUrl(`sponsors/maltha.png`)} alt="Maltha Sport" className="bar_sponsor maltha_bar"></img></a>
-                    <a target="_blank" rel="noreferrer" href="https://muconsult.nl/"><img src={getNestedImagesUrl(`sponsors/muconsult.png`)} alt="MuConsult" className="bar_sponsor muconsult_bar"></img></a>
-                    <a target="_blank" rel="noreferrer" href="https://www.boozed.nl/"><img src={getNestedImagesUrl(`sponsors/boozed.png`)} alt="Boozed" className="bar_sponsor boozed_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.malthasport.nl/"><img src={maltha} alt="Maltha Sport" className="bar_sponsor maltha_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://muconsult.nl/"><img src={muconsult} alt="MuConsult" className="bar_sponsor muconsult_bar"></img></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.boozed.nl/"><img src={boozed} alt="Boozed" className="bar_sponsor boozed_bar"></img></a>
                 </div>
                 
             </div>
