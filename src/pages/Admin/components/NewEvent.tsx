@@ -1,9 +1,9 @@
-import React, {ChangeEvent, FormEvent, useContext, useReducer, useState} from "react";
+import React, {type ChangeEvent, type FormEvent, useContext, useReducer, useState} from "react";
 import {back_post_auth, catch_api} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
-import {matchNames, MultiMatch, parseFile} from "../functions/parse";
+import {matchNames, type MultiMatch, parseFile} from "../functions/parse";
 import {z} from "zod";
-import {UserNames} from "../../../functions/api/klassementen";
+import {type UserNames} from "../../../functions/api/klassementen";
 import {formReducer, handleFormChange, handleSelectChange, handleTextAreaChange} from "../../../functions/forms";
 import EventCategories from "../../../content/EventTypes.json";
 

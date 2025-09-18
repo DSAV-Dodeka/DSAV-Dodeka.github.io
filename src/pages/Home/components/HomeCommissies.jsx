@@ -4,7 +4,7 @@ import React from "react";
 // } from "react-router-hash-link";
 import {
     Link
-} from "react-router-dom";
+} from "react-router";
 import "./HomeCommissies.scss";
 import {getNestedImagesUrl} from "../../../functions/links";
 

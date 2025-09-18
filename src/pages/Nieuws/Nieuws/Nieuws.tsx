@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Nieuwsbericht from "./components/Nieuwsbericht";
 import PageTitle from "../../../components/PageTitle";
 import NieuwsText from "../../../content/Nieuws.json";

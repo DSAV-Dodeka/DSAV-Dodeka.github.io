@@ -5,7 +5,7 @@ import "./HomeTrainingen.scss";
 // } from "react-router-hash-link";
 import {
     Link
-} from "react-router-dom";
+} from "react-router";
 import {getNestedImagesUrl} from "../../../functions/links";
 
 function HomeTrainingen() {

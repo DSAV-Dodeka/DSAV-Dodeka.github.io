@@ -1,9 +1,9 @@
 import {
     Link
-} from "react-router-dom";
+} from "react-router";
 import PageTitle from "../../../components/PageTitle";
 import "./Vereniging.scss";
-import {getImagesUrl, getNestedImagesUrl} from "../../../functions/links";
+import { getNestedImagesUrl} from "../../../functions/links";
 
 
 function Vereniging() {

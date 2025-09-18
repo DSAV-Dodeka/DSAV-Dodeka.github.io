@@ -1,7 +1,6 @@
 import React from "react";
 import PageTitle from "../../components/PageTitle";
 import "../Wedstrijden/Eigen wedstrijden/Wedstrijd.scss";
-import {getNestedImagesUrl} from "../../functions/links";
 import ActiviteitAlgemeen from "./components/ActiviteitAlgemeen";
 import ActiviteitBelangrijk from "./components/ActiviteitBelangrijk";
 

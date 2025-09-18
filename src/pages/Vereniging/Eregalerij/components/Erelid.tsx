@@ -1,6 +1,6 @@
 import React from "react";
 import "./Erelid.scss";
-import { getImagesUrl, getNestedImagesUrl, getDeepImagesUrl } from "../../../../functions/links";
+import { getDeepImagesUrl } from "../../../../functions/links";
 
 interface ErelidProps {
     naam: string;

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React from "react";
 import PageTitle from "../../../components/PageTitle";
 import Wedstrijd from "./components/Wedstrijd";
 import "./Hoogtepunten.scss";

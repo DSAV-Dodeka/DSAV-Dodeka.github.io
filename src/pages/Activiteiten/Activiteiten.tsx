@@ -1,7 +1,6 @@
 import React from "react";
-import {
-    Link
-} from "react-router-dom";
+
+
 import PageTitle from "../../components/PageTitle";
 import TextActiviteiten from "../../content/Activiteiten.json"
 import "../Wedstrijden/Wedstrijden/Wedstrijden.scss"

@@ -1,6 +1,6 @@
-import {Options} from "ky";
+import {type Options} from "ky";
 import {z} from "zod";
-import {AuthUse} from "../../pages/Auth/AuthContext";
+import {type AuthUse} from "../../pages/Auth/AuthContext";
 import {back_request} from "./api";
 
 const KlassementData = z.object({
@@ -27,7 +27,7 @@ export const klassement_request = async (auth: AuthUse, is_admin: boolean, rank_
         role = "members"
     }
 
-    let response = await back_request(`${role}/class/get/${rank_type}/`, auth, options)
+    const response = await back_request(`${role}/class/get/${rank_type}/`, auth, options)
     const punt_klas: KlassementData[] = KlassementData.array().parse(response)
     punt_klas.sort((a, b) => {
         return b.points - a.points
@@ -36,7 +36,7 @@ export const klassement_request = async (auth: AuthUse, is_admin: boolean, rank_
 }
 
 export const klassement_with_info_request = async (auth: AuthUse, rank_type: 'points'|'training', options?: Options): Promise<KlassementList> => {
-    let response = await back_request(`members/class/get_with_info/${rank_type}/`, auth, options)
+    const response = await back_request(`members/class/get_with_info/${rank_type}/`, auth, options)
     const punt_klas: KlassementList = KlassementList.parse(response)
     punt_klas.points.sort((a, b) => {
         return b.points - a.points
@@ -56,7 +56,7 @@ export type UserIDData = {
 const UserIDList = z.array(UserIDData)
 
 export const user_id_request = async (auth: AuthUse, options?: Options): Promise<Set<string>> => {
-    let response = await back_request('admin/users/ids/', auth, options)
+    const response = await back_request('admin/users/ids/', auth, options)
     const user_ids = UserIDList.parse(response).map(s => s.user_id)
     return new Set(user_ids)
 }
@@ -70,7 +70,7 @@ export type UserNames = z.infer<typeof UserNames>
 const UserNamesList = z.array(UserNames)
 
 export const user_names_request = async (auth: AuthUse, options?: Options): Promise<UserNames[]> => {
-    let response = await back_request('admin/users/names/', auth, options)
+    const response = await back_request('admin/users/names/', auth, options)
     return UserNamesList.parse(response)
 }
 
@@ -84,7 +84,7 @@ const ClassMetaList = z.object({
 export type ClassMetaList = z.infer<typeof ClassMetaList>;
 
 export const class_get_meta_request = async (auth: AuthUse, options?: Options): Promise<ClassMetaList> => {
-    let response = await back_request(`admin/class/get_meta/4/`, auth, options)
+    const response = await back_request(`admin/class/get_meta/4/`, auth, options)
     const class_list: ClassMetaList = ClassMetaList.parse(response)
     console.log(class_list)
     class_list.sort((a, b) => b.start_date.getTime() - a.start_date.getTime())

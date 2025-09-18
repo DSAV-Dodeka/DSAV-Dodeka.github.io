@@ -1,7 +1,7 @@
 import React from "react";
 import {
     Link
-} from "react-router-dom";
+} from "react-router";
 import "./ContactBar.scss";
   
 import Heading from "./Heading";

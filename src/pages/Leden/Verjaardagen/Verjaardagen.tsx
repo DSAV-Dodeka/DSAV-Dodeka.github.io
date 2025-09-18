@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext} from "react";
 import AuthContext from "../../Auth/AuthContext";
 import PageTitle from "../../../components/PageTitle";
-import {BirthdayData, bd_request} from "../../../functions/api/api";
+import {type BirthdayData} from "../../../functions/api/api";
 import Maand from "./components/Maand";
 import Verjaardag from "./components/Verjaardag";
 import "./Verjaardagen.scss";

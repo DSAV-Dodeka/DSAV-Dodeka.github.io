@@ -1,8 +1,5 @@
 // import React, {useContext, useEffect, useState} from "react";
-import { Link } from "react-router-dom";
-import PageTitle from "../../../components/PageTitle";
 import "./Reglementen.scss";
-import {getNestedImagesUrl} from "../../../functions/links";
 
 
 function Reglementen() {

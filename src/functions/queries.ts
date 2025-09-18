@@ -1,8 +1,6 @@
 import {
     bd_request,
-    BirthdayData,
     err_api,
-    SignedUp,
     su_request,
     ud_request,
     profile_request,
@@ -14,8 +12,8 @@ import {
     klassement_with_info_request,
     user_id_request, user_names_request
 } from "./api/klassementen";
-import {useQuery, UseQueryResult} from "@tanstack/react-query";
-import {AuthUse} from "../pages/Auth/AuthContext";
+import {useQuery, type UseQueryResult} from "@tanstack/react-query";
+import {type AuthUse} from "../pages/Auth/AuthContext";
 import {Logger} from "./logger";
 
 export const queryError = <T>(q: UseQueryResult<T>, defaultData: T, error: string): T => {

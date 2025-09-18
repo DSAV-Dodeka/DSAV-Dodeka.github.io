@@ -1,4 +1,4 @@
-import {ChangeEvent} from "react";
+import {type ChangeEvent} from "react";
 import React from "react"
 
 export const formReducer = <T>(state: T, action: FormAction<T>): T => {

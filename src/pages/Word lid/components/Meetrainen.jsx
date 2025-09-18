@@ -5,7 +5,7 @@ import React from "react";
 import config from "../../../config";
 import {
     Link
-} from "react-router-dom";
+} from "react-router";
 import Header from "../../../components/Header";
 import ContactButtons from "../../../components/ContactButtons";
 import "./Meetrainen.scss"

@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from "react";
-import { Link } from "react-router-dom";
+import React, {useContext} from "react";
+import { Link } from "react-router";
 import AuthContext from "../Auth/AuthContext";
 import PageTitle from "../../components/PageTitle";
 import "./Leden.scss";

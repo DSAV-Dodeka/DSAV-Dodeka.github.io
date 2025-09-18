@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Link
-} from "react-router-dom";
+} from "react-router";
 import "./TitleBar.scss";
 import D from "../../../images/groteD.svg?react";
 import {getNestedImagesUrl} from "../../../functions/links";
