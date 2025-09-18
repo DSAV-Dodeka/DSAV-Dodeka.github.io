@@ -4,6 +4,20 @@ export default {
   appDirectory: "src",
   ssr: false,
   async prerender() {
-    return ["/", "/word_lid", "/contact"];
+    return [
+      "/",
+      "/word_lid",
+      "/vereniging",
+      "/vereniging/gezelligheid",
+      "/vereniging/arnold",
+      "/contact",
+      "/contact/sponsors",
+      "/trainingen",
+      "/trainingen/gezocht",
+      "/wedstrijden",
+      "/wedstrijden/hoogtepunten",
+      "/wedstrijden/nskmeerkamp",
+      "/owee",
+    ];
   },
 } satisfies Config;

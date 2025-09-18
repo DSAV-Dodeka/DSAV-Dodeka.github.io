@@ -12,6 +12,7 @@ export default defineConfig({
       },
     }),
   ],
+  base: "/dodekademo/",
   server: {
     port: 3000,
   },
