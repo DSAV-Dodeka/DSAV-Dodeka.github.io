@@ -1,9 +1,8 @@
-import React from "react";
 import Header from "../../../components/Header";
 import "./Loopgroep.scss";
-import { getNestedImagesUrl } from "../../../functions/links";
+import loopgroep from "$images/trainingen/loopgroep_update.jpg";
 
-function Loopgroep(props) {
+function Loopgroep(props: { text: string }) {
   return (
     <div className="loopgroep_1">
       <div className="loopgroep_2">
@@ -17,11 +16,7 @@ function Loopgroep(props) {
           ))}
         </p>
       </div>
-      <img
-        src={getNestedImagesUrl(`trainingen/${props.foto}`)}
-        alt=""
-        className="loopgroep_4"
-      />
+      <img src={loopgroep} alt="" className="loopgroep_4" />
     </div>
   );
 }

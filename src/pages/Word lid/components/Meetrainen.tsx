@@ -1,13 +1,10 @@
-import React from "react";
-import config from "../../../config";
 import { Link } from "react-router";
 import Header from "../../../components/Header";
 import ContactButtons from "../../../components/ContactButtons";
 import "./Meetrainen.scss";
-import { getNestedImagesUrl } from "../../../functions/links";
-import SchrijfIn from "./SchrijfIn";
+import wordlid from "$images/word_lid/wordLid.jpg";
 
-function Meetrainen(props) {
+function Meetrainen() {
   return (
     <div className="meetrainen_1">
       <div className="meetrainen_2">
@@ -52,11 +49,7 @@ function Meetrainen(props) {
         </p>
         <ContactButtons />
       </div>
-      <img
-        src={getNestedImagesUrl(`word_lid/${props.foto}`)}
-        alt=""
-        className="meetrainen_7"
-      />
+      <img src={wordlid} alt="" className="meetrainen_7" />
     </div>
   );
 }

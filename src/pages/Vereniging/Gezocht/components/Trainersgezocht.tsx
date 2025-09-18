@@ -1,10 +1,9 @@
-import React from "react";
 import Header from "../../../../components/Header";
 import "./Trainersgezocht.scss";
-import { getNestedImagesUrl } from "../../../../functions/links";
 import ContactButtons from "../../../../components/ContactButtons";
+import dagvandeatletiek from "$images/trainingen/dagvandeatletiek.jpg";
 
-function Trainersgezocht(props) {
+function Trainersgezocht(props: { text: string }) {
   return (
     <div className="gezocht_1">
       <div className="gezocht_2">
@@ -19,11 +18,7 @@ function Trainersgezocht(props) {
         </p>
         <ContactButtons />
       </div>
-      <img
-        src={getNestedImagesUrl(`trainingen/${props.foto}`)}
-        alt=""
-        className="gezocht_4"
-      />
+      <img src={dagvandeatletiek} alt="" className="gezocht_4" />
     </div>
   );
 }
