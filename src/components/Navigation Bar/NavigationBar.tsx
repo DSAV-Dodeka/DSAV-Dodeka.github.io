@@ -6,7 +6,7 @@ import MobileDropdown from "./MobileDropdown";
 import disableScroll from "disable-scroll";
 import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss";
-import { getImagesUrl } from "../../functions/links";
+import logo from "$images/logo.png";
 import { isClient } from "../../functions/sizes";
 
 function NavigationBar() {
@@ -28,14 +28,14 @@ function NavigationBar() {
           <img
             id="navLogo"
             className={location === "/" ? "hidden" : ""}
-            src={getImagesUrl(`logo.png`)}
+            src={logo}
             alt=""
           />
         </Link>
         <img
           id="home_logo"
           className={location === "/" ? "" : "hidden"}
-          src={getImagesUrl("logo.png")}
+          src={logo}
           alt=""
         />
         <div id="navItems">

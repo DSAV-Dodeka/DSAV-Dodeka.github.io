@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "paths": {
+      "$images": ["./src/images"]
+    },
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
