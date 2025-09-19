@@ -17,15 +17,11 @@ function Meetrainen() {
           Instagram. Heb je na de proeftrainingen de smaak te pakken en wil je
           lid worden? Schrijf je dan in via de onderstaande knop:
         </p>
-        {/* <registration-form-entry configuration="4717c5a6-5e49-4d4d-ca49-08dd2f2dfc8c"></registration-form-entry> */}
-        <a href={`https://api.dsavdodeka.nl/credentials/register/`}>
+        <a href="/registreer">
           <button className="schrijfInButton" id="submit_button" type="submit">
             Inschrijven
           </button>
         </a>
-        {/*<a target="_blank" rel="noreferrer" href="https://www.av40.nl/index.php?page=Inschrijfformulier&sid=1" className="meetrainen_4">*/}
-        {/*    <p>Schrijf je in!</p>*/}
-        {/*</a>*/}
         <p className="meetrainen_uitschrijven">
           Wil je je uitschrijven bij D.S.A.V. Dodeka? Stuur dan uiterlijk 4
           weken voor het einde van het kwartaal een mailtje naar{" "}

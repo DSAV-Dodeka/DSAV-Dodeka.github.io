@@ -7,6 +7,7 @@ export default {
     return [
       "/",
       "/word_lid",
+      "/registreer",
       "/vereniging",
       "/vereniging/gezelligheid",
       "/vereniging/arnold",
