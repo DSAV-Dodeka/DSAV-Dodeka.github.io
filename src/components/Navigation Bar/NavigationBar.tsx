@@ -6,6 +6,7 @@ import MobileDropdown from "./MobileDropdown";
 import disableScroll from "disable-scroll";
 import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss";
+import "./animation.css";
 import logo from "$images/logo.png";
 import dodeka from "$images/dodeka.png";
 
@@ -20,14 +21,6 @@ function NavigationBar() {
       disableScroll.off();
     }
   }, []);
-
-  // if (isClient()) {
-  //   if (active) {
-  //     disableScroll.on();
-  //   } else {
-  //     disableScroll.off();
-  //   }
-  // }
 
   return (
     <div id="navBar">

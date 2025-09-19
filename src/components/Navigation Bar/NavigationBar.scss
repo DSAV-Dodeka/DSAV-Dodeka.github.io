@@ -23,16 +23,6 @@
   }
 }
 
-#home_logo {
-  max-width: 614.4px;
-  cursor: pointer;
-  position: fixed;
-  z-index: 5;
-  @include variables.respond(mobile) {
-    visibility: hidden;
-  }
-}
-
 #navLogo {
   position: absolute;
   left: 2rem;

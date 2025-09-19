@@ -7,9 +7,6 @@ import "./Home.scss";
 // import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
-  const [offset, setOffset] = useState(0);
-  const [maxOffset, setMaxOffset] = useState(400);
-  const [logoMax, setLogoMax] = useState(40);
   const snowContent = ["&#127846", "🍉", "🍸"];
 
   const random = (num: number) => {
@@ -29,7 +26,7 @@ function Home() {
     `;
   };
 
-  const createSnow = (n) => {
+  const createSnow = (n: number) => {
     for (var i = 0; i < n; i++) {
       var snowContainer = document.getElementById("sneeuw_container");
       while (!snowContainer) {
@@ -38,64 +35,62 @@ function Home() {
       var snow = document.createElement("div");
       snow.className = "snow";
       snow.style.cssText = getRandomStyles();
-      snow.innerHTML = snowContent[random(3)];
+      snow.innerHTML = snowContent[random(3)]!;
       snowContainer.append(snow);
     }
   };
-  useEffect(() => {
-    const fontSize = parseFloat(
-      window.getComputedStyle(document.documentElement).fontSize,
-    );
-    const handleResize = () => {
-      const innerWidth = window.innerWidth;
-      const newLogoMax = Math.min((6 * innerWidth) / 15, 614.4) / fontSize;
 
-      console.log(`logomax=${newLogoMax} maxoff=${fontSize * 24}`);
-      setLogoMax(newLogoMax);
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollY = window.pageYOffset;
+      const maxOffset = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--max-offset",
+        ),
+      );
+      const progress = Math.min(scrollY / maxOffset, 1);
+      document.documentElement.style.setProperty(
+        "--scroll-progress",
+        progress.toString(),
+      );
     };
 
-    const innerWidth = window.innerWidth;
-    const newLogoMax = Math.min((6 * innerWidth) / 15, 614.4) / fontSize;
+    const updateLogoMax = () => {
+      const fontSize = parseFloat(
+        window.getComputedStyle(document.documentElement).fontSize,
+      );
+      const newLogoMax =
+        Math.min((6 * window.innerWidth) / 15, 614.4) / fontSize;
 
-    console.log(`logomax=${newLogoMax} maxoff=${fontSize * 24}`);
-    setLogoMax(newLogoMax);
+      document.documentElement.style.setProperty(
+        "--logo-max",
+        `${newLogoMax}rem`,
+      );
+      document.documentElement.style.setProperty(
+        "--max-offset",
+        `${24 * fontSize}px`,
+      );
+    };
 
-    setMaxOffset(24 * fontSize);
+    // Initial setup
+    updateLogoMax();
+    updateScrollProgress();
+
+    // Event listeners
+    const handleScroll = () => updateScrollProgress();
+    const handleResize = () => {
+      updateLogoMax();
+      updateScrollProgress();
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
 
     return () => {
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  useEffect(() => {
-    window.addEventListener("load", () => {
-      createSnow(50);
-    });
-  }, []);
-
-  useEffect(() => {
-    setOffset(window.pageYOffset);
-    window.onscroll = () => {
-      setOffset(window.pageYOffset);
-      try {
-        document.getElementById("home_logo").style.width =
-          Math.max(6, logoMax - (offset / maxOffset) * (logoMax - 6)) + "rem";
-        document.getElementById("home_logo").style.marginLeft =
-          Math.max(2, 4 - (offset / maxOffset) * 2) + "rem";
-        document.getElementById("home_logo").style.top =
-          Math.max(0.5, 6 - (offset / maxOffset) * 5) + "rem";
-      } catch {}
-    };
-    try {
-      document.getElementById("home_logo").style.width =
-        Math.max(6, logoMax - (offset / maxOffset) * (logoMax - 6)) + "rem";
-      document.getElementById("home_logo").style.marginLeft =
-        Math.max(2, 4 - (offset / maxOffset) * 2) + "rem";
-      document.getElementById("home_logo").style.top =
-        Math.max(0.5, 6 - (offset / maxOffset) * 5) + "rem";
-    } catch {}
-  }, [offset, maxOffset, logoMax]);
 
   return (
     <div>

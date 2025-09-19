@@ -1,0 +1,34 @@
+:root {
+  /* Default values that work without JavaScript */
+  --logo-max: 40rem;
+  --max-offset: 384px;
+  --scroll-progress: 0;
+
+  /* Calculated values */
+  --logo-width: calc(
+    6rem + (var(--logo-max) - 6rem) * (1 - var(--scroll-progress))
+  );
+  --logo-margin-left: calc(2rem + 2rem * (1 - var(--scroll-progress)));
+  --logo-top: calc(0.5rem + 5.5rem * (1 - var(--scroll-progress)));
+}
+
+@media (max-width: 768px) {
+  :root {
+    --logo-max: 25rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --logo-max: 38.4rem;
+  }
+}
+
+#home_logo {
+  width: var(--logo-width);
+  margin-left: var(--logo-margin-left);
+  top: var(--logo-top);
+  position: fixed;
+  transition: none;
+  will-change: width, margin-left, top;
+}
