@@ -4,13 +4,12 @@ import TitleBar from "./components/TitleBar";
 import HomeTrainingen from "./components/HomeTrainingen";
 import HomeCommissies from "./components/HomeCommissies";
 import "./Home.scss";
-import { fontSize, innerWidth } from "../../functions/sizes";
-
-const maxOffset = 24 * fontSize();
-const logoMax = Math.min((6 * innerWidth()) / 15, 614.4) / fontSize();
+// import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
   const [offset, setOffset] = useState(0);
+  const [maxOffset, setMaxOffset] = useState(400);
+  const [logoMax, setLogoMax] = useState(40);
   const snowContent = ["&#127846", "🍉", "🍸"];
 
   const random = (num: number) => {
@@ -43,6 +42,31 @@ function Home() {
       snowContainer.append(snow);
     }
   };
+  useEffect(() => {
+    const fontSize = parseFloat(
+      window.getComputedStyle(document.documentElement).fontSize,
+    );
+    const handleResize = () => {
+      const innerWidth = window.innerWidth;
+      const newLogoMax = Math.min((6 * innerWidth) / 15, 614.4) / fontSize;
+
+      console.log(`logomax=${newLogoMax} maxoff=${fontSize * 24}`);
+      setLogoMax(newLogoMax);
+    };
+
+    const innerWidth = window.innerWidth;
+    const newLogoMax = Math.min((6 * innerWidth) / 15, 614.4) / fontSize;
+
+    console.log(`logomax=${newLogoMax} maxoff=${fontSize * 24}`);
+    setLogoMax(newLogoMax);
+
+    setMaxOffset(24 * fontSize);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     window.addEventListener("load", () => {
@@ -71,7 +95,7 @@ function Home() {
       document.getElementById("home_logo").style.top =
         Math.max(0.5, 6 - (offset / maxOffset) * 5) + "rem";
     } catch {}
-  }, [offset]);
+  }, [offset, maxOffset, logoMax]);
 
   return (
     <div>

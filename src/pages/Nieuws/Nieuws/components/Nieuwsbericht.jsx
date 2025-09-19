@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Title from "./Title";
 import "./Nieuwsbericht.scss";
 import { getNestedImagesUrl } from "../../../../functions/links";
-import { innerWidth } from "../../../../functions/sizes";
 
 function Nieuwsbericht(props) {
+  const [width, setWidth] = useState(1920);
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []);
+
   return (
     <div id={props.id} className="nieuwsbericht_1">
-      {props.position === "left" || innerWidth() <= 1023 ? (
+      {props.position === "left" || width <= 1023 ? (
         <img
           className="nieuwsbericht_2"
           src={getNestedImagesUrl(`${props.page}/${props.foto}`)}
@@ -35,7 +39,7 @@ function Nieuwsbericht(props) {
           ))}
         </p>
       </div>
-      {props.position === "left" || innerWidth() <= 1023 ? (
+      {props.position === "left" || width <= 1023 ? (
         ""
       ) : (
         <img

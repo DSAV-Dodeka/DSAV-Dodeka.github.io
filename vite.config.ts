@@ -2,8 +2,9 @@ import { defineConfig } from "vite";
 import { reactRouter } from "@react-router/dev/vite";
 import svgrPlugin from "vite-plugin-svgr";
 import path from "node:path";
+import { browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     reactRouter(),
@@ -20,5 +21,19 @@ export default defineConfig({
     alias: {
       $images: path.resolve(__dirname, "./src/images"),
     },
+  },
+  css: {
+    transformer: "lightningcss",
+    lightningcss: {
+      targets: browserslistToTargets(browserslist("baseline widely available")),
+      cssModules: true,
+      drafts: {
+        customMedia: true,
+      },
+    },
+  },
+  build: {
+    cssMinify: "lightningcss",
+    target: "baseline-widely-available",
   },
 });

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import Item from "./Item";
 import Dropdown from "./Dropdown";
@@ -7,20 +7,27 @@ import disableScroll from "disable-scroll";
 import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss";
 import logo from "$images/logo.png";
-import { isClient } from "../../functions/sizes";
 import dodeka from "$images/dodeka.png";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
   const location = useLocation().pathname;
 
-  if (isClient()) {
+  useEffect(() => {
     if (active) {
       disableScroll.on();
     } else {
       disableScroll.off();
     }
-  }
+  }, []);
+
+  // if (isClient()) {
+  //   if (active) {
+  //     disableScroll.on();
+  //   } else {
+  //     disableScroll.off();
+  //   }
+  // }
 
   return (
     <div id="navBar">
