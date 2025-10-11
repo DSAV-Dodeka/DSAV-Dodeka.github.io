@@ -43,7 +43,7 @@ jobs:
       - name: Copy SPA fallback to 404.html
         run: cp build/client/__spa-fallback.html build/client/404.html
       - name: Copy static files
-        run: cp -r "files" "build/files"
+        run: cp -r "files" "build/client/files"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
