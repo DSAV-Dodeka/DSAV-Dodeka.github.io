@@ -1,21 +1,21 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 .trainerContainer {
     position: relative; 
     display: flex;
     flex-direction: row-reverse;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     width: 100%;
     margin-bottom: 6rem;
 
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         flex-direction: column;
         margin-bottom: 2rem;
     }
 }
 
 .trainerContainer:nth-child(even) {
-    @include respond(computerscherm) {
+    @include variables.respond(computerscherm) {
         flex-direction: row;
     }
 }
@@ -26,31 +26,31 @@
     padding-top: 0rem;
     padding-bottom: 0rem;
 
-    @include respond(computerscherm) {
-        margin-top: $margin_y;
-        margin-bottom: $margin_y;
+    @include variables.respond(computerscherm) {
+        margin-top: variables.$margin_y;
+        margin-bottom: variables.$margin_y;
     }
 
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         margin-top: 0;
     }
 }
 
 .trainerContainer:nth-child(odd) .headerText {
-    @include respond(computerscherm) {
+    @include variables.respond(computerscherm) {
         text-align: right;
     }
 }
 
 .trainerPhotoContainer {
-    @include respond(computerscherm) {
+    @include variables.respond(computerscherm) {
         min-height: 30rem;
         height: 100%;
         width: 50%;
     }
 
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         max-height: 20rem;
     }
 }
@@ -58,7 +58,7 @@
 .trainerPhoto{
     object-fit: contain;
     
-    @include respond(computerscherm) {
+    @include variables.respond(computerscherm) {
         position: absolute;
         height: 100%;
         top: 0;
@@ -70,7 +70,7 @@
         object-position: left;
     }
 
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         position: relative;
         height: 100%;
         width: 100%;
@@ -78,7 +78,7 @@
 }
 
 .trainerContainer:nth-child(even) .trainerPhoto {
-    @include respond(computerscherm) {
+    @include variables.respond(computerscherm) {
         left: unset;
         right: calc(50%);
         margin-right: 0;
@@ -89,30 +89,30 @@
 
 .trainer-detail-list {
     color: white;
-    font-size: $font_small;
-    line-height: $line_height_small;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
 
-    @include respond(computerscherm) {
+    @include variables.respond(computerscherm) {
         margin-left: 10vw;
-        margin-right: $margin_x;
-        margin-top: $margin_y;
+        margin-right: variables.$margin_x;
+        margin-top: variables.$margin_y;
     }
 
-    @include respond(mobile) {
-        margin: $margin_mobile;
+    @include variables.respond(mobile) {
+        margin: variables.$margin_mobile;
     }
 }
 
 .trainerContainer:nth-child(even) .trainer-detail-list {
-    @include respond(computerscherm) {
-        margin-left: $margin_x;
+    @include variables.respond(computerscherm) {
+        margin-left: variables.$margin_x;
         margin-right: 10vw;
     }
 }
 
 .trainer-type {
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     color: rgba(255, 255, 255, 0.8);
 }
 

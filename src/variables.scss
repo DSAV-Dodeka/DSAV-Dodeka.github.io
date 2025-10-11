@@ -1,8 +1,8 @@
 // Colors
 $dodeka_blauw: #001f48;
 $dodeka_blauw90p: #193459;
-$dodeka_rood: #CB4B3D;
-$dodeka_grijs: #93A3B1;
+$dodeka_rood: #cb4b3d;
+$dodeka_grijs: #93a3b1;
 
 // Font weights
 $bold: 700;
@@ -21,23 +21,30 @@ $line_height_small: 1.5rem;
 $margin_x: 4rem;
 $margin_y: 2rem;
 $margin_mobile: 1rem;
- 
 
 // Media queries
 @mixin respond($breakpoint) {
-    @if($breakpoint == mobile) {
-        @media (max-width: 1023px) { @content }
+  @if ($breakpoint == mobile) {
+    @media (max-width: 1199px) {
+      @content;
     }
-    
-    @if($breakpoint == computerscherm) {
-        @media (min-width: 1024px) { @content }
-    }
+  }
 
-    @if($breakpoint == too_large) {
-        @media (min-width: 1841px) { @content }
+  @if ($breakpoint == computerscherm) {
+    @media (min-width: 1200px) {
+      @content;
     }
+  }
 
-    @if($breakpoint == phone) {
-        @media (max-width: 479px) { @content }
+  @if ($breakpoint == too_large) {
+    @media (min-width: 1841px) {
+      @content;
     }
+  }
+
+  @if ($breakpoint == phone) {
+    @media (max-width: 479px) {
+      @content;
+    }
+  }
 }

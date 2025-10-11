@@ -1,9 +1,9 @@
-@import "../../../variables";
+@use "../../../variables";
 
 .trainingstijden_1{ //lg:flex mx-4 lg:mx-16
     margin-left: 1rem;
     margin-right: 1rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         margin-left: 4rem;
         margin-right: 4rem;
         display: flex;    
@@ -12,17 +12,17 @@
 
 .trainingstijden_2{ //block lg:inline bg-rood text-center text-white text-lg font-bold rounded-lg lg:rounded-none lg:rounded-t-lg py-2 w-full lg:w-40
     display: block;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     text-align: center;
     color: white;
     font-size: 0.6rem;
     line-height: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     border-radius: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     width: 100%;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: inline;
         border-radius: 0px;
         border-top-left-radius: 0.5rem;
@@ -36,10 +36,10 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     font-size: 0.6rem;
     line-height: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     padding: 0.5rem;
@@ -48,17 +48,17 @@
 
 .trainingstijden_4{//block lg:inline bg-rood text-center text-white text-lg font-bold rounded-lg lg:rounded-none lg:rounded-t-lg py-2 w-full lg:w-40
     display: block;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     text-align: center;
     color: white;
     font-size: 0.6rem;
     line-height: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     border-radius: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     width: 100%;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: inline;
         border-radius: 0px;
         border-top-left-radius: 0.5rem;
@@ -73,10 +73,10 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     font-size: 0.6rem;
     line-height: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     padding: 0.5rem;
@@ -89,10 +89,10 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     font-size: 0.6rem;
     line-height: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     padding: 0.5rem;
@@ -101,17 +101,17 @@
 
 .trainingstijden_7{//block lg:inline bg-rood text-center text-white text-lg font-bold rounded-lg lg:rounded-none lg:rounded-t-lg py-2 w-full lg:w-40
     display: block;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     text-align: center;
     color: white;
     font-size: 0.6rem;
     line-height: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     border-radius: 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     width: 100%;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: inline;
         border-radius: 0px;
         border-top-left-radius: 0.5rem;
@@ -126,10 +126,10 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     font-size: 0.6rem;
     line-height: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     padding: 0.5rem;

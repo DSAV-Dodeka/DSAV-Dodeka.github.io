@@ -1,11 +1,11 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 .arnoldInfo {
     display: flex;
     width: 100%;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     margin-bottom: 6rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         margin-bottom: 4rem;
     }
@@ -19,7 +19,7 @@
     padding-right: 4rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         width: 100%;
         padding: 1rem;
@@ -27,10 +27,10 @@
 }
 
 .arnoldText p {
-    font-size: $font_small;
-    line-height: $line_height_small;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
     height: calc(100% - 4rem);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         padding-bottom: 1rem;
         height: auto;
     }
@@ -39,7 +39,7 @@
 .arnoldFoto {
     display: inline;
     width: 50%;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         width: 100%;
     }
@@ -49,20 +49,20 @@
     text-decoration: none;
     display: block;
     position: relative;
-    background-color: $dodeka_rood;
-    padding-top: $margin_mobile;
-    padding-bottom: $margin_mobile;
+    background-color: variables.$dodeka_rood;
+    padding-top: variables.$margin_mobile;
+    padding-bottom: variables.$margin_mobile;
     color: white;
-    font-size: $font_medium;
-    line-height: $font_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$font_medium;
     text-align: center;
     border-radius: 0.25rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     cursor: pointer;
     background: radial-gradient(circle at -20% 150%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
     box-shadow: 0 0 15px #001F48;
     margin-top: auto;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         width: 100%;
         padding: 0;

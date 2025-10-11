@@ -1,4 +1,4 @@
-@import "../../../variables";
+@use "../../../variables";
 
 .vcp_container{
     margin-top: 0rem;
@@ -15,10 +15,10 @@
     margin-bottom: 2rem;
     padding-top: 2rem;
     padding-bottom: 4rem;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: white;
     border-radius: 0.75rem;
-    @include respond(mobile){
+    @include variables.respond(mobile){
         margin-left: 1rem;
         margin-right: 1rem;
         width: calc(100% - 2rem);
@@ -30,8 +30,8 @@
     padding-left: 4rem;
     padding-right: 4rem;
     padding-top: 2rem;
-    font-size: $font_small;
-    @include respond(mobile) {
+    font-size: variables.$font_small;
+    @include variables.respond(mobile) {
         padding-left: 1rem;
         padding-right: 1rem;
         padding-top: 1rem;
@@ -46,10 +46,10 @@
     width: calC(50% - 5rem);
     display: inline-block;
     // height: 20rem;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     color: white;
     border-radius: 0.75rem;
-    @include respond(mobile){
+    @include variables.respond(mobile){
         display: block;
         margin-left: 1rem;
         margin-right: 1rem;
@@ -63,7 +63,7 @@
 .vcp_left {
     margin-left: 4rem;
     margin-right: 1rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-left: 1rem;
         margin-right: 1rem;
     }
@@ -72,7 +72,7 @@
 .vcp_right {
     margin-left: 1rem;
     margin-right: 4rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-left: 1rem;
         margin-right: 1rem;
     }
@@ -84,12 +84,12 @@
 }
 
 .vcp_naam {
-    font-size: $font_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
     padding-bottom: 0.5rem;
 }
 
 .vcp_mail {
     text-decoration: none;
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
 }

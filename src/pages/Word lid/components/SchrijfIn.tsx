@@ -1,4 +1,4 @@
-import React, {useReducer, ChangeEvent, useState, FormEvent} from "react";
+import React, {useReducer, type ChangeEvent, useState, type FormEvent} from "react";
 import {back_post} from "../../../functions/api/api";
 import "./SchrijfIn.scss";
 

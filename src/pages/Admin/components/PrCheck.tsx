@@ -1,5 +1,4 @@
-import React, {useContext, useEffect, useReducer, useState, ChangeEvent, FocusEvent, Fragment, FormEvent} from "react";
-import {z} from "zod";
+import React, {useContext, useState, Fragment} from "react";
 import './table.scss'
 
 import {
@@ -7,14 +6,12 @@ import {
     flexRender,
     getCoreRowModel,
     useReactTable,
-    SortingState,
+    type SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api, PR} from "../../../functions/api/api";
+import { type PR} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./PrCheck.scss";
-import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
-import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
 import SortHeader from "./SortHeader";
 
 const columnHelper = createColumnHelper<PR>()

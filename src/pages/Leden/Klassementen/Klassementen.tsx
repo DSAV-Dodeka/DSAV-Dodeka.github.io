@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import {
     queryError, useKlassementQuery,
 } from "../../../functions/queries";
-import {KlassementData, KlassementList} from "../../../functions/api/klassementen";
+import { type KlassementList} from "../../../functions/api/klassementen";
 import EventCategories from "../../../content/EventTypes.json";
 import { ISODate } from "../../../functions/date";
 
@@ -41,7 +41,7 @@ function capitalize(string: string, firstname: boolean = true) {
     } else if (string.split(" ").length == 1) {
         return string.charAt(0).toUpperCase() + string.slice(1).split(" ")[0]
     } else {
-        let names = string.split(" ")
+        const names = string.split(" ")
         names[names.length -1] = names[names.length -1].charAt(0).toUpperCase() + names[names.length - 1].slice(1)
         return names.join(" ")
     }

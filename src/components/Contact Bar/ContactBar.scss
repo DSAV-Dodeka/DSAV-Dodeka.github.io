@@ -1,11 +1,11 @@
-@import "../../variables";
+@use "../../variables";
 
 #contact_bar { 
     display: flex;
     width: 100%;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     overflow-x: hidden;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
     }
 }
@@ -15,7 +15,7 @@
     width: 100%;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         padding-bottom: 1rem;
         padding-top: 1rem;
@@ -27,9 +27,9 @@
     padding-left: 1rem;
     padding-right: 1rem;
     color: white;
-    line-height: $line_height_small;
+    line-height: variables.$line_height_small;
     text-align: center;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         text-align: left;
     }
 }
@@ -37,7 +37,7 @@
 
 
 .bar_link {
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     text-decoration: none;
 }
 
@@ -50,7 +50,7 @@
 .bar_sponsor {
     margin-right: 1rem;
     vertical-align: middle;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin: 0;
         transform: scale(0.9);
     }

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import AuthContext, {AuthState, useRenewal} from "../Auth/AuthContext";
+import AuthContext, { useRenewal} from "../Auth/AuthContext";
 import {decodeJwtPayload} from "../Auth/functions/OAuth";
 import Timer from "../Auth/Timer";
 import {back_post_auth, delete_post, profile_request} from "../../functions/api/api";

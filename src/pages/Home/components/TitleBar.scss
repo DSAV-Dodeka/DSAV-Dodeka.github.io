@@ -1,116 +1,120 @@
-@import "../../../variables";
+@use "../../../variables";
 
 @media screen and (min-width: 1024px) {
-
-#pos {
+  #pos {
     left: 60%;
-}
+  }
 }
 
 #home_title_container {
-    width: 100%;
-    height: 24rem;
-    position: relative;
-    background-color: $dodeka_blauw;
-    margin-top: 0rem;
+  width: 100%;
+  height: 24rem;
+  position: relative;
+  background-color: variables.$dodeka_blauw;
+  margin-top: 0rem;
 }
 
 #home_title_left {
-    display: block;
-    position: absolute;
-    clip-path: polygon(0% 0%, 100% 0%, calc(5/6 * 100%) 100%, 0% 100%);
-    left: 0;
-    width: 60%;
-    height: 24rem;
-    background-color: $dodeka_blauw;
-    @include respond(mobile) {
-        visibility: hidden;
-    }
+  display: block;
+  position: absolute;
+  clip-path: polygon(0% 0%, 100% 0%, calc(5 / 6 * 100%) 100%, 0% 100%);
+  left: 0;
+  width: 60%;
+  height: 24rem;
+  background-color: variables.$dodeka_blauw;
+  @include variables.respond(mobile) {
+    visibility: hidden;
+  }
 }
 
 #home_title_right {
-    position: absolute;
-    clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
-    width: 50%;
-    right: 0;
-    height: 24rem;
-    @include respond(mobile) {
-        width: 100%;
-        clip-path: none;
-    }
+  position: absolute;
+  clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+  width: 50%;
+  right: 0;
+  height: 24rem;
+  @include variables.respond(mobile) {
+    width: 100%;
+    clip-path: none;
+  }
 }
 
 #home_title_background {
-    height: 100%;
-    object-fit: cover;
+  /* height: 100%; */
+  /* width: 100%; */
+  height: 100%;
+  @include variables.respond(mobile) {
+    width: 100%;
+  }
+  object-fit: cover;
 }
 
 #home_title_right_over {
-    position: absolute;
-    clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
-    width: 50%;
-    right: 0;
-    height: 24rem;
-    background-color: rgba(255,255,255,0.5);
-    @include respond(mobile) {
-        width: 100%;
-        clip-path: none;
-    }
+  position: absolute;
+  clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+  width: 50%;
+  right: 0;
+  height: 24rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  @include variables.respond(mobile) {
+    width: 100%;
+    clip-path: none;
+  }
 }
 
 #home_title_right_pos {
-    position: absolute;
-    top: 50%;
-    width: 60%;
-    text-align: center;
-    transform: translate(40%, -50%);
-    @include respond(mobile) {
-        width: 100%;
-        transform: translateY(-50%);
-    }
+  position: absolute;
+  top: 50%;
+  width: 60%;
+  text-align: center;
+  transform: translate(40%, -50%);
+  @include variables.respond(mobile) {
+    width: 100%;
+    transform: translateY(-50%);
+  }
 }
 
 #home_title_right_text {
-    color: $dodeka_blauw;
-    font-size: $font_large;
-    font-weight: $bold;
-    margin: 0;
+  color: variables.$dodeka_blauw;
+  font-size: variables.$font_large;
+  font-weight: variables.$bold;
+  margin: 0;
 }
 
 #home_title_right_button {
-    background-color: $dodeka_rood;
-    color: white;
-    border-radius: 0.75rem;
-    border: none;
-    padding: 1rem;
-    font-size: $font_medium;
-    font-weight: $bold;
-    margin-top: 2rem;
+  background-color: variables.$dodeka_rood;
+  color: white;
+  border-radius: 0.75rem;
+  border: none;
+  padding: 1rem;
+  font-size: variables.$font_medium;
+  font-weight: variables.$bold;
+  margin-top: 2rem;
 }
 
 #home_title_d {
-    display: none;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100px;
-    margin-top: 2rem;
-    @include respond(mobile) {
-        display: block;
-        height: 100px;
-    }
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  margin-top: 2rem;
+  @include variables.respond(mobile) {
+    display: block;
+    height: 100px;
+  }
 }
 
 .sneeuw_bar {
-    position: absolute;
-    display: inline;
-    width: 100%;
-    height: 80%;
-    bottom: -12rem;
-    transform: scaleX(-1);
+  position: absolute;
+  display: inline;
+  width: 100%;
+  height: 80%;
+  bottom: -12rem;
+  transform: scaleX(-1);
 }
 
 .sneeuw_bar .g {
-    height: 100%;
-    position: absolute;
-    bottom: 0;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
 }

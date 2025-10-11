@@ -1,4 +1,4 @@
-@import "../../../variables";
+@use "../../../variables";
 
 
 .algemeen{
@@ -12,7 +12,7 @@
 .fotobalk{
     width: 100%;
     height: 20rem;
-    @include respond(mobile){
+    @include variables.respond(mobile){
         height: 15rem;
         width: 100%;
     }
@@ -23,7 +23,7 @@
     height: 20rem;
     object-fit: cover;
     object-position: center;
-    @include respond(mobile){
+    @include variables.respond(mobile){
         height: 15rem;
         object-fit: cover;
         object-position: center;
@@ -36,7 +36,7 @@
     width: 100%;
     height: 30rem;
     background-color: white;
-    @include respond(mobile){
+    @include variables.respond(mobile){
         height: 30rem;
         background-color: white;
         width: 100%;
@@ -52,8 +52,8 @@
     padding: 2rem;
     margin-left: 2%;
     margin-right: 2%;
-    background-color: $dodeka_blauw90p;
-    @include respond(mobile){
+    background-color: variables.$dodeka_blauw90p;
+    @include variables.respond(mobile){
         object-fit: cover;
         object-position: center;
         margin-left: 0%;
@@ -63,20 +63,20 @@
         width: 100%;
         height: 15rem;
         padding: 2rem;
-        background-color: $dodeka_blauw;
+        background-color: variables.$dodeka_blauw;
     }
 }
 
 .textvakheader{
     color: white;
     padding-bottom: 1rem;
-    font-size: $font_large;
-    @include respond(mobile){
-        font-size: $font_medium;
+    font-size: variables.$font_large;
+    @include variables.respond(mobile){
+        font-size: variables.$font_medium;
     }
 }
 
 .text{
     color: white;
-    font-size: $font_small;
+    font-size: variables.$font_small;
 }

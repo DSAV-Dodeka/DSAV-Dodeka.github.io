@@ -1,11 +1,11 @@
-@import "../../variables";
+@use "../../variables";
 
 .admin_container {
     position: relative;
 }
 
 .admin_status {
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     margin-left: 4rem;
 }
 
@@ -18,19 +18,19 @@
     width: fit-content;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     color: white;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     border-radius: 0.75rem 0.75rem 0 0;
     text-align: center;
     cursor: pointer;
 }
 
 .admin_toggle_active {
-    background-color: $dodeka_rood !important;
+    background-color: variables.$dodeka_rood !important;
 }
 
 .table_container {
@@ -43,13 +43,13 @@
 .table_title {
     margin-left: 4rem;
     margin-bottom: 1rem;
-    font-size: $font_medium;
-    color: $dodeka_blauw;
+    font-size: variables.$font_medium;
+    color: variables.$dodeka_blauw;
 }
 
 .admin_mobile {
     display: none;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         margin-left: 1rem;
         margin-right: 1rem;
@@ -58,7 +58,7 @@
 }
 
 .admin_pc {
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: none;
     }
 }

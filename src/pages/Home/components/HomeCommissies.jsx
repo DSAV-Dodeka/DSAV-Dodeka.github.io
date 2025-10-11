@@ -4,15 +4,16 @@ import React from "react";
 // } from "react-router-hash-link";
 import {
     Link
-} from "react-router-dom";
+} from "react-router";
 import "./HomeCommissies.scss";
 import {getNestedImagesUrl} from "../../../functions/links";
+import commissie from "$images/home/commissie.jpg";
 
 function HomeCommissies() {
   return (
     <div id="home_commissies_container">
         <div id="home_commissies_foto" >
-            <img id="home_commissies_foto_2" src={getNestedImagesUrl("home/commissie.jpg")} alt=""/>
+            <img id="home_commissies_foto_2" src={commissie} alt=""/>
 
         </div>
         <div id="home_commissies_info">

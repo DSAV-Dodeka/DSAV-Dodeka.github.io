@@ -1,7 +1,7 @@
 import React from "react";
 import {
     Link
-} from "react-router-dom";
+} from "react-router";
 import PageTitle from "../../../components/PageTitle";
 import EigenWedstrijd from "./components/EigenWedstrijd";
 import TextWedstrijden from "../../../content/Wedstrijden.json";

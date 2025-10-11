@@ -1,9 +1,9 @@
-@import "../../../variables.scss";
+@use "../../../variables.scss";
 
 #icons {
     height: 4rem;
     width: 100%;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         height: 5rem;
         margin-top: 1rem;
     }

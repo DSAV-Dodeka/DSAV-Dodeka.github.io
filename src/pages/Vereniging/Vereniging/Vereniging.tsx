@@ -1,9 +1,13 @@
 import {
     Link
-} from "react-router-dom";
+} from "react-router";
 import PageTitle from "../../../components/PageTitle";
 import "./Vereniging.scss";
-import {getImagesUrl, getNestedImagesUrl} from "../../../functions/links";
+import over from "$images/over/over.jpg";
+import overBestuur from "$images/over/overBestuur.jpg";
+import overCommissies from "$images/over/overCommissies.jpg";
+import arnold from "$images/over/arnold.jpg";
+import overGezelligheid from "$images/over/overGezelligheid.jpg";
 
 
 function Vereniging() {
@@ -22,24 +26,24 @@ function Vereniging() {
                    <b>Geschiedenis</b> <br></br>
 
                     Dodeka is op 25 februari 2019 begonnen onder de naam DSAV'40 als een commissie bij AV'40. Om een eerste stap te zetten richting volledige onafhankelijkheid hebben wij besloten om door te gaan als D.S.A.V. Dodeka in 2021. Sinds 2025 zijn wij een officiële eigen studentenatletiekvereniging</p>
-                <img src={getNestedImagesUrl(`over/over.jpg`)} className="vereniging_4" alt=""/>
+                <img src={over} className="vereniging_4" alt=""/>
             </div>
             <div className="vereniging_5">
                 <Link className="vereniging_6" to='bestuur' >
                     <h1 className="vereniging_7">Bestuur</h1>
-                    <img src={getNestedImagesUrl(`over/overBestuur.jpg`)} className="vereniging_8" alt=""/>
+                    <img src={overBestuur} className="vereniging_8" alt=""/>
                 </Link>
                 <Link className="vereniging_6" to='commissies' >
                     <h1 className="vereniging_7">Commissies</h1>
-                    <img src={getNestedImagesUrl(`over/overCommissies.jpg`)} className="vereniging_8" alt=""/>
+                    <img src={overCommissies} className="vereniging_8" alt=""/>
                 </Link>
                 <Link className="vereniging_6" to='arnold' >
                     <h1 className="vereniging_7">Arnold</h1>
-                    <img src={getNestedImagesUrl(`over/arnold.jpg`)} className="vereniging_8" alt=""/>
+                    <img src={arnold} className="vereniging_8" alt=""/>
                 </Link>
                 <Link className="vereniging_6" to='gezelligheid' >
                     <h1 className="vereniging_7">Gezelligheid</h1>
-                    <img src={getNestedImagesUrl(`over/overGezelligheid.jpg`)} className="vereniging_8" alt=""/>
+                    <img src={overGezelligheid} className="vereniging_8" alt=""/>
                 </Link>
             </div>
         </div>

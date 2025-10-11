@@ -1,11 +1,11 @@
-@import "../../../variables";
+@use "../../../variables";
 
 
 .new_event_container {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     width: 100%;
     height: 100%;
     opacity: 20%;
@@ -17,7 +17,7 @@
     flex-direction: column;
     top: 10vh;
     left: 25%;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     width: 50%;
     max-height: calc(min(90%, 75vh));
     opacity: 100%;
@@ -28,40 +28,40 @@
 }
 
 .new_event_title {
-    font-size: $font_ml;
-    font-weight: $bold;
+    font-size: variables.$font_ml;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
 }
 
 .new_event_header {
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
 }
 
 .new_event_label {
     display: inline-block;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
     margin-left: 1rem;
 }
 
 .new_event_label_type {
     display: inline-block;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    font-weight: variables.$bold;
     margin-bottom: 1rem;
 }
 
 .new_event_label_members {
     display: inline-block;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    font-weight: variables.$bold;
     margin-bottom: 0.5rem;
 }
 
@@ -88,11 +88,11 @@
     display: inline-block;
     border-style: none;
     background-color: white;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     padding: 0.5rem;
     border-radius: 0.75rem;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     margin-left: 1rem;
@@ -103,11 +103,11 @@
     display: inline-block;
     border-style: none;
     background-color: white;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     padding: 0.5rem;
     border-radius: 0.75rem;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     margin-left: 1rem;
@@ -117,11 +117,11 @@
     display: inline-block;
     border-style: none;
     background-color: white;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     padding: 0.5rem;
     border-radius: 0.75rem;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     margin-left: 1rem;
@@ -139,11 +139,11 @@
 .new_event_input {
     border-style: none;
     background-color: white;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     padding: 0.5rem;
     border-radius: 0.75rem;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     margin: 0.5rem 4rem 0.5rem 0;
     width: calc(50% - 5rem);
 }
@@ -151,12 +151,12 @@
 .new_event_textarea {
     border-style: none;
     background-color: white;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     padding: 0.5rem;
     border-radius: 0.75rem;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    height: calc(2*$line_height_medium + 1rem);
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    height: calc(2*variables.$line_height_medium + 1rem);
     margin: 0.5rem 4rem 0.5rem 0;
     resize: none;
     width: calc(50% - 5rem);
@@ -181,9 +181,9 @@
 .new_event button {
     width: calc(25% - 0.5rem);
     margin-left: 0;
-    font-size: $font_medium;
-    font-weight: $bold;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
+    line-height: variables.$line_height_medium;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     border: none;
@@ -195,7 +195,7 @@
 }
 
 .onherkend {
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
 }
 
 .new_event_selected {
@@ -204,7 +204,7 @@
 }
 
 .new_event_submit_error {
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     margin-bottom: 1rem;
 }
 
@@ -214,10 +214,10 @@
     border: none;
     padding: 0.5rem;
     font-family: inherit;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     cursor: pointer;
-    font-weight: $bold;
-    font-size: $font_small;
+    font-weight: variables.$bold;
+    font-size: variables.$font_small;
     margin: 0 0 0.5rem;
 }
 
@@ -241,7 +241,7 @@
     position: absolute;
     right: 4rem;
     top: 6rem;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -276,20 +276,20 @@
     p {
         text-align: center;
         max-width: 20vw;
-        font-size: $font_medium;
+        font-size: variables.$font_medium;
     }
 }
 
 .edit-class-button {
     border-style: none;
     width: fit-content;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     padding: 0.5rem 1rem;
     color: white;
     border-radius: 0.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     cursor: pointer;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
 }
 
 .edit-class-button-dissuade {
@@ -299,9 +299,9 @@
     padding: 0.5rem 1rem;
     color: white;
     border-radius: 0.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     cursor: pointer;
-    font-size: $font_small;
+    font-size: variables.$font_small;
 }
 
 .okStatus {
@@ -309,5 +309,5 @@
 }
 
 .badStatus {
-    color: $dodeka_rood
+    color: variables.$dodeka_rood
 }

@@ -1,4 +1,4 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 .eigenWedstrijd {
     position: relative;
@@ -7,42 +7,42 @@
     height: 100%;
     width: 100%;
     max-width: 32rem;
-    border-left: 4rem solid $dodeka_rood;
+    border-left: 4rem solid variables.$dodeka_rood;
     padding-top: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
-    @include respond(mobile) {
-        border-left: 2rem solid $dodeka_rood;
+    @include variables.respond(mobile) {
+        border-left: 2rem solid variables.$dodeka_rood;
         padding-left: 1rem;
         padding-right: 1rem;
     }
 }
 
 .eigenWedstrijdOud {
-    border-left: 4rem solid $dodeka_grijs;
-    @include respond(mobile) {
-        border-left: 2rem solid $dodeka_grijs;
+    border-left: 4rem solid variables.$dodeka_grijs;
+    @include variables.respond(mobile) {
+        border-left: 2rem solid variables.$dodeka_grijs;
     }
 }
 
 .eigenWedstrijdNaam {
     display: block;
     color: white;
-    font-size: $font_large;
-    line-height: $line_height_large;
-    font-weight: $bold;
+    font-size: variables.$font_large;
+    line-height: variables.$line_height_large;
+    font-weight: variables.$bold;
 }
 
 .eigenWedstrijdDatum {
     display: block;
-    color: $dodeka_rood;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
+    color: variables.$dodeka_rood;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    font-weight: variables.$bold;
 }
 
 .eigenWedstrijdDatumOud {
-    color: $dodeka_grijs;
+    color: variables.$dodeka_grijs;
 }
 
 .eigenWedstrijdFoto {
@@ -53,7 +53,7 @@
     height: 16rem;
     width: 100%;
     border-radius: 0.75rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
@@ -63,36 +63,36 @@
     display: block;
     white-space: normal;
     color: white;
-    font-size: $font_small;
-    line-height: $line_height_small;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
 }
 
 .activiteitenLink {
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     text-decoration: none;
-    font-weight: $bold;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-weight: variables.$bold;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     bottom: 2rem;
 }
 
 .activiteitenLinkNormaal {
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     text-decoration: none;
-    font-weight: $bold;
+    font-weight: variables.$bold;
 }
 
 .eigenWedstrijdLink {
     position: absolute;
     display: block;
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     text-decoration: none;
-    font-weight: $bold;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-weight: variables.$bold;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     bottom: 2rem;
 }
 
 .eigenWedstrijdLinkOud {
-    color: $dodeka_grijs;
+    color: variables.$dodeka_grijs;
 }

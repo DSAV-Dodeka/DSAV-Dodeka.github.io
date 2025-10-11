@@ -1,10 +1,10 @@
-import { ChangeEvent, FormEvent, useContext, useMemo, useState } from "react";
+import { type ChangeEvent, type FormEvent, useContext, useMemo, useState } from "react";
 import Modal from "../../../components/Modal/Modal";
 import ModalForm from "../../../components/Modal/ModalForm";
 import './Klassement.scss'
 import { queryError, useClassMetaQuery } from "../../../functions/queries";
 import AuthContext from "../../Auth/AuthContext";
-import { ClassMetaList } from "../../../functions/api/klassementen";
+import { type ClassMetaList } from "../../../functions/api/klassementen";
 import { ISODate } from "../../../functions/date";
 import { back_post_auth, catch_api } from "../../../functions/api/api";
 import { useQueryClient } from "@tanstack/react-query";

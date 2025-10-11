@@ -1,28 +1,28 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 #socials {
-    margin-top: $margin_x;
-    margin-left: $margin_x;
-    @include respond(mobile) {
-        margin-left: $margin_mobile;
-        margin-top: $margin_mobile;
-        padding-bottom: $margin_mobile;
+    margin-top: variables.$margin_x;
+    margin-left: variables.$margin_x;
+    @include variables.respond(mobile) {
+        margin-left: variables.$margin_mobile;
+        margin-top: variables.$margin_mobile;
+        padding-bottom: variables.$margin_mobile;
     }
 }
 
 #social_text {
     margin: 0;
     color: white;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    font-weight: variables.$bold;
 }
 
 #contact_social_buttons {
     display: flex;
-    margin-top: $margin_y;
-    @include respond(mobile) {
-        margin-top: $margin_mobile;
+    margin-top: variables.$margin_y;
+    @include variables.respond(mobile) {
+        margin-top: variables.$margin_mobile;
     }
 }
 
@@ -31,10 +31,10 @@
     color: white;
     fill: currentColor;
     cursor: pointer;
-    margin-left: $margin_x;
-    @include respond(mobile) {
+    margin-left: variables.$margin_x;
+    @include variables.respond(mobile) {
         width: 2rem;
-        margin-left: $margin_mobile;
+        margin-left: variables.$margin_mobile;
     }
 }
 

@@ -1,10 +1,10 @@
-@import "../../../../variables.scss";
+@use "../../../../variables.scss";
 
 .gezocht_1{//lg:flex bg-blauw bg-opacity-90 w-full mb-16 lg:mb-24
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     width: 100%;
     margin-bottom: 4rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: flex;
         margin-bottom: 6rem;
     }
@@ -14,34 +14,34 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     width: 100%;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: inline;
         padding-top: 0rem;
         padding-bottom: 0rem;
-        margin-top: $margin_y;
-        margin-bottom: $margin_y;
+        margin-top: variables.$margin_y;
+        margin-bottom: variables.$margin_y;
         width: 50%;
     }
 }
 
 .gezocht_3{//text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8
     color: white;
-    font-size: $font_small;
-    line-height: $line_height_small;
-    margin-left: $margin_mobile;
-    margin-right: $margin_mobile;
-    margin-top: $margin_mobile;
-    @include respond(computerscherm){
-        margin-left: $margin_x;
-        margin-right: $margin_x;
-        margin-top: $margin_y;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
+    margin-left: variables.$margin_mobile;
+    margin-right: variables.$margin_mobile;
+    margin-top: variables.$margin_mobile;
+    @include variables.respond(computerscherm){
+        margin-left: variables.$margin_x;
+        margin-right: variables.$margin_x;
+        margin-top: variables.$margin_y;
     }    
 }
 
 .gezocht_4{//lg:inline w-full lg:w-1/2
     display: block;
     width: 100%;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: inline;
         width: 50%;
     }    

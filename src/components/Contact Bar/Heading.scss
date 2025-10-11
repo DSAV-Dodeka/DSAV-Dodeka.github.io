@@ -1,17 +1,17 @@
-@import "../../variables";
+@use "../../variables";
 
 #contact_heading {
     position: relative;
     
     height: 2rem;
     padding-top: 0.25rem;
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     background-color: white;
     padding-left: 1rem;
     padding-right: 1rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     text-align: center;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         text-align: left;
     }
 }
@@ -19,7 +19,7 @@
 #bar_title {
     width: 16rem;
     display: inline;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
     text-decoration: none;
     text-align: left;
 }
@@ -39,6 +39,6 @@
     margin-bottom: auto;
     width: 1.25rem;
     height: 1.25rem;
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     fill: currentColor;
 }

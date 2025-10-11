@@ -3,7 +3,7 @@ import AuthContext from "../Auth/AuthContext";
 import ConfirmUser from "./components/ConfirmUser";
 import LedenInfo from "./components/LedenInfo";
 import Rollen from "./components/Rollen";
-import Klassement, {KlassementProps} from "./components/Klassement";
+import Klassement, {type KlassementProps} from "./components/Klassement";
 import PageTitle from "../../components/PageTitle";
 import "./Admin.scss";
 

@@ -1,4 +1,4 @@
-@import "../../variables";
+@use "../../variables";
 
 #navDropdown {
     position: relative;
@@ -14,20 +14,20 @@
     color: white;
     text-align: center;
     line-height: 4rem;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
     font-weight: 500;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
     }
 }
 
 .navDropdownActive {
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
 }
 
 .navDropdownNormal:hover {
     background-color: white;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
 }
 
 .drop {
@@ -49,15 +49,15 @@
     text-align: center;
     text-decoration: none;
     color: white;
-    background-color: $dodeka_blauw;
-    font-size: $font_small;
+    background-color: variables.$dodeka_blauw;
+    font-size: variables.$font_small;
     font-weight: 500;
     overflow-wrap: break-word;
 }
 
 .dropdownElement:hover {
     background-color: white;
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
 }
 
 .dropdownElement:last-of-type {

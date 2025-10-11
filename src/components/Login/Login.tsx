@@ -1,14 +1,11 @@
 import React, {useContext, useEffect, useState, useRef} from "react";
-import {
-    useLocation, Link
-} from "react-router-dom";
-import AuthContext, {AuthState, useLogout} from "../../pages/Auth/AuthContext";
-import {useNavigate} from "react-router-dom";
+import { Link
+} from "react-router";
+import AuthContext, { useLogout} from "../../pages/Auth/AuthContext";
+import {useNavigate} from "react-router";
 import "./Login.scss";
-import Item from "../Navigation Bar/Item";
-import Dropdown from "../Navigation Bar/Dropdown";
 import {Logger} from "../../functions/logger";
-import {getImagesUrl, getNestedImagesUrl} from "../../functions/links";
+import { getNestedImagesUrl} from "../../functions/links";
 
 /**
  * Hook that alerts clicks outside of the passed ref

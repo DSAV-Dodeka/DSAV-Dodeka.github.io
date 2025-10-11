@@ -1,10 +1,10 @@
-@import "../../../variables.scss";
+@use "../../../variables.scss";
 
 .trainingsinfo_1{//lg:flex bg-blauw bg-opacity-90 w-full mb-16 lg:mb-24
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     width: 100%;
     margin-bottom: 4rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: flex;
         margin-bottom: 6rem;
     }
@@ -14,27 +14,27 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
     width: 100%;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: inline;
         padding-top: 0px;
         padding-bottom: 0px;
-        margin-top: $margin_y;
-        margin-bottom: $margin_y;
+        margin-top: variables.$margin_y;
+        margin-bottom: variables.$margin_y;
         width: 50%;
     }
 }
 
 .trainingsinfo_3{//text-white text-base px-4 lg:px-0 lg:mx-16 
     color: white;
-    font-size: $font_small;
-    line-height: $line_height_small;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
     padding-left: 1rem;
     padding-right: 1rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         padding-left: 0rem;
         padding-right: 0rem;
-        margin-left: $margin_x;
-        margin-right: $margin_x;
+        margin-left: variables.$margin_x;
+        margin-right: variables.$margin_x;
     }
     
 }
@@ -42,7 +42,7 @@
 .trainingsinfo_4{//lg:inline w-full lg:w-1/2 h-96 lg:h-auto
     width: 100%;
     height: 24rem;
-    @include respond(computerscherm){
+    @include variables.respond(computerscherm){
         display: inline;
         width: 50%;
         height: auto;

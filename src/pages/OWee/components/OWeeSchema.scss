@@ -1,16 +1,16 @@
-@import "../../../variables";
+@use "../../../variables";
 
 .OWeeSchema {
     background-color: white;
-    border-top: 4rem solid $dodeka_blauw90p;
-    border-bottom: 4rem solid $dodeka_blauw90p;
+    border-top: 4rem solid variables.$dodeka_blauw90p;
+    border-bottom: 4rem solid variables.$dodeka_blauw90p;
     width: 100%;
     padding-top: 1rem;
     padding-left: 4rem;
     padding-right: 3rem;
     padding-bottom: 1rem;
     margin-bottom: 8rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         padding-top: 1rem;
         padding-left: 1rem;
         padding-right: 0;
@@ -19,13 +19,13 @@
         display: flex;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
-        border-top: 2rem solid $dodeka_blauw90p;
-        border-bottom: 2rem solid $dodeka_blauw90p;
+        border-top: 2rem solid variables.$dodeka_blauw90p;
+        border-bottom: 2rem solid variables.$dodeka_blauw90p;
     }
 }
 
 .OWeeSchema > * {
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         scroll-snap-align: center;
     }
 }
@@ -33,11 +33,11 @@
 .OWeeDag {
     display: inline-block;
     width: calc(25% - 1rem);
-    color: $dodeka_blauw90p;
+    color: variables.$dodeka_blauw90p;
     vertical-align: top;
     margin-right: 1rem;
     padding-right: 1rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: auto;
         width: 100%;
         min-width: 80vw;
@@ -45,41 +45,41 @@
 }
 
 .OWeeDatum {
-    color: $dodeka_rood;
-    font-size: $font_medium;
+    color: variables.$dodeka_rood;
+    font-size: variables.$font_medium;
     margin-bottom: 1rem;
-    font-weight: $normal;
+    font-weight: variables.$normal;
 }
 
 .OWeeDatumDag {
-    font-size: $font_ml;
+    font-size: variables.$font_ml;
     margin-bottom: 0;
     
-    font-weight: $normal;
+    font-weight: variables.$normal;
 }
 
 .OWeeActiviteit {
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     border-radius: 0.5rem;
     padding: 0.5rem;
     margin-bottom: 1rem;
 }
 
 .OWeeActiviteitNaam {
-    font-size: $font_ml;
-    color: $dodeka_blauw90p;
+    font-size: variables.$font_ml;
+    color: variables.$dodeka_blauw90p;
     // font-weight: $normal;
 }
 
 .OWeeActiviteitTijd {
-    font-size: $font_small;
+    font-size: variables.$font_small;
     padding-bottom: 0.5rem;
     color: white;
     // font-weight: $bold;
 }
 
 .OWeeActiviteitOmschrijving {
-    font-size: $font_small;
-    color: $dodeka_blauw90p;
+    font-size: variables.$font_small;
+    color: variables.$dodeka_blauw90p;
     color: white;
 }

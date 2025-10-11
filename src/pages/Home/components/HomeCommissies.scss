@@ -1,4 +1,4 @@
-@import "../../../variables";
+@use "../../../variables";
 
 #home_commissies_container {
     width: 100%;
@@ -6,7 +6,7 @@
     height: 24rem;
     margin-top: 6rem;
     margin-bottom: 6rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         height: auto;
         margin-top: 4rem;
         margin-bottom: 4rem;
@@ -19,7 +19,7 @@
     width: calc(100%/3);
     height: 24rem;
     clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         position: relative;
         clip-path: none;
@@ -36,15 +36,15 @@
     position: absolute;
     width: 75%;
     right: 0;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     height: 24rem;
     padding-left: 10rem;
     padding-right: 4rem;
     padding-top: 8rem;
     clip-path: polygon(15% 0%, 100% 0%, 100% 100%, calc(1/60 * 100%) 100%);
     color: white;
-    line-height: $line_height_small;
-    @include respond(mobile) {
+    line-height: variables.$line_height_small;
+    @include variables.respond(mobile) {
         position: relative;
         width: 100%;
         height: auto;
@@ -61,16 +61,16 @@
     right: 0;
     top: 2rem;
     width: 75%;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     height: 4rem;
     color: white;
     text-align: left;
     font-size: 1.75rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     padding-top: 0.75rem;
     padding-left: 4rem;
     padding-right: 4rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         left: 0;
         text-align: left;
         padding-left: 2rem;
@@ -79,6 +79,6 @@
 }
 
 #home_commissies_link {
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     text-decoration: none;
 }

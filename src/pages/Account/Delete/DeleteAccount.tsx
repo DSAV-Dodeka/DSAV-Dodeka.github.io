@@ -16,8 +16,8 @@ const DeleteAccount = () => {
 
 
     const handleLoad = async (signal: AbortSignal) => {
-        let code = (new URLSearchParams(window.location.search)).get("code");
-        let flow_id = (new URLSearchParams(window.location.search)).get("flow_id");
+        const code = (new URLSearchParams(window.location.search)).get("code");
+        const flow_id = (new URLSearchParams(window.location.search)).get("flow_id");
         if (code === null || flow_id === null) {
             throw new PagesError("bad_email_change", "No code or flow_id set to check email update!", 'bad_flow_code_email_change')
         }

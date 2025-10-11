@@ -1,5 +1,4 @@
-import React, {useContext, useEffect, useReducer, useState, ChangeEvent, FocusEvent, Fragment, FormEvent} from "react";
-import {z} from "zod";
+import React, {useContext, useState, type ChangeEvent, type FocusEvent, Fragment, type FormEvent} from "react";
 import './table.scss'
 
 import {
@@ -8,10 +7,9 @@ import {
     getCoreRowModel,
     useReactTable,
 } from '@tanstack/react-table'
-import {back_post_auth, catch_api, err_api, SignedUp, su_request} from "../../../functions/api/api";
+import {back_post_auth, type SignedUp} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
-import {back_post} from "../../../functions/api/api";
-import {queryError, useSignedUpQuery, useUserDataQuery} from "../../../functions/queries";
+import {queryError, useSignedUpQuery} from "../../../functions/queries";
 import {useQueryClient} from "@tanstack/react-query";
 
 const columnHelper = createColumnHelper<SignedUp>()

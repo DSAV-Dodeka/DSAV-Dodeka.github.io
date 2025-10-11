@@ -1,17 +1,17 @@
-@import "../variables";
+@use "../variables";
 
 #page {
-    color: $dodeka_blauw;
-    font-weight: $bold;
-    font-size: $font_large;
-    line-height: $line_height_large;
-    margin-left: $margin_x;
-    margin-top: $margin_y;
-    margin-bottom: $margin_y;
+    color: variables.$dodeka_blauw;
+    font-weight: variables.$bold;
+    font-size: variables.$font_large;
+    line-height: variables.$line_height_large;
+    margin-left: variables.$margin_x;
+    margin-top: variables.$margin_y;
+    margin-bottom: variables.$margin_y;
     text-align: left;
     word-wrap: break-word;
-    @include respond(mobile) {
-        margin-left: $margin_mobile;
-        margin-top: $margin_mobile;
+    @include variables.respond(mobile) {
+        margin-left: variables.$margin_mobile;
+        margin-top: variables.$margin_mobile;
     }
 }

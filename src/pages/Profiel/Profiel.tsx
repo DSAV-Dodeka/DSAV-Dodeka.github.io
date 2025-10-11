@@ -1,8 +1,6 @@
-import React, {useContext, useEffect, useState} from "react";
-import AuthContext, {AuthState, useRenewal} from "../Auth/AuthContext";
-import {decodeJwtPayload} from "../Auth/functions/OAuth";
-import Timer from "../Auth/Timer";
-import {back_post_auth, profile_request, UserData} from "../../functions/api/api";
+import React, {useContext, useState} from "react";
+import AuthContext, { useRenewal} from "../Auth/AuthContext";
+import {back_post_auth, type UserData} from "../../functions/api/api";
 import "./Profiel.scss";
 import { queryError, useProfileQuery } from "../../functions/queries";
 import RollenInfo from "../../content/Rollen.json";
@@ -71,7 +69,7 @@ const Profiel = () => {
     }
 
     const getRollen = () => {
-        var rollen: string[] = [];
+        const rollen: string[] = [];
         authState.scope.split(" ").forEach((item) => {
             if (item !== "member" && item !== "admin") {
                 if (item === "~2eComCom") {

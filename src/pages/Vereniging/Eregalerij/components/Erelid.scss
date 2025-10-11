@@ -1,4 +1,4 @@
-@import "../../../../variables.scss";
+@use "../../../../variables.scss";
 
 .erelid {
     display: flex;
@@ -7,11 +7,11 @@
     width: calc((100% - 16rem) / 3);
     height: 20rem;
 
-    padding-bottom: calc($line_height_medium + 2rem);
+    padding-bottom: calc(variables.$line_height_medium + 2rem);
     transition: all 0.5s ease-in-out;
     overflow: hidden;
 
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         width: calc(100% - 4rem);
     }
@@ -27,15 +27,15 @@
 
 .erelid_naam {
     position: absolute;
-    top: calc(100% - $line_height_medium - 2rem);
+    top: calc(100% - variables.$line_height_medium - 2rem);
     width: 100%;
     white-space: nowrap;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     color: white;
-    font-size: $font_ml;
-    line-height: $line_height_medium;
+    font-size: variables.$font_ml;
+    line-height: variables.$line_height_medium;
     padding: 1rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
     transition: all 0.5s ease-in-out;
 }
 
@@ -43,15 +43,15 @@
     position: absolute;
     top: 100%;
     padding: 0.2rem 0.5rem;
-    height: calc(100% - $line_height_medium - 2rem);
+    height: calc(100% - variables.$line_height_medium - 2rem);
     width: 100%;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     opacity: 80%;
     color: white;
     transition: all 0.5s ease-in-out;
-    font-size: $font_medium;
+    font-size: variables.$font_medium;
 
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         padding: 0.5rem;
     }
 }
@@ -60,17 +60,17 @@
     margin-left: 1.5rem;
     padding-top: 0.5rem;
 
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         padding-top: 0.1 rem;
     }
 }
 
 .erelid.showdetails .erelid_info {
-    top: calc($line_height_medium + 2rem);
+    top: calc(variables.$line_height_medium + 2rem);
 }
 
 .erelid.showdetails .erelid_foto {
-    transform: translateY(calc($line_height_medium + 2rem)) scale(1.3);
+    transform: translateY(calc(variables.$line_height_medium + 2rem)) scale(1.3);
 }
 
 .erelid.showdetails .erelid_naam {
