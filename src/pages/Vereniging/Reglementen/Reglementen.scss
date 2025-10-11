@@ -81,6 +81,6 @@
         border-radius: 1.5rem;
     }
     &:hover {
-        background-color: color(variables.$dodeka_rood, 10%);
+        background-color: lighten(variables.$dodeka_rood, 10%);
     }
 }
