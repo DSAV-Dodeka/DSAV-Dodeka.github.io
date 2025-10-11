@@ -44,6 +44,8 @@ jobs:
         run: cp build/client/__spa-fallback.html build/client/404.html
       - name: Copy static files
         run: cp -r "files" "build/client/files"
+      - name: Copy static images
+        run: cp -r "src/images/wedstrijden" "build/client/public/images/wedstrijden"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

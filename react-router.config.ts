@@ -15,9 +15,9 @@ export default {
       "/contact/sponsors",
       "/trainingen",
       "/trainingen/gezocht",
-      // "/wedstrijden",
-      // "/wedstrijden/hoogtepunten",
-      // "/wedstrijden/nskmeerkamp",
+      "/wedstrijden",
+      "/wedstrijden/hoogtepunten",
+      "/wedstrijden/nskmeerkamp", 
       "/owee",
     ];
   },
