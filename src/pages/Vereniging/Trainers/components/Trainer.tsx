@@ -1,6 +1,6 @@
 import Header from "../../../../components/Header";
 import "./Trainer.scss";
-import {getDeepImagesUrl} from "../../../../functions/links";
+import { getDeepImagesUrl } from "../../../../functions/links";
 
 interface TrainerProps {
     key: string;
@@ -16,7 +16,7 @@ function Trainer({key, naam, foto, trainerType, favorieteOnderdeel, trainerSinds
     return(
         <div className="trainerContainer">
         <div className="trainerPhotoContainer">
-            <img className="trainerPhoto" src={getDeepImagesUrl(foto)} />
+            <img className="trainerPhoto" src={getDeepImagesUrl( `commissies/trainers/${foto}.jpg`)} />
         </div>
             <div className="trainerText">
                 <Header text={naam} position="left"></Header>
