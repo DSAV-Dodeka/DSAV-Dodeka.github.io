@@ -40,7 +40,7 @@ function NavigationBar() {
           <Dropdown name="Trainingen" path="/trainingen" items={[{ name: "Trainers", path: "/trainers" }, { name: "Trainers gezocht", path: "/gezocht"}]} />
           <Dropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Hoogtepunten", path: "/hoogtepunten"}, {name: "Records", path: "/records"}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})))} />
           <Item name="Word lid!" path="/word_lid" />
-          <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }, { name: "VCP", path: "/vcp" }]} />
+          <Dropdown name="Contact" path="/contact" items={[{ name: "Sponsors", path: "/sponsors" }, { name: "VCP", path: "/vcp" }, { name: "Donateurs", path: "/donateurs" }]} />
           {authState.isLoaded && authState.isAuthenticated && <Dropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }, { name: "Klassementen", path: "/klassementen" }]} />}
         </div>
         <Login />
@@ -71,7 +71,7 @@ function NavigationBar() {
             <MobileDropdown name="Trainingen" path="/trainingen" items={[{name: "Trainingen", path: ""}, { name: "Trainers", path: "/trainers"}, { name: "Trainers gezocht", path: "/gezocht"}]} onClick={() => setActive(false)} />
             <MobileDropdown name="Wedstrijden" path="/wedstrijden" items={[{name: "Eigen wedstrijden", path: ""}, {name: "Hoogtepunten", path: "/hoogtepunten"}, {name: "Records", path: "/records"}].concat(wedstrijdText.wedstrijden.filter((wedstrijd) => wedstrijd.path !== "").map((wedstrijd) => ({name: wedstrijd.naam, path: wedstrijd.path})))} onClick={() => setActive(false)} />
             <Item name="Word lid!" path="/word_lid" onClick={() => setActive(false)} />
-            <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }, { name: "VCP", path: "/vcp" }]} onClick={() => setActive(false)} />
+            <MobileDropdown name="Contact" path="/contact" items={[{name: "Contactinformatie", path: ""}, { name: "Sponsors", path: "/sponsors" }, { name: "VCP", path: "/vcp" }, { name: "Donateurs", path: "/donateurs" }]} onClick={() => setActive(false)} />
             {authState.isLoaded && authState.isAuthenticated && <MobileDropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }, { name: "Klassementen", path: "/klassementen" }]} onClick={() => setActive(false)}/>}
           </div>
         </div>
