@@ -138,6 +138,7 @@ function NavigationBar() {
                 { name: "Eregalerij", path: "/eregalerij" },
                 { name: "Arnold", path: "/arnold" },
                 { name: "OLD", path: "/old" },
+                { name: "Reglementen", path: "/reglementen" },
               ]}
               onClick={() => setActive(false)}
             />
