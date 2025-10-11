@@ -2,18 +2,6 @@
 
 .reglementen-container {
     display: flex;
-<<<<<<< HEAD
-    // flex-wrap: wrap;
-    padding-top: 12rem;
-    padding-left: 2rem;
-    background-color: variables.$dodeka_blauw90p;
-    padding-bottom: 12rem;
-    @include variables.respond(mobile){
-        flex-direction: column;
-        padding-left: 1rem;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-=======
     flex-direction: column;
     background-color: $dodeka_blauw90p;
     padding: 4rem 0;
@@ -21,7 +9,6 @@
     @include respond(mobile) {
         padding-top: 2rem;
         padding-bottom: 2rem;
->>>>>>> reglementen_update
         padding-right: 1rem;
         margin-bottom: 2rem;
         
@@ -36,18 +23,6 @@
     column-gap: 8rem;
     max-width: 80rem;
     width: 100%;
-<<<<<<< HEAD
-    // height: 100rem;
-    align-self: center;
-
-    @include variables.respond(computerscherm){
-        width: calc(100%/4);
-        height: 10rem;
-    }
-    @include variables.respond(mobile){
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-=======
     margin: 0 auto;
     @include respond(mobile) {
         grid-template-columns: 1fr;
@@ -72,7 +47,6 @@
         // padding: 1rem 0;
         border-radius: 1rem;
         height: 3rem;
->>>>>>> reglementen_update
         text-align: center;
     }
     &:hover {
@@ -82,27 +56,6 @@
     }
 }
 
-<<<<<<< HEAD
-
-.leden_link_header {//absolute bg-rood py-2 px-8 w-96 text-white text-3xl font-bold top-8 ml-8 z-30 lg:ml-0 left-0 lg:top-32 lg:right-0
-    background-color: variables.$dodeka_rood;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    text-align: center;
-    align-content: center;
-    width: calc(100% - 2rem);
-    color: white;
-    font-size: 1.25rem;
-    line-height: variables.$line_height_large;
-    font-weight: variables.$bold;
-    height: 6.5rem;
-    top: 2rem;
-    // z-index: 6;
-    left: 0rem;
-    @include variables.respond(computerscherm){
-=======
 .leden_link_header {
     background-color: $dodeka_rood;
     color: white;
@@ -121,7 +74,6 @@
     left: 0;
     transition: background 0.2s;
     @include respond(computerscherm) {
->>>>>>> reglementen_update
         position: absolute;
         font-size: $font_ml;
         // width: 20rem;
