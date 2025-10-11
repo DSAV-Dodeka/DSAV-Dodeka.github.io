@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router";
 import NavigationBar from "./components/Navigation Bar/NavigationBar";
 import Home from "./pages/Home/Home";
 import Nieuws from "./pages/Nieuws/Nieuws/Nieuws";
-import OWee from "./pages/OWee/OWee";
+// import OWee from "./pages/OWee/OWee";
 const Spike = React.lazy(() => import("./pages/Nieuws/Spike/Spike"));
 import Vereniging from "./pages/Vereniging/Vereniging/Vereniging";
 import Trainingen from "./pages/Trainingen/Trainingen";
@@ -156,7 +156,7 @@ function App() {
                 }
               />
               <Route path="/nieuws" element={<Nieuws />} />
-              <Route path="/owee" element={<OWee />} />
+              {/* <Route path="/owee" element={<OWee />} /> */}
               <Route path="/vereniging" element={<Vereniging />} />
               <Route path="/vereniging/commissies" element={<Commissies />} />
               <Route path="/vereniging/bestuur" element={<Bestuur />} />
