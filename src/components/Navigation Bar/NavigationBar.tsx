@@ -41,7 +41,7 @@ function NavigationBar() {
         />
         <div id="navItems">
           <Item name="Home" path="/" />
-          <Item name="OWee" path="/owee" />
+          {/* <Item name="OWee" path="/owee" /> */}
           <Dropdown
             name="Nieuws"
             path="/nieuws"
@@ -118,7 +118,7 @@ function NavigationBar() {
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
           <div className={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={() => setActive(false)} />
-            <Item name="OWee" path="/owee" onClick={() => setActive(false)} />
+            {/* <Item name="OWee" path="/owee" onClick={() => setActive(false)} /> */}
             <Item
               name="Nieuws"
               path="/nieuws"
@@ -138,6 +138,7 @@ function NavigationBar() {
                 { name: "Eregalerij", path: "/eregalerij" },
                 { name: "Arnold", path: "/arnold" },
                 { name: "OLD", path: "/old" },
+                { name: "Reglementen", path: "/reglementen" },
               ]}
               onClick={() => setActive(false)}
             />
