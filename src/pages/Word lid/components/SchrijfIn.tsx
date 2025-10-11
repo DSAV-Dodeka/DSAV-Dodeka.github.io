@@ -121,7 +121,7 @@ const SchrijfIn = () => {
                     <input type="text" name="email" placeholder="E-mail" value={state.email}
                            onChange={handleFormChange}/>
                     <div className="checkbox">
-                        <label >Ik heb het <a href="/files/privacyverklaring_dodeka_jan23.pdf" target="_blank" rel="noreferrer" className="privacy_link">privacybeleid</a> gelezen en ga hiermee akkoord.</label>
+                        <label >Ik heb het <a href="/files/privacyverklaring_dodeka_okt25.pdf" target="_blank" rel="noreferrer" className="privacy_link">privacybeleid</a> gelezen en ga hiermee akkoord.</label>
                         <input id="privacy" type="checkbox" name="privacy"
                                 onChange={handleCheckboxChange}/>
                     </div>
