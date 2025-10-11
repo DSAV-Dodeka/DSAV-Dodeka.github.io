@@ -3,7 +3,7 @@
 .reglementen-container {
     display: flex;
     flex-direction: column;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     padding: 4rem 0;
     margin-bottom: 8rem;
     @include respond(mobile) {
