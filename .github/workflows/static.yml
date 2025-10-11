@@ -31,9 +31,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          repository: dsav-dodeka/dsav-dodeka.github.io
-          ref: update-deps
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
