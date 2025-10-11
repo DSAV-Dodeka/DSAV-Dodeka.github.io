@@ -2,7 +2,7 @@
     "Trainers": [
         {
             "naam": "Gijs Tops",
-            "foto": "gijs.jpg",
+            "foto": "Gijs",
             "trainerType": "Baantrainer",
             "favorieteOnderdeel": "Hoogspringen",
             "trainerSinds": "2021",
@@ -10,7 +10,7 @@
         },
         {
             "naam": "Jefry el Bhwash",
-            "foto": "jefry.jpg",
+            "foto": "Jefry",
             "trainerType": "Baantrainer",
             "favorieteOnderdeel": "Ik doe zelf het liefst polsstokhoogspringen, maar ik help mensen het liefst met nóg betere sprinters worden.",
             "trainerSinds": "2023",
@@ -18,7 +18,7 @@
         },
         {
             "naam": "Joris Gudde",
-            "foto": "joris.jpg",
+            "foto": "Joris",
             "trainerType": "Baantrainer",
             "favorieteOnderdeel": "Twintigkamp",
             "trainerSinds": "2016 en sinds 2024 ben ik trainer bij Dodeka waar ik op elk onderdeel training geef.",
@@ -26,7 +26,7 @@
         },
         {
             "naam": "Eric van Pijlen",
-            "foto": "eric.jpg",
+            "foto": "eric",
             "trainerType": "Baantrainer",
             "favorieteOnderdeel": "Polsstokhoogspringen",
             "trainerSinds": "2024",
@@ -34,7 +34,7 @@
         },
         {
             "naam": "Thom Kortenoever",
-            "foto": "placeholder.jpg",
+            "foto": "placeholder",
             "trainerType": "Baantrainer",
             "favorieteOnderdeel": "Het machtige gevoel dat gepaard gaat met het discuswerpen is voor mij onovertroffen. Daarom is dit het onderdeel waar ik me het meest op richt.",
             "trainerSinds": "2016",
@@ -42,7 +42,7 @@
         },
         {
             "naam": "Aniek Sips",
-            "foto": "aniek.jpg",
+            "foto": "Aniek",
             "trainerType": "Looptrainer",
             "favorieteOnderdeel": "1500m op de baan, 5k op de weg",
             "trainerSinds": "2020",
@@ -50,7 +50,7 @@
         },
         {
             "naam": "Robert Meier",
-            "foto": "robert.jpg",
+            "foto": "Robert",
             "trainerType": "Looptrainer",
             "favorieteOnderdeel": "Op de baan de 5 km, op de weg mag het ook wat langer tot een halve marathon",
             "trainerSinds": "2023",
@@ -58,7 +58,7 @@
         },
         {
             "naam": "Jamie Hanselaar",
-            "foto": "jamie.jpg",
+            "foto": "jamie",
             "trainerType": "Looptrainer",
             "favorieteOnderdeel": "800 meter, omdat het de ultieme uitdaging is: snelheid én uithoudingsvermogen combineren in een paar minuten pure afzien",
             "trainerSinds": "2016 (kinderen t/m 9 jaar) en sinds 2024 trainer voor studenten (iets meer focus, iets minder trainen)",
@@ -66,14 +66,14 @@
         },
         {
             "naam": "Stan van Tilburg",
-            "foto": "stan.jpg",
+            "foto": "Stan",
             "trainerType": "MiLa Trainer",
             "trainerSinds": "2018",
             "expertise": "Ik sta altijd met veel plezier langs de atletiekbaan als trainer. Ik begon met het trainen van pupillen en junioren en heb daarna twee jaar looptraining gegeven bij de Loopgroep Galder. Sinds 2023 ben ik MiLa-trainer ('vo) bij D.S.A.V. Dodeka! Ik weet veel over sport-EHBO, blessures en belastbaarheid, dus als je een pijntje hebt of twijfelt over je training, stap gerust op me af!"
         },
         {
             "naam": "Tijmen Hoedjes",
-            "foto": "tijmen.jpg",
+            "foto": "Tijmen",
             "trainerType": "MiLa trainer",
             "favorieteOnderdeel": "800 en 1500 meter",
             "trainerSinds": "2023",
