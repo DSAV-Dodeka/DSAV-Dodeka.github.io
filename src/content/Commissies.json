@@ -189,48 +189,7 @@
             ],
             "fotos": "nskmeerkamp"
         },
-        {
-            "naam": "Nsk Trap",
-            "info": "Waddup, wij vinden traplopen, ladders, liften, alles waarbij je omhoog gaat heel vet. Wij hebben afgelopen jaar het Nederlands studentenkampioenschap trappenloop georganiseerd, dus eigenlijk is het een beetje laat dat we nu op de website komen, maar de foto's zijn wel heel leuk, dus we mogen nog wel even op de site shine pakken.",
-		    "leden": [
-                {
-                    "naam": "Melle",
-                    "functie": "Voorzitter",
-                    "foto": "melle"
-                },
-                {
-                    "naam": "Mano",
-                    "functie": "Secretaris",
-                    "foto": "mano"
-                },
-                {
-                    "naam": "Maaike ",
-                    "functie": "Penningmeester",
-                    "foto": "maaike"
-                },
-                {
-                    "naam": "Donne",
-                    "functie": "Commissaris Wedstrijd",
-                    "foto": "donne"
-                },
-                {
-                    "naam": "Annejet",
-                    "functie": "Commissaris eten, feest en slapen",
-                    "foto": "annejet"
-                },
-                {
-                    "naam": "Marien",
-                    "functie": "QQ",
-                    "foto": "marien"
-                },
-                {
-                    "naam": "Tijmen",
-                    "functie": "QQ",
-                    "foto": "tijmen"
-                }
-            ],
-            "fotos": "nsktrap"
-        },
+        
         {
             "naam": "Quico",
             "info": "De Quico is de commissie die voortdurend op zoek is naar manieren om Dodeka financiëel te ondersteunen. Wij organiseren hardloopclinics voor bedrijven, werkacties voor onze leden, of gaan in gesprek met mogelijke partners. Dankzij onze partners kan de vereniging investeren in materiaal, wedstrijden en leuke activiteiten, om zo bij te dragen aan de sportieve en sociale ontwikkeling van onze leden. Heeft u interesse om ook partner te worden van onze vereniging, dan denkt de Quico graag mee over wat er mogelijk is.  Denk aan een banner op een van onze wedstrijden, een logo op een shirt of promotie op onze sociale media kanalen.  Neem gerust contact op via  samenwerkingdodeka@gmail.com. voor een gesprek over de mogelijkheden!",
@@ -559,7 +518,43 @@
                 
                 
             ],
-            "fotos": "trainers"}
+            "fotos": "trainers"},
+            {
+            "naam": "Trap",
+            "info": "Op vrijdag 28 november is het alweer tijd voor de Delftse Trappenloopkampioenschappen 2025. Dit jaar zal het na het succes van vorig jaar weer plaatsvinden in het prachtige gebouw voor Elektrotechniek, Wiskunde en Informatica (EWI). Op de verschillende onderdelen zal er uitgemaakt worden wie er met de gouden medaille naar huis gaat. Dit jaar kan er gekozen worden uit 10 verdiepingen, 20 verdiepingen en 4x5 verdiepingen estafette. Daarnaast komt er ook nog een werknemersklassement. Denk jij dat je het in je hebt om al deze trappen te overwinnen en jezelf te kronen tot DE Kampioen van Delft? Schrijf je dan snel in en zet je schrap voor de trap!",
+		"leden": [
+               
+                {
+                    "naam": "Maaike",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+            
+                {
+                    "naam": "Anne",
+                    "functie": "Secretaris/QQ",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Stan",
+                    "functie": "Penningmeester",
+                    "foto": "placeholder"
+                },               
+            
+                {
+                    "naam": "Kyllian",
+                    "functie": "Commissaris Wedstrijd",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Tijmen",
+                    "functie": "QQ/secretaris",
+                    "foto": "placeholder"
+                }
+                
+            ],
+            "fotos": "trap"
+        }
 ],
 "oude commissies":[ {
     "naam": "BatCie",
@@ -598,40 +593,47 @@
     ],
     "fotos": "batcie"
 },
-        {
-            "naam": "Trap",
-            "info": "Hey! Wij zijn de commissie die ",
-		"leden": [
-               
+        
+    {
+            "naam": "Nsk Trap",
+            "info": "Waddup, wij vinden traplopen, ladders, liften, alles waarbij je omhoog gaat heel vet. Wij hebben afgelopen jaar het Nederlands studentenkampioenschap trappenloop georganiseerd, dus eigenlijk is het een beetje laat dat we nu op de website komen, maar de foto's zijn wel heel leuk, dus we mogen nog wel even op de site shine pakken.",
+		    "leden": [
                 {
-                    "naam": "Maaike",
+                    "naam": "Melle",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
-                },
-            
-                {
-                    "naam": "Anne",
-                    "functie": "Secretaris/QQ",
-                    "foto": "placeholder"
+                    "foto": "melle"
                 },
                 {
-                    "naam": "Stan",
+                    "naam": "Mano",
+                    "functie": "Secretaris",
+                    "foto": "mano"
+                },
+                {
+                    "naam": "Maaike ",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
-                },               
-            
+                    "foto": "maaike"
+                },
                 {
-                    "naam": "Kyllian",
+                    "naam": "Donne",
                     "functie": "Commissaris Wedstrijd",
-                    "foto": "placeholder"
+                    "foto": "donne"
+                },
+                {
+                    "naam": "Annejet",
+                    "functie": "Commissaris eten, feest en slapen",
+                    "foto": "annejet"
+                },
+                {
+                    "naam": "Marien",
+                    "functie": "QQ",
+                    "foto": "marien"
                 },
                 {
                     "naam": "Tijmen",
-                    "functie": "QQ/secretaris",
-                    "foto": "placeholder"
+                    "functie": "QQ",
+                    "foto": "tijmen"
                 }
-                
             ],
-            "fotos": "trap"
+            "fotos": "nsktrap"
         }]
 }
