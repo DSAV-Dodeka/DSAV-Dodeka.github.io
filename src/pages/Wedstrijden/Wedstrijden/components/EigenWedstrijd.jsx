@@ -19,7 +19,7 @@ function EigenWedstrijd(props) {
         src={getNestedImagesUrl(`wedstrijden/${props.logo}`)}
         alt=""
       /> */}
-      <img className="eigenWedstrijdFoto" src="/public/images/wedstrijden/nsk_meerkamp_2.jpg" alt="" />
+      <img className="eigenWedstrijdFoto" src="/assets/wedstrijden/nsk_meerkamp_2.jpg" alt="" />
       <p className="eigenWedstrijdInfo">{props.info_kort}</p>
       {props.path === "" ? (
         ""
