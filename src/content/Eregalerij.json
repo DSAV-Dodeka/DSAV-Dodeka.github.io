@@ -62,6 +62,36 @@
                 "Grote ondersteuning geweest voor meerdere besturen"
             ],
             "foto": "thomas.jpg"
+        },
+        {
+            "naam": "Jefry el Bhwash",
+            "redenen": [
+                "Secretaris van Bestuur 4",
+                " Bij Dodeka actief betrokken met opstellen van huisstijl en automatiseren maar ook het zijn van DJ en trainer",
+                "Lid van zowel interim-commissie als oprichtingsgroep en was van onschatbare waarde voor de oprichting"
+            ],
+            "foto": "jefry.jpg"
+        }
+        ,
+        {
+            "naam": "Aniek Sips",
+            "redenen": [
+                "Commissaris Atletiek van Bestuur 3",
+                "Loopgroep opgezet en daarin jarenlang actief geweest als trainer",
+                "Met Statuten werkgroep zowel statuten als HR opgesteld"
+            ],
+            "foto": "aniek.jpg"
+        }
+        ,
+        {
+            "naam": "Lianne Folkerts",
+            "redenen": [
+                "Voorzitter van bestuur 4",
+                "Met Statuten werkgroep zowel statuten als HR opgesteld",
+                "Lid van zowel interim-commissie als oprichtingsgroep"
+
+            ],
+            "foto": "lianne.jpg"
         }
     ]
 
