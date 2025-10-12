@@ -45,9 +45,7 @@ jobs:
       - name: Copy static files
         run: cp -r "files" "build/client/files"
       - name: Copy static images
-        run: |
-          mkdir -p build/client/public/images/wedstrijden
-          cp -r "src/images/wedstrijden" "build/client/public/images/wedstrijden"
+        run: cp -r "src/images/wedstrijden" "build/client/assets/wedstrijden"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

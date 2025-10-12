@@ -3,7 +3,6 @@ import PageTitle from "../../../components/PageTitle";
 import WedstrijdAlgemeen from "./components/WedstrijdAlgemeen";
 import WedstrijdBelangrijk from "./components/WedstrijdBelangrijk";
 import "./Wedstrijd.scss";
-import { getNestedImagesUrl } from "../../../functions/links";
 
 function Wedstrijd(props) {
   return (
@@ -15,7 +14,7 @@ function Wedstrijd(props) {
         ) : (
           <img
             className="wedstrijd_logo"
-            src={getNestedImagesUrl(`wedstrijden/${props.wedstrijd.logo_rond}`)}
+            src={`/assets/wedstrijden/${props.wedstrijd.logo_rond}`}
             alt=""
           />
         )}
