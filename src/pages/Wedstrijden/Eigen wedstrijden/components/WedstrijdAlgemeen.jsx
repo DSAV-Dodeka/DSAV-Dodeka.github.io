@@ -1,6 +1,7 @@
 import React from "react";
 import parse from "html-react-parser";
 import "./WedstrijdAlgemeen.scss";
+import { getStaticImageUrl } from "../../../../functions/links";
 
 function Wedstrijd(props) {
   return (
@@ -8,7 +9,7 @@ function Wedstrijd(props) {
       <img
         className="wedstrijd_algemeen_foto"
         alt=""
-        src={`/assets/wedstrijden/${props.wedstrijd.foto}`}
+        src={getStaticImageUrl(`wedstrijden/${props.wedstrijd.foto}`)}
       />
       <p className="wedstrijd_algemeen_info">
         {parse(props.wedstrijd.info_lang)}
