@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import "./EigenWedstrijd.scss";
+import {getStaticImageUrl} from "../../../../functions/links";
 
 function EigenWedstrijd(props) {
   return (
@@ -15,7 +16,7 @@ function EigenWedstrijd(props) {
       </p>
       <img
         className="eigenWedstrijdFoto"
-        src={`/assets/wedstrijden/${props.logo}`}
+        src={getStaticImageUrl(`wedstrijden/${props.logo}`)}
         alt=""
       />
       <p className="eigenWedstrijdInfo">{props.info_kort}</p>
