@@ -367,6 +367,7 @@ export default function Registreer() {
                 onChange={handleCheckboxChange}
               />
             </div>
+            <p style={{ marginBottom: "0.7rem", lineHeight: "1rem", fontStyle: "italic", color: "#999" }}>For non-dutch banks: please also send your BIC number to <a href="mailto:bestuur@dsavdodeka.nl" style={{ color: "#999" }}>bestuur@dsavdodeka.nl</a></p>
             <input
               className={submitted}
               required
