@@ -47,7 +47,9 @@ jobs:
       - name: Copy static images
         run: cp -r "src/images/wedstrijden" "build/client/assets/wedstrijden"
       - name: Copy favicon
-        run: cp "favicon.ico" "build/client/public/favicon.ico"
+        run: |
+          mkdir -p build/client/public
+          cp "favicon.ico" "build/client/public/favicon.ico"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
