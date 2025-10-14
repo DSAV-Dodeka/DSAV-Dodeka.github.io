@@ -22,9 +22,9 @@ function Sponsoropties() {
             target="_blank"
             rel="noreferrer"
             className="linktomail_1"
-            href="mailto:bestuur@dsavdodeka.nl"
+            href="mailto:samenwerking@dsavdodeka.nl"
           >
-            bestuur@dsavdodeka.nl
+            samenwerking@dsavdodeka.nl
           </a>
           .
         </p>
