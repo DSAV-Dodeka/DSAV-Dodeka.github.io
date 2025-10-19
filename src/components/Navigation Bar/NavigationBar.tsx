@@ -90,6 +90,7 @@ function NavigationBar() {
             items={[
               { name: "Sponsors", path: "/sponsors" },
               { name: "VCP", path: "/vcp" },
+              { name: "Donateurs", path: "/donateurs" },
             ]}
           />
           {/*{authState.isLoaded && authState.isAuthenticated && <Dropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }, { name: "Klassementen", path: "/klassementen" }]} />}*/}
@@ -181,6 +182,7 @@ function NavigationBar() {
                 { name: "Contactinformatie", path: "" },
                 { name: "Sponsors", path: "/sponsors" },
                 { name: "VCP", path: "/vcp" },
+                { name: "Donateurs", path: "/donateurs" },
               ]}
               onClick={() => setActive(false)}
             />

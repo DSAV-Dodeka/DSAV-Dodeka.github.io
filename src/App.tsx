@@ -9,6 +9,7 @@ import Vereniging from "./pages/Vereniging/Vereniging/Vereniging";
 import Trainingen from "./pages/Trainingen/Trainingen";
 import WordLid from "./pages/Word lid/WordLid";
 import Contact from "./pages/Contact/Contact/Contact";
+import Donateurs from "./pages/Vereniging/Donateurs/Donateurs";
 import ContactBar from "./components/Contact Bar/ContactBar";
 import Commissies from "./pages/Vereniging/Commissies/Commissies";
 import Reglementen from "./pages/Vereniging/Reglementen/Reglementen";
@@ -219,6 +220,10 @@ function App() {
               <Route
                 path="/contact/vcp"
                 element={<Vetrouwenscontactpersoon />}
+              />
+              <Route
+                path="/contact/donateurs"
+                element={<Donateurs />}
               />
               {/*<Route
                 path="/leden/verjaardagen"
