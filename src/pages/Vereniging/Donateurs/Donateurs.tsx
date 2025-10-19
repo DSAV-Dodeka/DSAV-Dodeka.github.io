@@ -1,14 +1,14 @@
 import PageTitle from "../../../components/PageTitle";
-import Trainersgezocht from "./components/Trainersgezocht";
-import Text from "../../../content/Gezocht.json";
+import Donateurs_info from "./components/Donateurs_info";
+import Text from "../../../content/Donateurs.json";
 
-function Gezocht() {
+function Donateurs() {
   return (
     <div>
-      <PageTitle title="Trainers gezocht" />
-      <Trainersgezocht text={Text.gezocht.tekst} />
+      <PageTitle title="Donateurs" />
+      <Donateurs_info text={Text.donateurs.tekst} />
     </div>
   );
 }
 
-export default Gezocht;
+export default Donateurs;
