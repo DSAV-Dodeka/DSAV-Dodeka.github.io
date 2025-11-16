@@ -403,32 +403,32 @@
                 {
                     "naam": "Niek",
                     "functie": "Voorzitter",
-                    "foto": "niek"
+                    "foto": "Niek"
                 },
                 {
                     "naam": "Vera",
                     "functie": "Secretaris",
-                    "foto": "vera"
+                    "foto": "Vera"
                 },
                 {
                     "naam": "Sanne",
                     "functie": "Penningmeester",
-                    "foto": "sanne"
+                    "foto": "Sanne"
                 },
                 {
                     "naam": "Merel",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "merel"
+                    "foto": "Merel"
                 },
                 {
                     "naam": "Kyllian",
                     "functie": "Commissaris Logistiek",
-                    "foto": "kyllian"
+                    "foto": "Kyllian"
                 },
                 {
                     "naam": "Itse",
                     "functie": "QQ",
-                    "foto": "itse"
+                    "foto": "Itse"
                 }
             ],
             "fotos": "sunrice"
@@ -462,7 +462,7 @@
                 },{
                     "naam": "Eric",
                     "functie": "Baantrainer",
-                    "foto": "Eric"
+                    "foto": "eric"
                 },
                 {
                     "naam": "Anne-wil",
@@ -497,7 +497,7 @@
                 },{
                     "naam": "Jamie",
                     "functie": "Baantrainer",
-                    "foto": "Jamie"
+                    "foto": "jamie"
                 },
             
                 {
@@ -512,8 +512,8 @@
                 },
                 {
                     "naam": "Xylander",
-                    "functie": "MiLatrainer",
-                    "foto": "QQ"
+                    "functie": "QQ",
+                    "foto": "placeholder"
                 }
                 
                 
