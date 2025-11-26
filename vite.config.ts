@@ -1,21 +1,39 @@
-import { defineConfig, splitVendorChunkPlugin } from 'vite'
-import react from '@vitejs/plugin-react'
-import svgrPlugin from 'vite-plugin-svgr'
+import { defineConfig } from "vite";
+import { reactRouter } from "@react-router/dev/vite";
+import svgrPlugin from "vite-plugin-svgr";
+import path from "node:path";
+import { browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-      react(),
-      svgrPlugin({
-        svgrOptions: {
-          icon: true,
-        },
-      }),
-      splitVendorChunkPlugin(),
+    reactRouter(),
+    svgrPlugin({
+      svgrOptions: {
+        icon: true,
+      },
+    }),
   ],
   server: {
-    port: 3000
-  }
-
-})
-
+    port: 3000,
+  },
+  resolve: {
+    alias: {
+      $images: path.resolve(__dirname, "./src/images"),
+    },
+  },
+  css: {
+    transformer: "lightningcss",
+    lightningcss: {
+      targets: browserslistToTargets(browserslist("baseline widely available")),
+      cssModules: true,
+      drafts: {
+        customMedia: true,
+      },
+    },
+  },
+  build: {
+    cssMinify: "lightningcss",
+    target: "baseline-widely-available",
+  },
+});

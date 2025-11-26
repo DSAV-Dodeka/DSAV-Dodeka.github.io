@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import "./Wedstrijd.scss";
-import {getNestedImagesUrl} from "../../../../functions/links";
+import {getStaticImageUrl} from "../../../../functions/links";
 
 function getGold(prijzen) {
     const gold = prijzen.filter(prijs => {
@@ -44,16 +44,16 @@ function Wedstrijd(props) {
             <div className="hoogtepunten_wedstrijd">
                 {props.naam}
             </div>
-            <img className="hoogtepunten_foto" src={getNestedImagesUrl('wedstrijden/' + props.foto)}/>
+            <img className="hoogtepunten_foto" src={getStaticImageUrl('wedstrijden/' + props.foto)}/>
             
             <div className="hoogtepunten_prijzen">
                 <div className="hoogtepunten_titel_container">
                     <p className="hoogtepunten_titel">Prijzen</p>
                 </div>
                 <div className="hoogtepunten_medaille_container">
-                    <img className="hoogtepunten_medaille" src={getNestedImagesUrl('wedstrijden/goud.png')} alt=""/>
-                    <img className="hoogtepunten_medaille" src={getNestedImagesUrl('wedstrijden/zilver.png')} alt=""/>
-                    <img className="hoogtepunten_medaille" src={getNestedImagesUrl('wedstrijden/brons.png')} alt=""/>
+                    <img className="hoogtepunten_medaille" src={getStaticImageUrl("wedstrijden/goud.png")} alt=""/>
+                    <img className="hoogtepunten_medaille" src={getStaticImageUrl("wedstrijden/zilver.png")} alt=""/>
+                    <img className="hoogtepunten_medaille" src={getStaticImageUrl("wedstrijden/brons.png")} alt=""/>
                 </div>
                 <div className="hoogtepunten_text_container">
                     <p className="hoogtepunten_text">{getGold(props.prijzen)}</p>

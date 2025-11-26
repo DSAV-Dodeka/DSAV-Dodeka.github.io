@@ -1,0 +1,74 @@
+@use "../../../../variables.scss";
+
+.donateurs_1{//lg:flex bg-blauw bg-opacity-90 w-full mb-16 lg:mb-24
+    background-color: variables.$dodeka_blauw90p;
+    width: 100%;
+    margin-bottom: 4rem;
+    @include variables.respond(computerscherm){
+        display: flex;
+        margin-bottom: 6rem;
+    }
+}
+
+.donateurs_2{//lg:inline py-4 lg:py-0 lg:my-8 w-full lg:w-1/2
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+    @include variables.respond(computerscherm){
+        display: inline;
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+        margin-top: variables.$margin_y;
+        margin-bottom: variables.$margin_y;
+        width: 50%;
+    }
+}
+
+.donateurs_3{//text-white text-md mx-4 lg:mx-16 mt-4 lg:mt-8
+    color: white;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
+    margin-left: variables.$margin_mobile;
+    margin-right: variables.$margin_mobile;
+    margin-top: variables.$margin_mobile;
+    @include variables.respond(computerscherm){
+        margin-left: variables.$margin_x;
+        margin-right: variables.$margin_x;
+        margin-top: variables.$margin_y;
+    }    
+}
+
+.donateurs_4{//lg:inline w-full lg:w-1/2
+    display: block;
+    width: 100%;
+    @include variables.respond(computerscherm){
+        display: inline;
+        width: 50%;
+    }    
+}
+
+.schrijfInButton{
+    background-color: variables.$dodeka_rood;
+    border-style: none;
+    width: calc(100% - 2rem);
+    padding-top: variables.$margin_mobile;
+    padding-bottom: variables.$margin_mobile;
+    color: white;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-weight: variables.$bold;
+    cursor: pointer;
+    margin-top: variables.$margin_mobile;
+    margin-left: variables.$margin_mobile;
+    margin-right: variables.$margin_mobile;
+    box-shadow: 0 0 15px variables.$dodeka_blauw;
+    // transition: 0.3s;
+    @include variables.respond(computerscherm){
+        width: calc(100% - 2 * variables.$margin_x);
+        margin-top: variables.$margin_y;
+        margin-left: variables.$margin_x;
+        margin-right: variables.$margin_x;
+    }
+}

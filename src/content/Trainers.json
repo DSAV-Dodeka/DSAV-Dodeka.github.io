@@ -1,0 +1,83 @@
+{
+    "Trainers": [
+        {
+            "naam": "Gijs Tops",
+            "foto": "Gijs",
+            "trainerType": "Baantrainer",
+            "favorieteOnderdeel": "Hoogspringen",
+            "trainerSinds": "2021",
+            "expertise": "Als junior heb ik zelf specifiek op hoogspringen getraind, en ik wil deze kennis nu graag overdragen. Tijdens de trainingen zorg ik ervoor dat we met een gezonde portie jump squats en core oefeningen de lat zo hoog mogelijk leggen. Tot snel!"
+        },
+        {
+            "naam": "Jefry el Bhwash",
+            "foto": "Jefry",
+            "trainerType": "Baantrainer",
+            "favorieteOnderdeel": "Ik doe zelf het liefst polsstokhoogspringen, maar ik help mensen het liefst met nóg betere sprinters worden.",
+            "trainerSinds": "2023",
+            "expertise": "Ik houd ervan om je te vertellen waarom je bepaalde dingen doet tijdens mijn trainingen. Dat maakt het naar mijn idee niet alleen veel effectiever, maar ook makkelijker om uit te voeren.Soms sta ik met een iPad langs de baan om je in detail te laten zien wat je aan het doen bent en zodat je een beter beeld hebt van waar je naartoe wil en kan met je techniek. Zeker voor de beginnende atleet kan ik je snel helpen om als een èchte atleet te bewegen!"
+        },
+        {
+            "naam": "Joris Gudde",
+            "foto": "Joris",
+            "trainerType": "Baantrainer",
+            "favorieteOnderdeel": "Twintigkamp",
+            "trainerSinds": "2016 en sinds 2024 ben ik trainer bij Dodeka waar ik op elk onderdeel training geef.",
+            "expertise": "Door de jaren heen heb ik bijna elk onderdeel veelvoudig getraind. Na heel wat jaren zelf getraind te hebben ben ik in 2016 training gaan geven, hier heb ik ervaring opgedaan met verschillende leeftijdsgroepen en mijn expertise op verschillende onderdelen aangescherpt. Ik gebruik vooral mijn eigen ervaringen om zo beginnende atleten en ervaren atleten te kunnen begeleiden. Daarnaast vindt ik inmijn trainingen ook  de gezelligheid erg belangrijk. Naar mijn mening train je beter als je tussen de concentratie momenten door ook een beetje lol hebt."
+        },
+        {
+            "naam": "Eric van Pijlen",
+            "foto": "eric",
+            "trainerType": "Baantrainer",
+            "favorieteOnderdeel": "Polsstokhoogspringen",
+            "trainerSinds": "2024",
+            "expertise": "Ik ben goed in mensen vermaken tijdens training geven. Zo ging ik laatst op mijn bek tijdens verspringen geven , was mn hele broek onder de modder en had iedereen veel lol. Daarnaast genieten ze hopelijk ook van de training zelf."
+        },
+        {
+            "naam": "Thom Kortenoever",
+            "foto": "placeholder",
+            "trainerType": "Baantrainer",
+            "favorieteOnderdeel": "Het machtige gevoel dat gepaard gaat met het discuswerpen is voor mij onovertroffen. Daarom is dit het onderdeel waar ik me het meest op richt.",
+            "trainerSinds": "2016",
+            "expertise": "Sinds september 2024 ben ik een van de trainers van Dodeka. Daarvoor was ik jeugdtrainer bij mijn thuisclub AV Typhoon, waar ik sinds 2016 met veel plezier training heb gegeven. In die periode heb ik mijn passie ontwikkeld voor de werponderdelen. Door mijn ervaring heb ik een scherp oog ontwikkeld voor technische verbeterpunten en weet ik atleten te helpen hun techniek naar een hoger niveau te tillen."
+        },
+        {
+            "naam": "Anne-Wil van Werkhoven",
+            "foto": "placeholder",
+            "trainerType": "Baantrainer",
+            "favorieteOnderdeel": "Hinkstapspringen",
+            "trainerSinds": "2025",
+            "expertise": "Sinds mijn vijfde huppel ik al rond op de atletiekbaan, en dat doe ik nog steeds met veel plezier. Ondertussen heb ik zelf veel trainingen gevolgd op verschillende atletiekbanen en bij allerlei trainers. Die ervaringen, samen met wat ik heb geleerd tijdens de trainerscursus, probeer ik nu te gebruiken om trainingen te geven die leuk en leerzaam zijn voor atleten van elk niveau. Ik heb me uiteindelijk gespecialiseerd in verspringen en hinkstapspringen, maar ik geef ook graag training in andere technische onderdelen. Wat ik leuk vind om te zien is als atleten plezier hebben in (samen) bewegen, en merken dat ze steeds meer zelfvertrouwen krijgen in wat ze kunnen."
+        },
+        {
+            "naam": "Robert Meier",
+            "foto": "Robert",
+            "trainerType": "Looptrainer",
+            "favorieteOnderdeel": "Op de baan de 5 km, op de weg mag het ook wat langer tot een halve marathon",
+            "trainerSinds": "2023",
+            "expertise": "Ik probeer mijn ervaring van een aantal verschillende hardloop trainers met wat eigen ideeën te mengen en zo effectieve en leuke trainingen te geven, die je zowel beter maken als ook te grote belastingen voorkomen, waardoor je hopelijk minder snel last van blessures zal hebben. Ook help ik graag mee bij de directe wedstrijd voorbereiding en planning, voor alles tussen nationale kampioenschappen en lokale cross wedstrijden."
+        },
+        {
+            "naam": "Jamie Hanselaar",
+            "foto": "jamie",
+            "trainerType": "Looptrainer",
+            "favorieteOnderdeel": "800 meter, omdat het de ultieme uitdaging is: snelheid én uithoudingsvermogen combineren in een paar minuten pure afzien",
+            "trainerSinds": "2016 (kinderen t/m 9 jaar) en sinds 2024 trainer voor studenten (iets meer focus, iets minder krokodillentranen).",
+            "expertise": "Data, details en dikke resultaten, dat is mijn ding. Ik ben compleet obsessed met hardloopdata. Snelheden, tijden, progressies; ik analyseer het allemaal tot in de kleinste cijfers. En het beste? Ik zet die inzichten om in keiharde verbeteringen voor jou. Daarnaast ben ik een meester in creativiteit: warming-ups die je op scherp zetten, spelvormen waar iedereen in mee wil gaan, en schema's met nét die twist waardoor je niet alleen beter wordt, maar ook plezier hebt."
+        },
+        {
+            "naam": "Stan van Tilburg",
+            "foto": "Stan",
+            "trainerType": "MiLa Trainer",
+            "trainerSinds": "2018",
+            "expertise": "Ik sta altijd met veel plezier langs de atletiekbaan als trainer. Ik begon met het trainen van pupillen en junioren en heb daarna twee jaar looptraining gegeven bij de Loopgroep Galder. Sinds 2023 ben ik MiLa-trainer ('vo) bij D.S.A.V. Dodeka! Ik weet veel over sport-EHBO, blessures en belastbaarheid, dus als je een pijntje hebt of twijfelt over je training, stap gerust op me af!"
+        },
+        {
+            "naam": "Tijmen Hoedjes",
+            "foto": "Tijmen",
+            "trainerType": "MiLa trainer",
+            "favorieteOnderdeel": "800 en 1500 meter",
+            "trainerSinds": "2023",
+            "expertise": "Ik heb een aantal jaar zelf op hoog niveau getraind. De ervaringen die ik daarmee op heb gedaan, gebruik ik voor het produceren van kwalitatief goede training voor ieder niveau. Daarnaast weet ik goed wanneer atleten het zwaar hebben en reductie van trainingsarbeid nodig is."
+        }
+    ]
+}

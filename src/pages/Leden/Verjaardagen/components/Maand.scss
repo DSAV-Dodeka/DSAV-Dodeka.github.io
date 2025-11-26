@@ -1,12 +1,12 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 .maand {
     width: 12rem;
     padding: 1rem;
-    background-color: $dodeka_blauw;
+    background-color: variables.$dodeka_blauw;
     color: white;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
     font-weight: bold;
     text-transform: uppercase;
     margin-left: auto;
@@ -15,12 +15,12 @@
     margin-top: 2rem;
     text-align: center;
     border-radius: 0.75rem;
-    @include respond(computerscherm) {
+    @include variables.respond(computerscherm) {
         grid-column: span 2;
     }
-    @include respond(mobile) {
-        font-size: $font_small;
-        line-height: $line_height_small;
+    @include variables.respond(mobile) {
+        font-size: variables.$font_small;
+        line-height: variables.$line_height_small;
         padding: 0.5rem;
         width: 8rem;
         margin-bottom: 1rem;

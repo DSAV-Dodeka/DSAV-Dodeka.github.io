@@ -1,11 +1,11 @@
-@import "../../../variables.scss";
+@use "../../../variables.scss";
 
 .oldInfo {
     display: flex;
     width: 100%;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     margin-bottom: 6rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         margin-bottom: 4rem;
     }
@@ -22,7 +22,7 @@
     padding-right: 4rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         width: 100%;
         padding: 1rem;
@@ -30,22 +30,22 @@
 }
 
 .oldText p {
-    font-size: $font_small;
-    line-height: $line_height_small;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
     
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
 
     }
 }
 
 a {
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
 }
 
 .oldFoto {
     display: inline;
     width: 50%;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         display: block;
         width: 100%;
     }

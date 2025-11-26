@@ -19,7 +19,7 @@ export function base64ToBin(encoded_string: string) {
 }
 
 export function stringToUint8(str: string) {
-    let chars = [];
+    const chars = [];
     for (let i = 0; i < str.length; ++i){
         chars.push(str.charCodeAt(i));
     }

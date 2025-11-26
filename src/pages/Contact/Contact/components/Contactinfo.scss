@@ -1,33 +1,33 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 #info {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 75%;
-    margin-left: $margin_x;
-    margin-right: $margin_x;
-    row-gap: $margin_y;
-    @include respond(mobile) {
+    margin-left: variables.$margin_x;
+    margin-right: variables.$margin_x;
+    row-gap: variables.$margin_y;
+    @include variables.respond(mobile) {
         display: block;
-        margin-right: $margin_mobile;
-        margin-left: $margin_mobile;
-        padding-top: $margin_mobile;
+        margin-right: variables.$margin_mobile;
+        margin-left: variables.$margin_mobile;
+        padding-top: variables.$margin_mobile;
     }
 }
 
 .contact-type {
     margin: 0;
     color: white;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    font-weight: variables.$bold;
 }
 
 .contact-value {
     margin: 0;
-    color: $dodeka_rood;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
+    color: variables.$dodeka_rood;
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    font-weight: variables.$bold;
     text-decoration: none;
 }

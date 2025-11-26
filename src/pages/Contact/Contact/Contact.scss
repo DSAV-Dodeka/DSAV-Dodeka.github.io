@@ -1,22 +1,22 @@
-@import "../../../variables";
+@use "../../../variables";
 
 #contact {
     width: 100%;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     display: flex;
-    margin-bottom: $margin_x;
-    @include respond(mobile) {
+    margin-bottom: variables.$margin_x;
+    @include variables.respond(mobile) {
         display: block;
-        margin-bottom: $margin_y;
+        margin-bottom: variables.$margin_y;
     }
 }
 
 #contact_info {
     width: 50%;
     display: inline;
-    margin-top: $margin_y;
-    margin-bottom: $margin_y;
-    @include respond(mobile) {
+    margin-top: variables.$margin_y;
+    margin-bottom: variables.$margin_y;
+    @include variables.respond(mobile) {
         width: 100%;        
     }
 }
@@ -25,7 +25,7 @@
     width: 50%;
     height: auto;
     display: inline;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 100%;
         height: 24rem;
         display: block;
@@ -34,7 +34,7 @@
 
 #faq {
     margin-bottom: 4rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-bottom: 2rem;
     }
 }

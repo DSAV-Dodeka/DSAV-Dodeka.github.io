@@ -1,5 +1,5 @@
 import Papa from "papaparse";
-import {ZodTypeAny, z} from "zod"
+import {type ZodTypeAny, z} from "zod"
 
 export const parseFile = <S extends ZodTypeAny>(files: FileList, rowSchema: S, resultCallback: (found: z.infer<S>[]) => void, errorCallback: (e: unknown) => void) => {
     Papa.parse(files[0], {

@@ -1,5 +1,4 @@
-import React, {useContext, useState, ChangeEvent, Fragment, FormEvent} from "react";
-import {z} from "zod";
+import React, {useContext, useState, Fragment} from "react";
 import './table.scss';
 
 import {
@@ -7,22 +6,18 @@ import {
     flexRender,
     getCoreRowModel,
     useReactTable,
-    SortingState,
+    type SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {KlassementList, KlassementData, UserNames} from "../../../functions/api/klassementen";
+import { type KlassementData, type UserNames} from "../../../functions/api/klassementen";
 import AuthContext from "../../Auth/AuthContext";
 import "./Klassement.scss";
 import {
-    queryError, useAdminKlassementQuery, useKlassementQuery,
+    queryError, useAdminKlassementQuery,
     useUserNamesQuery
 } from "../../../functions/queries";
-import {matchNames, MultiMatch, parseFile} from "../functions/parse";
-import {back_post_auth} from "../../../functions/api/api";
 import SortHeader from "./SortHeader";
 import NewEvent from "./NewEvent";
-import Modal from "../../../components/Modal/Modal";
-import ModalForm from "../../../components/Modal/ModalForm";
 import EditKlassement from "./EditKlassement";
 
 const columnHelper = createColumnHelper<KlassementData>()

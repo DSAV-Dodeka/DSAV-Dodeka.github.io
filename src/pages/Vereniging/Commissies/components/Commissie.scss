@@ -1,11 +1,11 @@
-@import "../../../../variables";
+@use "../../../../variables";
 
 .commissieContainer {
     width: 200%;
     height: 32rem;
     position: relative;
     margin-bottom: 6rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         height: auto;
         margin-bottom: 4rem;
     }
@@ -17,7 +17,8 @@
     height: 32rem;
     display: inline-block;
     vertical-align: top;
-    @include respond(mobile) {
+    background-color: variables.$dodeka_blauw;
+    @include variables.respond(mobile) {
         width: 50%;
         height: auto;
         display: block;
@@ -30,12 +31,12 @@
     height: 32rem;
     vertical-align: top;
     position: relative;
-    background-color: $dodeka_blauw90p;
+    background-color: variables.$dodeka_blauw90p;
     display: inline-block;
     margin-left: 4rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         width: 50%;
         height: 100%;
         display: block;
@@ -48,11 +49,11 @@
 .commissieStukje {
     color: white;
     font-size: 1.125rem;
-    line-height: $line_height_medium;
+    line-height: variables.$line_height_medium;
     margin-top: 2rem;
     margin-left: 4rem;
     margin-right: 4rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-top: 1rem;
         margin-left: 1rem;
         margin-right: 1rem;
@@ -68,12 +69,12 @@
     padding-top: 0.4rem;
     padding-right: 1rem;
     cursor: pointer;
-    background-color: $dodeka_rood;
+    background-color: variables.$dodeka_rood;
     color: white;
-    font-size: $font_medium;
-    line-height: $line_height_medium;
-    font-weight: $bold;
-    @include respond(mobile) {
+    font-size: variables.$font_medium;
+    line-height: variables.$line_height_medium;
+    font-weight: variables.$bold;
+    @include variables.respond(mobile) {
         display: none;
     }
 }
@@ -93,11 +94,9 @@
 }
 
 .commissieFoto {
-    object-fit: cover;
-    width: 32rem;
-    @include respond(mobile) {
-        width: 100%;
-    }
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
 }
 
 .commissieLeden {
@@ -125,23 +124,23 @@
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
     color: white;
-    font-weight: $bold;
-    font-size: $font_medium;
+    font-weight: variables.$bold;
+    font-size: variables.$font_medium;
     text-align: center;
 }
 
 .commissieLidFunctie {
     display: block;
-    color: $dodeka_rood;
+    color: variables.$dodeka_rood;
     text-align: center;
-    font-size: $font_small;
-    font-weight: $bold;
+    font-size: variables.$font_small;
+    font-weight: variables.$bold;
 }
 
 .roundedLeft {
     border-top-left-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
@@ -150,7 +149,7 @@
 .roundedRight {
     border-top-right-radius: 0.75rem;
     border-bottom-right-radius: 0.75rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }

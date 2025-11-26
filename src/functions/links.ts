@@ -12,3 +12,13 @@ export const getDeepImagesUrl = (loc: string) => {
     const split = loc.split('/')
     return new URL(`../images/${split[0]}/${split[1]}/${split[2]}`, import.meta.url).href
 }
+
+export const getStaticImageUrl = (inputString: string) => {
+    if (import.meta.env.PROD) {
+        // In production, return the URL with `/assets/`
+        return `/assets/${inputString}`;
+    } else {
+        // In development, use an absolute path relative to the root
+        return `/src/images/${inputString}`;
+    }
+};

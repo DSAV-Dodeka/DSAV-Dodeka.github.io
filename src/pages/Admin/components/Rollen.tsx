@@ -1,5 +1,4 @@
-import React, {useContext, useEffect, useReducer, useState, ChangeEvent, FocusEvent, Fragment, FormEvent} from "react";
-import {z} from "zod";
+import React, {useContext, useState, type ChangeEvent, Fragment, type FormEvent} from "react";
 import './table.scss'
 
 import {
@@ -7,14 +6,13 @@ import {
     flexRender,
     getCoreRowModel,
     useReactTable,
-    SortingState,
+    type SortingState,
     getSortedRowModel
 } from '@tanstack/react-table'
-import {UserData, ud_request, catch_api, RoleData, RoleInfo, back_post_auth, back_post} from "../../../functions/api/api";
+import { type RoleData, back_post_auth} from "../../../functions/api/api";
 import AuthContext from "../../Auth/AuthContext";
 import "./Rollen.scss";
-import {useQuery, useQueryClient, UseQueryResult} from "@tanstack/react-query";
-import {queryError, useSignedUpQuery, useUserDataQuery, useUserScopeQuery} from "../../../functions/queries";
+import {queryError, useUserScopeQuery} from "../../../functions/queries";
 import RollenInfo from "../../../content/Rollen.json";
 import SortHeader from "./SortHeader";
 

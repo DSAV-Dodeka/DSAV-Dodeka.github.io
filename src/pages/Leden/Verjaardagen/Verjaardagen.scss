@@ -1,20 +1,20 @@
-@import "../../../variables";
+@use "../../../variables";
 
 .verjaardagen_status {
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     margin-left: 4rem;
 }
 
 .verjaardagen_container {
     margin-bottom: 5rem;
     margin-top: -2rem;
-    @include respond(computerscherm) {
+    @include variables.respond(computerscherm) {
         display: grid;
         grid-template-columns: 50% 50%;
         margin-left: 3rem;
         margin-right: 4rem;
     }
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         margin-bottom: 3rem;
         margin-top: 0;
     }
