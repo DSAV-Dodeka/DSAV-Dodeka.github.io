@@ -58,6 +58,7 @@ function NavigationBar() {
               { name: "Arnold", path: "/arnold" },
               { name: "OLD", path: "/old" },
               { name: "Reglementen", path: "/reglementen" },
+              { name: "Minigame", path: "/minigame"}
             ]}
           />
           <Dropdown
@@ -139,7 +140,7 @@ function NavigationBar() {
                 { name: "Eregalerij", path: "/eregalerij" },
                 { name: "Arnold", path: "/arnold" },
                 { name: "OLD", path: "/old" },
-                { name: "Reglementen", path: "/reglementen" },
+                { name: "Reglementen", path: "/reglementen" }
               ]}
               onClick={() => setActive(false)}
             />

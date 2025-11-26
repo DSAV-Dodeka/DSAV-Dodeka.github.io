@@ -172,9 +172,18 @@ function App() {
                 }
               />
               <Route
+                path="/vereniging/minigame"
+                element={
+                  <Suspense fallback={<div>Loading minigame...</div>}>
+                    <Game />
+                  </Suspense>
+                }
+              />
+              <Route
                 path="/vereniging/gezelligheid"
                 element={<Gezelligheid />}
               />
+
               {/*<Route path="/vereniging/activiteiten" element={*/}
               {/*  <Activiteiten />*/}
               {/*}/>*/}

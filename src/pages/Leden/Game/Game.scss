@@ -1,5 +1,35 @@
-@import "../../../variables.scss";
+@use "../../../variables.scss";
 
 .game-container {
     margin-bottom: 6rem;
+}
+
+.game-canvas {
+    display: none;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.game-mobile-message {
+    display: none;
+    text-align: center;
+    margin: 1.5rem auto 0;
+    padding: 1rem 1.25rem;
+    max-width: 36rem;
+    background: #fff;
+    color: variables.$dodeka_rood;
+    font-size: 1rem;
+}
+
+// On mobile hide the canvas and show the message
+@include variables.respond(mobile) {
+    .game-mobile-message {
+        display: block;
+    }
+}
+@include variables.respond(computerscherm) {
+    .game-canvas {
+        display: block;
+    }
 }

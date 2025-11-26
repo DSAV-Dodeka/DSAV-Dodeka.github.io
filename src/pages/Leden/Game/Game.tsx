@@ -154,7 +154,9 @@ const Game = () => {
             }
 
             // Draw character
-            ctx.drawImage(currentImage, character.x, character.y, character.width, character.height);
+            if (currentImage) {
+                ctx.drawImage(currentImage, character.x, character.y, character.width, character.height);
+            }
 
             // Update obstacles
             obstacles = obstacles
@@ -166,7 +168,10 @@ const Game = () => {
 
             // Draw obstacles
             obstacles.forEach((obstacle) => {
-                ctx.drawImage(hordeImages[obstacle.src], obstacle.x, canvas.height - groundHeight - obstacle.height, obstacle.width, obstacle.height);
+                const hordeImage = hordeImages[obstacle.src];
+                if (hordeImage) {
+                    ctx.drawImage(hordeImage, obstacle.x, canvas.height - groundHeight - obstacle.height, obstacle.width, obstacle.height);
+                }
                 
                 // Collision detection
                 if (
@@ -242,13 +247,18 @@ const Game = () => {
     return (
         <div className='game-container'>
             <PageTitle title="Arnolds minigame" />
+
             <canvas
                 className="game-canvas"
                 ref={canvasRef}
                 width={800}
                 height={400}
-                style={{ display: 'block', margin: '0 auto' }}
+                // style={{ margin: '0 auto' }}
             ></canvas>
+
+            <div className="game-mobile-message" role="note" aria-live="polite">
+                Deze minigame is helaas alleen op pc te spelen...
+            </div>
         </div>
     );
 };
