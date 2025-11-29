@@ -39,7 +39,6 @@ import "./index.scss";
 
 // const Profiel = React.lazy(() => import("./pages/Profiel/Profiel"));
 // const Admin = React.lazy(() => import("./pages/Admin/Admin"));
-import Registered from "./pages/Auth/Registered";
 
 // import ProfielDebug from "./pages/Profiel/ProfielDebug";
 
@@ -267,7 +266,6 @@ function App() {
                     </Suspense>
                   }
                 />*/}
-              <Route path="/registered" element={<Registered />} />
             </Routes>
             <div id="app_flex_grow" />
             <ContactBar />

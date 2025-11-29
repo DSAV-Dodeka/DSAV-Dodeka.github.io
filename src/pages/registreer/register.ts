@@ -21,6 +21,7 @@ export type RegisterState = {
   language: string;
 };
 
+/// This matches (case-sensitive) the Volta backend that we call
 interface VoltaRegistration {
   AddressInfo: {
     countryId: 528;

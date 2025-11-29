@@ -7,13 +7,9 @@ import {
   useEffect,
   useRef,
 } from "react";
-import {
-  type RegisterState,
-  clientRegister,
-  VoltaError,
-} from "./Registreer/register.ts";
-import "./Registreer/registreer.css";
-import PageTitle from "../components/PageTitle.jsx";
+import { type RegisterState, clientRegister, VoltaError } from "./register.ts";
+import "./registreer.css";
+import PageTitle from "$components/PageTitle.tsx";
 
 const registerReducer = (
   state: RegisterState,

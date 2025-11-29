@@ -20,6 +20,7 @@ export default defineConfig({
   resolve: {
     alias: {
       $images: path.resolve(__dirname, "./src/images"),
+      $components: path.resolve(__dirname, "./src/components"),
     },
   },
   css: {

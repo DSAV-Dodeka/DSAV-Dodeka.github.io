@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "paths": {
-      "$images": ["./src/images"]
+      "$images": ["./src/images"],
+      "$components": ["./src/components"],
+      "$components/*": ["./src/components/*"],
+      "$functions": ["./src/functions"],
+      "$functions/*": ["./src/functions/*"]
     },
     "target": "ESNext",
     "useDefineForClassFields": true,

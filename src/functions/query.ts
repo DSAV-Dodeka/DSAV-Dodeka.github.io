@@ -5,11 +5,11 @@ import {
   type Session,
 } from "@faroe/client";
 
-const endpoint = "http://localhost:3777/";
+const faroeEndpoint = "http://localhost:3777/";
 
 class EndpointClient implements ActionInvocationEndpointClient {
   public async sendActionInvocationEndpointRequest(body: string) {
-    const response = await fetch(endpoint, {
+    const response = await fetch(faroeEndpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,13 @@ class EndpointClient implements ActionInvocationEndpointClient {
   }
 }
 
-const authClient = new Client(new EndpointClient());
+const faroeClient = new Client(new EndpointClient());
+
+// async function startRegister(email: string) {
+//   const result = await faroeClient.createSignup(email)
+//   faroeClient.setSignupPassword()
+//   faroeClient.sendSignupEmailAddressVerificationCode()
+// }
 
 interface AppSession {
   user_id: string;
