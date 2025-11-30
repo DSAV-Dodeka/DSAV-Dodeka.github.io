@@ -1,0 +1,243 @@
+.test-register-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.test-register-header {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.test-register-header h2 {
+  margin-top: 0;
+}
+
+.test-register-header p {
+  margin-bottom: 5px;
+}
+
+.test-register-step-info {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 10px;
+}
+
+.test-register-section {
+  margin-bottom: 20px;
+}
+
+.test-register-section h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.test-register-form-group {
+  margin-bottom: 10px;
+}
+
+.test-register-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.test-register-form-group input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.test-register-form-group input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.test-register-button {
+  padding: 12px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.test-register-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.test-register-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.test-register-button-reset {
+  background-color: #ff6b6b;
+  margin-bottom: 10px;
+}
+
+.test-register-button-preregister {
+  background-color: #4CAF50;
+}
+
+.test-register-button-signup {
+  background-color: #2196F3;
+}
+
+.test-register-button-verify {
+  background-color: #FF9800;
+}
+
+.test-register-button-password {
+  background-color: #9C27B0;
+}
+
+.test-register-button-next {
+  background-color: #28a745;
+  margin-top: 10px;
+}
+
+.test-register-step-description {
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 5px;
+}
+
+.test-register-status {
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.test-register-status-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.test-register-status-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.test-register-complete {
+  padding: 15px;
+  background-color: #d4edda;
+  border-radius: 5px;
+  border: 1px solid #c3e6cb;
+}
+
+.test-register-complete h3 {
+  color: #155724;
+  margin-top: 0;
+}
+
+.test-register-complete p {
+  color: #155724;
+}
+
+.test-register-loading {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.test-register-session-info {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+}
+
+.test-register-session-info h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.test-register-session-detail {
+  padding: 8px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.test-register-session-detail:last-child {
+  border-bottom: none;
+}
+
+.test-register-session-detail strong {
+  display: inline-block;
+  min-width: 140px;
+  color: #495057;
+}
+
+.test-register-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 0;
+}
+
+.test-register-tab {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #6c757d;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+}
+
+.test-register-tab:hover {
+  color: #495057;
+  background-color: #f8f9fa;
+}
+
+.test-register-tab.active {
+  color: #2196F3;
+  border-bottom-color: #2196F3;
+}
+
+.test-register-password-display {
+  padding: 15px;
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.test-register-password-code {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 0 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: all;
+}
+
+.test-register-password-hint {
+  display: block;
+  font-size: 12px;
+  color: #6c757d;
+  margin-top: 5px;
+}
