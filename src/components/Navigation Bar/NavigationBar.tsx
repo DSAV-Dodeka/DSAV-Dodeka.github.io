@@ -9,6 +9,7 @@ import "./NavigationBar.scss";
 import "./animation.css";
 import logo from "$images/logo.png";
 import dodeka from "$images/dodeka.png";
+import LoginIndicator from "../LoginIndicator/LoginIndicator";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
@@ -94,6 +95,7 @@ function NavigationBar() {
           />
           {/*{authState.isLoaded && authState.isAuthenticated && <Dropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }, { name: "Klassementen", path: "/klassementen" }]} />}*/}
         </div>
+        <LoginIndicator />
       </nav>
       <nav id="navMobile">
         <div id="navMobileBar">
@@ -113,7 +115,9 @@ function NavigationBar() {
             ></div>
           </div>
           <img id="navMobileLogo" src={dodeka} alt="" />
-          {/*<div className="mobileLogin">{/*<Login /></div>*/}
+          <div className="mobileLogin">
+            <LoginIndicator />
+          </div>
         </div>
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
           <div className={active ? "" : "inactive"}>

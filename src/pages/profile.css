@@ -1,0 +1,160 @@
+.profile-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+  border-radius: 8px;
+}
+
+.profile-header h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.8em;
+}
+
+.profile-email {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1.1em;
+}
+
+.profile-info-card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.profile-info-card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.3em;
+  border-bottom: 2px solid #2196F3;
+  padding-bottom: 10px;
+}
+
+.profile-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-info-row:last-child {
+  border-bottom: none;
+}
+
+.profile-info-label {
+  font-weight: 600;
+  color: #555;
+  min-width: 120px;
+}
+
+.profile-info-value {
+  color: #333;
+  text-align: right;
+  word-break: break-word;
+}
+
+.profile-actions {
+  margin-bottom: 30px;
+}
+
+.profile-actions h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.profile-action-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  color: #2196F3;
+  border: 2px solid #2196F3;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.profile-action-button:hover {
+  background-color: #2196F3;
+  color: white;
+}
+
+.profile-action-button-logout {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+.profile-action-button-logout:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+.profile-action-button-danger {
+  border-color: #d32f2f;
+  color: #d32f2f;
+}
+
+.profile-action-button-danger:hover {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.profile-delete-confirm {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #ffebee;
+  border: 2px solid #d32f2f;
+  border-radius: 5px;
+}
+
+.profile-note {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 5px;
+  color: #856404;
+  font-size: 14px;
+}
+
+.profile-section {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.profile-section h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.profile-form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.profile-form-buttons button {
+  flex: 1;
+  min-height: 44px;
+  padding: 10px 20px;
+}

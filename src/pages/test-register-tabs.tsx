@@ -3,6 +3,9 @@ import {
   clearTables,
   getSessionInfo,
   clearCurrentSession,
+  registerUser,
+  acceptUser,
+  getRegistrationStatus,
   type SessionInfo,
 } from "../functions/faroe-client";
 import {
@@ -16,11 +19,11 @@ import {
   completePasswordReset,
   type RegistrationStep,
 } from "../functions/auth-flow";
-import { faroeClient } from "../functions/faroe-client";
+import { faroeClient, setSession } from "../functions/faroe-client";
 import PageTitle from "../components/PageTitle";
 import "./test-register.css";
 
-type TabType = "register" | "signin" | "password-reset" | "session";
+type TabType = "register" | "prod-register" | "signin" | "password-reset" | "session";
 
 export default function TestRegisterTabs() {
   const [activeTab, setActiveTab] = useState<TabType>("register");
@@ -42,12 +45,17 @@ export default function TestRegisterTabs() {
 
   return (
     <div className="test-register-container">
-      <PageTitle title="Auth Flow Testing" />
-
-      <div className="test-register-password-display">
-        <strong>Default Test Password:</strong>
-        <code className="test-register-password-code">q9oyReu*^xCd</code>
-        <span className="test-register-password-hint">(Click to select, then copy)</span>
+      <div className="test-register-compact-header">
+        <div className="test-register-title-row">
+          <h1>Auth Flow Testing</h1>
+          <a href="/admin" className="test-register-admin-link-compact">
+            Admin Dashboard
+          </a>
+        </div>
+        <div className="test-register-password-compact">
+          <strong>Password:</strong>
+          <code className="test-register-password-code">q9oyReu*^xCd</code>
+        </div>
       </div>
 
       <div className="test-register-tabs">
@@ -55,7 +63,13 @@ export default function TestRegisterTabs() {
           className={`test-register-tab ${activeTab === "register" ? "active" : ""}`}
           onClick={() => setActiveTab("register")}
         >
-          Register
+          Register (Test)
+        </button>
+        <button
+          className={`test-register-tab ${activeTab === "prod-register" ? "active" : ""}`}
+          onClick={() => setActiveTab("prod-register")}
+        >
+          Register (Prod)
         </button>
         <button
           className={`test-register-tab ${activeTab === "signin" ? "active" : ""}`}
@@ -88,6 +102,7 @@ export default function TestRegisterTabs() {
       </div>
 
       {activeTab === "register" && <RegisterTab status={status} setStatus={setStatus} loading={loading} setLoading={setLoading} />}
+      {activeTab === "prod-register" && <ProductionRegisterTab status={status} setStatus={setStatus} loading={loading} setLoading={setLoading} />}
       {activeTab === "signin" && <SignInTab status={status} setStatus={setStatus} loading={loading} setLoading={setLoading} />}
       {activeTab === "password-reset" && <PasswordResetTab status={status} setStatus={setStatus} loading={loading} setLoading={setLoading} />}
       {activeTab === "session" && <SessionTab status={status} setStatus={setStatus} loading={loading} setLoading={setLoading} />}
@@ -211,9 +226,8 @@ function RegisterTab({ status, setStatus, loading, setLoading }: TabProps) {
 
   return (
     <>
-      <div className="test-register-header">
-        <h2>Registration Flow</h2>
-        <p><strong>Current Step:</strong> {step}</p>
+      <div className="test-register-tab-header">
+        <h3>Registration Flow <span className="test-register-current-step">({step})</span></h3>
       </div>
 
       <div className="test-register-section">
@@ -380,6 +394,401 @@ function RegisterTab({ status, setStatus, loading, setLoading }: TabProps) {
   );
 }
 
+// Production Register Tab Component (with admin approval)
+function ProductionRegisterTab({ status, setStatus, loading, setLoading }: TabProps) {
+  const [step, setStep] = useState<"request" | "check-status" | "complete">("request");
+
+  // Step 1: Request registration
+  const [email, setEmail] = useState("produser@example.com");
+  const [firstname, setFirstname] = useState("Prod");
+  const [lastname, setLastname] = useState("User");
+  const [registrationToken, setRegistrationToken] = useState("");
+
+  // For checking status with existing token
+  const [checkToken, setCheckToken] = useState("");
+
+  // Step 2: Complete signup (after admin accepts)
+  const [signupToken, setSignupToken] = useState("");
+  const [verificationCode, setVerificationCode] = useState("");
+  const [password, setPassword] = useState("q9oyReu*^xCd");
+
+  const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
+
+  const handleRequestRegistration = async () => {
+    setLoading(true);
+    setStatus("");
+    try {
+      const result = await registerUser(email, firstname, lastname);
+      setRegistrationToken(result.registration_token);
+      setStatus(`✓ ${result.message}\n\nSave your registration token to check status later!`);
+      setStep("check-status");
+    } catch (error) {
+      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCheckStatus = async (token: string) => {
+    setLoading(true);
+    setStatus("");
+    try {
+      const statusResult = await getRegistrationStatus(token);
+
+      if (statusResult.accepted && statusResult.signup_token) {
+        setSignupToken(statusResult.signup_token);
+        setEmail(statusResult.email);
+        setStatus(`✓ Registration approved! Check your email (${statusResult.email}) for verification code.`);
+        setStep("complete");
+      } else {
+        setStatus(`Registration for ${statusResult.email} is pending admin approval. Check back later!`);
+      }
+    } catch (error) {
+      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAcceptUser = async () => {
+    setLoading(true);
+    setStatus("");
+    try {
+      const result = await acceptUser(email);
+      setSignupToken(result.signup_token);
+      setStatus(`✓ ${result.message}\n\nSignup Token: ${result.signup_token}\n\nCheck email for verification code.`);
+      setStep("complete");
+    } catch (error) {
+      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCompleteSignup = async () => {
+    setLoading(true);
+    setStatus("");
+
+    try {
+      // Step 1: Verify email with code
+      const verifyResult = await faroeClient.verifySignupEmailAddressVerificationCode(
+        signupToken,
+        verificationCode
+      );
+
+      if (!verifyResult.ok) {
+        setStatus(`✗ Email verification failed: ${JSON.stringify(verifyResult)}`);
+        setLoading(false);
+        return;
+      }
+
+      // Step 2: Set password
+      const setPasswordResult = await faroeClient.setSignupPassword(signupToken, password);
+
+      if (!setPasswordResult.ok) {
+        setStatus(`✗ Set password failed: ${JSON.stringify(setPasswordResult)}`);
+        setLoading(false);
+        return;
+      }
+
+      // Step 3: Complete signup
+      const completeResult = await faroeClient.completeSignup(signupToken);
+
+      if (!completeResult.ok) {
+        setStatus(`✗ Complete signup failed: ${JSON.stringify(completeResult)}`);
+        setLoading(false);
+        return;
+      }
+
+      // Step 4: Set session cookie
+      await setSession(completeResult.sessionToken);
+
+      setStatus("✓ Registration complete! You are now logged in.");
+    } catch (error) {
+      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGetSession = async () => {
+    setLoading(true);
+    setStatus("");
+    try {
+      const session = await getSessionInfo();
+      if (session) {
+        setSessionInfo(session);
+        setStatus("✓ Session info retrieved successfully!");
+      } else {
+        setStatus("✗ No active session found");
+      }
+    } catch (error) {
+      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setStep("request");
+    setSignupToken("");
+    setVerificationCode("");
+    setStatus("");
+    setSessionInfo(null);
+  };
+
+  return (
+    <>
+      <div className="test-register-tab-header">
+        <h3>Production Registration <span className="test-register-current-step">({step === "request" ? "Request" : step === "check-status" ? "Check Status" : "Complete"})</span></h3>
+      </div>
+
+      {step === "request" && (
+        <>
+          <div className="test-register-section">
+            <h3>Step 1: User Registration Request</h3>
+            <div className="test-register-form-group">
+              <label>Email:</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="test-register-form-group">
+              <label>First Name:</label>
+              <input
+                type="text"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+              />
+            </div>
+            <div className="test-register-form-group">
+              <label>Last Name:</label>
+              <input
+                type="text"
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="test-register-section">
+            <button
+              onClick={handleRequestRegistration}
+              disabled={loading}
+              className="test-register-button test-register-button-preregister"
+            >
+              Submit Registration Request
+            </button>
+            <p className="test-register-step-description">
+              Creates newuser entry with accepted=false
+            </p>
+          </div>
+
+          <div className="test-register-section">
+            <button
+              onClick={() => setStep("check-status")}
+              className="test-register-button test-register-button-next"
+              style={{ marginTop: "10px" }}
+            >
+              Already have a registration token? Check Status →
+            </button>
+          </div>
+        </>
+      )}
+
+      {step === "check-status" && (
+        <>
+          <div className="test-register-section">
+            <h3>Step 2: Registration Token</h3>
+            <p className="test-register-step-description">
+              Save this token to check your registration status later!
+            </p>
+            <div className="test-register-form-group">
+              <label>Your Registration Token:</label>
+              <div className="test-register-input-with-button">
+                <input
+                  type="text"
+                  value={registrationToken}
+                  readOnly
+                  className="test-register-token-display"
+                />
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(registrationToken);
+                    setStatus("✓ Registration token copied to clipboard!");
+                  }}
+                  className="test-register-copy-button"
+                  title="Copy to clipboard"
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
+            <p className="test-register-step-description">
+              An admin must approve your registration. Once approved, you'll receive a verification email.
+            </p>
+          </div>
+
+          <div className="test-register-section">
+            <h3>Check Registration Status</h3>
+            <p className="test-register-step-description">
+              Already have a registration token? Enter it here to check if you've been approved.
+            </p>
+            <div className="test-register-form-group">
+              <label>Registration Token:</label>
+              <input
+                type="text"
+                value={checkToken}
+                onChange={(e) => setCheckToken(e.target.value)}
+                placeholder="Enter your registration token"
+              />
+            </div>
+            <button
+              onClick={() => handleCheckStatus(checkToken || registrationToken)}
+              disabled={loading || (!checkToken && !registrationToken)}
+              className="test-register-button test-register-button-signup"
+            >
+              Check Status
+            </button>
+            <p className="test-register-step-description">
+              If approved, you'll proceed to complete your registration with the verification code.
+            </p>
+          </div>
+
+          <div className="test-register-section">
+            <button
+              onClick={() => {
+                setStep("request");
+                setCheckToken("");
+                setRegistrationToken("");
+              }}
+              className="test-register-button test-register-button-next"
+              style={{ marginTop: "10px" }}
+            >
+              ← Back to New Registration
+            </button>
+          </div>
+        </>
+      )}
+
+      {step === "complete" && (
+        <>
+          <div className="test-register-section">
+            <h3>Step 3: User Completes Registration</h3>
+            <div className="test-register-form-group">
+              <label>Signup Token:</label>
+              <input
+                type="text"
+                value={signupToken}
+                onChange={(e) => setSignupToken(e.target.value)}
+                disabled
+              />
+              <small className="test-register-step-description">Auto-filled from registration status</small>
+            </div>
+            <div className="test-register-form-group">
+              <label>Verification Code:</label>
+              <input
+                type="text"
+                value={verificationCode}
+                onChange={(e) => setVerificationCode(e.target.value)}
+                placeholder="Enter code from email"
+              />
+            </div>
+            <div className="test-register-form-group">
+              <label>Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="test-register-section">
+            <button
+              onClick={handleCompleteSignup}
+              disabled={loading || !verificationCode}
+              className="test-register-button test-register-button-password"
+            >
+              Complete Registration
+            </button>
+            <p className="test-register-step-description">
+              Verifies email, sets password, and logs in
+            </p>
+          </div>
+
+          {sessionInfo && (
+            <>
+              <div className="test-register-complete">
+                <h3>✓ Registration Complete!</h3>
+                <p>Session has been established.</p>
+                <button
+                  onClick={handleGetSession}
+                  disabled={loading}
+                  className="test-register-button test-register-button-signup"
+                  style={{ marginBottom: "10px" }}
+                >
+                  Refresh Session Info
+                </button>
+                <button
+                  onClick={handleReset}
+                  className="test-register-button test-register-button-next"
+                >
+                  Register Another User
+                </button>
+              </div>
+
+              <div className="test-register-session-info">
+                <h3>Session Information</h3>
+                <div className="test-register-session-detail">
+                  <strong>User ID:</strong> {sessionInfo.user.user_id}
+                </div>
+                <div className="test-register-session-detail">
+                  <strong>Email:</strong> {sessionInfo.user.email}
+                </div>
+                <div className="test-register-session-detail">
+                  <strong>Name:</strong> {sessionInfo.user.firstname}{" "}
+                  {sessionInfo.user.lastname}
+                </div>
+                <div className="test-register-session-detail">
+                  <strong>Permissions:</strong>{" "}
+                  {sessionInfo.user.permissions.length > 0
+                    ? sessionInfo.user.permissions.join(", ")
+                    : "None"}
+                </div>
+                <div className="test-register-session-detail">
+                  <strong>Created At:</strong>{" "}
+                  {new Date(sessionInfo.created_at * 1000).toLocaleString()}
+                </div>
+                <div className="test-register-session-detail">
+                  <strong>Expires At:</strong>{" "}
+                  {sessionInfo.expires_at
+                    ? new Date(sessionInfo.expires_at * 1000).toLocaleString()
+                    : "Never (no expiration)"}
+                </div>
+              </div>
+            </>
+          )}
+
+          {!sessionInfo && (
+            <div className="test-register-section">
+              <button
+                onClick={handleGetSession}
+                disabled={loading}
+                className="test-register-button test-register-button-signup"
+              >
+                Get Session Info
+              </button>
+            </div>
+          )}
+        </>
+      )}
+    </>
+  );
+}
+
 // Sign In Tab Component
 function SignInTab({ status, setStatus, loading, setLoading }: TabProps) {
   const [email, setEmail] = useState("testuser@example.com");
@@ -434,8 +843,8 @@ function SignInTab({ status, setStatus, loading, setLoading }: TabProps) {
 
   return (
     <>
-      <div className="test-register-header">
-        <h2>Sign In Flow</h2>
+      <div className="test-register-tab-header">
+        <h3>Sign In Flow</h3>
       </div>
 
       {!isSignedIn ? (
@@ -558,9 +967,8 @@ function PasswordResetTab({ status, setStatus, loading, setLoading }: TabProps) 
 
   return (
     <>
-      <div className="test-register-header">
-        <h2>Password Reset Flow</h2>
-        <p><strong>Current Step:</strong> {step}</p>
+      <div className="test-register-tab-header">
+        <h3>Password Reset <span className="test-register-current-step">({step})</span></h3>
       </div>
 
       <div className="test-register-section">
@@ -724,9 +1132,8 @@ function SessionTab({ status, setStatus, loading, setLoading }: TabProps) {
 
   return (
     <>
-      <div className="test-register-header">
-        <h2>Session Management</h2>
-        <p>Get, delete, or manage your sessions</p>
+      <div className="test-register-tab-header">
+        <h3>Session Management</h3>
       </div>
 
       <div className="test-register-section">

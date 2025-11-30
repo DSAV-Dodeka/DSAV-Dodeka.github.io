@@ -1,5 +1,7 @@
 # Authentication Flow Documentation
 
+> **⚠️ IMPORTANT**: See [TODO.md](TODO.md) for known issues and pending fixes!
+
 ## Overview
 
 This project implements a registration and login flow using:
@@ -27,47 +29,78 @@ This project implements a registration and login flow using:
    - React application with React Router 7
    - Consumes both Faroe and backend APIs
 
-## Registration Flow
+## Registration Flow (Split Between Backend and Frontend)
 
-### Pre-Registration Phase (newusers)
+The registration flow is intentionally split between the backend (admin-initiated) and frontend (user-completed) to allow for admin approval before sending verification emails.
 
-1. User submits registration request via frontend
-2. Backend receives request and creates entry in `newusers` table:
-   ```python
-   # POST /auth/prepare_user
+### Phase 1: User Registration Request
+
+1. **User submits registration** (`/register` page):
+   ```typescript
+   // POST /auth/register_user
    {
      "email": "user@example.com",
-     "names": ["First", "Last"]
+     "firstname": "First",
+     "lastname": "Last"
    }
    ```
-3. User is stored with `accepted: false` by default
-4. Admin reviews and sets `accepted: true`
 
-### Faroe Signup Phase
-
-Once accepted, user can complete signup via Faroe:
-
-1. **Create Signup**
-   ```typescript
-   const r = await client.createSignup(email)
-   const signupToken = r.signupToken
+2. **Backend creates newuser entry** with `accepted: false`:
+   ```python
+   add_new_user(store, email, firstname, lastname)
+   # Creates entry in newusers table with accepted=False
    ```
 
-2. **Verify Email**
-   - User receives verification code via email
+### Phase 2: Admin Approval
+
+1. **Admin views pending registrations** (`/admin` page):
    ```typescript
-   await client.verifySignupEmailAddressVerificationCode(signupToken, code)
+   // GET /admin/list_newusers/
+   // Returns: [{ email, firstname, lastname, accepted }]
    ```
 
-3. **Set Password**
+2. **Admin accepts user**:
+   ```typescript
+   // POST /admin/accept_user/
+   { "email": "user@example.com" }
+   ```
+
+3. **Backend performs two actions**:
+   - Updates `accepted: true` in newusers table
+   - Calls Faroe `createSignup(email)` to initiate signup flow
+   - **Verification email is sent to user automatically**
+
+### Phase 3: User Completes Registration
+
+User receives email with verification code and completes signup in one step (`/register` page).
+
+**User provides in single form**:
+- Signup token (provided by admin or from email)
+- Verification code (from email)
+- Password
+
+**Frontend executes**:
+
+1. **Verify Email**
+   ```typescript
+   await client.verifySignupEmailAddressVerificationCode(signupToken, verificationCode)
+   ```
+
+2. **Set Password**
    ```typescript
    await client.setSignupPassword(signupToken, password)
    ```
 
-4. **Complete Signup**
+3. **Complete Signup**
    ```typescript
    const result = await client.completeSignup(signupToken)
    const sessionToken = result.sessionToken
+   ```
+
+4. **Set Session Cookie**
+   ```typescript
+   await setSession(sessionToken)
+   // Calls POST /auth/set_session/ to set httpOnly cookie
    ```
 
 ### Session Establishment
@@ -105,14 +138,76 @@ When Faroe tries to create a user:
 6. Create index: `users_by_email[email] = user_id`
 7. Remove from newusers table
 
-## Testing Endpoints
+## API Endpoints
 
-Backend provides testing utilities:
+### Production Endpoints
+
+**User Registration**:
+- `POST /auth/register_user` - Create registration request (accepted=false)
+  - Body: `{ email, firstname, lastname }`
+
+**Admin**:
+- `GET /admin/list_newusers/` - List all registration requests
+  - Returns: `[{ email, firstname, lastname, accepted }]`
+- `POST /admin/accept_user/` - Accept user and initiate Faroe signup
+  - Body: `{ email }`
+  - Returns: `{ success, message, signup_token }`
+- `POST /admin/add_permission/` - Add permission to user
+
+**Session Management**:
+- `POST /auth/set_session/` - Set session cookie (requires credentials)
+  - Body: `{ session_token }`
+- `GET /auth/session_info/` - Get current session info (requires credentials)
+- `POST /auth/clear_session/` - Clear current session (requires credentials)
+- `GET /auth/get_session_token/` - Get session token from cookie (requires credentials)
+  - Returns: `{ session_token }`
+- `POST /auth/delete_account/` - Delete current user's account (requires credentials)
+  - Deletes user from database and clears session cookie
+
+**Faroe Actions**:
+- `POST /auth/invoke_user_action` - Proxy to Faroe server
+
+### Testing Endpoints
+
+For development and conformance testing:
 
 - `POST /auth/clear_tables` - Clear all user data
-- `POST /auth/prepare_user` - Create newuser with accepted=true (for testing)
-- `GET /auth/session_info/` - Get current session info from cookie
-- `POST /admin/add_permission/` - Add permission to user
+- `POST /test/prepare_user` - Create newuser with accepted=true (for Faroe tests)
+  - Body: `{ email, names }`
+
+## Frontend Pages
+
+### Production Pages
+
+1. **`/register`** - User registration flow
+   - Step 1: User submits registration request
+   - Step 2: User completes signup after admin approval (code + password)
+
+2. **`/login`** - User login page
+   - Email and password authentication
+   - Redirects to home after successful login
+   - Link to password reset
+
+3. **`/profile`** - User profile and account management
+   - View account information
+   - Change email (multi-step: enter new email → verify code)
+   - Reset password (redirects to password reset page)
+   - Logout
+   - Delete account (with confirmation)
+
+4. **`/password-reset`** - Password reset flow
+   - Request reset (sends temp password to email)
+   - Enter temp password and new password
+
+5. **`/admin`** - Admin dashboard
+   - View all registration requests
+   - Accept users (triggers Faroe signup and sends verification email)
+
+### Testing Pages
+
+3. **`/auth-test`** - Complete auth flow testing
+   - Tabs: Register, Sign In, Password Reset, Session
+   - Uses `/test/prepare_user` for full Faroe conformance testing
 
 ## Frontend Implementation Notes
 
@@ -321,7 +416,12 @@ Comprehensive tabbed interface for testing all authentication flows.
 - `setSession(sessionToken)` - Set session cookie via backend
 - `getSessionInfo()` - Get current session information from cookie
 - `clearCurrentSession()` - Clear the current session (deletes cookie)
-- Types: `SessionInfo`, `SessionUser`, `SessionResponse`
+- `createEmailChange(newEmail)` - Initiate email change flow, returns emailUpdateToken
+- `sendEmailVerificationCode(emailUpdateToken)` - Send verification code to new email
+- `verifyEmailChange(emailUpdateToken, code)` - Verify email with code
+- `completeEmailChange(emailUpdateToken)` - Complete email change
+- `deleteAccount()` - Delete current user's account
+- Types: `SessionInfo`, `SessionUser`, `SessionResponse`, `NewUser`, `AcceptUserResponse`
 
 `src/functions/auth-flow.ts` - High-level authentication flow logic:
 - `preregisterUser(email, firstname, lastname)` - Pre-register with error handling

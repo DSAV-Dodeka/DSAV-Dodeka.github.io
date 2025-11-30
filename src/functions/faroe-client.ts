@@ -27,7 +27,7 @@ export async function prepareUser(
   email: string,
   names: string[],
 ): Promise<void> {
-  const response = await fetch(`${BACKEND_URL}/auth/prepare_user`, {
+  const response = await fetch(`${BACKEND_URL}/test/prepare_user`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -38,6 +38,56 @@ export async function prepareUser(
   if (response.status !== 200) {
     throw new Error(`Prepare user failed: ${await response.text()}`);
   }
+}
+
+export interface RegisterUserResponse {
+  success: boolean;
+  message: string;
+  registration_token: string;
+}
+
+export async function registerUser(
+  email: string,
+  firstname: string,
+  lastname: string,
+): Promise<RegisterUserResponse> {
+  const response = await fetch(`${BACKEND_URL}/auth/register_user`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, firstname, lastname }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error(`Register user failed: ${await response.text()}`);
+  }
+
+  return response.json();
+}
+
+export interface RegistrationStatus {
+  email: string;
+  accepted: boolean;
+  signup_token: string | null;
+}
+
+export async function getRegistrationStatus(
+  registrationToken: string,
+): Promise<RegistrationStatus> {
+  const response = await fetch(`${BACKEND_URL}/auth/registration_status`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ registration_token: registrationToken }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error(`Get registration status failed: ${await response.text()}`);
+  }
+
+  return response.json();
 }
 
 export async function clearTables(): Promise<void> {
@@ -125,5 +175,125 @@ export async function clearCurrentSession(): Promise<void> {
 
   if (response.status !== 200) {
     throw new Error(`Clear session failed: ${await response.text()}`);
+  }
+}
+
+export interface NewUser {
+  email: string;
+  firstname: string;
+  lastname: string;
+  accepted: boolean;
+}
+
+export async function listNewUsers(): Promise<NewUser[]> {
+  const response = await fetch(`${BACKEND_URL}/admin/list_newusers/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.status !== 200) {
+    throw new Error(`List new users failed: ${await response.text()}`);
+  }
+
+  return response.json();
+}
+
+export interface AcceptUserResponse {
+  success: boolean;
+  message: string;
+  signup_token: string;
+}
+
+export async function acceptUser(email: string): Promise<AcceptUserResponse> {
+  const response = await fetch(`${BACKEND_URL}/admin/accept_user/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error(`Accept user failed: ${await response.text()}`);
+  }
+
+  return response.json();
+}
+
+// Get session token from cookie
+async function getSessionToken(): Promise<string> {
+  const response = await fetch(`${BACKEND_URL}/auth/get_session_token/`, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  if (response.status !== 200) {
+    throw new Error(`Get session token failed: ${await response.text()}`);
+  }
+
+  const data = await response.json();
+  return data.session_token;
+}
+
+// Email change functions
+export async function createEmailChange(newEmail: string): Promise<string> {
+  const sessionToken = await getSessionToken();
+  const result = await faroeClient.createUserEmailAddressUpdate(sessionToken, newEmail);
+
+  if (!result.ok) {
+    throw new Error("Failed to initiate email change");
+  }
+
+  return result.userEmailAddressUpdateToken;
+}
+
+export async function sendEmailVerificationCode(emailUpdateToken: string): Promise<void> {
+  const sessionToken = await getSessionToken();
+  const result = await faroeClient.sendUserEmailAddressUpdateEmailAddressVerificationCode(
+    sessionToken,
+    emailUpdateToken
+  );
+
+  if (!result.ok) {
+    throw new Error("Failed to send verification code");
+  }
+}
+
+export async function verifyEmailChange(
+  emailUpdateToken: string,
+  verificationCode: string
+): Promise<void> {
+  const sessionToken = await getSessionToken();
+  const result = await faroeClient.verifyUserEmailAddressUpdateEmailAddressVerificationCode(
+    sessionToken,
+    emailUpdateToken,
+    verificationCode
+  );
+
+  if (!result.ok) {
+    throw new Error("Failed to verify email");
+  }
+}
+
+export async function completeEmailChange(emailUpdateToken: string): Promise<void> {
+  const sessionToken = await getSessionToken();
+  const result = await faroeClient.completeUserEmailAddressUpdate(sessionToken, emailUpdateToken);
+
+  if (!result.ok) {
+    throw new Error("Failed to complete email change");
+  }
+}
+
+// Account deletion function
+export async function deleteAccount(): Promise<void> {
+  const response = await fetch(`${BACKEND_URL}/auth/delete_account/`, {
+    method: "POST",
+    credentials: "include",
+  });
+
+  if (response.status !== 200) {
+    throw new Error(`Delete account failed: ${await response.text()}`);
   }
 }
