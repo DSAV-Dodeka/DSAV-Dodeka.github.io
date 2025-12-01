@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { faroeClient, setSession } from "../functions/faroe-client";
+import { createSignin, verifySigninPassword } from "../functions/auth-flow";
 import PageTitle from "../components/PageTitle";
 import "./register.css";
 
@@ -17,33 +17,25 @@ export default function Login() {
 
     try {
       // Step 1: Create signin
-      const signinResult = await faroeClient.createSignin(email);
+      const signinResult = await createSignin(email);
 
-      if (!signinResult.ok) {
-        setStatus(`✗ Sign in failed: ${JSON.stringify(signinResult)}`);
+      if (!signinResult.success || !signinResult.signupToken) {
+        setStatus(signinResult.message);
         setLoading(false);
         return;
       }
 
-      // Step 2: Verify password
-      const verifyResult = await faroeClient.verifySigninPassword(
-        signinResult.signinToken,
-        password
-      );
+      // Step 2: Verify password (this also sets the session)
+      const verifyResult = await verifySigninPassword(signinResult.signupToken, password);
+      setStatus(verifyResult.message);
 
-      if (!verifyResult.ok) {
-        setStatus(`✗ Invalid email or password`);
+      if (!verifyResult.success) {
         setLoading(false);
         return;
       }
-
-      // Step 3: Set session cookie
-      await setSession(verifyResult.sessionToken);
 
       // Invalidate session query to update login indicator
       await queryClient.invalidateQueries({ queryKey: ["session"] });
-
-      setStatus("✓ Login successful! Redirecting...");
 
       // Redirect to home after short delay
       setTimeout(() => {
@@ -107,8 +99,8 @@ export default function Login() {
         </div>
       </form>
 
-      <div className="register-section" style={{ textAlign: "center", marginTop: "10px" }}>
-        <a href="/password-reset" style={{ color: "#2196F3", textDecoration: "none" }}>
+      <div className="register-section register-link-section">
+        <a href="/password-reset" className="register-link">
           Forgot your password?
         </a>
       </div>

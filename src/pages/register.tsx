@@ -92,7 +92,7 @@ export default function Register() {
     }
   }, [registrationStatus]);
 
-  const checkRegistrationStatus = async (token: string) => {
+  const checkRegistrationStatus = async () => {
     // This is now handled by React Query, but keep for manual refresh
     window.location.reload();
   };
@@ -278,7 +278,7 @@ export default function Register() {
 
           <div className="register-section">
             <button
-              onClick={() => checkRegistrationStatus(registrationToken)}
+              onClick={() => checkRegistrationStatus()}
               disabled={loading}
               className="register-button register-button-primary"
             >

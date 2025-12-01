@@ -1,6 +1,6 @@
 .profile-container {
   padding: 20px;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -123,6 +123,15 @@
   border-radius: 5px;
 }
 
+.profile-delete-confirm-text {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.profile-delete-button {
+  background-color: #d32f2f;
+}
+
 .profile-note {
   margin-top: 20px;
   padding: 15px;
@@ -147,14 +156,27 @@
   color: #333;
 }
 
+.profile-email-change-form {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .profile-form-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: 10px;
 }
 
 .profile-form-buttons button {
-  flex: 1;
-  min-height: 44px;
-  padding: 10px 20px;
+  padding: 12px 20px;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 48px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }

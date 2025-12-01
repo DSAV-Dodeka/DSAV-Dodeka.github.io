@@ -4,9 +4,19 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useSessionInfo } from "../functions/query";
 import {
   clearCurrentSession,
-  deleteAccount,
-  faroeClient,
+  createUserDeletion,
+  verifyUserDeletionPassword,
+  completeUserDeletion,
+  createEmailChange,
+  sendEmailVerificationCode,
+  verifyEmailChange,
+  verifyEmailChangePassword,
+  completeEmailChange,
 } from "../functions/faroe-client";
+import {
+  createPasswordReset,
+  completePasswordReset,
+} from "../functions/auth-flow";
 import PageTitle from "../components/PageTitle";
 import "./register.css";
 import "./profile.css";
@@ -18,18 +28,30 @@ export default function Profile() {
 
   // Email change state
   const [emailChangeStep, setEmailChangeStep] = useState<
-    "idle" | "enter-email" | "verify-code" | "done"
+    "idle" | "form" | "done"
   >("idle");
   const [newEmail, setNewEmail] = useState("");
   const [emailUpdateToken, setEmailUpdateToken] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
+  const [password, setPassword] = useState("");
   const [emailChangeStatus, setEmailChangeStatus] = useState("");
   const [emailChangeLoading, setEmailChangeLoading] = useState(false);
+  const [codeSent, setCodeSent] = useState(false);
+
+  // Password reset state
+  const [passwordResetStep, setPasswordResetStep] = useState<"idle" | "form" | "done">("idle");
+  const [resetToken, setResetToken] = useState("");
+  const [tempPassword, setTempPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [passwordResetStatus, setPasswordResetStatus] = useState("");
+  const [passwordResetLoading, setPasswordResetLoading] = useState(false);
 
   // Account deletion state
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [deleteStatus, setDeleteStatus] = useState("");
+  const [deletionToken, setDeletionToken] = useState("");
+  const [deletePassword, setDeletePassword] = useState("");
 
   const handleLogout = async () => {
     try {
@@ -41,42 +63,14 @@ export default function Profile() {
     }
   };
 
-  const handleStartEmailChange = async () => {
+  const handleSendCode = async () => {
     setEmailChangeLoading(true);
     setEmailChangeStatus("");
     try {
-      // Get session token from cookie via backend
-      const tokenResponse = await fetch("http://localhost:8000/auth/get_session_token/", {
-        method: "GET",
-        credentials: "include",
-      });
-
-      if (!tokenResponse.ok) {
-        throw new Error("Failed to get session token");
-      }
-
-      const { session_token } = await tokenResponse.json();
-
-      // Create email change with Faroe
-      const result = await faroeClient.createUserEmailAddressUpdate(session_token, newEmail);
-
-      if (!result.ok) {
-        throw new Error("Failed to initiate email change");
-      }
-
-      setEmailUpdateToken(result.userEmailAddressUpdateToken);
-
-      // Send verification code
-      const sendResult = await faroeClient.sendUserEmailAddressUpdateEmailAddressVerificationCode(
-        session_token,
-        result.userEmailAddressUpdateToken
-      );
-
-      if (!sendResult.ok) {
-        throw new Error("Failed to send verification code");
-      }
-
-      setEmailChangeStep("verify-code");
+      const token = await createEmailChange(newEmail);
+      setEmailUpdateToken(token);
+      await sendEmailVerificationCode(token);
+      setCodeSent(true);
       setEmailChangeStatus("✓ Verification code sent to " + newEmail);
     } catch (error) {
       setEmailChangeStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
@@ -85,43 +79,13 @@ export default function Profile() {
     }
   };
 
-  const handleVerifyEmailChange = async () => {
+  const handleCompleteChange = async () => {
     setEmailChangeLoading(true);
     setEmailChangeStatus("");
     try {
-      // Get session token from cookie via backend
-      const tokenResponse = await fetch("http://localhost:8000/auth/get_session_token/", {
-        method: "GET",
-        credentials: "include",
-      });
-
-      if (!tokenResponse.ok) {
-        throw new Error("Failed to get session token");
-      }
-
-      const { session_token } = await tokenResponse.json();
-
-      // Verify email change
-      const verifyResult = await faroeClient.verifyUserEmailAddressUpdateEmailAddressVerificationCode(
-        session_token,
-        emailUpdateToken,
-        verificationCode
-      );
-
-      if (!verifyResult.ok) {
-        throw new Error("Failed to verify email");
-      }
-
-      // Complete email change
-      const completeResult = await faroeClient.completeUserEmailAddressUpdate(
-        session_token,
-        emailUpdateToken
-      );
-
-      if (!completeResult.ok) {
-        throw new Error("Failed to complete email change");
-      }
-
+      await verifyEmailChange(emailUpdateToken, verificationCode);
+      await verifyEmailChangePassword(emailUpdateToken, password);
+      await completeEmailChange(emailUpdateToken);
       await queryClient.invalidateQueries({ queryKey: ["session"] });
       setEmailChangeStep("done");
       setEmailChangeStatus("");
@@ -132,11 +96,66 @@ export default function Profile() {
     }
   };
 
-  const handleDeleteAccount = async () => {
+  const handleStartPasswordReset = async () => {
+    if (!session?.user.email) return;
+
+    setPasswordResetLoading(true);
+    setPasswordResetStatus("");
+    try {
+      const result = await createPasswordReset(session.user.email);
+      if (result.success && result.signupToken) {
+        setResetToken(result.signupToken);
+        setPasswordResetStep("form");
+        setPasswordResetStatus("✓ Temporary password sent to your email");
+      } else {
+        setPasswordResetStatus(result.message);
+      }
+    } catch (error) {
+      setPasswordResetStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setPasswordResetLoading(false);
+    }
+  };
+
+  const handleCompletePasswordReset = async () => {
+    setPasswordResetLoading(true);
+    setPasswordResetStatus("");
+    try {
+      const result = await completePasswordReset(resetToken, tempPassword, newPassword);
+      if (result.success) {
+        setPasswordResetStep("done");
+        setPasswordResetStatus("");
+      } else {
+        setPasswordResetStatus(result.message);
+      }
+    } catch (error) {
+      setPasswordResetStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setPasswordResetLoading(false);
+    }
+  };
+
+  const handleStartDeletion = async () => {
     setDeleteLoading(true);
     setDeleteStatus("");
     try {
-      await deleteAccount();
+      const token = await createUserDeletion();
+      setDeletionToken(token);
+      setDeleteStatus("");
+    } catch (error) {
+      setDeleteStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+      setShowDeleteConfirm(false);
+    } finally {
+      setDeleteLoading(false);
+    }
+  };
+
+  const handleCompleteDeleteAccount = async () => {
+    setDeleteLoading(true);
+    setDeleteStatus("");
+    try {
+      await verifyUserDeletionPassword(deletionToken, deletePassword);
+      await completeUserDeletion(deletionToken);
       await queryClient.invalidateQueries({ queryKey: ["session"] });
       navigate("/");
     } catch (error) {
@@ -204,22 +223,15 @@ export default function Profile() {
         {/* Email Change */}
         {emailChangeStep === "idle" && (
           <button
-            onClick={() => setEmailChangeStep("enter-email")}
+            onClick={() => setEmailChangeStep("form")}
             className="profile-action-button"
           >
             Change Email
           </button>
         )}
 
-        {emailChangeStep === "enter-email" && (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (!emailChangeLoading && newEmail) {
-                handleStartEmailChange();
-              }
-            }}
-          >
+        {emailChangeStep === "form" && (
+          <div className="profile-email-change-form">
             <div className="register-form-group">
               <label>New Email:</label>
               <input
@@ -227,40 +239,9 @@ export default function Profile() {
                 value={newEmail}
                 onChange={(e) => setNewEmail(e.target.value)}
                 placeholder="new.email@example.com"
+                disabled={emailChangeLoading || codeSent}
               />
             </div>
-            <div className="profile-form-buttons">
-              <button
-                type="submit"
-                disabled={emailChangeLoading || !newEmail}
-                className="register-button register-button-primary"
-              >
-                Send Verification Code
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setEmailChangeStep("idle");
-                  setNewEmail("");
-                  setEmailChangeStatus("");
-                }}
-                className="register-button register-button-secondary"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        )}
-
-        {emailChangeStep === "verify-code" && (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (!emailChangeLoading && verificationCode) {
-                handleVerifyEmailChange();
-              }
-            }}
-          >
             <div className="register-form-group">
               <label>Verification Code:</label>
               <input
@@ -268,33 +249,61 @@ export default function Profile() {
                 value={verificationCode}
                 onChange={(e) => setVerificationCode(e.target.value)}
                 placeholder="Enter code from email"
+                disabled={emailChangeLoading || !codeSent}
               />
               <small className="register-hint">
-                Check your email at {newEmail} for the verification code
+                {codeSent
+                  ? `Check your email at ${newEmail} for the verification code`
+                  : "Click 'Send Code' to receive a verification code"}
+              </small>
+            </div>
+            <div className="register-form-group">
+              <label>Current Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                disabled={emailChangeLoading}
+              />
+              <small className="register-hint">
+                Enter your current password to confirm the email change
               </small>
             </div>
             <div className="profile-form-buttons">
+              {!codeSent ? (
+                <button
+                  onClick={handleSendCode}
+                  disabled={emailChangeLoading || !newEmail}
+                  className="register-button register-button-primary"
+                >
+                  Send Code
+                </button>
+              ) : (
+                <button
+                  onClick={handleCompleteChange}
+                  disabled={emailChangeLoading || !verificationCode || !password}
+                  className="register-button register-button-primary"
+                >
+                  Complete Change
+                </button>
+              )}
               <button
-                type="submit"
-                disabled={emailChangeLoading || !verificationCode}
-                className="register-button register-button-primary"
-              >
-                Verify and Complete
-              </button>
-              <button
-                type="button"
                 onClick={() => {
                   setEmailChangeStep("idle");
                   setNewEmail("");
                   setVerificationCode("");
+                  setPassword("");
                   setEmailChangeStatus("");
+                  setCodeSent(false);
                 }}
+                disabled={emailChangeLoading}
                 className="register-button register-button-secondary"
               >
                 Cancel
               </button>
             </div>
-          </form>
+          </div>
         )}
 
         {emailChangeStep === "done" && (
@@ -306,7 +315,9 @@ export default function Profile() {
                 setEmailChangeStep("idle");
                 setNewEmail("");
                 setVerificationCode("");
+                setPassword("");
                 setEmailChangeStatus("");
+                setCodeSent(false);
               }}
               className="register-button register-button-primary"
             >
@@ -333,19 +344,112 @@ export default function Profile() {
           </div>
         )}
 
+        {/* Password Reset */}
+        {passwordResetStep === "form" && (
+          <div className="profile-email-change-form">
+            <div className="register-form-group">
+              <label>Temporary Password:</label>
+              <input
+                type="text"
+                value={tempPassword}
+                onChange={(e) => setTempPassword(e.target.value)}
+                placeholder="Enter temporary password from email"
+                disabled={passwordResetLoading}
+              />
+              <small className="register-hint">
+                Check your email for the temporary password
+              </small>
+            </div>
+            <div className="register-form-group">
+              <label>New Password:</label>
+              <input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Enter new password"
+                disabled={passwordResetLoading}
+              />
+            </div>
+            <div className="profile-form-buttons">
+              <button
+                onClick={handleCompletePasswordReset}
+                disabled={passwordResetLoading || !tempPassword || !newPassword}
+                className="register-button register-button-primary"
+              >
+                Reset Password
+              </button>
+              <button
+                onClick={() => {
+                  setPasswordResetStep("idle");
+                  setResetToken("");
+                  setTempPassword("");
+                  setNewPassword("");
+                  setPasswordResetStatus("");
+                }}
+                disabled={passwordResetLoading}
+                className="register-button register-button-secondary"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
+
+        {passwordResetStep === "done" && (
+          <div className="register-complete">
+            <h4>✓ Password Reset Successfully!</h4>
+            <p>Your password has been updated</p>
+            <button
+              onClick={() => {
+                setPasswordResetStep("idle");
+                setResetToken("");
+                setTempPassword("");
+                setNewPassword("");
+                setPasswordResetStatus("");
+              }}
+              className="register-button register-button-primary"
+            >
+              Done
+            </button>
+          </div>
+        )}
+
+        {passwordResetStatus && (
+          <div
+            className={`register-status ${
+              passwordResetStatus.startsWith("✓")
+                ? "register-status-success"
+                : "register-status-error"
+            }`}
+          >
+            {passwordResetStatus}
+          </div>
+        )}
+
+        {passwordResetLoading && (
+          <div className="register-loading">
+            <p>Processing...</p>
+          </div>
+        )}
+
         {/* Other Actions */}
         {emailChangeStep === "idle" && (
           <>
-            <button
-              onClick={() => navigate("/password-reset")}
-              className="profile-action-button"
-            >
-              Reset Password
-            </button>
+            {passwordResetStep === "idle" && (
+              <button
+                onClick={handleStartPasswordReset}
+                className="profile-action-button"
+              >
+                Reset Password
+              </button>
+            )}
 
             {!showDeleteConfirm && (
               <button
-                onClick={() => setShowDeleteConfirm(true)}
+                onClick={() => {
+                  setShowDeleteConfirm(true);
+                  handleStartDeletion();
+                }}
                 className="profile-action-button profile-action-button-danger"
               >
                 Delete Account
@@ -354,15 +458,26 @@ export default function Profile() {
 
             {showDeleteConfirm && (
               <div className="profile-delete-confirm">
-                <p style={{ color: "#d32f2f", fontWeight: "bold" }}>
+                <p className="profile-delete-confirm-text">
                   Are you sure you want to delete your account? This action cannot be undone.
                 </p>
+                {deletionToken && (
+                  <div className="register-form-group">
+                    <label>Enter Your Password to Confirm:</label>
+                    <input
+                      type="password"
+                      value={deletePassword}
+                      onChange={(e) => setDeletePassword(e.target.value)}
+                      placeholder="Enter your password"
+                      disabled={deleteLoading}
+                    />
+                  </div>
+                )}
                 <div className="profile-form-buttons">
                   <button
-                    onClick={handleDeleteAccount}
-                    disabled={deleteLoading}
-                    className="register-button"
-                    style={{ backgroundColor: "#d32f2f" }}
+                    onClick={handleCompleteDeleteAccount}
+                    disabled={deleteLoading || !deletionToken || !deletePassword}
+                    className="register-button profile-delete-button"
                   >
                     Yes, Delete My Account
                   </button>
@@ -370,6 +485,8 @@ export default function Profile() {
                     onClick={() => {
                       setShowDeleteConfirm(false);
                       setDeleteStatus("");
+                      setDeletionToken("");
+                      setDeletePassword("");
                     }}
                     disabled={deleteLoading}
                     className="register-button register-button-secondary"

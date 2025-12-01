@@ -240,7 +240,10 @@ async function getSessionToken(): Promise<string> {
 // Email change functions
 export async function createEmailChange(newEmail: string): Promise<string> {
   const sessionToken = await getSessionToken();
-  const result = await faroeClient.createUserEmailAddressUpdate(sessionToken, newEmail);
+  const result = await faroeClient.createUserEmailAddressUpdate(
+    sessionToken,
+    newEmail,
+  );
 
   if (!result.ok) {
     throw new Error("Failed to initiate email change");
@@ -249,12 +252,15 @@ export async function createEmailChange(newEmail: string): Promise<string> {
   return result.userEmailAddressUpdateToken;
 }
 
-export async function sendEmailVerificationCode(emailUpdateToken: string): Promise<void> {
+export async function sendEmailVerificationCode(
+  emailUpdateToken: string,
+): Promise<void> {
   const sessionToken = await getSessionToken();
-  const result = await faroeClient.sendUserEmailAddressUpdateEmailAddressVerificationCode(
-    sessionToken,
-    emailUpdateToken
-  );
+  const result =
+    await faroeClient.sendUserEmailAddressUpdateEmailAddressVerificationCode(
+      sessionToken,
+      emailUpdateToken,
+    );
 
   if (!result.ok) {
     throw new Error("Failed to send verification code");
@@ -263,37 +269,89 @@ export async function sendEmailVerificationCode(emailUpdateToken: string): Promi
 
 export async function verifyEmailChange(
   emailUpdateToken: string,
-  verificationCode: string
+  verificationCode: string,
 ): Promise<void> {
   const sessionToken = await getSessionToken();
-  const result = await faroeClient.verifyUserEmailAddressUpdateEmailAddressVerificationCode(
-    sessionToken,
-    emailUpdateToken,
-    verificationCode
-  );
+  const result =
+    await faroeClient.verifyUserEmailAddressUpdateEmailAddressVerificationCode(
+      sessionToken,
+      emailUpdateToken,
+      verificationCode,
+    );
 
   if (!result.ok) {
     throw new Error("Failed to verify email");
   }
 }
 
-export async function completeEmailChange(emailUpdateToken: string): Promise<void> {
+export async function verifyEmailChangePassword(
+  emailUpdateToken: string,
+  password: string,
+): Promise<void> {
   const sessionToken = await getSessionToken();
-  const result = await faroeClient.completeUserEmailAddressUpdate(sessionToken, emailUpdateToken);
+  const result = await faroeClient.verifyUserEmailAddressUpdateUserPassword(
+    sessionToken,
+    emailUpdateToken,
+    password,
+  );
+
+  if (!result.ok) {
+    throw new Error("Failed to verify password");
+  }
+}
+
+export async function completeEmailChange(
+  emailUpdateToken: string,
+): Promise<void> {
+  const sessionToken = await getSessionToken();
+  const result = await faroeClient.completeUserEmailAddressUpdate(
+    sessionToken,
+    emailUpdateToken,
+  );
 
   if (!result.ok) {
     throw new Error("Failed to complete email change");
   }
 }
 
-// Account deletion function
-export async function deleteAccount(): Promise<void> {
-  const response = await fetch(`${BACKEND_URL}/auth/delete_account/`, {
-    method: "POST",
-    credentials: "include",
-  });
+// Account deletion functions using Faroe client
+export async function createUserDeletion(): Promise<string> {
+  const sessionToken = await getSessionToken();
+  const result = await faroeClient.createUserDeletion(sessionToken);
 
-  if (response.status !== 200) {
-    throw new Error(`Delete account failed: ${await response.text()}`);
+  if (!result.ok) {
+    throw new Error("Failed to create user deletion");
+  }
+
+  return result.userDeletionToken;
+}
+
+export async function verifyUserDeletionPassword(
+  userDeletionToken: string,
+  password: string,
+): Promise<void> {
+  const sessionToken = await getSessionToken();
+  const result = await faroeClient.verifyUserDeletionUserPassword(
+    sessionToken,
+    userDeletionToken,
+    password,
+  );
+
+  if (!result.ok) {
+    throw new Error("Failed to verify password for deletion");
+  }
+}
+
+export async function completeUserDeletion(
+  userDeletionToken: string,
+): Promise<void> {
+  const sessionToken = await getSessionToken();
+  const result = await faroeClient.completeUserDeletion(
+    sessionToken,
+    userDeletionToken,
+  );
+
+  if (!result.ok) {
+    throw new Error("Failed to complete user deletion");
   }
 }

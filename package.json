@@ -6,7 +6,8 @@
     "dev": "react-router",
     "build": "react-router build",
     "build-mode": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check": "tsc"
   },
   "dependencies": {
     "@react-router/node": "7.9.6",

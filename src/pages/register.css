@@ -103,6 +103,12 @@
   width: 100%;
   font-weight: 500;
   transition: opacity 0.2s;
+  min-height: 48px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .register-button:hover:not(:disabled) {
@@ -122,7 +128,6 @@
 .register-button-secondary {
   background-color: #6c757d;
   color: white;
-  margin-top: 10px;
 }
 
 .register-status {
@@ -168,4 +173,14 @@
   text-align: center;
   margin-top: 20px;
   color: #666;
+}
+
+.register-link-section {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.register-link {
+  color: #2196F3;
+  text-decoration: none;
 }

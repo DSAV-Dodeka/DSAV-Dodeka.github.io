@@ -4,8 +4,12 @@ import {
   getSessionInfo,
   clearCurrentSession,
   registerUser,
-  acceptUser,
   getRegistrationStatus,
+  createEmailChange,
+  sendEmailVerificationCode,
+  verifyEmailChange,
+  verifyEmailChangePassword,
+  completeEmailChange,
   type SessionInfo,
 } from "../functions/faroe-client";
 import {
@@ -20,7 +24,6 @@ import {
   type RegistrationStep,
 } from "../functions/auth-flow";
 import { faroeClient, setSession } from "../functions/faroe-client";
-import PageTitle from "../components/PageTitle";
 import "./test-register.css";
 
 type TabType = "register" | "prod-register" | "signin" | "password-reset" | "session";
@@ -129,7 +132,7 @@ export default function TestRegisterTabs() {
 }
 
 // Register Tab Component
-function RegisterTab({ status, setStatus, loading, setLoading }: TabProps) {
+function RegisterTab({ setStatus, loading, setLoading }: TabProps) {
   const [email, setEmail] = useState("testuser@example.com");
   const [firstname, setFirstname] = useState("Test");
   const [lastname, setLastname] = useState("User");
@@ -345,8 +348,7 @@ function RegisterTab({ status, setStatus, loading, setLoading }: TabProps) {
           <button
             onClick={handleGetSession}
             disabled={loading}
-            className="test-register-button test-register-button-signup"
-            style={{ marginBottom: "10px" }}
+            className="test-register-button test-register-button-signup test-register-spacing-bottom"
           >
             Get Session Info
           </button>
@@ -395,7 +397,7 @@ function RegisterTab({ status, setStatus, loading, setLoading }: TabProps) {
 }
 
 // Production Register Tab Component (with admin approval)
-function ProductionRegisterTab({ status, setStatus, loading, setLoading }: TabProps) {
+function ProductionRegisterTab({ setStatus, loading, setLoading }: TabProps) {
   const [step, setStep] = useState<"request" | "check-status" | "complete">("request");
 
   // Step 1: Request registration
@@ -443,21 +445,6 @@ function ProductionRegisterTab({ status, setStatus, loading, setLoading }: TabPr
       } else {
         setStatus(`Registration for ${statusResult.email} is pending admin approval. Check back later!`);
       }
-    } catch (error) {
-      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleAcceptUser = async () => {
-    setLoading(true);
-    setStatus("");
-    try {
-      const result = await acceptUser(email);
-      setSignupToken(result.signup_token);
-      setStatus(`✓ ${result.message}\n\nSignup Token: ${result.signup_token}\n\nCheck email for verification code.`);
-      setStep("complete");
     } catch (error) {
       setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
@@ -589,8 +576,7 @@ function ProductionRegisterTab({ status, setStatus, loading, setLoading }: TabPr
           <div className="test-register-section">
             <button
               onClick={() => setStep("check-status")}
-              className="test-register-button test-register-button-next"
-              style={{ marginTop: "10px" }}
+              className="test-register-button test-register-button-next test-register-spacing-top"
             >
               Already have a registration token? Check Status →
             </button>
@@ -664,8 +650,7 @@ function ProductionRegisterTab({ status, setStatus, loading, setLoading }: TabPr
                 setCheckToken("");
                 setRegistrationToken("");
               }}
-              className="test-register-button test-register-button-next"
-              style={{ marginTop: "10px" }}
+              className="test-register-button test-register-button-next test-register-spacing-top"
             >
               ← Back to New Registration
             </button>
@@ -727,8 +712,7 @@ function ProductionRegisterTab({ status, setStatus, loading, setLoading }: TabPr
                 <button
                   onClick={handleGetSession}
                   disabled={loading}
-                  className="test-register-button test-register-button-signup"
-                  style={{ marginBottom: "10px" }}
+                  className="test-register-button test-register-button-signup test-register-spacing-bottom"
                 >
                   Refresh Session Info
                 </button>
@@ -790,7 +774,7 @@ function ProductionRegisterTab({ status, setStatus, loading, setLoading }: TabPr
 }
 
 // Sign In Tab Component
-function SignInTab({ status, setStatus, loading, setLoading }: TabProps) {
+function SignInTab({ setStatus, loading, setLoading }: TabProps) {
   const [email, setEmail] = useState("testuser@example.com");
   const [password, setPassword] = useState("q9oyReu*^xCd");
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -889,8 +873,7 @@ function SignInTab({ status, setStatus, loading, setLoading }: TabProps) {
           <button
             onClick={handleGetSession}
             disabled={loading}
-            className="test-register-button test-register-button-signup"
-            style={{ marginBottom: "10px" }}
+            className="test-register-button test-register-button-signup test-register-spacing-bottom"
           >
             Get Session Info
           </button>
@@ -923,7 +906,7 @@ function SignInTab({ status, setStatus, loading, setLoading }: TabProps) {
 }
 
 // Password Reset Tab Component
-function PasswordResetTab({ status, setStatus, loading, setLoading }: TabProps) {
+function PasswordResetTab({ setStatus, loading, setLoading }: TabProps) {
   const [email, setEmail] = useState("testuser@example.com");
   const [tempPassword, setTempPassword] = useState("");
   const [newPassword, setNewPassword] = useState("newPassword123!");
@@ -1048,9 +1031,14 @@ function PasswordResetTab({ status, setStatus, loading, setLoading }: TabProps) 
 }
 
 // Session Tab Component
-function SessionTab({ status, setStatus, loading, setLoading }: TabProps) {
+function SessionTab({ setStatus, loading, setLoading }: TabProps) {
   const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
   const [sessionToken, setSessionToken] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [emailUpdateToken, setEmailUpdateToken] = useState("");
+  const [verificationCode, setVerificationCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailChangeStep, setEmailChangeStep] = useState<"idle" | "verify-code" | "verify-password" | "done">("idle");
 
   const handleGetSession = async () => {
     setLoading(true);
@@ -1130,6 +1118,80 @@ function SessionTab({ status, setStatus, loading, setLoading }: TabProps) {
     }
   };
 
+  const handleStartEmailChange = async () => {
+    if (!newEmail) {
+      setStatus("✗ Please enter a new email");
+      return;
+    }
+
+    setLoading(true);
+    setStatus("");
+    try {
+      const token = await createEmailChange(newEmail);
+      setEmailUpdateToken(token);
+      await sendEmailVerificationCode(token);
+      setEmailChangeStep("verify-code");
+      setStatus("✓ Verification code sent! Check your email.");
+    } catch (error) {
+      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyCode = async () => {
+    if (!verificationCode) {
+      setStatus("✗ Please enter the verification code");
+      return;
+    }
+
+    setLoading(true);
+    setStatus("");
+    try {
+      await verifyEmailChange(emailUpdateToken, verificationCode);
+      setEmailChangeStep("verify-password");
+      setStatus("✓ Email verified! Now enter your password to confirm.");
+    } catch (error) {
+      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyPasswordAndComplete = async () => {
+    if (!password) {
+      setStatus("✗ Please enter your password");
+      return;
+    }
+
+    setLoading(true);
+    setStatus("");
+    try {
+      await verifyEmailChangePassword(emailUpdateToken, password);
+      await completeEmailChange(emailUpdateToken);
+      setEmailChangeStep("done");
+      setStatus("✓ Email changed successfully!");
+      // Refresh session info
+      const session = await getSessionInfo();
+      if (session) {
+        setSessionInfo(session);
+      }
+    } catch (error) {
+      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResetEmailChange = () => {
+    setEmailChangeStep("idle");
+    setNewEmail("");
+    setEmailUpdateToken("");
+    setVerificationCode("");
+    setPassword("");
+    setStatus("");
+  };
+
   return (
     <>
       <div className="test-register-tab-header">
@@ -1141,8 +1203,7 @@ function SessionTab({ status, setStatus, loading, setLoading }: TabProps) {
         <button
           onClick={handleGetSession}
           disabled={loading}
-          className="test-register-button test-register-button-signup"
-          style={{ marginBottom: "10px" }}
+          className="test-register-button test-register-button-signup test-register-spacing-bottom"
         >
           Get Session Info
         </button>
@@ -1188,6 +1249,107 @@ function SessionTab({ status, setStatus, loading, setLoading }: TabProps) {
       )}
 
       <div className="test-register-section">
+        <h3>Change Email</h3>
+        {emailChangeStep === "idle" && (
+          <>
+            <div className="test-register-form-group">
+              <label>New Email:</label>
+              <input
+                type="email"
+                value={newEmail}
+                onChange={(e) => setNewEmail(e.target.value)}
+                placeholder="new.email@example.com"
+              />
+            </div>
+            <button
+              onClick={handleStartEmailChange}
+              disabled={loading || !newEmail}
+              className="test-register-button test-register-button-signup"
+            >
+              Send Verification Code
+            </button>
+          </>
+        )}
+        {emailChangeStep === "verify-code" && (
+          <>
+            <p className="test-register-spacing-bottom">
+              Verification code sent to <strong>{newEmail}</strong>
+            </p>
+            <div className="test-register-form-group">
+              <label>Verification Code:</label>
+              <input
+                type="text"
+                value={verificationCode}
+                onChange={(e) => setVerificationCode(e.target.value)}
+                placeholder="Enter code from email"
+              />
+            </div>
+            <div className="test-register-button-group">
+              <button
+                onClick={handleVerifyCode}
+                disabled={loading || !verificationCode}
+                className="test-register-button test-register-button-verify"
+              >
+                Verify Code
+              </button>
+              <button
+                onClick={handleResetEmailChange}
+                disabled={loading}
+                className="test-register-button test-register-button-reset"
+              >
+                Cancel
+              </button>
+            </div>
+          </>
+        )}
+        {emailChangeStep === "verify-password" && (
+          <>
+            <p className="test-register-spacing-bottom">
+              Email verified! Now enter your current password to confirm the change.
+            </p>
+            <div className="test-register-form-group">
+              <label>Current Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+              />
+            </div>
+            <div className="test-register-button-group">
+              <button
+                onClick={handleVerifyPasswordAndComplete}
+                disabled={loading || !password}
+                className="test-register-button test-register-button-verify"
+              >
+                Confirm and Complete
+              </button>
+              <button
+                onClick={handleResetEmailChange}
+                disabled={loading}
+                className="test-register-button test-register-button-reset"
+              >
+                Cancel
+              </button>
+            </div>
+          </>
+        )}
+        {emailChangeStep === "done" && (
+          <>
+            <p className="test-register-text-success">
+              ✓ Email successfully changed to {newEmail}!
+            </p>
+            <button
+              onClick={handleResetEmailChange}
+              className="test-register-button test-register-button-signup"
+            >
+              Change Email Again
+            </button>
+          </>
+        )}
+      </div>
+
+      <div className="test-register-section">
         <h3>Session Operations</h3>
         <div className="test-register-form-group">
           <label>Session Token:</label>
@@ -1201,8 +1363,7 @@ function SessionTab({ status, setStatus, loading, setLoading }: TabProps) {
         <button
           onClick={handleDeleteSession}
           disabled={loading || !sessionToken}
-          className="test-register-button test-register-button-verify"
-          style={{ marginBottom: "10px" }}
+          className="test-register-button test-register-button-verify test-register-spacing-bottom"
         >
           Delete This Session
         </button>

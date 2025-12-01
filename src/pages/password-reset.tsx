@@ -1,12 +1,9 @@
 import { useState } from "react";
-import { useQueryClient } from "@tanstack/react-query";
 import { createPasswordReset, completePasswordReset } from "../functions/auth-flow";
-import { setSession } from "../functions/faroe-client";
 import PageTitle from "../components/PageTitle";
 import "./register.css";
 
 export default function PasswordReset() {
-  const queryClient = useQueryClient();
   const [email, setEmail] = useState("");
   const [tempPassword, setTempPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");

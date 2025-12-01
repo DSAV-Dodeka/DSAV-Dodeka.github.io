@@ -1,7 +1,5 @@
 # Authentication Flow Documentation
 
-> **⚠️ IMPORTANT**: See [TODO.md](TODO.md) for known issues and pending fixes!
-
 ## Overview
 
 This project implements a registration and login flow using:

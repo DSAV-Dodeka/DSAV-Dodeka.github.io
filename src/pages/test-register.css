@@ -158,6 +158,12 @@
   width: 100%;
   font-weight: 500;
   transition: opacity 0.2s;
+  min-height: 48px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .test-register-button:hover:not(:disabled) {
@@ -171,7 +177,6 @@
 
 .test-register-button-reset {
   background-color: #ff6b6b;
-  margin-bottom: 10px;
 }
 
 .test-register-button-preregister {
@@ -192,7 +197,40 @@
 
 .test-register-button-next {
   background-color: #28a745;
+}
+
+/* Button group for equal heights */
+.test-register-button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
   margin-top: 10px;
+}
+
+.test-register-button-group-single {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.test-register-button-group .test-register-button,
+.test-register-button-group-single .test-register-button {
+  margin: 0;
+}
+
+/* Spacing utilities */
+.test-register-spacing-top {
+  margin-top: 10px;
+}
+
+.test-register-spacing-bottom {
+  margin-bottom: 10px;
+}
+
+.test-register-text-success {
+  color: #4caf50;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .test-register-step-description {
