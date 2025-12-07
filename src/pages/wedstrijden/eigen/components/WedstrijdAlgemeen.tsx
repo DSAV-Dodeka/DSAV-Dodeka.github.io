@@ -1,18 +1,31 @@
-import React from "react";
 import parse from "html-react-parser";
 import "./WedstrijdAlgemeen.scss";
-import { getNestedImagesUrl } from "../../../../functions/links";
+import { getHashedImageUrl } from "$functions/links";
 
-function Wedstrijd(props) {
+interface WedstrijdAlgemeenProps {
+  wedstrijd: {
+    foto?: string;
+    info_lang?: string;
+    info_kort?: string;
+    uitslagen?: string;
+    inschrijven?: string;
+  };
+}
+
+function Wedstrijd(props: WedstrijdAlgemeenProps) {
   return (
     <div className="wedstrijd_algemeen">
-      <img
-        className="wedstrijd_algemeen_foto"
-        alt=""
-        src={getNestedImagesUrl(`wedstrijden/${props.wedstrijd.foto}`)}
-      />
+      {props.wedstrijd.foto && (
+        <img
+          className="wedstrijd_algemeen_foto"
+          alt=""
+          src={getHashedImageUrl(`/wedstrijden/${props.wedstrijd.foto}`)}
+        />
+      )}
       <p className="wedstrijd_algemeen_info">
-        {parse(props.wedstrijd.info_lang)}
+        {props.wedstrijd.info_lang
+          ? parse(props.wedstrijd.info_lang)
+          : props.wedstrijd.info_kort || ""}
       </p>
       {"uitslagen" in props.wedstrijd && props.wedstrijd.uitslagen ? (
         <a

@@ -1,6 +1,5 @@
 import React from "react";
 import "./Icons.scss";
-import {getNestedImagesUrl} from "../../../functions/links";
 import icons from "$images/trainingen/icons.svg";
 
 function Icons() {

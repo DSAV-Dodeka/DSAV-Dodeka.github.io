@@ -1,9 +1,17 @@
-import React from "react";
 import { Link } from "react-router";
 import "./EigenWedstrijd.scss";
-import { getNestedImagesUrl } from "../../../../functions/links";
+import { getHashedImageUrl } from "$functions/links";
 
-function EigenWedstrijd(props) {
+interface EigenWedstrijdProps {
+  naam: string;
+  datum: string;
+  logo: string;
+  info_kort: string;
+  path: string;
+  oud: boolean;
+}
+
+function EigenWedstrijd(props: EigenWedstrijdProps) {
   return (
     <div className={"eigenWedstrijd" + (props.oud ? " eigenWedstrijdOud" : "")}>
       <p className="eigenWedstrijdNaam">{props.naam}</p>
@@ -16,7 +24,7 @@ function EigenWedstrijd(props) {
       </p>
       <img
         className="eigenWedstrijdFoto"
-        src={getNestedImagesUrl(`wedstrijden/${props.logo}`)}
+        src={getHashedImageUrl(`/wedstrijden/${props.logo}`)}
         alt=""
       />
       <p className="eigenWedstrijdInfo">{props.info_kort}</p>

@@ -33,6 +33,15 @@ export default [
       route("delete", "./pages/account/delete/delete.tsx"),
       route("profile", "./pages/account/profile/profile.tsx"),
     ]),
+    ...prefix("wedstrijden", [
+      index("./pages/wedstrijden/wedstrijden/wedstrijden.tsx"),
+      route(
+        "hoogtepunten",
+        "./pages/wedstrijden/hoogtepunten/hoogtepunten.tsx",
+      ),
+      route("records", "./pages/wedstrijden/records/records.tsx"),
+      route(":wedstrijdPath", "./pages/wedstrijden/eigen/wedstrijd-loader.tsx"),
+    ]),
   ]),
   // * matches all URLs, the ? makes it optional so it will match / as well
   route("*?", "catchall.tsx"),

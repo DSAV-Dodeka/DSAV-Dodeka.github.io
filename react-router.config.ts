@@ -1,9 +1,12 @@
 import type { Config } from "@react-router/dev/config";
+import { getWedstrijdPaths } from "./src/functions/wedstrijden";
 
 export default {
   appDirectory: "src",
   ssr: false,
   async prerender() {
+    const wedstrijdPaths = getWedstrijdPaths().map((path) => `/wedstrijden${path}`);
+
     return [
       "/",
       "/word_lid",
@@ -17,7 +20,7 @@ export default {
       "/trainingen/gezocht",
       "/wedstrijden",
       "/wedstrijden/hoogtepunten",
-      // "/wedstrijden/nskmeerkamp",
+      ...wedstrijdPaths,
       "/owee",
     ];
   },

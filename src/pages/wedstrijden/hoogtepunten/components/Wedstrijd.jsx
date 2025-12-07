@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import "./Wedstrijd.scss";
-import {getNestedImagesUrl} from "../../../../functions/links";
+import {getHashedImageUrl} from "$functions/links";
 import goud from "$images/wedstrijden/goud.png";
 import zilver from "$images/wedstrijden/zilver.png";
 import brons from "$images/wedstrijden/brons.png";
@@ -47,7 +47,7 @@ function Wedstrijd(props) {
             <div className="hoogtepunten_wedstrijd">
                 {props.naam}
             </div>
-            <img className="hoogtepunten_foto" src={getNestedImagesUrl('wedstrijden/' + props.foto)}/>
+            <img className="hoogtepunten_foto" src={getHashedImageUrl('/wedstrijden/' + props.foto)}/>
             
             <div className="hoogtepunten_prijzen">
                 <div className="hoogtepunten_titel_container">

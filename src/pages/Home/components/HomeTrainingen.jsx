@@ -6,7 +6,6 @@ import "./HomeTrainingen.scss";
 import {
     Link
 } from "react-router";
-import {getNestedImagesUrl} from "../../../functions/links";
 import trainingen from "$images/home/trainingen.jpg";
 
 function HomeTrainingen() {

@@ -14,12 +14,8 @@ import Reglementen from "./pages/Vereniging/Reglementen/Reglementen";
 import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
 import Trainers from "./pages/Vereniging/Trainers/Trainers";
 import Gezocht from "./pages/Vereniging/Gezocht/Gezocht";
-import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
-import WedstrijdText from "./content/Wedstrijden.json";
-import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
 import Eregalerij from "./pages/Vereniging/Eregalerij/Eregalerij";
 const Arnold = React.lazy(() => import("./pages/Vereniging/Arnold/Arnold"));
-const Records = React.lazy(() => import("./pages/Wedstrijden/Records/Records"));
 
 // const Verjaardagen = React.lazy(
 //   () => import("./pages/Leden/Verjaardagen/Verjaardagen"),
@@ -30,7 +26,6 @@ const Records = React.lazy(() => import("./pages/Wedstrijden/Records/Records"));
 // const Leden = React.lazy(() => import("./pages/Leden/Leden"));
 
 import Gezelligheid from "./pages/Vereniging/Gezelligheid/Gezelligheid";
-import Hoogtepunten from "./pages/Wedstrijden/Hoogtepunten/Hoogtepunten";
 import "./App.scss";
 import "./index.scss";
 
@@ -177,7 +172,7 @@ function App() {
               <Route path="/trainingen" element={<Trainingen />} />
               <Route path="/trainingen/trainers" element={<Trainers />} />
               <Route path="/trainingen/gezocht" element={<Gezocht />} />
-              {WedstrijdText.wedstrijden.map((item) =>
+              {/*{WedstrijdText.wedstrijden.map((item) =>
                 item.path === "" ? (
                   ""
                 ) : (
@@ -187,7 +182,7 @@ function App() {
                     element={<Wedstrijd wedstrijd={item} />}
                   />
                 ),
-              )}
+              )}*/}
               {/* Op dit moment zijn er geen activiteitenpagina's*/}
               {/*{ActiviteitenText.wedstrijden.map((item) =>*/}
               {/*    (item.path === "" ? "" :*/}
@@ -196,19 +191,6 @@ function App() {
               {/*            }/>*/}
               {/*    )*/}
               {/*)}*/}
-              <Route
-                path="/wedstrijden/hoogtepunten"
-                element={<Hoogtepunten />}
-              />
-              <Route path="/wedstrijden" element={<Wedstrijden />} />
-              <Route
-                path="/wedstrijden/records"
-                element={
-                  <Suspense fallback={<div>Loading records...</div>}>
-                    <Records />
-                  </Suspense>
-                }
-              />
               <Route path="/word_lid" element={<WordLid />} />
               {/*<Route
                 path="/leden/verjaardagen"

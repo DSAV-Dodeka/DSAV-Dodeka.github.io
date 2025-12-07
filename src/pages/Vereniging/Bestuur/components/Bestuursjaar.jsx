@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../../../components/Header";
 import "./Bestuursjaar.scss";
-import { getNestedImagesUrl } from "../../../../functions/links";
+import { getHashedImageUrl } from "$functions/links";
 
 function Bestuursjaar(props) {
   return (
@@ -12,7 +12,7 @@ function Bestuursjaar(props) {
         </div>
         <img
           id="bestuurFoto"
-          src={getNestedImagesUrl(`bestuur/${props.foto}`)}
+          src={getHashedImageUrl(`/bestuur/${props.foto}`)}
           alt=""
         />
       </div>

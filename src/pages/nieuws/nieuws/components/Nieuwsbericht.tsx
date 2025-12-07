@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Title from "./Title";
 import "./Nieuwsbericht.scss";
-import { getNestedImagesUrl } from "../../../../functions/links";
+import { getHashedImageUrl } from "$functions/links";
 
 function Nieuwsbericht(props) {
   const [width, setWidth] = useState(1920);
@@ -14,7 +14,7 @@ function Nieuwsbericht(props) {
       {props.position === "left" || width <= 1023 ? (
         <img
           className="nieuwsbericht_2"
-          src={getNestedImagesUrl(`${props.page}/${props.foto}`)}
+          src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
           alt=""
         />
       ) : (
@@ -44,7 +44,7 @@ function Nieuwsbericht(props) {
       ) : (
         <img
           className="nieuwsbericht_6"
-          src={getNestedImagesUrl(`${props.page}/${props.foto}`)}
+          src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
           alt=""
         />
       )}
