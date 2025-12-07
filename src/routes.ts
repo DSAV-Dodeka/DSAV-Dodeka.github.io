@@ -9,7 +9,7 @@ import {
 export default [
   layout("./pages/layout.tsx", [
     index("./pages/home/home.tsx"),
-    route("owee", "./pages/owee/owee.jsx"),
+    route("owee", "./pages/owee/owee.tsx"),
     route("word_lid", "./pages/word-lid/word-lid.tsx"),
     ...prefix("registreer", [
       index("./pages/registreer/registreer.tsx"),
@@ -23,15 +23,15 @@ export default [
     ]),
     ...prefix("trainingen", [
       index("./pages/trainingen/trainingen.tsx"),
-      route("trainers", "./pages/vereniging/trainers/trainers.jsx"),
+      route("trainers", "./pages/vereniging/trainers/trainers.tsx"),
       route("gezocht", "./pages/vereniging/gezocht/gezocht.tsx"),
     ]),
     ...prefix("vereniging", [
       index("./pages/vereniging/vereniging/vereniging.tsx"),
-      route("commissies", "./pages/vereniging/commissies/commissies.jsx"),
-      route("bestuur", "./pages/vereniging/bestuur/bestuur.jsx"),
+      route("commissies", "./pages/vereniging/commissies/commissies.tsx"),
+      route("bestuur", "./pages/vereniging/bestuur/bestuur.tsx"),
       route("eregalerij", "./pages/vereniging/eregalerij/eregalerij.tsx"),
-      route("arnold", "./pages/vereniging/arnold/arnold.jsx"),
+      route("arnold", "./pages/vereniging/arnold/arnold.tsx"),
       route("gezelligheid", "./pages/vereniging/gezelligheid/gezelligheid.tsx"),
       route("old", "./pages/vereniging/old/old.tsx"),
       route("reglementen", "./pages/vereniging/reglementen/reglementen.tsx"),

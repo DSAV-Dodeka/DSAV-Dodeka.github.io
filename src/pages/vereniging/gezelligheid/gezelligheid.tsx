@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./gezelligheid.scss";
 import PageTitle from "../../../components/PageTitle";
 import biermijl from "$images/gezelligheid/biermijl.jpg";

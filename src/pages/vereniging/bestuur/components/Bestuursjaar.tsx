@@ -1,9 +1,18 @@
-import React from "react";
+import { Fragment } from "react";
 import Header from "../../../../components/Header";
 import "./Bestuursjaar.scss";
 import { getHashedImageUrl } from "$functions/links";
 
-function Bestuursjaar(props) {
+type BestuursLid = [string, string]; // [naam, functie]
+
+interface BestuursjaarProps {
+  naam: string;
+  foto: string;
+  leden: BestuursLid[];
+  jaar: string;
+}
+
+function Bestuursjaar(props: BestuursjaarProps) {
   return (
     <div id="bestuursjaarContainer">
       <div id="bestuursjaarLeft">
@@ -19,14 +28,14 @@ function Bestuursjaar(props) {
       <div id="bestuursjaarRight">
         <div className="bestuursjaarLeden">
           {props.leden.map((lid, index) => (
-            <React.Fragment key={props.jaar + lid[0] + index}>
+            <Fragment key={props.jaar + lid[0] + index}>
               <h1 className="bestuurLid_naam">
                 {lid[0]}
               </h1>
               <h1 className="bestuurLid_functie">
                 {lid[1]}
               </h1>
-            </React.Fragment>
+            </Fragment>
           ))}
         </div>
         <h1 id="jaarBestuur">{props.jaar}</h1>

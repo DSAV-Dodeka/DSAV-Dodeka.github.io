@@ -1,4 +1,3 @@
-import React from "react";
 import "./OWeeSchema.scss";
 
 function OWeeSchema() {

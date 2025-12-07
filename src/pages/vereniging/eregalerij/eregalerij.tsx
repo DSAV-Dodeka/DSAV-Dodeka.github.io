@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./eregalerij.scss";
 import Erelid from "./components/Erelid";
 import PageTitle from "../../../components/PageTitle";

@@ -1,4 +1,3 @@
-import React from "react";
 import "./ArnoldClublied.scss";
 
 function ArnoldClublied() {

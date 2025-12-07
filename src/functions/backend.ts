@@ -153,3 +153,18 @@ export async function getSessionToken(): Promise<string> {
   const data = await response.json();
   return data.session_token;
 }
+
+// Legacy onboarding (for word-lid page)
+export async function onboardSignup(data: {
+  firstname: string;
+  lastname: string;
+  phone: string;
+  email: string;
+  privacy: boolean;
+}): Promise<void> {
+  const response = await post("/onboard/signup/", data);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to submit signup: ${text}`);
+  }
+}

@@ -1,38 +1,67 @@
+import { useState, useEffect } from "react";
 import Header from "../../../../components/Header";
 import "./Commissie.scss";
-import { getDeepImagesUrl } from "../../../../functions/links";
+import { getHashedImageUrl } from "../../../../functions/links";
 
-function Commissie(props) {
+interface CommissieLid {
+  naam: string;
+  foto: string;
+  functie: string;
+}
+
+interface CommissieProps {
+  name: string;
+  fotos: string;
+  info: string;
+  leden: CommissieLid[];
+  position: string;
+}
+
+function Commissie(props: CommissieProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   function slideIn() {
-    document.getElementById(props.name).classList.add("out");
-    document.getElementById(props.name).classList.remove("in");
+    const element = document.getElementById(props.name);
+    if (element) {
+      element.classList.add("out");
+      element.classList.remove("in");
+    }
 
     const scrollContainer = document.getElementById(props.name + "scroll");
-    const scrollWidth =
-      scrollContainer.scrollWidth - scrollContainer.offsetWidth;
-    scrollContainer.scrollTo(1, 0);
-    var scroll = window.self.setInterval(() => {
-      if (
-        scrollContainer.scrollLeft !== scrollWidth &&
-        scrollContainer.scrollLeft !== 0
-      ) {
-        scrollContainer.scrollTo(scrollContainer.scrollLeft + 1, 0);
-      } else {
-        window.self.clearInterval(scroll);
-      }
-    }, 15);
+    if (scrollContainer) {
+      const scrollWidth =
+        scrollContainer.scrollWidth - scrollContainer.offsetWidth;
+      scrollContainer.scrollTo(1, 0);
+      const scroll = setInterval(() => {
+        if (
+          scrollContainer.scrollLeft !== scrollWidth &&
+          scrollContainer.scrollLeft !== 0
+        ) {
+          scrollContainer.scrollTo(scrollContainer.scrollLeft + 1, 0);
+        } else {
+          clearInterval(scroll);
+        }
+      }, 15);
+    }
   }
 
   function slideOut() {
-    document.getElementById(props.name).classList.remove("out");
-    document.getElementById(props.name).classList.add("in");
+    const element = document.getElementById(props.name);
+    if (element) {
+      element.classList.remove("out");
+      element.classList.add("in");
+    }
   }
 
-  return props.position === "left" || window.innerWidth <= 1023 ? (
+  return props.position === "left" || (isClient && window.innerWidth <= 1023) ? (
     <div id={props.name} className="commissieContainer">
       <img
         className="commissieLogo roundedRight"
-        src={getDeepImagesUrl(`commissies/${props.fotos}/logo.jpg`)}
+        src={getHashedImageUrl(`commissies/${props.fotos}/logo.jpg`)}
         alt=""
       />
       <div className="commissieInfo roundedLeft">
@@ -54,7 +83,7 @@ function Commissie(props) {
       <div className="commissieLogo roundedRight">
         <img
           className="commissieFoto roundedRight"
-          src={getDeepImagesUrl(`commissies/${props.fotos}/commissie.jpg`)}
+          src={getHashedImageUrl(`commissies/${props.fotos}/commissie.jpg`)}
           alt=""
         />
       </div>
@@ -66,7 +95,7 @@ function Commissie(props) {
             <div key={props.name + lid.naam} className="commissieLid">
               <img
                 className="commissieLidFoto"
-                src={getDeepImagesUrl(
+                src={getHashedImageUrl(
                   `commissies/${props.fotos}/${lid.foto}.jpg`,
                 )}
                 alt=""
@@ -108,7 +137,7 @@ function Commissie(props) {
       </div>
       <img
         className={"commissieLogo roundedLeft"}
-        src={getDeepImagesUrl(`commissies/${props.fotos}/logo.jpg`)}
+        src={getHashedImageUrl(`commissies/${props.fotos}/logo.jpg`)}
         alt=""
       />
 
@@ -119,7 +148,7 @@ function Commissie(props) {
             <div key={props.name + lid.naam + "2"} className="commissieLid">
               <img
                 className="commissieLidFoto"
-                src={getDeepImagesUrl(
+                src={getHashedImageUrl(
                   `commissies/${props.fotos}/${lid.foto}.jpg`,
                 )}
                 alt=""
@@ -145,7 +174,7 @@ function Commissie(props) {
       <div className="commissieLogo roundedLeft">
         <img
           className="commissieFoto roundedLeft"
-          src={getDeepImagesUrl(`commissies/${props.fotos}/commissie.jpg`)}
+          src={getHashedImageUrl(`commissies/${props.fotos}/commissie.jpg`)}
           alt=""
         />
       </div>

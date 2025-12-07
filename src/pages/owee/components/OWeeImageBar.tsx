@@ -1,8 +1,7 @@
-import React from "react";
 import "./OWeeImageBar.scss";
 import atletiek from "$images/owee/atletiek.jpg";
 import trackFestival from "$images/owee/track_festival.jpg";
-import marioKrat from "$images/owee/mario_krat.JPG";
+import marioKrat from "$images/owee/mario_krat.jpg";
 
 function OWeeText() {
     return(

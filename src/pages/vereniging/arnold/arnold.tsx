@@ -1,4 +1,3 @@
-import React from "react";
 import PageTitle from "../../../components/PageTitle";
 import ArnoldInfo from "./components/ArnoldInfo";
 import ArnoldClublied from "./components/ArnoldClublied";
