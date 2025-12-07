@@ -1,17 +1,23 @@
 @use "../../../../variables";
 
 .eigenWedstrijd {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    height: 100%;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 38rem;
+    min-width: 32rem;
     max-width: 32rem;
+    overflow: hidden;
+    box-sizing: border-box;
     border-left: 4rem solid variables.$dodeka_rood;
     padding-top: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
     @include variables.respond(mobile) {
+        min-width: 22rem;
+        max-width: 22rem;
+        height: 42rem;
         border-left: 2rem solid variables.$dodeka_rood;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -31,6 +37,7 @@
     font-size: variables.$font_large;
     line-height: variables.$line_height_large;
     font-weight: variables.$bold;
+    white-space: normal;
 }
 
 .eigenWedstrijdDatum {
@@ -46,17 +53,13 @@
 }
 
 .eigenWedstrijdFoto {
-    display: block;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    flex-grow: 1;
     object-fit: cover;
-    height: 16rem;
+    height: 0;
     width: 100%;
     border-radius: 0.75rem;
-    @include variables.respond(mobile) {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .eigenWedstrijdInfo {
@@ -82,15 +85,21 @@
     font-weight: variables.$bold;
 }
 
+.eigenWedstrijdLinkContainer {
+    width: 100%;
+    padding-bottom: 2.5rem;
+}
+
 .eigenWedstrijdLink {
-    position: absolute;
     display: block;
+    width: 100%; 
+    padding-top: 2rem;
+    text-align: center;
     color: variables.$dodeka_rood;
     text-decoration: none;
     font-weight: variables.$bold;
     font-size: variables.$font_medium;
     line-height: variables.$line_height_medium;
-    bottom: 2rem;
 }
 
 .eigenWedstrijdLinkOud {

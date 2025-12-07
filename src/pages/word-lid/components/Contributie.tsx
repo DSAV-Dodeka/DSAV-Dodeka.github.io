@@ -25,13 +25,13 @@ function Contributie() {
         </div>
         <div className="vl"></div>
         <div className="contributieTabel2">
-          <span>&#8364;</span>57,95 <span className="jaapie">per kwartaal</span>
+          <span>&#8364;</span>53,5 <span className="jaapie">per kwartaal</span>
           <br />
-          <span>&#8364;</span>52,90 <span className="jaapie">per kwartaal</span>
+          <span>&#8364;</span>47,- <span className="jaapie">per kwartaal</span>
           <br />
-          <span>&#8364;</span>42,75 <span className="jaapie">per kwartaal</span>
+          <span>&#8364;</span>44,- <span className="jaapie">per kwartaal</span>
           <br />
-          <span>&#8364;</span>20,- <span className="jaapie">eenmalig</span>
+          <span>&#8364;</span>5,- <span className="jaapie">eenmalig</span>
           <br />
           <span className="footnote_contributie">
             <div>
@@ -46,24 +46,11 @@ function Contributie() {
       <div className="contributie_3">
         <Header text="Contributie" position="right" />
         <p className="contributie_4">
-          Naast dat wij trainen op hun atletiekbaan, is D.S.A.V. Dodeka ook een
-          ondervereniging van AV'40. De inschrijvingen en contributie worden
-          daarom via hen geregeld.
-          <br />
-          <br />
-          Als student vallen wij onder de baanatleten en is de contributie
-          daarmee <span>&#8364;</span>57,95 per kwartaal. Om mee te mogen doen
-          met wedstrijden, zoals de competitie of de Nederlandse Studenten
-          Kampioenschappen, moet je in het bezit zijn van een wedstrijdlicentie.
-          Ben je al wedstrijdlid bij een andere atletiekvereniging? Dan kan je
-          ervoor kiezen om je wedstrijdlicentie om te zetten naar AV'40, of om
-          gastlid bij ons te worden.
-          <br />
-          <br />
-          Vergeet bij het inschrijven niet aan te vinken dat je student bent,
-          want studentenleden krijgen jaarlijks <span>&#8364;</span>10 korting
-          op de contributie! Als je dit niet aanvinkt worden de prijzen hoger
-          dan in de prijzentabel hiernaast.
+          Als wedstrijdlid kan je deelnemen aan alle trainingen, activiteiten en wegwedstrijden. Je krijgt een wedstrijdlicentie bij de Atletiekunie en kan daardoor ook deelnemen aan wedstrijden op de baan. 
+          <br /> <br />
+          Als recreantlid kan je deelnemen aan alle trainingen, activiteiten en wegwedstrijden, maar niet aan wedstrijden op de baan.
+          <br /> <br />
+          Als gastlid kan je deelnemen aan alle trainingen, activiteiten en wegwedstrijden. Je hebt al een wedstrijdlicentie bij een andere atletiekvereniging en komt op baanwedstrijden ook uit voor deze vereniging. Een uitzondering geldt voor de Nationale Studenten Kampioenschappen (NSK's), hier mag je wel uitkomen voor Dodeka.
         </p>
       </div>
     </div>

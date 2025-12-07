@@ -19,6 +19,7 @@ export default [
       index("./pages/contact/contact/contact.tsx"),
       route("sponsors", "./pages/contact/sponsors/sponsors.tsx"),
       route("vcp", "./pages/contact/vcp/vcp.tsx"),
+      route("donateurs", "./pages/contact/donateurs/donateurs.tsx"),
     ]),
     ...prefix("trainingen", [
       index("./pages/trainingen/trainingen.tsx"),

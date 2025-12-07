@@ -1,5 +1,11 @@
 {
     "besturen": [
+         {
+            "naam": "Bestuur 7",
+            "leden": [["Merel Blaauw","Voorzitter"],["Lou Bijman","Secretaris"], ["Sven van Weezep","Penningmeester"],["Xylander Parqui","Commissaris Atletiek"], ["Anne Hinrichs","Commissaris Intern"]],
+            "jaar": "2025/2026",
+            "foto": "bestuur_7.jpg" 
+        },
         {
             "naam": "Bestuur 6",
             "leden": [["Joris Gudde","Voorzitter"],["Itse Veltmeijer","Secretaris"], ["Tobias Steevensz","Penningmeester"],["Anna Lusthof","Commissaris Atletiek"], ["Tijmen Hoedjes","Commissaris Intern"]],

@@ -29,9 +29,12 @@ function EigenWedstrijd(props: EigenWedstrijdProps) {
       />
       <p className="eigenWedstrijdInfo">{props.info_kort}</p>
       {props.path === "" ? (
-        ""
+        <div className="eigenWedstrijdLinkContainer"></div>
       ) : (
-        <Link to={"/wedstrijden" + props.path}>
+        <Link
+          to={"/wedstrijden" + props.path}
+          className="eigenWedstrijdLinkContainer"
+        >
           <h1
             className={
               "eigenWedstrijdLink" + (props.oud ? " eigenWedstrijdLinkOud" : "")

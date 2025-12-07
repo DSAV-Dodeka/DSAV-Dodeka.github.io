@@ -33,11 +33,3 @@ export const getNestedImagesUrl = (loc: string) => {
   const split = loc.split("/");
   return new URL(`../images/${split[0]}/${split[1]}`, import.meta.url).href;
 };
-
-export const getDeepImagesUrl = (loc: string) => {
-  const split = loc.split("/");
-  return new URL(
-    `../images/${split[0]}/${split[1]}/${split[2]}`,
-    import.meta.url,
-  ).href;
-};

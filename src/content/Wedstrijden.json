@@ -1,12 +1,34 @@
 {
     "wedstrijden": [
         {
+            "naam": "Delftse Trappenloop\u200Bkampioen\u200Bschappen 2025",
+            "datum": "28 november 2025",
+            "tijd": "17:00",
+            "locatie": "EWI-toren",
+            "adres": "Mekelweg 4",
+            "postcode": "2628 CD Delft",
+            "maps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3399.9936754873074!2d4.370934177237337!3d51.998868374681074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b59735b7475b%3A0x9055bdc663dea6bb!2sMekelweg%204%2C%202628%20CD%20Delft!5e1!3m2!1snl!2snl!4v1729843558567!5m2!1snl!2snlH",
+            "logo": "trappenloop_2025.jpg",
+            "logo_rond": "trappenloop_Logo.jpg",
+            "foto": "nsk_trappenloop_2024_foto.jpg",
+            "inschrijven": "https://linktr.ee/trappenloop?fbclid=PAQ0xDSwNfLldleHRuA2FlbQIxMQABp_IaTBBiDp8jTammK4idJlZVXyMrwttgv5OtrKDcNGQwpLPYBzEH2WZxLUUg_aem_b0E-Cwp-ggG2Yw-2-8TMJQ",
+            "mail": "trappenloop@dsavdodeka.nl",
+            "instagram": "https://www.instagram.com/trappenloopdelft2025/",
+            "bepalingen": "/files/wedstrijdregelement_trappenloop_2025.pdf",
+            "info_kort": "Op vrijdag 28 november is het alweer tijd voor de Delftse Trappenloopkampioenschappen 2025. Dit jaar zal het na het succes van vorig jaar weer plaatsvinden in het prachtige gebouw voor Elektrotechniek, Wiskunde en Informatica (EWI).",
+            "info_lang": "Op vrijdag 28 november is het alweer tijd voor de Delftse Trappenloopkampioenschappen 2025. Dit jaar zal het na het succes van vorig jaar weer plaatsvinden in het prachtige gebouw voor Elektrotechniek, Wiskunde en Informatica (EWI). Op de verschillende onderdelen zal er uitgemaakt worden wie er met de gouden medaille naar huis gaat. Dit jaar kan er gekozen worden uit 10 verdiepingen, 20 verdiepingen en 4x5 verdiepingen estafette. Daarnaast komt er ook nog een werknemersklassement. Denk jij dat je het in je hebt om al deze trappen te overwinnen en jezelf te kronen tot DE Kampioen van Delft? Schrijf je dan snel in en zet je schrap voor de trap! <br/><br>Na de wedstrijd zal er ook een feest zijn dat zal plaatsvinden in Blue Birds! <br/><br/>Geen zin om mee te doen aan de wedstrijd maar wel zin om te komen kijken? Je kan je ook opgeven als vrijwilliger! <br/>Friday November 28th it's once again time for the Delft Stair Climb Championships 2025! After last year's success, the event will return to the beautiful building of Electrical Engineering, Mathematics & Computer Science, (EWI). You can fight for the gold medal in multiple events. This year you can choose from 10 floors, 20 floors and a 4x5 floors relay. On top of that there will be a separate ranking for the employees of the TU Delft. Do you reckon you got it in you to conquer the stairs and crown yourself to THE Stairclimbing champion of Delft? Sign up right now and get ready for the stairs! <br/><br/>After the competition, there will also be a party taking place at Blue Birds! <br/><br/>Don’t feel like participating in the competition but still want to come and watch? You can also sign up as a volunteer!",
+            "path": "/trappenloop"
+        },
+        {
             "naam": "Dodekathlon",
-            "datum": "28 juni 2025",
+            "datum": "juni 2026",
             "logo": "dodekathlon.jpg",
             "info_kort": "Dodeka organiseert jaarlijks de Dodekathlon, waarbij twaalf onderdelen gedaan worden. 'Dodeka' betekent namelijk twaalf in het Grieks. Naast de onderdelen van de normale tienkamp zijn ook de 400 meter horden en de hink-stap-sprong onderdeel van dit evenement.",
             "path": ""
-        },
+        }
+        
+    ],
+    "wedstrijden_oud": [
         {
             "naam": "NSK Meerkamp",
             "datum": "3 en 4 mei 2025",
@@ -25,10 +47,7 @@
             "info_kort": "Het NSK Meerkamp mag dit jaar opnieuw in Delft plaatsvinden! Dit zal plaatsvinden op 3 en 4 mei 2025. Dit jaar zal het NSK Meerkamp bestaan uit drie verschillende meerkampen: de reguliere zeven- of tienkamp, de loopmeerkamp, en als nieuwkomer de werpmeerkamp!",
             "info_lang": "Het NSK Meerkamp mag dit jaar opnieuw in Delft plaatsvinden! Dit zal plaatsvinden op 3 en 4 mei 2025. <br><br>Wij als commissie zullen ons uiterste best doen om dit weekend soepel te laten verlopen, en er een geweldige wedstrijd van te maken, in combinatie met een spectaculair feest. <br><br>Dit jaar zal het NSK Meerkamp bestaan uit drie verschillende meerkampen: de reguliere zeven- of tienkamp, de loopmeerkamp, en als nieuwkomer de werpmeerkamp! Voor ieder wat wils, zodat we allemaal onze beste kant kunnen laten zien. En je kunt het zo competitief maken als je zelf wilt, maar houd er rekening mee, een meerkamp is natuurlijk niet niks! Wij gaan in ieder geval uit van een hoop gesneuvelde PR's en blije gezichten. <br><br>Tot het eerste weekend van mei!",
             "path": "/nskmeerkamp"
-        }
-        
-    ],
-    "wedstrijden_oud": [
+        },
         {
             "naam": "NSK Trappenloop",
             "datum": "13 december 2024",

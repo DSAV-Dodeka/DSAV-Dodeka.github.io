@@ -5,7 +5,9 @@ export default {
   appDirectory: "src",
   ssr: false,
   async prerender() {
-    const wedstrijdPaths = getWedstrijdPaths().map((path) => `/wedstrijden${path}`);
+    const wedstrijdPaths = getWedstrijdPaths().map(
+      (path) => `/wedstrijden${path}`,
+    );
 
     return [
       "/",
@@ -16,6 +18,7 @@ export default {
       "/contact",
       "/contact/sponsors",
       "/contact/vcp",
+      "/contact/donateurs",
       "/trainingen",
       "/trainingen/trainers",
       "/trainingen/gezocht",

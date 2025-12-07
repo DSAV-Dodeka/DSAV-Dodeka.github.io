@@ -38,7 +38,7 @@
                 {
                     "naam": "Tijmen",
                     "functie": "QomQommer",
-                    "foto": "tijmen"
+                    "foto": "Tijmen"
                 }
             ],
             "fotos": "comcom"
@@ -189,48 +189,7 @@
             ],
             "fotos": "nskmeerkamp"
         },
-        {
-            "naam": "Nsk Trap",
-            "info": "Waddup, wij vinden traplopen, ladders, liften, alles waarbij je omhoog gaat heel vet. Wij hebben afgelopen jaar het Nederlands studentenkampioenschap trappenloop georganiseerd, dus eigenlijk is het een beetje laat dat we nu op de website komen, maar de foto's zijn wel heel leuk, dus we mogen nog wel even op de site shine pakken.",
-		    "leden": [
-                {
-                    "naam": "Melle",
-                    "functie": "Voorzitter",
-                    "foto": "melle"
-                },
-                {
-                    "naam": "Mano",
-                    "functie": "Secretaris",
-                    "foto": "mano"
-                },
-                {
-                    "naam": "Maaike ",
-                    "functie": "Penningmeester",
-                    "foto": "maaike"
-                },
-                {
-                    "naam": "Donne",
-                    "functie": "Commissaris Wedstrijd",
-                    "foto": "donne"
-                },
-                {
-                    "naam": "Annejet",
-                    "functie": "Commissaris eten, feest en slapen",
-                    "foto": "annejet"
-                },
-                {
-                    "naam": "Marien",
-                    "functie": "QQ",
-                    "foto": "marien"
-                },
-                {
-                    "naam": "Tijmen",
-                    "functie": "QQ",
-                    "foto": "tijmen"
-                }
-            ],
-            "fotos": "nsktrap"
-        },
+        
         {
             "naam": "Quico",
             "info": "De Quico is de commissie die voortdurend op zoek is naar manieren om Dodeka financiëel te ondersteunen. Wij organiseren hardloopclinics voor bedrijven, werkacties voor onze leden, of gaan in gesprek met mogelijke partners. Dankzij onze partners kan de vereniging investeren in materiaal, wedstrijden en leuke activiteiten, om zo bij te dragen aan de sportieve en sociale ontwikkeling van onze leden. Heeft u interesse om ook partner te worden van onze vereniging, dan denkt de Quico graag mee over wat er mogelijk is.  Denk aan een banner op een van onze wedstrijden, een logo op een shirt of promotie op onze sociale media kanalen.  Neem gerust contact op via  samenwerkingdodeka@gmail.com. voor een gesprek over de mogelijkheden!",
@@ -321,32 +280,32 @@
                 {
                     "naam": "Stan",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
+                    "foto": "stan"
                 },
                 {
                     "naam": "Mieke",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "mieke"
                 },
                 {
                     "naam": "Sacha",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "sacha"
                 },
                 {
                     "naam": "Vera",
                     "functie": "Commissaris extern",
-                    "foto": "placeholder"
+                    "foto": "vera"
                 },
                 {
                     "naam": "Sven",
                     "functie": "Commissaris Promo",
-                    "foto": "placeholder"
+                    "foto": "sven"
                 },
                 { 
                     "naam": "Simon",
                     "functie": "Ouwe lul",
-                    "foto": "placeholder"
+                    "foto": "simon"
                 },
                 {
                     "naam": "Itse",
@@ -361,34 +320,29 @@
             "info": "In februari is het weer zo ver, een groep van 30 Dodekaëders gaat skiën in de prachtige Alpen! Naast veel sneeuwpret zal Snowdeka ervoor zorgen dat er heel veel leuke activiteiten te doen zijn. We gaan met z’n allen lekker skiën, snowboarden en niet te vergeten feesten! Het wordt een drukke en gezellige week, zelfs zo leuk dat iedereen na de wispo eigenlijk nog een weekje vakantie nodig heeft. We zorgen er als commissie voor dat het voor iedereen een onvergetelijke reis zal hebben!",
 		"leden": [
                 {
-                    "naam": "Eric",
+                    "naam": "Joris",
                     "functie": "Voorzitter",
-                    "foto": "eric"
-                },
-                {
-                    "naam": "Marea",
-                    "functie": "Secretaris",
-                    "foto": "marea"
-                },
-                {
-                    "naam": "Xylander",
-                    "functie": "penningmeester",
-                    "foto": "xylander"
-                },
-                {
-                    "naam": "Julius",
-                    "functie": "Commissaris Activiteiten",
-                    "foto": "julius"
+                    "foto": "joris"
                 },
                 {
                     "naam": "Marien",
-                    "functie": "QQ",
+                    "functie": "Secretaris",
                     "foto": "marien"
                 },
                 {
-                    "naam": "Joris",
+                    "naam": "Maaike",
+                    "functie": "penningmeester",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Marinka",
+                    "functie": "Commissaris Activiteiten",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Sven",
                     "functie": "QQ",
-                    "foto": "joris"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "snowdeka"
@@ -398,51 +352,46 @@
             "info": "De StartCommissie heeft als belangrijke taak dat alle nieuwe studenten de naam \"D.S.A.V. Dodeka\" kennen en dat ze weten waar onze prachtige vereniging voor staat. Dit doen we door tijdens de OWee epische activiteiten te organiseren waarbij de nieuwe studenten op een leuke manier kennis maken met de atletiek en de vereniging. Zo is de StartCo aanwezig op de parade, de infomarkt en de activiteitenmarkt en heeft de StartCo afgelopen OWee een biermijlestafette en een TrackFeest georganiseerd op de atletiekbaan. Na de OWee zorgt de StartCo ervoor dat alle nieuwe leden zich thuisvoelen op de vereniging door het leukste weekend van het jaar te organiseren: het StartWeekend. Hier kunnen nieuwe en oude leden elkaar (nog) beter leren kennen door samen leuke (en sportieve) activiteiten te doen en, natuurlijk, te partyen. Wordt D.S.A.V. Dodeka ook jouw startschot voor een geweldige studententijd?",
 		    "leden": [
                 {
-                    "naam": "Temba",
+                    "naam": "Mano",
                     "functie": "Voorzitter",
-                    "foto": "temba"
+                    "foto": "mano"
                 },
                 {
-                    "naam": "Kyllian",
+                    "naam": "Mei chang",
                     "functie": "Secretaris",
-                    "foto": "kyllian"
+                    "foto": "mei"
                 },
                 {
-                    "naam": "Itse",
+                    "naam": "Ivar",
                     "functie": "Penningmeester",
-                    "foto": "itse"
+                    "foto": "ivar"
                 },
                 {
-                    "naam": "Stan",
-                    "functie": "Commissaris logistiek I",
-                    "foto": "stan"
+                    "naam": "Annejet",
+                    "functie": "Commissaris logistiek",
+                    "foto": "annejet"
                 },
                 {
-                    "naam": "Marin",
-                    "functie": "Commissaris logistiek II",
-                    "foto": "marin"
-                },
-                {
-                    "naam": "Vera",
+                    "naam": "Anthony",
                     "functie": "Commissaris Startweekend",
-                    "foto": "vera"
+                    "foto": "anthony"
                 }
                 ,
                 {
-                    "naam": "Anne-Wil",
+                    "naam": "Xylander",
                     "functie": "QQ/Commissaris Promo",
-                    "foto": "annewil"
+                    "foto": "xylander"
                 }
                 ,
                 {
-                    "naam": "Marien",
+                    "naam": "Anna",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "anna"
                 },
                 {
-                    "naam": "Sanne",
+                    "naam": "Tobias",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "tobias"
                 }
             ],
             "fotos": "startco"
@@ -489,17 +438,7 @@
             "info": "Als commissie geven wij epische trainingen die we ook heel goed voorbereiden zodat we altijd weten wat we gaan doen. Wij zorgen ieder jaar voor tientallen fenomenale NSK-medailles door ons dag en nacht in te zetten. We hebben de ZeuS-bokaal twee keer op rij gewonnen dankzij de trainers. We hebben natuurlijk alleen maar dankzij onze commissie zoveel leden. Dit kunnen we bereiken doordat we met maar liefst 11 trainers zijn en daarmee de grootste commissie. Wij organiseren meer activiteiten dan alle andere commissies samen en onze activiteiten hebben de meeste inschrijvingen.",
 		"leden": [
                
-                {
-                    "naam": "Jasper",
-                    "functie": "Baantrainer",
-                    "foto": "Jasper"
-                },
-            
-                {
-                    "naam": "Koen",
-                    "functie": "Baantrainer",
-                    "foto": "Koen"
-                },
+                
                 {
                     "naam": "Gijs",
                     "functie": "Baantrainer",
@@ -526,10 +465,31 @@
                     "foto": "eric"
                 },
                 {
-                    "naam": "Aniek",
-                    "functie": "Looptrainer",
-                    "foto": "Aniek"
+                    "naam": "Anne-wil",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
                 },
+                {
+                    "naam": "Ivar",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Stefan",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Marinka",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Marien",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },
+            
                 {
                     "naam": "Robert",
                     "functie": "Looptrainer",
@@ -549,19 +509,52 @@
                     "naam": "Tijmen",
                     "functie": "MiLatrainer",
                     "foto": "Tijmen"
-                },{
-                    "naam": "Bart",
-                    "functie": "Erelid",
+                },
+                {
+                    "naam": "Xylander",
+                    "functie": "QQ",
+                    "foto": "placeholder"
+                }
+                
+                
+            ],
+            "fotos": "trainers"},
+            {
+            "naam": "Trap",
+            "info": "Op vrijdag 28 november is het alweer tijd voor de Delftse Trappenloopkampioenschappen 2025. Dit jaar zal het na het succes van vorig jaar weer plaatsvinden in het prachtige gebouw voor Elektrotechniek, Wiskunde en Informatica (EWI). Op de verschillende onderdelen zal er uitgemaakt worden wie er met de gouden medaille naar huis gaat. Dit jaar kan er gekozen worden uit 10 verdiepingen, 20 verdiepingen en 4x5 verdiepingen estafette. Daarnaast komt er ook nog een werknemersklassement. Denk jij dat je het in je hebt om al deze trappen te overwinnen en jezelf te kronen tot DE Kampioen van Delft? Schrijf je dan snel in en zet je schrap voor de trap!",
+		"leden": [
+               
+                {
+                    "naam": "Maaike",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+            
+                {
+                    "naam": "Anne",
+                    "functie": "Secretaris/QQ",
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Anna",
-                    "functie": "QQ",
-                    "foto": "anna"
+                    "naam": "Stan",
+                    "functie": "Penningmeester",
+                    "foto": "placeholder"
+                },               
+            
+                {
+                    "naam": "Kyllian",
+                    "functie": "Commissaris Wedstrijd",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Tijmen",
+                    "functie": "QQ/secretaris",
+                    "foto": "placeholder"
                 }
                 
             ],
-            "fotos": "trainers"}
+            "fotos": "trap"
+        }
 ],
 "oude commissies":[ {
     "naam": "BatCie",
@@ -600,40 +593,47 @@
     ],
     "fotos": "batcie"
 },
-        {
-            "naam": "Trap",
-            "info": "Hey! Wij zijn de commissie die ",
-		"leden": [
-               
+        
+    {
+            "naam": "Nsk Trap",
+            "info": "Waddup, wij vinden traplopen, ladders, liften, alles waarbij je omhoog gaat heel vet. Wij hebben afgelopen jaar het Nederlands studentenkampioenschap trappenloop georganiseerd, dus eigenlijk is het een beetje laat dat we nu op de website komen, maar de foto's zijn wel heel leuk, dus we mogen nog wel even op de site shine pakken.",
+		    "leden": [
                 {
-                    "naam": "Maaike",
+                    "naam": "Melle",
                     "functie": "Voorzitter",
-                    "foto": "placeholder"
-                },
-            
-                {
-                    "naam": "Anne",
-                    "functie": "Secretaris/QQ",
-                    "foto": "placeholder"
+                    "foto": "melle"
                 },
                 {
-                    "naam": "Stan",
+                    "naam": "Mano",
+                    "functie": "Secretaris",
+                    "foto": "mano"
+                },
+                {
+                    "naam": "Maaike ",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
-                },               
-            
+                    "foto": "maaike"
+                },
                 {
-                    "naam": "Kyllian",
+                    "naam": "Donne",
                     "functie": "Commissaris Wedstrijd",
-                    "foto": "placeholder"
+                    "foto": "donne"
+                },
+                {
+                    "naam": "Annejet",
+                    "functie": "Commissaris eten, feest en slapen",
+                    "foto": "annejet"
+                },
+                {
+                    "naam": "Marien",
+                    "functie": "QQ",
+                    "foto": "marien"
                 },
                 {
                     "naam": "Tijmen",
-                    "functie": "QQ/secretaris",
-                    "foto": "placeholder"
+                    "functie": "QQ",
+                    "foto": "tijmen"
                 }
-                
             ],
-            "fotos": "trap"
+            "fotos": "nsktrap"
         }]
 }

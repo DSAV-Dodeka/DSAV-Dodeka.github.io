@@ -1,14 +1,15 @@
 @use "../../../variables";
 
 #eigenWedstrijden {
-    height: 40rem;
+    display: flex;
+    height: 38rem;
     background-color: variables.$dodeka_blauw90p;
     padding-left: 4rem;
     padding-right: 4rem;
-    overflow-x: scroll;
-    white-space: nowrap;
+    overflow-x: auto;
     margin-bottom: 6rem;
     @include variables.respond(mobile) {
+        height: 42rem;
         position: relative;
         padding-right: 1rem;
         padding-left: 1rem;
