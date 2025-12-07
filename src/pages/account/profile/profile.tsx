@@ -5,7 +5,6 @@ import { useSessionInfo } from "$functions/query.ts";
 import * as api from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./profile.css";
-import { getHashedImageUrl } from "$functions/links";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -68,8 +67,6 @@ export default function Profile() {
   return (
     <div className="profile-container">
       <PageTitle title="Profile" />
-      <img width={200} src={getHashedImageUrl("/login/ingelogd2.png")}></img>
-
       <div className="profile-header">
         <h2>Your Profile</h2>
         <p>Manage your account settings and information.</p>

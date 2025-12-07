@@ -17,7 +17,10 @@ export default [
       route("sponsors", "./pages/contact/sponsors/sponsors.tsx"),
       route("vcp", "./pages/contact/vcp/vcp.tsx"),
     ]),
-    route("flow-test", "./pages/flow-test/flow-test.tsx"),
+    // The flow-test page should only be included in development mode
+    ...(import.meta.env.DEV
+      ? [route("flow-test", "./pages/flow-test/flow-test.tsx")]
+      : []),
     route("admin", "./pages/admin/admin.tsx"),
     // route("register", "./pages/register.tsx"),
     ...prefix("account", [

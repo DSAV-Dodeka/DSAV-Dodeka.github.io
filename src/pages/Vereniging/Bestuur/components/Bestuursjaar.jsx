@@ -18,15 +18,15 @@ function Bestuursjaar(props) {
       </div>
       <div id="bestuursjaarRight">
         <div className="bestuursjaarLeden">
-          {props.leden.map((lid) => (
-            <>
-              <h1 key={props.jaar + lid[0]} class="bestuurLid_naam">
+          {props.leden.map((lid, index) => (
+            <React.Fragment key={props.jaar + lid[0] + index}>
+              <h1 className="bestuurLid_naam">
                 {lid[0]}
               </h1>
-              <h1 key={props.jaar + lid[1]} class="bestuurLid_functie">
+              <h1 className="bestuurLid_functie">
                 {lid[1]}
               </h1>
-            </>
+            </React.Fragment>
           ))}
         </div>
         <h1 id="jaarBestuur">{props.jaar}</h1>

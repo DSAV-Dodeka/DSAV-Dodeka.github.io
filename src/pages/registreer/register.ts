@@ -272,7 +272,7 @@ async function doVoltaRegister(voltaRegistration: VoltaRegistration) {
     (result.headers.get("Content-Type") ?? "").includes("json")
   ) {
     const jsonParsed = await result.json();
-    console.log(`jsonParsed=${JSON.stringify(jsonParsed)}.`);
+    // console.log(`jsonParsed=${JSON.stringify(jsonParsed)}.`);
     if (
       typeof jsonParsed === "object" &&
       jsonParsed !== null &&

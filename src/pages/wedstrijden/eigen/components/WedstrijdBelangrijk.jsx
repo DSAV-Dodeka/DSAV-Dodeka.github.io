@@ -12,9 +12,9 @@ function WedstrijdBelangrijk(props) {
             <p className="belangrijke_info_text">Adres: {props.wedstrijd.adres}</p>
             <p className="belangrijke_info_text">Postcode: {props.wedstrijd.postcode}</p>
             <Maps locatie={props.wedstrijd.maps}/>
-            {("mail" in props.wedstrijd ? <a target="_blank" rel="noreferrer" href={"mailto:" + props.wedstrijd.mail} className="belangrijke_info_button belangrijke_info_mail">Mail</a> : "")}
-            {("instagram" in props.wedstrijd ? <a target="_blank" rel="noreferrer" href={props.wedstrijd.instagram} className="belangrijke_info_button belangrijke_info_insta">Instagram</a> : "")}
-            {(props.wedstrijd.bepalingen === "" ? "" : <a target="_blank" rel="noreferrer" href={props.wedstrijd.bepalingen} className="belangrijke_info_button">Wedstrijdbepalingen</a>)}
+            {("mail" in props.wedstrijd && props.wedstrijd.mail ? <a target="_blank" rel="noreferrer" href={"mailto:" + props.wedstrijd.mail} className="belangrijke_info_button belangrijke_info_mail">Mail</a> : "")}
+            {("instagram" in props.wedstrijd && props.wedstrijd.instagram ? <a target="_blank" rel="noreferrer" href={props.wedstrijd.instagram} className="belangrijke_info_button belangrijke_info_insta">Instagram</a> : "")}
+            {(props.wedstrijd.bepalingen && props.wedstrijd.bepalingen !== "" ? <a target="_blank" rel="noreferrer" href={props.wedstrijd.bepalingen} className="belangrijke_info_button">Wedstrijdbepalingen</a> : "")}
         </div>
     )
 }

@@ -14,7 +14,7 @@ function Wedstrijd(props) {
       <p className="wedstrijd_algemeen_info">
         {parse(props.wedstrijd.info_lang)}
       </p>
-      {"uitslagen" in props.wedstrijd ? (
+      {"uitslagen" in props.wedstrijd && props.wedstrijd.uitslagen ? (
         <a
           target="_blank"
           rel="noreferrer"
@@ -23,7 +23,7 @@ function Wedstrijd(props) {
         >
           Uitslagen
         </a>
-      ) : "inschrijven" in props.wedstrijd ? (
+      ) : "inschrijven" in props.wedstrijd && props.wedstrijd.inschrijven ? (
         <a
           target="_blank"
           rel="noreferrer"
