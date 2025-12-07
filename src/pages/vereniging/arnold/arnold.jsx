@@ -2,7 +2,8 @@ import React from "react";
 import PageTitle from "../../../components/PageTitle";
 import ArnoldInfo from "./components/ArnoldInfo";
 import ArnoldClublied from "./components/ArnoldClublied";
-import "./Arnold.scss";
+import "../../../components/ContactButtons.scss";
+import "./arnold.scss";
 
 function Arnold() {
     return(

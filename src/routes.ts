@@ -8,6 +8,9 @@ import {
 
 export default [
   layout("./pages/layout.tsx", [
+    index("./pages/home/home.tsx"),
+    route("owee", "./pages/owee/owee.jsx"),
+    route("word_lid", "./pages/word-lid/word-lid.tsx"),
     ...prefix("registreer", [
       index("./pages/registreer/registreer.tsx"),
       route("registered", "./pages/registreer/registered.tsx"),
@@ -16,6 +19,21 @@ export default [
       index("./pages/contact/contact/contact.tsx"),
       route("sponsors", "./pages/contact/sponsors/sponsors.tsx"),
       route("vcp", "./pages/contact/vcp/vcp.tsx"),
+    ]),
+    ...prefix("trainingen", [
+      index("./pages/trainingen/trainingen.tsx"),
+      route("trainers", "./pages/vereniging/trainers/trainers.jsx"),
+      route("gezocht", "./pages/vereniging/gezocht/gezocht.tsx"),
+    ]),
+    ...prefix("vereniging", [
+      index("./pages/vereniging/vereniging/vereniging.tsx"),
+      route("commissies", "./pages/vereniging/commissies/commissies.jsx"),
+      route("bestuur", "./pages/vereniging/bestuur/bestuur.jsx"),
+      route("eregalerij", "./pages/vereniging/eregalerij/eregalerij.tsx"),
+      route("arnold", "./pages/vereniging/arnold/arnold.jsx"),
+      route("gezelligheid", "./pages/vereniging/gezelligheid/gezelligheid.tsx"),
+      route("old", "./pages/vereniging/old/old.tsx"),
+      route("reglementen", "./pages/vereniging/reglementen/reglementen.tsx"),
     ]),
     // The flow-test page should only be included in development mode
     ...(import.meta.env.DEV
@@ -47,6 +65,6 @@ export default [
       route("spike", "./pages/nieuws/spike/spike.tsx"),
     ]),
   ]),
-  // * matches all URLs, the ? makes it optional so it will match / as well
+  // * matches all URLs, the? makes it optional so it will match / as well
   route("*?", "catchall.tsx"),
 ] satisfies RouteConfig;

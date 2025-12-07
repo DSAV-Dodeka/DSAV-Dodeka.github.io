@@ -1,5 +1,5 @@
 // import React, {useContext, useEffect, useState} from "react";
-import "./Reglementen.scss";
+import "./reglementen.scss";
 import soon from "$images/leden/soon.jpg";
 
 

@@ -1,5 +1,5 @@
 import old_foto from "../../../images/vereniging/oudleden/old_temp.jpg";
-import "./OLD.scss";
+import "./old.scss";
 import PageTitle from "../../../components/PageTitle";
 
 function OLD() {

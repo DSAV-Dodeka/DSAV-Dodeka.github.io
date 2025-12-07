@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Eregalerij.scss";
+import "./eregalerij.scss";
 import Erelid from "./components/Erelid";
 import PageTitle from "../../../components/PageTitle";
 import EregalerijText from "../../../content/Eregalerij.json"

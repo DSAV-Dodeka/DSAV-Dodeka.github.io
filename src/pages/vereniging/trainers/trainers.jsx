@@ -2,7 +2,7 @@ import React from "react";
 import PageTitle from "../../../components/PageTitle";
 import Trainer from "./components/Trainer";
 import TrainersText from "../../../content/Trainers.json";
-import "./Trainers.scss";
+import "./trainers.scss";
 
 function Trainers() {
     return(

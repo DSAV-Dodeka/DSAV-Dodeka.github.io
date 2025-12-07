@@ -2,7 +2,7 @@ import {
     Link
 } from "react-router";
 import PageTitle from "../../../components/PageTitle";
-import "./Vereniging.scss";
+import "./vereniging.scss";
 import over from "$images/over/over.jpg";
 import overBestuur from "$images/over/overBestuur.jpg";
 import overCommissies from "$images/over/overCommissies.jpg";

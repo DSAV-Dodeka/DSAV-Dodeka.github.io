@@ -3,7 +3,7 @@ import HomeNieuws from "./components/HomeNieuws";
 import TitleBar from "./components/TitleBar";
 import HomeTrainingen from "./components/HomeTrainingen";
 import HomeCommissies from "./components/HomeCommissies";
-import "./Home.scss";
+import "./home.scss";
 // import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {

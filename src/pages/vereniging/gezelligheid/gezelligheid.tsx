@@ -1,5 +1,5 @@
 import React from "react";
-import "./Gezelligheid.scss";
+import "./gezelligheid.scss";
 import PageTitle from "../../../components/PageTitle";
 import biermijl from "$images/gezelligheid/biermijl.jpg";
 import nskTeamsAlgemeen from "$images/gezelligheid/nsk_teams_algemeen.jpeg";

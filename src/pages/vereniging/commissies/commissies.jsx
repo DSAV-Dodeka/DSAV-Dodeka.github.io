@@ -1,7 +1,7 @@
 import PageTitle from "../../../components/PageTitle";
 import Commissie from "./components/Commissie";
 import CommissiesText from "../../../content/Commissies.json";
-import "./Commissies.scss";
+import "./commissies.scss";
 
 function Commissies() {
     return (

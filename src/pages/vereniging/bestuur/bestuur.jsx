@@ -2,7 +2,7 @@ import React from "react";
 import PageTitle from "../../../components/PageTitle";
 import Bestuursjaar from "./components/Bestuursjaar";
 import BestuurText from "../../../content/Bestuur.json";
-import "./Bestuur.scss";
+import "./bestuur.scss";
 import groteD from "$images/groteD.svg";
 
 function Bestuur() {
