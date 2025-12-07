@@ -1,9 +1,9 @@
-import PageTitle from "../../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 import Contactinfo from "./components/Contactinfo";
 import Socials from "./components/Socials";
-import Maps from "../../../components/Maps";
+import Maps from "$components/Maps";
 import Questions from "./components/Questions";
-import Text from "../../../content/FAQ.json";
+import Text from "$content/FAQ.json";
 import "./Contact.scss";
 
 function Contact() {

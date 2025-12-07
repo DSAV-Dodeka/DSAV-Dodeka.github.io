@@ -4,6 +4,8 @@
       "$images": ["./src/images"],
       "$components": ["./src/components"],
       "$components/*": ["./src/components/*"],
+      "$content": ["./src/content"],
+      "$content/*": ["./src/content/*"],
       "$functions": ["./src/functions"],
       "$functions/*": ["./src/functions/*"]
     },

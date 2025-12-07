@@ -1,4 +1,4 @@
-import PageTitle from "../../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 import Sponsoropties from "./components/Sponsoropties";
 
 function Sponsors() {

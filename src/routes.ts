@@ -14,7 +14,7 @@ export default [
     ]),
     ...prefix("contact", [
       index("./pages/contact/contact/contact.tsx"),
-      route("sponors", "./pages/contact/sponsors/sponsors.tsx"),
+      route("sponsors", "./pages/contact/sponsors/sponsors.tsx"),
       route("vcp", "./pages/contact/vcp/vcp.tsx"),
     ]),
     route("flow-test", "./pages/flow-test/flow-test.tsx"),
