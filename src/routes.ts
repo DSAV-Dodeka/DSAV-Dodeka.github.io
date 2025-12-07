@@ -12,10 +12,14 @@ export default [
       index("./pages/registreer/registreer.tsx"),
       route("registered", "./pages/registreer/registered.tsx"),
     ]),
+    ...prefix("contact", [
+      index("./pages/contact/contact/contact.tsx"),
+      route("sponors", "./pages/contact/sponsors/sponsors.tsx"),
+      route("vcp", "./pages/contact/vcp/vcp.tsx"),
+    ]),
     route("flow-test", "./pages/flow-test/flow-test.tsx"),
-    route("auth-test", "./pages/test-register-tabs.tsx"),
-    route("admin", "./pages/admin.tsx"),
-    route("register", "./pages/register.tsx"),
+    route("admin", "./pages/admin/admin.tsx"),
+    // route("register", "./pages/register.tsx"),
     ...prefix("account", [
       route(
         "password-reset",
@@ -26,7 +30,6 @@ export default [
       route("delete", "./pages/account/delete/delete.tsx"),
       route("profile", "./pages/account/profile/profile.tsx"),
     ]),
-    route("profile", "./pages/profile.tsx"),
   ]),
   // * matches all URLs, the ? makes it optional so it will match / as well
   route("*?", "catchall.tsx"),

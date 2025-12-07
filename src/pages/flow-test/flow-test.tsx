@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router";
 import PageTitle from "$components/PageTitle.tsx";
-import * as api from "$functions/flows/api.ts";
+import * as api from "$functions/backend.ts";
 import RegisterFlow from "./RegisterFlow";
 import LoginFlow from "./LoginFlow";
 import PasswordResetFlow from "./PasswordResetFlow";

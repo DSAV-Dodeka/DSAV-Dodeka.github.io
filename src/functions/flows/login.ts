@@ -1,5 +1,5 @@
-import { faroeClient } from "./faroe";
-import { setSession } from "./api";
+import { faroeClient } from "$functions/faroe.ts";
+import { setSession } from "$functions/backend.ts";
 
 type LoginResult =
   | { ok: true; sessionToken: string }

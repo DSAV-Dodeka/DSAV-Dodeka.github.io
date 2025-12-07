@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import * as api from "$functions/flows/api.ts";
+import * as api from "$functions/backend.ts";
 import { SignupFlow } from "$functions/flows/signup.ts";
 import { TEST_EMAIL, TEST_FIRSTNAME, TEST_LASTNAME, TEST_PASSWORD } from "./constants";
 
@@ -39,8 +39,8 @@ export default function RegisterFlow() {
     setLoading(true);
     setStatus("");
     try {
-      const token = await api.acceptUser(email);
-      setSignupToken(token);
+      const result = await api.acceptUser(email);
+      setSignupToken(result.signup_token);
       setStatus("✓ User accepted, verification email sent");
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);

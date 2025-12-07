@@ -1,4 +1,4 @@
-import { faroeClient } from "$functions/flows/faroe.ts";
+import { faroeClient } from "$functions/faroe.ts";
 
 type RequestResetResult =
   | { ok: true; token: string }

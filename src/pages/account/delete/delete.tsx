@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { requestAccountDeletion, AccountDeletionFlow } from "$functions/flows/account-deletion.ts";
 import { useSessionInfo } from "$functions/query.ts";
-import * as api from "$functions/flows/api.ts";
+import * as api from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./delete.css";
 
@@ -145,7 +145,7 @@ export default function DeleteAccount() {
 
           <div className="delete-section">
             <button
-              onClick={() => navigate("/profile")}
+              onClick={() => navigate("/account/profile")}
               className="delete-button delete-button-secondary"
             >
               Cancel
@@ -200,7 +200,7 @@ export default function DeleteAccount() {
             <div className="delete-section">
               <button
                 type="button"
-                onClick={() => navigate("/profile")}
+                onClick={() => navigate("/account/profile")}
                 className="delete-button delete-button-secondary"
               >
                 Cancel

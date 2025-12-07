@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { requestAccountDeletion, AccountDeletionFlow } from "$functions/flows/account-deletion.ts";
-import * as api from "$functions/flows/api.ts";
+import * as api from "$functions/backend.ts";
 
 export default function AccountDeletionFlowTest() {
   const queryClient = useQueryClient();

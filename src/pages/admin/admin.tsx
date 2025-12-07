@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { listNewUsers, acceptUser, type NewUser } from "../functions/faroe-client";
-import PageTitle from "../components/PageTitle";
+import { listNewUsers, acceptUser, type NewUser } from "$functions/backend.ts";
+import PageTitle from "$components/PageTitle.tsx";
 import "./admin.css";
 
 export default function Admin() {

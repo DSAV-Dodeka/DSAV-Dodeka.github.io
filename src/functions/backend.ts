@@ -1,6 +1,6 @@
 const BACKEND_URL = "http://localhost:8000";
 
-// HTTP helper
+// HTTP helpers
 async function post(path: string, body: object, withCredentials = false): Promise<Response> {
   const options: RequestInit = {
     method: "POST",
@@ -76,14 +76,29 @@ export async function getRegistrationStatus(
 }
 
 // Admin actions
-export async function acceptUser(email: string): Promise<string> {
+export interface NewUser {
+  email: string;
+  firstname: string;
+  lastname: string;
+  accepted: boolean;
+}
+
+export async function listNewUsers(): Promise<NewUser[]> {
+  const response = await get("/admin/list_newusers/");
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to list new users: ${text}`);
+  }
+  return response.json();
+}
+
+export async function acceptUser(email: string): Promise<{ success: boolean; message: string; signup_token: string }> {
   const response = await post("/admin/accept_user/", { email });
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to accept user: ${text}`);
   }
-  const data = await response.json();
-  return data.signup_token;
+  return response.json();
 }
 
 // Session management

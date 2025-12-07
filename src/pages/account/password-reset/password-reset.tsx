@@ -6,7 +6,7 @@ import {
   PasswordResetFlow,
 } from "$functions/flows/password-reset.ts";
 import { useSessionInfo } from "$functions/query.ts";
-import * as api from "$functions/flows/api.ts";
+import * as api from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./password-reset.css";
 

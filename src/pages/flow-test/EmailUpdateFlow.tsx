@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { requestEmailUpdate, EmailUpdateFlow } from "$functions/flows/email-update.ts";
-import * as api from "$functions/flows/api.ts";
+import * as api from "$functions/backend.ts";
 
 export default function EmailUpdateFlowTest() {
   const queryClient = useQueryClient();

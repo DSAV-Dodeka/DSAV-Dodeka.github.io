@@ -6,7 +6,7 @@ import {
   EmailUpdateFlow,
 } from "$functions/flows/email-update.ts";
 import { useSessionInfo } from "$functions/query.ts";
-import * as api from "$functions/flows/api.ts";
+import * as api from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./email-update.css";
 
@@ -79,7 +79,7 @@ export default function EmailUpdate() {
 
       // Redirect to profile after a short delay
       setTimeout(() => {
-        navigate("/profile");
+        navigate("/account/profile");
       }, 1000);
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);

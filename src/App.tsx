@@ -8,14 +8,12 @@ const Spike = React.lazy(() => import("./pages/Nieuws/Spike/Spike"));
 import Vereniging from "./pages/Vereniging/Vereniging/Vereniging";
 import Trainingen from "./pages/Trainingen/Trainingen";
 import WordLid from "./pages/Word lid/WordLid";
-import Contact from "./pages/Contact/Contact/Contact";
 import ContactBar from "./components/Contact Bar/ContactBar";
 import Commissies from "./pages/Vereniging/Commissies/Commissies";
 import Reglementen from "./pages/Vereniging/Reglementen/Reglementen";
 import Bestuur from "./pages/Vereniging/Bestuur/Bestuur";
 import Trainers from "./pages/Vereniging/Trainers/Trainers";
 import Gezocht from "./pages/Vereniging/Gezocht/Gezocht";
-import Sponsors from "./pages/Contact/Sponsors/Sponsors";
 import Wedstrijden from "./pages/Wedstrijden/Wedstrijden/Wedstrijden";
 import WedstrijdText from "./content/Wedstrijden.json";
 import Wedstrijd from "./pages/Wedstrijden/Eigen wedstrijden/Wedstrijd";
@@ -33,7 +31,6 @@ const Records = React.lazy(() => import("./pages/Wedstrijden/Records/Records"));
 
 import Gezelligheid from "./pages/Vereniging/Gezelligheid/Gezelligheid";
 import Hoogtepunten from "./pages/Wedstrijden/Hoogtepunten/Hoogtepunten";
-import Vetrouwenscontactpersoon from "./pages/Contact/VCP/VCP";
 import "./App.scss";
 import "./index.scss";
 
@@ -213,12 +210,6 @@ function App() {
                 }
               />
               <Route path="/word_lid" element={<WordLid />} />
-              <Route path="/contact/sponsors" element={<Sponsors />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route
-                path="/contact/vcp"
-                element={<Vetrouwenscontactpersoon />}
-              />
               {/*<Route
                 path="/leden/verjaardagen"
                 element={

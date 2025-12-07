@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSessionInfo } from "$functions/query.ts";
-import * as api from "$functions/flows/api.ts";
+import * as api from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./profile.css";
+import { getHashedImageUrl } from "$functions/links";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ export default function Profile() {
   return (
     <div className="profile-container">
       <PageTitle title="Profile" />
+      <img width={200} src={getHashedImageUrl("/login/ingelogd2.png")}></img>
 
       <div className="profile-header">
         <h2>Your Profile</h2>
@@ -126,7 +128,10 @@ export default function Profile() {
             </div>
           </Link>
 
-          <Link to="/account/delete" className="profile-action-card profile-action-card-danger">
+          <Link
+            to="/account/delete"
+            className="profile-action-card profile-action-card-danger"
+          >
             <div className="profile-action-icon">⚠️</div>
             <div className="profile-action-content">
               <h4>Delete Account</h4>
