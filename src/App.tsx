@@ -2,9 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router";
 import NavigationBar from "./components/Navigation Bar/NavigationBar";
 import Home from "./pages/Home/Home";
-import Nieuws from "./pages/Nieuws/Nieuws/Nieuws";
 import OWee from "./pages/OWee/OWee";
-const Spike = React.lazy(() => import("./pages/Nieuws/Spike/Spike"));
 import Vereniging from "./pages/Vereniging/Vereniging/Vereniging";
 import Trainingen from "./pages/Trainingen/Trainingen";
 import WordLid from "./pages/Word lid/WordLid";
@@ -138,15 +136,6 @@ function App() {
           <NavigationBar />
           <div id="app_flex">
             <Routes>
-              <Route
-                path="/nieuws/spike"
-                element={
-                  <Suspense fallback={<div>Loading Spike...</div>}>
-                    <Spike />
-                  </Suspense>
-                }
-              />
-              <Route path="/nieuws" element={<Nieuws />} />
               <Route path="/owee" element={<OWee />} />
               <Route path="/vereniging" element={<Vereniging />} />
               <Route path="/vereniging/commissies" element={<Commissies />} />

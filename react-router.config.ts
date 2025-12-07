@@ -21,6 +21,8 @@ export default {
       "/wedstrijden",
       "/wedstrijden/hoogtepunten",
       ...wedstrijdPaths,
+      "/nieuws",
+      "/nieuws/spike",
       "/owee",
     ];
   },

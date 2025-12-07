@@ -42,6 +42,10 @@ export default [
       route("records", "./pages/wedstrijden/records/records.tsx"),
       route(":wedstrijdPath", "./pages/wedstrijden/eigen/wedstrijd-loader.tsx"),
     ]),
+    ...prefix("nieuws", [
+      index("./pages/nieuws/nieuws/nieuws.tsx"),
+      route("spike", "./pages/nieuws/spike/spike.tsx"),
+    ]),
   ]),
   // * matches all URLs, the ? makes it optional so it will match / as well
   route("*?", "catchall.tsx"),

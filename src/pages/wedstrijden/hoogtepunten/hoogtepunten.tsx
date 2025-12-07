@@ -1,13 +1,19 @@
 import PageTitle from "../../../components/PageTitle";
-import Wedstrijd from "./components/Wedstrijd";
+import Wedstrijd from "./components/Wedstrijd.tsx";
 import "./Hoogtepunten.scss";
 import Wedstrijden from "../../../content/Hoogtepunten.json";
+
+interface Prijs {
+  plaats: number;
+  naam: string;
+  afstand: string;
+}
 
 interface HoogtepuntItem {
   wedstrijd: string;
   foto: string;
-  prijzen: any[];
-  prestaties: any[];
+  prijzen: Prijs[];
+  prestaties: string[];
 }
 
 const Hoogtepunten = () => {

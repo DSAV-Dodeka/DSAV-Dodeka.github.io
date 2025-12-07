@@ -1,9 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Title from "./Title";
 import "./Nieuwsbericht.scss";
 import { getHashedImageUrl } from "$functions/links";
 
-function Nieuwsbericht(props) {
+interface NieuwsberichtProps {
+  id: string;
+  titel: string;
+  datum: string;
+  auteur: string;
+  tekst: string;
+  foto: string;
+  page: string;
+  position: "left" | "right";
+}
+
+function Nieuwsbericht(props: NieuwsberichtProps) {
   const [width, setWidth] = useState(1920);
   useEffect(() => {
     setWidth(window.innerWidth);

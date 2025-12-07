@@ -1,6 +1,11 @@
 import "./Title.scss";
 
-function Title(props) {
+interface TitleProps {
+  title: string;
+  position: "left" | "right";
+}
+
+function Title(props: TitleProps) {
   return (
     <div className="title_class_1">
       <h1
