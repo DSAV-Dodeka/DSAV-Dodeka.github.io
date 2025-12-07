@@ -27,27 +27,287 @@ This project implements a registration and login flow using:
    - React application with React Router 7
    - Consumes both Faroe and backend APIs
 
+## Authentication Flow Patterns (Current Implementation)
+
+All authentication flows in this project follow a consistent, well-tested pattern. This section describes the standard approach for implementing new authentication flows.
+
+### Flow Architecture Pattern
+
+Each authentication flow consists of three layers:
+
+1. **Flow Logic** (`src/functions/flows/*.ts`)
+   - Pure TypeScript functions with no React dependencies
+   - Reusable across both testing and production
+   - Handles Faroe API calls and error responses
+
+2. **Flow-Test Component** (`src/pages/flow-test/*Flow.tsx`)
+   - Testing UI for the flow
+   - Uses React state for token storage
+   - Pre-filled test data
+   - Debugging information visible (tokens, status)
+
+3. **Production Page** (`src/pages/account/*/*.tsx`)
+   - User-facing implementation
+   - URL parameters for token storage (survives page refresh)
+   - Session checks and redirects
+   - Clean UX without debug information
+
+### Standard Flow Pattern
+
+#### 1. Flow Logic (`src/functions/flows/[flow-name].ts`)
+
+**Structure:**
+```typescript
+// Step 1: Request function (returns token)
+export async function request[Flow](
+  sessionToken: string,  // if requires login
+  ...params
+): Promise<{ ok: true; token: string } | { ok: false; error: string }>
+
+// Step 2: Flow class (stateful, handles retries)
+export class [Flow]Flow {
+  private step1Verified = false;
+  private step2Verified = false;
+
+  async tryComplete(
+    sessionToken: string,  // if requires login
+    token: string,
+    ...verificationParams
+  ): Promise<{ ok: true } | { ok: false; error: string }> {
+    // Verify each step, tracking state internally
+    // Skip already-completed steps on retry
+    // Handle specific error codes (e.g., already_verified)
+    // Return simple ok/error result
+  }
+}
+```
+
+**Key Principles:**
+- **State machine classes**: Track progress through multi-step flows
+- **Retry support**: Skip completed steps when user retries (e.g., weak password)
+- **Error handling**: Check for `already_verified` type errors and skip those steps
+- **Simple returns**: Always `{ ok: true }` or `{ ok: false, error: string }`
+- **No React**: Pure TypeScript for maximum reusability
+
+#### 2. Flow-Test Component (`src/pages/flow-test/[Flow]Flow.tsx`)
+
+**Structure:**
+```typescript
+export default function [Flow]FlowTest() {
+  const flowInstance = useRef(new [Flow]Flow());
+  const [step, setStep] = useState<"initial" | "verify" | "complete">("initial");
+  const [token, setToken] = useState("");
+  // ... form state
+
+  // Step 1: Request flow
+  const handleRequest = async () => {
+    const result = await request[Flow](...);
+    if (!result.ok) { setStatus(`✗ ${result.error}`); return; }
+    setToken(result.token);
+    setStep("verify");
+  };
+
+  // Step 2: Complete flow
+  const handleComplete = async () => {
+    const result = await flowInstance.current.tryComplete(token, ...);
+    if (!result.ok) { setStatus(`✗ ${result.error}`); return; }
+    setStep("complete");
+  };
+
+  return /* Multi-step form UI with debug info */;
+}
+```
+
+**Features:**
+- Pre-filled test data from `constants.ts`
+- Shows tokens and debug information
+- "Start Over" button to reset flow
+- Uses React state for token storage (simple for testing)
+- Clear step-by-step progression
+
+#### 3. Production Page (`src/pages/account/[flow]/[flow].tsx`)
+
+**Structure:**
+```typescript
+export default function [Flow]() {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  const { data: session, isLoading } = useSessionInfo(); // if requires login
+
+  // Check session if needed
+  if (!session) { return <LoginRequired />; }
+
+  // Step 1: No token in URL
+  if (!token) {
+    const handleRequest = async () => {
+      const result = await request[Flow](...);
+      navigate(`/account/[flow]?token=${result.token}`);
+    };
+    return /* Initial form */;
+  }
+
+  // Step 2: Token in URL
+  const handleComplete = async () => {
+    const result = await flowInstance.current.tryComplete(token, ...);
+    await queryClient.invalidateQueries({ queryKey: ["session"] });
+    navigate("/next-page");
+  };
+  return /* Completion form */;
+}
+```
+
+**Features:**
+- URL parameter for token (`?token=xxx`)
+- Session checking with `useSessionInfo()`
+- Redirects on success
+- No debug information
+- Loading states
+- Clean error messages
+
+### Implemented Flows
+
+**Current flows following this pattern:**
+
+1. **Login** (`src/functions/flows/login.ts`)
+   - Single function (no state machine needed)
+   - Returns session token
+   - Production page: `/account/login`
+
+2. **Password Reset** (`src/functions/flows/password-reset.ts`)
+   - Request → temp password emailed
+   - Verify temp password + set new password
+   - Does NOT require existing session
+   - Production page: `/account/password-reset?token=xxx`
+   - Token in URL, no session needed
+
+3. **Email Update** (`src/functions/flows/email-update.ts`)
+   - Request → verification code to new email
+   - Verify code + confirm with password
+   - REQUIRES active session
+   - Production page: `/account/email-update?token=xxx`
+   - Token in URL, session required
+
+4. **Account Deletion** (`src/functions/flows/account-deletion.ts`)
+   - Request → creates deletion token
+   - Confirm with password
+   - REQUIRES active session
+   - Production page: `/account/delete?token=xxx`
+   - Token in URL, session required
+
+### File Organization
+
+```
+src/
+├── functions/
+│   └── flows/
+│       ├── api.ts           # Backend API calls
+│       ├── faroe.ts         # Faroe client
+│       ├── login.ts
+│       ├── signup.ts
+│       ├── password-reset.ts
+│       ├── email-update.ts
+│       └── account-deletion.ts
+├── pages/
+│   ├── flow-test/
+│   │   ├── flow-test.tsx    # Main test page with tabs
+│   │   ├── flow-test.css
+│   │   ├── constants.ts     # TEST_EMAIL, TEST_PASSWORD, etc.
+│   │   ├── RegisterFlow.tsx
+│   │   ├── LoginFlow.tsx
+│   │   ├── PasswordResetFlow.tsx
+│   │   ├── EmailUpdateFlow.tsx
+│   │   └── AccountDeletionFlow.tsx
+│   └── account/
+│       ├── login/
+│       │   ├── login.tsx
+│       │   └── login.css
+│       ├── password-reset/
+│       │   ├── password-reset.tsx
+│       │   └── password-reset.css
+│       ├── email-update/
+│       │   ├── email-update.tsx
+│       │   └── email-update.css
+│       └── delete/
+│           ├── delete.tsx
+│           └── delete.css
+```
+
+### Import Pattern
+
+All imports use `$`-based aliases with file extensions:
+
+```typescript
+import { flowFunction } from "$functions/flows/flow-name.ts";
+import PageTitle from "$components/PageTitle.tsx";
+import * as api from "$functions/flows/api.ts";
+```
+
+Configured in `tsconfig.json`:
+```json
+{
+  "paths": {
+    "$functions/*": ["./src/functions/*"],
+    "$components/*": ["./src/components/*"]
+  }
+}
+```
+
+### Routes Structure
+
+All account-related routes are grouped under `/account`:
+
+```typescript
+// src/routes.ts
+...prefix("account", [
+  route("login", "./pages/account/login/login.tsx"),
+  route("password-reset", "./pages/account/password-reset/password-reset.tsx"),
+  route("email-update", "./pages/account/email-update/email-update.tsx"),
+  route("delete", "./pages/account/delete/delete.tsx"),
+])
+```
+
+### Key Implementation Details
+
+**Token Storage:**
+- Flow-test: React state (simple, for testing)
+- Production: URL parameters (survives refresh, shareable)
+- Token format: 49-character string from Faroe
+
+**Session Handling:**
+- Get token: `const sessionToken = await api.getSessionToken()`
+- Check session: `const { data: session } = useSessionInfo()`
+- Invalidate: `await queryClient.invalidateQueries({ queryKey: ["session"] })`
+
+**Error Handling:**
+- Always return `{ ok: true }` or `{ ok: false, error: string }`
+- Display errors with `✗ ${error}` prefix
+- Check for "already verified" error codes and skip those steps
+
+**Styling:**
+- Each flow has its own CSS file
+- Consistent class naming: `[flow-name]-container`, `[flow-name]-button`, etc.
+- Common patterns: `-primary`, `-secondary`, `-danger` button variants
+
 ## Registration Flow (Split Between Backend and Frontend)
 
 The registration flow is intentionally split between the backend (admin-initiated) and frontend (user-completed) to allow for admin approval before sending verification emails.
 
 ### Phase 1: User Registration Request
 
-1. **User submits registration** (`/register` page):
+1. **User submits registration**:
    ```typescript
-   // POST /auth/register_user
+   // POST /auth/request_registration
    {
      "email": "user@example.com",
      "firstname": "First",
      "lastname": "Last"
    }
    ```
+   Returns: `{ success: true, registration_token: "..." }`
 
 2. **Backend creates newuser entry** with `accepted: false`:
-   ```python
-   add_new_user(store, email, firstname, lastname)
-   # Creates entry in newusers table with accepted=False
-   ```
+   - Creates entry in `newusers` table
+   - Creates entry in `registration_state` table with token
 
 ### Phase 2: Admin Approval
 
@@ -66,201 +326,179 @@ The registration flow is intentionally split between the backend (admin-initiate
 3. **Backend performs two actions**:
    - Updates `accepted: true` in newusers table
    - Calls Faroe `createSignup(email)` to initiate signup flow
+   - Updates registration_state with signup_token
    - **Verification email is sent to user automatically**
 
 ### Phase 3: User Completes Registration
 
-User receives email with verification code and completes signup in one step (`/register` page).
+User receives email with verification code and completes signup.
 
-**User provides in single form**:
-- Signup token (provided by admin or from email)
-- Verification code (from email)
-- Password
+**SignupFlow class handles**:
+1. **Verify Email** - `verifySignupEmailAddressVerificationCode()`
+2. **Set Password** - `setSignupPassword()`
+3. **Complete Signup** - `completeSignup()` → returns sessionToken
+4. **Set Session Cookie** - `setSession(sessionToken)`
 
-**Frontend executes**:
+The `SignupFlow` class (in `src/functions/flows/signup.ts`) automatically tracks progress and skips completed steps on retry (useful for weak password errors).
 
-1. **Verify Email**
-   ```typescript
-   await client.verifySignupEmailAddressVerificationCode(signupToken, verificationCode)
-   ```
+## Login Flow
 
-2. **Set Password**
-   ```typescript
-   await client.setSignupPassword(signupToken, password)
-   ```
+**Simple login flow**:
+1. Create signin - `createSignin(email)` → signinToken
+2. Verify password - `verifySigninUserPassword(signinToken, password)`
+3. Complete signin - `completeSignin(signinToken)` → sessionToken
+4. Set session - `setSession(sessionToken)`
 
-3. **Complete Signup**
-   ```typescript
-   const result = await client.completeSignup(signupToken)
-   const sessionToken = result.sessionToken
-   ```
+The `login()` function (in `src/functions/flows/login.ts`) handles all these steps and returns `{ ok: true, sessionToken }` or `{ ok: false, error }`.
 
-4. **Set Session Cookie**
-   ```typescript
-   await setSession(sessionToken)
-   // Calls POST /auth/set_session/ to set httpOnly cookie
-   ```
+## Backend API Endpoints
 
-### Session Establishment
-
-After signup/signin, session must be set in browser:
-
-```typescript
-// POST /auth/set_session/
-{
-  "session_token": sessionToken
-}
-```
-
-This sets an httpOnly cookie that's used for subsequent requests.
-
-## Backend User Store Implementation
-
-Located in `dodeka/backend/src/apiserver/data/auth.py`
-
-### Key Logic in `create_user`
-
-When Faroe tries to create a user:
-
-1. Check if email already exists in users table → error
-2. Check if user exists in newusers table → error if not found
-3. Check if `accepted: true` → error if false
-4. Create user with incremental ID + name-based ID
-5. Store user data across multiple keys:
-   - `{user_id}:profile` - firstname, lastname
-   - `{user_id}:email` - email address
-   - `{user_id}:password` - password hash data
-   - `{user_id}:disabled` - account status
-   - `{user_id}:sessions_counter` - session counter
-   - `{user_id}:permissions` - permissions
-6. Create index: `users_by_email[email] = user_id`
-7. Remove from newusers table
-
-## API Endpoints
-
-### Production Endpoints
-
-**User Registration**:
-- `POST /auth/register_user` - Create registration request (accepted=false)
+### User Registration
+- `POST /auth/request_registration` - Create registration request
   - Body: `{ email, firstname, lastname }`
+  - Returns: `{ success, message, registration_token }`
+- `POST /auth/registration_status` - Check registration status
+  - Body: `{ registration_token }`
+  - Returns: `{ email, accepted, signup_token }`
 
-**Admin**:
+### Admin
 - `GET /admin/list_newusers/` - List all registration requests
-  - Returns: `[{ email, firstname, lastname, accepted }]`
 - `POST /admin/accept_user/` - Accept user and initiate Faroe signup
   - Body: `{ email }`
   - Returns: `{ success, message, signup_token }`
 - `POST /admin/add_permission/` - Add permission to user
+- `POST /admin/remove_permission/` - Remove permission from user
 
-**Session Management**:
-- `POST /auth/set_session/` - Set session cookie (requires credentials)
+### Session Management
+- `POST /cookies/set_session/` - Set session cookie (requires credentials)
   - Body: `{ session_token }`
 - `GET /auth/session_info/` - Get current session info (requires credentials)
-- `POST /auth/clear_session/` - Clear current session (requires credentials)
-- `GET /auth/get_session_token/` - Get session token from cookie (requires credentials)
+  - Returns: `{ user: { user_id, email, firstname, lastname, permissions }, created_at, expires_at }`
+- `POST /cookies/clear_session/` - Clear current session (requires credentials)
+- `GET /cookies/session_token/` - Get session token from cookie (requires credentials)
   - Returns: `{ session_token }`
-- `POST /auth/delete_account/` - Delete current user's account (requires credentials)
-  - Deletes user from database and clears session cookie
-
-**Faroe Actions**:
-- `POST /auth/invoke_user_action` - Proxy to Faroe server
 
 ### Testing Endpoints
-
-For development and conformance testing:
-
-- `POST /auth/clear_tables` - Clear all user data
-- `POST /test/prepare_user` - Create newuser with accepted=true (for Faroe tests)
+- `POST /test/clear_tables` - Clear all user data
+- `POST /test/prepare_user` - Create newuser with accepted=true
   - Body: `{ email, names }`
 
-## Frontend Pages
+### Faroe Private Endpoint
+- `POST /private/invoke_user_action` - Proxy to Faroe server (private, only accessible by auth server)
+
+## Frontend Code Structure
+
+### Functions Organization
+
+**`src/functions/flows/`** - Core authentication logic (fully reviewed and correct):
+- `api.ts` - Backend API calls (clearTables, requestRegistration, acceptUser, session management)
+- `faroe.ts` - Faroe client initialization
+- `signup.ts` - SignupFlow class with state tracking and retry logic
+- `login.ts` - login() function that handles complete login flow
+- `password-reset.ts` - requestPasswordReset() and PasswordResetFlow class
+- `email-update.ts` - requestEmailUpdate() and EmailUpdateFlow class
+- `account-deletion.ts` - requestAccountDeletion() and AccountDeletionFlow class
 
 ### Production Pages
 
-1. **`/register`** - User registration flow
-   - Step 1: User submits registration request
-   - Step 2: User completes signup after admin approval (code + password)
+**Account Pages (all fully reviewed and correct):**
 
-2. **`/login`** - User login page
-   - Email and password authentication
-   - Redirects to home after successful login
-   - Link to password reset
+**`/account/login`** - `src/pages/account/login/login.tsx`
+- Clean login form with email and password
+- Uses `login()` function from flows
+- Redirects to home on success
+- Links to password reset
+- Session state management with redirect
 
-3. **`/profile`** - User profile and account management
-   - View account information
-   - Change email (multi-step: enter new email → verify code)
-   - Reset password (redirects to password reset page)
-   - Logout
-   - Delete account (with confirmation)
+**`/account/password-reset`** - `src/pages/account/password-reset/password-reset.tsx`
+- Two-step process with URL token (`?token=xxx`)
+- Step 1: Enter email → sends temp password
+- Step 2: Enter temp password + new password
+- Uses PasswordResetFlow class for retry support
+- Blocks access if already logged in (with logout button)
+- Does NOT require existing session
 
-4. **`/password-reset`** - Password reset flow
-   - Request reset (sends temp password to email)
-   - Enter temp password and new password
+**`/account/email-update`** - `src/pages/account/email-update/email-update.tsx`
+- Two-step process with URL token (`?token=xxx`)
+- Step 1: Enter new email → sends verification code
+- Step 2: Enter code + current password
+- Uses EmailUpdateFlow class for retry support
+- REQUIRES active session (redirects if not logged in)
+- Shows current email from session
 
-5. **`/admin`** - Admin dashboard
-   - View all registration requests
-   - Accept users (triggers Faroe signup and sends verification email)
+**`/account/delete`** - `src/pages/account/delete/delete.tsx`
+- Two-step process with URL token (`?token=xxx`)
+- Step 1: Confirm deletion intent
+- Step 2: Verify with password
+- Uses AccountDeletionFlow class
+- REQUIRES active session (redirects if not logged in)
+- Warning messages about permanent deletion
+- Redirects to home after completion
+
+**Other Pages:**
+
+**`/admin`** - `src/pages/admin.tsx`
+- View pending registrations
+- Accept users (triggers Faroe signup)
+
+**`/profile`** - `src/pages/profile.tsx`
+- View account information
+- Logout functionality
+- Account management features
 
 ### Testing Pages
 
-3. **`/auth-test`** - Complete auth flow testing
-   - Tabs: Register, Sign In, Password Reset, Session
-   - Uses `/test/prepare_user` for full Faroe conformance testing
+**`/flow-test`** - `src/pages/flow-test/` (fully reviewed and correct)
 
-## Frontend Implementation Notes
+Main testing interface for authentication flows. Clean, organized structure:
 
-### Using Faroe Client
+**Files**:
+- `flow-test.tsx` - Main component with sidebar and tabs
+- `flow-test.css` - Shared styles
+- `RegisterFlow.tsx` - Registration flow testing
+- `LoginFlow.tsx` - Login flow testing
+- `PasswordResetFlow.tsx` - Password reset flow testing
+- `EmailUpdateFlow.tsx` - Email update flow testing
+- `AccountDeletionFlow.tsx` - Account deletion flow testing
+- `constants.ts` - Test data (TEST_EMAIL, TEST_PASSWORD, etc.)
 
-The frontend should use `@faroe/client`:
+**Features**:
+- **Sidebar Actions**:
+  - Clear Tables - Clears all database tables
+  - Logout - Clears session cookie
+- **Sidebar Links**:
+  - Admin Page - Navigate to admin interface
+  - Test Data Display - Shows test password for easy copying
+- **Status Display**: Shows success/error feedback for actions
 
-```typescript
-import { Client, EndpointClient } from "@faroe/client"
+**Tabs**:
+1. **Register** - Full registration flow
+   - Request registration (user submits info)
+   - Admin accepts user (triggers Faroe signup)
+   - Complete signup (verify email code + set password)
+   - Uses SignupFlow class with automatic retry support
 
-class FaroeEndpointClient implements ActionInvocationEndpointClient {
-  async sendActionInvocationEndpointRequest(body: string) {
-    const response = await fetch("http://localhost:3777/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: body
-    })
-    return response.text()
-  }
-}
+2. **Login** - Simple login flow
+   - Email + password form
+   - Uses login() function
+   - Establishes session on success
 
-const client = new Client(new FaroeEndpointClient())
-```
+3. **Password Reset** - Password reset flow
+   - Request reset (email → temp password)
+   - Verify temp password + set new password
+   - Uses PasswordResetFlow class
 
-### Session Management
+4. **Email Update** - Update email address
+   - Enter new email (sends verification code)
+   - Verify code + confirm with password
+   - Uses EmailUpdateFlow class
+   - Requires active session
 
-After successful signup/signin:
-1. Receive sessionToken from Faroe
-2. Send to backend `/auth/set_session/` to set cookie
-3. Use `/auth/session_info/` to check session status
-
-## Test Flow Example
-
-From `testapp/tests/flows.test.ts`:
-
-```typescript
-// 1. Prepare user (backend)
-await userClient.prepareUser(email, ["First", "Last"])
-
-// 2. Create signup (Faroe)
-const r = await client.createSignup(email)
-
-// 3. Get verification code from email
-const code = await fetchMailData(email, "signup")
-
-// 4. Verify email
-await client.verifySignupEmailAddressVerificationCode(r.signupToken, code)
-
-// 5. Set password
-await client.setSignupPassword(r.signupToken, password)
-
-// 6. Complete signup
-const result = await client.completeSignup(r.signupToken)
-// result.sessionToken can now be used
-```
+5. **Delete Account** - Permanently delete account
+   - Confirm deletion intent
+   - Verify with password
+   - Uses AccountDeletionFlow class
+   - Requires active session
 
 ## Running the Stack
 
@@ -282,167 +520,74 @@ const result = await client.completeSignup(r.signupToken)
    npm run dev
    ```
 
+## Testing Workflow
+
+1. Navigate to `http://localhost:5173/flow-test`
+2. Use "Clear Tables" to reset database
+3. Test registration:
+   - Fill in user details (or use pre-filled test data)
+   - Click "Request Registration"
+   - Click "Accept User (Admin)" to trigger Faroe signup
+   - Check Faroe console logs for verification code
+   - Enter code and password
+   - Click "Complete Signup"
+4. Test login:
+   - Switch to "Login" tab
+   - Enter email and password
+   - Click "Login"
+5. Use "Logout" action to clear session
+
 ## Frontend Repository Structure
 
-### React Router 7 Setup
+### React Router 7
 
-This repository is in transition from React Router v6 to React Router 7:
-
-**New System (React Router 7)**:
-- Routes defined in `src/routes.ts`
-- Uses new API: `layout()`, `route()`, `prefix()`, `index()`
-- Configuration in `react-router.config.ts`:
-  - `appDirectory: "src"`
-  - `ssr: false` (client-side only)
-  - Prerender routes for static generation
-
-**Current Route Structure**:
+Routes defined in `src/routes.ts`:
 ```typescript
-// src/routes.ts
 layout("./pages/layout.tsx", [
-  ...prefix("registreer", [
-    index("./pages/registreer/registreer.tsx"),      // /registreer
-    route("registered", "./pages/registreer/registered.tsx"),  // /registreer/registered
-  ]),
-]),
-route("*?", "catchall.tsx"),  // Catches all other routes
+  route("flow-test", "./pages/flow-test/flow-test.tsx"),
+  route("login", "./pages/login/login.tsx"),
+  route("admin", "./pages/admin.tsx"),
+  route("profile", "./pages/profile.tsx"),
+  // ... other routes
+])
 ```
 
-**Backward Compatibility**:
-- `catchall.tsx` renders old `App.tsx` for routes not migrated yet
-- Old routes in `App.tsx` use React Router v6 API (`<Routes>`, `<Route>`)
-- Only `/registreer` routes use new system currently
+Configuration in `react-router.config.ts`:
+- `appDirectory: "src"`
+- `ssr: false` (client-side only)
 
-### Key Files
+---
 
-- `src/routes.ts` - New route definitions (React Router 7)
-- `src/App.tsx` - Old app with v6 routes (still active via catchall)
-- `src/pages/layout.tsx` - Layout wrapper with NavigationBar and ContactBar
-- `src/catchall.tsx` - Renders App.tsx for unmigrated routes
-- `react-router.config.ts` - React Router 7 configuration
+## LEGACY/OUTDATED SECTIONS
 
-### Adding New Routes
+The following sections describe proof-of-concept implementations that are **no longer up to date** and should not be used as reference:
 
-To add a new route using React Router 7:
+### ⚠️ Outdated Pages (Proof of Concept)
 
-1. Create page component in `src/pages/`
-2. Add route to `src/routes.ts`:
-   ```typescript
-   route("mypage", "./pages/mypage.tsx")
-   ```
-3. Optionally add to prerender list in `react-router.config.ts`
+The following pages were initial implementations but have been superseded by the flow-test infrastructure:
 
-### Dependencies
+- `/register` - `src/pages/register.tsx` - OLD registration implementation
+- `/password-reset` - `src/pages/password-reset.tsx` - OLD password reset
+- `/auth-test` - `src/pages/test-register-tabs.tsx` - OLD comprehensive test page
 
-- `react-router: 7.9.1` - Core routing
-- `@react-router/dev: 7.9.1` - Dev tools
-- `@react-router/node: 7.9.1` - Node adapter
-- `@faroe/client: 0.1.0` - Faroe authentication client (devDependency)
+These pages may still exist in the codebase but are not actively maintained and may not work correctly with the current backend API structure.
 
-### Existing Registration Page
+### ⚠️ Outdated Functions (Proof of Concept)
 
-Located at `src/pages/registreer/registreer.tsx`:
-- Complex form with many fields (name, address, IBAN, etc.)
-- Uses external API for registration (Volta system)
-- Not suitable for testing auth flow
-- Will be replaced/supplemented with simpler test registration
+The following function files were proof of concept and are no longer the correct approach:
 
-### Test Registration Page (Simple)
+- `src/functions/faroe-client.ts` - OLD Faroe wrapper functions
+- `src/functions/auth-flow.ts` - OLD high-level auth flow helpers
 
-**Location**: `src/pages/test-register.tsx`
-**Route**: `/test-register`
+**Use instead**: Functions in `src/functions/flows/` (api.ts, faroe.ts, signup.ts, login.ts)
 
-Simple single-flow registration page for basic testing.
+### ⚠️ Outdated Documentation
 
-**Features**:
-- Pre-filled test data (email, firstname, lastname, password)
-- Step-by-step guided flow
-- Clear visual feedback for each step
-- Reset functionality (clears all tables)
+The sections below this point in the original documentation describe the old proof-of-concept implementation and should be considered **historical reference only**:
 
-**Flow**:
-1. **Pre-register**: Creates user in newusers table with accepted=true
-2. **Create Signup**: Starts Faroe signup flow, sends verification email
-3. **Verify Email**: Enter verification code from email/SMTP logs
-4. **Set Password**: Sets password and completes registration
-5. **Complete**: Session is established and cookie is set
-6. **Get Session Info** (optional): Retrieves and displays current session details
+- Old "Frontend Pages" section describing /register, /login, /profile, /password-reset
+- Old "Test Registration Page (Simple)" section describing /test-register
+- Old "Auth Testing Page (Full)" section describing /auth-test
+- Old "Reusable Functions" sections describing faroe-client.ts and auth-flow.ts
 
-### Auth Testing Page (Full - RECOMMENDED)
-
-**Location**: `src/pages/test-register-tabs.tsx`
-**Route**: `/auth-test`
-
-Comprehensive tabbed interface for testing all authentication flows.
-
-**Features**:
-- Tabbed interface for different auth flows
-- Pre-filled test data
-- Session management
-- All Faroe flows implemented
-
-**Tabs**:
-
-1. **Register Tab**
-   - Pre-registration (newusers table)
-   - Email verification
-   - Password setup
-   - Session creation
-
-2. **Sign In Tab**
-   - Email entry
-   - Password verification
-   - Session creation
-
-3. **Password Reset Tab**
-   - Request reset (sends temp password)
-   - Verify temp password
-   - Set new password
-
-4. **Session Tab**
-   - View current session info
-   - Clear current session (from cookie)
-   - Delete specific session (by token)
-   - Delete all sessions (by token)
-
-**Reusable Functions**:
-
-`src/functions/faroe-client.ts` - Low-level API calls:
-- `faroeClient` - Faroe client instance
-- `prepareUser(email, names)` - Pre-register user via backend
-- `clearTables()` - Clear all database tables
-- `setSession(sessionToken)` - Set session cookie via backend
-- `getSessionInfo()` - Get current session information from cookie
-- `clearCurrentSession()` - Clear the current session (deletes cookie)
-- `createEmailChange(newEmail)` - Initiate email change flow, returns emailUpdateToken
-- `sendEmailVerificationCode(emailUpdateToken)` - Send verification code to new email
-- `verifyEmailChange(emailUpdateToken, code)` - Verify email with code
-- `completeEmailChange(emailUpdateToken)` - Complete email change
-- `deleteAccount()` - Delete current user's account
-- Types: `SessionInfo`, `SessionUser`, `SessionResponse`, `NewUser`, `AcceptUserResponse`
-
-`src/functions/auth-flow.ts` - High-level authentication flow logic:
-- `preregisterUser(email, firstname, lastname)` - Pre-register with error handling
-- `createSignup(email)` - Create Faroe signup
-- `verifyEmail(signupToken, code)` - Verify email with code
-- `setPasswordAndComplete(signupToken, password)` - Set password and complete signup
-- `completeRegistration(signupToken, password)` - Alias for setPasswordAndComplete
-- `createSignin(email)` - Create signin flow
-- `verifySigninPassword(signinToken, password)` - Verify password and complete signin
-- `createPasswordReset(email)` - Create password reset flow
-- `completePasswordReset(resetToken, tempPassword, newPassword)` - Complete password reset
-- Types: `RegistrationStep`, `RegistrationState`, `StepResult`
-
-**Styles**: `src/pages/test-register.css`
-- Uses CSS classes instead of inline styles
-- Consistent with existing pages like `registreer.css`
-
-**Usage**:
-1. Start all three servers (Faroe, Backend, Frontend)
-2. Navigate to `http://localhost:5173/auth-test` (or `/test-register` for simple version)
-3. Select the desired tab (Register, Sign In, Password Reset, Session)
-4. Follow the step-by-step flow for each operation
-5. Check SMTP server logs for verification codes and temporary passwords
-
-**Example verification code location**:
-If running with test SMTP server on port 3525, verification codes and temporary passwords appear in the Faroe Go server console logs.
+The current, correct implementation is documented in the sections above (Frontend Code Structure, Production Pages, Testing Pages).

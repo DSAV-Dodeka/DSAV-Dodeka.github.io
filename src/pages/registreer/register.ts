@@ -257,6 +257,7 @@ async function doVoltaRegister(voltaRegistration: VoltaRegistration) {
         body: JSON.stringify(voltaRegistration),
       },
     );
+    // This is to test without actually creating a person in Volta
     // await new Promise((resolve) => setTimeout(resolve, 20000));
     // result = new Response(null, { status: 200 });
   } catch (e) {

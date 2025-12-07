@@ -21,6 +21,7 @@ export default defineConfig({
     alias: {
       $images: path.resolve(__dirname, "./src/images"),
       $components: path.resolve(__dirname, "./src/components"),
+      $functions: path.resolve(__dirname, "./src/functions"),
     },
   },
   css: {

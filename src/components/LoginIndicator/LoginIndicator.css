@@ -20,6 +20,13 @@
   justify-content: center;
 }
 
+.login-indicator-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .login-indicator-icon {
   width: 60px;
   height: 60px;

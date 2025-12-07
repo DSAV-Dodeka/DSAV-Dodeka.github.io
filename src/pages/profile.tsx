@@ -39,7 +39,9 @@ export default function Profile() {
   const [codeSent, setCodeSent] = useState(false);
 
   // Password reset state
-  const [passwordResetStep, setPasswordResetStep] = useState<"idle" | "form" | "done">("idle");
+  const [passwordResetStep, setPasswordResetStep] = useState<
+    "idle" | "form" | "done"
+  >("idle");
   const [resetToken, setResetToken] = useState("");
   const [tempPassword, setTempPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -73,7 +75,9 @@ export default function Profile() {
       setCodeSent(true);
       setEmailChangeStatus("✓ Verification code sent to " + newEmail);
     } catch (error) {
-      setEmailChangeStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+      setEmailChangeStatus(
+        `✗ Error: ${error instanceof Error ? error.message : String(error)}`,
+      );
     } finally {
       setEmailChangeLoading(false);
     }
@@ -90,7 +94,9 @@ export default function Profile() {
       setEmailChangeStep("done");
       setEmailChangeStatus("");
     } catch (error) {
-      setEmailChangeStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+      setEmailChangeStatus(
+        `✗ Error: ${error instanceof Error ? error.message : String(error)}`,
+      );
     } finally {
       setEmailChangeLoading(false);
     }
@@ -111,7 +117,9 @@ export default function Profile() {
         setPasswordResetStatus(result.message);
       }
     } catch (error) {
-      setPasswordResetStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+      setPasswordResetStatus(
+        `✗ Error: ${error instanceof Error ? error.message : String(error)}`,
+      );
     } finally {
       setPasswordResetLoading(false);
     }
@@ -121,7 +129,11 @@ export default function Profile() {
     setPasswordResetLoading(true);
     setPasswordResetStatus("");
     try {
-      const result = await completePasswordReset(resetToken, tempPassword, newPassword);
+      const result = await completePasswordReset(
+        resetToken,
+        tempPassword,
+        newPassword,
+      );
       if (result.success) {
         setPasswordResetStep("done");
         setPasswordResetStatus("");
@@ -129,7 +141,9 @@ export default function Profile() {
         setPasswordResetStatus(result.message);
       }
     } catch (error) {
-      setPasswordResetStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+      setPasswordResetStatus(
+        `✗ Error: ${error instanceof Error ? error.message : String(error)}`,
+      );
     } finally {
       setPasswordResetLoading(false);
     }
@@ -143,7 +157,9 @@ export default function Profile() {
       setDeletionToken(token);
       setDeleteStatus("");
     } catch (error) {
-      setDeleteStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+      setDeleteStatus(
+        `✗ Error: ${error instanceof Error ? error.message : String(error)}`,
+      );
       setShowDeleteConfirm(false);
     } finally {
       setDeleteLoading(false);
@@ -159,7 +175,9 @@ export default function Profile() {
       await queryClient.invalidateQueries({ queryKey: ["session"] });
       navigate("/");
     } catch (error) {
-      setDeleteStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+      setDeleteStatus(
+        `✗ Error: ${error instanceof Error ? error.message : String(error)}`,
+      );
     } finally {
       setDeleteLoading(false);
     }
@@ -182,7 +200,9 @@ export default function Profile() {
         <PageTitle title="Profile" />
         <div className="register-header">
           <h2>Not Logged In</h2>
-          <p>Please <a href="/login">log in</a> to view your profile.</p>
+          <p>
+            Please <a href="/account/login">log in</a> to view your profile.
+          </p>
         </div>
       </div>
     );
@@ -193,7 +213,9 @@ export default function Profile() {
       <PageTitle title="Profile" />
 
       <div className="profile-header">
-        <h2>{session.user.firstname} {session.user.lastname}</h2>
+        <h2>
+          {session.user.firstname} {session.user.lastname}
+        </h2>
         <p className="profile-email">{session.user.email}</p>
       </div>
 
@@ -211,7 +233,9 @@ export default function Profile() {
         <div className="profile-info-row">
           <span className="profile-info-label">Permissions:</span>
           <span className="profile-info-value">
-            {session.user.permissions.length > 0 ? session.user.permissions.join(", ") : "None"}
+            {session.user.permissions.length > 0
+              ? session.user.permissions.join(", ")
+              : "None"}
           </span>
         </div>
       </div>
@@ -282,7 +306,9 @@ export default function Profile() {
               ) : (
                 <button
                   onClick={handleCompleteChange}
-                  disabled={emailChangeLoading || !verificationCode || !password}
+                  disabled={
+                    emailChangeLoading || !verificationCode || !password
+                  }
                   className="register-button register-button-primary"
                 >
                   Complete Change
@@ -459,7 +485,8 @@ export default function Profile() {
             {showDeleteConfirm && (
               <div className="profile-delete-confirm">
                 <p className="profile-delete-confirm-text">
-                  Are you sure you want to delete your account? This action cannot be undone.
+                  Are you sure you want to delete your account? This action
+                  cannot be undone.
                 </p>
                 {deletionToken && (
                   <div className="register-form-group">
@@ -476,7 +503,9 @@ export default function Profile() {
                 <div className="profile-form-buttons">
                   <button
                     onClick={handleCompleteDeleteAccount}
-                    disabled={deleteLoading || !deletionToken || !deletePassword}
+                    disabled={
+                      deleteLoading || !deletionToken || !deletePassword
+                    }
                     className="register-button profile-delete-button"
                   >
                     Yes, Delete My Account
