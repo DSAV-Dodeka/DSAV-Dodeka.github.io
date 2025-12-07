@@ -1,6 +1,5 @@
-import React from "react";
 import "./Erelid.scss";
-import { getDeepImagesUrl } from "../../../../functions/links";
+import { getHashedImageUrl } from "../../../../functions/links";
 
 interface ErelidProps {
     naam: string;
@@ -15,7 +14,7 @@ interface ErelidProps {
 function Erelid({ naam, redenen, foto, showdetails, onClick, onMouseEnter, onMouseLeave }: ErelidProps) {
     return (
         <div className={`erelid ${showdetails ? 'showdetails' : ''}`} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-            <img className="erelid_foto" src={getDeepImagesUrl(foto)} />
+            <img className="erelid_foto" src={getHashedImageUrl(`vereniging/eregalerij/${foto}`)} />
             <p className="erelid_naam">{naam}</p>
             <div className="erelid_info">
                 {

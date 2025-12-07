@@ -1,9 +1,8 @@
 import Header from "../../../../components/Header";
 import "./Trainer.scss";
-import { getDeepImagesUrl } from "../../../../functions/links";
+import { getHashedImageUrl } from "../../../../functions/links";
 
 interface TrainerProps {
-    key: string;
     naam: string;
     foto: string;
     trainerType: string;
@@ -12,11 +11,11 @@ interface TrainerProps {
     expertise: string;
 }
 
-function Trainer({key, naam, foto, trainerType, favorieteOnderdeel, trainerSinds, expertise}: TrainerProps) {
+function Trainer({naam, foto, trainerType, favorieteOnderdeel, trainerSinds, expertise}: TrainerProps) {
     return(
         <div className="trainerContainer">
         <div className="trainerPhotoContainer">
-            <img className="trainerPhoto" src={getDeepImagesUrl( `commissies/trainers/${foto}.jpg`)} />
+            <img className="trainerPhoto" src={getHashedImageUrl(`commissies/trainers/${foto}.jpg`)} />
         </div>
             <div className="trainerText">
                 <Header text={naam} position="left"></Header>
