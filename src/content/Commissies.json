@@ -437,18 +437,20 @@
             "naam": "Trainers",
             "info": "Als commissie geven wij epische trainingen die we ook heel goed voorbereiden zodat we altijd weten wat we gaan doen. Wij zorgen ieder jaar voor tientallen fenomenale NSK-medailles door ons dag en nacht in te zetten. We hebben de ZeuS-bokaal twee keer op rij gewonnen dankzij de trainers. We hebben natuurlijk alleen maar dankzij onze commissie zoveel leden. Dit kunnen we bereiken doordat we met maar liefst 11 trainers zijn en daarmee de grootste commissie. Wij organiseren meer activiteiten dan alle andere commissies samen en onze activiteiten hebben de meeste inschrijvingen.",
 		"leden": [
-               
-                
                 {
                     "naam": "Gijs",
                     "functie": "Baantrainer",
                     "foto": "Gijs"
-                },               
-            
+                },
                 {
                     "naam": "Jefry",
                     "functie": "Baantrainer",
                     "foto": "Jefry"
+                },
+                {
+                    "naam": "Stan",
+                    "functie": "MiLatrainer",
+                    "foto": "Stan"
                 },
                 {
                     "naam": "Joris",
@@ -456,16 +458,37 @@
                     "foto": "Joris"
                 },
                 {
+                    "naam": "Robert",
+                    "functie": "Looptrainer",
+                    "foto": "Robert"
+                },
+                {
+                    "naam": "Tijmen",
+                    "functie": "MiLatrainer",
+                    "foto": "Tijmen"
+                },
+                {
+                    "naam": "Jamie",
+                    "functie": "Looptrainer",
+                    "foto": "Jamie"
+                },               
+                {
+                    "naam": "Eric",
+                    "functie": "Baantrainer",
+                    "foto": "Eric"
+                },
+                {
                     "naam": "Thom",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
-                },{
-                    "naam": "Eric",
-                    "functie": "Baantrainer",
-                    "foto": "eric"
                 },
                 {
-                    "naam": "Anne-wil",
+                    "naam": "Anne-Wil",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Marinka",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
                 },
@@ -478,37 +501,6 @@
                     "naam": "Stefan",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
-                },
-                {
-                    "naam": "Marinka",
-                    "functie": "Baantrainer",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Marien",
-                    "functie": "Baantrainer",
-                    "foto": "placeholder"
-                },
-            
-                {
-                    "naam": "Robert",
-                    "functie": "Looptrainer",
-                    "foto": "Robert"
-                },{
-                    "naam": "Jamie",
-                    "functie": "Baantrainer",
-                    "foto": "jamie"
-                },
-            
-                {
-                    "naam": "Stan",
-                    "functie": "MiLatrainer",
-                    "foto": "Stan"
-                },
-                {
-                    "naam": "Tijmen",
-                    "functie": "MiLatrainer",
-                    "foto": "Tijmen"
                 },
                 {
                     "naam": "Xylander",
