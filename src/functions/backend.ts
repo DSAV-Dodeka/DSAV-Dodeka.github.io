@@ -1,7 +1,11 @@
 const BACKEND_URL = "http://localhost:8000";
 
 // HTTP helpers
-async function post(path: string, body: object, withCredentials = false): Promise<Response> {
+async function post(
+  path: string,
+  body: object,
+  withCredentials = false,
+): Promise<Response> {
   const options: RequestInit = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -21,16 +25,18 @@ async function get(path: string, withCredentials = false): Promise<Response> {
   return fetch(`${BACKEND_URL}${path}`, options);
 }
 
-// Testing utilities
 export async function clearTables(): Promise<void> {
-  const response = await post("/test/clear_tables", {});
+  const response = await post("/private/clear_tables", {});
   if (!response.ok) {
     throw new Error(`Failed to clear tables: ${response.statusText}`);
   }
 }
 
-export async function prepareUser(email: string, names: string[]): Promise<void> {
-  const response = await post("/test/prepare_user", { email, names });
+export async function prepareUser(
+  email: string,
+  names: string[],
+): Promise<void> {
+  const response = await post("/private/prepare_user", { email, names });
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to prepare user: ${text}`);
@@ -41,7 +47,7 @@ export async function prepareUser(email: string, names: string[]): Promise<void>
 export async function requestRegistration(
   email: string,
   firstname: string,
-  lastname: string
+  lastname: string,
 ): Promise<string> {
   const response = await post("/auth/request_registration", {
     email,
@@ -63,7 +69,7 @@ export interface RegistrationStatus {
 }
 
 export async function getRegistrationStatus(
-  registrationToken: string
+  registrationToken: string,
 ): Promise<RegistrationStatus> {
   const response = await post("/auth/registration_status", {
     registration_token: registrationToken,
@@ -92,7 +98,9 @@ export async function listNewUsers(): Promise<NewUser[]> {
   return response.json();
 }
 
-export async function acceptUser(email: string): Promise<{ success: boolean; message: string; signup_token: string }> {
+export async function acceptUser(
+  email: string,
+): Promise<{ success: boolean; message: string; signup_token: string }> {
   const response = await post("/admin/accept_user/", { email });
   if (!response.ok) {
     const text = await response.text();
@@ -103,9 +111,13 @@ export async function acceptUser(email: string): Promise<{ success: boolean; mes
 
 // Session management
 export async function setSession(sessionToken: string): Promise<void> {
-  const response = await post("/cookies/set_session/", {
-    session_token: sessionToken,
-  }, true);
+  const response = await post(
+    "/cookies/set_session/",
+    {
+      session_token: sessionToken,
+    },
+    true,
+  );
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to set session: ${text}`);
