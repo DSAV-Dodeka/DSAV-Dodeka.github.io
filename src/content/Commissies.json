@@ -5,40 +5,39 @@
             "info": "De .ComCom is de commissie die deze website in de afgelopen jaren heeft gemaakt en nog steeds onderhoudt. Zonder ons was deze website er nooit geweest en hadden alle andere commissies hier niet eens kunnen staan. Wij blijven bezig met de website uitbreiden, en nu het inlogsysteem werkend is gaan we dit jaar aan de slag met het maken van een inschrijfsysteem voor alle trainingen, borrels en activiteiten. Verder houden we jullie op de hoogte van alle nieuwtjes en wedstrijden die we organiseren. Mocht je een foutje vinden of een leuk idee hebben, spreek dan een van de commissieleden aan of stuur een mailtje naar content.comcom@dsavdodeka.nl.",
 		    "leden": [
                 {
-                    "naam": "Tip",
-                    "functie": "CTO",
-                    "foto": "tip"
+                    "naam": "Tijmen",
+                    "functie": "Voorzitter",
+                    "foto": "Tijmen"
                 },
+
                 {
-                    "naam": "Matthijs",
-                    "functie": "Senior Frontend Developer",
-                    "foto": "matthijs"
+                    "naam": "Jefry",
+                    "functie": "Senior Backend Developer",
+                    "foto": "placeholder"
                 },
+
                 {
-                    "naam": "Liam",
-                    "functie": "Software Engineer",
-                    "foto": "liam"
+                    "naam": "Mei chang",
+                    "functie": "Junior Backend Developer",
+                    "foto": "placeholder"
                 },
+
                 {
-                    "naam": "Jesper",
-                    "functie": "Software Engineer",
-                    "foto": "jesper"
+                    "naam": "Anne-Wil",
+                    "functie": "Junior Frontend Developer",
+                    "foto": "placeholder"
                 },
+
                 {
-                    "naam": "Sanne",
-                    "functie": "Software Engineer",
-                    "foto": "sanne"
+                    "naam": "Ymme",
+                    "functie": "Junior Frontend Developer",
+                    "foto": "placeholder"
                 },
 
                 {
                     "naam": "Xylander",
-                    "functie": "Software Engineer",
-                    "foto": "xylander"
-                },
-                {
-                    "naam": "Tijmen",
                     "functie": "QomQommer",
-                    "foto": "Tijmen"
+                    "foto": "xylander"
                 }
             ],
             "fotos": "comcom"
