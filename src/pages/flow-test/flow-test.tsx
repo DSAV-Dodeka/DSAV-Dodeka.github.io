@@ -19,15 +19,15 @@ export default function FlowTest() {
   const [loading, setLoading] = useState(false);
   const [clearStatus, setClearStatus] = useState("");
 
-  const clearTables = async () => {
+  const resetTables = async () => {
     setLoading(true);
     setClearStatus("");
     try {
-      await api.clearTables();
-      setClearStatus("✓ Tables cleared");
+      await api.resetTables();
+      setClearStatus("✓ Tables reset");
     } catch (error) {
-      setClearStatus("✗ Failed to clear tables");
-      console.error("Error clearing tables:", error);
+      setClearStatus("✗ Failed to reset tables");
+      console.error("Error resetting tables:", error);
     } finally {
       setLoading(false);
     }
@@ -56,8 +56,8 @@ export default function FlowTest() {
         <div className="flow-test-sidebar">
           <div className="flow-test-actions-section">
             <h3>Actions</h3>
-            <button onClick={clearTables} disabled={loading}>
-              Clear Tables
+            <button onClick={resetTables} disabled={loading}>
+              Reset Tables
             </button>
             <button onClick={logout} disabled={loading}>
               Logout

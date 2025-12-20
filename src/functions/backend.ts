@@ -27,21 +27,36 @@ async function get(path: string, withCredentials = false): Promise<Response> {
   return fetch(`${BACKEND_URL}${path}`, options);
 }
 
-export async function clearTables(): Promise<void> {
-  const response = await post("/private/clear_tables", {});
+// Dev-only: calls the Vite dev server endpoint which runs CLI commands
+// This only works during `npm run dev` and does not exist in production
+export async function resetTables(): Promise<void> {
+  if (import.meta.env.PROD) {
+    throw new Error("resetTables is only available in development");
+  }
+  const response = await fetch("/api/dev/reset", { method: "POST" });
   if (!response.ok) {
-    throw new Error(`Failed to clear tables: ${response.statusText}`);
+    const data = await response.json();
+    throw new Error(`Failed to reset tables: ${data.error}`);
   }
 }
 
+// Dev-only: prepare a user in the newusers table with accepted=true
 export async function prepareUser(
   email: string,
-  names: string[],
+  firstname?: string,
+  lastname?: string,
 ): Promise<void> {
-  const response = await post("/private/prepare_user", { email, names });
+  if (import.meta.env.PROD) {
+    throw new Error("prepareUser is only available in development");
+  }
+  const response = await fetch("/api/dev/prepare-user", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, firstname, lastname }),
+  });
   if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Failed to prepare user: ${text}`);
+    const data = await response.json();
+    throw new Error(`Failed to prepare user: ${data.error}`);
   }
 }
 
