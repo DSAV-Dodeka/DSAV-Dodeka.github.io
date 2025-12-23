@@ -81,6 +81,24 @@ export default function RegisterFlow() {
     signupFlow.current = new SignupFlow();
   };
 
+  const handleLoadCode = async () => {
+    setLoading(true);
+    setStatus("");
+    try {
+      const result = await api.getToken("signup_verification", email);
+      if (result?.found) {
+        setVerificationCode(result.code);
+        setStatus("✓ Code loaded");
+      } else {
+        setStatus("✗ No code found (check if email was sent)");
+      }
+    } catch (error) {
+      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <h2>Registration Flow</h2>
@@ -178,13 +196,23 @@ export default function RegisterFlow() {
               >
                 <div className="flow-test-field">
                   <label>Verification Code</label>
-                  <input
-                    type="text"
-                    value={verificationCode}
-                    onChange={(e) => setVerificationCode(e.target.value)}
-                    placeholder="Enter code from email"
-                    required
-                  />
+                  <div className="flow-test-input-with-button">
+                    <input
+                      type="text"
+                      value={verificationCode}
+                      onChange={(e) => setVerificationCode(e.target.value)}
+                      placeholder="Enter code from email"
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="flow-test-btn flow-test-btn-load"
+                      onClick={handleLoadCode}
+                      disabled={loading}
+                    >
+                      Load
+                    </button>
+                  </div>
                 </div>
                 <div className="flow-test-field">
                   <label>Password</label>

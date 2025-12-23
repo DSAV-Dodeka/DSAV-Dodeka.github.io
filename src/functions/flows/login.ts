@@ -5,9 +5,10 @@ type LoginResult =
   | { ok: true; sessionToken: string }
   | { ok: false; error: string };
 
-export async function login(
+// Core login logic without setting session cookie
+async function performLogin(
   email: string,
-  password: string
+  password: string,
 ): Promise<LoginResult> {
   // Create signin
   const signinResult = await faroeClient.createSignin(email);
@@ -18,7 +19,7 @@ export async function login(
   // Verify password
   const verifyResult = await faroeClient.verifySigninUserPassword(
     signinResult.signinToken,
-    password
+    password,
   );
   if (!verifyResult.ok) {
     return { ok: false, error: verifyResult.errorCode };
@@ -26,14 +27,35 @@ export async function login(
 
   // Complete signin
   const completeResult = await faroeClient.completeSignin(
-    signinResult.signinToken
+    signinResult.signinToken,
   );
   if (!completeResult.ok) {
     return { ok: false, error: completeResult.errorCode };
   }
 
-  // Set session
-  await setSession(completeResult.sessionToken);
-
   return { ok: true, sessionToken: completeResult.sessionToken };
+}
+
+// Login and set primary session cookie
+export async function login(
+  email: string,
+  password: string,
+): Promise<LoginResult> {
+  const result = await performLogin(email, password);
+  if (result.ok) {
+    await setSession(result.sessionToken);
+  }
+  return result;
+}
+
+// Login and set secondary session cookie (for admin auth during testing)
+export async function loginSecondary(
+  email: string,
+  password: string,
+): Promise<LoginResult> {
+  const result = await performLogin(email, password);
+  if (result.ok) {
+    await setSession(result.sessionToken, true);
+  }
+  return result;
 }

@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { requestPasswordReset, PasswordResetFlow } from "$functions/flows/password-reset.ts";
+import { getToken } from "$functions/backend.ts";
 import { TEST_EMAIL, TEST_PASSWORD } from "./constants";
 
 export default function PasswordResetFlowTest() {
@@ -64,6 +65,24 @@ export default function PasswordResetFlowTest() {
     resetFlow.current = new PasswordResetFlow();
   };
 
+  const handleLoadCode = async () => {
+    setLoading(true);
+    setStatus("");
+    try {
+      const result = await getToken("password_reset", email);
+      if (result?.found) {
+        setTempPassword(result.code);
+        setStatus("✓ Temp password loaded");
+      } else {
+        setStatus("✗ No temp password found (check if email was sent)");
+      }
+    } catch (error) {
+      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <h2>Password Reset Flow</h2>
@@ -109,8 +128,6 @@ export default function PasswordResetFlowTest() {
             <strong>Email:</strong> {email}
           </div>
 
-          <p>Check Faroe console logs for the temporary password.</p>
-
           <form
             className="flow-test-form"
             onSubmit={(e) => {
@@ -120,16 +137,23 @@ export default function PasswordResetFlowTest() {
           >
             <div className="flow-test-field">
               <label>Temporary Password</label>
-              <input
-                type="text"
-                value={tempPassword}
-                onChange={(e) => setTempPassword(e.target.value)}
-                placeholder="Enter temp password from email"
-                required
-              />
-              <small style={{ color: "#666", fontSize: "12px" }}>
-                Check Faroe console logs for the temporary password
-              </small>
+              <div className="flow-test-input-with-button">
+                <input
+                  type="text"
+                  value={tempPassword}
+                  onChange={(e) => setTempPassword(e.target.value)}
+                  placeholder="Enter temp password from email"
+                  required
+                />
+                <button
+                  type="button"
+                  className="flow-test-btn flow-test-btn-load"
+                  onClick={handleLoadCode}
+                  disabled={loading}
+                >
+                  Load
+                </button>
+              </div>
             </div>
             <div className="flow-test-field">
               <label>New Password</label>

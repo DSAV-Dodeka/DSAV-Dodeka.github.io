@@ -3,11 +3,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router";
 import PageTitle from "$components/PageTitle.tsx";
 import * as api from "$functions/backend.ts";
+import { useSecondarySessionInfo } from "$functions/query.ts";
 import RegisterFlow from "./RegisterFlow";
 import LoginFlow from "./LoginFlow";
 import PasswordResetFlow from "./PasswordResetFlow";
 import EmailUpdateFlow from "./EmailUpdateFlow";
 import AccountDeletionFlow from "./AccountDeletionFlow";
+import SecondarySessionModal from "./SecondarySessionModal";
 import { TEST_PASSWORD } from "./constants";
 import "./flow-test.css";
 
@@ -15,16 +17,23 @@ type Tab = "register" | "login" | "password-reset" | "email-update" | "account-d
 
 export default function FlowTest() {
   const queryClient = useQueryClient();
+  const { data: secondarySession } = useSecondarySessionInfo();
   const [activeTab, setActiveTab] = useState<Tab>("register");
   const [loading, setLoading] = useState(false);
   const [clearStatus, setClearStatus] = useState("");
+  const [showSecondaryModal, setShowSecondaryModal] = useState(false);
 
   const resetTables = async () => {
     setLoading(true);
     setClearStatus("");
     try {
       await api.resetTables();
-      setClearStatus("✓ Tables reset");
+      // Clear both sessions since all users are deleted
+      await api.clearSession();
+      await api.clearSession(true); // secondary session
+      await queryClient.invalidateQueries({ queryKey: ["session"] });
+      await queryClient.invalidateQueries({ queryKey: ["session-secondary"] });
+      setClearStatus("✓ Tables reset, sessions cleared");
     } catch (error) {
       setClearStatus("✗ Failed to reset tables");
       console.error("Error resetting tables:", error);
@@ -61,6 +70,29 @@ export default function FlowTest() {
             </button>
             <button onClick={logout} disabled={loading}>
               Logout
+            </button>
+          </div>
+
+          <div className="flow-test-actions-section">
+            <h3>Admin Session</h3>
+            <div className="flow-test-admin-status">
+              {secondarySession ? (
+                <span className="admin-active">
+                  {secondarySession.user.email}
+                  {secondarySession.user.permissions.includes("admin") && (
+                    <span className="admin-badge">admin</span>
+                  )}
+                </span>
+              ) : (
+                <span className="admin-inactive">Not logged in</span>
+              )}
+            </div>
+            <button
+              onClick={() => setShowSecondaryModal(true)}
+              disabled={loading}
+              className="flow-test-admin-btn"
+            >
+              {secondarySession ? "Manage" : "Login as Admin"}
             </button>
           </div>
 
@@ -131,6 +163,11 @@ export default function FlowTest() {
           </div>
         </div>
       </div>
+
+      <SecondarySessionModal
+        open={showSecondaryModal}
+        onClose={() => setShowSecondaryModal(false)}
+      />
     </div>
   );
 }

@@ -13,6 +13,20 @@ export function useSessionInfo() {
   });
 }
 
+// Secondary session is used for admin auth during testing
+// It doesn't affect the primary logged-in user
+// Refreshes more frequently since it's used for testing
+export function useSecondarySessionInfo() {
+  return useQuery({
+    queryKey: ["session-secondary"],
+    queryFn: async () => {
+      return backend.getSessionInfo(true);
+    },
+    refetchInterval: 10000, // 10 seconds
+    staleTime: 5000, // 5 seconds
+  });
+}
+
 export type { SessionInfo } from "./backend.ts";
 
 export function useRegistrationStatus(registrationToken: string | null) {

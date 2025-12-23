@@ -211,6 +211,26 @@
   cursor: not-allowed;
 }
 
+.flow-test-input-with-button {
+  display: flex;
+  gap: 8px;
+}
+
+.flow-test-input-with-button input {
+  flex: 1;
+}
+
+.flow-test-btn-load {
+  background: #9c27b0;
+  color: white;
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+
+.flow-test-btn-load:hover:not(:disabled) {
+  background: #7b1fa2;
+}
+
 .flow-test-actions {
   display: flex;
   gap: 10px;
@@ -287,4 +307,44 @@
   color: #2E7D32;
   font-size: 24px;
   margin-bottom: 10px;
+}
+
+/* Admin session section */
+.flow-test-admin-status {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.admin-active {
+  color: #2e7d32;
+}
+
+.admin-inactive {
+  color: #666;
+}
+
+.admin-badge {
+  display: inline-block;
+  background: #ff9800;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-left: 6px;
+  font-weight: 500;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.flow-test-admin-btn {
+  background: #ff9800 !important;
+}
+
+.flow-test-admin-btn:hover:not(:disabled) {
+  background: #f57c00 !important;
 }

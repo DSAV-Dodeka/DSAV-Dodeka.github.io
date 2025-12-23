@@ -27,36 +27,66 @@ async function get(path: string, withCredentials = false): Promise<Response> {
   return fetch(`${BACKEND_URL}${path}`, options);
 }
 
-// Dev-only: calls the Vite dev server endpoint which runs CLI commands
-// This only works during `npm run dev` and does not exist in production
-export async function resetTables(): Promise<void> {
-  if (import.meta.env.PROD) {
-    throw new Error("resetTables is only available in development");
-  }
-  const response = await fetch("/api/dev/reset", { method: "POST" });
+// Private API for dev/testing - only accessible on localhost
+const PRIVATE_URL = "http://127.0.0.2:8079";
+
+async function privateCommand(
+  command: string,
+  params: Record<string, unknown> = {},
+): Promise<string> {
+  const response = await fetch(`${PRIVATE_URL}/command`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ command, ...params }),
+  });
   if (!response.ok) {
-    const data = await response.json();
-    throw new Error(`Failed to reset tables: ${data.error}`);
+    throw new Error(`Private command failed: ${response.statusText}`);
   }
+  return response.text();
 }
 
-// Dev-only: prepare a user in the newusers table with accepted=true
+export async function resetTables(): Promise<string> {
+  return privateCommand("reset");
+}
+
 export async function prepareUser(
   email: string,
   firstname?: string,
   lastname?: string,
-): Promise<void> {
-  if (import.meta.env.PROD) {
-    throw new Error("prepareUser is only available in development");
-  }
-  const response = await fetch("/api/dev/prepare-user", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, firstname, lastname }),
-  });
-  if (!response.ok) {
-    const data = await response.json();
-    throw new Error(`Failed to prepare user: ${data.error}`);
+): Promise<string> {
+  const names: string[] = [];
+  if (firstname) names.push(firstname);
+  if (lastname) names.push(lastname);
+  return privateCommand("prepare_user", { email, names });
+}
+
+export interface AdminCredentials {
+  email: string;
+  password: string;
+}
+
+export async function getAdminCredentials(): Promise<AdminCredentials> {
+  const result = await privateCommand("get_admin_credentials");
+  return JSON.parse(result);
+}
+
+export interface TokenResult {
+  found: boolean;
+  code: string;
+}
+
+// Get email verification code from the token store (for test automation)
+// action: "signup_verification", "password_reset", "email_update", etc.
+export async function getToken(
+  action: string,
+  email: string,
+): Promise<TokenResult | null> {
+  try {
+    const result = await privateCommand("get_token", { action, email });
+    return JSON.parse(result);
+  } catch {
+    // 404 means token not found
+    return null;
   }
 }
 
@@ -107,7 +137,7 @@ export interface NewUser {
 }
 
 export async function listNewUsers(): Promise<NewUser[]> {
-  const response = await get("/admin/list_newusers/");
+  const response = await get("/admin/list_newusers/", true);
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to list new users: ${text}`);
@@ -118,7 +148,7 @@ export async function listNewUsers(): Promise<NewUser[]> {
 export async function acceptUser(
   email: string,
 ): Promise<{ success: boolean; message: string; signup_token: string }> {
-  const response = await post("/admin/accept_user/", { email });
+  const response = await post("/admin/accept_user/", { email }, true);
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to accept user: ${text}`);
@@ -127,11 +157,16 @@ export async function acceptUser(
 }
 
 // Session management
-export async function setSession(sessionToken: string): Promise<void> {
+// secondary=true uses the secondary session cookie (for admin auth during testing)
+export async function setSession(
+  sessionToken: string,
+  secondary = false,
+): Promise<void> {
   const response = await post(
     "/cookies/set_session/",
     {
       session_token: sessionToken,
+      secondary,
     },
     true,
   );
@@ -141,8 +176,12 @@ export async function setSession(sessionToken: string): Promise<void> {
   }
 }
 
-export async function clearSession(): Promise<void> {
-  const response = await post("/cookies/clear_session/", {}, true);
+export async function clearSession(secondary = false): Promise<void> {
+  const response = await post(
+    "/cookies/clear_session/",
+    secondary ? { secondary: true } : {},
+    true,
+  );
   if (!response.ok) {
     throw new Error(`Failed to clear session: ${response.statusText}`);
   }
@@ -162,8 +201,13 @@ export interface SessionInfo {
   expires_at: number | null;
 }
 
-export async function getSessionInfo(): Promise<SessionInfo | null> {
-  const response = await get("/auth/session_info/", true);
+export async function getSessionInfo(
+  secondary = false,
+): Promise<SessionInfo | null> {
+  const path = secondary
+    ? "/auth/session_info/?secondary=true"
+    : "/auth/session_info/";
+  const response = await get(path, true);
   if (!response.ok) {
     return null;
   }
