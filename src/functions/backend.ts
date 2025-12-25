@@ -156,6 +156,17 @@ export async function acceptUser(
   return response.json();
 }
 
+export async function resendSignupEmail(
+  email: string,
+): Promise<{ success: boolean; message: string }> {
+  const response = await post("/admin/resend_signup_email/", { email }, true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to resend signup email: ${text}`);
+  }
+  return response.json();
+}
+
 // Session management
 // secondary=true uses the secondary session cookie (for admin auth during testing)
 export async function setSession(

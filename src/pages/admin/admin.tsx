@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { listNewUsers, acceptUser, type NewUser } from "$functions/backend.ts";
+import {
+  listNewUsers,
+  acceptUser,
+  resendSignupEmail,
+  type NewUser,
+} from "$functions/backend.ts";
 import { useSessionInfo, useSecondarySessionInfo } from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./admin.css";
@@ -42,6 +47,19 @@ export default function Admin() {
       setStatus(`✓ ${result.message}`);
       // Reload the list
       await loadNewUsers();
+    } catch (error) {
+      setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setProcessingEmail(null);
+    }
+  };
+
+  const handleResendEmail = async (email: string) => {
+    setProcessingEmail(email);
+    setStatus("");
+    try {
+      const result = await resendSignupEmail(email);
+      setStatus(`✓ ${result.message}`);
     } catch (error) {
       setStatus(`✗ Error: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
@@ -144,13 +162,23 @@ export default function Admin() {
                     </span>
                   </td>
                   <td>
-                    {!user.accepted && (
+                    {!user.accepted ? (
                       <button
                         onClick={() => handleAcceptUser(user.email)}
                         disabled={processingEmail === user.email}
                         className="admin-button admin-button-accept"
                       >
                         {processingEmail === user.email ? "Processing..." : "Accept"}
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleResendEmail(user.email)}
+                        disabled={processingEmail === user.email}
+                        className="admin-button admin-button-resend"
+                      >
+                        {processingEmail === user.email
+                          ? "Sending..."
+                          : "Resend Email"}
                       </button>
                     )}
                   </td>

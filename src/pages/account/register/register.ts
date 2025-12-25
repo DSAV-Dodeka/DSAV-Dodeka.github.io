@@ -303,7 +303,9 @@ async function simulateVoltaDelay(): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-export async function clientRegister(registerState: RegisterState) {
+export async function clientRegister(
+  registerState: RegisterState,
+): Promise<string | null> {
   // In production, call Volta first
   // In dev, simulate the delay so we can test the loading state
   if (import.meta.env.PROD) {
@@ -317,11 +319,12 @@ export async function clientRegister(registerState: RegisterState) {
   // Then register with our backend (creates newuser entry)
   // In dev mode, this is the only call; in prod it happens after Volta succeeds
   try {
-    await requestRegistration(
+    const registrationToken = await requestRegistration(
       registerState.email,
       registerState.firstname,
       getFullLastName(registerState),
     );
+    return registrationToken;
   } catch (error) {
     // In production, if Volta succeeded but our backend failed,
     // we still consider it a success (user is in Volta)
@@ -330,7 +333,6 @@ export async function clientRegister(registerState: RegisterState) {
       throw error;
     }
     console.error("Backend registration failed (but Volta succeeded):", error);
+    return null;
   }
-
-  return true;
 }

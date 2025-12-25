@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { SignupFlow } from "$functions/flows/signup.ts";
-import { getToken } from "$functions/backend.ts";
+import { getRegistrationStatus, getToken } from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./signup.css";
 
@@ -11,6 +11,24 @@ export default function Signup() {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
+
+  // Fetch registration status using the token
+  const {
+    data: registrationStatus,
+    isLoading: statusLoading,
+    error: statusError,
+  } = useQuery({
+    queryKey: ["registration-status", token],
+    queryFn: () => (token ? getRegistrationStatus(token) : null),
+    enabled: !!token,
+    refetchInterval: (query) => {
+      // Poll every 10 seconds if not yet accepted
+      if (query.state.data && !query.state.data.accepted) {
+        return 10000;
+      }
+      return false;
+    },
+  });
 
   const signupFlow = useRef(new SignupFlow());
   const [loading, setLoading] = useState(false);
@@ -21,19 +39,23 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // For dev mode: load verification code from backend
+  // Load verification code in dev mode
   const handleLoadCode = async () => {
-    if (!token) return;
+    if (!registrationStatus?.email) return;
 
     setLoading(true);
     setStatus("");
     try {
-      // We need the email to get the token, but we don't have it here
-      // The token store uses action:email as key, so we need to try a different approach
-      // For now, we'll just show a message that this requires the email
-      setStatus(
-        "Use the flow-test page to load codes (requires email address)",
+      const result = await getToken(
+        "signup_verification",
+        registrationStatus.email,
       );
+      if (result?.found) {
+        setVerificationCode(result.code);
+        setStatus("✓ Code loaded");
+      } else {
+        setStatus("✗ No code found (check if email was sent)");
+      }
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
     } finally {
@@ -42,8 +64,8 @@ export default function Signup() {
   };
 
   const handleCompleteSignup = async () => {
-    if (!token) {
-      setStatus("✗ No signup token found in URL");
+    if (!registrationStatus?.signup_token) {
+      setStatus("✗ No signup token available");
       return;
     }
 
@@ -61,7 +83,7 @@ export default function Signup() {
     setStatus("");
     try {
       const result = await signupFlow.current.tryComplete(
-        token,
+        registrationStatus.signup_token,
         verificationCode,
         password,
       );
@@ -90,11 +112,46 @@ export default function Signup() {
           <h1>Account activeren</h1>
           <div className="signup-error">
             <p>
-              <strong>Geen activatietoken gevonden</strong>
+              <strong>Geen registratietoken gevonden</strong>
             </p>
             <p>
-              Je hebt een link nodig uit de bevestigingsmail om je account te
-              activeren. Heb je nog geen mail ontvangen? Neem dan contact op met
+              Je hebt een link nodig om je registratiestatus te bekijken. Heb je
+              je net ingeschreven? Controleer dan je e-mail voor de
+              bevestigingslink. Neem anders contact op met het bestuur via{" "}
+              <a href="mailto:bestuur@dsavdodeka.nl">bestuur@dsavdodeka.nl</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Loading registration status
+  if (statusLoading) {
+    return (
+      <div className="signup-container">
+        <PageTitle title="Account activeren" />
+        <div className="signup-card">
+          <h1>Even geduld...</h1>
+          <p className="signup-intro">Je registratiestatus wordt opgehaald.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error fetching registration status
+  if (statusError || !registrationStatus) {
+    return (
+      <div className="signup-container">
+        <PageTitle title="Account activeren" />
+        <div className="signup-card">
+          <h1>Account activeren</h1>
+          <div className="signup-error">
+            <p>
+              <strong>Ongeldige registratielink</strong>
+            </p>
+            <p>
+              Deze registratielink is ongeldig of verlopen. Neem contact op met
               het bestuur via{" "}
               <a href="mailto:bestuur@dsavdodeka.nl">bestuur@dsavdodeka.nl</a>
             </p>
@@ -127,14 +184,66 @@ export default function Signup() {
     );
   }
 
+  // Not yet accepted - show waiting message
+  if (!registrationStatus.accepted) {
+    return (
+      <div className="signup-container">
+        <PageTitle title="Aanmelding ontvangen" />
+        <div className="signup-card">
+          <div className="signup-pending-icon">⏳</div>
+          <h1>Aanmelding ontvangen!</h1>
+
+          <p className="signup-intro">
+            Bedankt voor je aanmelding bij D.S.A.V. Dodeka. We hebben je
+            gegevens ontvangen voor <strong>{registrationStatus.email}</strong>.
+          </p>
+
+          <div className="signup-steps">
+            <h2>Wat gebeurt er nu?</h2>
+            <ol>
+              <li>
+                <strong>Beoordeling door het bestuur</strong>
+                <p>
+                  Het bestuur bekijkt je aanmelding. Dit duurt meestal enkele
+                  werkdagen.
+                </p>
+              </li>
+              <li>
+                <strong>Bevestigingsmail</strong>
+                <p>
+                  Na goedkeuring ontvang je een e-mail met een verificatiecode
+                  om je account te activeren.
+                </p>
+              </li>
+              <li>
+                <strong>Account activeren</strong>
+                <p>
+                  Met de link en code in de e-mail kun je een wachtwoord
+                  instellen en je account activeren.
+                </p>
+              </li>
+            </ol>
+          </div>
+
+          <div className="signup-note">
+            <strong>Vragen?</strong> Neem contact op met het bestuur via{" "}
+            <a href="mailto:bestuur@dsavdodeka.nl">bestuur@dsavdodeka.nl</a>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Accepted - show signup form
   return (
     <div className="signup-container">
       <PageTitle title="Account activeren" />
       <div className="signup-card">
         <h1>Account activeren</h1>
         <p className="signup-intro">
-          Voer de verificatiecode uit je e-mail in en kies een wachtwoord om je
-          account te activeren.
+          Je aanmelding voor <strong>{registrationStatus.email}</strong> is
+          goedgekeurd! Voer de verificatiecode uit je e-mail in en kies een
+          wachtwoord om je account te activeren.
         </p>
 
         <form
@@ -156,6 +265,16 @@ export default function Signup() {
                 required
                 disabled={loading}
               />
+              {import.meta.env.DEV && (
+                <button
+                  type="button"
+                  className="signup-btn signup-btn-secondary"
+                  onClick={handleLoadCode}
+                  disabled={loading}
+                >
+                  Load
+                </button>
+              )}
             </div>
             <small>De 8-cijferige code uit de bevestigingsmail</small>
           </div>

@@ -146,12 +146,16 @@ export default function Registreer() {
       setLoading(true);
 
       clientRegister(submitState).then(
-        (result) => {
+        (registrationToken) => {
           setLoading(false);
-          if (result) {
-            window.location.assign("/account/registered");
+          if (registrationToken) {
+            window.location.assign(
+              `/account/signup?token=${encodeURIComponent(registrationToken)}`,
+            );
           } else {
-            somethingWrong();
+            // In production, Volta succeeded but backend failed - still redirect
+            // but without a token (user will need to contact admin)
+            window.location.assign("/account/signup");
           }
         },
         (e) => {

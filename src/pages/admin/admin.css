@@ -47,6 +47,11 @@
   color: white;
 }
 
+.admin-button-resend {
+  background-color: #ff9800;
+  color: white;
+}
+
 .admin-status {
   padding: 15px;
   margin-bottom: 20px;

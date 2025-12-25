@@ -78,7 +78,7 @@ export default function EmailUpdateFlowTest() {
     setLoading(true);
     setStatus("");
     try {
-      const result = await api.getToken("email_update", newEmail);
+      const result = await api.getToken("email_update_verification", newEmail);
       if (result?.found) {
         setVerificationCode(result.code);
         setStatus("✓ Code loaded");

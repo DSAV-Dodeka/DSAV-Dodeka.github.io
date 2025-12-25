@@ -40,7 +40,6 @@ export default [
     // route("register", "./pages/register.tsx"),
     ...prefix("account", [
       route("register", "./pages/account/register/register.tsx"),
-      route("registered", "./pages/account/registered/registered.tsx"),
       route("signup", "./pages/account/signup/signup.tsx"),
       route(
         "password-reset",

@@ -158,3 +158,70 @@
   justify-content: center;
   margin: 0 auto 20px;
 }
+
+.signup-pending-icon {
+  width: 80px;
+  height: 80px;
+  background: #ff9800;
+  color: white;
+  font-size: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.signup-steps {
+  text-align: left;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.signup-steps h2 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.signup-steps ol {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.signup-steps li {
+  margin-bottom: 16px;
+}
+
+.signup-steps li:last-child {
+  margin-bottom: 0;
+}
+
+.signup-steps li strong {
+  color: #333;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.signup-steps li p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.signup-note {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.signup-note:last-child {
+  margin-bottom: 0;
+}
+
+.signup-note a {
+  color: #2196f3;
+}
