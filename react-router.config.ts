@@ -13,8 +13,6 @@ export default {
       "/",
       "/owee",
       "/word_lid",
-      "/registreer",
-      "/registreer/registered",
       "/contact",
       "/contact/sponsors",
       "/contact/vcp",

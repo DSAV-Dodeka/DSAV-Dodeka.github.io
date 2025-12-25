@@ -8,7 +8,7 @@ import {
   useRef,
 } from "react";
 import { type RegisterState, clientRegister, VoltaError } from "./register.ts";
-import "./registreer.css";
+import "./register.css";
 import PageTitle from "$components/PageTitle.tsx";
 
 const registerReducer = (
@@ -34,7 +34,31 @@ type RegisterAction =
   | { type: "change"; field: string; value: string }
   | { type: "change_bool"; field: string; value: boolean };
 
-let initialState: RegisterState = {
+// Test data for dev mode (prefilled form for easier testing)
+const testInitialState: RegisterState = {
+  firstname: "Test",
+  nameinfix: "van",
+  lastname: "Tester",
+  initials: "T.T.",
+  email: "test@test.nl",
+  phone: "0612345678",
+  zipcode: "2611 AA",
+  city: "Delft",
+  address: "Teststraat",
+  house_number: "42",
+  date_of_birth: "2000-01-15",
+  enable_incasso: true,
+  iban: "NL18RABO0123459876",
+  iban_name: "Test van Tester",
+  gender: "0",
+  birthday_check: false,
+  photos: "ev-1-1",
+  plan: "Wedstrijdlid",
+  student: "ev-2-1",
+  language: "nl-NL",
+};
+
+const emptyInitialState: RegisterState = {
   firstname: "",
   nameinfix: "",
   lastname: "",
@@ -56,28 +80,11 @@ let initialState: RegisterState = {
   student: "ev-2-1",
   language: "nl-NL",
 };
-// let initialState: RegisterState = {
-//   firstname: "T",
-//   nameinfix: "t",
-//   lastname: "Ten",
-//   initials: "TT",
-//   email: "testert@test.nl",
-//   phone: "06123",
-//   zipcode: "2311 NB",
-//   city: "Delft",
-//   address: "Sportring",
-//   house_number: "12",
-//   date_of_birth: "2023-01-02",
-//   enable_incasso: true,
-//   iban: "NL18RABO0123459876",
-//   iban_name: "MrNaam",
-//   gender: "0",
-//   birthday_check: false,
-//   photos: "ev-1-1",
-//   plan: "Wedstrijdlid",
-//   student: "ev-2-1",
-//   language: "nl-NL",
-// };
+
+// Use test data in dev mode, empty form in production
+const initialState: RegisterState = import.meta.env.DEV
+  ? testInitialState
+  : emptyInitialState;
 
 // let focus: boolean = false;
 
@@ -142,7 +149,7 @@ export default function Registreer() {
         (result) => {
           setLoading(false);
           if (result) {
-            window.location.assign("./registered");
+            window.location.assign("/account/registered");
           } else {
             somethingWrong();
           }

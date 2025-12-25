@@ -1,0 +1,160 @@
+.signup-container {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.signup-card {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signup-card h1 {
+  margin: 0 0 16px 0;
+  color: #333;
+  font-size: 24px;
+  text-align: center;
+}
+
+.signup-intro {
+  color: #666;
+  text-align: center;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.signup-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.signup-field label {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.signup-field input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.signup-field input:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+.signup-field input:disabled {
+  background: #f5f5f5;
+}
+
+.signup-field small {
+  color: #888;
+  font-size: 12px;
+}
+
+.signup-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.signup-input-row input {
+  flex: 1;
+}
+
+.signup-btn {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.signup-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.signup-btn-primary {
+  background: #2196f3;
+  color: white;
+}
+
+.signup-btn-primary:hover:not(:disabled) {
+  background: #1976d2;
+}
+
+.signup-btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.signup-btn-secondary:hover:not(:disabled) {
+  background: #e0e0e0;
+}
+
+.signup-status {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.signup-status.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.signup-status.error {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.signup-error {
+  background: #fff3e0;
+  border: 1px solid #ffcc80;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.signup-error p {
+  margin: 0 0 12px 0;
+  color: #666;
+}
+
+.signup-error p:last-child {
+  margin-bottom: 0;
+}
+
+.signup-error a {
+  color: #2196f3;
+}
+
+.signup-success-icon {
+  width: 64px;
+  height: 64px;
+  background: #4caf50;
+  color: white;
+  font-size: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}

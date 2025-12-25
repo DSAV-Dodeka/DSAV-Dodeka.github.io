@@ -11,10 +11,6 @@ export default [
     index("./pages/home/home.tsx"),
     route("owee", "./pages/owee/owee.tsx"),
     route("word_lid", "./pages/word-lid/word-lid.tsx"),
-    ...prefix("registreer", [
-      index("./pages/registreer/registreer.tsx"),
-      route("registered", "./pages/registreer/registered.tsx"),
-    ]),
     ...prefix("contact", [
       index("./pages/contact/contact/contact.tsx"),
       route("sponsors", "./pages/contact/sponsors/sponsors.tsx"),
@@ -43,6 +39,9 @@ export default [
     route("admin", "./pages/admin/admin.tsx"),
     // route("register", "./pages/register.tsx"),
     ...prefix("account", [
+      route("register", "./pages/account/register/register.tsx"),
+      route("registered", "./pages/account/registered/registered.tsx"),
+      route("signup", "./pages/account/signup/signup.tsx"),
       route(
         "password-reset",
         "./pages/account/password-reset/password-reset.tsx",

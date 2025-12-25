@@ -1,3 +1,5 @@
+import { requestRegistration } from "$functions/backend.ts";
+
 export type RegisterState = {
   firstname: string;
   nameinfix: string;
@@ -287,10 +289,48 @@ async function doVoltaRegister(voltaRegistration: VoltaRegistration) {
   }
 }
 
-export async function clientRegister(registerState: RegisterState) {
-  const voltaRegistration = registerStateToVolta(registerState);
+// Combine nameinfix with lastname for our backend (e.g., "van der Berg")
+function getFullLastName(state: RegisterState): string {
+  if (state.nameinfix) {
+    return `${state.nameinfix} ${state.lastname}`;
+  }
+  return state.lastname;
+}
 
-  await doVoltaRegister(voltaRegistration);
+// Simulate Volta API delay in DEV mode (2-3 seconds)
+async function simulateVoltaDelay(): Promise<void> {
+  const delay = 2000 + Math.random() * 1000; // 2-3 seconds
+  await new Promise((resolve) => setTimeout(resolve, delay));
+}
+
+export async function clientRegister(registerState: RegisterState) {
+  // In production, call Volta first
+  // In dev, simulate the delay so we can test the loading state
+  if (import.meta.env.PROD) {
+    const voltaRegistration = registerStateToVolta(registerState);
+    await doVoltaRegister(voltaRegistration);
+  } else {
+    // Simulate Volta delay in dev mode
+    await simulateVoltaDelay();
+  }
+
+  // Then register with our backend (creates newuser entry)
+  // In dev mode, this is the only call; in prod it happens after Volta succeeds
+  try {
+    await requestRegistration(
+      registerState.email,
+      registerState.firstname,
+      getFullLastName(registerState),
+    );
+  } catch (error) {
+    // In production, if Volta succeeded but our backend failed,
+    // we still consider it a success (user is in Volta)
+    // In dev, we want to see the error
+    if (import.meta.env.DEV) {
+      throw error;
+    }
+    console.error("Backend registration failed (but Volta succeeded):", error);
+  }
 
   return true;
 }

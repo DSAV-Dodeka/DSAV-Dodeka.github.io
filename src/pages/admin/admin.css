@@ -140,3 +140,25 @@
   background-color: #d4edda;
   color: #155724;
 }
+
+.admin-not-authorized {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.admin-not-authorized h2 {
+  margin: 0 0 16px 0;
+  color: #721c24;
+}
+
+.admin-not-authorized p {
+  margin: 0 0 12px 0;
+  color: #666;
+}
+
+.admin-not-authorized a {
+  color: #2196f3;
+}

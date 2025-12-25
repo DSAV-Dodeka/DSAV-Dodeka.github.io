@@ -1,13 +1,24 @@
 import { useState, useEffect } from "react";
 import { listNewUsers, acceptUser, type NewUser } from "$functions/backend.ts";
+import { useSessionInfo, useSecondarySessionInfo } from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./admin.css";
 
 export default function Admin() {
+  const { data: session, isLoading: sessionLoading } = useSessionInfo();
+  const { data: secondarySession, isLoading: secondaryLoading } =
+    useSecondarySessionInfo();
+
   const [newUsers, setNewUsers] = useState<NewUser[]>([]);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const [processingEmail, setProcessingEmail] = useState<string | null>(null);
+
+  // Check if user has admin permission in either session
+  const isAdmin =
+    session?.user.permissions.includes("admin") ||
+    secondarySession?.user.permissions.includes("admin");
+  const authLoading = sessionLoading || secondaryLoading;
 
   const loadNewUsers = async () => {
     setLoading(true);
@@ -39,8 +50,38 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    loadNewUsers();
-  }, []);
+    // Only load users if we're admin
+    if (isAdmin) {
+      loadNewUsers();
+    }
+  }, [isAdmin]);
+
+  // Show loading while checking auth
+  if (authLoading) {
+    return (
+      <div className="admin-container">
+        <PageTitle title="Admin Dashboard" />
+        <div className="admin-loading">Checking permissions...</div>
+      </div>
+    );
+  }
+
+  // Show not authorized if not admin
+  if (!isAdmin) {
+    return (
+      <div className="admin-container">
+        <div className="admin-not-authorized">
+          <h2>Not Authorized</h2>
+          <p>You need admin permissions to access this page.</p>
+          {import.meta.env.DEV && (
+            <p>
+              Log in as admin via the <a href="/flow-test">flow-test page</a>.
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="admin-container">

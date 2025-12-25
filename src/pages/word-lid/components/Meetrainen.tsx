@@ -17,7 +17,7 @@ function Meetrainen() {
           Instagram. Heb je na de proeftrainingen de smaak te pakken en wil je
           lid worden? Schrijf je dan in via de onderstaande knop:
         </p>
-        <a href="/registreer">
+        <a href="/account/register">
           <button className="schrijfInButton" id="submit_button" type="submit">
             Inschrijven
           </button>
