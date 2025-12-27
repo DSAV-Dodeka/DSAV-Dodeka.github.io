@@ -7,7 +7,14 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { type RegisterState, clientRegister, VoltaError } from "./register.ts";
+import {
+  type RegisterState,
+  clientRegister,
+  VoltaError,
+  isVoltaEnabled,
+  setVoltaEnabled,
+  isVoltaToggleable,
+} from "./register.ts";
 import "./register.css";
 import PageTitle from "$components/PageTitle.tsx";
 
@@ -113,6 +120,13 @@ export default function Registreer() {
   const [submitted, setSubmitted] = useState("");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const [voltaToggle, setVoltaToggle] = useState(isVoltaEnabled());
+
+  const handleVoltaToggle = () => {
+    const newValue = !voltaToggle;
+    setVoltaToggle(newValue);
+    setVoltaEnabled(newValue);
+  };
 
   useEffect(() => {
     if (!handled) {
@@ -207,6 +221,23 @@ export default function Registreer() {
         )}
         {infoOk && (
           <form className="form" onSubmit={handleSubmit}>
+            {isVoltaToggleable() && (
+              <div className="volta-toggle">
+                <label className="volta-toggle-label">
+                  <input
+                    type="checkbox"
+                    checked={voltaToggle}
+                    onChange={handleVoltaToggle}
+                  />
+                  <span>Volta inschrijving inschakelen</span>
+                </label>
+                <small className="volta-toggle-hint">
+                  {voltaToggle
+                    ? "Registratie wordt ook naar Volta verzonden"
+                    : "Demo modus: alleen backend registratie"}
+                </small>
+              </div>
+            )}
             <div className={"dropdown"}>
               <label>Taal/Language:</label>
               <select

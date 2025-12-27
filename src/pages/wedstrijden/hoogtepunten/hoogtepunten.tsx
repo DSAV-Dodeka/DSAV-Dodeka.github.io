@@ -21,7 +21,7 @@ const Hoogtepunten = () => {
         <>
             <PageTitle title="Hoogtepunten"/>
             {Wedstrijden.wedstrijden.map((item: HoogtepuntItem) => {
-                return <Wedstrijd naam={item.wedstrijd} foto={item.foto} prijzen={item.prijzen} prestaties={item.prestaties}/>
+                return <Wedstrijd key={item.wedstrijd} naam={item.wedstrijd} foto={item.foto} prijzen={item.prijzen} prestaties={item.prestaties}/>
             })}
         </>
     )

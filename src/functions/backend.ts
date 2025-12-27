@@ -1,6 +1,6 @@
 const BACKEND_URL = import.meta.env.DEV
   ? "http://localhost:8000"
-  : "https://backend.dsavdodeka.nl";
+  : (import.meta.env.VITE_BACKEND_URL ?? "https://backend.dsavdodeka.nl");
 
 // HTTP helpers
 async function post(

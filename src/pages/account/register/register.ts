@@ -1,5 +1,27 @@
 import { requestRegistration } from "$functions/backend.ts";
 
+// Volta toggle for demo mode
+// In DEV mode: Volta is always disabled
+// In PROD mode: Volta is enabled based on VITE_VOLTA_ENABLED (default: true)
+// In demo mode: VITE_VOLTA_ENABLED=false, but can be enabled via UI
+const defaultVoltaEnabled =
+  !import.meta.env.DEV && import.meta.env["VITE_VOLTA_ENABLED"] !== "false";
+
+let voltaEnabled = defaultVoltaEnabled;
+
+export function isVoltaEnabled(): boolean {
+  return voltaEnabled;
+}
+
+export function setVoltaEnabled(enabled: boolean): void {
+  voltaEnabled = enabled;
+}
+
+export function isVoltaToggleable(): boolean {
+  // Only show toggle in non-DEV mode when Volta is disabled by default
+  return !import.meta.env.DEV && !defaultVoltaEnabled;
+}
+
 export type RegisterState = {
   firstname: string;
   nameinfix: string;
@@ -306,18 +328,16 @@ async function simulateVoltaDelay(): Promise<void> {
 export async function clientRegister(
   registerState: RegisterState,
 ): Promise<string | null> {
-  // In production, call Volta first
-  // In dev, simulate the delay so we can test the loading state
-  if (import.meta.env.PROD) {
+  // Call Volta if enabled, otherwise simulate delay
+  if (voltaEnabled) {
     const voltaRegistration = registerStateToVolta(registerState);
     await doVoltaRegister(voltaRegistration);
   } else {
-    // Simulate Volta delay in dev mode
+    // Simulate Volta delay when disabled
     await simulateVoltaDelay();
   }
 
   // Then register with our backend (creates newuser entry)
-  // In dev mode, this is the only call; in prod it happens after Volta succeeds
   try {
     const registrationToken = await requestRegistration(
       registerState.email,
@@ -326,10 +346,10 @@ export async function clientRegister(
     );
     return registrationToken;
   } catch (error) {
-    // In production, if Volta succeeded but our backend failed,
+    // If Volta succeeded but our backend failed,
     // we still consider it a success (user is in Volta)
-    // In dev, we want to see the error
-    if (import.meta.env.DEV) {
+    // In dev mode or demo mode without Volta, we want to see the error
+    if (!voltaEnabled) {
       throw error;
     }
     console.error("Backend registration failed (but Volta succeeded):", error);
