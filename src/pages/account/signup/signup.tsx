@@ -2,15 +2,20 @@ import { useState, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { SignupFlow } from "$functions/flows/signup.ts";
-import { getRegistrationStatus, getToken } from "$functions/backend.ts";
+import {
+  getRegistrationStatus,
+  getToken,
+  lookupRegistration,
+} from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./signup.css";
 
 export default function Signup() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
+  const codeFromUrl = searchParams.get("code");
 
   // Fetch registration status using the token
   const {
@@ -35,9 +40,14 @@ export default function Signup() {
   const [status, setStatus] = useState("");
   const [complete, setComplete] = useState(false);
 
-  const [verificationCode, setVerificationCode] = useState("");
+  // Initialize verification code from URL if present
+  const [verificationCode, setVerificationCode] = useState(codeFromUrl || "");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  // For email+code lookup flow (when no token in URL)
+  const [lookupEmail, setLookupEmail] = useState("");
+  const [lookupCode, setLookupCode] = useState("");
 
   // Load verification code in dev mode
   const handleLoadCode = async () => {
@@ -103,23 +113,98 @@ export default function Signup() {
     }
   };
 
-  // No token in URL
+  // Handle email+code lookup to find registration token
+  const handleLookup = async () => {
+    if (!lookupEmail || !lookupCode) {
+      setStatus("✗ Vul zowel e-mail als code in");
+      return;
+    }
+
+    setLoading(true);
+    setStatus("");
+    try {
+      const result = await lookupRegistration(lookupEmail, lookupCode);
+      if (result.found && result.token) {
+        // Set code in state and redirect with token and code in URL
+        setVerificationCode(lookupCode);
+        setSearchParams({ token: result.token, code: lookupCode });
+      } else {
+        setStatus("✗ Geen registratie gevonden met deze e-mail en code");
+      }
+    } catch (error) {
+      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // No token in URL - show email+code lookup form
   if (!token) {
     return (
       <div className="signup-container">
         <PageTitle title="Account activeren" />
         <div className="signup-card">
           <h1>Account activeren</h1>
-          <div className="signup-error">
-            <p>
-              <strong>Geen registratietoken gevonden</strong>
-            </p>
-            <p>
-              Je hebt een link nodig om je registratiestatus te bekijken. Heb je
-              je net ingeschreven? Controleer dan je e-mail voor de
-              bevestigingslink. Neem anders contact op met het bestuur via{" "}
-              <a href="mailto:bestuur@dsavdodeka.nl">bestuur@dsavdodeka.nl</a>
-            </p>
+          <p className="signup-intro">
+            Voer je e-mailadres en de verificatiecode uit de e-mail in om je
+            account te activeren.
+          </p>
+
+          <form
+            className="signup-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleLookup();
+            }}
+          >
+            <div className="signup-field">
+              <label htmlFor="lookupEmail">E-mailadres</label>
+              <input
+                id="lookupEmail"
+                type="email"
+                value={lookupEmail}
+                onChange={(e) => setLookupEmail(e.target.value)}
+                placeholder="je@email.nl"
+                required
+                disabled={loading}
+              />
+            </div>
+
+            <div className="signup-field">
+              <label htmlFor="lookupCode">Verificatiecode</label>
+              <input
+                id="lookupCode"
+                type="text"
+                value={lookupCode}
+                onChange={(e) => setLookupCode(e.target.value)}
+                placeholder="Code uit e-mail"
+                required
+                disabled={loading}
+              />
+              <small>De 8-cijferige code uit de bevestigingsmail</small>
+            </div>
+
+            <button
+              type="submit"
+              className="signup-btn signup-btn-primary"
+              disabled={loading}
+            >
+              {loading ? "Zoeken..." : "Doorgaan"}
+            </button>
+          </form>
+
+          {status && (
+            <div
+              className={`signup-status ${status.startsWith("✓") ? "success" : "error"}`}
+            >
+              {status}
+            </div>
+          )}
+
+          <div className="signup-note">
+            <strong>Geen code ontvangen?</strong> Neem contact op met het
+            bestuur via{" "}
+            <a href="mailto:bestuur@dsavdodeka.nl">bestuur@dsavdodeka.nl</a>
           </div>
         </div>
       </div>

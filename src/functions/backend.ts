@@ -128,6 +128,23 @@ export async function getRegistrationStatus(
   return response.json();
 }
 
+export interface LookupResult {
+  found: boolean;
+  token?: string;
+}
+
+export async function lookupRegistration(
+  email: string,
+  code: string,
+): Promise<LookupResult> {
+  const response = await post("/auth/lookup_registration", { email, code });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to lookup registration: ${text}`);
+  }
+  return response.json();
+}
+
 // Admin actions
 export interface NewUser {
   email: string;
