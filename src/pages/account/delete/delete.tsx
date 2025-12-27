@@ -17,6 +17,7 @@ export default function DeleteAccount() {
   const deletionFlow = useRef(new AccountDeletionFlow());
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
+  const [deleted, setDeleted] = useState(false);
 
   // Step 2: Password confirmation
   const [password, setPassword] = useState("");
@@ -66,8 +67,9 @@ export default function DeleteAccount() {
         return;
       }
 
+      // Mark as deleted BEFORE invalidating session to prevent flash
+      setDeleted(true);
       await queryClient.invalidateQueries({ queryKey: ["session"] });
-      setStatus("✓ Account deleted successfully. Redirecting...");
 
       // Redirect to home after a short delay
       setTimeout(() => {
@@ -85,6 +87,22 @@ export default function DeleteAccount() {
     return (
       <div className="delete-container">
         <PageTitle title="Delete Account" />
+      </div>
+    );
+  }
+
+  // Show success message after account deletion (before session check)
+  if (deleted) {
+    return (
+      <div className="delete-container">
+        <PageTitle title="Account Deleted" />
+
+        <div className="delete-header">
+          <div className="delete-success-icon">✓</div>
+          <h2>Account Deleted</h2>
+          <p>Your account has been permanently deleted.</p>
+          <p>Redirecting to home page...</p>
+        </div>
       </div>
     );
   }

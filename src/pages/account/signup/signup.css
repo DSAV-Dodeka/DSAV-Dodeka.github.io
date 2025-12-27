@@ -18,6 +18,19 @@
   text-align: center;
 }
 
+.signup-card > p {
+  color: #666;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+}
+
+.signup-card > .signup-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+}
+
 .signup-intro {
   color: #666;
   text-align: center;

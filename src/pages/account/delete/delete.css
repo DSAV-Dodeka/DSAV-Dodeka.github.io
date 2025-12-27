@@ -127,3 +127,16 @@
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
+
+.delete-success-icon {
+  width: 64px;
+  height: 64px;
+  background: #4caf50;
+  color: white;
+  font-size: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}

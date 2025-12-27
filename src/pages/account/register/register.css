@@ -217,26 +217,40 @@ button.registerButton:disabled {
   border-radius: 8px;
   padding: 12px 16px;
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .volta-toggle-label {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
   color: white;
   font-size: var(--font-small);
+  margin: 0;
 }
 
 .volta-toggle-label input[type="checkbox"] {
   width: 18px;
   height: 18px;
+  min-width: 18px;
+  margin: 0;
   cursor: pointer;
+  accent-color: var(--dodeka-rood);
+}
+
+.volta-toggle-label span {
+  line-height: 1;
 }
 
 .volta-toggle-hint {
-  display: block;
-  margin-top: 6px;
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
+  margin: 0;
 }
