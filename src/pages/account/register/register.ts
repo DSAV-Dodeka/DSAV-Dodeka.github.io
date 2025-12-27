@@ -1,13 +1,14 @@
 import { requestRegistration } from "$functions/backend.ts";
 
-// Volta toggle for demo mode
-// In DEV mode: Volta is always disabled
-// In PROD mode: Volta is enabled based on VITE_VOLTA_ENABLED (default: true)
-// In demo mode: VITE_VOLTA_ENABLED=false, but can be enabled via UI
-const defaultVoltaEnabled =
-  !import.meta.env.DEV && import.meta.env["VITE_VOLTA_ENABLED"] !== "false";
+// Mode detection
+export const isDemoMode = import.meta.env.MODE === "demo";
+export const isDevMode = import.meta.env.DEV;
 
-let voltaEnabled = defaultVoltaEnabled;
+// Volta toggle for demo mode
+// - DEV mode: Volta always disabled, no toggle
+// - Demo mode: Volta disabled by default, toggle available
+// - Production: Volta always enabled, no toggle
+let voltaEnabled = !isDevMode && !isDemoMode;
 
 export function isVoltaEnabled(): boolean {
   return voltaEnabled;
@@ -15,11 +16,6 @@ export function isVoltaEnabled(): boolean {
 
 export function setVoltaEnabled(enabled: boolean): void {
   voltaEnabled = enabled;
-}
-
-export function isVoltaToggleable(): boolean {
-  // Only show toggle in non-DEV mode when Volta is disabled by default
-  return !import.meta.env.DEV && !defaultVoltaEnabled;
 }
 
 export type RegisterState = {

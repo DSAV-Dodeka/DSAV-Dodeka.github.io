@@ -13,7 +13,8 @@ import {
   VoltaError,
   isVoltaEnabled,
   setVoltaEnabled,
-  isVoltaToggleable,
+  isDemoMode,
+  isDevMode,
 } from "./register.ts";
 import "./register.css";
 import PageTitle from "$components/PageTitle.tsx";
@@ -88,10 +89,9 @@ const emptyInitialState: RegisterState = {
   language: "nl-NL",
 };
 
-// Use test data in dev mode, empty form in production
-const initialState: RegisterState = import.meta.env.DEV
-  ? testInitialState
-  : emptyInitialState;
+// Use test data in dev mode and demo mode, empty form in production
+const initialState: RegisterState =
+  isDevMode || isDemoMode ? testInitialState : emptyInitialState;
 
 // let focus: boolean = false;
 
@@ -221,7 +221,7 @@ export default function Registreer() {
         )}
         {infoOk && (
           <form className="form" onSubmit={handleSubmit}>
-            {isVoltaToggleable() && (
+            {isDemoMode && (
               <div className="volta-toggle">
                 <label className="volta-toggle-label">
                   <input
