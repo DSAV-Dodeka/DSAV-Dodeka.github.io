@@ -269,3 +269,61 @@ export async function onboardSignup(data: {
     throw new Error(`Failed to submit signup: ${text}`);
   }
 }
+
+// User management
+export interface User {
+  user_id: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  permissions: string[];
+}
+
+export async function listUsers(): Promise<User[]> {
+  const response = await get("/admin/list_users/", true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to list users: ${text}`);
+  }
+  return response.json();
+}
+
+export async function getAvailablePermissions(): Promise<string[]> {
+  const response = await get("/admin/available_permissions/", true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to get permissions: ${text}`);
+  }
+  const data = await response.json();
+  return data.permissions;
+}
+
+export async function addUserPermission(
+  userId: string,
+  permission: string,
+): Promise<void> {
+  const response = await post(
+    "/admin/add_permission/",
+    { user_id: userId, permission },
+    true,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to add permission: ${text}`);
+  }
+}
+
+export async function removeUserPermission(
+  userId: string,
+  permission: string,
+): Promise<void> {
+  const response = await post(
+    "/admin/remove_permission/",
+    { user_id: userId, permission },
+    true,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to remove permission: ${text}`);
+  }
+}
