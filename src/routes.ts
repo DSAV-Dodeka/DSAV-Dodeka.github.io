@@ -37,7 +37,6 @@ export default [
       ? [route("flow-test", "./pages/flow-test/flow-test.tsx")]
       : []),
     route("admin", "./pages/admin/admin.tsx"),
-    // route("register", "./pages/register.tsx"),
     ...prefix("account", [
       route("register", "./pages/account/register/register.tsx"),
       route("signup", "./pages/account/signup/signup.tsx"),
