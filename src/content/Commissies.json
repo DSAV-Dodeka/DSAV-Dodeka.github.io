@@ -48,29 +48,34 @@
 		"leden": [
                 
                 {
-                    "naam": "Anthony",
+                    "naam": "Vera",
                     "functie": "Voorzitter",
-                    "foto": "Antony"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Chiem",
+                    "naam": "Melisa",
                     "functie": "Secretaris",
-                    "foto": "Chiem"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Marco Barco",
+                    "naam": "Jan",
                     "functie": "Penningmeester",
-                    "foto": "mark"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Luc",
+                    "naam": "Sanne",
                     "functie": "Commissaris Eten",
-                    "foto": "Luc"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Joris",
+                    "naam": "Itse",
+                    "functie": "Commissaris Promo",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Xylander",
                     "functie": "QQ",
-                    "foto": "Joris"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "barco"
@@ -118,34 +123,39 @@
             "info": "Onze commissie zorgt ervoor dat alle mooie dingen die bij de vereniging gebeuren zo goed mogelijk vastgelegd worden doormiddel van foto's en video's. Ook zijn wij verantwoordelijk voor de promotie van Dodeka. Dit doen we onder andere met posters, stickers en foto's op diverse social media, dus volg ons vooral en misschien zie je jezelf nog eens terug op het instagram account!",
 		    "leden": [
                 {
-                    "naam": "Robin",
+                    "naam": "Jamijn",
                     "functie": "Voorzitter",
-                    "foto": "Robin"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Lucija",
+                    "naam": "Sander",
                     "functie": "Secretaris",
-                    "foto": "Lucija"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Melle",
+                    "naam": "Owyn",
                     "functie": "Commissaris Beer",
-                    "foto": "Melle"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Wyna",
+                    "naam": "Christiaan",
                     "functie": "Commissaris Bil",
-                    "foto": "Wyna"
+                    "foto": "placeholder"
                 },
 		        {
-                    "naam": "Roman",
+                    "naam": "Anne D",
                     "functie": "Commissaris Vies",
-                    "foto": "Roman"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Tijmen",
+                    "naam": "Ilse",
+                    "functie": "Commissaris Kont",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Anne H",
                     "functie": "QQ",
-                    "foto": "Tijmen"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "focus"
@@ -201,29 +211,34 @@
                 },
             
                 {
-                    "naam": "Tim",
+                    "naam": "Tobias",
                     "functie": "Secretaris",
-                    "foto": "tim"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Anne",
-                    "functie": "Commissielid",
-                    "foto": "anne"
+                    "naam": "Sven",
+                    "functie": "Penningmeester/QQ",
+                    "foto": "placeholder"
                 },               
                 {
+                    "naam": "Aron",
+                    "functie": "Commissaris Toekomst",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Tim P",
+                    "functie": "Commissaris Belsessies",
+                    "foto": "placeholder"
+                },
+                {
                     "naam": "Lou",
-                    "functie": "Commissielid",
-                    "foto": "lou"
+                    "functie": "Commissaris Werkacties",
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Mark",
-                    "functie": "Commissielid",
-                    "foto": "mark"
-                },
-                {
-                    "naam": "Tobias",
-                    "functie": "Bankier",
-                    "foto": "tobias"
+                    "functie": "Commissaris Activiteiten",
+                    "foto": "placeholder"
                 }
                 
             ],
@@ -330,7 +345,7 @@
                 },
                 {
                     "naam": "Maaike",
-                    "functie": "penningmeester",
+                    "functie": "Commissaris Logistiek/Promo",
                     "foto": "placeholder"
                 },
                 {
@@ -437,24 +452,14 @@
             "info": "Als commissie geven wij epische trainingen die we ook heel goed voorbereiden zodat we altijd weten wat we gaan doen. Wij zorgen ieder jaar voor tientallen fenomenale NSK-medailles door ons dag en nacht in te zetten. We hebben de ZeuS-bokaal twee keer op rij gewonnen dankzij de trainers. We hebben natuurlijk alleen maar dankzij onze commissie zoveel leden. Dit kunnen we bereiken doordat we met maar liefst 11 trainers zijn en daarmee de grootste commissie. Wij organiseren meer activiteiten dan alle andere commissies samen en onze activiteiten hebben de meeste inschrijvingen.",
 		"leden": [
                 {
-                    "naam": "Gijs",
-                    "functie": "Baantrainer",
-                    "foto": "Gijs"
-                },
-                {
                     "naam": "Jefry",
                     "functie": "Baantrainer",
                     "foto": "Jefry"
                 },
                 {
                     "naam": "Stan",
-                    "functie": "MiLatrainer",
+                    "functie": "Trainercoordinator",
                     "foto": "Stan"
-                },
-                {
-                    "naam": "Joris",
-                    "functie": "Baantrainer",
-                    "foto": "Joris"
                 },
                 {
                     "naam": "Robert",
@@ -477,11 +482,6 @@
                     "foto": "Eric"
                 },
                 {
-                    "naam": "Thom",
-                    "functie": "Baantrainer",
-                    "foto": "placeholder"
-                },
-                {
                     "naam": "Anne-Wil",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
@@ -493,11 +493,6 @@
                 },
                 {
                     "naam": "Ivar",
-                    "functie": "Baantrainer",
-                    "foto": "placeholder"
-                },
-                {
-                    "naam": "Stefan",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
                 },
