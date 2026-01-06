@@ -48,29 +48,34 @@
 		"leden": [
                 
                 {
-                    "naam": "Anthony",
+                    "naam": "Vera",
                     "functie": "Voorzitter",
-                    "foto": "Antony"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Chiem",
+                    "naam": "Melisa",
                     "functie": "Secretaris",
-                    "foto": "Chiem"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Marco Barco",
+                    "naam": "Jan",
                     "functie": "Penningmeester",
-                    "foto": "mark"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Luc",
+                    "naam": "Sanne",
                     "functie": "Commissaris Eten",
-                    "foto": "Luc"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Joris",
+                    "naam": "Itse",
+                    "functie": "Commissaris Promo",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Xylander",
                     "functie": "QQ",
-                    "foto": "Joris"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "barco"
@@ -206,29 +211,34 @@
                 },
             
                 {
-                    "naam": "Tim",
+                    "naam": "Tobias",
                     "functie": "Secretaris",
-                    "foto": "tim"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Anne",
-                    "functie": "Commissielid",
-                    "foto": "anne"
+                    "naam": "Sven",
+                    "functie": "Penningmeester/QQ",
+                    "foto": "placeholder"
                 },               
                 {
+                    "naam": "Aron",
+                    "functie": "Commissaris Toekomst",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Tim P",
+                    "functie": "Commissaris Belsessies",
+                    "foto": "placeholder"
+                },
+                {
                     "naam": "Lou",
-                    "functie": "Commissielid",
-                    "foto": "lou"
+                    "functie": "Commissaris Werkacties",
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Mark",
-                    "functie": "Commissielid",
-                    "foto": "mark"
-                },
-                {
-                    "naam": "Tobias",
-                    "functie": "Bankier",
-                    "foto": "tobias"
+                    "functie": "Commissaris Activiteiten",
+                    "foto": "placeholder"
                 }
                 
             ],
@@ -335,7 +345,7 @@
                 },
                 {
                     "naam": "Maaike",
-                    "functie": "penningmeester",
+                    "functie": "Commissaris Logistiek/Promo",
                     "foto": "placeholder"
                 },
                 {
