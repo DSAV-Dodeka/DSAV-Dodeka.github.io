@@ -1,6 +1,22 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Teams 2025",
+            "foto": "nsk_teams_2025.jpg",
+            "prijzen": [
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 2,
+                    "afstand": "Vrouwen"
+                }
+            ],
+            "prestaties": [
+                "Ook dit jaar konden we bij de mannen weer twee teams vullen",
+                "Anne-Wil won het verspringen met een PR in haar laatste sprong",
+                "Het vrouwenteam behaalde de zilveren medaille"
+            ]
+        },
+        {
             "wedstrijd": "NSK Baan 2025",
             "foto": "nsk_baan_2025.jpg",
             "prijzen": [
