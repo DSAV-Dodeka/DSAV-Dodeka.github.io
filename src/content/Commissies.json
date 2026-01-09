@@ -45,7 +45,7 @@
 	{
             "naam": "BarCo",
             "info": "De BarCo is de belangrijkste commissie binnen Dodeka. Binnen deze vereniging zorgen wij ervoor dat onze atleten niet te sportief worden zodat de sfeer een beetje gemoedelijk blijft. Elke woensdag kun je bij ons terecht voor een koud drankje en een warm bord eten. Daarnaast fiksen wij om de zoveel tijd een gezellige themaborrel en sporen iedereen aan om nieuwe mensen te leren kennen! Als BarCo lid kun je elk dom idee wel uitwerken tot een leuke borrel en kun je op een eenvoudige manier mensen leren kennen binnen de vereniging. 12 dikke kusjes van de BarCo",
-		"leden": [
+		    "leden": [
                 
                 {
                     "naam": "Vera",
@@ -80,40 +80,81 @@
             ],
             "fotos": "barco"
       },
-     
+    {
+            "naam": "BatCie",
+            "info": "Als BatCie organiseren wij de epische batavierenrace voor het mega gezellige Dodeka team. De bata vindt plaats op 24/25/30 mei 2024 in het oosten van het land (rond Nijmegen en Enschede). In dit prachtige weekend kan je hardlopen en feesten combineren wat supergaaf is. Met een team van 25 personen ren je in estafettevorm een afstand van in totaal 175 kilometer. Ons team draait om prestatie maar nog meer om gezelligheid. Omdat je met zijn allen in tentjes slaapt is het erg knus en ontmoet je mensen uit het hele land. Kortom, een topweekend dus! Voor bereikbaarheid zijn wij aanspreekbaar op trainingen en bereikbaar per fax op 121212.",
+            "leden": [
+                {
+                    "naam": "Luc",
+                    "functie": "Voorzitter",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Mark",
+                    "functie": "Secretaris",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Roy",
+                    "functie": "Penningmeester",
+                    "foto": "roy"
+                },
+                {
+                    "naam": "Stan",
+                    "functie": "Commissaris Logistiek",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Annejet",
+                    "functie": "Commissaris Promo",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Lou",
+                    "functie": "QQ",
+                    "foto": "placeholder"
+                }
+            ],
+            "fotos": "batcie"
+        },
   {
     "naam": "Dies",
     "info": "De diescommissie zorgt ervoor dat de zesde verjaardag van Dodeka er één gaat worden om nooit te vergeten. Wij voelen ons vereerd dat we tijdens de diesweek Arnold mogen helpen niet alleen een aardvarken te zijn maar ook een feestvarken! ",
     "leden": [
         {
-            "naam": "Vera",
+            "naam": "Sacha",
             "functie": "Voorzitter",
-            "foto": "Vera"
+            "foto": "placeholder"
         },
         {
-            "naam": "Anthony",
+            "naam": "Annemijn",
             "functie": "Secretaris",
-            "foto": "Anthony"
+            "foto": "placeholder"
         },
         {
-            "naam": "Youri",
+            "naam": "Melle",
             "functie": "Penningmeester",
-            "foto": "Youri"
+            "foto": "placeholder"
         },
         {
-            "naam": "Vicky",
-            "functie": "Commissaris Logistiek",
-            "foto": "Vicky"
+            "naam": "Kyllian",
+            "functie": "Commissaris Logie",
+            "foto": "placeholder"
         },
-    {
-            "naam": "Lou",
+        {
+            "naam": "Dagmar",
+            "functie": "Commissaris Stiek",
+            "foto": "placeholder"
+        },
+        {
+            "naam": "Line",
             "functie": "Commissaris Promo",
-            "foto": "Lou"
+            "foto": "placeholder"
         },
         {
-            "naam": "Tobias",
+            "naam": "Merel",
             "functie": "QQ",
-            "foto": "Tobias"
+            "foto": "placeholder"
         }
     ],
     "fotos": "dies"
@@ -123,7 +164,7 @@
             "info": "Onze commissie zorgt ervoor dat alle mooie dingen die bij de vereniging gebeuren zo goed mogelijk vastgelegd worden doormiddel van foto's en video's. Ook zijn wij verantwoordelijk voor de promotie van Dodeka. Dit doen we onder andere met posters, stickers en foto's op diverse social media, dus volg ons vooral en misschien zie je jezelf nog eens terug op het instagram account!",
 		    "leden": [
                 {
-                    "naam": "Jamijn",
+                    "naam": "Jasmijn",
                     "functie": "Voorzitter",
                     "foto": "placeholder"
                 },
@@ -213,7 +254,7 @@
                 {
                     "naam": "Tobias",
                     "functie": "Secretaris",
-                    "foto": "placeholder"
+                    "foto": "tobias"
                 },
                 {
                     "naam": "Sven",
@@ -228,17 +269,17 @@
                 {
                     "naam": "Tim P",
                     "functie": "Commissaris Belsessies",
-                    "foto": "placeholder"
+                    "foto": "tim"
                 },
                 {
                     "naam": "Lou",
                     "functie": "Commissaris Werkacties",
-                    "foto": "placeholder"
+                    "foto": "lou"
                 },
                 {
                     "naam": "Mark",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "placeholder"
+                    "foto": "mark"
                 }
                 
             ],
@@ -249,39 +290,49 @@
         "info": "De RedaXII schrijft en publiceert de nieuwsbrieven en het jaarboek. Hiervoor verzamelen we stukjes en foto's en hierdoor blijven de leden geïnformeerd over wat er de afgelopen periode is gebeurd. Daarnaast is er voor iedereen die dat wil aan het einde van het jaar een jaarboek als samenvatting en herinnering van wat vast weer een geweldig jaar bij de vereniging wordt. Heb jij nu een goed idee of een leuk verhaal voor in de nieuwsbrief of het jaarboek, schroom dan niet om een van de RedaXII leden een keer aan te spreken of te mailen naar redaxii@dsavdodeka.nl. Mocht je een leuke quote hebben van iemand dan kan je die sturen naar Anne.", 
 		"leden": [
                 {
-                    "naam": "Kyllian",
-                    "functie": "Voorzitter",
-                    "foto": "kyllian"
-                },
-                {
-                    "naam": "mano",
-                    "functie": "Secretaris",
-                    "foto": "mano"
-                },
-                {
                     "naam": "Aron",
-                    "functie": "Commissaris Inhoud",
+                    "functie": "Voorzitter",
                     "foto": "aron"
                 },
                 {
-                    "naam": "Sander",
+                    "naam": "Sanne",
+                    "functie": "Secretaris",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Kyllian",
+                    "functie": "Commissaris Inhoud",
+                    "foto": "kyllian"
+                },
+                {
+                    "naam": "Stefan",
                     "functie": "Commissaris Flexibel",
-                    "foto": "sander"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Marea",
-                    "functie": "Commissaris Frunnik",
-                    "foto": "marea"
+                    "naam": "Eefje",
+                    "functie": "Commissaris Vormgeving",
+                    "foto": "placeholder"
                 },
-		    {
-                    "naam": "Anne",
-                    "functie": "Commissaris Fröbel",
-                    "foto": "anne"
+		        {
+                    "naam": "Hannah",
+                    "functie": "Commissaris Vormgeving",
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Anna",
+                    "naam": "Rens",
+                    "functie": "Commissaris Vormgeving",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Roman",
+                    "functie": "Commissaris Vormgeving",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Merel",
                     "functie": "QQ",
-                    "foto": "anna"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "redaxii"
@@ -292,39 +343,34 @@
             "info": "Yoooo! Wij zijn de SAX! Wij zullen dit jaar fantastische SAXiviteiten organiseren voor de leukste Dodekaëders. Met de SAX verzinnen we SAXiviteiten, plannen we ze in en dan is er natuurlijk nog de uitvoering van de plannen op de dag zelf. Jaarlijks worden er veel verschillende SAXiviteiten georganiseerd bijvoorbeeld een Sintenkerstennieuw diner, huizenrace en verschillende soorten uitjes. Bij het Sinterkerstennieuw diner, de eerste SAXiviteit die wij zullen organiseren, zal iedereen zijn kookkunsten kunnen laten zien (en heel veel wijn kunnen drinken). Dit jaar is de seSAXstraat, dus zit deze commissie vol Sesamstraat karakters. Dus misschien kom je wel Pinot, Bert&Ernie, Tommie, Oscar, Meneer Aart of Koekiemonster tegen! Elke borrel wordt een Saxbax getrokken, waarbij je ons ook zal herkennen (of doe gezellig mee): “SAX SAX SAX TREKT EEN BAX!” Bij de SAX komt enthousiasme en creativiteit samen in het organiseren van de SAXiviteiten en is het altijd gezellig!",
 		"leden": [
                 {
-                    "naam": "Stan",
+                    "naam": "Ivar",
                     "functie": "Voorzitter",
-                    "foto": "stan"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Mieke",
+                    "naam": "Bea",
                     "functie": "Secretaris",
-                    "foto": "mieke"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Sacha",
+                    "naam": "Jasmijn",
                     "functie": "Penningmeester",
-                    "foto": "sacha"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Vera",
-                    "functie": "Commissaris extern",
-                    "foto": "vera"
+                    "naam": "Joris",
+                    "functie": "Commissaris Hertjes Jager",
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Sven",
-                    "functie": "Commissaris Promo",
-                    "foto": "sven"
-                },
-                { 
-                    "naam": "Simon",
-                    "functie": "Ouwe lul",
-                    "foto": "simon"
+                    "naam": "Anthony",
+                    "functie": "Commissaris Dronken Oom",
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Itse",
+                    "naam": "Lou",
                     "functie": "QQ",
-                    "foto": "itse"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "sax"
@@ -415,34 +461,34 @@
             "info": "Als SunRice organiseren wij de meest epische zomerreis voor Dodeka. Aangezien het zware studiejaar dan eindelijk afgelopen is, willen wij onze leden belonen met een heerlijke vakantie. In dit bijzondere lustrumjaar gaan wij de beste en leukste week van de zomer voor Dodekaëders neerzetten! Wij zorgen voor leuke activiteiten op de reis, een vette locatie en bovendien dat de reis soepel en stressvrij verloopt. Als trotse leden van Dodeka zijn we natuurlijke wel fan van sportieve trip, dus dat zal zeker niet ontbreken. Kortom, een perfecte reis dus! We zien jullie daar hè. Kusjes, de SunRice!",
 		"leden": [
                 {
-                    "naam": "Niek",
+                    "naam": "Chiem",
                     "functie": "Voorzitter",
-                    "foto": "Niek"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Vera",
+                    "naam": "Julius",
                     "functie": "Secretaris",
-                    "foto": "Vera"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Sanne",
+                    "naam": "Anna",
                     "functie": "Penningmeester",
-                    "foto": "Sanne"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Merel",
+                    "naam": "Maaike",
                     "functie": "Commissaris Activiteiten",
-                    "foto": "Merel"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Kyllian",
+                    "naam": "Eric",
                     "functie": "Commissaris Logistiek",
-                    "foto": "Kyllian"
+                    "foto": "placeholder"
                 },
                 {
-                    "naam": "Itse",
+                    "naam": "Sven",
                     "functie": "QQ",
-                    "foto": "Itse"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "sunrice"
@@ -542,44 +588,7 @@
             "fotos": "trap"
         }
 ],
-"oude commissies":[ {
-    "naam": "BatCie",
-    "info": "Als BatCie organiseren wij de epische batavierenrace voor het mega gezellige Dodeka team. De bata vindt plaats op 24/25/30 mei 2024 in het oosten van het land (rond Nijmegen en Enschede). In dit prachtige weekend kan je hardlopen en feesten combineren wat supergaaf is. Met een team van 25 personen ren je in estafettevorm een afstand van in totaal 175 kilometer. Ons team draait om prestatie maar nog meer om gezelligheid. Omdat je met zijn allen in tentjes slaapt is het erg knus en ontmoet je mensen uit het hele land. Kortom, een topweekend dus! Voor bereikbaarheid zijn wij aanspreekbaar op trainingen en bereikbaar per fax op 121212.",
-"leden": [
-        {
-            "naam": "Niels V",
-            "functie": "Voorzitter",
-            "foto": "nielsv"
-        },
-        {
-            "naam": "Roy",
-            "functie": "Secretaris",
-            "foto": "roy"
-        },
-        {
-            "naam": "Eric",
-            "functie": "Penningmeester",
-            "foto": "eric"
-        },
-        {
-            "naam": "Renée",
-            "functie": "Commissaris Logistiek",
-            "foto": "renée"
-        },
-        {
-            "naam": "Marin",
-            "functie": "Commissaris Promo",
-            "foto": "marin"
-        },
-        {
-            "naam": "Marien",
-            "functie": "QQ",
-            "foto": "marien"
-        }
-    ],
-    "fotos": "batcie"
-},
-        
+"oude commissies":[     
     {
             "naam": "Nsk Trap",
             "info": "Waddup, wij vinden traplopen, ladders, liften, alles waarbij je omhoog gaat heel vet. Wij hebben afgelopen jaar het Nederlands studentenkampioenschap trappenloop georganiseerd, dus eigenlijk is het een beetje laat dat we nu op de website komen, maar de foto's zijn wel heel leuk, dus we mogen nog wel even op de site shine pakken.",
