@@ -1,6 +1,27 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Weg 2025",
+            "foto": "nsk_weg_2025.jpg",
+            "prijzen": [
+                {
+                    "naam": "Louisa Kenny",
+                    "plaats": 3,
+                    "afstand": "10 kilometer"
+                },
+                {
+                    "naam": "Thymo Westerhof",
+                    "plaats": 2,
+                    "afstand": "10 kilometer BM"
+                }
+            ],
+            "prestaties": [
+                "Twee maal 12 Dodekaëders reisden af naar Enschede voor dit NSK",
+                "Maar liefst 4 mannen liepen top 10 op de 10 kilometer",
+                "Kyllian liep beide afstanden én de estaffette"
+            ]
+        },
+        {
             "wedstrijd": "NSK Teams 2025",
             "foto": "nsk_teams_2025.jpg",
             "prijzen": [
