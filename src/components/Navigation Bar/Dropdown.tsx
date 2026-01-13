@@ -19,7 +19,7 @@ function Dropdown(props: DropdownProps) {
   return (
     <div id="navDropdown" onMouseLeave={() => setActive(false)}>
       <Link
-        to={props.path + "#"}
+        to={props.path}
         onMouseEnter={() => setActive(true)}
         className={
           "dropdownNav " +
@@ -39,7 +39,7 @@ function Dropdown(props: DropdownProps) {
             !item.protected && (
               <Link
                 key={"pcDrop" + item.name}
-                to={props.path + item.path + "#"}
+                to={props.path + item.path}
                 className={"dropdownElement"}
               >
                 {item.name}

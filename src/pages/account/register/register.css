@@ -1,0 +1,256 @@
+.maybeMistakeText {
+  margin-top: -1rem;
+}
+
+.checkbox {
+  display: flex;
+  line-height: var(--line-height-small);
+}
+
+.checkbox label {
+  width: 100%;
+  font-size: var(--font-small);
+  line-height: var(--line-height-small);
+  color: white;
+}
+
+.dropdown label {
+  width: 100%;
+  font-size: var(--font-small);
+  line-height: var(--line-height-small);
+  color: white;
+}
+
+.checkbox input[type="checkbox"] {
+  height: 1rem;
+  width: 1rem;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.dropdown {
+  width: 100%;
+}
+
+.dropdown label {
+  line-height: var(--line-height-medium);
+}
+
+.dropdown select {
+  appearance: none;
+  background-color: white;
+  border-radius: 0.75rem;
+  border: none;
+  padding: 0.5rem;
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--font-medium);
+  cursor: pointer;
+  line-height: var(--line-height-medium);
+  margin: 0 0 2rem 0;
+}
+
+.dropwdown input {
+  width: 100%;
+}
+
+.inputHidden {
+  display: none !important;
+}
+
+.form p {
+  color: white;
+  font-size: var(--fonte-mall);
+  line-height: var(--line-height-small);
+  margin-bottom: 1.5rem;
+}
+
+.buttonText {
+  padding-top: 0.5rem;
+  text-align: center;
+  width: 95%;
+}
+
+.privacy_link {
+  color: var(--dodeka-rood);
+  text-decoration: none;
+}
+
+.privacy_link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+p {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.registreerContainer {
+  background-color: var(--dodeka-blauw-90p);
+}
+
+.form_container {
+  width: 100%;
+}
+
+.form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  max-width: 32rem;
+  margin: auto;
+  padding-right: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+.form input {
+  width: 100%;
+  display: block;
+  border-style: none;
+  background-color: white;
+  color: var(--dodeka-blauw);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-size: var(--font-medium);
+  line-height: var(--line-height-medium);
+  height: 3.5rem;
+  margin: 0 0 2rem 0;
+}
+
+.form input:focus {
+  outline: none;
+}
+
+button {
+  width: 100%;
+  background-color: var(--dodeka-rood);
+  color: white;
+  border-radius: 0.75rem;
+  border: none;
+  padding: 1rem;
+  font-size: var(--font-medium);
+  font-weight: var(--bold);
+  cursor: pointer;
+  height: 4rem; /* Set the specific height for the button */
+}
+
+button:hover {
+  background: white;
+  color: var(--dodeka-rood);
+}
+
+.formStatus {
+  font-size: var(--font-medium);
+  line-height: var(--line-height-small);
+  color: var(--dodeka-rood);
+  margin: 0 auto 2rem auto;
+}
+
+.formStatus a {
+  color: white;
+  text-decoration: none;
+}
+
+.largeText {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+  display: block;
+  color: white;
+  font-size: var(--font-medium);
+  line-height: var(--line-height-medium);
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.spinner {
+  display: inline-block;
+  position: absolute;
+  right: -2.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #333;
+  border-radius: 50%;
+  visibility: hidden;
+}
+
+.spinning {
+  visibility: visible;
+  animation: spin 1s linear infinite;
+}
+
+.registerButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+button.registerButton:disabled {
+  cursor: wait;
+  background: gray;
+  color: black;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Volta toggle for demo mode */
+.volta-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.volta-toggle-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: var(--font-small);
+  margin: 0;
+}
+
+.volta-toggle-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--dodeka-rood);
+}
+
+.volta-toggle-label span {
+  line-height: 1;
+}
+
+.volta-toggle-hint {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  margin: 0;
+}

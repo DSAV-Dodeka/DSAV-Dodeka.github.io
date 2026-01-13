@@ -1,24 +1,35 @@
-export const getImagesUrl = (loc: string) => {
-    return new URL(`../images/${loc}`, import.meta.url).href
+const imageModules = import.meta.glob<string>(
+  "/src/images/**/*.{png,jpg,jpeg,webp,gif,svg,PNG,JPG,JPEG,WEBP,GIF,SVG}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  },
+);
+
+export function getHashedImageUrl(relativePath: string): string {
+  // Normalize the path to match glob keys
+  const normalizedPath = relativePath.startsWith("/")
+    ? `/src/images${relativePath}`
+    : `/src/images/${relativePath}`;
+
+  const hashedUrl = imageModules[normalizedPath];
+
+  if (!hashedUrl) {
+    console.warn(`Image not found: ${relativePath}`);
+    // Optionally fall back or throw
+    return relativePath;
+  }
+
+  return hashedUrl;
 }
+
+export const getImagesUrl = (loc: string) => {
+  return new URL(`../images/${loc}`, import.meta.url).href;
+};
 
 // TODO this is ugly hack to fix new behavior (which "fixes" a bug) from Vite 6
 export const getNestedImagesUrl = (loc: string) => {
-    const split = loc.split('/')
-    return new URL(`../images/${split[0]}/${split[1]}`, import.meta.url).href
-}
-
-export const getDeepImagesUrl = (loc: string) => {
-    const split = loc.split('/')
-    return new URL(`../images/${split[0]}/${split[1]}/${split[2]}`, import.meta.url).href
-}
-
-export const getStaticImageUrl = (inputString: string) => {
-    if (import.meta.env.PROD) {
-        // In production, return the URL with `/assets/`
-        return `/assets/${inputString}`;
-    } else {
-        // In development, use an absolute path relative to the root
-        return `/src/images/${inputString}`;
-    }
+  const split = loc.split("/");
+  return new URL(`../images/${split[0]}/${split[1]}`, import.meta.url).href;
 };
