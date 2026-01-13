@@ -201,6 +201,34 @@
             ],
             "fotos": "focus"
         },
+
+        {
+            "naam": "Kasco",
+            "info": "De Kasco is een commissie van onafhankelijke leden die de boekhouding van de penningmeester controleert. Dit is wettelijk verplicht in Nederland, zodat financiele transparantie binnen een verening wordt gewaarborgd. Deze belangrijke taak nemen wij dus op ons. Wij controleren onder andere of de jaarrekening klopt en volledig is, of alle wettelijke verplichtingen zoals belastingen zijn nagekomen en of het financiële beleid deugt. Op basis van onze bevindingen geven wij advies aan de algemene ledenvergadering over de goedkeuring van het bestuurlijk beleid.",
+		    "leden": [
+                {
+                    "naam": "Bart",
+                    "functie": "Lid",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Lars",
+                    "functie": "Lid",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Stefan",
+                    "functie": "Lid",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Thomas",
+                    "functie": "Plaatsvervangend lid",
+                    "foto": "placeholder"
+                }
+            ],
+            "fotos": "kasco"
+        },
         
 	{
             "naam": "NSK Meerkamp",
@@ -530,29 +558,29 @@
                 {
                     "naam": "Anne-Wil",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "annewil"
                 },
                 {
                     "naam": "Marinka",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "Marinka"
                 },
                 {
                     "naam": "Ivar",
                     "functie": "Baantrainer",
-                    "foto": "placeholder"
+                    "foto": "Ivar"
                 },
                 {
                     "naam": "Xylander",
                     "functie": "QQ",
-                    "foto": "placeholder"
+                    "foto": "Xylander"
                 }
                 
                 
             ],
             "fotos": "trainers"},
             {
-            "naam": "Trap",
+            "naam": "Trappenloop",
             "info": "Op vrijdag 28 november is het alweer tijd voor de Delftse Trappenloopkampioenschappen 2025. Dit jaar zal het na het succes van vorig jaar weer plaatsvinden in het prachtige gebouw voor Elektrotechniek, Wiskunde en Informatica (EWI). Op de verschillende onderdelen zal er uitgemaakt worden wie er met de gouden medaille naar huis gaat. Dit jaar kan er gekozen worden uit 10 verdiepingen, 20 verdiepingen en 4x5 verdiepingen estafette. Daarnaast komt er ook nog een werknemersklassement. Denk jij dat je het in je hebt om al deze trappen te overwinnen en jezelf te kronen tot DE Kampioen van Delft? Schrijf je dan snel in en zet je schrap voor de trap!",
 		"leden": [
                
