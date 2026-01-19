@@ -1,14 +1,6 @@
 {
     "Trainers": [
         {
-            "naam": "Gijs Tops",
-            "foto": "Gijs",
-            "trainerType": "Baantrainer",
-            "favorieteOnderdeel": "Hoogspringen",
-            "trainerSinds": "2021",
-            "expertise": "Als junior heb ik zelf specifiek op hoogspringen getraind, en ik wil deze kennis nu graag overdragen. Tijdens de trainingen zorg ik ervoor dat we met een gezonde portie jump squats en core oefeningen de lat zo hoog mogelijk leggen. Tot snel!"
-        },
-        {
             "naam": "Jefry el Bhwash",
             "foto": "Jefry",
             "trainerType": "Baantrainer",
@@ -26,7 +18,7 @@
         },
         {
             "naam": "Eric van Pijlen",
-            "foto": "eric",
+            "foto": "Eric",
             "trainerType": "Baantrainer",
             "favorieteOnderdeel": "Polsstokhoogspringen",
             "trainerSinds": "2024",
@@ -42,7 +34,7 @@
         },
         {
             "naam": "Anne-Wil van Werkhoven",
-            "foto": "placeholder",
+            "foto": "annewil",
             "trainerType": "Baantrainer",
             "favorieteOnderdeel": "Hinkstapspringen",
             "trainerSinds": "2025",
@@ -58,7 +50,7 @@
         },
         {
             "naam": "Jamie Hanselaar",
-            "foto": "jamie",
+            "foto": "Jamie",
             "trainerType": "Looptrainer",
             "favorieteOnderdeel": "800 meter, omdat het de ultieme uitdaging is: snelheid én uithoudingsvermogen combineren in een paar minuten pure afzien",
             "trainerSinds": "2016 (kinderen t/m 9 jaar) en sinds 2024 trainer voor studenten (iets meer focus, iets minder krokodillentranen).",
@@ -78,6 +70,16 @@
             "favorieteOnderdeel": "800 en 1500 meter",
             "trainerSinds": "2023",
             "expertise": "Ik heb een aantal jaar zelf op hoog niveau getraind. De ervaringen die ik daarmee op heb gedaan, gebruik ik voor het produceren van kwalitatief goede training voor ieder niveau. Daarnaast weet ik goed wanneer atleten het zwaar hebben en reductie van trainingsarbeid nodig is."
+        }
+    ],
+    "OudTrainers": [
+        {
+            "naam": "Gijs Tops",
+            "foto": "Gijs",
+            "trainerType": "Baantrainer",
+            "favorieteOnderdeel": "Hoogspringen",
+            "trainerSinds": "2021",
+            "expertise": "Als junior heb ik zelf specifiek op hoogspringen getraind, en ik wil deze kennis nu graag overdragen. Tijdens de trainingen zorg ik ervoor dat we met een gezonde portie jump squats en core oefeningen de lat zo hoog mogelijk leggen. Tot snel!"
         }
     ]
 }
