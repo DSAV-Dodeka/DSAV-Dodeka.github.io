@@ -59,7 +59,7 @@ const conversionTables = {
 
 const defaultPRs = {
     "60m": 7.6,
-    "100m": 12.05,
+    "100m": 12.04,
     "200m": 24.16,
     "400m": 58.04
 };
@@ -73,9 +73,7 @@ let currentTrainingMode = 'distance';
 let trainingRuns = [
     { "id": 1, "distance": "100m", "customDistance": "", "percentage": 85, "customPercentage": "" },
     { "id": 2, "distance": "120m", "customDistance": "", "percentage": 90, "customPercentage": "" },
-    { "id": 3, "distance": "150m", "customDistance": "", "percentage": 95, "customPercentage": "" },
-    { "id": 4, "distance": "120m", "customDistance": "", "percentage": 90, "customPercentage": "" },
-    { "id": 5, "distance": "100m", "customDistance": "", "percentage": 85, "customPercentage": "" }
+    { "id": 3, "distance": "150m", "customDistance": "", "percentage": 95, "customPercentage": "" }
 ];
 
 let durationRuns = [
