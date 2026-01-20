@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprinttraining omrekenen</title>
+    <link rel="stylesheet" href="training_calculator/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Sprinttraining omrekenen</h1>
+            <p class="subtitle">Berekend door Eric, naar deze web-app omgezet door Jefry</p>
+        </header>
+
+        <!-- Personal Records Section -->
+        <section class="card pr-section">
+            <h2>Persoonlijke Records (PR) <span class="help-text-inline">personal records</span></h2>
+
+            <div class="pr-inputs">
+                <div class="pr-input-group">
+                    <label class="form-label" for="pr-60m">60 meter <span class="input-subtitle">60
+                            meters</span></label>
+                    <input type="number" id="pr-60m" class="form-control" step="0.01" min="5" max="15" value="7.6">
+                </div>
+                <div class="pr-input-group">
+                    <label class="form-label" for="pr-100m">100 meter <span class="input-subtitle">100
+                            meters</span></label>
+                    <input type="number" id="pr-100m" class="form-control" step="0.01" min="8" max="20" value="12.04">
+                </div>
+                <div class="pr-input-group">
+                    <label class="form-label" for="pr-200m">200 meter <span class="input-subtitle">200
+                            meters</span></label>
+                    <input type="number" id="pr-200m" class="form-control" step="0.01" min="15" max="40" value="24.16">
+                </div>
+                <div class="pr-input-group">
+                    <label class="form-label" for="pr-400m">400 meter <span class="input-subtitle">400
+                            meters</span></label>
+                    <input type="number" id="pr-400m" class="form-control" step="0.01" min="40" max="90" value="58.04">
+                </div>
+            </div>
+        </section>
+
+        <!-- Training Scheme Builder -->
+        <section class="card training-builder-section">
+            <div class="training-header">
+                <h2>Trainingsschema Samenstellen <span class="help-text-inline">training scheme builder</span></h2>
+
+                <div class="training-mode-toggle">
+                    <button class="toggle-btn active" id="distance-mode-btn" onclick="switchTrainingMode('distance')">
+                        Op Afstand
+                    </button>
+                    <button class="toggle-btn" id="duration-mode-btn" onclick="switchTrainingMode('duration')">
+                        Op Tijd
+                    </button>
+                </div>
+            </div>
+
+            <!-- Distance-based training (existing) -->
+            <div class="training-mode-content" id="distance-mode">
+                <div class="training-table-container">
+                    <table class="training-table">
+                        <thead>
+                            <tr>
+                                <th>Loopje</th>
+                                <th>Afstand <span class="input-subtitle">distance</span></th>
+                                <th>Intensiteit <span class="input-subtitle">intensity</span></th>
+                                <th>Verwijderen <span class="input-subtitle">Delete</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="training-runs">
+                            <!-- Training runs will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <button class="btn btn--primary add-run-btn" onclick="addTrainingRun()">
+                    + Voeg Loopje Toe
+                </button>
+            </div>
+
+            <!-- Duration-based training (new) -->
+            <div class="training-mode-content hidden" id="duration-mode">
+                <div class="training-table-container">
+                    <table class="training-table">
+                        <thead>
+                            <tr>
+                                <th>Loopje</th>
+                                <th>Duur <span class="input-subtitle">duration</span></th>
+                                <th>Intensiteit <span class="input-subtitle">intensity</span></th>
+                                <th>Acties <span class="input-subtitle">actions</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="duration-runs">
+                            <!-- Duration runs will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <button class="btn btn--primary add-run-btn" onclick="addDurationRun()">
+                    + Voeg Loopje Toe
+                </button>
+            </div>
+        </section>
+
+        <!-- Schema Overview -->
+        <section class="card schema-overview-section">
+            <h2>Schema Overzicht <span class="help-text-inline">training overview table</span></h2>
+
+            <div class="schema-table-container">
+                <table class="schema-table">
+                    <thead id="schema-table-head">
+                        <tr>
+                            <th>Loopje</th>
+                            <th>Afstand</th>
+                            <th>Intensiteit</th>
+                            <th>Doeltijd</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schema-overview-body">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Collapsible Conversion Calculator -->
+        <section class="card conversion-section">
+            <div class="conversion-header" onclick="toggleConversion()">
+                <h2>Omrekenen <span class="help-text-inline">Conversion</span></h2>
+                <span class="toggle-icon" id="conversion-toggle">▼</span>
+            </div>
+
+            <div class="conversion-content hidden" id="conversion-content">
+                <div class="conversion-inputs">
+                    <div class="conversion-input-group">
+                        <label class="form-label" for="base-distance">Basisafstand <span class="input-subtitle">base
+                                distance</span></label>
+                        <select id="base-distance" class="form-control">
+                            <option value="60m">60m</option>
+                            <option value="100m" selected>100m</option>
+                            <option value="200m">200m</option>
+                            <option value="400m">400m</option>
+                        </select>
+                    </div>
+                    <div class="conversion-input-group">
+                        <label class="form-label" for="your-time">Jouw Tijd (s) <span class="input-subtitle">your
+                                time (s)</span></label>
+                        <input type="number" id="your-time" class="form-control" step="0.01" min="5" max="90"
+                            value="12.05">
+                    </div>
+                    <div class="conversion-input-group">
+                        <label class="form-label" for="target-distance">Doelafstand (m) <span
+                                class="input-subtitle">Target distance (m)</span></label>
+                        <input type="number" id="target-distance" class="form-control" min="60" max="400" value="120">
+                    </div>
+                    <div class="conversion-input-group">
+                        <label class="form-label" for="target-percentage">Doelpercentage <span
+                                class="input-subtitle">Target percentage</span></label>
+                        <select id="target-percentage" class="form-control">
+                            <option value="100">100%</option>
+                            <option value="95">95%</option>
+                            <option value="90" selected>90%</option>
+                            <option value="85">85%</option>
+                            <option value="80">80%</option>
+                            <option value="75">75%</option>
+                            <option value="70">70%</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="conversion-result" id="conversion-result">
+                    <!-- Result will be shown here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="training_calculator/app.js"></script>
+</body>
+
+</html>

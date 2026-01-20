@@ -109,3 +109,5 @@ dist
 stats.html
 
 .react-router
+
+.DS_Store
