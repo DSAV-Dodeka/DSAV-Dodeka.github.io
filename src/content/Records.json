@@ -122,6 +122,12 @@
                    "prestatie":"01:58.08"
                 },
                 {
+                   "naam":"Stein Glastra",
+                   "datum":"2025-06-22",
+                   "plaats":"Utrecht",
+                   "prestatie":"01:58.82"
+                },
+                {
                    "naam":"Matthijs Arnoldus",
                    "datum":"2022-07-03",
                    "plaats":"Den Haag",
@@ -132,12 +138,6 @@
                    "datum":"2023-06-09",
                    "plaats":"Nijmegen",
                    "prestatie":"02:05.27"
-                },
-                {
-                   "naam":"Tim Creusen",
-                   "datum":"2021-10-09",
-                   "plaats":"Delft",
-                   "prestatie":"02:05.78"
                 }
              ]
           },
@@ -361,10 +361,10 @@
                    "prestatie":"46.15"
                 },
                 {
-                   "naam":"Xylander Parqui, Itse Veltmeijer, Eric van Pijlen en Jefry el Bhwash",
-                   "datum":"2024-09-07",
-                   "plaats":"Leiden",
-                   "prestatie":"48.37"
+                   "naam":"Xylander Parqui, Eric van Pijlen Koen Stapel en Kyllian van Leeuwen",
+                   "datum":"2025-09-14",
+                   "plaats":"Wageningen",
+                   "prestatie":"47.87"
                 }
              ]
           },
@@ -716,6 +716,12 @@
                    "prestatie":"5736.00"
                 },
                 {
+                   "naam":"Sven van Weezep",
+                   "datum":"2025-06-28",
+                   "plaats":"Delft",
+                   "prestatie":"5455.00"
+                },
+                {
                    "naam":"Stefan Pol",
                    "datum":"2022-06-25",
                    "plaats":"Delft",
@@ -732,12 +738,6 @@
                    "datum":"2023-07-01",
                    "plaats":"Delft",
                    "prestatie":"4984.00"
-                },
-                {
-                   "naam":"Tobias Steevensz",
-                   "datum":"2023-07-01",
-                   "plaats":"Delft",
-                   "prestatie":"4754.00"
                 }
              ]
           },
@@ -746,9 +746,9 @@
              "prestaties":[
                 {
                    "naam":"Stein Glastra",
-                   "datum":"2023-10-13",
-                   "plaats":"Delft ",
-                   "prestatie":"05:51.02"
+                   "datum":"2025-07-26",
+                   "plaats":"Lissabon ",
+                   "prestatie":"05:35.90"
                 },
                 {
                    "naam":"Simon Loose",
@@ -782,26 +782,50 @@
                 {
                    "naam":"Tijmen Hoedjes",
                    "datum":"2024-11-02",
-                   "plaats":"Wageningen ",
+                   "plaats":"Wageningen",
                    "prestatie":"15:42"
+                },
+                {
+                   "naam":"Thymo Westerhof",
+                   "datum":"2025-08-23",
+                   "plaats":"De Lier",
+                   "prestatie":"16:05"
                 },
                 {
                    "naam":"Chiem Denen",
                    "datum":"2024-09-22",
-                   "plaats":"Venlo ",
+                   "plaats":"Venlo",
                    "prestatie":"17:20"
                 },
                 {
-                   "naam":"Sven van Weezep",
-                   "datum":"2025-04-27",
-                   "plaats":"Nootdorp",
-                   "prestatie":"20:30"
+                   "naam":"Stefan Pol",
+                   "datum":"2025-11-01",
+                   "plaats":"Enschede",
+                   "prestatie":"19:24"
+                },
+                {
+                   "naam":"Bart Groeneveld",
+                   "datum":"2021-11-13",
+                   "plaats":"Rotterdam",
+                   "prestatie":"19:32"
                 }
              ]
           },
           {
              "onderdeel":"10km Weg",
              "prestaties":[
+                {
+                   "naam":"Robert Meier",
+                   "datum":"2025-05-29",
+                   "plaats":"Delft",
+                   "prestatie":"32:07"
+                },
+                {
+                   "naam":"Thymo Westerhof",
+                   "datum":"2025-09-06",
+                   "plaats":"Rotterdam",
+                   "prestatie":"32:51"
+                },
                 {
                    "naam":"Kyllian van Leeuwen",
                    "datum":"2024-11-02",
@@ -819,18 +843,18 @@
                    "datum":"2023-05-18",
                    "plaats":"Delft",
                    "prestatie":"39:52"
-                },
-                {
-                   "naam":"Lars Smit",
-                   "datum":"2022-11-12",
-                   "plaats":"Delft",
-                   "prestatie":"45:31"
                 }
              ]
           },
           {
              "onderdeel":"Halve Marathon",
              "prestaties":[
+                {
+                   "naam":"Robert Meier",
+                   "datum":"2025-04-19",
+                   "plaats":"Paderborn (DE)",
+                   "prestatie":"01:10:56"
+                },
                 {
                    "naam":"Thymo Westerhof",
                    "datum":"2024-10-06",
@@ -1031,6 +1055,12 @@
              "onderdeel":"3000m",
              "prestaties":[
                 {
+                   "naam":"Robert Meier",
+                   "datum":"2025-02-01",
+                   "plaats":"Apeldoorn",
+                   "prestatie":"08:47.08"
+                },
+                {
                    "naam":"Jelmer Stuijt",
                    "datum":"2022-03-12",
                    "plaats":"Apeldoorn",
@@ -1173,6 +1203,12 @@
                    "datum":"2022-03-12",
                    "plaats":"Apeldoorn",
                    "prestatie":"6.25"
+                },
+                {
+                   "naam":"Eric Wolfrat",
+                   "datum":"2025-12-14",
+                   "plaats":"Apeldoorn",
+                   "prestatie":"5.72"
                 },
                 {
                    "naam":"Abel Kappenburg",
@@ -1320,9 +1356,9 @@
                 },
                 {
                    "naam":"Aniek Sips",
-                   "datum":"2022-06-11",
-                   "plaats":"Groningen",
-                   "prestatie":"02:25.55"
+                   "datum":"2022-06-19",
+                   "plaats":"Delft",
+                   "prestatie":"02:24.37"
                 },
                 {
                    "naam":"Saana Taal",
@@ -1349,9 +1385,9 @@
                 },
                 {
                    "naam":"Aniek Sips",
-                   "datum":"2023-05-28",
-                   "plaats":"Utrecht",
-                   "prestatie":"05:03.32"
+                   "datum":"2024-07-11",
+                   "plaats":"Rotterdam",
+                   "prestatie":"04:54.73"
                 },
                 {
                    "naam":"Sanne van Beek",
@@ -1389,16 +1425,16 @@
                    "prestatie":"11:14.23"
                 },
                 {
+                   "naam":"Sacha Ruf",
+                   "datum":"2025-09-20",
+                   "plaats":"Wageningen",
+                   "prestatie":"11:18.53"
+                },
+                {
                    "naam":"Aniek Sips",
                    "datum":"2022-05-22",
                    "plaats":"Delft",
                    "prestatie":"11:30.80"
-                },
-                {
-                   "naam":"Saana Taal",
-                   "datum":"2023-09-17",
-                   "plaats":"Delft",
-                   "prestatie":"13:02.64"
                 }
              ]
           },
@@ -1410,6 +1446,12 @@
                    "datum":"2024-08-02",
                    "plaats":"Utrecht",
                    "prestatie":"17:40.26"
+                },
+                {
+                   "naam":"Aniek Sips",
+                   "datum":"2024-06-09",
+                   "plaats":"Eindhoven",
+                   "prestatie":"19:23.87"
                 }
              ]
           },
@@ -1761,9 +1803,9 @@
                 },
                 {
                    "naam":"Vera Schuurman",
-                   "datum":"2025-06-28",
+                   "datum":"2025-09-21",
                    "plaats":"Delft",
-                   "prestatie":"2.25"
+                   "prestatie":"2.40"
                 },
                 {
                    "naam":"Lianne Folkerts",
@@ -1795,6 +1837,12 @@
                    "prestatie":"5.02"
                 },
                 {
+                   "naam":"Aniek Sips",
+                   "datum":"2021-10-09",
+                   "plaats":"Delft",
+                   "prestatie":"4.72"
+                },
+                {
                    "naam":"Sanne Diepen",
                    "datum":"2021-10-24",
                    "plaats":"Eindhoven",
@@ -1805,12 +1853,6 @@
                    "datum":"2021-07-03",
                    "plaats":"Delft",
                    "prestatie":"4.27"
-                },
-                {
-                   "naam":"Laura Geurtsen",
-                   "datum":"2020-10-04",
-                   "plaats":"Delft",
-                   "prestatie":"4.03"
                 }
              ]
           },
@@ -2236,16 +2278,16 @@
              "onderdeel":"polsstokspringen",
              "prestaties":[
                 {
+                   "naam":"Vera Schuurman",
+                   "datum":"2025-12-14",
+                   "plaats":"Apeldoorn",
+                   "prestatie":"2.50"
+                },
+                {
                    "naam":"Lianne Folkerts",
                    "datum":"2023-03-11",
                    "plaats":"Apeldoorn",
                    "prestatie":"2.20"
-                },
-                {
-                   "naam":"Vera Schuurman",
-                   "datum":"2024-12-15",
-                   "plaats":"Apeldoorn",
-                   "prestatie":"2.00"
                 }
              ]
           },
