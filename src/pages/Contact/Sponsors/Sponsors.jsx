@@ -5,7 +5,7 @@ import Sponsoropties from "./components/Sponsoropties";
 function Sponsors() {
     return(
         <div>
-            <PageTitle title="Sponsors"/>
+            <PageTitle title="Samenwerking"/>
             <Sponsoropties />
         </div>        
     )
