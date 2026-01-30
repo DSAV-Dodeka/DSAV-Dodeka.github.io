@@ -4,6 +4,7 @@ import TitleBar from "./components/TitleBar";
 import HomeTrainingen from "./components/HomeTrainingen";
 import HomeCommissies from "./components/HomeCommissies";
 import "./Home.scss";
+import Samenwerkingen from "./components/Samenwerkingen";
 // import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
@@ -99,6 +100,7 @@ function Home() {
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
+      <Samenwerkingen />
       <div id="sneeuw_container"></div>
     </div>
   );

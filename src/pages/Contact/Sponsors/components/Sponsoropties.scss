@@ -72,15 +72,15 @@
     width: 100%;
     padding-top: 4rem;
     --tw-opacity: 1;
-    background-color: white;
+    // background-color: white;
     @include variables.respond(computerscherm){
         display: inline;
         width: 33.333333%;
+        max-height: 700px;
         padding-top: 0px;
         padding-left: 4rem;
     }
 }
-
 
 .linktomail_1{
     color: variables.$dodeka_rood;
