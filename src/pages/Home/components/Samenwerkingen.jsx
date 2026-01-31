@@ -6,11 +6,11 @@ import {
     Link
 } from "react-router";
 import {getNestedImagesUrl} from "../../../functions/links";
-import virtuoos from "$images/sponsors/virtuoos.png";
 import "./Samenwerkingen.scss";
 import muconsult from "$images/sponsors/muconsult.png";
 import maltha from "$images/sponsors/maltha.png";
 import boozed from "$images/sponsors/boozed.png";
+import virtuoos from "$images/sponsors/virtuoos.png";
 import arnold from "$images/arnold/arnoldtrap.jpg";
 
 
