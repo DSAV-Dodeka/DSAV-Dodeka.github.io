@@ -72,15 +72,16 @@
     width: 100%;
     padding-top: 4rem;
     --tw-opacity: 1;
-    background-color: white;
+    margin-top: 2rem;
+    margin-right: 2rem;
     @include variables.respond(computerscherm){
         display: inline;
         width: 33.333333%;
+        max-height: 650px;
         padding-top: 0px;
         padding-left: 4rem;
     }
 }
-
 
 .linktomail_1{
     color: variables.$dodeka_rood;
@@ -98,4 +99,8 @@
 
 .boozed {
     width: 16.26rem;
+}
+
+.virtuoos {
+    width: 12.26rem;
 }

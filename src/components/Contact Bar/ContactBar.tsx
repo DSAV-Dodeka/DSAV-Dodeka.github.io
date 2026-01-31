@@ -5,6 +5,8 @@ import Heading from "./Heading";
 import maltha from "$images/sponsors/maltha.png";
 import muconsult from "$images/sponsors/muconsult.png";
 import boozed from "$images/sponsors/boozed.png";
+import virtuoos from "$images/sponsors/virtuoos.png";
+
 
 function ContactBar() {
   return (
@@ -85,6 +87,13 @@ function ContactBar() {
               className="bar_sponsor boozed_bar"
             ></img>
           </a>
+          <a target="_blank" rel="noreferrer" href="https://www.virtuoos.com/">
+            <img
+              src={virtuoos}
+              alt="Virtuoos"
+              className="bar_sponsor virtuoos_bar"
+            ></img>
+          </a>          
         </div>
       </div>
     </div>

@@ -88,7 +88,7 @@ function NavigationBar() {
             name="Contact"
             path="/contact"
             items={[
-              { name: "Sponsors", path: "/sponsors" },
+              { name: "Samenwerking", path: "/sponsors" },
               { name: "VCP", path: "/vcp" },
               { name: "Donateurs", path: "/donateurs" },
             ]}
@@ -180,7 +180,7 @@ function NavigationBar() {
               path="/contact"
               items={[
                 { name: "Contactinformatie", path: "" },
-                { name: "Sponsors", path: "/sponsors" },
+                { name: "Samenwerking", path: "/sponsors" },
                 { name: "VCP", path: "/vcp" },
                 { name: "Donateurs", path: "/donateurs" },
               ]}
