@@ -1,10 +1,10 @@
 import PageTitle from "../../../components/PageTitle";
 import Header from "../../../components/Header";
 import "./VCP.scss";
-import vcpLisa from "$images/vcp/vcp_lisa.jpg";
-import vcpNiels from "$images/vcp/vcp_niels.jpg";
-import vcpAnnejet from "$images/vcp/vcp_annejet.jpg";
-import vcpRoy from "$images/vcp/vcp_roy.jpg";
+import vcpLisa from "$images/vcp/vcp_lisa.webp";
+import vcpNiels from "$images/vcp/vcp_niels.webp";
+import vcpAnnejet from "$images/vcp/vcp_annejet.webp";
+import vcpRoy from "$images/vcp/vcp_roy.webp";
 
 function Vertrouwenscontactpersoon() {
   return (

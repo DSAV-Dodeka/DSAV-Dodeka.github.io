@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import Header from "../../../components/Header";
 import ContactButtons from "../../../components/ContactButtons";
 import "./Meetrainen.scss";
-import wordlid from "$images/word_lid/wordLid.jpg";
+import wordlid from "$images/word_lid/wordLid.webp";
 
 function Meetrainen() {
   return (

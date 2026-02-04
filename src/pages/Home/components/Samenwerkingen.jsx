@@ -7,11 +7,11 @@ import {
 } from "react-router";
 import {getNestedImagesUrl} from "../../../functions/links";
 import "./Samenwerkingen.scss";
-import muconsult from "$images/sponsors/muconsult.png";
+import muconsult from "$images/sponsors/muconsult.webp";
 import maltha from "$images/sponsors/maltha.png";
-import boozed from "$images/sponsors/boozed.png";
-import virtuoos from "$images/sponsors/virtuoos.png";
-import arnold from "$images/arnold/arnoldtrap.jpg";
+import boozed from "$images/sponsors/boozed.webp";
+import virtuoos from "$images/sponsors/virtuoos.webp";
+import arnold from "$images/arnold/arnoldtrap.webp";
 
 
 

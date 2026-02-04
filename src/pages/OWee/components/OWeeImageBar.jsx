@@ -1,9 +1,9 @@
 import React from "react";
 import "./OWeeImageBar.scss";
 import {getNestedImagesUrl} from "../../../functions/links";
-import atletiek from "$images/owee/atletiek.jpg";
-import trackFestival from "$images/owee/track_festival.jpg";
-import marioKrat from "$images/owee/mario_krat.JPG";
+import atletiek from "$images/owee/atletiek.webp";
+import trackFestival from "$images/owee/track_festival.webp";
+import marioKrat from "$images/owee/mario_krat.webp";
 
 function OWeeText() {
     return(

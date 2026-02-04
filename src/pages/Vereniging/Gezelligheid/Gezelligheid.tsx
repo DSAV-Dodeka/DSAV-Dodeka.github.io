@@ -1,10 +1,10 @@
 import React from "react";
 import "./Gezelligheid.scss";
 import PageTitle from "../../../components/PageTitle";
-import biermijl from "$images/gezelligheid/biermijl.jpg";
-import nskTeamsAlgemeen from "$images/gezelligheid/nsk_teams_algemeen.jpeg";
-import gala1 from "$images/gezelligheid/gala1.jpg";
-import uithof from "$images/gezelligheid/uithof.jpg";
+import biermijl from "$images/gezelligheid/biermijl.webp";
+import nskTeamsAlgemeen from "$images/gezelligheid/nsk_teams_algemeen.webp";
+import gala1 from "$images/gezelligheid/gala1.webp";
+import uithof from "$images/gezelligheid/uithof.webp";
 
 function Gezelligheid() {
   return (

@@ -7,8 +7,8 @@ import disableScroll from "disable-scroll";
 import wedstrijdText from "../../content/Wedstrijden.json";
 import "./NavigationBar.scss";
 import "./animation.css";
-import logo from "$images/logo.png";
-import dodeka from "$images/dodeka.png";
+import logo from "$images/logo.webp";
+import dodeka from "$images/dodeka.webp";
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
