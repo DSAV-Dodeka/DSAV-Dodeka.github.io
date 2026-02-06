@@ -51,9 +51,9 @@ function Wedstrijd(props) {
                     <p className="hoogtepunten_titel">Prijzen</p>
                 </div>
                 <div className="hoogtepunten_medaille_container">
-                    <img className="hoogtepunten_medaille" src={getStaticImageUrl("wedstrijden/goud.png")} alt=""/>
-                    <img className="hoogtepunten_medaille" src={getStaticImageUrl("wedstrijden/zilver.png")} alt=""/>
-                    <img className="hoogtepunten_medaille" src={getStaticImageUrl("wedstrijden/brons.png")} alt=""/>
+                    <img className="hoogtepunten_medaille" src={getStaticImageUrl("wedstrijden/goud.webp")} alt=""/>
+                    <img className="hoogtepunten_medaille" src={getStaticImageUrl("wedstrijden/zilver.webp")} alt=""/>
+                    <img className="hoogtepunten_medaille" src={getStaticImageUrl("wedstrijden/brons.webp")} alt=""/>
                 </div>
                 <div className="hoogtepunten_text_container">
                     <p className="hoogtepunten_text">{getGold(props.prijzen)}</p>

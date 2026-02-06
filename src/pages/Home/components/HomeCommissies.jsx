@@ -7,7 +7,7 @@ import {
 } from "react-router";
 import "./HomeCommissies.scss";
 import {getNestedImagesUrl} from "../../../functions/links";
-import commissie from "$images/home/commissie.jpg";
+import commissie from "$images/home/commissie.webp";
 
 function HomeCommissies() {
   return (

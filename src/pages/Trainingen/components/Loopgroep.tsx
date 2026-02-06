@@ -1,6 +1,6 @@
 import Header from "../../../components/Header";
 import "./Loopgroep.scss";
-import loopgroep from "$images/trainingen/loopgroep_update.jpg";
+import loopgroep from "$images/trainingen/loopgroep_update.webp";
 
 function Loopgroep(props: { text: string }) {
   return (

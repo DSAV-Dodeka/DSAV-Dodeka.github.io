@@ -6,7 +6,7 @@ import { Link } from "react-router";
 import "./HomeNieuws.scss";
 import Nieuws from "../../../content/Nieuws.json";
 import { getNestedImagesUrl } from "../../../functions/links";
-import nieuws from "$images/home/nieuws.jpg";
+import nieuws from "$images/home/nieuws.webp";
 
 function HomeNieuws() {
   const [maxNieuws, setMaxNieuws] = useState(3);

@@ -33,7 +33,7 @@ function Wedstrijden() {
             <div className="wedstrijden_routes">
                 <Link className="wedstrijden_records" to='records' >
                     <h1 className="wedstrijden_link_header">Records</h1>
-                    <img src={getStaticImageUrl("wedstrijden/records.png")} className="wedstrijden_link_image" alt=""/>
+                    <img src={getStaticImageUrl("wedstrijden/records.webp")} className="wedstrijden_link_image" alt=""/>
                 </Link>
             </div>
         </div>
