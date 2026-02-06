@@ -3,38 +3,38 @@
         {
             "title": "Sport t-shirt", 
             "price": "€15,00", 
-            "image": "T-Shirt.webp"
+            "image": "T-Shirt.jpg"
         }, 
         {
             "title": "Sport singlet",
             "price": "€15,00",
-            "image": "Singlet_vrouw.webp"
+            "image": "Singlet_vrouw.jpg"
         }
     ],
     "wedstrijdkleding_vrouwen": [
         {
             "title": "Sport t-shirt", 
             "price": "€15,00", 
-            "image": "T-Shirt_Vrouw.webp",
+            "image": "T-Shirt_Vrouw.jpg",
             "text": "Op de training zal je misschien al wat mensen in super sexy donkerblauwe shirts gezien hebben. Het is een erg comfortabel shirt en het voert je zweet snel af. Het zit niet te strak en ook niet te los, kortom, hèt perfecte shirt voor je wedstrijden en trainigen!"
         }, 
         {
             "title": "Sport singlet", 
             "price": "€15,00", 
-            "image": "Singlet_vrouw.webp",
+            "image": "Singlet_vrouw.jpg",
             "text": "Heb jij een voorliefde voor het volledig vrij kunnen bewegen van je armen of wil je gewoon graag je hardverdiende spieren laten zien? Dan is dit singlet perfect voor jou, het is gemaakt van dezelfde zweetafvoerende stof als het T-Shirt dus ook dit kledingstuk zit hartstikke comfortabel."
         }],
     "wedstrijdkleding_mannen": [
         {
             "title": "Sport t-shirt", 
             "price": "€15,00", 
-            "image": "T-Shirt.webp",
+            "image": "T-Shirt.jpg",
             "text": "Op de training zal je misschien al wat mensen in super sexy donkerblauwe shirts gezien hebben. Het is een erg comfortabel shirt en het voert je zweet snel af. Het zit niet te strak en ook niet te los, kortom, hèt perfecte shirt voor je wedstrijden en trainigen!"
         }, 
         {
             "title": "Sport singlet", 
             "price": "€15,00", 
-            "image": "Singlet.webp",
+            "image": "Singlet.jpg",
             "text": "Heb jij een voorliefde voor het volledig vrij kunnen bewegen van je armen of wil je gewoon graag je hardverdiende spieren laten zien? Dan is dit singlet perfect voor jou, het is gemaakt van dezelfde zweetafvoerende stof als het T-Shirt dus ook dit kledingstuk zit hartstikke comfortabel."
         }
     ],
@@ -42,20 +42,20 @@
         {
             "title": "Trainingsbroek", 
             "price": "€20,00", 
-            "image": "Broek.webp",
+            "image": "Broek.jpg",
             "text": "In de barre wintermaanden of als je thuis graag de vereniging wilt respresenten is het natuurlijk fijn om een warme joggingbroek te hebben."
         }, 
         {
             "title": "Windjack", 
             "price": "€29,00", 
-            "image": "windJack.webp",
+            "image": "windJack.jpg",
             "text": "+5m/s in je rug bij een 100m sprint is natuurlijk de natte droom van elke atleet, maar de wind is niet altijd even fijn bij een training. Daarom is zo'n heerlijk windjackje een perfecte oplossing. Dan kan je jouw liefde voor Dodeka showen ondanks dat je iets over je Dodeka shirt hebt aangetrokken."
         }
         , 
         {
             "title": "Hoodie", 
             "price": "€20,00", 
-            "image": "Hoodie.webp",
+            "image": "Hoodie.jpg",
             "text": "De hoodie, ook zeer veel gekocht door de atleten van Dodeka en daarmee onmisbaar in jouw kledingkast / stoel waar je al je kleren op legt. Gemaakt van de tranen van onze tegenstanders en passie van onze leden."
         }
     ]

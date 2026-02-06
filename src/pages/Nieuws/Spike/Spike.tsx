@@ -2,7 +2,7 @@ import { useState } from "react";
 import Nieuwsbericht from "../Nieuws/components/Nieuwsbericht";
 import SpikeText from "../../../content/Spike.json";
 import "./Spike.scss";
-import logo from "$images/spike/logo.webp";
+import logo from "$images/spike/logo.png";
 
 function Spike() {
   const [nBerichten, setNBerichten] = useState(3);

@@ -1,7 +1,7 @@
 import Header from "../../../../components/Header";
 import "./Trainersgezocht.scss";
 import ContactButtons from "../../../../components/ContactButtons";
-import dagvandeatletiek from "$images/trainingen/dagvandeatletiek.webp";
+import dagvandeatletiek from "$images/trainingen/dagvandeatletiek.jpg";
 
 function Trainersgezocht(props: { text: string }) {
   return (

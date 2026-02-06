@@ -1,6 +1,6 @@
 import Header from "../../../../components/Header";
 import "./Donateurs_info.scss";
-import geld from "$images/commissies/quico/commissie.webp";
+import geld from "$images/commissies/quico/commissie.jpg";
 
 function Donateurs_info(props: { text: string }) {
   return (

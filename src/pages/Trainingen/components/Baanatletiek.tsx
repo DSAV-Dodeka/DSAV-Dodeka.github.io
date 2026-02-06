@@ -1,6 +1,6 @@
 import Header from "../../../components/Header";
 import "./Baanatletiek.scss";
-import baanatletiek from "$images/trainingen/baanatletiek.webp";
+import baanatletiek from "$images/trainingen/baanatletiek.jpg";
 
 function Baanatletiek(props: { text: string }) {
   return (

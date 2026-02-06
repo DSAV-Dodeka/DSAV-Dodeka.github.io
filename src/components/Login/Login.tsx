@@ -51,11 +51,11 @@ const Login = () => {
     return (
         <div  className="profile-box">
             {ac.isLoaded && !ac.isAuthenticated &&
-                <button className="login_button" onClick={handleLogin}><img className="login_icon" src={getNestedImagesUrl(`login/login.webp`)} /></button>
+                <button className="login_button" onClick={handleLogin}><img className="login_icon" src={getNestedImagesUrl(`login/login.png`)} /></button>
             }
             {ac.isLoaded && ac.isAuthenticated &&
                 <div className="profile_dropdown" onClick={() => setActive(!active)}>
-                    <h2 ref={ref} className="profile_login"><img className="login_icon" src={getNestedImagesUrl(`login/ingelogd.webp`)} /></h2>
+                    <h2 ref={ref} className="profile_login"><img className="login_icon" src={getNestedImagesUrl(`login/ingelogd.png`)} /></h2>
                     <div className={active ? "profile_drop" : "dropHide"}>
                         <Link className="profile_dropdownElement" to="/profiel">Profiel</Link>
                         {ac.scope.includes("admin") ? (<Link className="profile_dropdownElement" to="/admin">Admin</Link>) : ""}
