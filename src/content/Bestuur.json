@@ -4,43 +4,43 @@
             "naam": "Bestuur 7",
             "leden": [["Merel Blaauw","Voorzitter"],["Lou Bijman","Secretaris"], ["Sven van Weezep","Penningmeester"],["Xylander Parqui","Commissaris Atletiek"], ["Anne Hinrichs","Commissaris Intern"]],
             "jaar": "2025/2026",
-            "foto": "bestuur_7.webp" 
+            "foto": "bestuur_7.jpg" 
         },
         {
             "naam": "Bestuur 6",
             "leden": [["Joris Gudde","Voorzitter"],["Itse Veltmeijer","Secretaris"], ["Tobias Steevensz","Penningmeester"],["Anna Lusthof","Commissaris Atletiek"], ["Tijmen Hoedjes","Commissaris Intern"]],
             "jaar": "2024/2025",
-            "foto": "bestuur_6.webp" 
+            "foto": "bestuur_6.jpg" 
         },
         {
             "naam": "Bestuur 5",
             "leden": [["Anne-Wil van Werkhoven","Voorzitter"],["Sanne van Beek","Secretaris"], ["Marien Sips","Penningmeester"],["Sanne Diepen","Commissaris Atletiek"], ["Tim Creusen","Commissaris Intern"]],
             "jaar": "2023/2024",
-            "foto": "bestuur_5.webp" 
+            "foto": "bestuur_5.jpg" 
         },
         {
             "naam": "Bestuur 4",
             "leden": [["Lianne Folkerts","Voorzitter"], ["Jefry el Bhwash","Secretaris"], ["Simon Loose","Penningmeester"], ["Saana Taal","Commissaris Atletiek"]],
             "jaar": "2022/2023",
-            "foto": "bestuur_4.webp" 
+            "foto": "bestuur_4.jpg" 
         },
         {
             "naam": "Bestuur 3",
             "leden": [["Koen Stapel","Voorzitter"],["Fieke Witte","Secretaris"],["Stefan Pol","Penningmeester"], ["Aniek Sips","Commissaris Atletiek"]],
             "jaar": "2021/2022",
-            "foto": "bestuur_3.webp" 
+            "foto": "bestuur_3.jpg" 
         },
         {
             "naam": "Bestuur 2",
             "leden": [["Koen Stapel"],["Donne Gerlich"],["Jasper Rou"],["Stefan Pol"]],
             "jaar": "2020/2021",
-            "foto": "bestuur_2.webp" 
+            "foto": "bestuur_2.jpg" 
         },
         {
             "naam": "Bestuur 1",
             "leden": [["Bart Groeneveld"],["Emile Vink"],["Abel Kappenburg"],["Jasper Rou"]],
             "jaar": "2019/2020",
-            "foto": "bestuur_1.webp" 
+            "foto": "bestuur_1.jpg" 
         }
     ]
 }

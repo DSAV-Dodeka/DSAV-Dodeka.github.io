@@ -1,5 +1,5 @@
 import React from "react";
-import arnoldFoto from "../../../../images/arnold/arnoldfoto.webp";
+import arnoldFoto from "../../../../images/arnold/arnoldfoto.jpg";
 import "./ArnoldInfo.scss";
 
 function ArnoldInfo() {

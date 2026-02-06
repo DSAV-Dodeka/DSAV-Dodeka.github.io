@@ -32,7 +32,7 @@ function Commissie(props) {
     <div id={props.name} className="commissieContainer">
       <img
         className="commissieLogo roundedRight"
-        src={getDeepImagesUrl(`commissies/${props.fotos}/logo.webp`)}
+        src={getDeepImagesUrl(`commissies/${props.fotos}/logo.jpg`)}
         alt=""
       />
       <div className="commissieInfo roundedLeft">
@@ -54,7 +54,7 @@ function Commissie(props) {
       <div className="commissieLogo roundedRight">
         <img
           className="commissieFoto roundedRight"
-          src={getDeepImagesUrl(`commissies/${props.fotos}/commissie.webp`)}
+          src={getDeepImagesUrl(`commissies/${props.fotos}/commissie.jpg`)}
           alt=""
         />
       </div>
@@ -67,7 +67,7 @@ function Commissie(props) {
               <img
                 className="commissieLidFoto"
                 src={getDeepImagesUrl(
-                  `commissies/${props.fotos}/${lid.foto}.webp`,
+                  `commissies/${props.fotos}/${lid.foto}.jpg`,
                 )}
                 alt=""
               />
@@ -108,7 +108,7 @@ function Commissie(props) {
       </div>
       <img
         className={"commissieLogo roundedLeft"}
-        src={getDeepImagesUrl(`commissies/${props.fotos}/logo.webp`)}
+        src={getDeepImagesUrl(`commissies/${props.fotos}/logo.jpg`)}
         alt=""
       />
 
@@ -120,7 +120,7 @@ function Commissie(props) {
               <img
                 className="commissieLidFoto"
                 src={getDeepImagesUrl(
-                  `commissies/${props.fotos}/${lid.foto}.webp`,
+                  `commissies/${props.fotos}/${lid.foto}.jpg`,
                 )}
                 alt=""
               />
@@ -145,7 +145,7 @@ function Commissie(props) {
       <div className="commissieLogo roundedLeft">
         <img
           className="commissieFoto roundedLeft"
-          src={getDeepImagesUrl(`commissies/${props.fotos}/commissie.webp`)}
+          src={getDeepImagesUrl(`commissies/${props.fotos}/commissie.jpg`)}
           alt=""
         />
       </div>

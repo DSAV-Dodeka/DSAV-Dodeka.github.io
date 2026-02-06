@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import "./TitleBar.scss";
 import D from "../../../images/groteD.svg?react";
 import Sneeuw from "../../../images/home/blad.svg?react";
-import titlebar from "$images/home/titlebar.webp";
+import titlebar from "$images/home/titlebar.jpg";
 
 function TitleBar() {
   return (
