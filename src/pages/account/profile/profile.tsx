@@ -72,6 +72,24 @@ export default function Profile() {
         <p>Manage your account settings and information.</p>
       </div>
 
+      {session.pending_approval ? (
+        <div className="profile-pending-banner">
+          <strong>Lidmaatschap in behandeling</strong>
+          <p>
+            Je account is aangemaakt, maar je lidmaatschap wordt nog beoordeeld
+            door het bestuur. Dit duurt meestal enkele werkdagen.
+          </p>
+        </div>
+      ) : !session.user.permissions.includes("member") ? (
+        <div className="profile-inactive-banner">
+          <strong>Lidmaatschap inactief</strong>
+          <p>
+            Je account is niet meer actief als lid van D.S.A.V. Dodeka. Neem
+            contact op met het bestuur als je denkt dat dit niet klopt.
+          </p>
+        </div>
+      ) : null}
+
       {/* Session Actions */}
       <div className="profile-section">
         <h3>Session</h3>

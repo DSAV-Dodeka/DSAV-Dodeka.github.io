@@ -1,12 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { SignupFlow } from "$functions/flows/signup.ts";
 import {
   getRegistrationStatus,
+  getSessionInfo,
   getToken,
   lookupRegistration,
+  renewSignup,
 } from "$functions/backend.ts";
+import type { RegistrationStatus } from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./signup.css";
 
@@ -27,8 +30,8 @@ export default function Signup() {
     queryFn: () => (token ? getRegistrationStatus(token) : null),
     enabled: !!token,
     refetchInterval: (query) => {
-      // Poll every 10 seconds if not yet accepted
-      if (query.state.data && !query.state.data.accepted) {
+      // Poll every 10 seconds until signup_token appears
+      if (query.state.data && !query.state.data.signup_token) {
         return 10000;
       }
       return false;
@@ -39,6 +42,17 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const [complete, setComplete] = useState(false);
+  const [memberGranted, setMemberGranted] = useState(false);
+
+  // Auto-create signup for accepted users without signup_token (sync-imported)
+  const [creatingSignup, setCreatingSignup] = useState(false);
+  const signupCreated = useRef(false);
+
+  // Auto-verification state
+  const verificationAttempted = useRef(false);
+  const [emailVerified, setEmailVerified] = useState(false);
+  const [verifying, setVerifying] = useState(false);
+  const [expired, setExpired] = useState(false);
 
   // Initialize verification code from URL if present
   const [verificationCode, setVerificationCode] = useState(codeFromUrl || "");
@@ -48,6 +62,81 @@ export default function Signup() {
   // For email+code lookup flow (when no token in URL)
   const [lookupEmail, setLookupEmail] = useState("");
   const [lookupCode, setLookupCode] = useState("");
+
+  // Auto-create signup for accepted users without signup_token (sync-imported users)
+  useEffect(() => {
+    if (
+      signupCreated.current ||
+      !registrationStatus?.accepted ||
+      registrationStatus.signup_token ||
+      !token
+    ) {
+      return;
+    }
+    signupCreated.current = true;
+    setCreatingSignup(true);
+
+    renewSignup(token)
+      .then((renewed) => {
+        queryClient.setQueryData(
+          ["registration-status", token],
+          (old: RegistrationStatus | undefined) =>
+            old ? { ...old, signup_token: renewed.signup_token } : old,
+        );
+        setCreatingSignup(false);
+      })
+      .catch(() => {
+        setStatus(
+          "Kon geen verificatie-e-mail versturen. Neem contact op met het bestuur.",
+        );
+        setCreatingSignup(false);
+      });
+  }, [registrationStatus, token, queryClient]);
+
+  // Auto-verify email when we have signup_token + code from URL
+  useEffect(() => {
+    if (
+      verificationAttempted.current ||
+      !registrationStatus?.signup_token ||
+      !codeFromUrl
+    ) {
+      return;
+    }
+    verificationAttempted.current = true;
+    setVerifying(true);
+
+    signupFlow.current
+      .verifyEmail(registrationStatus.signup_token, codeFromUrl)
+      .then(async (result) => {
+        if (result.ok) {
+          setEmailVerified(true);
+          setVerifying(false);
+          return;
+        }
+
+        if (result.error === "invalid_signup_token" && token) {
+          // Signup expired — create a new one (sends new email automatically)
+          try {
+            const renewed = await renewSignup(token);
+            // Update cached registration status with new signup_token
+            queryClient.setQueryData(
+              ["registration-status", token],
+              (old: RegistrationStatus | undefined) =>
+                old ? { ...old, signup_token: renewed.signup_token } : old,
+            );
+            setExpired(true);
+            setVerificationCode(""); // Old code is no longer valid
+          } catch {
+            setStatus(
+              "Kon geen nieuwe verificatie-e-mail versturen. Neem contact op met het bestuur.",
+            );
+          }
+        } else {
+          setStatus(result.error);
+        }
+        setVerifying(false);
+      });
+  }, [registrationStatus, codeFromUrl, token, queryClient]);
 
   // Load verification code in dev mode
   const handleLoadCode = async () => {
@@ -62,12 +151,12 @@ export default function Signup() {
       );
       if (result?.found) {
         setVerificationCode(result.code);
-        setStatus("✓ Code loaded");
+        setStatus("Code loaded");
       } else {
-        setStatus("✗ No code found (check if email was sent)");
+        setStatus("No code found (check if email was sent)");
       }
     } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+      setStatus(error instanceof Error ? error.message : String(error));
     } finally {
       setLoading(false);
     }
@@ -75,17 +164,17 @@ export default function Signup() {
 
   const handleCompleteSignup = async () => {
     if (!registrationStatus?.signup_token) {
-      setStatus("✗ No signup token available");
+      setStatus("No signup token available");
       return;
     }
 
     if (password !== confirmPassword) {
-      setStatus("✗ Passwords do not match");
+      setStatus("Wachtwoorden komen niet overeen");
       return;
     }
 
     if (password.length < 10) {
-      setStatus("✗ Password must be at least 10 characters");
+      setStatus("Wachtwoord moet minimaal 10 tekens lang zijn");
       return;
     }
 
@@ -99,15 +188,40 @@ export default function Signup() {
       );
 
       if (!result.ok) {
-        setStatus(`✗ ${result.error}`);
+        if (result.error === "invalid_signup_token" && token) {
+          // Token expired during form submission — renew and tell user
+          try {
+            const renewed = await renewSignup(token);
+            queryClient.setQueryData(
+              ["registration-status", token],
+              (old: RegistrationStatus | undefined) =>
+                old ? { ...old, signup_token: renewed.signup_token } : old,
+            );
+            setExpired(true);
+            setEmailVerified(false);
+            setVerificationCode("");
+            // Reset the flow instance since the signup token changed
+            signupFlow.current = new SignupFlow();
+          } catch {
+            setStatus(
+              "Kon geen nieuwe verificatie-e-mail versturen. Neem contact op met het bestuur.",
+            );
+          }
+          return;
+        }
+        setStatus(result.error);
         return;
       }
 
       await queryClient.invalidateQueries({ queryKey: ["session"] });
+      const session = await getSessionInfo();
+      setMemberGranted(
+        session?.user.permissions.includes("member") ?? false,
+      );
       setComplete(true);
-      setStatus("✓ Account activated successfully!");
+      setStatus("");
     } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+      setStatus(error instanceof Error ? error.message : String(error));
     } finally {
       setLoading(false);
     }
@@ -116,7 +230,7 @@ export default function Signup() {
   // Handle email+code lookup to find registration token
   const handleLookup = async () => {
     if (!lookupEmail || !lookupCode) {
-      setStatus("✗ Vul zowel e-mail als code in");
+      setStatus("Vul zowel e-mail als code in");
       return;
     }
 
@@ -129,10 +243,10 @@ export default function Signup() {
         setVerificationCode(lookupCode);
         setSearchParams({ token: result.token, code: lookupCode });
       } else {
-        setStatus("✗ Geen registratie gevonden met deze e-mail en code");
+        setStatus("Geen registratie gevonden met deze e-mail en code");
       }
     } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+      setStatus(error instanceof Error ? error.message : String(error));
     } finally {
       setLoading(false);
     }
@@ -193,13 +307,7 @@ export default function Signup() {
             </button>
           </form>
 
-          {status && (
-            <div
-              className={`signup-status ${status.startsWith("✓") ? "success" : "error"}`}
-            >
-              {status}
-            </div>
-          )}
+          {status && <div className="signup-status error">{status}</div>}
 
           <div className="signup-note">
             <strong>Geen code ontvangen?</strong> Neem contact op met het
@@ -250,14 +358,27 @@ export default function Signup() {
   if (complete) {
     return (
       <div className="signup-container">
-        <PageTitle title="Account geactiveerd" />
+        <PageTitle
+          title={memberGranted ? "Account geactiveerd" : "Account aangemaakt"}
+        />
         <div className="signup-card">
-          <div className="signup-success-icon">✓</div>
-          <h1>Account geactiveerd!</h1>
-          <p>
-            Je account is succesvol geactiveerd. Je bent nu ingelogd en kunt
-            gebruik maken van alle ledenfunctionaliteiten.
-          </p>
+          <div className="signup-success-icon">&#10003;</div>
+          <h1>{memberGranted ? "Account geactiveerd!" : "Account aangemaakt!"}</h1>
+          {memberGranted ? (
+            <p>
+              Je account is succesvol geactiveerd. Je bent nu ingelogd en kunt
+              gebruik maken van alle ledenfunctionaliteiten.
+            </p>
+          ) : (
+            <div className="signup-approval-banner">
+              <strong>Lidmaatschap in behandeling</strong>
+              <p>
+                Je account is aangemaakt en je bent nu ingelogd. Het bestuur
+                moet je lidmaatschap nog goedkeuren. Dit duurt meestal enkele
+                werkdagen. Je ontvangt hierover een e-mail.
+              </p>
+            </div>
+          )}
           <button
             onClick={() => navigate("/")}
             className="signup-btn signup-btn-primary"
@@ -269,13 +390,29 @@ export default function Signup() {
     );
   }
 
-  // Not yet accepted - show waiting message
-  if (!registrationStatus.accepted) {
+  // Creating signup for sync-imported user (accepted but no signup yet)
+  if (creatingSignup) {
+    return (
+      <div className="signup-container">
+        <PageTitle title="Account activeren" />
+        <div className="signup-card">
+          <h1>Even geduld...</h1>
+          <p className="signup-intro">
+            We sturen je een verificatie-e-mail naar{" "}
+            <strong>{registrationStatus.email}</strong>.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // No signup token yet - show waiting message
+  if (!registrationStatus.signup_token) {
     return (
       <div className="signup-container">
         <PageTitle title="Aanmelding ontvangen" />
         <div className="signup-card">
-          <div className="signup-pending-icon">⏳</div>
+          <div className="signup-pending-icon">&#8987;</div>
           <h1>Aanmelding ontvangen!</h1>
 
           <p className="signup-intro">
@@ -283,37 +420,30 @@ export default function Signup() {
             gegevens ontvangen voor <strong>{registrationStatus.email}</strong>.
           </p>
 
-          <div className="signup-steps">
-            <h2>Wat gebeurt er nu?</h2>
-            <ol>
-              <li>
-                <strong>Beoordeling door het bestuur</strong>
-                <p>
-                  Het bestuur bekijkt je aanmelding. Dit duurt meestal enkele
-                  werkdagen.
-                </p>
-              </li>
-              <li>
-                <strong>Bevestigingsmail</strong>
-                <p>
-                  Na goedkeuring ontvang je een e-mail met een verificatiecode
-                  om je account te activeren.
-                </p>
-              </li>
-              <li>
-                <strong>Account activeren</strong>
-                <p>
-                  Met de link en code in de e-mail kun je een wachtwoord
-                  instellen en je account activeren.
-                </p>
-              </li>
-            </ol>
-          </div>
+          <p>
+            Je ontvangt binnenkort een verificatie-e-mail om je account te
+            activeren.
+          </p>
 
           <div className="signup-note">
             <strong>Vragen?</strong> Neem contact op met het bestuur via{" "}
             <a href="mailto:bestuur@dsavdodeka.nl">bestuur@dsavdodeka.nl</a>
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Auto-verifying email
+  if (verifying) {
+    return (
+      <div className="signup-container">
+        <PageTitle title="Account activeren" />
+        <div className="signup-card">
+          <h1>E-mail verifi&#235;ren...</h1>
+          <p className="signup-intro">
+            Je e-mailadres wordt geverifieerd. Even geduld.
+          </p>
         </div>
       </div>
     );
@@ -325,11 +455,27 @@ export default function Signup() {
       <PageTitle title="Account activeren" />
       <div className="signup-card">
         <h1>Account activeren</h1>
-        <p className="signup-intro">
-          Je aanmelding voor <strong>{registrationStatus.email}</strong> is
-          goedgekeurd! Voer de verificatiecode uit je e-mail in en kies een
-          wachtwoord om je account te activeren.
-        </p>
+
+        {expired && (
+          <div className="signup-status info">
+            Je verificatielink was verlopen. Er is een nieuwe verificatie-e-mail
+            verstuurd naar <strong>{registrationStatus.email}</strong>. Open de
+            link in de nieuwe e-mail, of voer de nieuwe code hieronder in.
+          </div>
+        )}
+
+        {!expired && emailVerified ? (
+          <p className="signup-intro">
+            Je e-mailadres <strong>{registrationStatus.email}</strong> is
+            geverifieerd. Kies een wachtwoord om je account te activeren.
+          </p>
+        ) : (
+          <p className="signup-intro">
+            Voer de verificatiecode voor{" "}
+            <strong>{registrationStatus.email}</strong> in en kies een
+            wachtwoord om je account te activeren.
+          </p>
+        )}
 
         <form
           className="signup-form"
@@ -338,31 +484,33 @@ export default function Signup() {
             handleCompleteSignup();
           }}
         >
-          <div className="signup-field">
-            <label htmlFor="verificationCode">Verificatiecode</label>
-            <div className="signup-input-row">
-              <input
-                id="verificationCode"
-                type="text"
-                value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
-                placeholder="Code uit e-mail"
-                required
-                disabled={loading}
-              />
-              {import.meta.env.DEV && (
-                <button
-                  type="button"
-                  className="signup-btn signup-btn-secondary"
-                  onClick={handleLoadCode}
+          {!emailVerified && (
+            <div className="signup-field">
+              <label htmlFor="verificationCode">Verificatiecode</label>
+              <div className="signup-input-row">
+                <input
+                  id="verificationCode"
+                  type="text"
+                  value={verificationCode}
+                  onChange={(e) => setVerificationCode(e.target.value)}
+                  placeholder="Code uit e-mail"
+                  required
                   disabled={loading}
-                >
-                  Load
-                </button>
-              )}
+                />
+                {import.meta.env.DEV && (
+                  <button
+                    type="button"
+                    className="signup-btn signup-btn-secondary"
+                    onClick={handleLoadCode}
+                    disabled={loading}
+                  >
+                    Load
+                  </button>
+                )}
+              </div>
+              <small>De 8-cijferige code uit de bevestigingsmail</small>
             </div>
-            <small>De 8-cijferige code uit de bevestigingsmail</small>
-          </div>
+          )}
 
           <div className="signup-field">
             <label htmlFor="password">Wachtwoord</label>
@@ -401,13 +549,7 @@ export default function Signup() {
           </button>
         </form>
 
-        {status && (
-          <div
-            className={`signup-status ${status.startsWith("✓") ? "success" : "error"}`}
-          >
-            {status}
-          </div>
-        )}
+        {status && <div className="signup-status error">{status}</div>}
       </div>
     </div>
   );

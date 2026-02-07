@@ -37,6 +37,13 @@
   opacity: 0.6;
 }
 
+.admin-button-icon {
+  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .admin-button-refresh {
   background-color: #2196F3;
   color: white;
@@ -122,8 +129,39 @@
   background-color: #f8f9fa;
 }
 
+.admin-table tbody tr.admin-nav-highlight {
+  background-color: #d4e6f9;
+  outline: 2px solid #2196F3;
+  outline-offset: -2px;
+}
+
 .admin-table tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* Navigable standalone item (bulk action buttons in sync tab) */
+.admin-nav-item {
+  padding: 6px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.admin-nav-item.admin-nav-highlight {
+  background-color: #d4e6f9;
+  outline: 2px solid #2196F3;
+  outline-offset: -2px;
+}
+
+/* Button focus ring for keyboard navigation (h/l cycling, j/k row select) */
+.admin-nav-highlight .admin-button:focus {
+  outline: 3px solid #0d6efd;
+  outline-offset: 2px;
+}
+
+.admin-nav-item.admin-nav-highlight .admin-button:focus {
+  outline: 3px solid #0d6efd;
+  outline-offset: 2px;
 }
 
 .admin-status-badge {
@@ -146,6 +184,11 @@
   color: #155724;
 }
 
+.admin-status-badge-warning {
+  background-color: #ffe0b2;
+  color: #e65100;
+}
+
 .admin-not-authorized {
   text-align: center;
   padding: 60px 20px;
@@ -166,6 +209,14 @@
 
 .admin-not-authorized a {
   color: #2196f3;
+}
+
+/* Inactive hint below the inactive users table */
+.admin-inactive-hint {
+  margin: 8px 0 0 0;
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
 }
 
 /* User permissions styles */
@@ -206,6 +257,33 @@
   opacity: 1;
 }
 
+.admin-perm-confirm {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 4px;
+}
+
+.admin-perm-confirm-yes,
+.admin-perm-confirm-no {
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 5px;
+  line-height: 1.2;
+}
+
+.admin-perm-confirm-yes {
+  background-color: #dc3545;
+  color: white;
+}
+
+.admin-perm-confirm-no {
+  background-color: #6c757d;
+  color: white;
+}
+
 .admin-perm-none {
   color: #999;
   font-style: italic;
@@ -234,4 +312,144 @@
 .admin-perm-select:focus {
   outline: none;
   border-color: #2196f3;
+}
+
+/* Tab styles */
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.admin-tab {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.admin-tab:hover {
+  color: #333;
+}
+
+.admin-tab.active {
+  color: #2196F3;
+  border-bottom-color: #2196F3;
+}
+
+/* Sync tab styles */
+.admin-sync-section {
+  margin-bottom: 30px;
+}
+
+.admin-file-input {
+  margin: 10px 0;
+}
+
+.admin-sync-group {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 5px;
+}
+
+.admin-sync-group h3 {
+  margin: 0 0 10px 0;
+}
+
+.admin-sync-count {
+  font-weight: bold;
+  color: #2196F3;
+}
+
+.admin-button-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.admin-changes {
+  color: #dc3545;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+/* Keyboard shortcut help overlay */
+.admin-help-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.admin-help-panel {
+  background: white;
+  border-radius: 8px;
+  padding: 24px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  min-width: 340px;
+}
+
+.admin-help-panel h3,
+.admin-help-panel h4 {
+  margin: 0 0 12px 0;
+  color: #333;
+}
+
+.admin-help-panel h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.admin-help-panel h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #666;
+  margin-top: 16px;
+}
+
+.admin-help-table {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.admin-help-table td {
+  padding: 5px 0;
+  padding-right: 12px;
+  vertical-align: top;
+}
+
+.admin-help-key {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  width: 80px;
+}
+
+.admin-help-close {
+  background-color: #6c757d;
+  color: white;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.admin-help-hint {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  margin-top: 8px;
 }

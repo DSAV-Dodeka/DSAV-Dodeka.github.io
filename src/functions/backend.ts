@@ -1,5 +1,5 @@
 const BACKEND_URL = import.meta.env.DEV
-  ? "http://localhost:8000"
+  ? "http://localhost:12780"
   : (import.meta.env.VITE_BACKEND_URL ?? "https://backend.dsavdodeka.nl");
 
 // HTTP helpers
@@ -28,7 +28,7 @@ async function get(path: string, withCredentials = false): Promise<Response> {
 }
 
 // Private API for dev/testing - only accessible on localhost
-const PRIVATE_URL = "http://127.0.0.2:8079";
+const PRIVATE_URL = "http://127.0.0.2:12790";
 
 async function privateCommand(
   command: string,
@@ -91,11 +91,16 @@ export async function getToken(
 }
 
 // Registration flow
+export interface RegistrationResult {
+  registration_token: string;
+  signup_token: string | null;
+}
+
 export async function requestRegistration(
   email: string,
   firstname: string,
   lastname: string,
-): Promise<string> {
+): Promise<RegistrationResult> {
   const response = await post("/auth/request_registration", {
     email,
     firstname,
@@ -106,7 +111,10 @@ export async function requestRegistration(
     throw new Error(`Failed to request registration: ${text}`);
   }
   const data = await response.json();
-  return data.registration_token;
+  return {
+    registration_token: data.registration_token,
+    signup_token: data.signup_token,
+  };
 }
 
 export interface RegistrationStatus {
@@ -151,6 +159,10 @@ export interface NewUser {
   firstname: string;
   lastname: string;
   accepted: boolean;
+  email_send_count: number;
+  has_signup_token: boolean;
+  is_registered: boolean;
+  registration_token: string | null;
 }
 
 export async function listNewUsers(): Promise<NewUser[]> {
@@ -164,7 +176,7 @@ export async function listNewUsers(): Promise<NewUser[]> {
 
 export async function acceptUser(
   email: string,
-): Promise<{ success: boolean; message: string; signup_token: string }> {
+): Promise<{ success: boolean; message: string }> {
   const response = await post("/admin/accept_user/", { email }, true);
   if (!response.ok) {
     const text = await response.text();
@@ -180,6 +192,26 @@ export async function resendSignupEmail(
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to resend signup email: ${text}`);
+  }
+  return response.json();
+}
+
+// Renew expired signup (creates new Faroe signup, sends new verification email)
+export interface RenewSignupResult {
+  success: boolean;
+  signup_token: string;
+  email: string;
+}
+
+export async function renewSignup(
+  registrationToken: string,
+): Promise<RenewSignupResult> {
+  const response = await post("/auth/renew_signup", {
+    registration_token: registrationToken,
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to renew signup: ${text}`);
   }
   return response.json();
 }
@@ -227,6 +259,7 @@ export interface SessionInfo {
   user: SessionUser;
   created_at: number;
   expires_at: number | null;
+  pending_approval: boolean;
 }
 
 export async function getSessionInfo(
@@ -325,5 +358,138 @@ export async function removeUserPermission(
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to remove permission: ${text}`);
+  }
+}
+
+// Sync types
+export interface SyncEntry {
+  email: string;
+  voornaam: string;
+  tussenvoegsel: string;
+  achternaam: string;
+  bondsnummer?: string;
+  geslacht?: string;
+  geboortedatum?: string;
+}
+
+export interface ExistingPair {
+  sync: SyncEntry;
+  current: SyncEntry | null;
+}
+
+export interface SyncStatus {
+  departed: string[];
+  new: SyncEntry[];
+  pending: string[];
+  existing: ExistingPair[];
+}
+
+export interface SyncImportResult {
+  imported: number;
+}
+
+export interface AcceptNewResult {
+  added: number;
+  skipped: number;
+  emails_sent: number;
+  emails_failed: number;
+}
+
+export interface RemoveResult {
+  removed: number;
+}
+
+export interface UpdateResult {
+  updated: number;
+}
+
+// Sync functions
+export async function importSync(
+  csvContent: string,
+): Promise<SyncImportResult> {
+  const response = await post(
+    "/admin/import_sync/",
+    { csv_content: csvContent },
+    true,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to import sync: ${text}`);
+  }
+  return response.json();
+}
+
+export async function getSyncStatus(): Promise<SyncStatus> {
+  const response = await get("/admin/sync_status/", true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to get sync status: ${text}`);
+  }
+  return response.json();
+}
+
+export async function acceptNewSync(
+  email?: string,
+): Promise<AcceptNewResult> {
+  const body = email ? { email } : {};
+  const response = await post("/admin/accept_new_sync/", body, true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to accept new: ${text}`);
+  }
+  return response.json();
+}
+
+export async function removeDeparted(
+  email?: string,
+): Promise<RemoveResult> {
+  const body = email ? { email } : {};
+  const response = await post("/admin/remove_departed/", body, true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to remove departed: ${text}`);
+  }
+  return response.json();
+}
+
+export async function updateExisting(
+  email?: string,
+): Promise<UpdateResult> {
+  const body = email ? { email } : {};
+  const response = await post("/admin/update_existing/", body, true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to update existing: ${text}`);
+  }
+  return response.json();
+}
+
+export async function listSystemUsers(): Promise<string[]> {
+  const response = await get("/admin/list_system_users/", true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to list system users: ${text}`);
+  }
+  const data = await response.json();
+  return data.system_users;
+}
+
+export async function markSystemUser(email: string): Promise<void> {
+  const response = await post("/admin/mark_system_user/", { email }, true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to mark system user: ${text}`);
+  }
+}
+
+export async function unmarkSystemUser(email: string): Promise<void> {
+  const response = await post(
+    "/admin/unmark_system_user/",
+    { email },
+    true,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to unmark system user: ${text}`);
   }
 }

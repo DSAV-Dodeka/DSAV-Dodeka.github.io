@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router";
 import NavigationBar from "../components/Navigation Bar/NavigationBar";
 import ContactBar from "../components/Contact Bar/ContactBar";
+import KeyboardNav from "../components/KeyboardNav";
 import "./layout.css";
 
 export default function AppLayout() {
@@ -13,6 +14,7 @@ export default function AppLayout() {
 
   return (
     <div id="app_screen">
+      <KeyboardNav />
       <div id="app_container">
         <NavigationBar />
         <div id="app_flex">

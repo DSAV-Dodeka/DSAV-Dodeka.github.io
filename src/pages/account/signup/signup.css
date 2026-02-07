@@ -138,6 +138,12 @@
   border: 1px solid #ef9a9a;
 }
 
+.signup-status.info {
+  background: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #90caf9;
+}
+
 .signup-error {
   background: #fff3e0;
   border: 1px solid #ffcc80;
@@ -237,4 +243,25 @@
 
 .signup-note a {
   color: #2196f3;
+}
+
+.signup-approval-banner {
+  background-color: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.signup-approval-banner strong {
+  color: #f57f17;
+  font-size: 16px;
+}
+
+.signup-approval-banner p {
+  margin: 8px 0 0;
+  color: #795548;
+  font-size: 14px;
+  line-height: 1.5;
 }

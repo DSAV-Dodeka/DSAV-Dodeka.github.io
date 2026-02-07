@@ -333,14 +333,14 @@ export async function clientRegister(
     await simulateVoltaDelay();
   }
 
-  // Then register with our backend (creates newuser entry)
+  // Then register with our backend (creates newuser entry + Faroe signup)
   try {
-    const registrationToken = await requestRegistration(
+    const result = await requestRegistration(
       registerState.email,
       registerState.firstname,
       getFullLastName(registerState),
     );
-    return registrationToken;
+    return result.registration_token;
   } catch (error) {
     // If Volta succeeded but our backend failed,
     // we still consider it a success (user is in Volta)

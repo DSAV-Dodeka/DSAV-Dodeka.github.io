@@ -341,6 +341,50 @@
   vertical-align: middle;
 }
 
+/* Pending registrations table */
+.pending-registrations {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.pending-registrations th,
+.pending-registrations td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.pending-registrations th {
+  font-weight: 500;
+  color: #666;
+  background: #fafafa;
+}
+
+.pending-registrations td button {
+  padding: 4px 12px;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.pending-registrations td button:hover:not(:disabled) {
+  background: #1976D2;
+}
+
+.pending-registrations td button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pending-registrations-empty {
+  color: #999;
+  font-style: italic;
+}
+
 .flow-test-admin-btn {
   background: #ff9800 !important;
 }

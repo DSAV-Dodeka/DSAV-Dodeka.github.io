@@ -35,7 +35,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          cache: "npm"
       - name: Install dependencies
         run: npm ci
       - name: Build
@@ -44,16 +44,16 @@ jobs:
         run: cp build/client/__spa-fallback.html build/client/404.html
       - name: Copy static files
         run: cp -r "files" "build/client/files"
-      - name: Copy static images
-        run: cp -r "src/images/wedstrijden" "build/client/assets/wedstrijden"
-      - name: Copy favicon
-        run: cp "favicon.ico" "build/client/favicon.ico"
+      # - name: Copy static images
+      #   run: cp -r "src/images/wedstrijden" "build/client/assets/wedstrijden"
+      # - name: Copy favicon
+      #   run: cp "favicon.ico" "build/client/favicon.ico"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'build/client'
+          path: "build/client"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

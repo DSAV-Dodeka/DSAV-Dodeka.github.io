@@ -20,11 +20,18 @@ const LoginIndicator = () => {
   return <LoginIndicatorClient />;
 };
 
+// Login indicator behavior:
+// - Shows nothing while the session query is loading
+// - Shows nothing if the backend is unreachable (network error / server down)
+// - Only once /auth/session_info/ returns a successful response (proving the
+//   server exists), chooses between the logged-in icon and the login icon
+// This ensures the site works gracefully when the backend is down, without
+// showing a misleading "Login" link that would lead to a broken login page.
 const LoginIndicatorClient = () => {
-  const { data: session, isLoading } = useSessionInfo();
+  const { data: session, isLoading, isError } = useSessionInfo();
 
-  if (isLoading) {
-    return null; // Don't show anything while loading
+  if (isLoading || isError) {
+    return null;
   }
 
   return (

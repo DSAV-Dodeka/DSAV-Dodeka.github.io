@@ -9,21 +9,32 @@ export class SignupFlow {
   private emailVerified = false;
   private passwordSet = false;
 
+  async verifyEmail(
+    signupToken: string,
+    verificationCode: string,
+  ): Promise<{ ok: true } | { ok: false; error: string }> {
+    if (this.emailVerified) {
+      return { ok: true };
+    }
+    const result = await faroeClient.verifySignupEmailAddressVerificationCode(
+      signupToken,
+      verificationCode,
+    );
+    if (!result.ok && result.errorCode !== "email_address_already_verified") {
+      return { ok: false, error: result.errorCode };
+    }
+    this.emailVerified = true;
+    return { ok: true };
+  }
+
   async tryComplete(
     signupToken: string,
     verificationCode: string,
     password: string,
   ): Promise<SignupResult> {
-    if (!this.emailVerified) {
-      const result = await faroeClient.verifySignupEmailAddressVerificationCode(
-        signupToken,
-        verificationCode,
-      );
-      // In case of the email_address_already_verified code we know it's already done
-      if (!result.ok && result.errorCode !== "email_address_already_verified") {
-        return { ok: false, error: result.errorCode };
-      }
-      this.emailVerified = true;
+    const verifyResult = await this.verifyEmail(signupToken, verificationCode);
+    if (!verifyResult.ok) {
+      return verifyResult;
     }
 
     if (!this.passwordSet) {
