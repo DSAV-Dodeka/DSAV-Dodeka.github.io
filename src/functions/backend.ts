@@ -266,18 +266,23 @@ export interface SessionInfo {
 export async function getSessionInfo(
   secondary = false,
 ): Promise<SessionInfo | null> {
-  const path = secondary
-    ? "/auth/session_info/?secondary=true"
-    : "/auth/session_info/";
-  const response = await get(path, true);
-  if (!response.ok) {
+  try {
+    const path = secondary
+      ? "/auth/session_info/?secondary=true"
+      : "/auth/session_info/";
+    const response = await get(path, true);
+    if (!response.ok) {
+      return null;
+    }
+    const data = await response.json();
+    if (data.error) {
+      return null;
+    }
+    return data;
+  } catch {
+    // Network error, backend unreachable, etc.
     return null;
   }
-  const data = await response.json();
-  if (data.error) {
-    return null;
-  }
-  return data;
 }
 
 export async function getSessionToken(): Promise<string> {
