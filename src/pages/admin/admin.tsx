@@ -21,6 +21,7 @@ import {
   type NewUser,
   type User,
   type SyncStatus,
+  type EmailChange,
 } from "$functions/backend.ts";
 import { useSessionInfo, useSecondarySessionInfo } from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
@@ -299,9 +300,16 @@ export default function Admin() {
     try {
       const result = await getSyncStatus();
       setSyncStatus(result);
-      setStatus(
-        `${result.new.length} new, ${result.pending.length} pending, ${result.existing.length} existing, ${result.departed.length} departed`,
-      );
+      const parts = [
+        `${result.new.length} new`,
+        `${result.pending.length} pending`,
+        `${result.existing.length} existing`,
+        `${result.departed.length} departed`,
+      ];
+      if (result.email_changes.length > 0) {
+        parts.push(`${result.email_changes.length} email change(s)`);
+      }
+      setStatus(parts.join(", "));
     } catch (error) {
       setStatus(
         `Error: ${error instanceof Error ? error.message : String(error)}`,
@@ -353,7 +361,11 @@ export default function Admin() {
     setStatus("");
     try {
       const result = await updateExisting(email);
-      setStatus(`Updated ${result.updated} existing user(s)`);
+      const updateParts = [`Updated ${result.updated} existing user(s)`];
+      if (result.email_changes_applied) {
+        updateParts.push(`${result.email_changes_applied} email(s) changed`);
+      }
+      setStatus(updateParts.join(", "));
       await handleComputeStatus();
     } catch (error) {
       setStatus(
@@ -376,27 +388,29 @@ export default function Admin() {
     return aName.localeCompare(bName);
   };
   const newUserEmails = new Set(newUsers.map((u) => u.email));
-  const activeUsers = users.filter((u) => u.permissions.length > 0).sort(sortByName);
+  const activeUsers = users.filter((u) => u.permissions.length > 0 && !u.disabled).sort(sortByName);
   const inactiveUsers = users
-    .filter((u) => u.permissions.length === 0 && !newUserEmails.has(u.email))
+    .filter((u) => (u.permissions.length === 0 || u.disabled) && !newUserEmails.has(u.email))
     .sort(sortByName);
 
   // Compute sync navigation indices (flat index across all sync sections)
-  // Order: New → Pending → Departed → Existing (existing last, usually largest)
+  // Order: New → Pending → Email Changes → Departed → Existing (existing last, usually largest)
   let syncRowCount = 0;
   let syncNewBulkNav = -1;
   let syncNewStartNav = -1;
+  let syncEmailChStartNav = -1;
   let syncDepBulkNav = -1;
   let syncDepStartNav = -1;
   let syncExBulkNav = -1;
   let syncExStartNav = -1;
   // Pre-compute which existing members have changes
   const existingChanged = syncStatus?.existing.filter((pair) =>
-    pair.current &&
-    (pair.sync.voornaam !== pair.current.voornaam ||
-      pair.sync.achternaam !== pair.current.achternaam ||
-      pair.sync.tussenvoegsel !== pair.current.tussenvoegsel),
+    !pair.current ||
+    pair.sync.voornaam !== pair.current.voornaam ||
+    pair.sync.achternaam !== pair.current.achternaam ||
+    pair.sync.tussenvoegsel !== pair.current.tussenvoegsel,
   ) ?? [];
+  const emailChanges: EmailChange[] = syncStatus?.email_changes ?? [];
   if (syncStatus) {
     if (syncStatus.new.length > 0) {
       syncNewBulkNav = syncRowCount++;
@@ -405,6 +419,10 @@ export default function Admin() {
     }
     if (syncStatus.pending.length > 0) {
       syncRowCount += syncStatus.pending.length;
+    }
+    if (emailChanges.length > 0) {
+      syncEmailChStartNav = syncRowCount;
+      syncRowCount += emailChanges.length;
     }
     if (syncStatus.departed.length > 0) {
       syncDepBulkNav = syncRowCount++;
@@ -833,6 +851,7 @@ export default function Admin() {
                             <thead>
                               <tr>
                                 <th>Name</th>
+                                <th>Status</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -841,6 +860,13 @@ export default function Admin() {
                                   <td>
                                     {user.firstname} {user.lastname}
                                     <div className="admin-user-email">{user.email}</div>
+                                  </td>
+                                  <td>
+                                    {user.disabled && (
+                                      <span className="admin-status-badge admin-status-badge-disabled">
+                                        Disabled
+                                      </span>
+                                    )}
                                   </td>
                                 </tr>
                               ))}
@@ -983,6 +1009,42 @@ export default function Admin() {
                         <div className="admin-empty">No pending signups</div>
                       )}
                     </div>
+
+                    {/* Email changes (bondsnummer-matched) */}
+                    {emailChanges.length > 0 && (
+                      <div className="admin-sync-group">
+                        <h3>
+                          Email Changes{" "}
+                          <span className="admin-sync-count">
+                            ({emailChanges.length})
+                          </span>
+                        </h3>
+                        <p className="admin-sync-hint">
+                          These members changed their email in the athletics union system.
+                          Matched by bondsnummer. Applied automatically by "Update All Changed".
+                        </p>
+                        <div className="admin-table-container">
+                          <table className="admin-table">
+                            <thead>
+                              <tr>
+                                <th>Bondsnummer</th>
+                                <th>Old Email</th>
+                                <th>New Email</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {emailChanges.map((ec, idx) => (
+                                <tr key={ec.bondsnummer} className={highlightedRow === syncEmailChStartNav + idx ? "admin-nav-highlight" : ""}>
+                                  <td>{ec.bondsnummer}</td>
+                                  <td>{ec.old_email}</td>
+                                  <td>{ec.new_email}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Departed members */}
                     <div className="admin-sync-group">

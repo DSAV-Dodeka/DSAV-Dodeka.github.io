@@ -189,6 +189,11 @@
   color: #e65100;
 }
 
+.admin-status-badge-disabled {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
 .admin-not-authorized {
   text-align: center;
   padding: 60px 20px;
@@ -365,6 +370,13 @@
 .admin-sync-count {
   font-weight: bold;
   color: #2196F3;
+}
+
+.admin-sync-hint {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
 }
 
 .admin-button-danger {

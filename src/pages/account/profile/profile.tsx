@@ -80,6 +80,14 @@ export default function Profile() {
             door het bestuur. Dit duurt meestal enkele werkdagen.
           </p>
         </div>
+      ) : session.user.disabled ? (
+        <div className="profile-inactive-banner">
+          <strong>Account gedeactiveerd</strong>
+          <p>
+            Je account is gedeactiveerd. Neem contact op met het bestuur als je
+            denkt dat dit niet klopt.
+          </p>
+        </div>
       ) : !session.user.permissions.includes("member") ? (
         <div className="profile-inactive-banner">
           <strong>Lidmaatschap inactief</strong>

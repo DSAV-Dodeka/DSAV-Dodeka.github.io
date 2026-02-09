@@ -253,6 +253,7 @@ export interface SessionUser {
   firstname: string;
   lastname: string;
   permissions: string[];
+  disabled: boolean;
 }
 
 export interface SessionInfo {
@@ -310,6 +311,7 @@ export interface User {
   firstname: string;
   lastname: string;
   permissions: string[];
+  disabled: boolean;
 }
 
 export async function listUsers(): Promise<User[]> {
@@ -367,7 +369,7 @@ export interface SyncEntry {
   voornaam: string;
   tussenvoegsel: string;
   achternaam: string;
-  bondsnummer?: string;
+  bondsnummer?: number;
   geslacht?: string;
   geboortedatum?: string;
 }
@@ -377,11 +379,18 @@ export interface ExistingPair {
   current: SyncEntry | null;
 }
 
+export interface EmailChange {
+  old_email: string;
+  new_email: string;
+  bondsnummer: number;
+}
+
 export interface SyncStatus {
   departed: string[];
   new: SyncEntry[];
   pending: string[];
   existing: ExistingPair[];
+  email_changes: EmailChange[];
 }
 
 export interface SyncImportResult {
@@ -401,6 +410,7 @@ export interface RemoveResult {
 
 export interface UpdateResult {
   updated: number;
+  email_changes_applied?: number;
 }
 
 // Sync functions
@@ -492,4 +502,21 @@ export async function unmarkSystemUser(email: string): Promise<void> {
     const text = await response.text();
     throw new Error(`Failed to unmark system user: ${text}`);
   }
+}
+
+// Birthday types
+export interface Birthday {
+  voornaam: string;
+  tussenvoegsel: string;
+  achternaam: string;
+  geboortedatum: string;
+}
+
+export async function getMemberBirthdays(): Promise<Birthday[]> {
+  const response = await get("/members/birthdays/", true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to get birthdays: ${text}`);
+  }
+  return response.json();
 }

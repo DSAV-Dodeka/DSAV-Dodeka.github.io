@@ -5,6 +5,7 @@ import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from "disable-scroll";
 import wedstrijdText from "../../content/Wedstrijden.json";
+import { useSessionInfo } from "$functions/query.ts";
 import "./NavigationBar.scss";
 import "./animation.css";
 import logo from "$images/logo.png";
@@ -14,6 +15,8 @@ import LoginIndicator from "../LoginIndicator/LoginIndicator";
 function NavigationBar() {
   const [active, setActive] = useState(false);
   const location = useLocation().pathname;
+  const { data: session } = useSessionInfo();
+  const isMember = session?.user.permissions.includes("member") ?? false;
 
   useEffect(() => {
     if (active) {
@@ -94,7 +97,13 @@ function NavigationBar() {
               { name: "Donateurs", path: "/donateurs" },
             ]}
           />
-          {/*{authState.isLoaded && authState.isAuthenticated && <Dropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }, { name: "Klassementen", path: "/klassementen" }]} />}*/}
+          {isMember && (
+            <Dropdown
+              name="Leden"
+              path="/leden"
+              items={[{ name: "Verjaardagen", path: "/verjaardagen" }]}
+            />
+          )}
         </div>
         <LoginIndicator />
       </nav>
@@ -190,7 +199,17 @@ function NavigationBar() {
               ]}
               onClick={() => setActive(false)}
             />
-            {/*{authState.isLoaded && authState.isAuthenticated && <MobileDropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }, { name: "Klassementen", path: "/klassementen" }]} onClick={() => setActive(false)}/>}*/}
+            {isMember && (
+              <MobileDropdown
+                name="Leden"
+                path="/leden"
+                items={[
+                  { name: "Ledenpagina", path: "" },
+                  { name: "Verjaardagen", path: "/verjaardagen" },
+                ]}
+                onClick={() => setActive(false)}
+              />
+            )}
           </div>
         </div>
       </nav>
