@@ -12,11 +12,49 @@ import logo from "$images/logo.png";
 import dodeka from "$images/dodeka.png";
 import LoginIndicator from "../LoginIndicator/LoginIndicator";
 
+// Client-only component that renders the Leden menu when the user is a member.
+// useSessionInfo (react-query) cannot run during SSR since QueryClientProvider
+// is only mounted on the client.
+function MemberDropdown() {
+  const { data: session } = useSessionInfo();
+  const isMember = session?.user.permissions.includes("member") ?? false;
+  if (!isMember) return null;
+  return (
+    <Dropdown
+      name="Leden"
+      path="/leden"
+      items={[{ name: "Verjaardagen", path: "/verjaardagen" }]}
+    />
+  );
+}
+
+function MemberMobileDropdown({ onClick }: { onClick: () => void }) {
+  const { data: session } = useSessionInfo();
+  const isMember = session?.user.permissions.includes("member") ?? false;
+  if (!isMember) return null;
+  return (
+    <MobileDropdown
+      name="Leden"
+      path="/leden"
+      items={[
+        { name: "Ledenpagina", path: "" },
+        { name: "Verjaardagen", path: "/verjaardagen" },
+      ]}
+      onClick={onClick}
+    />
+  );
+}
+
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => { setIsClient(true); }, []);
+  if (!isClient) return null;
+  return <>{children}</>;
+}
+
 function NavigationBar() {
   const [active, setActive] = useState(false);
   const location = useLocation().pathname;
-  const { data: session } = useSessionInfo();
-  const isMember = session?.user.permissions.includes("member") ?? false;
 
   useEffect(() => {
     if (active) {
@@ -97,13 +135,9 @@ function NavigationBar() {
               { name: "Donateurs", path: "/donateurs" },
             ]}
           />
-          {isMember && (
-            <Dropdown
-              name="Leden"
-              path="/leden"
-              items={[{ name: "Verjaardagen", path: "/verjaardagen" }]}
-            />
-          )}
+          <ClientOnly>
+            <MemberDropdown />
+          </ClientOnly>
         </div>
         <LoginIndicator />
       </nav>
@@ -199,17 +233,9 @@ function NavigationBar() {
               ]}
               onClick={() => setActive(false)}
             />
-            {isMember && (
-              <MobileDropdown
-                name="Leden"
-                path="/leden"
-                items={[
-                  { name: "Ledenpagina", path: "" },
-                  { name: "Verjaardagen", path: "/verjaardagen" },
-                ]}
-                onClick={() => setActive(false)}
-              />
-            )}
+            <ClientOnly>
+              <MemberMobileDropdown onClick={() => setActive(false)} />
+            </ClientOnly>
           </div>
         </div>
       </nav>

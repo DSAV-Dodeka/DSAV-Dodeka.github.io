@@ -387,8 +387,8 @@ export interface EmailChange {
 
 export interface SyncStatus {
   departed: string[];
-  new: SyncEntry[];
-  pending: string[];
+  to_accept: SyncEntry[];
+  pending_signup: string[];
   existing: ExistingPair[];
   email_changes: EmailChange[];
 }

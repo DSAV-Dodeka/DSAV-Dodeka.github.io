@@ -20,6 +20,7 @@ import {
   updateExisting,
   type NewUser,
   type User,
+  type SyncEntry,
   type SyncStatus,
   type EmailChange,
 } from "$functions/backend.ts";
@@ -301,8 +302,8 @@ export default function Admin() {
       const result = await getSyncStatus();
       setSyncStatus(result);
       const parts = [
-        `${result.new.length} new`,
-        `${result.pending.length} pending`,
+        `${result.to_accept.length} new`,
+        `${result.pending_signup.length} pending`,
         `${result.existing.length} existing`,
         `${result.departed.length} departed`,
       ];
@@ -408,17 +409,18 @@ export default function Admin() {
     !pair.current ||
     pair.sync.voornaam !== pair.current.voornaam ||
     pair.sync.achternaam !== pair.current.achternaam ||
-    pair.sync.tussenvoegsel !== pair.current.tussenvoegsel,
+    pair.sync.tussenvoegsel !== pair.current.tussenvoegsel ||
+    pair.sync.geboortedatum !== pair.current.geboortedatum,
   ) ?? [];
   const emailChanges: EmailChange[] = syncStatus?.email_changes ?? [];
   if (syncStatus) {
-    if (syncStatus.new.length > 0) {
+    if (syncStatus.to_accept.length > 0) {
       syncNewBulkNav = syncRowCount++;
       syncNewStartNav = syncRowCount;
-      syncRowCount += syncStatus.new.length;
+      syncRowCount += syncStatus.to_accept.length;
     }
-    if (syncStatus.pending.length > 0) {
-      syncRowCount += syncStatus.pending.length;
+    if (syncStatus.pending_signup.length > 0) {
+      syncRowCount += syncStatus.pending_signup.length;
     }
     if (emailChanges.length > 0) {
       syncEmailChStartNav = syncRowCount;
@@ -922,10 +924,10 @@ export default function Admin() {
                       <h3>
                         New Members{" "}
                         <span className="admin-sync-count">
-                          ({syncStatus.new.length})
+                          ({syncStatus.to_accept.length})
                         </span>
                       </h3>
-                      {syncStatus.new.length > 0 && (
+                      {syncStatus.to_accept.length > 0 && (
                         <>
                           <div className={`admin-nav-item ${highlightedRow === syncNewBulkNav ? "admin-nav-highlight" : ""}`}>
                             <button
@@ -946,7 +948,7 @@ export default function Admin() {
                                 </tr>
                               </thead>
                               <tbody>
-                                {syncStatus.new.map((entry, idx) => (
+                                {syncStatus.to_accept.map((entry, idx) => (
                                   <tr key={entry.email} className={highlightedRow === syncNewStartNav + idx ? "admin-nav-highlight" : ""}>
                                     <td>{entry.email}</td>
                                     <td>
@@ -974,7 +976,7 @@ export default function Admin() {
                           </div>
                         </>
                       )}
-                      {syncStatus.new.length === 0 && (
+                      {syncStatus.to_accept.length === 0 && (
                         <div className="admin-empty">No new members</div>
                       )}
                     </div>
@@ -984,10 +986,10 @@ export default function Admin() {
                       <h3>
                         Pending Signup{" "}
                         <span className="admin-sync-count">
-                          ({syncStatus.pending.length})
+                          ({syncStatus.pending_signup.length})
                         </span>
                       </h3>
-                      {syncStatus.pending.length > 0 && (
+                      {syncStatus.pending_signup.length > 0 && (
                         <div className="admin-table-container">
                           <table className="admin-table">
                             <thead>
@@ -996,7 +998,7 @@ export default function Admin() {
                               </tr>
                             </thead>
                             <tbody>
-                              {syncStatus.pending.map((email) => (
+                              {syncStatus.pending_signup.map((email) => (
                                 <tr key={email}>
                                   <td>{email}</td>
                                 </tr>
@@ -1005,7 +1007,7 @@ export default function Admin() {
                           </table>
                         </div>
                       )}
-                      {syncStatus.pending.length === 0 && (
+                      {syncStatus.pending_signup.length === 0 && (
                         <div className="admin-empty">No pending signups</div>
                       )}
                     </div>
@@ -1130,42 +1132,51 @@ export default function Admin() {
                                 <thead>
                                   <tr>
                                     <th>Email</th>
-                                    <th>Sync Name</th>
-                                    <th>Current Name</th>
+                                    <th>Changes</th>
                                     <th>Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {existingChanged.map((pair, idx) => (
-                                    <tr key={pair.sync.email} className={highlightedRow === syncExStartNav + idx ? "admin-nav-highlight" : ""}>
-                                      <td>{pair.sync.email}</td>
-                                      <td>
-                                        {pair.sync.voornaam}{" "}
-                                        {pair.sync.tussenvoegsel
-                                          ? `${pair.sync.tussenvoegsel} `
-                                          : ""}
-                                        {pair.sync.achternaam}
-                                      </td>
-                                      <td>
-                                        {pair.current!.voornaam}{" "}
-                                        {pair.current!.tussenvoegsel
-                                          ? `${pair.current!.tussenvoegsel} `
-                                          : ""}
-                                        {pair.current!.achternaam}
-                                      </td>
-                                      <td>
-                                        <button
-                                          onClick={() =>
-                                            handleUpdateExisting(pair.sync.email)
-                                          }
-                                          disabled={syncLoading}
-                                          className="admin-button admin-button-refresh"
-                                        >
-                                          Update
-                                        </button>
-                                      </td>
-                                    </tr>
-                                  ))}
+                                  {existingChanged.map((pair, idx) => {
+                                    const formatName = (e: SyncEntry) =>
+                                      `${e.voornaam} ${e.tussenvoegsel ? `${e.tussenvoegsel} ` : ""}${e.achternaam}`;
+                                    const nameChanged = !pair.current ||
+                                      pair.sync.voornaam !== pair.current.voornaam ||
+                                      pair.sync.achternaam !== pair.current.achternaam ||
+                                      pair.sync.tussenvoegsel !== pair.current.tussenvoegsel;
+                                    const birthdayChanged = !pair.current ||
+                                      pair.sync.geboortedatum !== pair.current.geboortedatum;
+                                    return (
+                                      <tr key={pair.sync.email} className={highlightedRow === syncExStartNav + idx ? "admin-nav-highlight" : ""}>
+                                        <td>{pair.sync.email}</td>
+                                        <td>
+                                          {!pair.current ? (
+                                            <span className="admin-status-badge admin-status-badge-pending">No account</span>
+                                          ) : (
+                                            <>
+                                              {nameChanged && (
+                                                <div>Name: {formatName(pair.current)} → {formatName(pair.sync)}</div>
+                                              )}
+                                              {birthdayChanged && (
+                                                <div>Birthday: {pair.current.geboortedatum || "–"} → {pair.sync.geboortedatum || "–"}</div>
+                                              )}
+                                            </>
+                                          )}
+                                        </td>
+                                        <td>
+                                          <button
+                                            onClick={() =>
+                                              handleUpdateExisting(pair.sync.email)
+                                            }
+                                            disabled={syncLoading}
+                                            className="admin-button admin-button-refresh"
+                                          >
+                                            Update
+                                          </button>
+                                        </td>
+                                      </tr>
+                                    );
+                                  })}
                                 </tbody>
                               </table>
                             </div>
