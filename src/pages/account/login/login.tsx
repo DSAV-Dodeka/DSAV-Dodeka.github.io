@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SessionInfo, useSessionInfo } from "$functions/query";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate, Link } from "react-router";
@@ -33,10 +33,12 @@ export default function Login() {
 
   const { data: session, error } = useSessionInfo();
 
-  if (error !== null) {
-    setStatus(`✗ ${error.message}`);
-    setPressedLogin(false);
-  }
+  useEffect(() => {
+    if (error !== null) {
+      setStatus(`✗ ${error.message}`);
+      setPressedLogin(false);
+    }
+  }, [error]);
 
   const state = computeState(session, pressedLogin);
 
