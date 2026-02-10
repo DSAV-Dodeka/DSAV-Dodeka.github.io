@@ -1,0 +1,158 @@
+.verjaardagen-status {
+  color: #001f48;
+  margin-left: 4rem;
+}
+
+.verjaardagen-login {
+  margin-left: 4rem;
+}
+
+.verjaardagen-login-button {
+  padding: 10px 24px;
+  background-color: #001f48;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.verjaardagen-login-button:hover {
+  opacity: 0.9;
+}
+
+.verjaardagen-container {
+  margin-bottom: 5rem;
+  margin-top: -2rem;
+}
+
+@media (min-width: 1200px) {
+  .verjaardagen-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-left: 3rem;
+    margin-right: 4rem;
+  }
+}
+
+@media (max-width: 1199px) {
+  .verjaardagen-container {
+    margin-bottom: 3rem;
+    margin-top: 0;
+  }
+}
+
+.verjaardagen-contents {
+  display: contents;
+}
+
+/* Month header */
+.verjaardagen-maand {
+  width: 12rem;
+  padding: 1rem;
+  background-color: #001f48;
+  color: white;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+  border-radius: 0.75rem;
+}
+
+@media (min-width: 1200px) {
+  .verjaardagen-maand {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1199px) {
+  .verjaardagen-maand {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0.5rem;
+    width: 8rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+}
+
+/* Individual birthday entry */
+.verjaardag {
+  display: flex;
+  background-color: #193459;
+  color: white;
+  font-size: 1.25rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 1199px) {
+  .verjaardag {
+    height: calc(2 * 1.5rem + 0.5rem);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 1rem;
+    position: relative;
+  }
+}
+
+.verjaardag p {
+  padding: 1rem;
+}
+
+@media (max-width: 1199px) {
+  .verjaardag p {
+    padding: 0.25rem;
+    line-height: calc(2 * 1.5rem);
+  }
+}
+
+.verjaardag-naam {
+  flex-grow: 1;
+}
+
+.verjaardag-datum {
+  width: 12rem;
+  margin-left: 1rem;
+  font-weight: 700;
+}
+
+@media (max-width: 1199px) {
+  .verjaardag-datum {
+    display: none;
+  }
+}
+
+.verjaardag-datum-mobile {
+  margin-left: 0.5rem;
+  font-weight: 700;
+  line-height: calc(2 * 1.5rem) !important;
+  vertical-align: middle;
+}
+
+@media (min-width: 1200px) {
+  .verjaardag-datum-mobile {
+    display: none;
+  }
+}
+
+.verjaardag-leeftijd {
+  width: 12rem;
+  background-color: #cb4b3d;
+  text-align: right;
+  padding-right: 2rem !important;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+}
+
+@media (max-width: 1199px) {
+  .verjaardag-leeftijd {
+    width: 6rem;
+    padding-right: 1rem !important;
+    line-height: calc(2 * 1.5rem) !important;
+  }
+}
