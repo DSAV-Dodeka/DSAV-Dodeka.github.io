@@ -254,3 +254,55 @@ button.registerButton:disabled {
   font-size: 12px;
   margin: 0;
 }
+
+/* Info tooltip */
+.info-tooltip {
+  position: relative;
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid white;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+  cursor: help;
+  line-height: 1;
+}
+
+.info-tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  background-color: var(--dodeka-blauw);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.4;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: opacity 0.2s;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.info-tooltip:hover .info-tooltip-text,
+.info-tooltip:focus-within .info-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}

@@ -410,7 +410,19 @@ export default function Registreer() {
                 onChange={handleCheckboxChange}
               />
             </div>
-            <p style={{ marginBottom: "0.7rem", lineHeight: "1rem", fontStyle: "italic", color: "#999" }}>For non-dutch banks: please also send your BIC number to <a href="mailto:bestuur@dsavdodeka.nl" style={{ color: "#999" }}>bestuur@dsavdodeka.nl</a></p>
+            <p
+              style={{
+                marginBottom: "0.7rem",
+                lineHeight: "1rem",
+                fontStyle: "italic",
+                color: "#999",
+              }}
+            >
+              For non-dutch banks: please also send your BIC number to{" "}
+              <a href="mailto:bestuur@dsavdodeka.nl" style={{ color: "#999" }}>
+                bestuur@dsavdodeka.nl
+              </a>
+            </p>
             <input
               className={submitted}
               required
@@ -457,17 +469,37 @@ export default function Registreer() {
               </select>
             </div>
             <div className={"dropdown"}>
-              <label>Toestemming foto's?</label>
+              <label>
+                Toestemming foto's?
+                <span className="info-tooltip">
+                  <span className="info-icon">i</span>
+                  <span className="info-tooltip-text">
+                    <strong>Externe media:</strong> sociale media, website, etc.
+                    Dit kan door externen worden bekeken.
+                    <br /><br />
+                    <strong>Interne media:</strong> jaarboek, nieuwsbrief,
+                    besloten Instagram, fotoalbums gedeeld binnen Dodeka. Hier
+                    hebben externen geen toegang tot.
+                  </span>
+                </span>
+              </label>
               <select
                 id="photos"
                 name="photos"
                 value={state.photos}
                 onChange={handleSelectChange}
               >
-                <option value="ev-1-1">Ja, mag op sociale media</option>
-                <option value="ev-1-3">Eerst vragen</option>
-                <option value="ev-1-4">Niet individueel, groepsfoto mag</option>
-                <option value="ev-1-2">Nee</option>
+                <option value="ev-1-1">
+                  Ja, voor interne en externe media
+                </option>
+                <option value="ev-1-3">Alles eerst vragen</option>
+                <option value="ev-1-4">
+                  Alleen groepsfoto's (voor interne en externe media)
+                </option>
+                <option value="ev-1-5">
+                  Voor interne media wel, externe media eerst vragen
+                </option>
+                <option value="ev-1-2">Nee, nooit</option>
               </select>
             </div>
             <br />
