@@ -25,6 +25,7 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  color: transparent;
 }
 
 .login-indicator-icon {
