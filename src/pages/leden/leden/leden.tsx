@@ -1,8 +1,8 @@
 import { useNavigate, Link } from "react-router";
 import { useSessionInfo } from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
-import verjaardagenImg from "$images/leden/verjaardagen.jpg";
-import soonImg from "$images/leden/soon.jpg";
+import verjaardagenImg from "$images/leden/verjaardagen.webp";
+import soonImg from "$images/leden/soon.webp";
 import "./leden.css";
 
 export default function Leden() {

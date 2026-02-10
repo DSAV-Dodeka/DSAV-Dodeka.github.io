@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { useSessionInfo } from "$functions/query.ts";
-import loginIcon from "$images/login/login.png";
-import ingelogdIcon from "$images/login/ingelogd.png";
+import loginIcon from "$images/login/login.webp";
+import ingelogdIcon from "$images/login/ingelogd.webp";
 import "./LoginIndicator.css";
 
 const LoginIndicator = () => {
