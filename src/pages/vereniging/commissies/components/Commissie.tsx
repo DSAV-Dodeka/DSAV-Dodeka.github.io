@@ -174,7 +174,7 @@ function Commissie(props: CommissieProps) {
       <div className="commissieLogo roundedLeft">
         <img
           className="commissieFoto roundedLeft"
-          src={getHashedImageUrl(`commissies/${props.fotos}/commissie.web`)}
+          src={getHashedImageUrl(`commissies/${props.fotos}/commissie.webp`)}
           alt=""
         />
       </div>
