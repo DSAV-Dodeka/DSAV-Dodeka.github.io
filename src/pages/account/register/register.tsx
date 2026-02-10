@@ -13,9 +13,11 @@ import {
   VoltaError,
   isVoltaEnabled,
   setVoltaEnabled,
+  isBackendEnabled,
   isDemoMode,
   isDevMode,
 } from "./register.ts";
+import { useNavigate } from "react-router";
 import "./register.css";
 import PageTitle from "$components/PageTitle.tsx";
 
@@ -113,6 +115,7 @@ const initialState: RegisterState =
 // };
 
 export default function Registreer() {
+  const navigate = useNavigate();
   const myStatus = useRef<HTMLDivElement>(null);
   const [handled, setHandled] = useState(false);
   const [infoOk, setInfoOk] = useState(false);
@@ -163,13 +166,15 @@ export default function Registreer() {
         (registrationToken) => {
           setLoading(false);
           if (registrationToken) {
-            window.location.assign(
+            navigate(
               `/account/signup?token=${encodeURIComponent(registrationToken)}`,
             );
+          } else if (!isBackendEnabled) {
+            // Backend intentionally disabled - show clean pending message
+            navigate("/account/signup?pending=true");
           } else {
-            // In production, Volta succeeded but backend failed - still redirect
-            // but without a token (user will need to contact admin)
-            window.location.assign("/account/signup");
+            // Backend was enabled but failed - show warning
+            navigate("/account/signup?volta_ok=true");
           }
         },
         (e) => {

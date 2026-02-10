@@ -3,6 +3,7 @@ import { requestRegistration } from "$functions/backend.ts";
 // Mode detection
 export const isDemoMode = import.meta.env.MODE === "demo";
 export const isDevMode = import.meta.env.DEV;
+export const isBackendEnabled = import.meta.env.VITE_BACKEND_ENABLED !== "false";
 
 // Volta toggle for demo mode
 // - DEV mode: Volta always disabled, no toggle
@@ -331,6 +332,11 @@ export async function clientRegister(
   } else {
     // Simulate Volta delay when disabled
     await simulateVoltaDelay();
+  }
+
+  // Skip backend call if backend is disabled (frontend deployed before backend)
+  if (!isBackendEnabled) {
+    return null;
   }
 
   // Then register with our backend (creates newuser entry + Faroe signup)

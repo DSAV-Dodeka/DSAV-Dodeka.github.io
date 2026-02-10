@@ -252,6 +252,52 @@ export default function Signup() {
     }
   };
 
+  const voltaOk = searchParams.get("volta_ok") === "true";
+  const registrationPending = searchParams.get("pending") === "true";
+
+  // Volta registration succeeded, backend intentionally disabled or unreachable
+  if (!token && (voltaOk || registrationPending)) {
+    return (
+      <div className="signup-container">
+        <PageTitle title="Aanmelding ontvangen" />
+        <div className="signup-card">
+          <div className="signup-pending-icon">&#8987;</div>
+          <h1>Aanmelding ontvangen!</h1>
+
+          <p className="signup-intro">
+            Je inschrijving bij de Atletiekunie is succesvol verwerkt.
+          </p>
+
+          {voltaOk && (
+            <div className="signup-error">
+              <p>
+                <strong>Er is een probleem met de website</strong>
+              </p>
+              <p>
+                Je account kon niet automatisch worden aangemaakt. Neem contact
+                op met het bestuur zodat zij je account handmatig kunnen
+                activeren.
+              </p>
+            </div>
+          )}
+
+          {registrationPending && (
+            <p>
+              Je ontvangt binnenkort een e-mail om je account te activeren. Dit
+              kan enkele werkdagen duren.
+            </p>
+          )}
+
+          <div className="signup-note">
+            <strong>Vragen?</strong> Neem contact op met het bestuur via{" "}
+            <a href="mailto:bestuur@dsavdodeka.nl">bestuur@dsavdodeka.nl</a>{" "}
+            of via onze sociale media.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // No token in URL - show email+code lookup form
   if (!token) {
     return (
