@@ -1,5 +1,5 @@
 
-import arnoldFoto from "../../../../images/arnold/arnoldfoto.jpg";
+import arnoldFoto from "../../../../images/arnold/arnoldfoto.webp";
 import "./ArnoldInfo.scss";
 
 function ArnoldInfo() {

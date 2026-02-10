@@ -1,7 +1,6 @@
-import React from "react";
 import "./Header.scss";
 
-function Header(props) {
+function Header(props: { text: string; position?: string }) {
     return(
         <div className="header">
             <h1 className={"headerText " + props.position}>

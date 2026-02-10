@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import PageTitle from "../../../components/PageTitle";
 import EigenWedstrijd from "./components/EigenWedstrijd";
 import TextWedstrijden from "../../../content/Wedstrijden.json";
-import records from "../../../images/wedstrijden/records.png";
+import records from "../../../images/wedstrijden/records.webp";
 import "./Wedstrijden.scss";
 
 const dateMap: Record<string, string> = {

@@ -1,8 +1,4 @@
-import React from "react";
 import "./HomeTrainingen.scss";
-// import {
-//   HashLink as Link
-// } from "react-router-hash-link";
 import {
     Link
 } from "react-router";

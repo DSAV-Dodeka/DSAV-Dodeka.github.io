@@ -1,8 +1,8 @@
 import "./Wedstrijd.scss";
 import { getHashedImageUrl } from "$functions/links";
-import goud from "$images/wedstrijden/goud.png";
-import zilver from "$images/wedstrijden/zilver.png";
-import brons from "$images/wedstrijden/brons.png";
+import goud from "$images/wedstrijden/goud.webp";
+import zilver from "$images/wedstrijden/zilver.webp";
+import brons from "$images/wedstrijden/brons.webp";
 
 interface Prijs {
   plaats: number;

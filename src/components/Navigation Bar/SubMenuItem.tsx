@@ -1,7 +1,6 @@
-import React from "react";
 import "./SubMenuItem.scss";
 
-function SubMenuItem(props) {
+function SubMenuItem(props: { name: string; onClick: () => void }) {
 
     return (
         <div id="subMenu" className="relative h-16 w-full lg:h-24 lg:w-32 border-b-2 border-white">

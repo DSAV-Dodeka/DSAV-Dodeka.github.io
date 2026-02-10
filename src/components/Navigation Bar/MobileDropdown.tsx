@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     useLocation
 } from "react-router";
@@ -6,7 +6,7 @@ import Item from "./Item";
 import SubMenuItem from "./SubMenuItem";
 import "./MobileDropdown.scss";
 
-function MobileDropdown(props) {
+function MobileDropdown(props: { name: string; path: string; items: { name: string; path: string }[]; onClick: () => void }) {
     const location = useLocation().pathname;
     const [active, setActive] = useState(false);
 
@@ -20,8 +20,8 @@ function MobileDropdown(props) {
             </div>
             <div id="mobileDrop" className={"mobileDrop" + (active ? "" : " mobileDropInactive")}>
                 <div onClick={() => setActive(!active)}>
-                    <SubMenuItem name={props.name} path={props.path} onClick={() => setActive(false)} onItemClick={props.onClick}/>
-                    {props.items.map((item) => (
+                    <SubMenuItem name={props.name} onClick={() => setActive(false)} />
+                    {props.items.map((item: { name: string; path: string }) => (
                         <Item key={"drop" + item.name} name={item.name} path={props.path + item.path} onClick={props.onClick} />
                     ))}
                 </div>

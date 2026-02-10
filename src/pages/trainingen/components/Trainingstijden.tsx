@@ -1,4 +1,3 @@
-import React from "react";
 import "./Trainingstijden.scss";
 
 function Trainingstijden() {

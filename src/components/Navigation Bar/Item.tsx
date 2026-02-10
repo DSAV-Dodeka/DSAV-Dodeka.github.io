@@ -1,10 +1,9 @@
-import React from "react";
 import {
   useLocation, Link
 } from "react-router";
 import "./Item.scss"
 
-function Item(props) {
+function Item(props: { name: string; path: string; onClick?: () => void }) {
   const location = useLocation().pathname;
 
   return (

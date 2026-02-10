@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
-// import {
-//   HashLink as Link
-// } from "react-router-hash-link";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import "./HomeNieuws.scss";
 import Nieuws from "../../../content/Nieuws.json";

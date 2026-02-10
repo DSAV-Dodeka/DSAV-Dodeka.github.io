@@ -1,4 +1,3 @@
-import React from "react";
 import "./Icons.scss";
 import icons from "$images/trainingen/icons.svg";
 

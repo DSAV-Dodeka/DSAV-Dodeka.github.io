@@ -1,11 +1,3 @@
-import React from "react";
-// import {
-//   HashLink as Link
-// } from "react-router-hash-link";
-import {
-    Link
-} from "react-router";
-import {getNestedImagesUrl} from "../../../functions/links";
 import "./Samenwerkingen.scss";
 import muconsult from "$images/sponsors/muconsult.webp";
 import maltha from "$images/sponsors/maltha.png";

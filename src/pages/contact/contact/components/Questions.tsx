@@ -1,11 +1,10 @@
-import React from "react";
 import Question from "./Question";
 import "./Questions.scss";
 
-function Questions(props) {
+function Questions(props: { questions: { vraag: string; antwoord: string }[] }) {
     return (
         <div id="question_grid">
-            {props.questions.map(vraag => 
+            {props.questions.map((vraag: { vraag: string; antwoord: string }) =>
                 <Question key={vraag.vraag} vraag={vraag.vraag} antwoord={vraag.antwoord}/>
             )}
         </div>

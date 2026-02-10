@@ -1,7 +1,6 @@
-import React from "react";
 import "./Heading.scss"
 
-function Heading(props) {
+function Heading(props: { title: string }) {
     return(
         <div id="contact_heading" >
             <h1 id="bar_title">{props.title.toUpperCase()}</h1>

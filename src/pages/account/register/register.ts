@@ -3,7 +3,7 @@ import { requestRegistration } from "$functions/backend.ts";
 // Mode detection
 export const isDemoMode = import.meta.env.MODE === "demo";
 export const isDevMode = import.meta.env.DEV;
-export const isBackendEnabled = import.meta.env.VITE_BACKEND_ENABLED !== "false";
+export const isBackendEnabled = import.meta.env['VITE_BACKEND_ENABLED'] !== "false";
 
 // Volta toggle for demo mode
 // - DEV mode: Volta always disabled, no toggle

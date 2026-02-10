@@ -1,8 +1,7 @@
-import React from "react";
 import "./ContactButtons.scss";
 
 
-function ContactButtons(props) {
+function ContactButtons(props: { mail?: string; insta?: string }) {
     return (
         <div id="contactButtonsContainer">
             <a target="_blank" rel="noreferrer" href={props.mail || "mailto:bestuur@dsavdodeka.nl"} id="mail">

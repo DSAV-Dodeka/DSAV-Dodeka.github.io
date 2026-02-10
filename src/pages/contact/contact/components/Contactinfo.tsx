@@ -1,4 +1,3 @@
-import React from "react";
 import "./Contactinfo.scss"
 
 function Contactinfo() {
