@@ -6,7 +6,7 @@ import {
     Link
 } from "react-router";
 import "./HomeCommissies.scss";
-import commissie from "$images/home/commissie.jpg";
+import commissie from "$images/home/commissie.webp";
 
 function HomeCommissies() {
   return (

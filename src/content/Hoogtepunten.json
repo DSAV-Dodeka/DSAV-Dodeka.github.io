@@ -1,8 +1,45 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Weg 2025",
+            "foto": "nsk_weg_2025.webp",
+            "prijzen": [
+                {
+                    "naam": "Louisa Kenny",
+                    "plaats": 3,
+                    "afstand": "10 kilometer"
+                },
+                {
+                    "naam": "Thymo Westerhof",
+                    "plaats": 2,
+                    "afstand": "10 kilometer BM"
+                }
+            ],
+            "prestaties": [
+                "Twee maal 12 Dodekaëders reisden af naar Enschede voor dit NSK",
+                "Maar liefst 4 mannen liepen top 10 op de 10 kilometer",
+                "Kyllian liep beide afstanden én de estaffette"
+            ]
+        },
+        {
+            "wedstrijd": "NSK Teams 2025",
+            "foto": "nsk_teams_2025.webp",
+            "prijzen": [
+                {
+                    "naam": "Team Dodeka",
+                    "plaats": 2,
+                    "afstand": "Vrouwen"
+                }
+            ],
+            "prestaties": [
+                "Ook dit jaar konden we bij de mannen weer twee teams vullen",
+                "Anne-Wil won het verspringen met een PR in haar laatste sprong",
+                "Het vrouwenteam behaalde de zilveren medaille"
+            ]
+        },
+        {
             "wedstrijd": "NSK Baan 2025",
-            "foto": "nsk_baan_2025.jpg",
+            "foto": "nsk_baan_2025.webp",
             "prijzen": [
                 {
                     "naam": "Robert",
@@ -58,7 +95,7 @@
         },
         {
             "wedstrijd": "NSK Ekiden 2025",
-            "foto": "nsk_ekiden_2025.jpg",
+            "foto": "nsk_ekiden_2025.webp",
             "prijzen": [
                 {
                     "naam": "Dodekampioenen",
@@ -74,7 +111,7 @@
         },
         {
             "wedstrijd": "NSK Teams 2024",
-            "foto": "nsk_teams_2024.jpg",
+            "foto": "nsk_teams_2024.webp",
             "prijzen": [
                 {
                     "naam": "Team Dodeka",
@@ -95,7 +132,7 @@
         },
         {
             "wedstrijd": "NSK Baan 2024",
-            "foto": "nsk_baan_2024.jpg",
+            "foto": "nsk_baan_2024.webp",
             "prijzen": [
                 {
                     "naam": "Jeroen van het Hof",
@@ -136,7 +173,7 @@
         },
         {
             "wedstrijd": "NSK Meerkamp 2024",
-            "foto": "nsk_meerkamp_2024.jpg",
+            "foto": "nsk_meerkamp_2024.webp",
             "prijzen": [
                 {
                     "naam": "Tijmen Hoedjes, Robin Beijer",
@@ -167,7 +204,7 @@
         },
         {
             "wedstrijd": "NSK Ekiden 2024",
-            "foto": "nsk_ekiden_2024.jpg",
+            "foto": "nsk_ekiden_2024.webp",
             "prijzen": [
                 {
                     "naam": "Ekidenderend",
@@ -183,7 +220,7 @@
         },
         {
             "wedstrijd": "NSK indoor 2024",
-            "foto": "nsk_indoor_2024.jpg",
+            "foto": "nsk_indoor_2024.webp",
             "prijzen": [
                 {
                     "naam": "Tijmen Hoedjes",
@@ -224,7 +261,7 @@
         },
         {
             "wedstrijd": "NSK cross 2024",
-            "foto": "nsk_cross_2024.jpg",
+            "foto": "nsk_cross_2024.webp",
             "prijzen": [
                 {
                     "naam": "Tijmen Hoedjes",
@@ -270,7 +307,7 @@
         },
         {
             "wedstrijd": "NSK Trappenloop 2023",
-            "foto": "nsk_trappenloop2023_landscape.JPG",
+            "foto": "nsk_trappenloop2023_landscape.webp",
             "prijzen": [
                 {
                     "naam": "Robin Beijer, Marien Sips",
@@ -301,7 +338,7 @@
         },
         {
             "wedstrijd": "NSK Weg 2023",
-            "foto": "nsk_weg_2023.jpg",
+            "foto": "nsk_weg_2023.webp",
             "prijzen": [
                 {
                     "naam": "Suze de Vries",
@@ -322,7 +359,7 @@
         },
         {
             "wedstrijd": "NSK Teams 2023",
-            "foto": "hoogtepunten_teams_2023.jpg",
+            "foto": "hoogtepunten_teams_2023.webp",
             "prijzen": [
                 {
                     "naam": "Team Dodeka",
@@ -348,7 +385,7 @@
         },
         {
             "wedstrijd": "NSK Ekiden 2023",
-            "foto": "hoogtepunten_ekiden_2023.jpg",
+            "foto": "hoogtepunten_ekiden_2023.webp",
             "prijzen": [
                 {
                     "naam": "Team Dodeka",

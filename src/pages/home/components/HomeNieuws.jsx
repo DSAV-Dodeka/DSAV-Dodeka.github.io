@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import "./HomeNieuws.scss";
 import Nieuws from "../../../content/Nieuws.json";
-import nieuws from "$images/home/nieuws.jpg";
+import nieuws from "$images/home/nieuws.webp";
 
 function HomeNieuws() {
   const [maxNieuws, setMaxNieuws] = useState(3);

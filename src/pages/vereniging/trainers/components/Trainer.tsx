@@ -15,7 +15,7 @@ function Trainer({naam, foto, trainerType, favorieteOnderdeel, trainerSinds, exp
     return(
         <div className="trainerContainer">
         <div className="trainerPhotoContainer">
-            <img className="trainerPhoto" src={getHashedImageUrl(`commissies/trainers/${foto}.jpg`)} />
+            <img className="trainerPhoto" src={getHashedImageUrl(`commissies/trainers/${foto}.webp`)} />
         </div>
             <div className="trainerText">
                 <Header text={naam} position="left"></Header>

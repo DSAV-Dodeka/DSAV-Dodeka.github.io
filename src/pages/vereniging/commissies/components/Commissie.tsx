@@ -61,7 +61,7 @@ function Commissie(props: CommissieProps) {
     <div id={props.name} className="commissieContainer">
       <img
         className="commissieLogo roundedRight"
-        src={getHashedImageUrl(`commissies/${props.fotos}/logo.jpg`)}
+        src={getHashedImageUrl(`commissies/${props.fotos}/logo.webp`)}
         alt=""
       />
       <div className="commissieInfo roundedLeft">
@@ -83,7 +83,7 @@ function Commissie(props: CommissieProps) {
       <div className="commissieLogo roundedRight">
         <img
           className="commissieFoto roundedRight"
-          src={getHashedImageUrl(`commissies/${props.fotos}/commissie.jpg`)}
+          src={getHashedImageUrl(`commissies/${props.fotos}/commissie.webp`)}
           alt=""
         />
       </div>
@@ -96,7 +96,7 @@ function Commissie(props: CommissieProps) {
               <img
                 className="commissieLidFoto"
                 src={getHashedImageUrl(
-                  `commissies/${props.fotos}/${lid.foto}.jpg`,
+                  `commissies/${props.fotos}/${lid.foto}.webp`,
                 )}
                 alt=""
               />
@@ -137,7 +137,7 @@ function Commissie(props: CommissieProps) {
       </div>
       <img
         className={"commissieLogo roundedLeft"}
-        src={getHashedImageUrl(`commissies/${props.fotos}/logo.jpg`)}
+        src={getHashedImageUrl(`commissies/${props.fotos}/logo.webp`)}
         alt=""
       />
 
@@ -149,7 +149,7 @@ function Commissie(props: CommissieProps) {
               <img
                 className="commissieLidFoto"
                 src={getHashedImageUrl(
-                  `commissies/${props.fotos}/${lid.foto}.jpg`,
+                  `commissies/${props.fotos}/${lid.foto}.webp`,
                 )}
                 alt=""
               />
@@ -174,7 +174,7 @@ function Commissie(props: CommissieProps) {
       <div className="commissieLogo roundedLeft">
         <img
           className="commissieFoto roundedLeft"
-          src={getHashedImageUrl(`commissies/${props.fotos}/commissie.jpg`)}
+          src={getHashedImageUrl(`commissies/${props.fotos}/commissie.web`)}
           alt=""
         />
       </div>

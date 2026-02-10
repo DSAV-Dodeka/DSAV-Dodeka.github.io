@@ -4,11 +4,12 @@ import TitleBar from "./components/TitleBar";
 import HomeTrainingen from "./components/HomeTrainingen";
 import HomeCommissies from "./components/HomeCommissies";
 import "./home.scss";
+import Samenwerkingen from "./components/Samenwerkingen";
 // import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
   // Unused snow animation code - kept for reference
-  // const snowContent = ["&#127846", "🍉", "🍸"];
+  // const snowContent = ["&#127846", "�", "�"];
   // const random = (num: number) => {
   //   return Math.floor(Math.random() * num);
   // };
@@ -99,6 +100,7 @@ function Home() {
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
+      <Samenwerkingen />
       <div id="sneeuw_container"></div>
     </div>
   );
