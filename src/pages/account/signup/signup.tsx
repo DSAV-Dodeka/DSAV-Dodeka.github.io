@@ -283,8 +283,8 @@ export default function Signup() {
 
           {registrationPending && (
             <p>
-              Je ontvangt binnenkort een e-mail om je account te activeren. Dit
-              kan enkele werkdagen duren.
+              Je gegevens zijn ontvangen. Neem bij vragen contact op met het
+              bestuur.
             </p>
           )}
 
