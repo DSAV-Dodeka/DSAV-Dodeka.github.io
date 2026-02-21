@@ -389,12 +389,12 @@ export default function Registreer() {
                 onChange={handleSelectChange}
               >
                 <option value="Wedstrijdlid">
-                  Wedstrijdlid (€53,50 per kwartaal)
+                  Wedstrijdlid (€54,75 per kwartaal)
                 </option>
                 <option value="Recreantlid">
-                  Recreantlid (€47,00 per kwartaal)
+                  Recreantlid (€48,00 per kwartaal)
                 </option>
-                <option value="Gastlid">Gastlid (€44,00 per kwartaal)</option>
+                <option value="Gastlid">Gastlid (€45,00 per kwartaal)</option>
               </select>
             </div>
             <div className="checkbox">
