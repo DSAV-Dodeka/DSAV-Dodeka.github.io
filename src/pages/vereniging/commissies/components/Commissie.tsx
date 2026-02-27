@@ -61,7 +61,7 @@ function Commissie(props: CommissieProps) {
     <div id={props.name} className="commissieContainer">
       <img
         className="commissieLogo roundedRight"
-        src={getHashedImageUrl(`commissies/${props.fotos}/logo.webp`)}
+        src={getHashedImageUrl(`commissies/${props.fotos}/logo.png`)}
         alt=""
       />
       <div className="commissieInfo roundedLeft">
@@ -137,7 +137,7 @@ function Commissie(props: CommissieProps) {
       </div>
       <img
         className={"commissieLogo roundedLeft"}
-        src={getHashedImageUrl(`commissies/${props.fotos}/logo.webp`)}
+        src={getHashedImageUrl(`commissies/${props.fotos}/logo.png`)}
         alt=""
       />
 

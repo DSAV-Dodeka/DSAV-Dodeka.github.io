@@ -8,8 +8,8 @@ import wedstrijdText from "../../content/Wedstrijden.json";
 import { useSessionInfo } from "$functions/query.ts";
 import "./NavigationBar.scss";
 import "./animation.css";
-import logo from "$images/logo.webp";
-import dodeka from "$images/dodeka.webp";
+import logo from "$images/logo.png";
+import dodeka from "$images/dodeka.png";
 import LoginIndicator from "../LoginIndicator/LoginIndicator";
 
 // Client-only component that renders the Leden menu when the user is a member.

@@ -1,8 +1,8 @@
 import Header from "../../../../components/Header";
 import "./Sponsoropties.scss";
 import maltha from "$images/sponsors/maltha.png";
-import muconsult from "$images/sponsors/muconsult.webp";
-import boozed from "$images/sponsors/boozed.webp";
+import muconsult from "$images/sponsors/muconsult.png";
+import boozed from "$images/sponsors/boozed.png";
 import sponsoropties from "$images/sponsors/sponsoropties.webp";
 import virtuoos from "$images/sponsors/virtuoos.webp";
 
