@@ -32,7 +32,7 @@ function Commissie(props) {
     <div id={props.name} className="commissieContainer">
       <img
         className="commissieLogo roundedRight"
-        src={getDeepImagesUrl(`commissies/${props.fotos}/logo.webp`)}
+        src={getDeepImagesUrl(`commissies/${props.fotos}/logo.png`)}
         alt=""
       />
       <div className="commissieInfo roundedLeft">
@@ -108,7 +108,7 @@ function Commissie(props) {
       </div>
       <img
         className={"commissieLogo roundedLeft"}
-        src={getDeepImagesUrl(`commissies/${props.fotos}/logo.webp`)}
+        src={getDeepImagesUrl(`commissies/${props.fotos}/dodeka.png`)}
         alt=""
       />
 
