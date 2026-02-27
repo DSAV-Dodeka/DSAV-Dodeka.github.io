@@ -5,10 +5,52 @@ import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from "disable-scroll";
 import wedstrijdText from "../../content/Wedstrijden.json";
+import { useSessionInfo } from "$functions/query.ts";
 import "./NavigationBar.scss";
 import "./animation.css";
 import logo from "$images/logo.png";
 import dodeka from "$images/dodeka.png";
+import LoginIndicator from "../LoginIndicator/LoginIndicator";
+
+// Client-only component that renders the Leden menu when the user is a member.
+// useSessionInfo (react-query) cannot run during SSR since QueryClientProvider
+// is only mounted on the client.
+function MemberDropdown() {
+  const { data: session } = useSessionInfo();
+  const isMember = session?.user.permissions.includes("member") ?? false;
+  if (!isMember) return null;
+  return (
+    <Dropdown
+      name="Leden"
+      path="/leden"
+      items={[{ name: "Verjaardagen", path: "/verjaardagen" }]}
+    />
+  );
+}
+
+function MemberMobileDropdown({ onClick }: { onClick: () => void }) {
+  const { data: session } = useSessionInfo();
+  const isMember = session?.user.permissions.includes("member") ?? false;
+  if (!isMember) return null;
+  return (
+    <MobileDropdown
+      name="Leden"
+      path="/leden"
+      items={[
+        { name: "Ledenpagina", path: "" },
+        { name: "Verjaardagen", path: "/verjaardagen" },
+      ]}
+      onClick={onClick}
+    />
+  );
+}
+
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => { setIsClient(true); }, []);
+  if (!isClient) return null;
+  return <>{children}</>;
+}
 
 function NavigationBar() {
   const [active, setActive] = useState(false);
@@ -93,8 +135,11 @@ function NavigationBar() {
               { name: "Donateurs", path: "/donateurs" },
             ]}
           />
-          {/*{authState.isLoaded && authState.isAuthenticated && <Dropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }, { name: "Klassementen", path: "/klassementen" }]} />}*/}
+          <ClientOnly>
+            <MemberDropdown />
+          </ClientOnly>
         </div>
+        <LoginIndicator />
       </nav>
       <nav id="navMobile">
         <div id="navMobileBar">
@@ -114,7 +159,9 @@ function NavigationBar() {
             ></div>
           </div>
           <img id="navMobileLogo" src={dodeka} alt="" />
-          {/*<div className="mobileLogin">{/*<Login /></div>*/}
+          <div className="mobileLogin">
+            <LoginIndicator />
+          </div>
         </div>
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
           <div className={active ? "" : "inactive"}>
@@ -186,7 +233,9 @@ function NavigationBar() {
               ]}
               onClick={() => setActive(false)}
             />
-            {/*{authState.isLoaded && authState.isAuthenticated && <MobileDropdown name="Leden" path="/leden" items={[{ name: "Verjaardagen", path: "/verjaardagen" }, { name: "Klassementen", path: "/klassementen" }]} onClick={() => setActive(false)}/>}*/}
+            <ClientOnly>
+              <MemberMobileDropdown onClick={() => setActive(false)} />
+            </ClientOnly>
           </div>
         </div>
       </nav>

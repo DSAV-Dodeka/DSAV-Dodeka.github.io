@@ -15,12 +15,15 @@ export default defineConfig({
     }),
   ],
   server: {
-    // host:'0.0.0.0',
+    host: '127.0.0.1',
     port: 3000,
   },
   resolve: {
     alias: {
       $images: path.resolve(__dirname, "./src/images"),
+      $components: path.resolve(__dirname, "./src/components"),
+      $functions: path.resolve(__dirname, "./src/functions"),
+      $content: path.resolve(__dirname, "./src/content"),
     },
   },
   css: {

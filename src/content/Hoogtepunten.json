@@ -1,6 +1,27 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Trappenloop 2025",
+            "foto": "nsk_trap_2025.webp",
+            "prijzen": [
+                {
+                    "naam": "Lou Bijman",
+                    "plaats": 2,
+                    "afstand": "20 verdiepingen"
+                },
+                {
+                    "naam": "Marien Sips",
+                    "plaats": 3,
+                    "afstand": "10 verdiepingen"
+                }
+            ],
+            "prestaties": [
+                "Er waren minder deelnemers dan bij onze eigen Delftse trappenloop",
+                "Tijdens de ludieke estafette is een OV-fiets de trappen opgetild",
+                "Dieptepunt: B7 heeft in Asterix shirts meegedaan"
+            ]
+        },
+        {
             "wedstrijd": "NSK Weg 2025",
             "foto": "nsk_weg_2025.webp",
             "prijzen": [
