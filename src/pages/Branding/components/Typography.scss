@@ -1,0 +1,66 @@
+@use "../../../variables";
+
+.typography {
+  &__description {
+    background-color: #f9fafb;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    border-left: 4px solid variables.$dodeka_blauw;
+    margin-bottom: 1.5rem;
+    line-height: variables.$line_height_medium;
+    color: #374151;
+
+    @include variables.respond(mobile) {
+      padding: 1.25rem;
+    }
+  }
+
+  &__examples {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #f9fafb;
+  }
+
+  &__example {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.7;
+      outline: none;
+    }
+
+    &--title {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+
+      @include variables.respond(mobile) {
+        font-size: 1.75rem;
+      }
+    }
+
+    &--heading {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+
+      @include variables.respond(mobile) {
+        font-size: 1.5rem;
+      }
+    }
+
+    &--body {
+      font-family: "Source Sans 3", sans-serif;
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: #6b7280;
+    }
+  }
+}

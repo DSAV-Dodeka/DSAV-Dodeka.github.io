@@ -1,0 +1,42 @@
+@use "../../variables";
+
+.branding-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 variables.$margin_x;
+
+  @include variables.respond(mobile) {
+    padding: 0 variables.$margin_mobile;
+  }
+
+  .branding-section {
+    padding: 2rem 0 3rem;
+
+    // Big whitespace gap between sections instead of a line.
+    // The heading banner itself becomes the visual cue.
+    & + .branding-section {
+      margin-top: 1.5rem;
+    }
+
+    h2 {
+      // Full-width banner in Dodeka Blauw with rounded corners —
+      // "strakke, maar afgeronde vormen". The heading pops as a
+      // clear section marker without needing extra dividers.
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: variables.$font_large;
+      color: #fff;
+      background-color: variables.$dodeka_blauw;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      letter-spacing: 0.02em;
+
+      @include variables.respond(mobile) {
+        font-size: variables.$font_ml;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+      }
+    }
+  }
+}

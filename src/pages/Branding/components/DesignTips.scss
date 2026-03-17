@@ -1,0 +1,69 @@
+@use "../../../variables";
+
+.design-tips {
+  &__list-card {
+    padding: 1.5rem;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+    list-style: disc;
+    padding-left: 1.25rem;
+    line-height: variables.$line_height_medium;
+
+    li {
+      margin-bottom: 0.5rem;
+      color: #374151;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__subtitle {
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
+    color: #374151;
+    margin-bottom: 1rem;
+  }
+
+  &__shapes {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+    @include variables.respond(mobile) {
+      flex-direction: column;
+    }
+  }
+
+  &__shapes-column {
+    flex: 1;
+  }
+
+  &__shapes-heading {
+    font-weight: variables.$bold;
+    margin-bottom: 0.5rem;
+
+    &--do {
+      color: #16a34a;
+    }
+
+    &--dont {
+      color: #dc2626;
+    }
+  }
+
+  &__shapes-text {
+    color: #6b7280;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
+  }
+}

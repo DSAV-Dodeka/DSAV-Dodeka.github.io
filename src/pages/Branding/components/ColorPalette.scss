@@ -1,0 +1,100 @@
+@use "../../../variables";
+
+.color-palette {
+  &__section {
+    margin-bottom: 2rem;
+  }
+
+  &__heading {
+    font-size: variables.$font_medium;
+    margin-bottom: 1rem;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 1.5rem;
+
+    &--primary {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &--secondary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include variables.respond(mobile) {
+      &--primary,
+      &--secondary {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  &__toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: variables.$dodeka_blauw;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: variables.$font_small;
+    z-index: 1000;
+    pointer-events: none;
+  }
+}
+
+.color-swatch {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+
+  &__preview {
+    height: 100px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.85;
+      outline: 2px solid variables.$dodeka_blauw;
+      outline-offset: -2px;
+    }
+
+    &--light {
+      border-bottom: 1px solid #e0e0e0;
+    }
+  }
+
+  &__info {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__name {
+    font-weight: variables.$bold;
+    font-size: variables.$font_small;
+    margin-bottom: 0.25rem;
+  }
+
+  &__value {
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0.15rem 0.25rem;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+
+    &:hover,
+    &:focus-visible {
+      background-color: #f0f0f0;
+      outline: none;
+    }
+
+    strong {
+      color: #666;
+    }
+  }
+}

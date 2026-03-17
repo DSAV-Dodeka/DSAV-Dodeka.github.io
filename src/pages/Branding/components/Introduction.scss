@@ -1,0 +1,22 @@
+@use "../../../variables";
+
+.introduction {
+  background-color: #f9fafb;
+  border-radius: 12px;
+  padding: 2rem;
+  border-left: 4px solid variables.$dodeka_blauw;
+
+  @include variables.respond(mobile) {
+    padding: 1.25rem;
+  }
+
+  &__text {
+    line-height: variables.$line_height_medium;
+    color: #374151;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

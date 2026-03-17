@@ -49,6 +49,7 @@ import Registered from "./pages/Auth/Registered";
 // import ChangeEmail from "./pages/Account/Email/ChangeEmail";
 // import DeleteAccount from "./pages/Account/Delete/DeleteAccount";
 import OLD from "./pages/Vereniging/OLD/OLD";
+import Branding from "./pages/Branding/Branding";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -225,6 +226,7 @@ function App() {
                 path="/contact/donateurs"
                 element={<Donateurs />}
               />
+              <Route path="/branding" element={<Branding />} />
               {/*<Route
                 path="/leden/verjaardagen"
                 element={
