@@ -3,89 +3,191 @@
 .crap-rules {
   &__intro {
     line-height: variables.$line_height_medium;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    color: #4b5563;
+    font-size: 1.05rem;
   }
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+  /* ── Principe-kaarten (visueel + uitleg naast elkaar) ── */
 
-    @media (max-width: 1024px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include variables.respond(phone) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__card {
-    background-color: #f9fafb;
-    border-radius: 8px;
-    padding: 1.5rem;
+  &__principles {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
   }
 
-  &__card-title {
-    font-weight: variables.$bold;
-    font-size: variables.$font_small;
-    color: #374151;
-  }
-
-  &__lists {
+  &__principle {
     display: flex;
     gap: 2rem;
-    padding: 1.5rem;
-    background-color: #f9fafb;
-    border-radius: 8px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid variables.$dodeka_blauw;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+    }
 
     @include variables.respond(mobile) {
       flex-direction: column;
+      gap: 1.25rem;
+      padding: 1.5rem;
     }
   }
 
-  &__list {
+  &__principle-visual {
+    flex-shrink: 0;
+    width: 160px;
+    display: flex;
+    align-items: center;
+
+    @include variables.respond(mobile) {
+      width: 100%;
+    }
+  }
+
+  &__principle-content {
     flex: 1;
+    min-width: 0;
   }
 
-  &__list-heading {
+  &__principle-title {
+    font-family: "Montserrat", sans-serif;
     font-weight: variables.$bold;
+    font-size: variables.$font_medium;
+    color: variables.$dodeka_blauw;
     margin-bottom: 0.5rem;
-
-    &--do {
-      color: #16a34a;
-    }
-
-    &--dont {
-      color: #dc2626;
-    }
   }
 
-  &__items {
-    list-style: disc;
-    padding-left: 1.25rem;
+  &__principle-summary {
+    color: #374151;
     line-height: variables.$line_height_medium;
+    margin-bottom: 0.75rem;
+  }
+
+  &__principle-tips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
     li {
-      margin-bottom: 0.5rem;
-      color: #374151;
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.4rem;
+      color: #4b5563;
+      line-height: variables.$line_height_small;
+      font-size: 0.95rem;
+
+      &::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: variables.$dodeka_blauw;
+        font-weight: variables.$bold;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
-  &__example-heading {
+  /* ── Sectie-koppen ── */
+
+  &__section-heading {
+    font-family: "Montserrat", sans-serif;
     font-size: variables.$font_medium;
     font-weight: variables.$bold;
-    color: #374151;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    color: variables.$dodeka_blauw;
+    margin-top: 0.5rem;
+    margin-bottom: 1.25rem;
   }
+
+  /* ── Vuistregels ── */
+
+  &__vuistregels {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  &__vuistregel {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-top: 3px solid variables.$dodeka_blauw;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  &__vuistregel-label {
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    font-weight: variables.$bold;
+    font-size: variables.$font_small;
+    color: variables.$dodeka_blauw;
+    margin-bottom: 0.5rem;
+  }
+
+  &__vuistregel-text {
+    color: #4b5563;
+    line-height: variables.$line_height_small;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* ── Veelgemaakte fouten ── */
+
+  &__fouten {
+    background: #fef2f2;
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    border: 2px solid #fca5a5;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.06);
+  }
+
+  &__fouten-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.6rem;
+      color: #7f1d1d;
+      line-height: variables.$line_height_small;
+
+      &::before {
+        content: "✗";
+        position: absolute;
+        left: 0;
+        color: #dc2626;
+        font-weight: variables.$bold;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  /* ── Kleurcontrast voorbeeld (behouden) ── */
 
   &__contrast-example {
     display: grid;
@@ -98,19 +200,34 @@
   }
 
   &__contrast-card {
-    border-radius: 12px;
-    padding: 1.5rem;
+    border-radius: 16px;
+    padding: 1.75rem;
     position: relative;
     overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
 
     &--bad {
       background-color: #fef2f2;
       border: 2px solid #fca5a5;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.08);
+
+      &:hover {
+        box-shadow: 0 8px 20px rgba(220, 38, 38, 0.12);
+      }
     }
 
     &--good {
       background-color: #f0fdf4;
       border: 2px solid #86efac;
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.08);
+
+      &:hover {
+        box-shadow: 0 8px 20px rgba(22, 163, 74, 0.12);
+      }
     }
   }
 
@@ -118,14 +235,15 @@
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    width: 2rem;
-    height: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: variables.$bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 
     &--bad {
       background-color: #dc2626;
@@ -139,8 +257,8 @@
   }
 
   &__contrast-preview {
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
     text-align: center;
     font-family: "Montserrat", sans-serif;
     font-weight: 800;
@@ -177,15 +295,15 @@
     align-items: center;
     justify-content: center;
     height: 60px;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
     &--dark {
-      background-color: #111827;
+      background-color: variables.$dodeka_blauw;
     }
 
     &--light {
-      background-color: #e5e7eb;
+      background-color: #e2e8f0;
     }
   }
 
@@ -195,6 +313,7 @@
     &--light {
       color: #fff;
       font-size: 1.5rem;
+      font-family: "Montserrat", sans-serif;
     }
 
     &--muted {
@@ -210,8 +329,8 @@
     height: 60px;
     padding: 0.5rem;
     background-color: #fff;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   }
 
   &__circle {
@@ -234,14 +353,14 @@
     height: 60px;
     padding: 0.5rem;
     background-color: #fff;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   }
 
   &__bar {
     height: 0.75rem;
-    border-radius: 3px;
-    background-color: #9ca3af;
+    border-radius: 6px;
+    background-color: #94a3b8;
 
     &--50 {
       width: 50%;
@@ -269,8 +388,8 @@
     height: 60px;
     padding: 0.5rem;
     background-color: #fff;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   }
 
   &__proximity-group {
@@ -281,7 +400,7 @@
   &__rect {
     width: 5rem;
     height: 2rem;
-    border-radius: 4px;
-    background-color: #d1d5db;
+    border-radius: 8px;
+    background-color: #cbd5e1;
   }
 }

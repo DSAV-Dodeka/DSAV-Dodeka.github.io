@@ -10,33 +10,57 @@
   }
 
   .branding-section {
-    padding: 2rem 0 3rem;
+    padding: 2.5rem 0 3.5rem;
 
-    // Big whitespace gap between sections instead of a line.
-    // The heading banner itself becomes the visual cue.
     & + .branding-section {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
     }
 
     h2 {
-      // Full-width banner in Dodeka Blauw with rounded corners —
-      // "strakke, maar afgeronde vormen". The heading pops as a
-      // clear section marker without needing extra dividers.
       font-family: "Montserrat", sans-serif;
       font-weight: 900;
       font-size: variables.$font_large;
       color: #fff;
-      background-color: variables.$dodeka_blauw;
-      padding: 1rem 1.5rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
+      background: linear-gradient(135deg, variables.$dodeka_blauw 0%, variables.$dodeka_blauw90p 100%);
+      padding: 1.25rem 2rem;
+      border-radius: 16px;
+      margin-bottom: 2.5rem;
       letter-spacing: 0.02em;
+      box-shadow:
+        0 4px 6px -1px rgba(0, 29, 72, 0.2),
+        0 2px 4px -2px rgba(0, 29, 72, 0.1);
+      position: relative;
+      overflow: hidden;
+
+      // Subtle diagonal accent stripe
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 120px;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.05) 50%,
+          transparent 100%
+        );
+        pointer-events: none;
+      }
 
       @include variables.respond(mobile) {
         font-size: variables.$font_ml;
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        border-radius: 12px;
       }
+    }
+
+    // Subheadings within sections
+    h3 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      color: variables.$dodeka_blauw;
     }
   }
 }

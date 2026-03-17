@@ -1,30 +1,96 @@
 import "./CrapRules.scss";
 
-const DOS_LIST = [
+/* ── Principes met uitgebreide uitleg ── */
+
+const PRINCIPLES = [
   {
-    label: "Contrast",
-    text: "Zorg voor voldoende contrast tussen tekst- en achtergrondkleuren voor leesbaarheid, en gebruik grootte/gewicht om belangrijke elementen te onderscheiden.",
+    name: "Contrast",
+    summary:
+      "Contrast trekt de aandacht en stuurt de lezer door het ontwerp. Het gaat niet alleen om kleur — ook grootte, gewicht, vorm en witruimte creëren contrast.",
+    tips: [
+      "Gebruik Dodeka Blauw (#001D48) als primaire achtergrond met witte tekst voor maximale leesbaarheid.",
+      "Maak koppen duidelijk groter en zwaarder dan broodtekst (bijv. Montserrat Black 36px vs. Source Sans 3 Regular 16px).",
+      "Vermijd subtiele kleurverschillen — als twee elementen niet hetzelfde zijn, maak ze dan duidelijk anders.",
+      "Gebruik witruimte als contrast: een enkel element met veel ruimte eromheen springt eruit.",
+    ],
   },
   {
-    label: "Herhaling",
-    text: "Gebruik dezelfde kleuren, lettertypes en logoversies consistent in al het brandingmateriaal.",
+    name: "Herhaling",
+    summary:
+      "Herhaling zorgt voor herkenbaarheid en samenhang. Door visuele elementen consequent te hergebruiken, bouw je een sterk en herkenbaar merk op.",
+    tips: [
+      "Gebruik altijd dezelfde kleurencombinaties: Dodeka Blauw, Baan Rood en Wit als basis.",
+      "Houd lettertypes consistent: Montserrat voor koppen, Source Sans 3 voor broodtekst.",
+      "Herhaal dezelfde stijl voor knoppen, kaarten en secties door het hele ontwerp heen.",
+      "Gebruik het logo altijd in een goedgekeurde variant — wissel niet willekeurig tussen versies.",
+    ],
   },
   {
-    label: "Uitlijning",
-    text: "Lijn elementen uit om een duidelijke, georganiseerde structuur te creëren. Gebruik geen willekeurige of inconsistente tussenruimte.",
+    name: "Uitlijning",
+    summary:
+      "Uitlijning geeft structuur en orde. Elk element op de pagina moet een visuele verbinding hebben met een ander element — niets mag er willekeurig geplaatst uitzien.",
+    tips: [
+      "Werk met een consistent grid of kolommensysteem voor alle layouts.",
+      "Lijn tekst, afbeeldingen en knoppen uit op dezelfde onzichtbare lijnen.",
+      "Vermijd gecentreerde tekst in lange alinea's — links uitlijnen is beter leesbaar.",
+      "Zorg dat marges en padding consistent zijn door het hele ontwerp.",
+    ],
   },
   {
-    label: "Nabijheid",
-    text: "Groepeer gerelateerde elementen samen om te laten zien dat ze bij elkaar horen. Een kop moet bijvoorbeeld dichter bij zijn alinea staan dan bij de volgende kop.",
+    name: "Nabijheid",
+    summary:
+      "Nabijheid communiceert relaties. Elementen die bij elkaar horen, moeten dicht bij elkaar staan. Elementen die niet gerelateerd zijn, moeten visueel gescheiden worden.",
+    tips: [
+      "Plaats een kop altijd dichter bij de bijbehorende tekst dan bij de vorige sectie.",
+      "Groepeer gerelateerde informatie (bijv. icoon + label + beschrijving) in duidelijke blokken.",
+      "Gebruik meer witruimte tussen secties dan binnen secties om hiërarchie te tonen.",
+      "Vermijd 'zwevende' elementen die niet duidelijk bij een groep horen.",
+    ],
   },
 ];
 
-const DONTS_LIST = [
-  "Vermijd kleurcombinaties met weinig contrast of visuele elementen die met elkaar concurreren om aandacht.",
-  "Introduceer geen nieuwe, niet-goedgekeurde kleuren of lettertypes zonder duidelijke reden.",
-  "Rek, verpletter of vervorm het logo nooit, en behoud altijd de vrije ruimte eromheen.",
-  "Vermijd het willekeurig plaatsen van elementen of inconsistente tussenruimte die het ontwerp rommelig maakt.",
+/* ── Vuistregels ── */
+
+const VUISTREGELS = [
+  {
+    regel: "Squint-test",
+    uitleg:
+      "Knijp je ogen dicht en kijk naar je ontwerp. Kun je nog steeds de structuur en hiërarchie herkennen? Zo ja, dan werkt je contrast en uitlijning goed.",
+  },
+  {
+    regel: "3-seconden regel",
+    uitleg:
+      "Een kijker moet binnen 3 seconden begrijpen wat het belangrijkste element op de pagina is. Als dat niet lukt, ontbreekt er contrast.",
+  },
+  {
+    regel: "Maximaal 2 lettertypes",
+    uitleg:
+      "Gebruik niet meer dan twee lettertypefamilies (Montserrat + Source Sans 3). Meer lettertypes zorgen voor visuele ruis.",
+  },
+  {
+    regel: "60-30-10 kleurregel",
+    uitleg:
+      "Verdeel kleuren als 60% dominant (Dodeka Blauw/Wit), 30% secundair en 10% accent (Baan Rood). Dit creëert visuele balans.",
+  },
+  {
+    regel: "Witruimte is geen lege ruimte",
+    uitleg:
+      "Witruimte is een actief ontwerpelement. Het geeft elementen ademruimte en maakt het ontwerp professioneler en leesbaarder.",
+  },
 ];
+
+/* ── Veelgemaakte fouten ── */
+
+const FOUTEN = [
+  "Tekst in Baan Rood op een Dodeka Blauw achtergrond — onvoldoende contrast.",
+  "Te veel verschillende lettertypes of -groottes op één pagina.",
+  "Elementen die 'zweven' zonder duidelijke uitlijning of groepering.",
+  "Inconsistent gebruik van kleuren of logo-varianten tussen materialen.",
+  "Te weinig witruimte waardoor het ontwerp druk en onoverzichtelijk wordt.",
+  "Koppen die even groot zijn als broodtekst — geen duidelijke hiërarchie.",
+];
+
+/* ── Visuele voorbeelden per principe ── */
 
 function ContrastVisual() {
   return (
@@ -101,52 +167,67 @@ const PRINCIPLE_VISUALS: Record<string, () => JSX.Element> = {
   Nabijheid: ProximityVisual,
 };
 
+/* ── Component ── */
+
 function CrapRules() {
   return (
     <div className="crap-rules">
       <p className="crap-rules__intro">
-        De <strong>CRAP</strong>-principes zijn fundamenteel voor goed ontwerp.
-        Door <strong>Contrast</strong>, <strong>Herhaling</strong> (Repetition),{" "}
-        <strong>Uitlijning</strong> (Alignment) en <strong>Nabijheid</strong> (Proximity) consistent
-        toe te passen, creëer je een professionele, samenhangende en goed
-        leesbare ervaring voor je publiek.
+        De <strong>CRAP</strong>-principes — <strong>Contrast</strong>,{" "}
+        <strong>Repetition</strong> (Herhaling), <strong>Alignment</strong>{" "}
+        (Uitlijning) en <strong>Proximity</strong> (Nabijheid) — vormen de
+        basis van elk goed ontwerp. Ze zijn bedacht door ontwerper Robin
+        Williams en helpen om visuele communicatie helder, professioneel en
+        consistent te maken. Hieronder leggen we elk principe uit met
+        praktische tips voor Dodeka-materiaal.
       </p>
 
-      <div className="crap-rules__grid">
-        {Object.entries(PRINCIPLE_VISUALS).map(([name, Visual]) => (
-          <div key={name} className="crap-rules__card">
-            <Visual />
-            <p className="crap-rules__card-title">{name}</p>
+      {/* ── Principe-kaarten met visueel + uitleg ── */}
+      <div className="crap-rules__principles">
+        {PRINCIPLES.map((p) => {
+          const Visual = PRINCIPLE_VISUALS[p.name];
+          return (
+            <div key={p.name} className="crap-rules__principle">
+              <div className="crap-rules__principle-visual">
+                <Visual />
+              </div>
+              <div className="crap-rules__principle-content">
+                <h4 className="crap-rules__principle-title">{p.name}</h4>
+                <p className="crap-rules__principle-summary">{p.summary}</p>
+                <ul className="crap-rules__principle-tips">
+                  {p.tips.map((tip) => (
+                    <li key={tip}>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ── Vuistregels voor designers ── */}
+      <h3 className="crap-rules__section-heading">Vuistregels voor designers</h3>
+      <div className="crap-rules__vuistregels">
+        {VUISTREGELS.map((v) => (
+          <div key={v.regel} className="crap-rules__vuistregel">
+            <span className="crap-rules__vuistregel-label">{v.regel}</span>
+            <p className="crap-rules__vuistregel-text">{v.uitleg}</p>
           </div>
         ))}
       </div>
 
-      <div className="crap-rules__lists">
-        <div className="crap-rules__list">
-          <h4 className="crap-rules__list-heading crap-rules__list-heading--do">
-            ✅ Wel doen
-          </h4>
-          <ul className="crap-rules__items">
-            {DOS_LIST.map((item) => (
-              <li key={item.label}>
-                <strong>{item.label}:</strong> {item.text}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="crap-rules__list">
-          <h4 className="crap-rules__list-heading crap-rules__list-heading--dont">
-            ❌ Niet doen
-          </h4>
-          <ul className="crap-rules__items">
-            {DONTS_LIST.map((text) => (
-              <li key={text}>{text}</li>
-            ))}
-          </ul>
-        </div>
+      {/* ── Veelgemaakte fouten ── */}
+      <h3 className="crap-rules__section-heading">Veelgemaakte fouten</h3>
+      <div className="crap-rules__fouten">
+        <ul className="crap-rules__fouten-list">
+          {FOUTEN.map((fout) => (
+            <li key={fout}>{fout}</li>
+          ))}
+        </ul>
       </div>
 
-      <h3 className="crap-rules__example-heading">Kleurcontrast voorbeeld</h3>
+      {/* ── Kleurcontrast voorbeeld (behouden) ── */}
+      <h3 className="crap-rules__section-heading">Kleurcontrast voorbeeld</h3>
       <div className="crap-rules__contrast-example">
         <div className="crap-rules__contrast-card crap-rules__contrast-card--bad">
           <span className="crap-rules__contrast-badge crap-rules__contrast-badge--bad">✗</span>

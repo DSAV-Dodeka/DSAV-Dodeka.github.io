@@ -2,11 +2,12 @@
 
 .design-tips {
   &__list-card {
-    padding: 1.5rem;
-    background-color: #f9fafb;
-    border-radius: 8px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    padding: 1.75rem 2rem;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     margin-bottom: 2rem;
+    border-left: 4px solid variables.$dodeka_blauw;
   }
 
   &__list {
@@ -25,19 +26,17 @@
   }
 
   &__subtitle {
+    font-family: "Montserrat", sans-serif;
     font-size: variables.$font_medium;
     font-weight: variables.$bold;
-    color: #374151;
-    margin-bottom: 1rem;
+    color: variables.$dodeka_blauw;
+    margin-bottom: 1.25rem;
   }
 
   &__shapes {
     display: flex;
-    gap: 2rem;
-    padding: 1.5rem;
-    background-color: #f9fafb;
-    border-radius: 8px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    gap: 1.5rem;
+    padding: 0;
 
     @include variables.respond(mobile) {
       flex-direction: column;
@@ -46,11 +45,38 @@
 
   &__shapes-column {
     flex: 1;
+    padding: 1.75rem;
+    border-radius: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:first-child {
+      background-color: #f0fdf4;
+      border: 2px solid #86efac;
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.08);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(22, 163, 74, 0.12);
+      }
+    }
+
+    &:last-child {
+      background-color: #fef2f2;
+      border: 2px solid #fca5a5;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.08);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(220, 38, 38, 0.12);
+      }
+    }
   }
 
   &__shapes-heading {
+    font-family: "Montserrat", sans-serif;
     font-weight: variables.$bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: variables.$font_medium;
 
     &--do {
       color: #16a34a;
@@ -62,7 +88,7 @@
   }
 
   &__shapes-text {
-    color: #6b7280;
+    color: #4b5563;
     font-size: variables.$font_small;
     line-height: variables.$line_height_small;
   }

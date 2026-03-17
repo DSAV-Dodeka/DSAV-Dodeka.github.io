@@ -3,7 +3,7 @@
 .logo-section {
   &__description {
     color: #4b5563;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     line-height: 1.6;
   }
 
@@ -20,22 +20,32 @@
 }
 
 .logo-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  padding: 1.5rem;
+  border: none;
+  border-radius: 16px;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 12px 24px rgba(0, 0, 0, 0.1),
+      0 4px 8px rgba(0, 0, 0, 0.06);
+  }
 
   &__preview {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 6rem;
-    padding: 0.5rem;
-    border-radius: 6px;
+    height: 8rem;
+    padding: 1rem;
+    border-radius: 12px;
     cursor: pointer;
     transition: opacity 0.2s;
 
@@ -47,12 +57,12 @@
     }
 
     &--light {
-      background-color: #ffffff;
-      border: 1px solid #e0e0e0;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
     }
 
     &--dark {
-      background-color: #1f2937;
+      background-color: variables.$dodeka_blauw;
     }
 
     img {
@@ -63,15 +73,16 @@
   }
 
   &__label {
+    font-family: "Montserrat", sans-serif;
     font-weight: variables.$bold;
     font-size: variables.$font_small;
-    color: #374151;
+    color: variables.$dodeka_blauw;
   }
 
   &__description {
     font-size: 0.85rem;
     color: #6b7280;
     text-align: center;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 }

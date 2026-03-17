@@ -1,7 +1,7 @@
 @use "../../../variables";
 
 .format-picker {
-  padding: 0.5rem 0;
+  padding: 0.75rem 0;
 
   &__heading {
     font-size: variables.$font_medium;
@@ -30,27 +30,34 @@
     justify-content: center;
     width: 100%;
     padding: 0.75rem 1.25rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
     background-color: #ffffff;
     color: variables.$dodeka_blauw;
     font-size: variables.$font_small;
     font-weight: variables.$bold;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 
     &:hover,
     &:focus-visible {
       background-color: variables.$dodeka_blauw;
       color: #ffffff;
       border-color: variables.$dodeka_blauw;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 29, 72, 0.2);
+      outline: none;
+    }
+
+    &:focus-visible {
       outline: 2px solid variables.$dodeka_blauw;
       outline-offset: 2px;
     }
 
     &--disabled {
-      background-color: #f3f4f6;
+      background-color: #f8fafc;
       color: variables.$dodeka_grijs;
       border-color: #e5e7eb;
       cursor: not-allowed;
@@ -58,9 +65,11 @@
 
       &:hover,
       &:focus-visible {
-        background-color: #f3f4f6;
+        background-color: #f8fafc;
         color: variables.$dodeka_grijs;
         border-color: #e5e7eb;
+        transform: none;
+        box-shadow: none;
         outline: none;
       }
     }
