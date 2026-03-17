@@ -874,9 +874,9 @@
              "prestaties":[
                 {
                    "naam":"Thymo Westerhof",
-                   "datum":"2025-04-13",
-                   "plaats":"Rotterdam",
-                   "prestatie":"02:46:00"
+                   "datum":"2025-11-16",
+                   "plaats":"Assen",
+                   "prestatie":"02:38:51"
                 },
                 {
                    "naam":"Jochem van de Kamp",
@@ -1021,10 +1021,10 @@
                    "prestatie":"02:12.40"
                 },
                 {
-                   "naam":"Stijn de Graaf",
-                   "datum":"2020-02-29",
+                   "naam":"Ruben Borgdorff",
+                   "datum":"2026-03-07",
                    "plaats":"Apeldoorn",
-                   "prestatie":"02:18.31"
+                   "prestatie":"02:14.20"
                 }
              ]
           },
@@ -1123,6 +1123,12 @@
                    "datum":"2020-02-29",
                    "plaats":"Apeldoorn",
                    "prestatie":"10.43"
+                },
+                {
+                   "naam":"Julius Knoester",
+                   "datum":"2026-03-07",
+                   "plaats":"Apeldoorn",
+                   "prestatie":"9.64"
                 },
                 {
                    "naam":"Lars Smit",
@@ -1774,10 +1780,10 @@
                    "prestatie":"1.49"
                 },
                 {
-                   "naam":"Vera Schuurman",
-                   "datum":"2021-05-11",
-                   "plaats":"Delft",
-                   "prestatie":"1.37"
+                   "naam":"Lianne Folkerts",
+                   "datum":"2022-06-11",
+                   "plaats":"Groningen",
+                   "prestatie":"1.42"
                 }
              ]
           },
@@ -2076,10 +2082,10 @@
                    "prestatie":"29.68"
                 },
                 {
-                   "naam":"Amber Kroon",
-                   "datum":"2022-03-12",
+                   "naam":"Lianne Folkerts",
+                   "datum":"2026-03-07",
                    "plaats":"Apeldoorn",
-                   "prestatie":"29.97"
+                   "prestatie":"29.83"
                 }
              ]
           },
@@ -2088,9 +2094,9 @@
              "prestaties":[
                 {
                    "naam":"Robina Negenman",
-                   "datum":"2023-03-11",
+                   "datum":"2026-03-07",
                    "plaats":"Apeldoorn",
-                   "prestatie":"59.47"
+                   "prestatie":"58.31"
                 },
                 {
                    "naam":"Anne-Wil van Werkhoven",
@@ -2227,9 +2233,9 @@
              "prestaties":[
                 {
                    "naam":"Robina Negenman",
-                   "datum":"2022-03-12",
+                   "datum":"2026-03-07",
                    "plaats":"Apeldoorn",
-                   "prestatie":"10.74"
+                   "prestatie":"11.34"
                 },
                 {
                    "naam":"Sanne Diepen",
