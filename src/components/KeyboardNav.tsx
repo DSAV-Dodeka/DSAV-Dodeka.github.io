@@ -1,7 +1,9 @@
 // Keyboard navigation using a backslash (\) leader key.
 // After pressing backslash, type a command within 500ms:
+//   \?              → show available shortcuts
 //   \a or \admin    → navigate to /admin
 //   \s or \session  → load admin credentials and login as secondary session (DEV only)
+//   \du             → toggle debug user with member permissions (DEV only)
 // Ignored when focus is in an input, textarea, or contenteditable element.
 //
 // Uses a wrapper component to skip rendering during prerendering (static pages
@@ -13,18 +15,20 @@ import { useQueryClient } from "@tanstack/react-query";
 
 const LEADER_KEY = "\\";
 const LEADER_TIMEOUT_MS = 500;
-const TOAST_DURATION_MS = 3000;
+const TOAST_DURATION_MS = 4000;
 
 // Commands available in all environments
 const COMMANDS: Record<string, string> = {
   a: "admin",
   admin: "admin",
+  "?": "help",
 };
 
 // Commands only available in development
 const DEV_COMMANDS: Record<string, string> = {
   s: "session",
   session: "session",
+  du: "debug-user",
 };
 
 function isEditableTarget(target: EventTarget | null): boolean {
@@ -88,8 +92,32 @@ function KeyboardNavClient() {
     async (command: string) => {
       resetLeader();
 
+      if (command === "help") {
+        const lines = [
+          "\\a  → admin page",
+          "\\?  → this help",
+        ];
+        if (import.meta.env.DEV) {
+          lines.push("\\s  → refresh admin session");
+          lines.push("\\du → toggle debug user");
+        }
+        setToast({ message: lines.join("\n"), type: "info" });
+        return;
+      }
+
       if (command === "admin") {
         navigate("/admin");
+        return;
+      }
+
+      if (command === "debug-user") {
+        const { toggleDebugUser } = await import("$functions/debug-user.ts");
+        const active = toggleDebugUser();
+        await queryClient.invalidateQueries({ queryKey: ["session"] });
+        setToast({
+          message: active ? "Debug user ON (member)" : "Debug user OFF",
+          type: active ? "success" : "info",
+        });
         return;
       }
 
@@ -182,7 +210,9 @@ function KeyboardNavClient() {
         boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
       }}
     >
-      {toast.message}
+      {toast.message.split("\n").map((line, i) => (
+        <div key={i} style={{ whiteSpace: "pre", fontFamily: "monospace" }}>{line}</div>
+      ))}
     </div>
   );
 }

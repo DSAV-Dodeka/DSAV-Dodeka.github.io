@@ -18,6 +18,7 @@ interface CommissieProps {
 }
 
 function Commissie(props: CommissieProps) {
+  // useEffect required: window.innerWidth is unavailable during SSR/prerender.
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

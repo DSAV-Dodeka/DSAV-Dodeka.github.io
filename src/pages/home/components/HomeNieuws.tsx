@@ -5,6 +5,8 @@ import Nieuws from "../../../content/Nieuws.json";
 import nieuws from "$images/home/nieuws.webp";
 
 function HomeNieuws() {
+  // useEffect required: window is unavailable during SSR/prerender,
+  // so we read innerWidth client-side to adjust the initial count.
   const [maxNieuws, setMaxNieuws] = useState(3);
   useEffect(() => {
     if (window.innerWidth <= 1023) {

@@ -13,6 +13,11 @@ import type { RegistrationStatus } from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./signup.css";
 
+interface AutoVerifyResult {
+  verified: boolean;
+  expired: boolean;
+}
+
 export default function Signup() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -27,7 +32,7 @@ export default function Signup() {
     error: statusError,
   } = useQuery({
     queryKey: ["registration-status", token],
-    queryFn: () => (token ? getRegistrationStatus(token) : null),
+    queryFn: () => getRegistrationStatus(token!),
     enabled: !!token,
     refetchInterval: (query) => {
       // Poll every 10 seconds until signup_token appears
@@ -44,16 +49,6 @@ export default function Signup() {
   const [complete, setComplete] = useState(false);
   const [memberGranted, setMemberGranted] = useState(false);
 
-  // Auto-create signup for accepted users without signup_token (sync-imported)
-  const [creatingSignup, setCreatingSignup] = useState(false);
-  const signupCreated = useRef(false);
-
-  // Auto-verification state
-  const verificationAttempted = useRef(false);
-  const [emailVerified, setEmailVerified] = useState(false);
-  const [verifying, setVerifying] = useState(false);
-  const [expired, setExpired] = useState(false);
-
   // Initialize verification code from URL if present
   const [verificationCode, setVerificationCode] = useState(codeFromUrl || "");
   const [password, setPassword] = useState("");
@@ -63,80 +58,85 @@ export default function Signup() {
   const [lookupEmail, setLookupEmail] = useState("");
   const [lookupCode, setLookupCode] = useState("");
 
-  // Auto-create signup for accepted users without signup_token (sync-imported users)
-  useEffect(() => {
-    if (
-      signupCreated.current ||
-      !registrationStatus?.accepted ||
-      registrationStatus.signup_token ||
-      !token
-    ) {
-      return;
-    }
-    signupCreated.current = true;
-    setCreatingSignup(true);
-
-    renewSignup(token)
-      .then((renewed) => {
+  // Dependent query: auto-create signup for accepted users without signup_token
+  // (sync-imported users). Fires once when conditions are met, then the
+  // registration-status cache update makes enabled=false, preventing re-fetch.
+  const autoCreateSignup = useQuery({
+    queryKey: ["auto-create-signup", token],
+    queryFn: async () => {
+      try {
+        const renewed = await renewSignup(token!);
         queryClient.setQueryData(
           ["registration-status", token],
           (old: RegistrationStatus | undefined) =>
             old ? { ...old, signup_token: renewed.signup_token } : old,
         );
-        setCreatingSignup(false);
-      })
-      .catch(() => {
-        setStatus(
+        return renewed;
+      } catch {
+        throw new Error(
           "Kon geen verificatie-e-mail versturen. Neem contact op met het bestuur.",
         );
-        setCreatingSignup(false);
-      });
-  }, [registrationStatus, token, queryClient]);
+      }
+    },
+    enabled: !!token && !!registrationStatus?.accepted && !registrationStatus?.signup_token,
+    retry: false,
+    staleTime: Infinity,
+  });
 
-  // Auto-verify email when we have signup_token + code from URL
+  // Dependent query: auto-verify email when we have signup_token + code from URL.
+  // Returns { verified, expired } so downstream UI states are derived from query data.
+  const autoVerifyKey = ["auto-verify-email", token, codeFromUrl] as const;
+  const autoVerify = useQuery<AutoVerifyResult>({
+    queryKey: autoVerifyKey,
+    queryFn: async () => {
+      const result = await signupFlow.current.verifyEmail(
+        registrationStatus!.signup_token!,
+        codeFromUrl!,
+      );
+      if (result.ok) {
+        return { verified: true, expired: false };
+      }
+      if (result.error === "invalid_signup_token" && token) {
+        // Signup expired — renew (sends new email automatically)
+        try {
+          const renewed = await renewSignup(token);
+          queryClient.setQueryData(
+            ["registration-status", token],
+            (old: RegistrationStatus | undefined) =>
+              old ? { ...old, signup_token: renewed.signup_token } : old,
+          );
+          return { verified: false, expired: true };
+        } catch {
+          throw new Error(
+            "Kon geen nieuwe verificatie-e-mail versturen. Neem contact op met het bestuur.",
+          );
+        }
+      }
+      throw new Error(result.error);
+    },
+    enabled: !!registrationStatus?.signup_token && !!codeFromUrl,
+    retry: false,
+    staleTime: Infinity,
+  });
+
+  // Derive UI states from queries
+  const creatingSignup = autoCreateSignup.isFetching;
+  const verifying = autoVerify.isFetching;
+  const emailVerified = autoVerify.data?.verified ?? false;
+  const expired = autoVerify.data?.expired ?? false;
+
+  // Merge error messages from auto queries into status display
+  const autoError = autoCreateSignup.error?.message
+    ?? autoVerify.error?.message
+    ?? "";
+  const displayStatus = status || autoError;
+
+  // useEffect required: resets controlled form input when query-derived `expired`
+  // changes to true — cannot be expressed as a derivation because verificationCode
+  // is independently mutable by the user.
   useEffect(() => {
-    if (
-      verificationAttempted.current ||
-      !registrationStatus?.signup_token ||
-      !codeFromUrl
-    ) {
-      return;
-    }
-    verificationAttempted.current = true;
-    setVerifying(true);
-
-    signupFlow.current
-      .verifyEmail(registrationStatus.signup_token, codeFromUrl)
-      .then(async (result) => {
-        if (result.ok) {
-          setEmailVerified(true);
-          setVerifying(false);
-          return;
-        }
-
-        if (result.error === "invalid_signup_token" && token) {
-          // Signup expired — create a new one (sends new email automatically)
-          try {
-            const renewed = await renewSignup(token);
-            // Update cached registration status with new signup_token
-            queryClient.setQueryData(
-              ["registration-status", token],
-              (old: RegistrationStatus | undefined) =>
-                old ? { ...old, signup_token: renewed.signup_token } : old,
-            );
-            setExpired(true);
-            setVerificationCode(""); // Old code is no longer valid
-          } catch {
-            setStatus(
-              "Kon geen nieuwe verificatie-e-mail versturen. Neem contact op met het bestuur.",
-            );
-          }
-        } else {
-          setStatus(result.error);
-        }
-        setVerifying(false);
-      });
-  }, [registrationStatus, codeFromUrl, token, queryClient]);
+    if (expired) setVerificationCode("");
+  }, [expired]);
 
   // Load verification code in dev mode
   const handleLoadCode = async () => {
@@ -197,8 +197,11 @@ export default function Signup() {
               (old: RegistrationStatus | undefined) =>
                 old ? { ...old, signup_token: renewed.signup_token } : old,
             );
-            setExpired(true);
-            setEmailVerified(false);
+            // Update auto-verify cache so derived expired/emailVerified update
+            queryClient.setQueryData(autoVerifyKey, {
+              verified: false,
+              expired: true,
+            });
             setVerificationCode("");
             // Reset the flow instance since the signup token changed
             signupFlow.current = new SignupFlow();
@@ -353,7 +356,7 @@ export default function Signup() {
             </button>
           </form>
 
-          {status && <div className="signup-status error">{status}</div>}
+          {displayStatus && <div className="signup-status error">{displayStatus}</div>}
 
           <div className="signup-note">
             <strong>Geen code ontvangen?</strong> Neem contact op met het
@@ -595,7 +598,7 @@ export default function Signup() {
           </button>
         </form>
 
-        {status && <div className="signup-status error">{status}</div>}
+        {displayStatus && <div className="signup-status error">{displayStatus}</div>}
       </div>
     </div>
   );

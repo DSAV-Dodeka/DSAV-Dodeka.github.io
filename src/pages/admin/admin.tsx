@@ -2,29 +2,35 @@ import {
   useState,
   useEffect,
   useCallback,
-  type FormEvent,
+  type SyntheticEvent,
   type ChangeEvent,
 } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import {
-  listNewUsers,
-  acceptUser,
-  resendSignupEmail,
-  listUsers,
-  getAvailablePermissions,
-  addUserPermission,
-  removeUserPermission,
-  importSync,
-  getSyncStatus,
-  acceptNewSync,
-  removeDeparted,
-  updateExisting,
   type NewUser,
   type User,
   type SyncEntry,
   type SyncStatus,
   type EmailChange,
 } from "$functions/backend.ts";
-import { useSessionInfo, useSecondarySessionInfo } from "$functions/query.ts";
+import {
+  useSessionInfo,
+  useSecondarySessionInfo,
+  useNewUsers,
+  useUsers,
+  useSyncStatus,
+  useAcceptUser,
+  useResendSignupEmail,
+  useAddPermission,
+  useRemovePermission,
+  useImportSync,
+  useAcceptNewSync,
+  useRemoveDeparted,
+  useUpdateExisting,
+  newUsersOptions,
+  usersOptions,
+  syncStatusOptions,
+} from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import { useAdminKeyboard } from "./useAdminKeyboard.ts";
 import "./admin.css";
@@ -120,9 +126,55 @@ function HelpOverlay({
   );
 }
 
+function formatError(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function AccountStatusBadge({ user }: { user: NewUser }) {
+  if (user.is_registered) {
+    return (
+      <span className="admin-tooltip">
+        <span className="admin-status-badge admin-status-badge-accepted">Active</span>
+        <span className="admin-tooltip-text">
+          Account created. User can log in and use the site.
+        </span>
+      </span>
+    );
+  }
+  if (user.has_signup_token) {
+    return (
+      <span className="admin-tooltip">
+        <span className="admin-status-badge admin-status-badge-warning">Pending</span>
+        <span className="admin-tooltip-text">
+          Verification email sent but signup not completed. The signup link auto-renews when visited, so the user can still finish at any time.
+        </span>
+      </span>
+    );
+  }
+  if (user.accepted) {
+    return (
+      <span className="admin-tooltip">
+        <span className="admin-status-badge admin-status-badge-info">Invited</span>
+        <span className="admin-tooltip-text">
+          Invite email sent with a signup link. The user hasn't started account creation yet.
+        </span>
+      </span>
+    );
+  }
+  return (
+    <span className="admin-tooltip">
+      <span className="admin-status-badge admin-status-badge-muted">&mdash;</span>
+      <span className="admin-tooltip-text">
+        Not yet approved. Approve first to send an invite email.
+      </span>
+    </span>
+  );
+}
+
 type AdminTab = "users" | "registrations" | "sync";
 
 export default function Admin() {
+  const queryClient = useQueryClient();
   const { data: session, isLoading: sessionLoading } = useSessionInfo();
   const { data: secondarySession, isLoading: secondaryLoading } =
     useSecondarySessionInfo();
@@ -140,15 +192,7 @@ export default function Admin() {
     setHighlightedCol(0);
   }, []);
 
-  // Registration state
-  const [newUsers, setNewUsers] = useState<NewUser[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [processingEmail, setProcessingEmail] = useState<string | null>(null);
-
-  // Permissions state
-  const [users, setUsers] = useState<User[]>([]);
-  const [availablePerms, setAvailablePerms] = useState<string[]>([]);
-  const [usersLoading, setUsersLoading] = useState(false);
+  // Local UI state
   const [addingPermUser, setAddingPermUser] = useState<string | null>(null);
   const [selectedPerm, setSelectedPerm] = useState<string>("");
   const [confirmingRemoval, setConfirmingRemoval] = useState<{
@@ -156,118 +200,101 @@ export default function Admin() {
     perm: string;
   } | null>(null);
 
-  // Sync state
-  const [syncStatus, setSyncStatus] = useState<SyncStatus | null>(null);
-  const [syncLoading, setSyncLoading] = useState(false);
-
   const isAdmin =
     session?.user.permissions.includes("admin") ||
     secondarySession?.user.permissions.includes("admin");
   const authLoading = sessionLoading || secondaryLoading;
 
+  // --- Queries ---
+
+  const needsData = !!isAdmin && (activeTab === "users" || activeTab === "registrations");
+  const newUsersQuery = useNewUsers(needsData);
+  const usersQuery = useUsers(needsData);
+  const syncStatusQuery = useSyncStatus(false); // manual only
+
+  const newUsers: NewUser[] = newUsersQuery.data ?? [];
+  const { users = [], perms: allPerms = [] } = usersQuery.data ?? {};
+  const availablePerms = allPerms.filter(
+    (p) => p !== "admin" && p !== "member",
+  );
+  const syncStatus: SyncStatus | null = syncStatusQuery.data ?? null;
+  const { refetch: refetchSyncStatus } = syncStatusQuery;
+
+  // Compute effective perm: use user selection if set, otherwise default to first non-admin
+  const effectivePerm = selectedPerm || allPerms.find((p) => p !== "admin") || allPerms[0] || "";
+
+  // --- Mutations ---
+
+  const acceptUserMut = useAcceptUser();
+  const resendEmailMut = useResendSignupEmail();
+  const addPermMut = useAddPermission();
+  const removePermMut = useRemovePermission();
+  const importSyncMut = useImportSync();
+  const acceptNewMut = useAcceptNewSync();
+  const removeDepartedMut = useRemoveDeparted();
+  const updateExistingMut = useUpdateExisting();
+
+  // The processing email is whichever mutation is currently in-flight
+  const processingEmail =
+    acceptUserMut.isPending ? acceptUserMut.variables :
+    resendEmailMut.isPending ? resendEmailMut.variables :
+    null;
+
+  const loading = newUsersQuery.isFetching;
+  const usersLoading = usersQuery.isFetching;
+  const syncLoading = syncStatusQuery.isFetching ||
+    importSyncMut.isPending ||
+    acceptNewMut.isPending ||
+    removeDepartedMut.isPending ||
+    updateExistingMut.isPending;
+
   // --- Registration handlers ---
 
-  const loadNewUsers = async () => {
-    setLoading(true);
+  const handleAcceptUser = (email: string) => {
     setStatus("");
-    try {
-      const result = await listNewUsers();
-      setNewUsers(result);
-      setStatus(`Loaded ${result.length} registration request(s)`);
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setLoading(false);
-    }
+    acceptUserMut.mutate(email, {
+      onSuccess: (result) => setStatus(result.message),
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
   };
 
-  const handleAcceptUser = async (email: string) => {
-    setProcessingEmail(email);
+  const handleResendEmail = (email: string) => {
     setStatus("");
-    try {
-      const result = await acceptUser(email);
-      setStatus(result.message);
-      await loadNewUsers();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setProcessingEmail(null);
-    }
-  };
-
-  const handleResendEmail = async (email: string) => {
-    setProcessingEmail(email);
-    setStatus("");
-    try {
-      const result = await resendSignupEmail(email);
-      setStatus(result.message);
-      await loadNewUsers();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setProcessingEmail(null);
-    }
+    resendEmailMut.mutate(email, {
+      onSuccess: (result) => setStatus(result.message),
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
   };
 
   // --- Permissions handlers ---
 
-  const loadUsers = async () => {
-    setUsersLoading(true);
-    setStatus("");
-    try {
-      const [userList, perms] = await Promise.all([
-        listUsers(),
-        getAvailablePermissions(),
-      ]);
-      setUsers(userList);
-      setAvailablePerms(perms.filter((p) => p !== "admin" && p !== "member"));
-      setStatus(`Loaded ${userList.length} user(s)`);
-      if (perms.length > 0 && !selectedPerm) {
-        setSelectedPerm(perms.find((p) => p !== "admin") ?? perms[0] ?? "");
-      }
-    } catch (error) {
-      setStatus(
-        `Error loading users: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setUsersLoading(false);
-    }
-  };
-
-  const handleAddPermission = async (e: FormEvent, userId: string) => {
+  const handleAddPermission = (e: SyntheticEvent, userId: string) => {
     e.preventDefault();
-    if (!selectedPerm) return;
+    if (!effectivePerm) return;
     setStatus("");
-    try {
-      await addUserPermission(userId, selectedPerm);
-      setStatus(`Added ${getPermissionDisplay(selectedPerm)} permission`);
-      setAddingPermUser(null);
-      await loadUsers();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    }
+    addPermMut.mutate(
+      { userId, permission: effectivePerm },
+      {
+        onSuccess: () => {
+          setStatus(`Added ${getPermissionDisplay(effectivePerm)} permission`);
+          setAddingPermUser(null);
+        },
+        onError: (error) => setStatus(`Error: ${formatError(error)}`),
+      },
+    );
   };
 
-  const handleRemovePermission = async (userId: string, permission: string) => {
+  const handleRemovePermission = (userId: string, permission: string) => {
     if (permission === "admin") return;
     setStatus("");
-    try {
-      await removeUserPermission(userId, permission);
-      setStatus(`Removed ${getPermissionDisplay(permission)} permission`);
-      await loadUsers();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    }
+    removePermMut.mutate(
+      { userId, permission },
+      {
+        onSuccess: () =>
+          setStatus(`Removed ${getPermissionDisplay(permission)} permission`),
+        onError: (error) => setStatus(`Error: ${formatError(error)}`),
+      },
+    );
   };
 
   const handlePermSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -279,101 +306,77 @@ export default function Admin() {
   const handleFileUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setSyncLoading(true);
     setStatus("");
-    try {
-      const content = await file.text();
-      const result = await importSync(content);
-      setStatus(`Imported ${result.imported} member(s) from CSV`);
-      setSyncStatus(null);
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setSyncLoading(false);
-    }
+    const content = await file.text();
+    importSyncMut.mutate(content, {
+      onSuccess: (result) => {
+        setStatus(`Imported ${result.imported} member(s) from CSV`);
+        queryClient.removeQueries({ queryKey: syncStatusOptions.queryKey });
+      },
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
   };
 
-  const handleComputeStatus = async () => {
-    setSyncLoading(true);
+  const handleComputeStatus = () => {
     setStatus("");
-    try {
-      const result = await getSyncStatus();
-      setSyncStatus(result);
-      const parts = [
-        `${result.to_accept.length} new`,
-        `${result.pending_signup.length} pending`,
-        `${result.existing.length} existing`,
-        `${result.departed.length} departed`,
-      ];
-      if (result.email_changes.length > 0) {
-        parts.push(`${result.email_changes.length} email change(s)`);
+    refetchSyncStatus().then((result) => {
+      if (result.data) {
+        const s = result.data;
+        const parts = [
+          `${s.to_accept.length} new`,
+          `${s.pending_signup.length} pending`,
+          `${s.existing.length} existing`,
+          `${s.departed.length} departed`,
+        ];
+        if (s.email_changes.length > 0) {
+          parts.push(`${s.email_changes.length} email change(s)`);
+        }
+        setStatus(parts.join(", "));
       }
-      setStatus(parts.join(", "));
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setSyncLoading(false);
-    }
+      if (result.error) {
+        setStatus(`Error: ${formatError(result.error)}`);
+      }
+    });
   };
 
-  const handleAcceptNew = async (email?: string) => {
-    setSyncLoading(true);
+  const handleAcceptNew = (email?: string) => {
     setStatus("");
-    try {
-      const result = await acceptNewSync(email);
-      const parts = [`Added ${result.added}, skipped ${result.skipped}`];
-      if (result.emails_sent > 0) {
-        parts.push(`emails sent: ${result.emails_sent}`);
-      }
-      if (result.emails_failed > 0) {
-        parts.push(`emails failed: ${result.emails_failed}`);
-      }
-      setStatus(parts.join(", "));
-      await handleComputeStatus();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-      setSyncLoading(false);
-    }
+    acceptNewMut.mutate(email, {
+      onSuccess: (result) => {
+        const parts = [`Added ${result.added}, skipped ${result.skipped}`];
+        if (result.emails_sent > 0) parts.push(`emails sent: ${result.emails_sent}`);
+        if (result.emails_failed > 0) parts.push(`emails failed: ${result.emails_failed}`);
+        setStatus(parts.join(", "));
+        refetchSyncStatus();
+      },
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
   };
 
-  const handleRemoveDeparted = async (email?: string) => {
-    setSyncLoading(true);
+  const handleRemoveDeparted = (email?: string) => {
     setStatus("");
-    try {
-      const result = await removeDeparted(email);
-      setStatus(`Removed ${result.removed} departed user(s)`);
-      await handleComputeStatus();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-      setSyncLoading(false);
-    }
+    removeDepartedMut.mutate(email, {
+      onSuccess: (result) => {
+        setStatus(`Removed ${result.removed} departed user(s)`);
+        refetchSyncStatus();
+      },
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
   };
 
-  const handleUpdateExisting = async (email?: string) => {
-    setSyncLoading(true);
+  const handleUpdateExisting = (email?: string) => {
     setStatus("");
-    try {
-      const result = await updateExisting(email);
-      const updateParts = [`Updated ${result.updated} existing user(s)`];
-      if (result.email_changes_applied) {
-        updateParts.push(`${result.email_changes_applied} email(s) changed`);
-      }
-      setStatus(updateParts.join(", "));
-      await handleComputeStatus();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-      setSyncLoading(false);
-    }
+    updateExistingMut.mutate(email, {
+      onSuccess: (result) => {
+        const updateParts = [`Updated ${result.updated} existing user(s)`];
+        if (result.email_changes_applied) {
+          updateParts.push(`${result.email_changes_applied} email(s) changed`);
+        }
+        setStatus(updateParts.join(", "));
+        refetchSyncStatus();
+      },
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
   };
 
   // --- Keyboard navigation ---
@@ -446,10 +449,14 @@ export default function Admin() {
         : syncRowCount;
 
   const handleRefresh = useCallback(() => {
-    if (activeTab === "users") loadUsers();
-    else if (activeTab === "registrations") loadNewUsers();
-    else if (activeTab === "sync") handleComputeStatus();
-  }, [activeTab]);
+    if (activeTab === "users") {
+      queryClient.invalidateQueries({ queryKey: usersOptions.queryKey });
+    } else if (activeTab === "registrations") {
+      queryClient.invalidateQueries({ queryKey: newUsersOptions.queryKey });
+    } else if (activeTab === "sync") {
+      refetchSyncStatus();
+    }
+  }, [activeTab, queryClient, refetchSyncStatus]);
 
   const handleToggleHelp = useCallback(() => {
     setShowHelp((prev) => !prev);
@@ -492,15 +499,6 @@ export default function Admin() {
       if (select) select.focus();
     });
   }, [addingPermUser]);
-
-  // Load users + newusers together (newusers needed to filter inactive list)
-  useEffect(() => {
-    if (!isAdmin) return;
-    if (activeTab === "users" || activeTab === "registrations") {
-      loadUsers();
-      loadNewUsers();
-    }
-  }, [isAdmin, activeTab]);
 
   return (
     <div className="admin-container">
@@ -568,7 +566,7 @@ export default function Admin() {
               <div className="admin-header">
                 <h2>User Registration Requests</h2>
                 <button
-                  onClick={loadNewUsers}
+                  onClick={() => newUsersQuery.refetch()}
                   disabled={loading}
                   className="admin-button admin-button-refresh admin-button-icon"
                   title="Refresh (r)"
@@ -613,21 +611,7 @@ export default function Admin() {
                             </span>
                           </td>
                           <td>
-                            <span
-                              className={`admin-status-badge ${
-                                user.is_registered
-                                  ? "admin-status-badge-accepted"
-                                  : user.has_signup_token
-                                    ? "admin-status-badge-warning"
-                                    : "admin-status-badge-pending"
-                              }`}
-                            >
-                              {user.is_registered
-                                ? "Created"
-                                : user.has_signup_token
-                                  ? "Pending"
-                                  : "None"}
-                            </span>
+                            <AccountStatusBadge user={user} />
                           </td>
                           <td>{user.email_send_count}</td>
                           <td>
@@ -678,7 +662,7 @@ export default function Admin() {
               <div className="admin-header">
                 <h2>Users</h2>
                 <button
-                  onClick={loadUsers}
+                  onClick={() => usersQuery.refetch()}
                   disabled={usersLoading}
                   className="admin-button admin-button-refresh admin-button-icon"
                   title="Refresh (r)"
@@ -800,7 +784,7 @@ export default function Admin() {
                                       }}
                                     >
                                       <select
-                                        value={selectedPerm}
+                                        value={effectivePerm}
                                         onChange={handlePermSelectChange}
                                         className="admin-perm-select"
                                       >

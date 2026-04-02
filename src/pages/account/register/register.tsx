@@ -1,11 +1,10 @@
 import {
   useReducer,
-  FormEvent,
   ChangeEvent,
   // FocusEvent,
   useState,
-  useEffect,
   useRef,
+  type SyntheticEvent,
 } from "react";
 import {
   type RegisterState,
@@ -16,7 +15,7 @@ import {
   isBackendEnabled,
   isDemoMode,
   isDevMode,
-} from "./register.ts";
+} from "./register-logic.ts";
 import { useNavigate } from "react-router";
 import "./register.css";
 import PageTitle from "$components/PageTitle.tsx";
@@ -117,8 +116,6 @@ const initialState: RegisterState =
 export default function Registreer() {
   const navigate = useNavigate();
   const myStatus = useRef<HTMLDivElement>(null);
-  const [handled, setHandled] = useState(false);
-  const [infoOk, setInfoOk] = useState(false);
   const [state, dispatch] = useReducer(registerReducer, initialState);
   const [submitted, setSubmitted] = useState("");
   const [status, setStatus] = useState("");
@@ -131,19 +128,6 @@ export default function Registreer() {
     setVoltaEnabled(newValue);
   };
 
-  useEffect(() => {
-    if (!handled) {
-      try {
-        const reducerInitial = { ...initialState };
-        setInfoOk(true);
-        dispatch({ type: "reload", new_state: reducerInitial });
-      } catch (e) {
-        setInfoOk(false);
-      }
-      setHandled(true);
-    }
-  }, [handled]);
-
   const somethingWrong = () => {
     setStatus(
       "Er is iets misgegaan, controleer je gegevens, probeer het opnieuw. Werkt het nog steeds niet? Neem contact op met het bestuur via bestuur@dsavdodeka.nl of via onze sociale media accounts.",
@@ -155,7 +139,7 @@ export default function Registreer() {
     return true;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
     if (formIsValid()) {
@@ -218,13 +202,6 @@ export default function Registreer() {
     <div>
       <PageTitle title="Registreer" />
       <div className="registreerContainer">
-        {!infoOk && handled && (
-          <p className="largeText">
-            Deze link voor het registratieformulier werkt niet, probeer het
-            opnieuw of vraag het bestuur om een nieuwe link!
-          </p>
-        )}
-        {infoOk && (
           <form className="form" onSubmit={handleSubmit}>
             {isDemoMode && (
               <div className="volta-toggle">
@@ -476,7 +453,8 @@ export default function Registreer() {
                   <span className="info-tooltip-text">
                     <strong>Externe media:</strong> sociale media, website, etc.
                     Dit kan door externen worden bekeken.
-                    <br /><br />
+                    <br />
+                    <br />
                     <strong>Interne media:</strong> jaarboek, nieuwsbrief,
                     besloten Instagram, fotoalbums gedeeld binnen Dodeka. Hier
                     hebben externen geen toegang tot.
@@ -535,7 +513,6 @@ export default function Registreer() {
               )}
             </div>
           </form>
-        )}
       </div>
     </div>
   );
