@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SessionInfo, useSessionInfo } from "$functions/query";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate, Link } from "react-router";
@@ -9,13 +9,14 @@ import "./login.css";
 function computeState(
   session: SessionInfo | null | undefined,
   pressedLogin: boolean,
+  queryError: Error | null,
 ) {
   if (session != null) {
     return "logged_in";
   }
 
-  if (pressedLogin) {
-    // We know session == null
+  // Query error means session check failed, so login attempt is no longer in progress
+  if (pressedLogin && !queryError) {
     return "in_process";
   } else {
     return "not_started";
@@ -33,14 +34,10 @@ export default function Login() {
 
   const { data: session, error } = useSessionInfo();
 
-  useEffect(() => {
-    if (error !== null) {
-      setStatus(`✗ ${error.message}`);
-      setPressedLogin(false);
-    }
-  }, [error]);
+  // Derive display status: query error takes precedence over local status
+  const displayStatus = error ? `✗ ${error.message}` : status;
 
-  const state = computeState(session, pressedLogin);
+  const state = computeState(session, pressedLogin, error);
 
   if (state == "logged_in") {
     setTimeout(() => {
@@ -139,15 +136,15 @@ export default function Login() {
         </Link>
       </div>
 
-      {status && (
+      {displayStatus && (
         <div
           className={`login-status ${
-            status.startsWith("✓")
+            displayStatus.startsWith("✓")
               ? "login-status-success"
               : "login-status-error"
           }`}
         >
-          {status}
+          {displayStatus}
         </div>
       )}
     </div>

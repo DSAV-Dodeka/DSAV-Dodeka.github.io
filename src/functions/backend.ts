@@ -1,5 +1,5 @@
 const BACKEND_URL = import.meta.env.DEV
-  ? "http://localhost:12780"
+  ? "http://127.0.0.1:12780"
   : (import.meta.env['VITE_BACKEND_URL'] ?? "https://backend.dsavdodeka.nl");
 
 // HTTP helpers

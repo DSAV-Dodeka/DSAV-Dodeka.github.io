@@ -16,6 +16,7 @@ interface NieuwsberichtProps {
 }
 
 function Nieuwsbericht(props: NieuwsberichtProps) {
+  // useEffect required: window is unavailable during SSR/prerender.
   const [width, setWidth] = useState(1920);
   useEffect(() => {
     setWidth(window.innerWidth);

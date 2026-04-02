@@ -1,10 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  queryOptions,
+} from "@tanstack/react-query";
 import * as backend from "./backend.ts";
+
+// --- Session queries ---
 
 export function useSessionInfo() {
   return useQuery({
     queryKey: ["session"],
     queryFn: async () => {
+      if (import.meta.env.DEV) {
+        const { getDebugSession } = await import("./debug-user.ts");
+        const debug = getDebugSession();
+        if (debug) return debug;
+      }
       return backend.getSessionInfo();
     },
     // Refetch in background periodically
@@ -50,3 +62,144 @@ export function useRegistrationStatus(registrationToken: string | null) {
 }
 
 export type { RegistrationStatus } from "./backend.ts";
+
+// --- Member query options ---
+
+export const memberBirthdaysOptions = queryOptions({
+  queryKey: ["member", "birthdays"] as const,
+  queryFn: backend.getMemberBirthdays,
+});
+
+// --- Member query hooks ---
+
+export function useMemberBirthdays(enabled: boolean) {
+  return useQuery({ ...memberBirthdaysOptions, enabled });
+}
+
+// --- Admin query options ---
+
+export const newUsersOptions = queryOptions({
+  queryKey: ["admin", "newUsers"] as const,
+  queryFn: backend.listNewUsers,
+});
+
+export const usersOptions = queryOptions({
+  queryKey: ["admin", "users"] as const,
+  queryFn: async () => {
+    const [users, perms] = await Promise.all([
+      backend.listUsers(),
+      backend.getAvailablePermissions(),
+    ]);
+    return { users, perms };
+  },
+});
+
+export const syncStatusOptions = queryOptions({
+  queryKey: ["admin", "syncStatus"] as const,
+  queryFn: backend.getSyncStatus,
+});
+
+// --- Admin query hooks ---
+
+export function useNewUsers(enabled: boolean) {
+  return useQuery({ ...newUsersOptions, enabled });
+}
+
+export function useUsers(enabled: boolean) {
+  return useQuery({ ...usersOptions, enabled });
+}
+
+export function useSyncStatus(enabled: boolean) {
+  return useQuery({ ...syncStatusOptions, enabled });
+}
+
+// --- Admin mutations ---
+
+export function useAcceptUser() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: backend.acceptUser,
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: newUsersOptions.queryKey }),
+        queryClient.invalidateQueries({ queryKey: usersOptions.queryKey }),
+      ]);
+    },
+  });
+}
+
+export function useResendSignupEmail() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: backend.resendSignupEmail,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: newUsersOptions.queryKey,
+      });
+    },
+  });
+}
+
+export function useAddPermission() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ userId, permission }: { userId: string; permission: string }) =>
+      backend.addUserPermission(userId, permission),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: usersOptions.queryKey });
+    },
+  });
+}
+
+export function useRemovePermission() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ userId, permission }: { userId: string; permission: string }) =>
+      backend.removeUserPermission(userId, permission),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: usersOptions.queryKey });
+    },
+  });
+}
+
+export function useImportSync() {
+  return useMutation({
+    mutationFn: backend.importSync,
+  });
+}
+
+export function useAcceptNewSync() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (email?: string) => backend.acceptNewSync(email),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: syncStatusOptions.queryKey,
+      });
+    },
+  });
+}
+
+export function useRemoveDeparted() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (email?: string) => backend.removeDeparted(email),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: syncStatusOptions.queryKey,
+      });
+    },
+  });
+}
+
+export function useUpdateExisting() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (email?: string) => backend.updateExisting(email),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: syncStatusOptions.queryKey,
+      });
+    },
+  });
+}

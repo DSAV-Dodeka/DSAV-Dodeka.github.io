@@ -189,9 +189,54 @@
   color: #e65100;
 }
 
+.admin-status-badge-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.admin-status-badge-muted {
+  background-color: #e9ecef;
+  color: #6c757d;
+}
+
 .admin-status-badge-disabled {
   background-color: #dc3545;
   color: #ffffff;
+}
+
+/* Tooltip on status badges */
+.admin-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.admin-tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  background-color: #1a1a2e;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.4;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: opacity 0.2s;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.admin-tooltip:hover .admin-tooltip-text,
+.admin-tooltip:focus-within .admin-tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
 
 .admin-not-authorized {
