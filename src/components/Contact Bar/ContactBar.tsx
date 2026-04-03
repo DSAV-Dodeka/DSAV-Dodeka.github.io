@@ -39,7 +39,7 @@ function ContactBar() {
             href="/files/privacyverklaring_dodeka_okt25.pdf"
             target="_blank"
             rel="noreferrer"
-            className="privacy_link"
+            className="bar_link"
           >
             Privacyverklaring D.S.A.V. Dodeka
           </a>
