@@ -7,16 +7,16 @@ import "./Home.scss";
 // import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
-  const snowContent = ["&#127846", "🍉", "🍸"];
+  const snowContent = ["🐣", "🥚", "🐰", "🌷"];
 
   const random = (num: number) => {
     return Math.floor(Math.random() * num);
   };
 
   const getRandomStyles = () => {
-    const top = random(100) - 20;
+    const top = random(100) - 80;
     const left = random(100);
-    const dur = random(10) + 15;
+    const dur = random(10) + 20;
     const size = random(25) + 10;
     return `
       top: -${top}%;
@@ -35,7 +35,7 @@ function Home() {
       var snow = document.createElement("div");
       snow.className = "snow";
       snow.style.cssText = getRandomStyles();
-      snow.innerHTML = snowContent[random(3)]!;
+      snow.innerHTML = snowContent[random(4)]!;
       snowContainer.append(snow);
     }
   };
@@ -73,6 +73,7 @@ function Home() {
     };
 
     // Initial setup
+    createSnow(30);
     updateLogoMax();
     updateScrollProgress();
 
