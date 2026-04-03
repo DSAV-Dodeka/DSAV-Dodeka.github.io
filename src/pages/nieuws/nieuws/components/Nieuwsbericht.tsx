@@ -23,15 +23,20 @@ function Nieuwsbericht(props: NieuwsberichtProps) {
   return (
     <div id={props.id} className="nieuwsbericht_1">
       {props.position === "left" || width <= 1023 ? (
-        <img
-          className="nieuwsbericht_2"
-          src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
-          alt=""
-        />
+        <div className="nieuwsbericht_img_outer">
+          <div className="nieuwsbericht_img_wrap">
+            <img
+              className="nieuwsbericht_2"
+              src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
+              alt=""
+            />
+          </div>
+        </div>
       ) : (
         ""
       )}
       <div className="nieuwsbericht_3">
+        <div className="nieuwsbericht_3_inner">
         <Title title={props.titel.toUpperCase()} position={props.position} />
         <p
           className={
@@ -49,15 +54,20 @@ function Nieuwsbericht(props: NieuwsberichtProps) {
             </span>
           ))}
         </p>
+        </div>
       </div>
       {props.position === "left" || width <= 1023 ? (
         ""
       ) : (
-        <img
-          className="nieuwsbericht_6"
-          src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
-          alt=""
-        />
+        <div className="nieuwsbericht_img_outer">
+          <div className="nieuwsbericht_img_wrap">
+            <img
+              className="nieuwsbericht_6"
+              src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
+              alt=""
+            />
+          </div>
+        </div>
       )}
     </div>
   );
