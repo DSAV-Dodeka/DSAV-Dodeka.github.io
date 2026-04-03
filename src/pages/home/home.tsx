@@ -8,38 +8,38 @@ import Samenwerkingen from "./components/Samenwerkingen";
 // import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
-  // Unused snow animation code - kept for reference
-  // const snowContent = ["&#127846", "�", "�"];
-  // const random = (num: number) => {
-  //   return Math.floor(Math.random() * num);
-  // };
-  // const getRandomStyles = () => {
-  //   const top = random(100) - 20;
-  //   const left = random(100);
-  //   const dur = random(10) + 15;
-  //   const size = random(25) + 10;
-  //   return `
-  //     top: -${top}%;
-  //     left: ${left}%;
-  //     font-size: ${size}px;
-  //     animation-duration: ${dur}s;
-  //   `;
-  // };
+  const snowContent = ["🐣", "🥚", "🐰", "🌷"];
 
-  // Unused function - kept for reference
-  // const createSnow = (n: number) => {
-  //   for (var i = 0; i < n; i++) {
-  //     var snowContainer = document.getElementById("sneeuw_container");
-  //     while (!snowContainer) {
-  //       snowContainer = document.getElementById("sneeuw_container");
-  //     }
-  //     var snow = document.createElement("div");
-  //     snow.className = "snow";
-  //     snow.style.cssText = getRandomStyles();
-  //     snow.innerHTML = snowContent[random(3)]!;
-  //     snowContainer.append(snow);
-  //   }
-  // };
+  const random = (num: number) => {
+    return Math.floor(Math.random() * num);
+  };
+
+  const getRandomStyles = () => {
+    const top = random(50) - 20;
+    const left = random(100);
+    const dur = random(10) + 20;
+    const size = random(25) + 10;
+    return `
+      top: -${top}%;
+      left: ${left}%;
+      font-size: ${size}px;
+      animation-duration: ${dur}s;
+    `;
+  };
+
+  const createSnow = (n: number) => {
+    for (var i = 0; i < n; i++) {
+      var snowContainer = document.getElementById("sneeuw_container");
+      while (!snowContainer) {
+        snowContainer = document.getElementById("sneeuw_container");
+      }
+      var snow = document.createElement("div");
+      snow.className = "snow";
+      snow.style.cssText = getRandomStyles();
+      snow.innerHTML = snowContent[random(4)]!;
+      snowContainer.append(snow);
+    }
+  };
 
   useEffect(() => {
     const updateScrollProgress = () => {
@@ -74,6 +74,7 @@ function Home() {
     };
 
     // Initial setup
+    createSnow(30);
     updateLogoMax();
     updateScrollProgress();
 

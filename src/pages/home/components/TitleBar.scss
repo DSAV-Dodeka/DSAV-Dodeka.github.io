@@ -22,6 +22,7 @@
   width: 60%;
   height: 24rem;
   background-color: variables.$dodeka_blauw;
+  overflow: hidden;
   @include variables.respond(mobile) {
     visibility: hidden;
   }
@@ -104,14 +105,21 @@
   }
 }
 
+.sneeuw_wrapper {
+  position: absolute;
+  bottom: -8.5rem;
+  left: 0;
+  width: 100%;
+  height: 20rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .sneeuw_bar {
   position: absolute;
-  display: inline;
-  width: 300%;
   height: 100%;
-  bottom: -12rem;
-  right: 15rem;
-  transform: scaleX(-1);
+  width: auto;
+  bottom: 0;
 }
 
 .sneeuw_bar .g {
