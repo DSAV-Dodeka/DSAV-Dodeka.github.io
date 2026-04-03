@@ -1,6 +1,84 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Ekiden 2026",
+            "foto": "nsk_ekiden_2026.jpg",
+            "prijzen": [
+                {
+                    "naam": "Dodekampionenen",
+                    "plaats": 1,
+                    "afstand": "Marathon estafette mixed"
+                }
+            ],
+            "prestaties": [
+                "Er waren in totaal 4 Dodeka teams, met maar liefst 2 mannen teams",
+                "Het zonnetje scheen op deze eerste dag van de lente",
+                "Tijdens het avondeten werd gezellig WK indoor gekeken."
+            ]
+        },
+        {
+            "wedstrijd": "NSK Indoor 2026",
+            "foto": "nsk_indoor_2026.jpg",
+            "prijzen": [
+                {
+                    "naam": "Stein Glastra",
+                    "plaats": 3,
+                    "afstand": "800m"
+                },
+                {
+                    "naam": "Koen Stapel",
+                    "plaats": 2,
+                    "afstand": "Polshoog"
+                },
+                {
+                    "naam": "Tobias Steevensz",
+                    "plaats": 3,
+                    "afstand": "Ver"
+                },
+                {
+                    "naam": "Robina Negenman",
+                    "plaats": 1,
+                    "afstand": "400m"
+                },
+                {
+                    "naam": "Dodekanonnen",
+                    "plaats": 3,
+                    "afstand": "4x200m mixed"
+                },
+                {
+                    "naam": "Ivar Vialard",
+                    "plaats": 3,
+                    "afstand": "HSS"
+                }
+            ],
+            "prestaties": [
+                "Er werden maar liefst 7 dodeka records behaald...",
+                "... en een record aantal medailles van maar liefst 6 plakken",
+                "Xylander brak zijn polsstok (bucket list van elke polsstokker)"
+            ]
+        },
+        {
+            "wedstrijd": "NSK Cross 2026",
+            "foto": "nsk_cross_2026.jpg",
+            "prijzen": [
+                {
+                    "naam": "Stein Glastra",
+                    "plaats": 3,
+                    "afstand": "Korte cross"
+                },
+                {
+                    "naam": "Thymo Westerhof",
+                    "plaats": 3,
+                    "afstand": "Lange cross"
+                }
+            ],
+            "prestaties": [
+                "Stein en Thymo hebben allebei hun eerste NSK medaille behaald",
+                "Deze NSK Cross was voor het eerst in lange tijd in de sneeuw!",
+                "Op dit NSK heeft Dodeka wederom de Zeusbokaal gewonnen"
+            ]
+        },
+        {
             "wedstrijd": "NSK Trappenloop 2025",
             "foto": "nsk_trap_2025.webp",
             "prijzen": [
