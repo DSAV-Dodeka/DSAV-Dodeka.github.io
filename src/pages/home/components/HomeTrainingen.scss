@@ -69,6 +69,7 @@
     padding-left: 4rem;
     padding-right: 4rem;
     @include variables.respond(mobile) {
+        width: 90%;
         text-align: left;
         padding-left: 2rem;
         padding-right: 2rem;
