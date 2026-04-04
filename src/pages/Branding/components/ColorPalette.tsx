@@ -39,7 +39,7 @@ function handleKeyDown(callback: () => void) {
 }
 
 function ColorPalette() {
-  const { copy, copied } = useClipboard();
+  const { copy, copied, copiedValue } = useClipboard();
 
   const renderSwatch = (color: ColorInfo) => {
     const isLight = color.hex.toUpperCase() === "#FFFFFF";
@@ -92,11 +92,13 @@ function ColorPalette() {
           {SECONDARY_COLORS.map(renderSwatch)}
         </div>
       </div>
-      {copied && (
-        <div className="color-palette__toast" role="status" aria-live="polite">
-          Gekopieerd!
-        </div>
-      )}
+      <div
+        className={`color-palette__toast ${copied ? "color-palette__toast--visible" : ""}`}
+        role="status"
+        aria-live="polite"
+      >
+        Gekopieerd: {copiedValue}
+      </div>
     </div>
   );
 }

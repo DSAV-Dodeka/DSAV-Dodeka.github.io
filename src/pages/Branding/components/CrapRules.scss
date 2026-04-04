@@ -1,49 +1,60 @@
 @use "../../../variables";
 
 .crap-rules {
+  padding-top: 0.75rem;
+
   &__intro {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.04);
+    margin-bottom: 2rem;
     line-height: variables.$line_height_medium;
-    margin-bottom: 2.5rem;
-    color: #4b5563;
+    color: #374151;
     font-size: 1.05rem;
+
+    @include variables.respond(mobile) {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
   }
 
-  /* ── Principe-kaarten (visueel + uitleg naast elkaar) ── */
+  /* ── Principe-kaarten ── */
 
   &__principles {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
   }
 
   &__principle {
     display: flex;
-    gap: 2rem;
+    gap: 1.75rem;
     background: #fff;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    border-left: 4px solid variables.$dodeka_blauw;
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.06);
+    border: 1px solid rgba(0, 29, 72, 0.06);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     &:hover {
       transform: translateY(-2px);
       box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.08),
-        0 2px 6px rgba(0, 0, 0, 0.04);
+        0 8px 20px rgba(0, 29, 72, 0.08),
+        0 2px 6px rgba(0, 29, 72, 0.04);
     }
 
     @include variables.respond(mobile) {
       flex-direction: column;
-      gap: 1.25rem;
-      padding: 1.5rem;
+      gap: 1rem;
+      padding: 1.25rem;
     }
   }
 
   &__principle-visual {
     flex-shrink: 0;
-    width: 160px;
+    width: 150px;
     display: flex;
     align-items: center;
 
@@ -62,13 +73,13 @@
     font-weight: variables.$bold;
     font-size: variables.$font_medium;
     color: variables.$dodeka_blauw;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   &__principle-summary {
     color: #374151;
     line-height: variables.$line_height_medium;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
   }
 
   &__principle-tips {
@@ -79,7 +90,7 @@
     li {
       position: relative;
       padding-left: 1.25rem;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
       color: #4b5563;
       line-height: variables.$line_height_small;
       font-size: 0.95rem;
@@ -88,7 +99,7 @@
         content: "→";
         position: absolute;
         left: 0;
-        color: variables.$dodeka_blauw;
+        color: variables.$dodeka_rood;
         font-weight: variables.$bold;
       }
 
@@ -106,31 +117,32 @@
     font-weight: variables.$bold;
     color: variables.$dodeka_blauw;
     margin-top: 0.5rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   /* ── Vuistregels ── */
 
   &__vuistregels {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
   &__vuistregel {
     background: #fff;
     border-radius: 16px;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    padding: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.06);
+    border: 1px solid rgba(0, 29, 72, 0.06);
     border-top: 3px solid variables.$dodeka_blauw;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     &:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       box-shadow:
-        0 12px 24px rgba(0, 0, 0, 0.1),
-        0 4px 8px rgba(0, 0, 0, 0.06);
+        0 8px 20px rgba(0, 29, 72, 0.08),
+        0 2px 6px rgba(0, 29, 72, 0.04);
     }
   }
 
@@ -140,7 +152,7 @@
     font-weight: variables.$bold;
     font-size: variables.$font_small;
     color: variables.$dodeka_blauw;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   &__vuistregel-text {
@@ -153,12 +165,13 @@
   /* ── Veelgemaakte fouten ── */
 
   &__fouten {
-    background: #fef2f2;
-    border-radius: 16px;
-    padding: 1.75rem 2rem;
-    border: 2px solid #fca5a5;
-    margin-bottom: 3rem;
-    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.06);
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid rgba(0, 29, 72, 0.06);
+    border-left: 4px solid variables.$dodeka_rood;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.06);
   }
 
   &__fouten-list {
@@ -169,15 +182,15 @@
     li {
       position: relative;
       padding-left: 1.5rem;
-      margin-bottom: 0.6rem;
-      color: #7f1d1d;
+      margin-bottom: 0.5rem;
+      color: #374151;
       line-height: variables.$line_height_small;
 
       &::before {
         content: "✗";
         position: absolute;
         left: 0;
-        color: #dc2626;
+        color: variables.$dodeka_rood;
         font-weight: variables.$bold;
       }
 
@@ -187,12 +200,12 @@
     }
   }
 
-  /* ── Kleurcontrast voorbeeld (behouden) ── */
+  /* ── Kleurcontrast ── */
 
   &__contrast-example {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
 
     @include variables.respond(phone) {
       grid-template-columns: 1fr;
@@ -200,8 +213,8 @@
   }
 
   &__contrast-card {
-    border-radius: 16px;
-    padding: 1.75rem;
+    border-radius: 20px;
+    padding: 1.5rem;
     position: relative;
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -211,22 +224,24 @@
     }
 
     &--bad {
-      background-color: #fef2f2;
-      border: 2px solid #fca5a5;
-      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.08);
+      background-color: #fff;
+      border: 1px solid rgba(0, 29, 72, 0.06);
+      border-left: 4px solid variables.$dodeka_rood;
+      box-shadow: 0 2px 8px rgba(0, 29, 72, 0.06);
 
       &:hover {
-        box-shadow: 0 8px 20px rgba(220, 38, 38, 0.12);
+        box-shadow: 0 8px 20px rgba(0, 29, 72, 0.08);
       }
     }
 
     &--good {
-      background-color: #f0fdf4;
-      border: 2px solid #86efac;
-      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.08);
+      background-color: #fff;
+      border: 1px solid rgba(0, 29, 72, 0.06);
+      border-left: 4px solid #16a34a;
+      box-shadow: 0 2px 8px rgba(0, 29, 72, 0.06);
 
       &:hover {
-        box-shadow: 0 8px 20px rgba(22, 163, 74, 0.12);
+        box-shadow: 0 8px 20px rgba(0, 29, 72, 0.08);
       }
     }
   }
@@ -235,18 +250,17 @@
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: variables.$bold;
-    font-size: 1.1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    font-size: 1rem;
 
     &--bad {
-      background-color: #dc2626;
+      background-color: variables.$dodeka_rood;
       color: #fff;
     }
 
@@ -257,13 +271,13 @@
   }
 
   &__contrast-preview {
-    border-radius: 12px;
-    padding: 1.5rem 1.75rem;
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
     text-align: center;
     font-family: "Montserrat", sans-serif;
     font-weight: 800;
     font-size: variables.$font_medium;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 
     &--bad {
       background-color: variables.$dodeka_blauw;
@@ -287,16 +301,15 @@
 .crap-visual {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem;
   width: 100%;
 
   &__box {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    height: 55px;
+    border-radius: 12px;
 
     &--dark {
       background-color: variables.$dodeka_blauw;
@@ -312,7 +325,7 @@
 
     &--light {
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-family: "Montserrat", sans-serif;
     }
 
@@ -326,22 +339,21 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 60px;
+    height: 55px;
     padding: 0.5rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background-color: #f8fafc;
+    border-radius: 12px;
   }
 
   &__circle {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
     border-radius: 50%;
     background-color: variables.$dodeka_blauw;
 
     &--small {
-      width: 2rem;
-      height: 2rem;
+      width: 1.75rem;
+      height: 1.75rem;
     }
   }
 
@@ -349,18 +361,18 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.4rem;
-    height: 60px;
+    gap: 0.35rem;
+    height: 55px;
     padding: 0.5rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background-color: #f8fafc;
+    border-radius: 12px;
   }
 
   &__bar {
-    height: 0.75rem;
+    height: 0.6rem;
     border-radius: 6px;
-    background-color: #94a3b8;
+    background-color: variables.$dodeka_blauw;
+    opacity: 0.3;
 
     &--50 {
       width: 50%;
@@ -368,10 +380,12 @@
 
     &--75 {
       width: 75%;
+      opacity: 0.6;
     }
 
     &--100 {
       width: 100%;
+      opacity: 1;
     }
 
     &--right {
@@ -384,23 +398,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    height: 60px;
+    gap: 0.4rem;
+    height: 55px;
     padding: 0.5rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background-color: #f8fafc;
+    border-radius: 12px;
   }
 
   &__proximity-group {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
 
   &__rect {
-    width: 5rem;
-    height: 2rem;
+    width: 4.5rem;
+    height: 1.75rem;
     border-radius: 8px;
-    background-color: #cbd5e1;
+    background-color: rgba(0, 29, 72, 0.15);
   }
 }

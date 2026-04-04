@@ -28,6 +28,23 @@ function Branding() {
 
   return (
     <div className="branding-page">
+      {/* Animated background shapes */}
+      <div className="branding-bg" aria-hidden="true">
+        <div className="branding-bg__shape branding-bg__shape--1" />
+        <div className="branding-bg__shape branding-bg__shape--2" />
+        <div className="branding-bg__shape branding-bg__shape--3" />
+        <div className="branding-bg__shape branding-bg__shape--4" />
+        <div className="branding-bg__shape branding-bg__shape--5" />
+        <div className="branding-bg__shape branding-bg__shape--6" />
+        <div className="branding-bg__shape branding-bg__shape--7" />
+        <div className="branding-bg__shape branding-bg__shape--8" />
+        <div className="branding-bg__shape branding-bg__shape--9" />
+        <div className="branding-bg__shape branding-bg__shape--10" />
+        <div className="branding-bg__shape branding-bg__shape--11" />
+        <div className="branding-bg__shape branding-bg__shape--12" />
+        <div className="branding-bg__shape branding-bg__shape--13" />
+      </div>
+
       <PageTitle title="huisstijl" />
       {/* Introduction */}
       <section className="branding-section">
@@ -66,13 +83,21 @@ function Branding() {
       </section>
 
       <Modal
-        Title={<span>{selectedLogo?.logo.name ?? ""}</span>}
+        Title={
+          <span>
+            {selectedLogo?.logo.name ?? ""}{" "}
+            <span style={{ opacity: 0.6, fontWeight: 400, fontSize: "0.75em" }}>
+              ({selectedLogo?.colorVariant === "dark" ? "Donkerblauw" : "Wit"})
+            </span>
+          </span>
+        }
         Content={
           selectedLogo ? (
             <FormatPicker
               logoName={selectedLogo.logo.name}
               logoId={selectedLogo.logo.id}
               colorVariant={selectedLogo.colorVariant}
+              previewSrc={selectedLogo.colorVariant === "dark" ? selectedLogo.logo.previewDark : selectedLogo.logo.previewWhite}
             />
           ) : null
         }

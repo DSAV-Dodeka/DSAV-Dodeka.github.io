@@ -41,7 +41,6 @@ const Modal = (props: ModalProps) => {
                     <div className="modal-title">{props.Title}</div>
                     <button
                         className="modal-close-btn"
-                        autoFocus
                         onClick={closeModal}
                         title="Sluit"
                     >

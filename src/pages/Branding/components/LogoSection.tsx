@@ -10,28 +10,36 @@ export interface LogoVariant {
 
 export const LOGO_VARIANTS: LogoVariant[] = [
   {
-    id: "elongated",
-    name: "Elongated Logo",
+    id: "het-logo",
+    name: "Hét Logo",
     description:
-      "Dit hoofdlogo wordt gebruikt wanneer dat kan. Als er genoeg ruimte is gebruik je altijd dit logo.",
-    previewDark: "/branding/elongated/elongated-dark.svg",
-    previewWhite: "/branding/elongated/elongated-white.svg",
+      "Dit is ons meest herkenbare logo en heeft de sterkste link met Dodeka. Gebruik dit logo wanneer je kan.",
+    previewDark: "/branding/het-logo/dodeka_het-logo-blauw.svg",
+    previewWhite: "/branding/het-logo/dodeka_het-logo_wit.svg",
   },
   {
-    id: "upright",
-    name: "Upright Full Logo",
+    id: "volledige-logo",
+    name: "Volledige Logo",
     description:
-      "Dit logo gebruik je wanneer er niet genoeg ruimte is voor het lange logo.",
-    previewDark: "/branding/upright/upright-dark.svg",
-    previewWhite: "/branding/upright/upright-white.svg",
+      "Het volledige logo met de naam uitgeschreven. Gebruik dit in formele settings zoals officiële documenten en briefpapier.",
+    previewDark: "/branding/volledige-logo/dodeka_volledige_logo_blauw.svg",
+    previewWhite: "/branding/volledige-logo/dodeka_volledige_logo_wit.svg",
   },
   {
-    id: "monogram",
-    name: "Monogram",
+    id: "icoon",
+    name: "Icoon",
     description:
-      "Het icoon gebruik je wanneer de tekst van de hoofdlogo's onleesbaar zal zijn.",
-    previewDark: "/branding/monogram/monogram-dark.svg",
-    previewWhite: "/branding/monogram/monogram-white.svg",
+      "Het icoon gebruik je wanneer de tekst van de andere logo's onleesbaar zal zijn.",
+    previewDark: "/branding/icoon/dodeka_icoon_blauw.svg",
+    previewWhite: "/branding/icoon/dodeka_icoon_wit.svg",
+  },
+  {
+    id: "woord",
+    name: "Woord",
+    description:
+      "Alleen de tekst 'Dodeka', zonder het icoon. Gebruik dit wanneer het icoon al elders zichtbaar is.",
+    previewDark: "/branding/woord/dodeka_woord-blauw.svg",
+    previewWhite: "/branding/woord/dodeka_woord-wit.svg",
   },
 ];
 
@@ -51,20 +59,22 @@ function handleKeyDown(callback: () => void) {
 function LogoSection({ onLogoClick }: LogoSectionProps) {
   return (
     <div className="logo-section">
-      <p className="logo-section__description">
-        Het logo van D.S.A.V. Dodeka symboliseert een atletiek baan. Het
-        lettertype is modern wat past bij de leeftijd van de vereniging. De d's
-        en a's zijn aangepast naar de vorm van de atletiekbaan. En de dikte van
-        de letters van "odeka" is aangepast naar de dikte van de lijnen van de
-        atletiekbaan d.
-      </p>
-      <p className="logo-section__description">
-        Ons logo maakt ons makkelijk herkenbaar voor andere mensen en
-        verenigingen. Het is vanaf de andere kant van de atletiekbaan nog steeds
-        goed te herkennen. Het is samen met veelvoudig braveren ons sterkste
-        herkennigspunt. Daarom is het belangrijk dat we ons logo correct
-        gebruiken.
-      </p>
+      <div className="logo-section__intro">
+        <p className="logo-section__description">
+          Het logo van D.S.A.V. Dodeka symboliseert een atletiek baan. Het
+          lettertype is modern wat past bij de leeftijd van de vereniging. De d's
+          en a's zijn aangepast naar de vorm van de atletiekbaan. En de dikte van
+          de letters van "odeka" is aangepast naar de dikte van de lijnen van de
+          atletiekbaan d.
+        </p>
+        <p className="logo-section__description">
+          Ons logo maakt ons makkelijk herkenbaar voor andere mensen en
+          verenigingen. Het is vanaf de andere kant van de atletiekbaan nog steeds
+          goed te herkennen. Het is samen met veelvoudig braveren ons sterkste
+          herkennigspunt. Daarom is het belangrijk dat we ons logo correct
+          gebruiken.
+        </p>
+      </div>
 
       <div className="logo-section__grid">
         {LOGO_VARIANTS.map((logo) => (

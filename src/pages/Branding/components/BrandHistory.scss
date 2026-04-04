@@ -1,30 +1,14 @@
 @use "../../../variables";
 
 .brand-history {
-  &__narrative {
-    padding: 2rem 2.5rem;
-    background-color: #f9fafb;
-    border-radius: 16px;
-    border-left: 4px solid variables.$dodeka_blauw;
-    margin-bottom: 2.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    position: relative;
-    overflow: hidden;
+  padding-top: 0.75rem;
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 200px;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(0, 31, 72, 0.02) 100%
-      );
-      pointer-events: none;
-    }
+  &__narrative {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.04);
+    margin-bottom: 2.5rem;
 
     @include variables.respond(mobile) {
       padding: 1.25rem;
@@ -43,14 +27,24 @@
   }
 
   &__members {
-    list-style: disc;
-    padding-left: 1.25rem;
+    list-style: none;
+    padding-left: 0;
     margin-bottom: 1rem;
     line-height: variables.$line_height_medium;
 
     li {
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
       color: #374151;
+      padding-left: 1rem;
+      position: relative;
+
+      &::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: variables.$dodeka_rood;
+        font-weight: variables.$bold;
+      }
     }
   }
 
@@ -59,7 +53,7 @@
     font-size: variables.$font_medium;
     font-weight: variables.$bold;
     color: variables.$dodeka_blauw;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   &__timeline {
@@ -67,67 +61,72 @@
     flex-direction: column;
     gap: 0;
     position: relative;
-    padding-left: 2rem;
+    padding-left: 2.5rem;
 
-    // Vertical timeline connector
     &::before {
       content: "";
       position: absolute;
-      left: 0.75rem;
+      // Center of line at 1rem (line is 3px wide, so left = 1rem - 1.5px)
+      left: calc(1rem - 1.5px);
       top: 0.5rem;
       bottom: 0.5rem;
       width: 3px;
-      background: linear-gradient(
-        180deg,
-        variables.$dodeka_blauw 0%,
-        variables.$dodeka_blauw90p 100%
-      );
+      background: variables.$dodeka_rood;
       border-radius: 2px;
     }
 
     @include variables.respond(phone) {
-      padding-left: 1.5rem;
+      padding-left: 2rem;
+
+      &::before {
+        left: calc(0.75rem - 1.5px);
+      }
     }
   }
 
   &__event {
     display: flex;
-    gap: 1.5rem;
-    padding: 1.25rem 1.75rem;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.06);
+    border: 1px solid rgba(0, 29, 72, 0.06);
     align-items: flex-start;
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-    // Timeline dot
+    // Dot centered on the timeline line (line center = 1rem from timeline left)
+    // Dot is relative to the card, card starts at padding-left 2.5rem
+    // So dot left = -(2.5rem - 1rem) - half dot width = -1.5rem - 8px
     &::before {
       content: "";
       position: absolute;
-      left: -2rem;
-      top: 1.5rem;
-      width: 11px;
-      height: 11px;
+      left: calc(-1.5rem - 8px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background-color: variables.$dodeka_blauw;
+      background-color: variables.$dodeka_rood;
       border: 3px solid #fff;
-      box-shadow: 0 0 0 2px variables.$dodeka_blauw;
+      box-shadow: 0 0 0 2px variables.$dodeka_rood;
       z-index: 1;
 
       @include variables.respond(phone) {
-        left: -1.5rem;
-        width: 9px;
-        height: 9px;
+        left: calc(-1.25rem - 7px);
+        width: 8px;
+        height: 8px;
+        border-width: 2px;
       }
     }
 
     &:hover {
       transform: translateX(4px);
       box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.08),
-        0 2px 6px rgba(0, 0, 0, 0.04);
+        0 8px 20px rgba(0, 29, 72, 0.08),
+        0 2px 6px rgba(0, 29, 72, 0.04);
     }
 
     &:last-child {

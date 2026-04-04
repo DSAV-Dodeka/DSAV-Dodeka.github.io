@@ -1,48 +1,90 @@
 @use "../../variables.scss";
 
 .modal-main {
-    border-radius: 0.75rem;
+    border-radius: 20px;
     border-style: none;
-    background-color: variables.$dodeka_blauw;
+    background: rgba(0, 29, 72, 0.75);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
     position: fixed;
-    top: 15vh;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
     color: white;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
     min-width: 30%;
-    min-height: 30%;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    animation: modal-in 0.25s ease-out;
+
+    // Remove default focus outline on dialog itself
+    &:focus {
+        outline: none;
+    }
 }
+
 .modal-main::backdrop {
-    background-color: rgb(0 0 0 / 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
+
 .modal-inner-container {
     display: flex;
     flex-direction: column;
 }
+
 .modal-title-container {
     display: flex;
-    margin-bottom: 1rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
 }
+
 .modal-title {
+    font-family: "Montserrat", sans-serif;
     font-size: variables.$font_ml;
     font-weight: variables.$bold;
 }
+
 .modal-close-btn {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    flex-grow: 1;
-    text-align: right;
-    background: none;
-    border: none;
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+    }
 }
+
 .modal-close-icon {
     fill: white;
-    width: 2rem;
-    cursor: pointer;
+    width: 1rem;
+    height: 1rem;
 }
-.modal-close-icon:hover {
-    fill: #ACACAC;
+
+@keyframes modal-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
-// "rounded-md p-0 backdrop:bg-black/30
-// "mx-2 grow text-right text-3xl font-bold hover:text-darkergray"

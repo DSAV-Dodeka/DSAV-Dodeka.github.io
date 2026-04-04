@@ -68,9 +68,14 @@ const VUISTREGELS = [
       "Gebruik niet meer dan twee lettertypefamilies (Montserrat + Source Sans 3). Meer lettertypes zorgen voor visuele ruis.",
   },
   {
-    regel: "60-30-10 kleurregel",
+    regel: "Gulden snede (1 : 1,618)",
     uitleg:
-      "Verdeel kleuren als 60% dominant (Dodeka Blauw/Wit), 30% secundair en 10% accent (Baan Rood). Dit creëert visuele balans.",
+      "Gebruik de verhouding 1 : 1,618 voor het verdelen van ruimte, bijvoorbeeld bij kolommen of de verhouding tussen een afbeelding en tekst. Deze verhouding voelt van nature harmonieus en gebalanceerd.",
+  },
+  {
+    regel: "Eén boodschap per ontwerp",
+    uitleg:
+      "Elk ontwerp moet één duidelijke boodschap of actie communiceren. Als je meer dan één ding probeert te zeggen, concurreren de elementen met elkaar en verliest de kijker focus.",
   },
   {
     regel: "Witruimte is geen lege ruimte",

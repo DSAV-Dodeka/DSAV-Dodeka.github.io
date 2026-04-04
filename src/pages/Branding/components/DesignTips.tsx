@@ -1,62 +1,120 @@
 import "./DesignTips.scss";
 
-const TIPS = [
+const FILE_FORMATS = [
   {
-    label: "Behoud hiërarchie",
-    text: "Gebruik de verschillende lettertypegewichten en -groottes om een duidelijke visuele hiërarchie te creëren. Gebruik Heading 1 voor titels op het hoogste niveau en leestekst voor hoofdalinea's.",
+    name: "SVG",
+    type: "Vector",
+    description:
+      "Schaalbaar vectorformaat. Blijft scherp op elke grootte. Ideaal voor logo's, iconen en illustraties op het web. Kan met CSS gestyled worden.",
+    use: "Web, digitale media, logo's",
   },
   {
-    label: "Witruimte is je vriend",
-    text: "Geef elementen ruimte om te ademen. Maak je ontwerpen niet te vol en gebruik voldoende padding en marges.",
+    name: "EPS",
+    type: "Vector",
+    description:
+      "Professioneel vectorformaat voor drukwerk. Wordt gebruikt door drukkerijen en is bewerkbaar in Adobe Illustrator. Bevat geen pixelinformatie.",
+    use: "Drukwerk, professionele print",
   },
   {
-    label: "Test op toegankelijkheid",
-    text: "Zorg er altijd voor dat je kleurcombinaties voldoende contrast hebben voor mensen met een visuele beperking. Gebruik online tools om de toegankelijkheid te controleren.",
+    name: "PNG",
+    type: "Raster",
+    description:
+      "Rasterformaat met ondersteuning voor transparantie. Verliesvrije compressie, dus geen kwaliteitsverlies. Bestanden zijn groter dan JPG.",
+    use: "Web, presentaties, logo's op achtergronden",
   },
   {
-    label: "Bestandsformaten",
-    text: "Gebruik SVG of hoge-resolutie PNG voor logo's op het web. Gebruik voor print vectorformaten zoals AI of EPS om kwaliteit te garanderen.",
+    name: "JPG",
+    type: "Raster",
+    description:
+      "Gecomprimeerd rasterformaat zonder transparantie. Kleine bestandsgrootte, maar verliest kwaliteit bij herhaald opslaan. Niet geschikt voor logo's.",
+    use: "Foto's, social media, achtergrondafbeeldingen",
+  },
+  {
+    name: "PDF",
+    type: "Beide",
+    description:
+      "Kan zowel vector- als rasterdata bevatten. Universeel leesbaar en geschikt voor zowel digitaal als print. Behoud van layout gegarandeerd.",
+    use: "Documenten, drukwerk, presentaties",
+  },
+  {
+    name: "AI",
+    type: "Vector",
+    description:
+      "Het native bestandsformaat van Adobe Illustrator. Bevat volledige bewerkbare vectordata inclusief lagen, effecten en lettertypes. Het meest flexibele formaat voor verdere bewerking.",
+    use: "Bronbestanden, ontwerpaanpassingen, samenwerking met designers",
   },
 ];
 
 function DesignTips() {
   return (
     <div className="design-tips">
-      <div className="design-tips__list-card">
-        <ul className="design-tips__list">
-          {TIPS.map((tip) => (
-            <li key={tip.label}>
-              <strong>{tip.label}:</strong> {tip.text}
-            </li>
-          ))}
-        </ul>
+      {/* CMYK uitleg */}
+      <div className="design-tips__cmyk">
+        <h3 className="design-tips__subtitle">Kleuren voor print: CMYK</h3>
+        <div className="design-tips__cmyk-content">
+          <p className="design-tips__text">
+            De kleuren op deze pagina staan in HEX en RGB — dat zijn
+            kleurruimtes voor schermen. Voor drukwerk wordt CMYK gebruikt
+            (Cyan, Magenta, Yellow, Key/zwart). Het omzetten van HEX naar CMYK
+            is niet simpelweg een wiskundige conversie: kleuren die er op een
+            scherm helder uitzien, kunnen er gedrukt dof of anders uitzien.
+          </p>
+          <p className="design-tips__text">
+            Dit komt doordat schermen licht uitzenden (additief) terwijl inkt
+            licht absorbeert (subtractief). Felle kleuren zoals het TU Blauw
+            of Team NL Oranje zijn op een scherm makkelijk te tonen, maar
+            vallen buiten het bereik (gamut) van CMYK-inkt.
+          </p>
+          <div className="design-tips__cmyk-tips">
+            <div className="design-tips__cmyk-tip">
+              <span className="design-tips__cmyk-tip-icon">→</span>
+              <p>
+                Gebruik altijd de opgegeven Pantone-codes als referentie voor
+                drukwerk. Pantone-kleuren zijn gestandaardiseerd en geven het
+                meest betrouwbare resultaat.
+              </p>
+            </div>
+            <div className="design-tips__cmyk-tip">
+              <span className="design-tips__cmyk-tip-icon">→</span>
+              <p>
+                Vraag altijd een drukproef aan voordat je een grote oplage laat
+                drukken. Beoordeel de kleuren bij daglicht, niet onder TL-verlichting.
+              </p>
+            </div>
+            <div className="design-tips__cmyk-tip">
+              <span className="design-tips__cmyk-tip-icon">→</span>
+              <p>
+                Vertrouw niet op de CMYK-preview op je scherm. Elk scherm toont
+                kleuren anders, en CMYK-simulatie in software is een benadering.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <h3 className="design-tips__subtitle">Vormen gids</h3>
+      {/* Bestandsformaten */}
+      <h3 className="design-tips__subtitle">Bestandsformaten</h3>
+      <p className="design-tips__text design-tips__text--intro">
+        Kies het juiste formaat voor het juiste doel. Vectorformaten (SVG, EPS)
+        zijn oneindig schaalbaar en ideaal voor logo's. Rasterformaten (PNG, JPG)
+        bestaan uit pixels en verliezen kwaliteit bij vergroting.
+      </p>
 
-      <div className="design-tips__shapes">
-        <div className="design-tips__shapes-column">
-          <h4 className="design-tips__shapes-heading design-tips__shapes-heading--do">
-            ✅ Aanbevolen vormen
-          </h4>
-          <p className="design-tips__shapes-text">
-            Gebruik geometrische vormen zoals cirkels, vierkanten of eenvoudige
-            lijnen die passen bij de strakke en moderne uitstraling van het merk.
-            Deze vormen kunnen worden verwerkt in ontwerpelementen, iconen en
-            lay-outs.
-          </p>
-        </div>
-        <div className="design-tips__shapes-column">
-          <h4 className="design-tips__shapes-heading design-tips__shapes-heading--dont">
-            ❌ Vormen om te vermijden
-          </h4>
-          <p className="design-tips__shapes-text">
-            Vermijd te complexe, hoekige of onprofessionele vormen die kunnen
-            botsen met de identiteit van het merk. Dit geldt ook voor vormen met
-            een te "retro" of "futuristisch" gevoel, tenzij ze specifiek
-            onderdeel zijn van een campagne.
-          </p>
-        </div>
+      <div className="design-tips__formats">
+        {FILE_FORMATS.map((format) => (
+          <div key={format.name} className="design-tips__format-card">
+            <div className="design-tips__format-header">
+              <span className="design-tips__format-name">{format.name}</span>
+              <span className={`design-tips__format-badge design-tips__format-badge--${format.type.toLowerCase()}`}>
+                {format.type}
+              </span>
+            </div>
+            <p className="design-tips__format-desc">{format.description}</p>
+            <p className="design-tips__format-use">
+              <strong>Gebruik:</strong> {format.use}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
