@@ -1,9 +1,15 @@
+@use "../../../../variables";
+
 .track_bg {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 1;
     overflow: hidden;
+
+    @include variables.respond(mobile) {
+        opacity: 0.3;
+    }
 }
 
 .te_wrap {
