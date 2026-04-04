@@ -1,0 +1,70 @@
+{
+  "_beschrijving": "Komkommertijden voor de ranglijst op /komkommer. Elk item heeft een naam, tijd (in milliseconden), en startjaar (voor het aantal komkommer-emoji's). Optioneel: datum (YYYY-MM-DD) en beschrijving.",
+  "tijden": [
+    {
+      "naam": "Matthijs",
+      "tijd": 149000,
+      "startjaar": 2020,
+      "eindjaar": 2025
+    },
+    {
+      "naam": "Jefry",
+      "tijd": 241110,
+      "startjaar": 2020
+    },
+    {
+      "naam": "Tip",
+      "tijd": 109000,
+      "startjaar": 2021,
+      "eindjaar": 2026
+    },
+    {
+      "naam": "Aniek",
+      "tijd": 305000,
+      "startjaar": 2021
+    },
+    {
+      "naam": "Leander",
+      "tijd": 182400,
+      "startjaar": 2022,
+      "eindjaar": 2024
+    },
+    {
+      "naam": "Sanne D",
+      "tijd": 151000,
+      "startjaar": 2024,
+      "eindjaar": 2025
+    },
+    {
+      "naam": "Tijmen",
+      "tijd": 154000,
+      "startjaar": 2024
+    },
+    {
+      "naam": "Jesper",
+      "tijd": 169000,
+      "startjaar": 2023
+    },
+    {
+      "naam": "Senne",
+      "tijd": 220000,
+      "startjaar": 2023
+    },
+    {
+      "naam": "Sanne B",
+      "tijd": 224000,
+      "startjaar": 2023,
+      "eindjaar": 2024
+    },
+    {
+      "naam": "Liam",
+      "tijd": 256000,
+      "startjaar": 2024
+    },
+    {
+      "naam": "Xylander",
+      "tijd": 269000,
+      "startjaar": 2024
+    }
+  ]
+}

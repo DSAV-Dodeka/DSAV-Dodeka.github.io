@@ -1,0 +1,454 @@
+@use "../../variables";
+
+$komkommer_groen: #4caf50;
+$komkommer_groen_dark: #388e3c;
+$komkommer_groen_light: #e8f5e9;
+
+// Floating background animation — gentle drift, stays in view
+@keyframes slice-drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(15px, -20px) rotate(5deg); }
+  50% { transform: translate(-10px, 10px) rotate(-3deg); }
+  75% { transform: translate(20px, 15px) rotate(4deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.komkommer-page {
+  color: variables.$dodeka_blauw;
+  margin-left: variables.$margin_x;
+  margin-right: variables.$margin_x;
+  margin-bottom: variables.$margin_y;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 60vh;
+
+  @include variables.respond(mobile) {
+    margin-left: variables.$margin_mobile;
+    margin-right: variables.$margin_mobile;
+  }
+}
+
+.komkommer-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+
+  &__slice {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #c8e6c9 0%, #a5d6a7 40%, #81c784 70%, #66bb6a 100%);
+    border: 3px solid #4caf50;
+    box-shadow: inset 0 0 0 15% rgba(255, 255, 255, 0.25),
+                inset 0 0 8px rgba(56, 142, 60, 0.15);
+    animation: slice-drift ease-in-out infinite;
+    user-select: none;
+
+    // Seed dots via pseudo-elements
+    &::before, &::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    &::before {
+      width: 12%;
+      height: 12%;
+      top: 30%;
+      left: 55%;
+    }
+
+    &::after {
+      width: 10%;
+      height: 10%;
+      top: 55%;
+      left: 35%;
+    }
+
+    &:nth-child(1) {
+      width: 20rem; height: 20rem;
+      top: -5rem; left: -3%;
+      opacity: 0.1;
+      animation-duration: 18s;
+    }
+    &:nth-child(2) {
+      width: 16rem; height: 16rem;
+      top: 5%; right: -4%; left: auto;
+      opacity: 0.08;
+      animation-duration: 22s;
+      animation-delay: -4s;
+    }
+    &:nth-child(3) {
+      width: 24rem; height: 24rem;
+      bottom: -6rem; right: 5%; left: auto; top: auto;
+      opacity: 0.07;
+      animation-duration: 20s;
+      animation-delay: -8s;
+    }
+    &:nth-child(4) {
+      width: 14rem; height: 14rem;
+      top: 45%; left: 10%;
+      opacity: 0.09;
+      animation-duration: 16s;
+      animation-delay: -2s;
+    }
+    &:nth-child(5) {
+      width: 18rem; height: 18rem;
+      top: 55%; right: 15%; left: auto;
+      opacity: 0.07;
+      animation-duration: 24s;
+      animation-delay: -6s;
+    }
+    &:nth-child(6) {
+      width: 28rem; height: 28rem;
+      top: 5%; left: 35%;
+      opacity: 0.05;
+      animation-duration: 26s;
+      animation-delay: -10s;
+    }
+    &:nth-child(7) {
+      width: 12rem; height: 12rem;
+      bottom: 10%; left: 35%; top: auto;
+      opacity: 0.1;
+      animation-duration: 15s;
+      animation-delay: -3s;
+    }
+    &:nth-child(8) {
+      width: 16rem; height: 16rem;
+      top: 25%; left: 65%;
+      opacity: 0.08;
+      animation-duration: 21s;
+      animation-delay: -7s;
+    }
+  }
+}
+
+.komkommer-content {
+  position: relative;
+  z-index: 1;
+}
+
+// Disclaimer banner
+.disclaimer-banner {
+  background-color: $komkommer_groen_light;
+  border-left: 4px solid $komkommer_groen;
+  color: variables.$dodeka_blauw;
+  font-size: variables.$font_small;
+  padding: 0.75rem 1rem;
+  margin-bottom: variables.$margin_y;
+  text-align: left;
+  border-radius: 0 4px 4px 0;
+}
+
+// Name input
+.name-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+
+  &__label {
+    font-size: variables.$font_small;
+    color: variables.$dodeka_grijs;
+  }
+
+  &__field {
+    text-align: center;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
+    color: variables.$dodeka_blauw;
+    border: 2px solid $komkommer_groen_light;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    max-width: 16rem;
+    width: 100%;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $komkommer_groen;
+    }
+
+    &::placeholder {
+      color: variables.$dodeka_grijs;
+      font-weight: normal;
+    }
+  }
+}
+
+// Timer display
+.timer-display {
+  font-size: 4rem;
+  font-weight: variables.$bold;
+  font-variant-numeric: tabular-nums;
+  color: variables.$dodeka_blauw;
+  padding: 1.5rem 0;
+  letter-spacing: 0.05em;
+
+  @include variables.respond(phone) {
+    font-size: 2.5rem;
+  }
+}
+
+// Timer controls
+.timer-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: variables.$margin_y;
+
+  button {
+    font-weight: variables.$bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+    &:focus-visible {
+      outline: 2px solid variables.$dodeka_blauw;
+      outline-offset: 2px;
+    }
+  }
+
+  &__main {
+    background-color: $komkommer_groen;
+    color: white;
+    font-size: 2rem;
+    padding: 1.5rem 4rem;
+    min-width: 14rem;
+
+    @include variables.respond(phone) {
+      font-size: 1.5rem;
+      padding: 1.25rem 3rem;
+      min-width: 10rem;
+    }
+
+    &:hover {
+      background-color: $komkommer_groen_dark;
+    }
+  }
+
+  &__secondary {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__done {
+    background-color: variables.$dodeka_blauw;
+    color: white;
+    font-size: variables.$font_small;
+    padding: 0.5rem 1.5rem;
+
+    &:hover {
+      background-color: variables.$dodeka_blauw90p;
+    }
+  }
+}
+
+// Stop times list
+.stop-times-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto variables.$margin_y;
+  max-width: 20rem;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0.75rem;
+    border-bottom: 1px solid $komkommer_groen_light;
+    font-size: variables.$font_small;
+  }
+
+  &__index {
+    color: variables.$dodeka_grijs;
+    margin-right: 0.5rem;
+  }
+
+  &__time {
+    font-variant-numeric: tabular-nums;
+    font-weight: variables.$bold;
+  }
+}
+
+// Time selector
+.time-selector {
+  margin-bottom: variables.$margin_y;
+
+  &__heading {
+    font-size: variables.$font_ml;
+    font-weight: variables.$bold;
+    color: variables.$dodeka_blauw;
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 24rem;
+  }
+
+  &__item {
+    margin-bottom: 0.5rem;
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: $komkommer_groen_light;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: variables.$font_small;
+    color: variables.$dodeka_blauw;
+    transition: border-color 0.2s, background-color 0.2s;
+
+    &:hover {
+      border-color: $komkommer_groen;
+      background-color: white;
+    }
+
+    &:focus-visible {
+      outline: 2px solid variables.$dodeka_blauw;
+      outline-offset: 2px;
+    }
+  }
+
+  &__index {
+    color: variables.$dodeka_grijs;
+  }
+
+  &__time {
+    font-variant-numeric: tabular-nums;
+    font-weight: variables.$bold;
+  }
+}
+
+// Leaderboard
+.leaderboard {
+  margin-bottom: variables.$margin_y;
+
+  &__heading {
+    font-size: variables.$font_ml;
+    font-weight: variables.$bold;
+    color: variables.$dodeka_blauw;
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 32rem;
+  }
+
+  &__entry {
+    display: flex;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid $komkommer_groen_light;
+
+    &--user {
+      background-color: $komkommer_groen_light;
+      border-radius: 6px;
+      border-bottom-color: transparent;
+      font-weight: variables.$bold;
+    }
+  }
+
+  &__rank {
+    min-width: 2rem;
+    color: variables.$dodeka_grijs;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__info {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  &__name {
+    font-size: variables.$font_small;
+  }
+
+  &__cucumbers {
+    font-size: 0.55rem;
+    line-height: 1;
+    opacity: 0.45;
+    letter-spacing: -0.05em;
+  }
+
+  &__time {
+    font-variant-numeric: tabular-nums;
+    font-weight: variables.$bold;
+    margin-left: auto;
+    padding-left: 1rem;
+  }
+}
+
+// Previous times
+.previous-times {
+  margin-top: variables.$margin_y;
+
+  &__heading {
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
+    color: variables.$dodeka_grijs;
+    margin-bottom: 0.5rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 20rem;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0.75rem;
+    border-bottom: 1px solid $komkommer_groen_light;
+    font-size: variables.$font_small;
+  }
+
+  &__rank {
+    color: variables.$dodeka_grijs;
+    min-width: 2.5rem;
+  }
+
+  &__name {
+    flex: 1;
+    text-align: left;
+    padding: 0 0.5rem;
+  }
+
+  &__time {
+    font-variant-numeric: tabular-nums;
+    font-weight: variables.$bold;
+  }
+}
