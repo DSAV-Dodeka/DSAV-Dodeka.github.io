@@ -72,6 +72,7 @@ export default [
       index("./pages/nieuws/nieuws/nieuws.tsx"),
       route("spike", "./pages/nieuws/spike/spike.tsx"),
     ]),
+    route("Niels", "./pages/nieuws/niels-redirect.tsx"),
   ]),
   // * matches all URLs, the? makes it optional so it will match / as well
   route("*?", "catchall.tsx"),
