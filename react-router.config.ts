@@ -34,6 +34,7 @@ export default {
       ...wedstrijdPaths,
       "/nieuws",
       "/nieuws/spike",
+      "/update",
     ];
   },
 } satisfies Config;
