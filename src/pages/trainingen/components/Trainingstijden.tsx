@@ -14,7 +14,8 @@ function Trainingstijden() {
                 <h1>WOENSDAG</h1>
                 <h1>18:15 - 19:45</h1>
             </div>
-            <div className="trainingstijden_5"> 
+            <div className="trainingstijden_5">
+                <span className="duurloop">DUURLOOP</span>
                 <h1>DONDERDAG</h1>
             </div>
             <div className="trainingstijden_6"> 
