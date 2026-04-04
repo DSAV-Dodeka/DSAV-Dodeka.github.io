@@ -3,7 +3,7 @@
     {
       "id": "feature-huisstijl-pagina",
       "datum": "04-04-2026",
-      "titel": "Huisstijl pagina toegevoegd",
+      "titel": "Huisstijl pagina gebouwd",
       "beschrijving": "Een nieuwe pagina met de volledige huisstijl van Dodeka: logo's, iconen en woordmerken in alle varianten, direct te downloaden.",
       "categorie": "feature",
       "grootte": "groot",
@@ -14,7 +14,7 @@
     {
       "id": "feature-komkommertimer",
       "datum": "04-04-2026",
-      "titel": "Komkommertimer toegevoegd",
+      "titel": "Komkommertimer gebouwd",
       "beschrijving": "Een timer en leaderboard pagina voor de komkommertijden, inclusief componenten voor het bijhouden van je persoonlijke records.",
       "categorie": "feature",
       "grootte": "groot",
@@ -25,12 +25,23 @@
     {
       "id": "feature-commissie-fotos-nav",
       "datum": "04-04-2026",
-      "titel": "Commissiepagina's met foto's en navigatie",
+      "titel": "Commissiepagina's met foto's en navigatie aangepast",
       "beschrijving": "De commissiepagina's hebben nu foto's en een verbeterde navigatiebalk.",
       "categorie": "feature",
       "grootte": "groot",
       "auteur":"Ymme",
       "link": "/vereniging/commissies",
+      "momentId": "24uursvergadering-2026"
+    },
+        {
+      "id": "feature-website-updatepagina",
+      "datum": "04-04-2026",
+      "titel": "De pagina waar je nu naar kijkt gebouwd",
+      "beschrijving": "Een overzicht van wat de .ComCom allemaal heeft gedaan voor deze prachtige website, nu nóg makkelijker bij te houden!",
+      "categorie": "feature",
+      "grootte": "groot",
+      "auteur":"Jefry",
+      "link": "/update",
       "momentId": "24uursvergadering-2026"
     },
     {
@@ -46,7 +57,7 @@
     {
       "id": "feature-tijdlijn",
       "datum": "04-04-2026",
-      "titel": "Tijdlijn Vereniging",
+      "titel": "Tijdlijn Vereniging gebouwd",
       "beschrijving": "Een eerste versie van de tijdlijn met belangrijke momenten van de vereniging is toegevoegd aan de website.",
       "categorie": "feature",
       "grootte": "groot",
@@ -122,6 +133,16 @@
       "categorie": "bugfix",
       "grootte": "klein",
       "auteur":"Anne-Wil",
+      "momentId": "24uursvergadering-2026"
+    },
+      {
+      "id": "content_komkommeradt-2026",
+      "datum": "04-04-2026",
+      "titel": "Nieuwe Komkommeradt tijden toegevoegd",
+      "beschrijving": "Als afsluiter van de 24-uursvergadering hebben we nieuwe recordpogingen gedaan",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur":"Anne-Wil & Jefry",
       "momentId": "24uursvergadering-2026"
     }
   ],
