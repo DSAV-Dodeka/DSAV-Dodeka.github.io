@@ -2,6 +2,8 @@
 @use "sass:color";
 
 .reglementen-container {
+     position: relative;
+
     display: flex;
     flex-direction: column;
     background-color: variables.$dodeka_blauw90p;
@@ -17,6 +19,9 @@
 }
 
 .reglementen-grid {
+    position: relative;
+    z-index: 1;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -52,12 +57,38 @@
     }
     &:hover {
         box-shadow: 0 6px 24px rgba(0,0,0,0.18);
-        transform: translateY(-4px) scale(1.03);
+        transform: translateY(0px) scale(1.05);
         background: linear-gradient(135deg, #fff 40%, #ffe5e5 60%);
+    }
+          
+}
+
+.leden_link_wrapper {
+    position: relative;
+    width: 100%;
+    .leden_link_shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: lighten(variables.$dodeka_rood, 20%);
+        border-radius: 1.5rem;
+        z-index: 0;
+    }
+    .leden_link {
+        position: relative;
+        z-index: 1;
+        clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
+        z-index: 1;
+        width: 101%;
     }
 }
 
+
 .leden_link_header {
+    text-decoration: none; 
+              
     background-color: variables.$dodeka_rood;
     color: white;
     font-size: 1.25rem;
@@ -84,4 +115,19 @@
     &:hover {
         background-color: color.adjust(variables.$dodeka_rood, $lightness: 10%);
     }
+}
+
+
+
+.aha {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    z-index: 0;
+
+    opacity: 0.5;
 }
