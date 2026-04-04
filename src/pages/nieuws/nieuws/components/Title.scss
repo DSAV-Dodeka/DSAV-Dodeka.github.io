@@ -1,10 +1,14 @@
 @use "../../../../variables";
 
 .title_class_1{ //w-full py-2 bg-rood
-    width: 100%;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     background-color: variables.$dodeka_rood;
+    margin: -1.5rem -2rem 0 -2rem;
+    border-radius: 1rem 1rem 0 0;
+    @include variables.respond(computerscherm){
+        margin: -2rem -3.5rem 0 -3.5rem;
+    }
 }
 
 
