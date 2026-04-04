@@ -47,6 +47,10 @@ function Vereniging() {
                         <p>Naamswijziging naar DSAV Dodeka als ondervereniging van AV '40</p>
                     </div>
                     <div className="event">
+                        <h3>4 juni 2021</h3>
+                        <p>Website dsavdodeka.nl gaat live</p>
+                    </div>
+                    <div className="event">
                         <h3>8 februari 2022</h3>
                         <p>DSAV Dodeka wint voor het eerst de prestigieuze ZeuS bokaal voor de beste Studenten Atletiek Vereniging</p>
                     </div>
@@ -69,6 +73,10 @@ function Vereniging() {
                     <div className="event">
                         <h3>4 januari 2025</h3>
                         <p>DSAV Dodeka wordt als officiële eigen vereniging lid van de Atletiekunie</p>
+                    </div>
+                    <div className="event">
+                        <h3>6 juli 2025</h3>
+                        <p>DSAV Dodeka promoveert in debuutjaar gelijk naar 2e Divisie Competitie</p>
                     </div>
                     <div className="event">
                         <h3>10 januari 2026</h3>
