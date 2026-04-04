@@ -67,6 +67,15 @@
     }
 }
 
+.duurloop {
+    position: absolute;
+    top: 1rem;
+    font-size: 0.8rem;
+    line-height: 1;
+    font-weight: normal;
+    font-weight: variables.$bold;
+}
+
 .trainingstijden_5{//inline flex items-center justify-center text-center text-rood text-lg font-bold rounded-t-lg p-2 flex-grow
     display: inline;
     display: flex;
@@ -81,6 +90,8 @@
     border-top-right-radius: 0.5rem;
     padding: 0.5rem;
     flex-grow: 1;
+    flex-direction: column;
+    position: relative;
 }
 
 .trainingstijden_6{//inline flex items-center justify-center text-center text-rood text-lg font-bold rounded-t-lg p-2 flex-grow
