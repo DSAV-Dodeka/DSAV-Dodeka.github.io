@@ -135,3 +135,130 @@
         margin-right: auto;
     }
 }
+
+.tijdlijn {
+    width: 100%;
+    max-width: 100rem;
+    margin: 4rem auto;
+    padding: 4rem 2rem;
+    background-color: variables.$dodeka_blauw;
+}
+
+/* Timeline grid */
+.timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Vertical center line */
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: white;
+    transform: translateX(-50%);
+}
+
+/* Event card */
+.event {
+    position: relative;
+    width: 45%;
+    background: white;
+    padding: 1rem 1.25rem;
+    border-radius: 0.6rem;
+}
+
+/* LEFT side items */
+.event:nth-child(odd) {
+    align-self: flex-start;
+    text-align: right;
+}
+
+/* RIGHT side items */
+.event:nth-child(even) {
+    align-self: flex-end;
+}
+
+/* Connecting line */
+.event::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 3px;
+    width: 2.5rem;
+    background: white;
+    transform: translateY(-50%);
+}
+
+/* Left → center */
+.event:nth-child(odd)::after {
+    right: -3rem;
+}
+
+/* Right → center */
+.event:nth-child(even)::after {
+    left: -3rem;
+}
+
+/* Timeline dot */
+.event::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+/* Dot position */
+.event:nth-child(odd)::before {
+    right: -3.6rem;
+}
+
+.event:nth-child(even)::before {
+    left: -3.6rem;
+}
+
+.event::before,
+.event::after {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+
+    /* Move vertical line to the left */
+    .timeline::before {
+        left: 24px;
+        transform: none;
+    }
+
+    /* Events full width */
+    .event {
+        width: 100%;
+        margin: 0;
+        align-self: flex-start !important;
+        padding-left: 4rem;
+        text-align: left;
+    }
+
+    /* Timeline dot */
+    .event::before {
+        left: 24px;
+        transform: translateY(-50%);
+    }
+
+    /* Horizontal connector */
+    .event::after {
+        left: 24px;
+        right: auto;
+        width: 2rem;
+    }
+}
