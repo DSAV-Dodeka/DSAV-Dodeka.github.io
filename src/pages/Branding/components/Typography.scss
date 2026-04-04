@@ -1,0 +1,88 @@
+@use "../../../variables";
+
+.typography {
+  padding-top: 0.75rem;
+
+  &__description {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.04);
+    margin-bottom: 2rem;
+    line-height: variables.$line_height_medium;
+    color: #374151;
+
+    @include variables.respond(mobile) {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+  }
+
+  &__examples {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 29, 72, 0.08);
+  }
+
+  &__example {
+    text-decoration: none;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    transition: background-color 0.2s, opacity 0.2s;
+    display: block;
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+    }
+
+    &--title {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      background-color: variables.$dodeka_blauw;
+      color: #fff;
+
+      &:hover {
+        background-color: variables.$dodeka_blauw90p;
+      }
+
+      @include variables.respond(mobile) {
+        font-size: 1.75rem;
+        padding: 1.25rem;
+      }
+    }
+
+    &--heading {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      background-color: #f1f5f9;
+      color: variables.$dodeka_blauw;
+
+      &:hover {
+        background-color: #e2e8f0;
+      }
+
+      @include variables.respond(mobile) {
+        font-size: 1.5rem;
+        padding: 1.25rem;
+      }
+    }
+
+    &--body {
+      font-family: "Source Sans 3", sans-serif;
+      font-weight: 400;
+      font-size: 1.25rem;
+      background-color: #fff;
+      color: #4b5563;
+
+      &:hover {
+        background-color: #fafafa;
+      }
+    }
+  }
+}
