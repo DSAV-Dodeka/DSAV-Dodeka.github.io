@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Title from "./Title";
+import TrackBackground from "./TrackElements";
 import "./Nieuwsbericht.scss";
 import { getHashedImageUrl } from "$functions/links";
 
@@ -22,6 +23,7 @@ function Nieuwsbericht(props: NieuwsberichtProps) {
 
   return (
     <div id={props.id} className="nieuwsbericht_1">
+      <TrackBackground seed={props.id.split("").reduce((a, c) => a + c.charCodeAt(0), 0)} />
       {props.position === "left" || width <= 1023 ? (
         <div className="nieuwsbericht_img_outer">
           <div className="nieuwsbericht_img_wrap">
