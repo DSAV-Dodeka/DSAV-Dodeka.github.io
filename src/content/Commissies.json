@@ -7,32 +7,32 @@
                 {
                     "naam": "Tijmen",
                     "functie": "Voorzitter",
-                    "foto": "Tijmen"
+                    "foto": "comcom_tijmen"
                 },
                 {
                     "naam": "Jefry",
                     "functie": "Senior Backend Developer",
-                    "foto": "placeholder"
+                    "foto": "comcom_jefry"
                 },
                 {
                     "naam": "Mei Chang",
                     "functie": "Junior Backend Developer",
-                    "foto": "placeholder"
+                    "foto": "comcom_meichang"
                 },
                 {
                     "naam": "Anne-Wil",
                     "functie": "Junior Frontend Developer",
-                    "foto": "placeholder"
+                    "foto": "comcom_annewil"
                 },
                 {
                     "naam": "Ymme",
                     "functie": "Junior Frontend Developer",
-                    "foto": "placeholder"
+                    "foto": "comcom_ymme"
                 },
                 {
                     "naam": "Xylander",
                     "functie": "QomQommer",
-                    "foto": "xylander"
+                    "foto": "comcom_xylander"
                 }
             ],
             "fotos": "comcom"
