@@ -114,3 +114,7 @@ stats.html
 /.kiro/
 
 .DS_Store
+
+.kiro
+
+.vscode

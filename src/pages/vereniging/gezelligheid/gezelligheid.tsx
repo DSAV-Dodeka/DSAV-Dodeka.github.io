@@ -1,0 +1,73 @@
+
+import "./gezelligheid.scss";
+import PageTitle from "../../../components/PageTitle";
+import biermijl from "$images/gezelligheid/biermijl.webp";
+import nskTeamsAlgemeen from "$images/gezelligheid/nsk_teams_algemeen.webp";
+import gala1 from "$images/gezelligheid/gala1.webp";
+import uithof from "$images/gezelligheid/uithof.webp";
+
+function Gezelligheid() {
+  return (
+    <div className="algemeen">
+      <div className="headeropmaak">
+        <PageTitle title="Gezelligheid" />
+      </div>
+
+      <div className="fotobalk">
+        <img
+          className="fotos"
+          src={biermijl}
+          alt="foto1"
+        />
+        <img
+          className="fotos"
+          src={nskTeamsAlgemeen}
+          alt="foto2"
+        />
+        <img
+          className="fotos"
+          src={gala1}
+          alt="foto4"
+        />
+        <img
+          className="fotos"
+          src={uithof}
+          alt="foto3"
+        />
+        {/* <img className="fotos" src={Image4} alt="foto4"/> */}
+      </div>
+
+      {/* <div className="textalgemeen"> */}
+      <div className="textkolom">
+        <h1 className="textvakheader">Borrels</h1>
+        <p className="text">
+          Een studenten(sport)vereniging is natuurlijk niet compleet zonder
+          borrels! Elke woensdag wordt er een borrel georganiseerd waarbij er
+          ook de mogelijkheid is om mee te eten!
+        </p>
+      </div>
+
+      <div className="textkolom">
+        <h1 className="textvakheader">Activiteiten</h1>
+        <p className="text">
+          Naast atletiek doen we bij Dodeka graag allerlei (sportieve)
+          activiteiten zoals boulderen, schaatsen, bubbelvoetbal en feestjes
+          meepakken!
+        </p>
+      </div>
+
+      <div className="textkolom">
+        <h1 className="textvakheader">Reizen</h1>
+        <p className="text">
+          Twee keer per jaar wordt er bij Dodeka een reis georganiseerd.
+          Snowdeka organiseert elk jaar in de TU-vakantie tussen de twee
+          semesters in een wintersport, en de Sunrice organiseert in de eerste
+          week van de zomervakantie de zomerreis!
+        </p>
+        {/* </div> */}
+      </div>
+    </div>
+  );
+}
+
+export default Gezelligheid;

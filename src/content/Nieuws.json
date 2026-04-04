@@ -1,6 +1,14 @@
 {
     "nieuwsberichten": [
         {
+            "id": "maa_2026",
+            "titel": "Wintersport 2026!",
+            "datum": "17-03-2026",
+            "auteur": "Ruben",
+            "tekst": "Ik ben nu ongeveer een half jaar student en lid bij Dodeka, maar deze Wispo is nu al een van de leukste dingen die ik ooit heb meegemaakt.\n\nWe vertrokken zaterdagavond samen met Wave richting het witte stadje Tignes. De reis begon al goed met onmogelijke puzzels en operazang. Na een lange, zuurstofarme maar leuke reis kwamen we aan bij UCPA, waar we nog even snel konden ontbijten. Ondanks dat niet iedereen een even goede nachtrust had gehad, zat de energie er goed in en gingen de meeste meteen de piste op.\n\n Overdag stonden we natuurlijk op de piste. Of je nu beginnend snowboarder of ervaren skiër was, iedereen kon genieten van de sneeuw en het lekkere weer de eerste dagen. De mooiste momenten op de piste vond ik het skiën in de poedersneeuw op woensdag en op die prachtige gletsjer. Wat deze reis extra bijzonder maakte, was het buffet. Ik heb denk ik nog nooit zoveel toetjes gegeten in een week.\n\n ’s Avonds was het minstens zo gezellig. Of je nou na het skiën meteen naar de après-ski ging, Fransen inmaakte met tafeltennis of s ’avonds nog energie had om uit te gaan. De groepsactiviteiten met Dodeka waren ook enorm gezellig.  \n\nVoor mij persoonlijk was deze reis bijzonder omdat ik heel veel nieuwe mensen heb leren kennen en dat ik de meeste in de spotlights heb kunnen zetten met mijn camera. Ik heb echt genoten van de sfeer, de gezelligheid en natuurlijk van de sneeuw. Het was een geweldige ervaring en ik kijk nu al uit naar de volgende reis.",
+            "foto": "wispo2025.webp"
+        },
+        {
             "id": "jan_2026",
             "titel": "Delftse Trappenloop Kampioenschappen",
             "datum": "03-01-2026",
@@ -25,7 +33,7 @@
             "foto": "dagvandeatletiek.webp"
         },
         {
-            "id": "aug_2025",
+            "id": "aug_2025_b",
             "titel": "Inschrijfsysteem doet het weer! // Subscription system has been fixed!",
             "datum": "20-08-2025",
             "auteur": "Tijmen",
@@ -150,7 +158,7 @@
             "datum": "11-01-2023",
             "auteur": ".ComCom",
             "tekst": "Het afgelopen jaar heeft de .ComCom hard gewerkt aan een nieuwe, grote update van de website, en vandaag staat het eindelijk online! De .ComCom heeft een eigen server en database opgezet om een loginsysteem op de website te kunnen maken. Zo kunnen de leden de klassementen bekijken, elkaars verjaardagen bijhouden en binnenkort nog veel meer. Op de planning staat onder andere nog een agenda en inschrijfsysteem voor de trainingen en voor de borrels en activiteiten. Dit alles werd vandaag gepresenteerd op de borrel. Onder het genot van een lekker drankje hebben alle leden voor het eerst ingelogd op de website.",
-            "foto": "inlog.png"
+            "foto": "inlog.webp"
         },
         {
             "id": "nsk_weg_22",

@@ -1,0 +1,394 @@
+.flow-test {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.flow-test-header {
+  margin: 0;
+  padding: 30px 40px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  background: #f5f5f5;
+}
+
+.flow-test-container {
+  display: flex;
+  min-height: calc(100vh - 100px);
+}
+
+.flow-test-sidebar {
+  width: 250px;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+}
+
+.flow-test-actions-section {
+  margin-bottom: 20px;
+}
+
+.flow-test-actions-section h3 {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
+}
+
+.flow-test-password {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.flow-test-password label {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.flow-test-password code {
+  display: block;
+  font-family: monospace;
+  font-size: 13px;
+  color: #333;
+  user-select: all;
+  cursor: text;
+  background: white;
+  padding: 6px 8px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+
+.flow-test-sidebar button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.flow-test-sidebar button:hover {
+  background: #d32f2f;
+}
+
+.flow-test-sidebar button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.flow-test-link {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.flow-test-link:hover {
+  background: #1976D2;
+}
+
+.flow-test-sidebar-status {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.flow-test-sidebar-status.success {
+  background: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #A5D6A7;
+}
+
+.flow-test-sidebar-status.error {
+  background: #FFEBEE;
+  color: #C62828;
+  border: 1px solid #EF9A9A;
+}
+
+.flow-test-main {
+  flex: 1;
+  padding: 40px;
+}
+
+.flow-test-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.flow-test-tab {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.flow-test-tab:hover {
+  color: #333;
+}
+
+.flow-test-tab.active {
+  color: #2196F3;
+  border-bottom-color: #2196F3;
+}
+
+.flow-test-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+}
+
+.flow-test-content h2 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.flow-test-content p {
+  margin: 0 0 20px 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.flow-test-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.flow-test-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.flow-test-field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.flow-test-field input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.flow-test-field input:focus {
+  outline: none;
+  border-color: #2196F3;
+}
+
+.flow-test-field input:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.flow-test-input-with-button {
+  display: flex;
+  gap: 8px;
+}
+
+.flow-test-input-with-button input {
+  flex: 1;
+}
+
+.flow-test-btn-load {
+  background: #9c27b0;
+  color: white;
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+
+.flow-test-btn-load:hover:not(:disabled) {
+  background: #7b1fa2;
+}
+
+.flow-test-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.flow-test-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.flow-test-btn-primary {
+  background: #2196F3;
+  color: white;
+}
+
+.flow-test-btn-primary:hover:not(:disabled) {
+  background: #1976D2;
+}
+
+.flow-test-btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.flow-test-btn-secondary:hover:not(:disabled) {
+  background: #e0e0e0;
+}
+
+.flow-test-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.flow-test-status {
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.flow-test-status.success {
+  background: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #A5D6A7;
+}
+
+.flow-test-status.error {
+  background: #FFEBEE;
+  color: #C62828;
+  border: 1px solid #EF9A9A;
+}
+
+.flow-test-info {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-size: 13px;
+  color: #666;
+}
+
+.flow-test-complete {
+  text-align: center;
+  padding: 40px;
+}
+
+.flow-test-complete h3 {
+  color: #2E7D32;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Admin session section */
+.flow-test-admin-status {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.admin-active {
+  color: #2e7d32;
+}
+
+.admin-inactive {
+  color: #666;
+}
+
+.admin-badge {
+  display: inline-block;
+  background: #ff9800;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-left: 6px;
+  font-weight: 500;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+/* Pending registrations table */
+.pending-registrations {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.pending-registrations th,
+.pending-registrations td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.pending-registrations th {
+  font-weight: 500;
+  color: #666;
+  background: #fafafa;
+}
+
+.pending-registrations td button {
+  padding: 4px 12px;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.pending-registrations td button:hover:not(:disabled) {
+  background: #1976D2;
+}
+
+.pending-registrations td button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pending-registrations-empty {
+  color: #999;
+  font-style: italic;
+}
+
+.flow-test-admin-btn {
+  background: #ff9800 !important;
+}
+
+.flow-test-admin-btn:hover:not(:disabled) {
+  background: #f57c00 !important;
+}

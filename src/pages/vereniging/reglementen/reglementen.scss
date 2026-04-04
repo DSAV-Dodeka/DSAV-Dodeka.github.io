@@ -1,0 +1,87 @@
+@use "../../../variables.scss";
+@use "sass:color";
+
+.reglementen-container {
+    display: flex;
+    flex-direction: column;
+    background-color: variables.$dodeka_blauw90p;
+    padding: 4rem 0;
+    margin-bottom: 8rem;
+    @include variables.respond(mobile) {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        padding-right: 1rem;
+        margin-bottom: 2rem;
+        
+    }
+}
+
+.reglementen-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 4rem;
+    column-gap: 8rem;
+    max-width: 80rem;
+    width: 100%;
+    margin: 0 auto;
+    @include variables.respond(mobile) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 2rem;
+    }
+}
+
+.leden_link {
+    position: relative;
+    width: calc(100%);
+    align-self: center;
+    border-radius: 1.5rem;
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    background: linear-gradient(135deg, #fff 60%, #f3f3f3 100%);
+    transition: box-shadow 0.2s, transform 0.2s;
+    @include variables.respond(computerscherm) {
+        height: 5rem;
+    }
+    @include variables.respond(mobile) {
+        // padding: 1rem 0;
+        border-radius: 1rem;
+        height: 3rem;
+        text-align: center;
+    }
+    &:hover {
+        box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+        transform: translateY(-4px) scale(1.03);
+        background: linear-gradient(135deg, #fff 40%, #ffe5e5 60%);
+    }
+}
+
+.leden_link_header {
+    background-color: variables.$dodeka_rood;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: variables.$bold;
+    line-height: variables.$line_height_large;
+    padding: 0.5rem 2rem;
+    width: 100%; 
+    height: 3rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    left: 0;
+    transition: background 0.2s;
+    @include variables.respond(computerscherm) {
+        position: absolute;
+        font-size: variables.$font_ml;
+        // width: 20rem;
+        height: 5rem;
+        border-radius: 1.5rem;
+    }
+    &:hover {
+        background-color: color.adjust(variables.$dodeka_rood, $lightness: 10%);
+    }
+}
