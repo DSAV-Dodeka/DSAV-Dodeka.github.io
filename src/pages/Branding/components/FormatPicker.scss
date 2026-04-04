@@ -1,0 +1,90 @@
+@use "../../../variables";
+
+.format-picker {
+  padding: 0.5rem 0;
+
+  &__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    border-radius: 14px;
+    margin-bottom: 1rem;
+    height: 5rem;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    &--light {
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    &--dark {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  &__item {
+    flex: 1 1 calc(50% - 0.75rem);
+    min-width: 6rem;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: variables.$font_small;
+    font-weight: variables.$bold;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(255, 255, 255, 0.95);
+      color: variables.$dodeka_blauw;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    &--disabled {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.08);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+}

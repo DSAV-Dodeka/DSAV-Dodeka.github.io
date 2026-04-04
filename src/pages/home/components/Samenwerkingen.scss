@@ -45,6 +45,7 @@
     padding-left: 4rem;
     padding-right: 4rem;
     @include variables.respond(mobile) {
+        width: 90%;
         text-align: left;
         padding-left: 2rem;
         padding-right: 2rem;
@@ -82,6 +83,11 @@
         position: relative;
         width: 100%;
         height: auto;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
         padding-top: 0.5rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
@@ -97,6 +103,7 @@
     object-fit: contain;
 }
 
-.home_samenwerking_fotos img.sponsors.virtuoos {
+.home_samenwerking_fotos img.sponsors.muconsult {
     width: 8rem;
+    
 }

@@ -1,0 +1,109 @@
+@use "../../../variables";
+
+.logo-section {
+  padding-top: 0.75rem;
+
+  &__intro {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.04);
+    margin-bottom: 2rem;
+
+    @include variables.respond(mobile) {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+  }
+
+  &__description {
+    color: #374151;
+    line-height: variables.$line_height_medium;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+
+    @include variables.respond(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.logo-card {
+  border: 1px solid rgba(0, 29, 72, 0.06);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 29, 72, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 8px 20px rgba(0, 29, 72, 0.1),
+      0 2px 6px rgba(0, 29, 72, 0.04);
+  }
+
+  &__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 7rem;
+    padding: 1rem;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.85;
+    }
+
+    &:focus-visible {
+      outline: 3px solid variables.$dodeka_rood;
+      outline-offset: 2px;
+    }
+
+    &--light {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    &--dark {
+      background-color: variables.$dodeka_blauw;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: variables.$bold;
+    font-size: 0.9rem;
+    color: variables.$dodeka_blauw;
+  }
+
+  &__description {
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.5;
+  }
+}

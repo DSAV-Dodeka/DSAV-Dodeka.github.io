@@ -1,5 +1,56 @@
 @use "../../../variables";
 
+.commissieNav {
+  display: flex;
+  overflow-x: auto;
+  padding: 1rem 2rem;
+  background-color: variables.$dodeka_blauw90p; 
+  gap: 3rem;
+  margin-bottom: 2rem;
+
+  &::-webkit-scrollbar {
+    height: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: variables.$dodeka_rood;
+    border-radius: 0.25rem;
+  }
+}
+
+.commissieNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  min-width: 6rem;
+  text-align: center;
+
+  img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 20%;
+    border: 1px solid white;
+    margin-bottom: 0.5rem;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  p {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+}
+
+.commissieContainer {
+  scroll-margin-top: 10rem; // past automatisch de scroll positie aan
+}
+
 .commissies {
     overflow-x: hidden;
 }

@@ -1,0 +1,151 @@
+@use "../../../variables";
+
+.design-tips {
+  padding-top: 0.75rem;
+
+  &__subtitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
+    color: variables.$dodeka_blauw;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    color: #374151;
+    line-height: variables.$line_height_medium;
+    margin-bottom: 1rem;
+
+    &--intro {
+      margin-bottom: 1.5rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // CMYK section
+  &__cmyk {
+    margin-bottom: 2.5rem;
+  }
+
+  &__cmyk-content {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.04);
+
+    @include variables.respond(mobile) {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+  }
+
+  &__cmyk-tips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  &__cmyk-tip {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+
+    p {
+      color: #4b5563;
+      line-height: variables.$line_height_small;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+  }
+
+  &__cmyk-tip-icon {
+    color: variables.$dodeka_rood;
+    font-weight: variables.$bold;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  // File formats grid
+  &__formats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  &__format-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 29, 72, 0.06);
+    border: 1px solid rgba(0, 29, 72, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 8px 20px rgba(0, 29, 72, 0.08),
+        0 2px 6px rgba(0, 29, 72, 0.04);
+    }
+  }
+
+  &__format-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  &__format-name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: variables.$bold;
+    font-size: variables.$font_medium;
+    color: variables.$dodeka_blauw;
+  }
+
+  &__format-badge {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.7rem;
+    font-weight: variables.$bold;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &--vector {
+      background-color: rgba(0, 29, 72, 0.08);
+      color: variables.$dodeka_blauw;
+    }
+
+    &--raster {
+      background-color: rgba(187, 75, 61, 0.1);
+      color: variables.$dodeka_rood;
+    }
+
+    &--beide {
+      background-color: rgba(0, 29, 72, 0.05);
+      color: #6b7280;
+    }
+  }
+
+  &__format-desc {
+    color: #374151;
+    font-size: 0.9rem;
+    line-height: variables.$line_height_small;
+    margin-bottom: 0.6rem;
+  }
+
+  &__format-use {
+    color: #6b7280;
+    font-size: 0.85rem;
+    line-height: variables.$line_height_small;
+    margin: 0;
+
+    strong {
+      color: variables.$dodeka_blauw;
+    }
+  }
+}

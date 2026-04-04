@@ -1,6 +1,10 @@
 @use "../../../variables.scss";
 
 #icons {
+    //easter egg
+    position: relative;
+    overflow-x: hidden;
+    //
     height: 4rem;
     width: 100%;
     @include variables.respond(computerscherm){
@@ -13,7 +17,40 @@
     -webkit-animation: slide 20s linear infinite;
        -moz-animation: slide 20s linear infinite;
             animation: slide 20s linear infinite;
+
+    //easter egg
+    .egg-emoji {
+        position: absolute;
+        font-size: 2.5rem;
+        z-index: 10;
+        
+
+        top: 10%; 
+        
+        left: -20%; 
+        animation-fill-mode: backwards;
+        animation: slide-egg-sequence 72s linear infinite;
+        
+        &:nth-child(1) { 
+            animation-delay: 0s; 
+        }
+        &:nth-child(2) { 
+            animation-delay: 24s; 
+        }
+        &:nth-child(3) { 
+            animation-delay: 48s;
+        }
+    }
 }
+
+
+@keyframes slide-egg-sequence {
+    0%   { left: -20%; }
+    33%  { left: 100%; }
+    
+    33.1%, 100% { left: -20%; }
+}
+//
 
 @-webkit-keyframes slide
 {
@@ -41,6 +78,12 @@
         -webkit-animation: slide 20s linear infinite;
            -moz-animation: slide 20s linear infinite;
                 animation: slide 20s linear infinite;
+
+        //easter egg
+        .egg-emoji {
+            animation: slide-egg-mobile 20s linear infinite;
+        }
+        //                
     }
 
     @-webkit-keyframes slide
