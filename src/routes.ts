@@ -39,6 +39,7 @@ export default [
     route("admin", "./pages/admin/admin.tsx"),
     route("huisstijl", "./pages/Branding/Branding.tsx"),
     route("komkommer", "./pages/komkommer/komkommer.tsx"),
+    route("memo", "./pages/memo/memo-redirect.tsx"),
     route("update", "./pages/update/update/update.tsx"),
     ...prefix("leden", [
       index("./pages/leden/leden/leden.tsx"),
