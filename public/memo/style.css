@@ -1,0 +1,433 @@
+:root {
+    --dodeka-blauw: #001D48;
+    --baan-rood: #BB4B3D;
+    --wit: #FFFFFF;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    padding: 20px;
+}
+
+.page-layout {
+    display: flex;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* --- Editor Panel --- */
+.editor-panel {
+    flex: 1;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.editor-panel h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: var(--dodeka-blauw);
+    margin-bottom: 4px;
+    font-size: 1.5rem;
+}
+
+.editor-panel .subtitle {
+    color: #888;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.field-group {
+    margin-bottom: 16px;
+}
+
+.field-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.field-group input[type="text"],
+.field-group textarea,
+.field-group input[type="date"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.field-group input:focus,
+.field-group textarea:focus {
+    outline: none;
+    border-color: var(--dodeka-blauw);
+}
+
+.field-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.card-editor {
+    background: #f7f9fb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e8ecf0;
+}
+
+.card-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.card-editor-header h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--dodeka-blauw);
+}
+
+.toggle-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.toggle-row label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+}
+
+.toggle-row input[type="checkbox"],
+.toggle-row input[type="radio"] {
+    accent-color: var(--dodeka-blauw);
+}
+
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dodeka-blauw);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+}
+
+.btn-download:hover {
+    background: #002a6b;
+}
+
+/* --- Preview Panel --- */
+.preview-panel {
+    position: sticky;
+    top: 20px;
+}
+
+.preview-panel h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--dodeka-blauw);
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+
+/* --- Memo Canvas --- */
+/* Native image: 1414x2000. Display scaled down, export at native res. */
+.memo {
+    width: 500px;
+    height: 707px; /* 500 * (2000/1414) */
+    background: var(--dodeka-blauw);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--wit);
+}
+
+.memo-inner {
+    padding: 32px 28px 36px 28px;
+    position: relative;
+    z-index: 2;
+}
+
+.memo-content {
+    /* Container for cards — no overflow constraints so auto-fit can measure accurately */
+    position: relative;
+}
+
+/* Decorative background image */
+.memo-deco-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.memo-header {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.memo-date-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* This stretches to the title's height automatically via align-items: stretch on parent */
+}
+
+.memo-date-vertical {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    color: var(--baan-rood);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.memo-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 3.8rem;
+    line-height: 0.95;
+    color: var(--wit);
+}
+
+.memo-datum-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 38px 16px 0;
+}
+
+.memo-datum-line hr {
+    flex: 1;
+    border: none;
+    border-top: 2px solid var(--baan-rood);
+}
+
+.memo-datum-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: var(--wit);
+}
+
+/* Cards */
+.memo-card {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.memo-card-header {
+    display: block;
+    margin-bottom: 6px;
+    position: relative;
+    padding-right: 90px;
+}
+
+.memo-card-number {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--wit);
+    margin-right: 8px;
+}
+
+.memo-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+
+.memo-card-date {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    opacity: 0.85;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.memo-card-body {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    padding-left: 4px;
+    overflow: hidden;
+}
+
+.memo-card-body ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.memo-card-body ul li {
+    margin-bottom: 2px;
+}
+
+.memo-card-new {
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #00A6D6;
+    color: var(--wit);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.55rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 0 10px rgba(0, 166, 214, 0.6);
+}
+
+.memo-card-new::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--wit);
+    flex-shrink: 0;
+}
+
+/* Update card (4th slot) */
+.memo-update {
+    background: rgba(0, 29, 72, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 0;
+}
+
+.memo-update-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--baan-rood);
+    text-transform: uppercase;
+    margin-right: 8px;
+}
+
+.memo-update-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+
+.memo-update-body {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    margin-top: 6px;
+}
+
+@media (max-width: 1050px) {
+    .page-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    .preview-panel {
+        position: static;
+        width: 100%;
+        max-width: 500px;
+    }
+    .editor-panel {
+        max-width: 600px;
+        width: 100%;
+    }
+    .memo {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1414 / 2000;
+    }
+}
+
+@media (max-width: 540px) {
+    body {
+        padding: 12px;
+    }
+    .editor-panel {
+        padding: 16px;
+    }
+    .preview-panel {
+        max-width: 100%;
+    }
+    .memo {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1414 / 2000;
+        font-size: clamp(0.6rem, 2.8vw, 1rem);
+    }
+    .memo-inner {
+        padding: 5% 5% 6% 5%;
+    }
+    .memo-title {
+        font-size: clamp(1.8rem, 10vw, 3.8rem);
+    }
+    .memo-card-number {
+        font-size: clamp(0.9rem, 4vw, 1.5rem);
+    }
+    .memo-card-title {
+        font-size: clamp(0.75rem, 3.5vw, 1.25rem);
+    }
+    .memo-card {
+        padding: 10px 12px;
+        margin-bottom: 8px;
+    }
+    .memo-update {
+        padding: 10px 12px;
+    }
+}
