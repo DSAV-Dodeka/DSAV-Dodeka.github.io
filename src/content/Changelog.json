@@ -26,7 +26,7 @@
       "id": "feature-commissie-fotos-nav",
       "datum": "04-04-2026",
       "titel": "Commissiepagina's met foto's en navigatie aangepast",
-      "beschrijving": "De commissiepagina's hebben nu foto's en een verbeterde navigatiebalk.",
+      "beschrijving": "De commissiepagina's hebben nu foto's en een nieuwe vette navigatiebalk.",
       "categorie": "feature",
       "grootte": "groot",
       "auteur":"Ymme",
@@ -48,7 +48,7 @@
       "id": "feature-duurloopdonderdag",
       "datum": "04-04-2026",
       "titel": "Duurloopdonderdag toegevoegd",
-      "beschrijving": "Duurloopdonderdag is nu zichtbaar op de website als activiteit.",
+      "beschrijving": "Duurloopdonderdag is nu zichtbaar op de website als trainingsmoment.",
       "categorie": "feature",
       "grootte": "klein",
       "auteur":"Ymme",
@@ -99,7 +99,7 @@
       "id": "bugfix-koen-navigatie",
       "datum": "04-04-2026",
       "titel": "dsavdodeka.nl/Niels brengt nu ook Koen naar de juiste pagina",
-      "beschrijving": "Een navigatiebug is opgelost waardoor Koen nu correct naar de juiste pagina verwijst.",
+      "beschrijving": "Een navigatiebug is opgelost waardoor Koen nu ook op de juiste pagina kan komen" ,
       "categorie": "bugfix",
       "grootte": "klein",
       "auteur": "Jefry",
@@ -119,7 +119,7 @@
       "id": "verbetering-reglementen",
       "datum": "04-04-2026",
       "titel": "Reglementen pagina aangepast",
-      "beschrijving": "De reglementen pagina is bijgewerkt met de laatste documenten.",
+      "beschrijving": "De reglementen pagina is bijgewerkt met een frisse look en de laatste documenten.",
       "categorie": "verbetering",
       "auteur":"Xylander",
       "grootte": "klein",
@@ -151,7 +151,7 @@
       "id": "24uursvergadering-2026",
       "naam": "24-uursvergadering 2026",
       "datum": "04-04-2026",
-      "beschrijving": "Alle updates die tijdens de 24-uursvergadering 2026 zijn gebouwd en uitgerold."
+      "beschrijving": "Updates die tijdens de 24-uursvergadering 2026 zijn gebouwd en uitgerold."
     }
   ]
 }
