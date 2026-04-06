@@ -12,11 +12,9 @@ import {
   VoltaError,
   isVoltaEnabled,
   setVoltaEnabled,
-  isBackendEnabled,
   isDemoMode,
   isDevMode,
 } from "./register-logic.ts";
-import { useNavigate } from "react-router";
 import "./register.css";
 import PageTitle from "$components/PageTitle.tsx";
 
@@ -114,7 +112,6 @@ const initialState: RegisterState =
 // };
 
 export default function Registreer() {
-  const navigate = useNavigate();
   const myStatus = useRef<HTMLDivElement>(null);
   const [state, dispatch] = useReducer(registerReducer, initialState);
   const [submitted, setSubmitted] = useState("");
@@ -139,6 +136,8 @@ export default function Registreer() {
     return true;
   };
 
+  const [registered, setRegistered] = useState(false);
+
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
@@ -147,19 +146,9 @@ export default function Registreer() {
       setLoading(true);
 
       clientRegister(submitState).then(
-        (registrationToken) => {
+        () => {
           setLoading(false);
-          if (registrationToken) {
-            navigate(
-              `/account/signup?token=${encodeURIComponent(registrationToken)}`,
-            );
-          } else if (!isBackendEnabled) {
-            // Backend intentionally disabled - show clean pending message
-            navigate("/account/signup?pending=true");
-          } else {
-            // Backend was enabled but failed - show warning
-            navigate("/account/signup?volta_ok=true");
-          }
+          setRegistered(true);
         },
         (e) => {
           setLoading(false);
@@ -197,6 +186,28 @@ export default function Registreer() {
     const { name, checked } = event.target;
     dispatch({ type: "change_bool", field: name, value: checked });
   };
+
+  if (registered) {
+    return (
+      <div>
+        <PageTitle title="Registratie ontvangen" />
+        <div className="registreerContainer">
+          <div className="form register-confirmation">
+            <h2>Registratie ontvangen!</h2>
+            <p>
+              Je aanmelding is succesvol ontvangen. Het bestuur beoordeelt je
+              aanvraag en stuurt je een uitnodigingsmail zodra je bent
+              goedgekeurd. Dit duurt meestal enkele werkdagen.
+            </p>
+            <p className="register-confirmation-hint">
+              Vragen? Neem contact op via{" "}
+              <a href="mailto:bestuur@dsavdodeka.nl">bestuur@dsavdodeka.nl</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>

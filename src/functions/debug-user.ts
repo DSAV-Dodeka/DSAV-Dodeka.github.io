@@ -12,11 +12,9 @@ const DEBUG_SESSION: SessionInfo = {
     firstname: "Arnold",
     lastname: "het Aardvarken",
     permissions: ["member"],
-    disabled: false,
   },
   created_at: Date.now() / 1000,
   expires_at: null,
-  pending_approval: false,
 };
 
 export function isDebugUserActive(): boolean {

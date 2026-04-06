@@ -306,3 +306,28 @@ button.registerButton:disabled {
   visibility: visible;
   opacity: 1;
 }
+
+/* Registration confirmation */
+.register-confirmation {
+  text-align: center;
+  padding: 2rem;
+}
+
+.register-confirmation h2 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.register-confirmation-hint {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.register-confirmation-hint a {
+  color: var(--dodeka-rood);
+  text-decoration: none;
+}
+
+.register-confirmation-hint a:hover {
+  text-decoration: underline;
+}
