@@ -89,9 +89,13 @@
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     padding: 0.5rem;
+    padding-top: 1.5rem;
     flex-grow: 1;
     flex-direction: column;
     position: relative;
+    @include variables.respond(computerscherm){
+        padding-top: 0.5rem;
+    }
 }
 
 .trainingstijden_6{//inline flex items-center justify-center text-center text-rood text-lg font-bold rounded-t-lg p-2 flex-grow
