@@ -146,7 +146,13 @@ export function useRemovePermission() {
 
 export function useImportSync() {
   return useMutation({
-    mutationFn: backend.importSync,
+    mutationFn: ({
+      csvContent,
+      syncStateCounter,
+    }: {
+      csvContent: string;
+      syncStateCounter?: number;
+    }) => backend.importSync(csvContent, syncStateCounter),
   });
 }
 
@@ -165,11 +171,13 @@ export function useResolveSyncMatch() {
       bondsnummer,
       kind,
       subjectId,
+      syncStateCounter,
     }: {
       bondsnummer: number;
       kind: string;
       subjectId: string | null;
-    }) => backend.resolveSyncMatch(bondsnummer, kind, subjectId),
+      syncStateCounter?: number;
+    }) => backend.resolveSyncMatch(bondsnummer, kind, subjectId, syncStateCounter),
     onSuccess: () => invalidateAllAdmin(queryClient),
   });
 }
@@ -190,18 +198,24 @@ export function useLinkBondsnummer() {
   });
 }
 
-export function useRemoveDeparted() {
+export function useCompleteSync() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => backend.removeDeparted(),
+    mutationFn: (syncStateCounter?: number) =>
+      backend.completeSync(syncStateCounter),
     onSuccess: () => invalidateAllAdmin(queryClient),
   });
 }
 
-export function useUpdateExisting() {
+export function useResendRegistrationInvite() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => backend.updateExisting(),
-    onSuccess: () => invalidateAllAdmin(queryClient),
+    mutationFn: (registrationId: string) =>
+      backend.resendRegistrationInvite(registrationId),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: registrationsOptions.queryKey,
+      });
+    },
   });
 }

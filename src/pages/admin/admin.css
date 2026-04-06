@@ -1,7 +1,9 @@
 .admin-container {
   padding: 20px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .admin-header {
@@ -94,7 +96,7 @@
 }
 
 .admin-table-container {
-  overflow-x: auto;
+  overflow: visible;
 }
 
 .admin-table {
@@ -104,7 +106,6 @@
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .admin-table thead {
@@ -399,6 +400,12 @@
   margin: 10px 0;
 }
 
+.admin-sync-import-hint {
+  margin: 10px 0;
+  color: #888;
+  font-style: italic;
+}
+
 .admin-sync-group {
   margin-bottom: 20px;
   padding: 15px;
@@ -415,11 +422,21 @@
   color: #2196F3;
 }
 
+.admin-sync-complete {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
 .admin-sync-hint {
-  margin: 0 0 10px 0;
   font-size: 13px;
   color: #888;
   font-style: italic;
+}
+
+.admin-sync-no-changes {
+  color: #999;
+  font-size: 13px;
 }
 
 .admin-button-danger {
@@ -509,9 +526,10 @@
   margin-top: 8px;
 }
 
-/* Cells that contain expanding content (candidates, diffs) */
+/* Cells that contain expanding content (candidates, diffs, tooltips) */
 .admin-table td:has(.admin-candidate-list),
-.admin-table td:has(.admin-field-diffs) {
+.admin-table td:has(.admin-field-diffs),
+.admin-table td:has(.admin-tooltip) {
   overflow: visible;
   white-space: normal;
 }
@@ -540,57 +558,105 @@
   font-weight: 500;
 }
 
-/* Sync review candidates */
-.admin-sync-no-candidates {
-  color: #999;
+/* Sync review cards */
+.admin-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-review-card {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.admin-review-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.admin-review-card-bn {
+  font-weight: 700;
+  color: #001f48;
+  font-size: 14px;
+}
+
+.admin-review-card-name {
+  font-weight: 500;
+}
+
+.admin-review-card-email {
+  color: #666;
+}
+
+.admin-review-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-review-card-none {
+  padding: 10px 14px;
+  color: #888;
   font-style: italic;
 }
 
-.admin-candidate-list {
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.admin-candidate-row {
+.admin-review-candidate {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 8px;
-  background: #f8f9fa;
-  border-radius: 4px;
-  font-size: 13px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  border-top: 1px solid #eee;
+}
+
+.admin-review-candidate:first-child {
+  border-top: none;
+}
+
+.admin-review-candidate-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
-.admin-candidate-kind {
+.admin-review-candidate-type {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: capitalize;
-  min-width: 80px;
-  color: #555;
+  background: #e9ecef;
+  color: #495057;
 }
 
-.admin-candidate-name {
+.admin-review-candidate-name {
   font-weight: 500;
-  min-width: 120px;
 }
 
-.admin-candidate-email {
+.admin-review-candidate-email {
   color: #666;
-  min-width: 160px;
 }
 
-.admin-candidate-reasons {
+.admin-review-candidate-reasons {
   color: #0066cc;
   font-size: 12px;
-  flex: 1;
 }
 
-.admin-candidate-row .admin-button {
-  margin-left: auto;
-  padding: 3px 10px;
-  font-size: 12px;
+.admin-review-candidate-none {
+  background: #fafafa;
+}
+
+.admin-review-candidate .admin-button {
+  flex-shrink: 0;
+  padding: 4px 12px;
+  font-size: 13px;
 }
 
 /*
@@ -617,11 +683,7 @@
 .admin-cols-inactive col:nth-child(1) { width: 70%; }
 .admin-cols-inactive col:nth-child(2) { width: 30%; }
 
-/* Sync: review required: BN | Volta Email | Candidates | Action */
-.admin-cols-review col:nth-child(1) { width: 12%; }
-.admin-cols-review col:nth-child(2) { width: 25%; }
-.admin-cols-review col:nth-child(3) { width: 48%; }
-.admin-cols-review col:nth-child(4) { width: 15%; }
+/* (review section uses card layout, no table columns) */
 
 /* Sync: linked registrations: BN | Email | Name | Email Change | Changes */
 .admin-cols-linked col:nth-child(1) { width: 12%; }

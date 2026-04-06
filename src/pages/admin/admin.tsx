@@ -2,6 +2,7 @@ import {
   useState,
   useEffect,
   useCallback,
+  useRef,
   type SyntheticEvent,
   type ChangeEvent,
 } from "react";
@@ -10,7 +11,12 @@ import type {
   AdminRegistrationRecord,
   SyncStatus,
   SyncReviewItem,
-  VoltaFieldDiff,
+  SyncFieldDiff,
+  SyncNewRegistrationItem,
+  SyncRegistrationItem,
+  SyncUserItem,
+  SyncDepartedItem,
+  SyncDataChangeItem,
 } from "$functions/backend.ts";
 import {
   useSessionInfo,
@@ -23,8 +29,8 @@ import {
   useRemovePermission,
   useImportSync,
   useResolveSyncMatch,
-  useRemoveDeparted,
-  useUpdateExisting,
+  useCompleteSync,
+  useResendRegistrationInvite,
   registrationsOptions,
   usersOptions,
   syncStatusOptions,
@@ -159,22 +165,6 @@ function RegistrationStatusBadge({ reg }: { reg: AdminRegistrationRecord }) {
   );
 }
 
-function FieldDiffs({ diffs }: { diffs: VoltaFieldDiff[] }) {
-  if (diffs.length === 0) return null;
-  return (
-    <div className="admin-field-diffs">
-      {diffs.map((d) => (
-        <div key={d.field} className="admin-field-diff">
-          <span className="admin-field-diff-label">{d.field}:</span>{" "}
-          <span className="admin-field-diff-old">{d.current || "\u2014"}</span>
-          {" \u2192 "}
-          <span className="admin-field-diff-new">{d.incoming || "\u2014"}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 type AdminTab = "users" | "registrations" | "sync";
 
 export default function Admin() {
@@ -188,6 +178,7 @@ export default function Admin() {
   const [highlightedRow, setHighlightedRow] = useState(-1);
   const [highlightedCol, setHighlightedCol] = useState(0);
   const [showHelp, setShowHelp] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const setActiveTab = useCallback((tab: AdminTab) => {
     setActiveTabRaw(tab);
@@ -213,7 +204,7 @@ export default function Admin() {
   const needsData = !!isAdmin && (activeTab === "users" || activeTab === "registrations");
   const regsQuery = useRegistrations(needsData);
   const usersQuery = useUsers(needsData);
-  const syncStatusQuery = useSyncStatus(false);
+  const syncStatusQuery = useSyncStatus(!!isAdmin && activeTab === "sync");
 
   const registrations: AdminRegistrationRecord[] = regsQuery.data ?? [];
   const { users = [], perms: allPerms = [] } = usersQuery.data ?? {};
@@ -237,12 +228,12 @@ export default function Admin() {
   // --- Mutations ---
 
   const acceptRegMut = useAcceptRegistration();
+  const resendInviteMut = useResendRegistrationInvite();
   const addPermMut = useAddPermission();
   const removePermMut = useRemovePermission();
   const importSyncMut = useImportSync();
   const resolveSyncMut = useResolveSyncMatch();
-  const removeDepartedMut = useRemoveDeparted();
-  const updateExistingMut = useUpdateExisting();
+  const completeSyncMut = useCompleteSync();
 
   const processingRegId =
     acceptRegMut.isPending ? acceptRegMut.variables : null;
@@ -252,8 +243,7 @@ export default function Admin() {
   const syncLoading = syncStatusQuery.isFetching ||
     importSyncMut.isPending ||
     resolveSyncMut.isPending ||
-    removeDepartedMut.isPending ||
-    updateExistingMut.isPending;
+    completeSyncMut.isPending;
 
   // --- Registration handlers ---
 
@@ -261,6 +251,14 @@ export default function Admin() {
     setStatus("");
     acceptRegMut.mutate(registrationId, {
       onSuccess: () => setStatus("Registration accepted, invite sent"),
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
+  };
+
+  const handleResendInvite = (registrationId: string) => {
+    setStatus("");
+    resendInviteMut.mutate(registrationId, {
+      onSuccess: (result) => setStatus(`Invite resent to ${result.email}`),
       onError: (error) => setStatus(`Error: ${formatError(error)}`),
     });
   };
@@ -305,34 +303,31 @@ export default function Admin() {
   const handleFileUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    if (syncStatus?.sync_in_progress) {
+      const confirmed = window.confirm(
+        "A sync session is already in progress. Importing a new file will discard all recorded decisions. Continue?",
+      );
+      if (!confirmed) {
+        if (fileInputRef.current) fileInputRef.current.value = "";
+        return;
+      }
+    }
+
     setStatus("");
     const content = await file.text();
-    importSyncMut.mutate(content, {
-      onSuccess: (result) => {
-        setStatus(`Imported ${result.imported} member(s) from CSV`);
-        queryClient.removeQueries({ queryKey: syncStatusOptions.queryKey });
+    const counter = syncStatus?.sync_state_counter;
+    importSyncMut.mutate(
+      counter !== undefined ? { csvContent: content, syncStateCounter: counter } : { csvContent: content },
+      {
+        onSuccess: (result) => {
+          setStatus(`Imported ${result.imported} member(s) from CSV`);
+          queryClient.invalidateQueries({ queryKey: syncStatusOptions.queryKey });
+          if (fileInputRef.current) fileInputRef.current.value = "";
+        },
+        onError: (error) => setStatus(`Error: ${formatError(error)}`),
       },
-      onError: (error) => setStatus(`Error: ${formatError(error)}`),
-    });
-  };
-
-  const handleComputeStatus = () => {
-    setStatus("");
-    refetchSyncStatus().then((result) => {
-      if (result.data) {
-        const s = result.data;
-        const parts = [
-          `${s.review_required.length} review required`,
-          `${s.linked_registrations.length} linked registrations`,
-          `${s.existing.length} existing`,
-          `${s.departed.length} departed`,
-        ];
-        setStatus(parts.join(", "));
-      }
-      if (result.error) {
-        setStatus(`Error: ${formatError(result.error)}`);
-      }
-    });
+    );
   };
 
   const handleResolveMatch = (
@@ -341,8 +336,11 @@ export default function Admin() {
     subjectId: string | null,
   ) => {
     setStatus("");
+    const counter = syncStatus?.sync_state_counter;
     resolveSyncMut.mutate(
-      { bondsnummer, kind, subjectId },
+      counter !== undefined
+        ? { bondsnummer, kind, subjectId, syncStateCounter: counter }
+        : { bondsnummer, kind, subjectId },
       {
         onSuccess: (result) => {
           setStatus(result.message);
@@ -353,25 +351,19 @@ export default function Admin() {
     );
   };
 
-  const handleRemoveDeparted = () => {
+  const handleCompleteSync = () => {
     setStatus("");
-    removeDepartedMut.mutate(undefined, {
+    completeSyncMut.mutate(syncStatus?.sync_state_counter, {
       onSuccess: (result) => {
-        setStatus(`Removed ${result.removed} departed user(s)`);
-        refetchSyncStatus();
-      },
-      onError: (error) => setStatus(`Error: ${formatError(error)}`),
-    });
-  };
-
-  const handleUpdateExisting = () => {
-    setStatus("");
-    updateExistingMut.mutate(undefined, {
-      onSuccess: (result) => {
-        setStatus(
-          `Updated ${result.registrations_updated} registration(s), ` +
-          `refreshed ${result.users_refreshed} user(s)`,
-        );
+        const parts = [
+          `${result.volta_rows_applied} volta rows applied`,
+          `${result.registrations_created} registrations created`,
+          `${result.registrations_accepted} accepted`,
+          `${result.registrations_updated} updated`,
+          `${result.users_refreshed} users refreshed`,
+          `${result.users_departed} departed`,
+        ];
+        setStatus(`Sync complete: ${parts.join(", ")}`);
         refetchSyncStatus();
       },
       onError: (error) => setStatus(`Error: ${formatError(error)}`),
@@ -397,10 +389,12 @@ export default function Admin() {
   if (syncStatus) {
     syncRowCount =
       syncStatus.review_required.length +
-      syncStatus.linked_registrations.length +
-      syncStatus.existing.length +
-      syncStatus.departed.length +
-      2; // bulk buttons for departed + update
+      syncStatus.registrations_created.length +
+      syncStatus.registrations_accepted.length +
+      syncStatus.pending_registrations_updated.length +
+      syncStatus.live_users_enriched.length +
+      syncStatus.departed_users.length +
+      1; // complete sync button
   }
 
   const rowCount =
@@ -575,7 +569,7 @@ export default function Admin() {
                           </td>
                           <td>{reg.bondsnummer ?? "\u2014"}</td>
                           <td>
-                            {!reg.accepted && (
+                            {!reg.accepted ? (
                               <button
                                 onClick={() => handleAcceptRegistration(reg.registration_id)}
                                 disabled={processingRegId === reg.registration_id}
@@ -585,6 +579,16 @@ export default function Admin() {
                                   ? "Processing..."
                                   : "Approve"}
                               </button>
+                            ) : (
+                              reg.available_actions?.some((a) => a.kind === "resend_registration_invite") && (
+                                <button
+                                  onClick={() => handleResendInvite(reg.registration_id)}
+                                  disabled={resendInviteMut.isPending}
+                                  className="admin-button admin-button-refresh"
+                                >
+                                  {resendInviteMut.isPending ? "Sending..." : "Resend Invite"}
+                                </button>
+                              )
                             )}
                           </td>
                         </tr>
@@ -830,217 +834,116 @@ export default function Admin() {
                   onChange={handleFileUpload}
                   disabled={syncLoading}
                   className="admin-file-input"
+                  ref={fileInputRef}
                 />
+                {syncStatus?.sync_in_progress && (
+                  <p className="admin-sync-import-hint">
+                    A sync session is in progress. Importing a new file will replace it.
+                  </p>
+                )}
               </div>
 
               <div className="admin-sync-section">
                 <div className="admin-header">
-                  <h2>Sync Status</h2>
+                  <h2>Sync status</h2>
                   <button
-                    onClick={handleComputeStatus}
+                    onClick={() => refetchSyncStatus()}
                     disabled={syncLoading}
                     className="admin-button admin-button-refresh admin-button-icon"
-                    title="Compute Status (r)"
+                    title="Refresh (r)"
                   >
                     <RefreshIcon />
                   </button>
                 </div>
 
+                {syncStatusQuery.isLoading && (
+                  <div className="admin-loading">Loading sync status...</div>
+                )}
+
                 {syncStatus && (
                   <>
-                    {/* Review Required */}
+                    {/* Sync session info */}
                     <div className="admin-sync-group">
-                      <h3>
-                        Review Required{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.review_required.length})
-                        </span>
-                      </h3>
-                      {syncStatus.review_required.length > 0 ? (
-                        <div className="admin-table-container">
-                          <table className="admin-table admin-cols-review">
-                            <colgroup><col /><col /><col /><col /></colgroup>
-                            <thead>
-                              <tr>
-                                <th>Bondsnummer</th>
-                                <th>Volta Email</th>
-                                <th>Candidates</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
+                      <div className="admin-sync-info">
+                        {syncStatus.sync_in_progress ? (
+                          <span className="admin-status-badge admin-status-badge-warning">Sync in progress</span>
+                        ) : (
+                          <span className="admin-status-badge admin-status-badge-muted">No active sync</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {syncStatus.sync_in_progress && (
+                      <>
+                        {/* Review required */}
+                        <div className="admin-sync-group">
+                          <h3>
+                            Review required{" "}
+                            <span className="admin-sync-count">
+                              ({syncStatus.review_required.length})
+                            </span>
+                          </h3>
+                          {syncStatus.review_required.length > 0 ? (
+                            <div className="admin-review-list">
                               {syncStatus.review_required.map((item) => (
-                                <SyncReviewRow
+                                <SyncReviewCard
                                   key={item.bondsnummer}
                                   item={item}
                                   disabled={syncLoading}
                                   onResolve={handleResolveMatch}
                                 />
                               ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      ) : (
-                        <div className="admin-empty">No items need review</div>
-                      )}
-                    </div>
-
-                    {/* Linked Registrations */}
-                    <div className="admin-sync-group">
-                      <h3>
-                        Linked Registrations{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.linked_registrations.length})
-                        </span>
-                      </h3>
-                      {syncStatus.linked_registrations.length > 0 ? (
-                        <div className="admin-table-container">
-                          <table className="admin-table admin-cols-linked">
-                            <colgroup><col /><col /><col /><col /><col /></colgroup>
-                            <thead>
-                              <tr>
-                                <th>Bondsnummer</th>
-                                <th>Registration Email</th>
-                                <th>Name</th>
-                                <th>Email Change</th>
-                                <th>Changes</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {syncStatus.linked_registrations.map((lr) => (
-                                <tr key={lr.bondsnummer}>
-                                  <td>{lr.bondsnummer}</td>
-                                  <td>{lr.registration.email}</td>
-                                  <td>{lr.registration.firstname} {lr.registration.lastname}</td>
-                                  <td>
-                                    {lr.email_will_change ? (
-                                      <span className="admin-status-badge admin-status-badge-warning">
-                                        Will update
-                                      </span>
-                                    ) : (
-                                      "\u2014"
-                                    )}
-                                  </td>
-                                  <td>
-                                    <FieldDiffs diffs={lr.field_diffs} />
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      ) : (
-                        <div className="admin-empty">No linked registrations</div>
-                      )}
-                    </div>
-
-                    {/* Existing Members */}
-                    <div className="admin-sync-group">
-                      <h3>
-                        Existing Members{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.existing.length})
-                        </span>
-                        {syncStatus.existing.some((e) => e.field_diffs.length > 0) && (
-                          <span className="admin-changes">
-                            {syncStatus.existing.filter((e) => e.field_diffs.length > 0).length} changed
-                          </span>
-                        )}
-                      </h3>
-                      {syncStatus.existing.length > 0 || syncStatus.linked_registrations.length > 0 ? (
-                        <>
-                          <div className="admin-nav-item">
-                            <button
-                              onClick={handleUpdateExisting}
-                              disabled={syncLoading}
-                              className="admin-button admin-button-refresh"
-                            >
-                              Update All
-                            </button>
-                          </div>
-                          {syncStatus.existing.filter((e) => e.field_diffs.length > 0).length > 0 && (
-                            <div className="admin-table-container">
-                              <table className="admin-table admin-cols-existing">
-                                <colgroup><col /><col /><col /></colgroup>
-                                <thead>
-                                  <tr>
-                                    <th>Bondsnummer</th>
-                                    <th>Email</th>
-                                    <th>Changes</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {syncStatus.existing
-                                    .filter((e) => e.field_diffs.length > 0)
-                                    .map((ex) => (
-                                      <tr key={ex.bondsnummer}>
-                                        <td>{ex.bondsnummer}</td>
-                                        <td>{ex.user.email}</td>
-                                        <td>
-                                          <FieldDiffs diffs={ex.field_diffs} />
-                                        </td>
-                                      </tr>
-                                    ))}
-                                </tbody>
-                              </table>
                             </div>
+                          ) : (
+                            <div className="admin-empty">No items need review</div>
                           )}
-                          {syncStatus.existing.filter((e) => e.field_diffs.length > 0).length === 0 && syncStatus.linked_registrations.length === 0 && (
-                            <div className="admin-empty">
-                              All {syncStatus.existing.length} existing members are up to date
-                            </div>
-                          )}
-                        </>
-                      ) : (
-                        <div className="admin-empty">No existing members</div>
-                      )}
-                    </div>
+                        </div>
 
-                    {/* Departed Members */}
-                    <div className="admin-sync-group">
-                      <h3>
-                        Departed Members{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.departed.length})
-                        </span>
-                      </h3>
-                      {syncStatus.departed.length > 0 ? (
-                        <>
-                          <div className="admin-nav-item">
-                            <button
-                              onClick={handleRemoveDeparted}
-                              disabled={syncLoading}
-                              className="admin-button admin-button-danger"
-                            >
-                              Remove All Departed
-                            </button>
-                          </div>
-                          <div className="admin-table-container">
-                            <table className="admin-table admin-cols-departed">
-                              <colgroup><col /><col /><col /></colgroup>
-                              <thead>
-                                <tr>
-                                  <th>Email</th>
-                                  <th>Name</th>
-                                  <th>Bondsnummer</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {syncStatus.departed.map((d) => (
-                                  <tr key={d.user_id}>
-                                    <td>{d.email}</td>
-                                    <td>{d.firstname} {d.lastname}</td>
-                                    <td>{d.bondsnummer ?? "\u2014"}</td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
-                        </>
-                      ) : (
-                        <div className="admin-empty">No departed members</div>
-                      )}
-                    </div>
+                        {/* New registrations */}
+                        <SyncNewRegistrations items={syncStatus.registrations_created} />
+
+                        {/* Matched registrations */}
+                        <SyncRegistrationGroup
+                          title="Matched registrations"
+                          items={syncStatus.registrations_accepted}
+                        />
+
+                        {/* Existing registrations */}
+                        <SyncRegistrationGroup
+                          title="Existing registrations"
+                          items={syncStatus.pending_registrations_updated}
+                        />
+
+                        {/* Current members */}
+                        <SyncUserGroup
+                          title="Current members"
+                          items={syncStatus.live_users_enriched}
+                        />
+
+                        {/* Departed members */}
+                        <SyncDepartedGroup items={syncStatus.departed_users} />
+
+                        {/* Import data overview */}
+                        <SyncDataChanges items={syncStatus.volta_data_changes} />
+
+                        {/* Complete sync */}
+                        <div className="admin-sync-group admin-sync-complete">
+                          <button
+                            onClick={handleCompleteSync}
+                            disabled={syncLoading || !syncStatus.can_complete}
+                            className="admin-button admin-button-accept"
+                            title={syncStatus.can_complete ? "Apply all pending changes" : "Resolve all review items first"}
+                          >
+                            Complete sync
+                          </button>
+                          {!syncStatus.can_complete && (
+                            <span className="admin-sync-hint">
+                              Resolve all review items before completing
+                            </span>
+                          )}
+                        </div>
+                      </>
+                    )}
                   </>
                 )}
               </div>
@@ -1052,9 +955,292 @@ export default function Admin() {
   );
 }
 
-// --- Sync Review Row ---
+// --- Sync detail components ---
 
-function SyncReviewRow({
+function FieldDiffs({ diffs }: { diffs: SyncFieldDiff[] }) {
+  if (diffs.length === 0) return null;
+  return (
+    <div className="admin-field-diffs">
+      {diffs.map((d) => (
+        <div key={d.field} className="admin-field-diff">
+          <span className="admin-field-diff-label">{d.field}:</span>{" "}
+          <span className="admin-field-diff-old">{d.current || "\u2014"}</span>
+          {" \u2192 "}
+          <span className="admin-field-diff-new">{d.incoming || "\u2014"}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SyncNewRegistrations({ items }: { items: SyncNewRegistrationItem[] }) {
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        New registrations{" "}
+        <span className="admin-sync-count">({items.length})</span>
+      </h3>
+      {items.length > 0 ? (
+        <div className="admin-table-container">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Bondsnummer</th>
+                <th>Name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => (
+                <tr key={item.bondsnummer}>
+                  <td>{item.bondsnummer}</td>
+                  <td>{item.firstname} {item.lastname}</td>
+                  <td>{item.email}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="admin-empty">None</div>
+      )}
+    </div>
+  );
+}
+
+function SyncRegistrationGroup({
+  title,
+  items,
+}: {
+  title: string;
+  items: SyncRegistrationItem[];
+}) {
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        {title}{" "}
+        <span className="admin-sync-count">({items.length})</span>
+      </h3>
+      {items.length > 0 ? (
+        <div className="admin-table-container">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Bondsnummer</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Changes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => (
+                <tr key={item.bondsnummer}>
+                  <td>{item.bondsnummer}</td>
+                  <td>
+                    {item.registration.firstname} {item.registration.lastname}
+                    <div className="admin-user-email">{item.registration.email}</div>
+                  </td>
+                  <td>
+                    {item.email_will_change ? (
+                      <span className="admin-status-badge admin-status-badge-warning">
+                        Email will change
+                      </span>
+                    ) : (
+                      "\u2014"
+                    )}
+                  </td>
+                  <td>
+                    {item.field_diffs.length > 0 ? (
+                      <FieldDiffs diffs={item.field_diffs} />
+                    ) : (
+                      <span className="admin-sync-no-changes">Up to date</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="admin-empty">None</div>
+      )}
+    </div>
+  );
+}
+
+function SyncUserGroup({
+  title,
+  items,
+}: {
+  title: string;
+  items: SyncUserItem[];
+}) {
+  const withChanges = items.filter((item) => item.field_diffs.length > 0);
+
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        {title}{" "}
+        <span className="admin-sync-count">({items.length})</span>
+        {withChanges.length > 0 && (
+          <span className="admin-changes">{withChanges.length} with changes</span>
+        )}
+      </h3>
+      {items.length > 0 ? (
+        <>
+          {withChanges.length > 0 && (
+            <div className="admin-table-container">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Bondsnummer</th>
+                    <th>Name</th>
+                    <th>Changes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {withChanges.map((item) => (
+                    <tr key={item.bondsnummer}>
+                      <td>{item.bondsnummer}</td>
+                      <td>
+                        {item.user.firstname} {item.user.lastname}
+                        <div className="admin-user-email">{item.user.email}</div>
+                      </td>
+                      <td><FieldDiffs diffs={item.field_diffs} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          {withChanges.length === 0 && (
+            <div className="admin-empty">
+              All {items.length} members are up to date
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="admin-empty">None</div>
+      )}
+    </div>
+  );
+}
+
+function SyncDepartedGroup({ items }: { items: SyncDepartedItem[] }) {
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        Departed members{" "}
+        <span className="admin-sync-count">({items.length})</span>
+      </h3>
+      {items.length > 0 ? (
+        <div className="admin-table-container">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Bondsnummer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((d) => (
+                <tr key={d.user_id}>
+                  <td>{d.firstname} {d.lastname}</td>
+                  <td>{d.email}</td>
+                  <td>{d.bondsnummer ?? "\u2014"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="admin-empty">None</div>
+      )}
+    </div>
+  );
+}
+
+function SyncDataChanges({ items }: { items: SyncDataChangeItem[] }) {
+  const [expanded, setExpanded] = useState(false);
+  const withChanges = items.filter((item) => item.field_diffs.length > 0);
+  const removals = items.filter((item) => item.incoming_volta_data == null);
+
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        Import data overview{" "}
+        <span className="admin-sync-count">({items.length})</span>
+        {(withChanges.length > 0 || removals.length > 0) && (
+          <span className="admin-changes">
+            {withChanges.length > 0 && `${withChanges.length} changed`}
+            {withChanges.length > 0 && removals.length > 0 && ", "}
+            {removals.length > 0 && `${removals.length} removed`}
+          </span>
+        )}
+        {items.length > 0 && (
+          <button
+            className="admin-button admin-button-add"
+            onClick={() => setExpanded(!expanded)}
+            style={{ marginLeft: "0.5em" }}
+          >
+            {expanded ? "Hide" : "Details"}
+          </button>
+        )}
+      </h3>
+      {expanded && items.length > 0 && (
+        <div className="admin-table-container">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Bondsnummer</th>
+                <th>Status</th>
+                <th>Changes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => {
+                const isRemoval = item.incoming_volta_data == null;
+                const isNew = item.current_volta_data == null && !isRemoval;
+                return (
+                  <tr key={item.bondsnummer}>
+                    <td>{item.bondsnummer}</td>
+                    <td>
+                      {isRemoval && (
+                        <span className="admin-status-badge admin-status-badge-pending">Removed</span>
+                      )}
+                      {isNew && (
+                        <span className="admin-status-badge admin-status-badge-accepted">New</span>
+                      )}
+                      {!isRemoval && !isNew && item.field_diffs.length === 0 && "\u2014"}
+                      {!isRemoval && !isNew && item.field_diffs.length > 0 && (
+                        <span className="admin-status-badge admin-status-badge-warning">Changed</span>
+                      )}
+                    </td>
+                    <td>
+                      {item.field_diffs.length > 0 ? (
+                        <FieldDiffs diffs={item.field_diffs} />
+                      ) : (
+                        "\u2014"
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {items.length === 0 && (
+        <div className="admin-empty">No import data</div>
+      )}
+    </div>
+  );
+}
+
+// --- Sync Review Card ---
+
+function SyncReviewCard({
   item,
   disabled,
   onResolve,
@@ -1063,55 +1249,65 @@ function SyncReviewRow({
   disabled: boolean;
   onResolve: (bondsnummer: number, kind: string, subjectId: string | null) => void;
 }) {
-  const [expanded, setExpanded] = useState(false);
   const voltaEmail = String(item.incoming_volta_data["email"] ?? "");
+  const voltaName = [
+    String(item.incoming_volta_data["voornaam"] ?? ""),
+    String(item.incoming_volta_data["tussenvoegsel"] ?? ""),
+    String(item.incoming_volta_data["achternaam"] ?? ""),
+  ].filter(Boolean).join(" ");
 
   return (
-    <tr>
-      <td>{item.bondsnummer}</td>
-      <td>{voltaEmail}</td>
-      <td>
-        {item.candidates.length === 0 ? (
-          <span className="admin-sync-no-candidates">No matches found</span>
-        ) : (
+    <div className="admin-review-card">
+      <div className="admin-review-card-header">
+        <span className="admin-review-card-bn">#{item.bondsnummer}</span>
+        <span className="admin-review-card-name">{voltaName}</span>
+        <span className="admin-review-card-email">{voltaEmail}</span>
+      </div>
+
+      {item.candidates.length === 0 ? (
+        <div className="admin-review-card-body">
+          <span className="admin-review-card-none">No matching registrations or users found</span>
           <button
-            className="admin-button admin-button-add"
-            onClick={() => setExpanded(!expanded)}
+            className="admin-button admin-button-accept"
+            disabled={disabled}
+            onClick={() => onResolve(item.bondsnummer, "none", null)}
           >
-            {expanded ? "Hide" : `${item.candidates.length} candidate(s)`}
+            Create new registration
           </button>
-        )}
-        {expanded && (
-          <div className="admin-candidate-list">
-            {item.candidates.map((c) => (
-              <div key={`${c.kind}-${c.subject_id}`} className="admin-candidate-row">
-                <span className="admin-candidate-kind">{c.kind}</span>
-                <span className="admin-candidate-name">{c.display_name}</span>
-                <span className="admin-candidate-email">{c.email}</span>
-                <span className="admin-candidate-reasons">
-                  {c.reasons.join(", ")}
+        </div>
+      ) : (
+        <div className="admin-review-card-body">
+          {item.candidates.map((c) => (
+            <div key={`${c.kind}-${c.subject_id}`} className="admin-review-candidate">
+              <div className="admin-review-candidate-info">
+                <span className="admin-review-candidate-type">{c.kind}</span>
+                <span className="admin-review-candidate-name">{c.display_name}</span>
+                <span className="admin-review-candidate-email">{c.email}</span>
+                <span className="admin-review-candidate-reasons">
+                  {c.reasons.map((r) => r.replace("_", " ")).join(", ")}
                 </span>
-                <button
-                  className="admin-button admin-button-accept"
-                  disabled={disabled}
-                  onClick={() => onResolve(item.bondsnummer, c.kind, c.subject_id)}
-                >
-                  Match
-                </button>
               </div>
-            ))}
+              <button
+                className="admin-button admin-button-accept"
+                disabled={disabled}
+                onClick={() => onResolve(item.bondsnummer, c.kind, c.subject_id)}
+              >
+                Link
+              </button>
+            </div>
+          ))}
+          <div className="admin-review-candidate admin-review-candidate-none">
+            <span className="admin-review-candidate-info">None of the above</span>
+            <button
+              className="admin-button admin-button-danger"
+              disabled={disabled}
+              onClick={() => onResolve(item.bondsnummer, "none", null)}
+            >
+              Create new
+            </button>
           </div>
-        )}
-      </td>
-      <td>
-        <button
-          className="admin-button admin-button-danger"
-          disabled={disabled}
-          onClick={() => onResolve(item.bondsnummer, "none", null)}
-        >
-          No Match
-        </button>
-      </td>
-    </tr>
+        </div>
+      )}
+    </div>
   );
 }

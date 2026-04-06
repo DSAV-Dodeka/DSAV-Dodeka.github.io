@@ -154,6 +154,10 @@ export async function lookupRegistration(
 
 // Admin: registrations
 
+export interface RegistrationAction {
+  kind: string;
+}
+
 export interface AdminRegistrationRecord {
   registration_id: string;
   email: string;
@@ -163,6 +167,7 @@ export interface AdminRegistrationRecord {
   bondsnummer: number | null;
   signup_active: boolean;
   volta_data: Record<string, unknown> | null;
+  available_actions: RegistrationAction[];
 }
 
 export async function listRegistrations(): Promise<AdminRegistrationRecord[]> {
@@ -185,6 +190,21 @@ export async function acceptRegistration(
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to accept registration: ${text}`);
+  }
+  return response.json();
+}
+
+export async function resendRegistrationInvite(
+  registrationId: string,
+): Promise<{ success: boolean; email: string }> {
+  const response = await post(
+    "/admin/resend_registration_invite/",
+    { registration_id: registrationId },
+    true,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to resend invite: ${text}`);
   }
   return response.json();
 }
@@ -365,75 +385,100 @@ export interface SyncMatchCandidate {
   reasons: string[];
 }
 
-export interface VoltaFieldDiff {
-  field: string;
-  current: string;
-  incoming: string;
-}
-
 export interface SyncReviewItem {
   bondsnummer: number;
   incoming_volta_data: Record<string, unknown>;
   candidates: SyncMatchCandidate[];
 }
 
-export interface PendingRegistrationSyncRecord {
-  bondsnummer: number;
-  registration: AdminRegistrationRecord;
-  current_volta_data: Record<string, unknown> | null;
-  incoming_volta_data: Record<string, unknown>;
-  field_diffs: VoltaFieldDiff[];
-  email_will_change: boolean;
+export interface SyncFieldDiff {
+  field: string;
+  current: string;
+  incoming: string;
 }
 
-export interface ExistingSyncRecord {
+export interface SyncNewRegistrationItem {
   bondsnummer: number;
-  user: AdminUserRecord;
-  current_volta_data: Record<string, unknown> | null;
-  incoming_volta_data: Record<string, unknown>;
-  field_diffs: VoltaFieldDiff[];
+  email: string;
+  firstname: string;
+  lastname: string;
 }
 
-export interface DepartedUserRecord {
+export interface SyncRegistrationItem {
+  bondsnummer: number;
+  registration: {
+    email: string;
+    firstname: string;
+    lastname: string;
+  };
+  field_diffs: SyncFieldDiff[];
+  email_will_change?: boolean;
+}
+
+export interface SyncUserItem {
+  bondsnummer: number;
+  user: {
+    email: string;
+    firstname: string;
+    lastname: string;
+  };
+  field_diffs: SyncFieldDiff[];
+}
+
+export interface SyncDepartedItem {
   user_id: string;
   email: string;
   firstname: string;
   lastname: string;
-  permissions: string[];
   bondsnummer: number | null;
-  volta_data: Record<string, unknown> | null;
+}
+
+export interface SyncDataChangeItem {
+  bondsnummer: number;
+  current_volta_data: Record<string, unknown> | null;
+  incoming_volta_data: Record<string, unknown> | null;
+  field_diffs: SyncFieldDiff[];
 }
 
 export interface SyncStatus {
+  sync_in_progress: boolean;
+  sync_state_counter: number;
+  can_complete: boolean;
   review_required: SyncReviewItem[];
-  linked_registrations: PendingRegistrationSyncRecord[];
-  existing: ExistingSyncRecord[];
-  departed: DepartedUserRecord[];
+  registrations_created: SyncNewRegistrationItem[];
+  registrations_accepted: SyncRegistrationItem[];
+  pending_registrations_updated: SyncRegistrationItem[];
+  live_users_enriched: SyncUserItem[];
+  departed_users: SyncDepartedItem[];
+  volta_data_changes: SyncDataChangeItem[];
 }
 
 export interface SyncImportResult {
   imported: number;
 }
 
-export interface RemoveResult {
-  removed: number;
-}
-
-export interface UpdateExistingResult {
+export interface CompleteSyncResult {
+  success: boolean;
+  volta_rows_applied: number;
+  registrations_created: number;
+  registrations_accepted: number;
   registrations_updated: number;
   users_refreshed: number;
-  details: Array<Record<string, unknown>>;
+  users_departed: number;
 }
 
 // Sync functions
 export async function importSync(
   csvContent: string,
+  syncStateCounter?: number,
 ): Promise<SyncImportResult> {
-  const response = await post(
-    "/admin/import_sync/",
-    { csv_content: csvContent },
-    true,
-  );
+  const body: { csv_content: string; sync_state_counter?: number } = {
+    csv_content: csvContent,
+  };
+  if (syncStateCounter !== undefined) {
+    body.sync_state_counter = syncStateCounter;
+  }
+  const response = await post("/admin/import_sync/", body, true);
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to import sync: ${text}`);
@@ -454,12 +499,18 @@ export async function resolveSyncMatch(
   bondsnummer: number,
   kind: string,
   subjectId: string | null,
+  syncStateCounter?: number,
 ): Promise<{ success: boolean; message: string }> {
-  const response = await post(
-    "/admin/resolve_sync_match/",
-    { bondsnummer, kind, subject_id: subjectId },
-    true,
-  );
+  const body: {
+    bondsnummer: number;
+    kind: string;
+    subject_id: string | null;
+    sync_state_counter?: number;
+  } = { bondsnummer, kind, subject_id: subjectId };
+  if (syncStateCounter !== undefined) {
+    body.sync_state_counter = syncStateCounter;
+  }
+  const response = await post("/admin/resolve_sync_match/", body, true);
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to resolve sync match: ${text}`);
@@ -484,20 +535,17 @@ export async function linkBondsnummer(
   return response.json();
 }
 
-export async function removeDeparted(): Promise<RemoveResult> {
-  const response = await post("/admin/remove_departed/", {}, true);
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Failed to remove departed: ${text}`);
+export async function completeSync(
+  syncStateCounter?: number,
+): Promise<CompleteSyncResult> {
+  const body: { sync_state_counter?: number } = {};
+  if (syncStateCounter !== undefined) {
+    body.sync_state_counter = syncStateCounter;
   }
-  return response.json();
-}
-
-export async function updateExisting(): Promise<UpdateExistingResult> {
-  const response = await post("/admin/update_existing/", {}, true);
+  const response = await post("/admin/complete_sync/", body, true);
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Failed to update existing: ${text}`);
+    throw new Error(`Failed to complete sync: ${text}`);
   }
   return response.json();
 }
