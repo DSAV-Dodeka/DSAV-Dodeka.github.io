@@ -75,8 +75,6 @@ export interface TokenResult {
   code: string;
 }
 
-// Get email verification code from the token store (for test automation)
-// action: "signup_verification", "password_reset", "email_update", etc.
 export async function getToken(
   action: string,
   email: string,
@@ -85,22 +83,17 @@ export async function getToken(
     const result = await privateCommand("get_token", { action, email });
     return JSON.parse(result);
   } catch {
-    // 404 means token not found
     return null;
   }
 }
 
 // Registration flow
-export interface RegistrationResult {
-  registration_token: string;
-  signup_token: string | null;
-}
 
 export async function requestRegistration(
   email: string,
   firstname: string,
   lastname: string,
-): Promise<RegistrationResult> {
+): Promise<{ success: boolean; message: string }> {
   const response = await post("/auth/request_registration", {
     email,
     firstname,
@@ -110,25 +103,31 @@ export async function requestRegistration(
     const text = await response.text();
     throw new Error(`Failed to request registration: ${text}`);
   }
-  const data = await response.json();
-  return {
-    registration_token: data.registration_token,
-    signup_token: data.signup_token,
-  };
+  return response.json();
 }
 
 export interface RegistrationStatus {
+  exists: boolean;
   email: string;
   accepted: boolean;
   signup_token: string | null;
 }
 
+export class RegistrationNotFoundError extends Error {
+  constructor() {
+    super("Registration not found");
+  }
+}
+
 export async function getRegistrationStatus(
-  registrationToken: string,
+  registrationId: string,
 ): Promise<RegistrationStatus> {
   const response = await post("/auth/registration_status", {
-    registration_token: registrationToken,
+    registration_id: registrationId,
   });
+  if (response.status === 404) {
+    throw new RegistrationNotFoundError();
+  }
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to get registration status: ${text}`);
@@ -138,7 +137,7 @@ export async function getRegistrationStatus(
 
 export interface LookupResult {
   found: boolean;
-  token?: string;
+  registration_id?: string;
 }
 
 export async function lookupRegistration(
@@ -153,50 +152,44 @@ export async function lookupRegistration(
   return response.json();
 }
 
-// Admin actions
-export interface NewUser {
+// Admin: registrations
+
+export interface AdminRegistrationRecord {
+  registration_id: string;
   email: string;
   firstname: string;
   lastname: string;
   accepted: boolean;
-  email_send_count: number;
-  has_signup_token: boolean;
-  is_registered: boolean;
-  registration_token: string | null;
+  bondsnummer: number | null;
+  signup_active: boolean;
+  volta_data: Record<string, unknown> | null;
 }
 
-export async function listNewUsers(): Promise<NewUser[]> {
-  const response = await get("/admin/list_newusers/", true);
+export async function listRegistrations(): Promise<AdminRegistrationRecord[]> {
+  const response = await get("/admin/list_registrations/", true);
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Failed to list new users: ${text}`);
+    throw new Error(`Failed to list registrations: ${text}`);
   }
   return response.json();
 }
 
-export async function acceptUser(
-  email: string,
-): Promise<{ success: boolean; message: string }> {
-  const response = await post("/admin/accept_user/", { email }, true);
+export async function acceptRegistration(
+  registrationId: string,
+): Promise<{ success: boolean }> {
+  const response = await post(
+    "/admin/accept_registration/",
+    { registration_id: registrationId },
+    true,
+  );
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Failed to accept user: ${text}`);
+    throw new Error(`Failed to accept registration: ${text}`);
   }
   return response.json();
 }
 
-export async function resendSignupEmail(
-  email: string,
-): Promise<{ success: boolean; message: string }> {
-  const response = await post("/admin/resend_signup_email/", { email }, true);
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Failed to resend signup email: ${text}`);
-  }
-  return response.json();
-}
-
-// Renew expired signup (creates new Faroe signup, sends new verification email)
+// Renew signup (creates new Faroe signup, sends new verification email)
 export interface RenewSignupResult {
   success: boolean;
   signup_token: string;
@@ -204,10 +197,10 @@ export interface RenewSignupResult {
 }
 
 export async function renewSignup(
-  registrationToken: string,
+  registrationId: string,
 ): Promise<RenewSignupResult> {
   const response = await post("/auth/renew_signup", {
-    registration_token: registrationToken,
+    registration_id: registrationId,
   });
   if (!response.ok) {
     const text = await response.text();
@@ -217,7 +210,6 @@ export async function renewSignup(
 }
 
 // Session management
-// secondary=true uses the secondary session cookie (for admin auth during testing)
 export async function setSession(
   sessionToken: string,
   secondary = false,
@@ -253,14 +245,12 @@ export interface SessionUser {
   firstname: string;
   lastname: string;
   permissions: string[];
-  disabled: boolean;
 }
 
 export interface SessionInfo {
   user: SessionUser;
   created_at: number;
   expires_at: number | null;
-  pending_approval: boolean;
 }
 
 export async function getSessionInfo(
@@ -305,16 +295,18 @@ export async function onboardSignup(data: {
 }
 
 // User management
-export interface User {
+
+export interface AdminUserRecord {
   user_id: string;
   email: string;
   firstname: string;
   lastname: string;
   permissions: string[];
-  disabled: boolean;
+  bondsnummer: number | null;
+  volta_data: Record<string, unknown> | null;
 }
 
-export async function listUsers(): Promise<User[]> {
+export async function listUsers(): Promise<AdminUserRecord[]> {
   const response = await get("/admin/list_users/", true);
   if (!response.ok) {
     const text = await response.text();
@@ -364,53 +356,73 @@ export async function removeUserPermission(
 }
 
 // Sync types
-export interface SyncEntry {
+
+export interface SyncMatchCandidate {
+  kind: "registration" | "user";
+  subject_id: string;
   email: string;
-  voornaam: string;
-  tussenvoegsel: string;
-  achternaam: string;
-  bondsnummer?: number;
-  geslacht?: string;
-  geboortedatum?: string;
+  display_name: string;
+  reasons: string[];
 }
 
-export interface ExistingPair {
-  sync: SyncEntry;
-  current: SyncEntry | null;
+export interface VoltaFieldDiff {
+  field: string;
+  current: string;
+  incoming: string;
 }
 
-export interface EmailChange {
-  old_email: string;
-  new_email: string;
+export interface SyncReviewItem {
   bondsnummer: number;
+  incoming_volta_data: Record<string, unknown>;
+  candidates: SyncMatchCandidate[];
+}
+
+export interface PendingRegistrationSyncRecord {
+  bondsnummer: number;
+  registration: AdminRegistrationRecord;
+  current_volta_data: Record<string, unknown> | null;
+  incoming_volta_data: Record<string, unknown>;
+  field_diffs: VoltaFieldDiff[];
+  email_will_change: boolean;
+}
+
+export interface ExistingSyncRecord {
+  bondsnummer: number;
+  user: AdminUserRecord;
+  current_volta_data: Record<string, unknown> | null;
+  incoming_volta_data: Record<string, unknown>;
+  field_diffs: VoltaFieldDiff[];
+}
+
+export interface DepartedUserRecord {
+  user_id: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  permissions: string[];
+  bondsnummer: number | null;
+  volta_data: Record<string, unknown> | null;
 }
 
 export interface SyncStatus {
-  departed: string[];
-  to_accept: SyncEntry[];
-  pending_signup: string[];
-  existing: ExistingPair[];
-  email_changes: EmailChange[];
+  review_required: SyncReviewItem[];
+  linked_registrations: PendingRegistrationSyncRecord[];
+  existing: ExistingSyncRecord[];
+  departed: DepartedUserRecord[];
 }
 
 export interface SyncImportResult {
   imported: number;
 }
 
-export interface AcceptNewResult {
-  added: number;
-  skipped: number;
-  emails_sent: number;
-  emails_failed: number;
-}
-
 export interface RemoveResult {
   removed: number;
 }
 
-export interface UpdateResult {
-  updated: number;
-  email_changes_applied?: number;
+export interface UpdateExistingResult {
+  registrations_updated: number;
+  users_refreshed: number;
+  details: Array<Record<string, unknown>>;
 }
 
 // Sync functions
@@ -438,23 +450,42 @@ export async function getSyncStatus(): Promise<SyncStatus> {
   return response.json();
 }
 
-export async function acceptNewSync(
-  email?: string,
-): Promise<AcceptNewResult> {
-  const body = email ? { email } : {};
-  const response = await post("/admin/accept_new_sync/", body, true);
+export async function resolveSyncMatch(
+  bondsnummer: number,
+  kind: string,
+  subjectId: string | null,
+): Promise<{ success: boolean; message: string }> {
+  const response = await post(
+    "/admin/resolve_sync_match/",
+    { bondsnummer, kind, subject_id: subjectId },
+    true,
+  );
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Failed to accept new: ${text}`);
+    throw new Error(`Failed to resolve sync match: ${text}`);
   }
   return response.json();
 }
 
-export async function removeDeparted(
-  email?: string,
-): Promise<RemoveResult> {
-  const body = email ? { email } : {};
-  const response = await post("/admin/remove_departed/", body, true);
+export async function linkBondsnummer(
+  kind: string,
+  subjectId: string,
+  bondsnummer: number,
+): Promise<{ success: boolean; message: string }> {
+  const response = await post(
+    "/admin/link_bondsnummer/",
+    { kind, subject_id: subjectId, bondsnummer },
+    true,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to link bondsnummer: ${text}`);
+  }
+  return response.json();
+}
+
+export async function removeDeparted(): Promise<RemoveResult> {
+  const response = await post("/admin/remove_departed/", {}, true);
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to remove departed: ${text}`);
@@ -462,11 +493,8 @@ export async function removeDeparted(
   return response.json();
 }
 
-export async function updateExisting(
-  email?: string,
-): Promise<UpdateResult> {
-  const body = email ? { email } : {};
-  const response = await post("/admin/update_existing/", body, true);
+export async function updateExisting(): Promise<UpdateExistingResult> {
+  const response = await post("/admin/update_existing/", {}, true);
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to update existing: ${text}`);
@@ -484,28 +512,9 @@ export async function listSystemUsers(): Promise<string[]> {
   return data.system_users;
 }
 
-export async function markSystemUser(email: string): Promise<void> {
-  const response = await post("/admin/mark_system_user/", { email }, true);
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Failed to mark system user: ${text}`);
-  }
-}
-
-export async function unmarkSystemUser(email: string): Promise<void> {
-  const response = await post(
-    "/admin/unmark_system_user/",
-    { email },
-    true,
-  );
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Failed to unmark system user: ${text}`);
-  }
-}
-
 // Birthday types
 export interface Birthday {
+  user_id: string;
   voornaam: string;
   tussenvoegsel: string;
   achternaam: string;

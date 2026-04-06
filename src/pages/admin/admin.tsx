@@ -6,28 +6,26 @@ import {
   type ChangeEvent,
 } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import {
-  type NewUser,
-  type User,
-  type SyncEntry,
-  type SyncStatus,
-  type EmailChange,
+import type {
+  AdminRegistrationRecord,
+  SyncStatus,
+  SyncReviewItem,
+  VoltaFieldDiff,
 } from "$functions/backend.ts";
 import {
   useSessionInfo,
   useSecondarySessionInfo,
-  useNewUsers,
+  useRegistrations,
   useUsers,
   useSyncStatus,
-  useAcceptUser,
-  useResendSignupEmail,
+  useAcceptRegistration,
   useAddPermission,
   useRemovePermission,
   useImportSync,
-  useAcceptNewSync,
+  useResolveSyncMatch,
   useRemoveDeparted,
   useUpdateExisting,
-  newUsersOptions,
+  registrationsOptions,
   usersOptions,
   syncStatusOptions,
 } from "$functions/query.ts";
@@ -35,7 +33,7 @@ import PageTitle from "$components/PageTitle.tsx";
 import { useAdminKeyboard } from "./useAdminKeyboard.ts";
 import "./admin.css";
 
-// Permission display configuration: backend name -> { display, color, light }
+// Permission display configuration
 const PERMISSION_CONFIG: Record<
   string,
   { display: string; color: string; light: boolean }
@@ -130,33 +128,23 @@ function formatError(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
-function AccountStatusBadge({ user }: { user: NewUser }) {
-  if (user.is_registered) {
-    return (
-      <span className="admin-tooltip">
-        <span className="admin-status-badge admin-status-badge-accepted">Active</span>
-        <span className="admin-tooltip-text">
-          Account created. User can log in and use the site.
-        </span>
-      </span>
-    );
-  }
-  if (user.has_signup_token) {
+function RegistrationStatusBadge({ reg }: { reg: AdminRegistrationRecord }) {
+  if (reg.accepted && reg.signup_active) {
     return (
       <span className="admin-tooltip">
         <span className="admin-status-badge admin-status-badge-warning">Pending</span>
         <span className="admin-tooltip-text">
-          Verification email sent but signup not completed. The signup link auto-renews when visited, so the user can still finish at any time.
+          Accepted and signup email sent. Awaiting account creation.
         </span>
       </span>
     );
   }
-  if (user.accepted) {
+  if (reg.accepted) {
     return (
       <span className="admin-tooltip">
         <span className="admin-status-badge admin-status-badge-info">Invited</span>
         <span className="admin-tooltip-text">
-          Invite email sent with a signup link. The user hasn't started account creation yet.
+          Accepted. The user will receive an invite email with a signup link.
         </span>
       </span>
     );
@@ -168,6 +156,22 @@ function AccountStatusBadge({ user }: { user: NewUser }) {
         Not yet approved. Approve first to send an invite email.
       </span>
     </span>
+  );
+}
+
+function FieldDiffs({ diffs }: { diffs: VoltaFieldDiff[] }) {
+  if (diffs.length === 0) return null;
+  return (
+    <div className="admin-field-diffs">
+      {diffs.map((d) => (
+        <div key={d.field} className="admin-field-diff">
+          <span className="admin-field-diff-label">{d.field}:</span>{" "}
+          <span className="admin-field-diff-old">{d.current || "\u2014"}</span>
+          {" \u2192 "}
+          <span className="admin-field-diff-new">{d.incoming || "\u2014"}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -185,7 +189,6 @@ export default function Admin() {
   const [highlightedCol, setHighlightedCol] = useState(0);
   const [showHelp, setShowHelp] = useState(false);
 
-  // Reset row highlight when switching tabs
   const setActiveTab = useCallback((tab: AdminTab) => {
     setActiveTabRaw(tab);
     setHighlightedRow(-1);
@@ -194,7 +197,7 @@ export default function Admin() {
 
   // Local UI state
   const [addingPermUser, setAddingPermUser] = useState<string | null>(null);
-  const [selectedPerm, setSelectedPerm] = useState<string>("");
+  const [selectedPermForUser, setSelectedPermForUser] = useState<string>("");
   const [confirmingRemoval, setConfirmingRemoval] = useState<{
     userId: string;
     perm: string;
@@ -208,11 +211,11 @@ export default function Admin() {
   // --- Queries ---
 
   const needsData = !!isAdmin && (activeTab === "users" || activeTab === "registrations");
-  const newUsersQuery = useNewUsers(needsData);
+  const regsQuery = useRegistrations(needsData);
   const usersQuery = useUsers(needsData);
-  const syncStatusQuery = useSyncStatus(false); // manual only
+  const syncStatusQuery = useSyncStatus(false);
 
-  const newUsers: NewUser[] = newUsersQuery.data ?? [];
+  const registrations: AdminRegistrationRecord[] = regsQuery.data ?? [];
   const { users = [], perms: allPerms = [] } = usersQuery.data ?? {};
   const availablePerms = allPerms.filter(
     (p) => p !== "admin" && p !== "member",
@@ -220,48 +223,44 @@ export default function Admin() {
   const syncStatus: SyncStatus | null = syncStatusQuery.data ?? null;
   const { refetch: refetchSyncStatus } = syncStatusQuery;
 
-  // Compute effective perm: use user selection if set, otherwise default to first non-admin
-  const effectivePerm = selectedPerm || allPerms.find((p) => p !== "admin") || allPerms[0] || "";
+  const addingUser = addingPermUser
+    ? users.find((u) => u.user_id === addingPermUser)
+    : null;
+  const addablePerms = addingUser
+    ? availablePerms.filter((p) => !addingUser.permissions.includes(p))
+    : [];
+  const effectivePerm =
+    addablePerms.includes(selectedPermForUser)
+      ? selectedPermForUser
+      : addablePerms[0] || "";
 
   // --- Mutations ---
 
-  const acceptUserMut = useAcceptUser();
-  const resendEmailMut = useResendSignupEmail();
+  const acceptRegMut = useAcceptRegistration();
   const addPermMut = useAddPermission();
   const removePermMut = useRemovePermission();
   const importSyncMut = useImportSync();
-  const acceptNewMut = useAcceptNewSync();
+  const resolveSyncMut = useResolveSyncMatch();
   const removeDepartedMut = useRemoveDeparted();
   const updateExistingMut = useUpdateExisting();
 
-  // The processing email is whichever mutation is currently in-flight
-  const processingEmail =
-    acceptUserMut.isPending ? acceptUserMut.variables :
-    resendEmailMut.isPending ? resendEmailMut.variables :
-    null;
+  const processingRegId =
+    acceptRegMut.isPending ? acceptRegMut.variables : null;
 
-  const loading = newUsersQuery.isFetching;
+  const loading = regsQuery.isFetching;
   const usersLoading = usersQuery.isFetching;
   const syncLoading = syncStatusQuery.isFetching ||
     importSyncMut.isPending ||
-    acceptNewMut.isPending ||
+    resolveSyncMut.isPending ||
     removeDepartedMut.isPending ||
     updateExistingMut.isPending;
 
   // --- Registration handlers ---
 
-  const handleAcceptUser = (email: string) => {
+  const handleAcceptRegistration = (registrationId: string) => {
     setStatus("");
-    acceptUserMut.mutate(email, {
-      onSuccess: (result) => setStatus(result.message),
-      onError: (error) => setStatus(`Error: ${formatError(error)}`),
-    });
-  };
-
-  const handleResendEmail = (email: string) => {
-    setStatus("");
-    resendEmailMut.mutate(email, {
-      onSuccess: (result) => setStatus(result.message),
+    acceptRegMut.mutate(registrationId, {
+      onSuccess: () => setStatus("Registration accepted, invite sent"),
       onError: (error) => setStatus(`Error: ${formatError(error)}`),
     });
   };
@@ -298,7 +297,7 @@ export default function Admin() {
   };
 
   const handlePermSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPerm(e.target.value);
+    setSelectedPermForUser(e.target.value);
   };
 
   // --- Sync handlers ---
@@ -323,14 +322,11 @@ export default function Admin() {
       if (result.data) {
         const s = result.data;
         const parts = [
-          `${s.to_accept.length} new`,
-          `${s.pending_signup.length} pending`,
+          `${s.review_required.length} review required`,
+          `${s.linked_registrations.length} linked registrations`,
           `${s.existing.length} existing`,
           `${s.departed.length} departed`,
         ];
-        if (s.email_changes.length > 0) {
-          parts.push(`${s.email_changes.length} email change(s)`);
-        }
         setStatus(parts.join(", "));
       }
       if (result.error) {
@@ -339,23 +335,27 @@ export default function Admin() {
     });
   };
 
-  const handleAcceptNew = (email?: string) => {
+  const handleResolveMatch = (
+    bondsnummer: number,
+    kind: string,
+    subjectId: string | null,
+  ) => {
     setStatus("");
-    acceptNewMut.mutate(email, {
-      onSuccess: (result) => {
-        const parts = [`Added ${result.added}, skipped ${result.skipped}`];
-        if (result.emails_sent > 0) parts.push(`emails sent: ${result.emails_sent}`);
-        if (result.emails_failed > 0) parts.push(`emails failed: ${result.emails_failed}`);
-        setStatus(parts.join(", "));
-        refetchSyncStatus();
+    resolveSyncMut.mutate(
+      { bondsnummer, kind, subjectId },
+      {
+        onSuccess: (result) => {
+          setStatus(result.message);
+          refetchSyncStatus();
+        },
+        onError: (error) => setStatus(`Error: ${formatError(error)}`),
       },
-      onError: (error) => setStatus(`Error: ${formatError(error)}`),
-    });
+    );
   };
 
-  const handleRemoveDeparted = (email?: string) => {
+  const handleRemoveDeparted = () => {
     setStatus("");
-    removeDepartedMut.mutate(email, {
+    removeDepartedMut.mutate(undefined, {
       onSuccess: (result) => {
         setStatus(`Removed ${result.removed} departed user(s)`);
         refetchSyncStatus();
@@ -364,15 +364,14 @@ export default function Admin() {
     });
   };
 
-  const handleUpdateExisting = (email?: string) => {
+  const handleUpdateExisting = () => {
     setStatus("");
-    updateExistingMut.mutate(email, {
+    updateExistingMut.mutate(undefined, {
       onSuccess: (result) => {
-        const updateParts = [`Updated ${result.updated} existing user(s)`];
-        if (result.email_changes_applied) {
-          updateParts.push(`${result.email_changes_applied} email(s) changed`);
-        }
-        setStatus(updateParts.join(", "));
+        setStatus(
+          `Updated ${result.registrations_updated} registration(s), ` +
+          `refreshed ${result.users_refreshed} user(s)`,
+        );
         refetchSyncStatus();
       },
       onError: (error) => setStatus(`Error: ${formatError(error)}`),
@@ -383,76 +382,39 @@ export default function Admin() {
 
   const TABS: AdminTab[] = ["users", "registrations", "sync"];
 
-  // Split users into active members (have permissions) and inactive (no permissions).
-  // Exclude users still in the newusers table from inactive — they show up
-  // on the Registrations tab instead (pending acceptance).
-  const sortByName = (a: User, b: User) => {
+  const sortByName = (a: { firstname: string; lastname: string }, b: { firstname: string; lastname: string }) => {
     const aName = `${a.firstname} ${a.lastname}`.toLowerCase();
     const bName = `${b.firstname} ${b.lastname}`.toLowerCase();
     return aName.localeCompare(bName);
   };
-  const newUserEmails = new Set(newUsers.map((u) => u.email));
-  const activeUsers = users.filter((u) => u.permissions.length > 0 && !u.disabled).sort(sortByName);
+  const activeUsers = users.filter((u) => u.permissions.length > 0).sort(sortByName);
   const inactiveUsers = users
-    .filter((u) => (u.permissions.length === 0 || u.disabled) && !newUserEmails.has(u.email))
+    .filter((u) => u.permissions.length === 0)
     .sort(sortByName);
 
-  // Compute sync navigation indices (flat index across all sync sections)
-  // Order: New → Pending → Email Changes → Departed → Existing (existing last, usually largest)
+  // Sync navigation indices
   let syncRowCount = 0;
-  let syncNewBulkNav = -1;
-  let syncNewStartNav = -1;
-  let syncEmailChStartNav = -1;
-  let syncDepBulkNav = -1;
-  let syncDepStartNav = -1;
-  let syncExBulkNav = -1;
-  let syncExStartNav = -1;
-  // Pre-compute which existing members have changes
-  const existingChanged = syncStatus?.existing.filter((pair) =>
-    !pair.current ||
-    pair.sync.voornaam !== pair.current.voornaam ||
-    pair.sync.achternaam !== pair.current.achternaam ||
-    pair.sync.tussenvoegsel !== pair.current.tussenvoegsel ||
-    pair.sync.geboortedatum !== pair.current.geboortedatum,
-  ) ?? [];
-  const emailChanges: EmailChange[] = syncStatus?.email_changes ?? [];
   if (syncStatus) {
-    if (syncStatus.to_accept.length > 0) {
-      syncNewBulkNav = syncRowCount++;
-      syncNewStartNav = syncRowCount;
-      syncRowCount += syncStatus.to_accept.length;
-    }
-    if (syncStatus.pending_signup.length > 0) {
-      syncRowCount += syncStatus.pending_signup.length;
-    }
-    if (emailChanges.length > 0) {
-      syncEmailChStartNav = syncRowCount;
-      syncRowCount += emailChanges.length;
-    }
-    if (syncStatus.departed.length > 0) {
-      syncDepBulkNav = syncRowCount++;
-      syncDepStartNav = syncRowCount;
-      syncRowCount += syncStatus.departed.length;
-    }
-    if (existingChanged.length > 0) {
-      syncExBulkNav = syncRowCount++;
-      syncExStartNav = syncRowCount;
-      syncRowCount += existingChanged.length;
-    }
+    syncRowCount =
+      syncStatus.review_required.length +
+      syncStatus.linked_registrations.length +
+      syncStatus.existing.length +
+      syncStatus.departed.length +
+      2; // bulk buttons for departed + update
   }
 
   const rowCount =
     activeTab === "users"
       ? activeUsers.length
       : activeTab === "registrations"
-        ? newUsers.length
+        ? registrations.length
         : syncRowCount;
 
   const handleRefresh = useCallback(() => {
     if (activeTab === "users") {
       queryClient.invalidateQueries({ queryKey: usersOptions.queryKey });
     } else if (activeTab === "registrations") {
-      queryClient.invalidateQueries({ queryKey: newUsersOptions.queryKey });
+      queryClient.invalidateQueries({ queryKey: registrationsOptions.queryKey });
     } else if (activeTab === "sync") {
       refetchSyncStatus();
     }
@@ -489,7 +451,6 @@ export default function Admin() {
     onCancel: handleCancel,
   });
 
-  // Auto-focus the permission select when the add form opens
   useEffect(() => {
     if (!addingPermUser) return;
     requestAnimationFrame(() => {
@@ -564,9 +525,9 @@ export default function Admin() {
           {activeTab === "registrations" && (
             <>
               <div className="admin-header">
-                <h2>User Registration Requests</h2>
+                <h2>Pending Registrations</h2>
                 <button
-                  onClick={() => newUsersQuery.refetch()}
+                  onClick={() => regsQuery.refetch()}
                   disabled={loading}
                   className="admin-button admin-button-refresh admin-button-icon"
                   title="Refresh (r)"
@@ -575,75 +536,54 @@ export default function Admin() {
                 </button>
               </div>
 
-              {loading && newUsers.length === 0 ? (
+              {loading && registrations.length === 0 ? (
                 <div className="admin-loading">Loading...</div>
-              ) : newUsers.length === 0 ? (
+              ) : registrations.length === 0 ? (
                 <div className="admin-empty">No registration requests found</div>
               ) : (
                 <div className="admin-table-container">
-                  <table className="admin-table">
+                  <table className="admin-table admin-cols-registrations">
+                    <colgroup><col /><col /><col /><col /><col /><col /></colgroup>
                     <thead>
                       <tr>
                         <th>Email</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Approved</th>
-                        <th>Account</th>
-                        <th>Emails Sent</th>
+                        <th>Name</th>
+                        <th>Accepted</th>
+                        <th>Status</th>
+                        <th>Bondsnummer</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {newUsers.map((user, idx) => (
-                        <tr key={user.email} className={highlightedRow === idx ? "admin-nav-highlight" : ""}>
-                          <td>{user.email}</td>
-                          <td>{user.firstname}</td>
-                          <td>{user.lastname}</td>
+                      {registrations.map((reg, idx) => (
+                        <tr key={reg.registration_id} className={highlightedRow === idx ? "admin-nav-highlight" : ""}>
+                          <td>{reg.email}</td>
+                          <td>{reg.firstname} {reg.lastname}</td>
                           <td>
                             <span
                               className={`admin-status-badge ${
-                                user.accepted
+                                reg.accepted
                                   ? "admin-status-badge-accepted"
                                   : "admin-status-badge-pending"
                               }`}
                             >
-                              {user.accepted ? "Yes" : "No"}
+                              {reg.accepted ? "Yes" : "No"}
                             </span>
                           </td>
                           <td>
-                            <AccountStatusBadge user={user} />
+                            <RegistrationStatusBadge reg={reg} />
                           </td>
-                          <td>{user.email_send_count}</td>
+                          <td>{reg.bondsnummer ?? "\u2014"}</td>
                           <td>
-                            {!user.accepted ? (
+                            {!reg.accepted && (
                               <button
-                                onClick={() => handleAcceptUser(user.email)}
-                                disabled={processingEmail === user.email}
+                                onClick={() => handleAcceptRegistration(reg.registration_id)}
+                                disabled={processingRegId === reg.registration_id}
                                 className="admin-button admin-button-accept"
                               >
-                                {processingEmail === user.email
+                                {processingRegId === reg.registration_id
                                   ? "Processing..."
                                   : "Approve"}
-                              </button>
-                            ) : !user.has_signup_token ? (
-                              <button
-                                onClick={() => handleResendEmail(user.email)}
-                                disabled={processingEmail === user.email}
-                                className="admin-button admin-button-accept"
-                              >
-                                {processingEmail === user.email
-                                  ? "Sending..."
-                                  : "Resend Invite"}
-                              </button>
-                            ) : (
-                              <button
-                                onClick={() => handleResendEmail(user.email)}
-                                disabled={processingEmail === user.email}
-                                className="admin-button admin-button-resend"
-                              >
-                                {processingEmail === user.email
-                                  ? "Sending..."
-                                  : "Resend Code"}
                               </button>
                             )}
                           </td>
@@ -687,10 +627,12 @@ export default function Admin() {
                     </h3>
                     {activeUsers.length > 0 ? (
                       <div className="admin-table-container">
-                        <table className="admin-table">
+                        <table className="admin-table admin-cols-members">
+                          <colgroup><col /><col /><col /><col /></colgroup>
                           <thead>
                             <tr>
                               <th>Name</th>
+                              <th>Bondsnummer</th>
                               <th>Permissions</th>
                               <th>Actions</th>
                             </tr>
@@ -705,6 +647,7 @@ export default function Admin() {
                                   {user.firstname} {user.lastname}
                                   <div className="admin-user-email">{user.email}</div>
                                 </td>
+                                <td>{user.bondsnummer ?? "\u2014"}</td>
                                 <td>
                                   <div className="admin-perm-list">
                                     {user.permissions.map((perm) => (
@@ -755,7 +698,7 @@ export default function Admin() {
                                               }
                                               title={`Remove ${getPermissionDisplay(perm)}`}
                                             >
-                                              ×
+                                              &times;
                                             </button>
                                           ))}
                                       </span>
@@ -766,7 +709,15 @@ export default function Admin() {
                                   {addingPermUser !== user.user_id ? (
                                     <button
                                       className="admin-button admin-button-add"
-                                      onClick={() => setAddingPermUser(user.user_id)}
+                                      onClick={() => {
+                                        setSelectedPermForUser("");
+                                        setAddingPermUser(user.user_id);
+                                      }}
+                                      disabled={
+                                        availablePerms.filter(
+                                          (p) => !user.permissions.includes(p),
+                                        ).length === 0
+                                      }
                                     >
                                       + Add
                                     </button>
@@ -788,17 +739,16 @@ export default function Admin() {
                                         onChange={handlePermSelectChange}
                                         className="admin-perm-select"
                                       >
-                                        {availablePerms
-                                          .filter((p) => !user.permissions.includes(p))
-                                          .map((perm) => (
-                                            <option key={perm} value={perm}>
-                                              {getPermissionDisplay(perm)}
-                                            </option>
-                                          ))}
+                                        {addablePerms.map((perm) => (
+                                          <option key={perm} value={perm}>
+                                            {getPermissionDisplay(perm)}
+                                          </option>
+                                        ))}
                                       </select>
                                       <button
                                         type="submit"
                                         className="admin-button admin-button-accept"
+                                        disabled={!effectivePerm}
                                       >
                                         Add
                                       </button>
@@ -833,11 +783,12 @@ export default function Admin() {
                     {inactiveUsers.length > 0 ? (
                       <>
                         <div className="admin-table-container">
-                          <table className="admin-table">
+                          <table className="admin-table admin-cols-inactive">
+                            <colgroup><col /><col /></colgroup>
                             <thead>
                               <tr>
                                 <th>Name</th>
-                                <th>Status</th>
+                                <th>Bondsnummer</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -847,13 +798,7 @@ export default function Admin() {
                                     {user.firstname} {user.lastname}
                                     <div className="admin-user-email">{user.email}</div>
                                   </td>
-                                  <td>
-                                    {user.disabled && (
-                                      <span className="admin-status-badge admin-status-badge-disabled">
-                                        Disabled
-                                      </span>
-                                    )}
-                                  </td>
+                                  <td>{user.bondsnummer ?? "\u2014"}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -903,136 +848,155 @@ export default function Admin() {
 
                 {syncStatus && (
                   <>
-                    {/* New members */}
+                    {/* Review Required */}
                     <div className="admin-sync-group">
                       <h3>
-                        New Members{" "}
+                        Review Required{" "}
                         <span className="admin-sync-count">
-                          ({syncStatus.to_accept.length})
+                          ({syncStatus.review_required.length})
                         </span>
                       </h3>
-                      {syncStatus.to_accept.length > 0 && (
-                        <>
-                          <div className={`admin-nav-item ${highlightedRow === syncNewBulkNav ? "admin-nav-highlight" : ""}`}>
-                            <button
-                              onClick={() => handleAcceptNew()}
-                              disabled={syncLoading}
-                              className="admin-button admin-button-accept"
-                            >
-                              Accept All New
-                            </button>
-                          </div>
-                          <div className="admin-table-container">
-                            <table className="admin-table">
-                              <thead>
-                                <tr>
-                                  <th>Email</th>
-                                  <th>Name</th>
-                                  <th>Action</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {syncStatus.to_accept.map((entry, idx) => (
-                                  <tr key={entry.email} className={highlightedRow === syncNewStartNav + idx ? "admin-nav-highlight" : ""}>
-                                    <td>{entry.email}</td>
-                                    <td>
-                                      {entry.voornaam}{" "}
-                                      {entry.tussenvoegsel
-                                        ? `${entry.tussenvoegsel} `
-                                        : ""}
-                                      {entry.achternaam}
-                                    </td>
-                                    <td>
-                                      <button
-                                        onClick={() =>
-                                          handleAcceptNew(entry.email)
-                                        }
-                                        disabled={syncLoading}
-                                        className="admin-button admin-button-accept"
-                                      >
-                                        Accept
-                                      </button>
-                                    </td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
-                        </>
-                      )}
-                      {syncStatus.to_accept.length === 0 && (
-                        <div className="admin-empty">No new members</div>
-                      )}
-                    </div>
-
-                    {/* Pending members (accepted, awaiting signup) */}
-                    <div className="admin-sync-group">
-                      <h3>
-                        Pending Signup{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.pending_signup.length})
-                        </span>
-                      </h3>
-                      {syncStatus.pending_signup.length > 0 && (
+                      {syncStatus.review_required.length > 0 ? (
                         <div className="admin-table-container">
-                          <table className="admin-table">
-                            <thead>
-                              <tr>
-                                <th>Email</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {syncStatus.pending_signup.map((email) => (
-                                <tr key={email}>
-                                  <td>{email}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      )}
-                      {syncStatus.pending_signup.length === 0 && (
-                        <div className="admin-empty">No pending signups</div>
-                      )}
-                    </div>
-
-                    {/* Email changes (bondsnummer-matched) */}
-                    {emailChanges.length > 0 && (
-                      <div className="admin-sync-group">
-                        <h3>
-                          Email Changes{" "}
-                          <span className="admin-sync-count">
-                            ({emailChanges.length})
-                          </span>
-                        </h3>
-                        <p className="admin-sync-hint">
-                          These members changed their email in the athletics union system.
-                          Matched by bondsnummer. Applied automatically by "Update All Changed".
-                        </p>
-                        <div className="admin-table-container">
-                          <table className="admin-table">
+                          <table className="admin-table admin-cols-review">
+                            <colgroup><col /><col /><col /><col /></colgroup>
                             <thead>
                               <tr>
                                 <th>Bondsnummer</th>
-                                <th>Old Email</th>
-                                <th>New Email</th>
+                                <th>Volta Email</th>
+                                <th>Candidates</th>
+                                <th>Action</th>
                               </tr>
                             </thead>
                             <tbody>
-                              {emailChanges.map((ec, idx) => (
-                                <tr key={ec.bondsnummer} className={highlightedRow === syncEmailChStartNav + idx ? "admin-nav-highlight" : ""}>
-                                  <td>{ec.bondsnummer}</td>
-                                  <td>{ec.old_email}</td>
-                                  <td>{ec.new_email}</td>
+                              {syncStatus.review_required.map((item) => (
+                                <SyncReviewRow
+                                  key={item.bondsnummer}
+                                  item={item}
+                                  disabled={syncLoading}
+                                  onResolve={handleResolveMatch}
+                                />
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      ) : (
+                        <div className="admin-empty">No items need review</div>
+                      )}
+                    </div>
+
+                    {/* Linked Registrations */}
+                    <div className="admin-sync-group">
+                      <h3>
+                        Linked Registrations{" "}
+                        <span className="admin-sync-count">
+                          ({syncStatus.linked_registrations.length})
+                        </span>
+                      </h3>
+                      {syncStatus.linked_registrations.length > 0 ? (
+                        <div className="admin-table-container">
+                          <table className="admin-table admin-cols-linked">
+                            <colgroup><col /><col /><col /><col /><col /></colgroup>
+                            <thead>
+                              <tr>
+                                <th>Bondsnummer</th>
+                                <th>Registration Email</th>
+                                <th>Name</th>
+                                <th>Email Change</th>
+                                <th>Changes</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {syncStatus.linked_registrations.map((lr) => (
+                                <tr key={lr.bondsnummer}>
+                                  <td>{lr.bondsnummer}</td>
+                                  <td>{lr.registration.email}</td>
+                                  <td>{lr.registration.firstname} {lr.registration.lastname}</td>
+                                  <td>
+                                    {lr.email_will_change ? (
+                                      <span className="admin-status-badge admin-status-badge-warning">
+                                        Will update
+                                      </span>
+                                    ) : (
+                                      "\u2014"
+                                    )}
+                                  </td>
+                                  <td>
+                                    <FieldDiffs diffs={lr.field_diffs} />
+                                  </td>
                                 </tr>
                               ))}
                             </tbody>
                           </table>
                         </div>
-                      </div>
-                    )}
+                      ) : (
+                        <div className="admin-empty">No linked registrations</div>
+                      )}
+                    </div>
 
-                    {/* Departed members */}
+                    {/* Existing Members */}
+                    <div className="admin-sync-group">
+                      <h3>
+                        Existing Members{" "}
+                        <span className="admin-sync-count">
+                          ({syncStatus.existing.length})
+                        </span>
+                        {syncStatus.existing.some((e) => e.field_diffs.length > 0) && (
+                          <span className="admin-changes">
+                            {syncStatus.existing.filter((e) => e.field_diffs.length > 0).length} changed
+                          </span>
+                        )}
+                      </h3>
+                      {syncStatus.existing.length > 0 || syncStatus.linked_registrations.length > 0 ? (
+                        <>
+                          <div className="admin-nav-item">
+                            <button
+                              onClick={handleUpdateExisting}
+                              disabled={syncLoading}
+                              className="admin-button admin-button-refresh"
+                            >
+                              Update All
+                            </button>
+                          </div>
+                          {syncStatus.existing.filter((e) => e.field_diffs.length > 0).length > 0 && (
+                            <div className="admin-table-container">
+                              <table className="admin-table admin-cols-existing">
+                                <colgroup><col /><col /><col /></colgroup>
+                                <thead>
+                                  <tr>
+                                    <th>Bondsnummer</th>
+                                    <th>Email</th>
+                                    <th>Changes</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {syncStatus.existing
+                                    .filter((e) => e.field_diffs.length > 0)
+                                    .map((ex) => (
+                                      <tr key={ex.bondsnummer}>
+                                        <td>{ex.bondsnummer}</td>
+                                        <td>{ex.user.email}</td>
+                                        <td>
+                                          <FieldDiffs diffs={ex.field_diffs} />
+                                        </td>
+                                      </tr>
+                                    ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          )}
+                          {syncStatus.existing.filter((e) => e.field_diffs.length > 0).length === 0 && syncStatus.linked_registrations.length === 0 && (
+                            <div className="admin-empty">
+                              All {syncStatus.existing.length} existing members are up to date
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <div className="admin-empty">No existing members</div>
+                      )}
+                    </div>
+
+                    {/* Departed Members */}
                     <div className="admin-sync-group">
                       <h3>
                         Departed Members{" "}
@@ -1040,11 +1004,11 @@ export default function Admin() {
                           ({syncStatus.departed.length})
                         </span>
                       </h3>
-                      {syncStatus.departed.length > 0 && (
+                      {syncStatus.departed.length > 0 ? (
                         <>
-                          <div className={`admin-nav-item ${highlightedRow === syncDepBulkNav ? "admin-nav-highlight" : ""}`}>
+                          <div className="admin-nav-item">
                             <button
-                              onClick={() => handleRemoveDeparted()}
+                              onClick={handleRemoveDeparted}
                               disabled={syncLoading}
                               className="admin-button admin-button-danger"
                             >
@@ -1052,126 +1016,29 @@ export default function Admin() {
                             </button>
                           </div>
                           <div className="admin-table-container">
-                            <table className="admin-table">
+                            <table className="admin-table admin-cols-departed">
+                              <colgroup><col /><col /><col /></colgroup>
                               <thead>
                                 <tr>
                                   <th>Email</th>
-                                  <th>Action</th>
+                                  <th>Name</th>
+                                  <th>Bondsnummer</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                {syncStatus.departed.map((email, idx) => (
-                                  <tr key={email} className={highlightedRow === syncDepStartNav + idx ? "admin-nav-highlight" : ""}>
-                                    <td>{email}</td>
-                                    <td>
-                                      <button
-                                        onClick={() =>
-                                          handleRemoveDeparted(email)
-                                        }
-                                        disabled={syncLoading}
-                                        className="admin-button admin-button-danger"
-                                      >
-                                        Remove
-                                      </button>
-                                    </td>
+                                {syncStatus.departed.map((d) => (
+                                  <tr key={d.user_id}>
+                                    <td>{d.email}</td>
+                                    <td>{d.firstname} {d.lastname}</td>
+                                    <td>{d.bondsnummer ?? "\u2014"}</td>
                                   </tr>
                                 ))}
                               </tbody>
                             </table>
                           </div>
                         </>
-                      )}
-                      {syncStatus.departed.length === 0 && (
-                        <div className="admin-empty">No departed members</div>
-                      )}
-                    </div>
-
-                    {/* Existing members */}
-                    <div className="admin-sync-group">
-                      <h3>
-                        Existing Members{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.existing.length})
-                        </span>
-                        {existingChanged.length > 0 && (
-                          <span className="admin-changes">
-                            {existingChanged.length} changed
-                          </span>
-                        )}
-                      </h3>
-                      {syncStatus.existing.length > 0 ? (
-                        existingChanged.length > 0 ? (
-                          <>
-                            <div className={`admin-nav-item ${highlightedRow === syncExBulkNav ? "admin-nav-highlight" : ""}`}>
-                              <button
-                                onClick={() => handleUpdateExisting()}
-                                disabled={syncLoading}
-                                className="admin-button admin-button-refresh"
-                              >
-                                Update All Changed
-                              </button>
-                            </div>
-                            <div className="admin-table-container">
-                              <table className="admin-table">
-                                <thead>
-                                  <tr>
-                                    <th>Email</th>
-                                    <th>Changes</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {existingChanged.map((pair, idx) => {
-                                    const formatName = (e: SyncEntry) =>
-                                      `${e.voornaam} ${e.tussenvoegsel ? `${e.tussenvoegsel} ` : ""}${e.achternaam}`;
-                                    const nameChanged = !pair.current ||
-                                      pair.sync.voornaam !== pair.current.voornaam ||
-                                      pair.sync.achternaam !== pair.current.achternaam ||
-                                      pair.sync.tussenvoegsel !== pair.current.tussenvoegsel;
-                                    const birthdayChanged = !pair.current ||
-                                      pair.sync.geboortedatum !== pair.current.geboortedatum;
-                                    return (
-                                      <tr key={pair.sync.email} className={highlightedRow === syncExStartNav + idx ? "admin-nav-highlight" : ""}>
-                                        <td>{pair.sync.email}</td>
-                                        <td>
-                                          {!pair.current ? (
-                                            <span className="admin-status-badge admin-status-badge-pending">No account</span>
-                                          ) : (
-                                            <>
-                                              {nameChanged && (
-                                                <div>Name: {formatName(pair.current)} → {formatName(pair.sync)}</div>
-                                              )}
-                                              {birthdayChanged && (
-                                                <div>Birthday: {pair.current.geboortedatum || "–"} → {pair.sync.geboortedatum || "–"}</div>
-                                              )}
-                                            </>
-                                          )}
-                                        </td>
-                                        <td>
-                                          <button
-                                            onClick={() =>
-                                              handleUpdateExisting(pair.sync.email)
-                                            }
-                                            disabled={syncLoading}
-                                            className="admin-button admin-button-refresh"
-                                          >
-                                            Update
-                                          </button>
-                                        </td>
-                                      </tr>
-                                    );
-                                  })}
-                                </tbody>
-                              </table>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="admin-empty">
-                            All {syncStatus.existing.length} existing members are up to date
-                          </div>
-                        )
                       ) : (
-                        <div className="admin-empty">No existing members</div>
+                        <div className="admin-empty">No departed members</div>
                       )}
                     </div>
                   </>
@@ -1182,5 +1049,69 @@ export default function Admin() {
         </>
       )}
     </div>
+  );
+}
+
+// --- Sync Review Row ---
+
+function SyncReviewRow({
+  item,
+  disabled,
+  onResolve,
+}: {
+  item: SyncReviewItem;
+  disabled: boolean;
+  onResolve: (bondsnummer: number, kind: string, subjectId: string | null) => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const voltaEmail = String(item.incoming_volta_data["email"] ?? "");
+
+  return (
+    <tr>
+      <td>{item.bondsnummer}</td>
+      <td>{voltaEmail}</td>
+      <td>
+        {item.candidates.length === 0 ? (
+          <span className="admin-sync-no-candidates">No matches found</span>
+        ) : (
+          <button
+            className="admin-button admin-button-add"
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? "Hide" : `${item.candidates.length} candidate(s)`}
+          </button>
+        )}
+        {expanded && (
+          <div className="admin-candidate-list">
+            {item.candidates.map((c) => (
+              <div key={`${c.kind}-${c.subject_id}`} className="admin-candidate-row">
+                <span className="admin-candidate-kind">{c.kind}</span>
+                <span className="admin-candidate-name">{c.display_name}</span>
+                <span className="admin-candidate-email">{c.email}</span>
+                <span className="admin-candidate-reasons">
+                  {c.reasons.join(", ")}
+                </span>
+                <button
+                  className="admin-button admin-button-accept"
+                  disabled={disabled}
+                  onClick={() => onResolve(item.bondsnummer, c.kind, c.subject_id)}
+                >
+                  Match
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </td>
+      <td>
+        <button
+          className="admin-button admin-button-danger"
+          disabled={disabled}
+          onClick={() => onResolve(item.bondsnummer, "none", null)}
+        >
+          No Match
+        </button>
+      </td>
+    </tr>
   );
 }

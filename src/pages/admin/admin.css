@@ -99,6 +99,7 @@
 
 .admin-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -115,6 +116,8 @@
   padding: 12px 16px;
   text-align: left;
   border-bottom: 1px solid #dee2e6;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .admin-table th {
@@ -197,11 +200,6 @@
 .admin-status-badge-muted {
   background-color: #e9ecef;
   color: #6c757d;
-}
-
-.admin-status-badge-disabled {
-  background-color: #dc3545;
-  color: #ffffff;
 }
 
 /* Tooltip on status badges */
@@ -510,3 +508,134 @@
   font-size: 12px;
   margin-top: 8px;
 }
+
+/* Cells that contain expanding content (candidates, diffs) */
+.admin-table td:has(.admin-candidate-list),
+.admin-table td:has(.admin-field-diffs) {
+  overflow: visible;
+  white-space: normal;
+}
+
+/* Field diffs */
+.admin-field-diffs {
+  font-size: 13px;
+}
+
+.admin-field-diff {
+  margin-bottom: 2px;
+}
+
+.admin-field-diff-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.admin-field-diff-old {
+  color: #dc3545;
+  text-decoration: line-through;
+}
+
+.admin-field-diff-new {
+  color: #28a745;
+  font-weight: 500;
+}
+
+/* Sync review candidates */
+.admin-sync-no-candidates {
+  color: #999;
+  font-style: italic;
+}
+
+.admin-candidate-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-candidate-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.admin-candidate-kind {
+  font-weight: 600;
+  text-transform: capitalize;
+  min-width: 80px;
+  color: #555;
+}
+
+.admin-candidate-name {
+  font-weight: 500;
+  min-width: 120px;
+}
+
+.admin-candidate-email {
+  color: #666;
+  min-width: 160px;
+}
+
+.admin-candidate-reasons {
+  color: #0066cc;
+  font-size: 12px;
+  flex: 1;
+}
+
+.admin-candidate-row .admin-button {
+  margin-left: auto;
+  padding: 3px 10px;
+  font-size: 12px;
+}
+
+/*
+ * Fixed column layouts for each table variant.
+ * With table-layout:fixed the browser sizes columns from <col> widths,
+ * so content changes never cause layout shift.
+ */
+
+/* Registrations tab: Email | Name | Accepted | Status | BN | Action */
+.admin-cols-registrations col:nth-child(1) { width: 28%; }
+.admin-cols-registrations col:nth-child(2) { width: 22%; }
+.admin-cols-registrations col:nth-child(3) { width: 10%; }
+.admin-cols-registrations col:nth-child(4) { width: 12%; }
+.admin-cols-registrations col:nth-child(5) { width: 13%; }
+.admin-cols-registrations col:nth-child(6) { width: 15%; }
+
+/* Users: active members: Name | BN | Permissions | Actions */
+.admin-cols-members col:nth-child(1) { width: 30%; }
+.admin-cols-members col:nth-child(2) { width: 12%; }
+.admin-cols-members col:nth-child(3) { width: 38%; }
+.admin-cols-members col:nth-child(4) { width: 20%; }
+
+/* Users: inactive: Name | BN */
+.admin-cols-inactive col:nth-child(1) { width: 70%; }
+.admin-cols-inactive col:nth-child(2) { width: 30%; }
+
+/* Sync: review required: BN | Volta Email | Candidates | Action */
+.admin-cols-review col:nth-child(1) { width: 12%; }
+.admin-cols-review col:nth-child(2) { width: 25%; }
+.admin-cols-review col:nth-child(3) { width: 48%; }
+.admin-cols-review col:nth-child(4) { width: 15%; }
+
+/* Sync: linked registrations: BN | Email | Name | Email Change | Changes */
+.admin-cols-linked col:nth-child(1) { width: 12%; }
+.admin-cols-linked col:nth-child(2) { width: 25%; }
+.admin-cols-linked col:nth-child(3) { width: 23%; }
+.admin-cols-linked col:nth-child(4) { width: 15%; }
+.admin-cols-linked col:nth-child(5) { width: 25%; }
+
+/* Sync: existing changes: BN | Email | Changes */
+.admin-cols-existing col:nth-child(1) { width: 15%; }
+.admin-cols-existing col:nth-child(2) { width: 35%; }
+.admin-cols-existing col:nth-child(3) { width: 50%; }
+
+/* Sync: departed: Email | Name | BN */
+.admin-cols-departed col:nth-child(1) { width: 40%; }
+.admin-cols-departed col:nth-child(2) { width: 40%; }
+.admin-cols-departed col:nth-child(3) { width: 20%; }

@@ -1,25 +1,23 @@
-import type { NewUser } from "$functions/backend.ts";
+import type { AdminRegistrationRecord } from "$functions/backend.ts";
 
 interface PendingRegistrationsProps {
-  users: NewUser[];
-  onResume?: (user: NewUser) => void;
+  registrations: AdminRegistrationRecord[];
+  onResume?: (reg: AdminRegistrationRecord) => void;
   loading?: boolean;
 }
 
-function userStatus(user: NewUser): string {
-  if (user.is_registered && !user.accepted) return "Pending acceptance";
-  if (user.has_signup_token && !user.is_registered) return "Pending verification";
-  if (!user.has_signup_token && !user.is_registered) return "No signup yet";
-  if (user.is_registered && user.accepted) return "Complete";
-  return "Unknown";
+function registrationStatus(reg: AdminRegistrationRecord): string {
+  if (reg.accepted && reg.signup_active) return "Signup active";
+  if (reg.accepted) return "Accepted";
+  return "Pending";
 }
 
 export default function PendingRegistrations({
-  users,
+  registrations,
   onResume,
   loading,
 }: PendingRegistrationsProps) {
-  if (users.length === 0) {
+  if (registrations.length === 0) {
     return <p className="pending-registrations-empty">No pending registrations.</p>;
   }
 
@@ -30,22 +28,22 @@ export default function PendingRegistrations({
           <th>Email</th>
           <th>Name</th>
           <th>Status</th>
-          <th>Emails sent</th>
+          <th>Bondsnummer</th>
           {onResume && <th></th>}
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => (
-          <tr key={user.email}>
-            <td>{user.email}</td>
+        {registrations.map((reg) => (
+          <tr key={reg.registration_id}>
+            <td>{reg.email}</td>
             <td>
-              {user.firstname} {user.lastname}
+              {reg.firstname} {reg.lastname}
             </td>
-            <td>{userStatus(user)}</td>
-            <td>{user.email_send_count}</td>
+            <td>{registrationStatus(reg)}</td>
+            <td>{reg.bondsnummer ?? "\u2014"}</td>
             {onResume && (
               <td>
-                <button onClick={() => onResume(user)} disabled={loading}>
+                <button onClick={() => onResume(reg)} disabled={loading}>
                   Resume
                 </button>
               </td>

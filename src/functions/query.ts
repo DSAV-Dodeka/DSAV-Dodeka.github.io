@@ -19,45 +19,40 @@ export function useSessionInfo() {
       }
       return backend.getSessionInfo();
     },
-    // Refetch in background periodically
-    refetchInterval: 60000, // 1 minute
-    staleTime: 30000, // 30 seconds
+    refetchInterval: 60000,
+    staleTime: 30000,
   });
 }
 
-// Secondary session is used for admin auth during testing
-// It doesn't affect the primary logged-in user
-// Only polls when logged in to avoid unnecessary network requests
 export function useSecondarySessionInfo() {
   return useQuery({
     queryKey: ["session-secondary"],
     queryFn: async () => {
       return backend.getSessionInfo(true);
     },
-    // Only poll when logged in - login/logout trigger immediate refetch via invalidateQueries
     refetchInterval: (query) => {
       if (query.state.data) {
-        return 30000; // 30 seconds when logged in (session maintenance)
+        return 30000;
       }
-      return false; // Don't poll when not logged in
+      return false;
     },
-    staleTime: 10000, // 10 seconds
+    staleTime: 10000,
   });
 }
 
 export type { SessionInfo } from "./backend.ts";
 
-export function useRegistrationStatus(registrationToken: string | null) {
+export function useRegistrationStatus(registrationId: string | null) {
   return useQuery({
-    queryKey: ["registration-status", registrationToken],
+    queryKey: ["registration-status", registrationId],
     queryFn: async () => {
-      if (!registrationToken) {
-        throw new Error("No registration token provided");
+      if (!registrationId) {
+        throw new Error("No registration_id provided");
       }
-      return backend.getRegistrationStatus(registrationToken);
+      return backend.getRegistrationStatus(registrationId);
     },
-    enabled: !!registrationToken, // Only run if token exists
-    retry: false, // Don't retry on failure
+    enabled: !!registrationId,
+    retry: false,
   });
 }
 
@@ -78,9 +73,9 @@ export function useMemberBirthdays(enabled: boolean) {
 
 // --- Admin query options ---
 
-export const newUsersOptions = queryOptions({
-  queryKey: ["admin", "newUsers"] as const,
-  queryFn: backend.listNewUsers,
+export const registrationsOptions = queryOptions({
+  queryKey: ["admin", "registrations"] as const,
+  queryFn: backend.listRegistrations,
 });
 
 export const usersOptions = queryOptions({
@@ -101,8 +96,8 @@ export const syncStatusOptions = queryOptions({
 
 // --- Admin query hooks ---
 
-export function useNewUsers(enabled: boolean) {
-  return useQuery({ ...newUsersOptions, enabled });
+export function useRegistrations(enabled: boolean) {
+  return useQuery({ ...registrationsOptions, enabled });
 }
 
 export function useUsers(enabled: boolean) {
@@ -115,26 +110,13 @@ export function useSyncStatus(enabled: boolean) {
 
 // --- Admin mutations ---
 
-export function useAcceptUser() {
+export function useAcceptRegistration() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: backend.acceptUser,
-    onSuccess: async () => {
-      await Promise.all([
-        queryClient.invalidateQueries({ queryKey: newUsersOptions.queryKey }),
-        queryClient.invalidateQueries({ queryKey: usersOptions.queryKey }),
-      ]);
-    },
-  });
-}
-
-export function useResendSignupEmail() {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: backend.resendSignupEmail,
+    mutationFn: backend.acceptRegistration,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: newUsersOptions.queryKey,
+        queryKey: registrationsOptions.queryKey,
       });
     },
   });
@@ -168,38 +150,58 @@ export function useImportSync() {
   });
 }
 
-export function useAcceptNewSync() {
+async function invalidateAllAdmin(queryClient: ReturnType<typeof useQueryClient>) {
+  await Promise.all([
+    queryClient.invalidateQueries({ queryKey: syncStatusOptions.queryKey }),
+    queryClient.invalidateQueries({ queryKey: registrationsOptions.queryKey }),
+    queryClient.invalidateQueries({ queryKey: usersOptions.queryKey }),
+  ]);
+}
+
+export function useResolveSyncMatch() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (email?: string) => backend.acceptNewSync(email),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: syncStatusOptions.queryKey,
-      });
-    },
+    mutationFn: ({
+      bondsnummer,
+      kind,
+      subjectId,
+    }: {
+      bondsnummer: number;
+      kind: string;
+      subjectId: string | null;
+    }) => backend.resolveSyncMatch(bondsnummer, kind, subjectId),
+    onSuccess: () => invalidateAllAdmin(queryClient),
+  });
+}
+
+export function useLinkBondsnummer() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({
+      kind,
+      subjectId,
+      bondsnummer,
+    }: {
+      kind: string;
+      subjectId: string;
+      bondsnummer: number;
+    }) => backend.linkBondsnummer(kind, subjectId, bondsnummer),
+    onSuccess: () => invalidateAllAdmin(queryClient),
   });
 }
 
 export function useRemoveDeparted() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (email?: string) => backend.removeDeparted(email),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: syncStatusOptions.queryKey,
-      });
-    },
+    mutationFn: () => backend.removeDeparted(),
+    onSuccess: () => invalidateAllAdmin(queryClient),
   });
 }
 
 export function useUpdateExisting() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (email?: string) => backend.updateExisting(email),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: syncStatusOptions.queryKey,
-      });
-    },
+    mutationFn: () => backend.updateExisting(),
+    onSuccess: () => invalidateAllAdmin(queryClient),
   });
 }
