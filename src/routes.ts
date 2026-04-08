@@ -39,6 +39,10 @@ export default [
     route("admin", "./pages/admin/admin.tsx"),
     route("huisstijl", "./pages/Branding/Branding.tsx"),
     route("komkommer", "./pages/komkommer/komkommer.tsx"),
+    route("sprint_tijden", "./pages/sprint-tijden/sprint-tijden.tsx"),
+    route("sprint", "./pages/sprint-tijden/sprint-alias.tsx"),
+    route("trainings_schema", "./pages/sprint-tijden/trainings-schema-alias.tsx"),
+    route("training_schema", "./pages/sprint-tijden/training-schema-alias.tsx"),
     route("update", "./pages/update/update/update.tsx"),
     ...prefix("leden", [
       index("./pages/leden/leden/leden.tsx"),

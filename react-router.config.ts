@@ -35,6 +35,10 @@ export default {
       "/nieuws",
       "/nieuws/spike",
       "/update",
+      "/sprint_tijden",
+      "/sprint",
+      "/trainings_schema",
+      "/training_schema",
     ];
   },
 } satisfies Config;
