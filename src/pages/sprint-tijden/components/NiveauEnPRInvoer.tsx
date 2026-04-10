@@ -12,12 +12,14 @@ interface NiveauEnPRInvoerProps {
 const LEVEL_LABELS: Record<ExperienceLevel, string> = {
   beginner: "Verse Sprinter",
   novice: "Enthousiast",
-  intermediate: "Doorgewinterd",
-  gevorderd: "Sprintkanon",
-  elite: "Legende",
+  intermediate: "Groeiend Talent",
+  gevorderd: "Doorgewinterd",
+  elite: "Sprintkanon",
+  legende: "Legende",
+  bolt: "Usain Bolt ⚡",
 };
 
-const LEVELS: ExperienceLevel[] = ["beginner", "novice", "intermediate", "gevorderd", "elite"];
+const LEVELS: ExperienceLevel[] = ["beginner", "novice", "intermediate", "gevorderd", "elite", "legende"];
 
 const TOOLTIP_TEXT =
   "Tijden worden berekend via lineaire interpolatie tussen bekende PR-afstanden en machtswet-extrapolatie (Riegel-formule) voor afstanden buiten bereik.";

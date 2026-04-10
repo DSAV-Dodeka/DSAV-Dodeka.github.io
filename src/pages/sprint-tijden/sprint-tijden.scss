@@ -3,10 +3,7 @@
 // ─── Page wrapper ────────────────────────────────────────────────
 .sprint-tijden-page {
   max-width: 960px;
-  margin: 0 auto variables.$margin_mobile;
-  padding: 0 variables.$margin_mobile;
-  overflow-x: hidden;
-  overflow-y: visible;
+  margin: 0 variables.$margin_mobile variables.$margin_mobile;
 
   *,
   *::before,
@@ -15,7 +12,6 @@
   }
   @include variables.respond(computerscherm) {
     margin: 0 auto variables.$margin_y;
-    padding: 0 variables.$margin_x;
   }
 
   h2 {
@@ -46,6 +42,7 @@
 // ─── TrainingSchemaBuilder ───────────────────────────────────────
 .training-schema {
   margin-bottom: 1.5rem;
+  overflow: hidden;
 }
 
 .training-schema__mode-toggle {
@@ -258,7 +255,6 @@
   max-width: 100%;
   overflow: hidden;
 }
-
 .niveau-pr-invoer__levels {
   margin-bottom: 1.25rem;
 }
@@ -273,15 +269,12 @@
 }
 
 .niveau-pr-invoer__levels-buttons {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 0.5rem;
 
   @include variables.respond(computerscherm) {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -296,13 +289,10 @@
   cursor: pointer;
   transition: background-color 0.15s, color 0.15s;
   text-align: center;
-  width: 100%;
 
   @include variables.respond(computerscherm) {
     padding: 0.5rem 1rem;
-    border-radius: 999px;
     font-size: variables.$font_small;
-    width: auto;
   }
 
   &:hover:not(&--active) {
@@ -315,12 +305,7 @@
   }
 }
 
-// Make the 5th button (Elite) span full width on 2-col grid
-.niveau-pr-invoer__levels-buttons .niveau-btn:nth-child(5) {
-  @include variables.respond(computerscherm) {
-    grid-column: auto;
-  }
-}
+// Remove the old 5th-child grid-column rule
 
 .niveau-pr-invoer__pr-section {
   margin-bottom: 1rem;
@@ -634,7 +619,14 @@
 .referentie-tabel__table-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  margin-bottom: 0.75rem;
+  margin: 0 calc(-1 * #{variables.$margin_mobile}) 0.75rem;
+  padding: 0 variables.$margin_mobile;
+
+  @include variables.respond(computerscherm) {
+    margin: 0 0 0.75rem;
+    padding: 0;
+    overflow-x: visible;
+  }
 }
 
 .referentie-tabel__table {

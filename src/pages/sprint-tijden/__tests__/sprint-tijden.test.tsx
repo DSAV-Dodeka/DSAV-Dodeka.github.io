@@ -49,7 +49,7 @@ describe("NiveauEnPRInvoer", () => {
       />
     );
 
-    await user.click(screen.getByRole("button", { name: "Doorgewinterd" }));
+    await user.click(screen.getByRole("button", { name: "Groeiend Talent" }));
     expect(onSelectLevel).toHaveBeenCalledWith("intermediate");
   });
 
@@ -72,7 +72,7 @@ describe("NiveauEnPRInvoer", () => {
     // Verify the component renders with level selected
     const section = container.querySelector(".niveau-pr-invoer")!;
     const intermediateBtn = within(section as HTMLElement).getByRole("button", {
-      name: "Doorgewinterd",
+      name: "Groeiend Talent",
     });
     expect(intermediateBtn.className).toContain("niveau-btn--active");
 
@@ -81,7 +81,7 @@ describe("NiveauEnPRInvoer", () => {
       "60m"
     ) as HTMLInputElement;
     expect(input60m.type).toBe("number");
-    expect(input60m.getAttribute("value")).toBe("8");
+    expect(input60m.getAttribute("value")).toBe("8.8");
 
     // Type a new integer value (jsdom number inputs don't support decimal typing)
     await user.click(input60m);
@@ -95,15 +95,14 @@ describe("NiveauEnPRInvoer", () => {
 // ── ReferentieTabel ──
 
 describe("ReferentieTabel", () => {
-  it("is always visible with heading, subtitle, and standard distance rows", () => {
+  it("is always visible with tooltip trigger and standard distance rows in popup", () => {
     const { container } = render(
       <ReferentieTabel runs={[]} selectedLevel={null} userPRValues={{}} />
     );
 
-    expect(screen.getByText("Referentietijden per Niveau")).toBeVisible();
-    expect(screen.getByText("PR Referentie")).toBeVisible();
+    expect(screen.getByText(/PR Referentie per niveau/)).toBeInTheDocument();
 
-    // All standard distances should be rendered in the PR reference table
+    // All standard distances should be rendered in the PR reference table (inside popup)
     const cells = container.querySelectorAll("td.referentie-tabel__cell");
     for (const distance of ALL_DISTANCES) {
       const distanceCell = Array.from(cells).find(

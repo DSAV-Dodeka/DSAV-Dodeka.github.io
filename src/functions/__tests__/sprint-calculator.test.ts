@@ -172,13 +172,13 @@ describe('findClosestLevel', () => {
 
   it('returns the closest level for values between two levels', () => {
     // Values slightly closer to intermediate than novice
-    const prValues: PRValues = { 100: 12.6, 200: 27.2 };
+    const prValues: PRValues = { 100: 13.6, 200: 29.2 };
     expect(findClosestLevel(prValues)).toBe('intermediate');
   });
 
   it('works with a single PR value', () => {
-    // 60m = 9.5 matches beginner exactly
-    const prValues: PRValues = { 60: 9.5 };
+    // 60m = 10.5 matches beginner exactly
+    const prValues: PRValues = { 60: 10.5 };
     expect(findClosestLevel(prValues)).toBe('beginner');
   });
 });

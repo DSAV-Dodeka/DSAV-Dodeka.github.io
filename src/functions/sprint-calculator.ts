@@ -20,15 +20,17 @@ export interface SortedPR {
 }
 
 /** Ervaringsniveaus */
-export type ExperienceLevel = 'beginner' | 'novice' | 'intermediate' | 'gevorderd' | 'elite';
+export type ExperienceLevel = 'beginner' | 'novice' | 'intermediate' | 'gevorderd' | 'elite' | 'legende' | 'bolt';
 
 /** Referentie-PR's per ervaringsniveau */
 export const EXPERIENCE_LEVEL_PRS: Record<ExperienceLevel, Record<PRDistance, number>> = {
-  beginner:     { 60: 9.5, 100: 15.0, 150: 23.5, 200: 32.0, 300: 52.0, 400: 72.0 },
-  novice:       { 60: 8.8, 100: 13.5, 150: 21.0, 200: 29.0, 300: 47.0, 400: 66.0 },
-  intermediate: { 60: 8.0, 100: 12.5, 150: 19.5, 200: 27.0, 300: 43.0, 400: 60.0 },
-  gevorderd:    { 60: 7.3, 100: 11.5, 150: 17.8, 200: 24.5, 300: 39.0, 400: 55.0 },
-  elite:        { 60: 7.0, 100: 11.0, 150: 17.0, 200: 23.5, 300: 37.0, 400: 52.0 },
+  beginner:     { 60: 10.5, 100: 16.5, 150: 26.0, 200: 36.0, 300: 58.0, 400: 80.0 },
+  novice:       { 60: 9.5, 100: 15.0, 150: 23.5, 200: 32.0, 300: 52.0, 400: 72.0 },
+  intermediate: { 60: 8.8, 100: 13.5, 150: 21.0, 200: 29.0, 300: 47.0, 400: 66.0 },
+  gevorderd:    { 60: 8.0, 100: 12.5, 150: 19.5, 200: 27.0, 300: 43.0, 400: 60.0 },
+  elite:        { 60: 7.3, 100: 11.5, 150: 17.8, 200: 24.5, 300: 39.0, 400: 55.0 },
+  legende:      { 60: 7.0, 100: 11.0, 150: 17.0, 200: 23.5, 300: 37.0, 400: 52.0 },
+  bolt:         { 60: 6.31, 100: 9.58, 150: 14.35, 200: 19.19, 300: 30.5, 400: 45.35 },
 };
 
 /** Training run in het schema */

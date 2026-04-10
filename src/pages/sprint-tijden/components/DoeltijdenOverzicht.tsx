@@ -18,7 +18,7 @@ function DoeltijdenOverzicht({ runs, prValues, hasPRData, mode }: DoeltijdenOver
   return (
     <section className="doeltijden-overzicht">
       <div className="doeltijden-overzicht__card">
-        <h2>Berekende Doeltijden</h2>
+        <h2>Berekende Doelen</h2>
 
         {!hasPRData ? (
           <p className="doeltijden-overzicht__placeholder">
@@ -31,7 +31,7 @@ function DoeltijdenOverzicht({ runs, prValues, hasPRData, mode }: DoeltijdenOver
                 <th>Loopje</th>
                 <th>{mode === "distance" ? "Afstand" : "Duur"}</th>
                 <th>Intensiteit</th>
-                <th>{mode === "distance" ? "Doeltijd" : "Geschatte afstand"}</th>
+                <th>{mode === "distance" ? "Doeltijd" : "Doelafstand"}</th>
               </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@ function DoeltijdenOverzicht({ runs, prValues, hasPRData, mode }: DoeltijdenOver
                   // vermenigvuldig dan met percentage (sneller = meer afstand)
                   const distanceAt100 = calculateDistanceForDuration(dur, prs);
                   const estimatedDistance = distanceAt100 * (run.percentage / 100);
-                  resultaat = `~${Math.round(estimatedDistance / 10) * 10}m`;
+                  resultaat = `${Math.round(estimatedDistance / 10) * 10}m`;
                   invoer = `${dur}s`;
                 }
 

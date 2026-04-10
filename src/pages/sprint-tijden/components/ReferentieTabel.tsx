@@ -26,14 +26,19 @@ const LEVELS: ExperienceLevel[] = [
   "intermediate",
   "gevorderd",
   "elite",
+  "legende",
 ];
+
+const LEVELS_WITH_BOLT: ExperienceLevel[] = [...LEVELS, "bolt"];
 
 const LEVEL_LABELS: Record<ExperienceLevel, string> = {
   beginner: "Verse Sprinter",
   novice: "Enthousiast",
-  intermediate: "Doorgewinterd",
-  gevorderd: "Sprintkanon",
-  elite: "Legende",
+  intermediate: "Groeiend Talent",
+  gevorderd: "Doorgewinterd",
+  elite: "Sprintkanon",
+  legende: "Legende",
+  bolt: "Bolt ⚡",
 };
 
 function ReferentieTabel({
@@ -119,7 +124,7 @@ function ReferentieTabel({
             <thead>
               <tr>
                 <th className="referentie-tabel__header">Afstand</th>
-                {LEVELS.map((level) => (
+                {LEVELS_WITH_BOLT.map((level) => (
                   <th
                     key={level}
                     className={`referentie-tabel__header${
@@ -135,7 +140,7 @@ function ReferentieTabel({
               {ALL_DISTANCES.map((distance: PRDistance) => (
                 <tr key={distance} className="referentie-tabel__row">
                   <td className="referentie-tabel__cell">{distance}m</td>
-                  {LEVELS.map((level) => (
+                  {LEVELS_WITH_BOLT.map((level) => (
                     <td
                       key={level}
                       className={`referentie-tabel__cell${
