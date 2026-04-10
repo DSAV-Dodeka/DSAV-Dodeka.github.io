@@ -3,7 +3,10 @@
 // ─── Page wrapper ────────────────────────────────────────────────
 .sprint-tijden-page {
   max-width: 960px;
-  margin: 0 variables.$margin_mobile variables.$margin_mobile;
+  margin: 0 auto variables.$margin_mobile;
+  padding: 0 variables.$margin_mobile;
+  overflow-x: hidden;
+  overflow-y: visible;
 
   *,
   *::before,
@@ -12,9 +15,7 @@
   }
   @include variables.respond(computerscherm) {
     margin: 0 auto variables.$margin_y;
-  }
-  @include variables.respond(too_large) {
-    margin: 0 auto variables.$margin_y;
+    padding: 0 variables.$margin_x;
   }
 
   h2 {
@@ -51,39 +52,55 @@
   display: flex;
   gap: 0;
   margin-bottom: 1rem;
-  border-radius: 6px;
+  border-radius: 999px;
   overflow: hidden;
   border: 2px solid variables.$dodeka_blauw;
   width: 100%;
+  position: relative;
+  background: white;
 
   @include variables.respond(computerscherm) {
-    width: fit-content;
+    width: 240px;
   }
+}
+
+// Sliding indicator behind the active button
+.training-schema__mode-toggle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: variables.$dodeka_blauw;
+  border-radius: 999px;
+  transition: transform 0.25s ease;
+  z-index: 0;
+}
+
+.training-schema__mode-toggle--duration::after {
+  transform: translateX(100%);
 }
 
 .training-schema__mode-btn {
   flex: 1;
   padding: 0.6rem 1rem;
   border: none;
-  background: white;
+  background: transparent;
   color: variables.$dodeka_blauw;
   font-size: variables.$font_small;
   font-weight: variables.$bold;
   cursor: pointer;
-  transition: background-color 0.15s, color 0.15s;
+  transition: color 0.25s ease;
+  position: relative;
+  z-index: 1;
 
   @include variables.respond(computerscherm) {
-    flex: none;
     padding: 0.5rem 1.25rem;
   }
 
   &--active {
-    background: variables.$dodeka_blauw;
     color: white;
-  }
-
-  &:hover:not(&--active) {
-    background: rgba(variables.$dodeka_blauw, 0.08);
   }
 }
 
@@ -238,6 +255,8 @@
 // ─── NiveauEnPRInvoer ────────────────────────────────────────────
 .niveau-pr-invoer {
   margin-bottom: 1.5rem;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .niveau-pr-invoer__levels {
@@ -384,6 +403,8 @@
 
 .niveau-pr-invoer__tooltip-container {
   margin-top: 0.75rem;
+  position: relative;
+  display: inline-block;
 }
 
 .niveau-pr-invoer__tooltip-trigger {
@@ -402,14 +423,51 @@
   }
 }
 
-.niveau-pr-invoer__tooltip-text {
-  margin-top: 0.5rem;
+.niveau-pr-invoer__tooltip-popup {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 0.5rem;
   padding: 0.75rem;
-  background: #f7f8fa;
-  border-radius: 6px;
+  background: white;
+  border: 1px solid variables.$dodeka_grijs;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   color: variables.$dodeka_blauw;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   line-height: 1.5;
+  width: 320px;
+  max-width: 90vw;
+  z-index: 10;
+
+  p { margin: 0 0 0.4rem; }
+  ul { padding-left: 1.25rem; margin: 0; }
+  li { margin-bottom: 0.3rem; }
+
+  // Desktop: show on hover
+  @include variables.respond(computerscherm) {
+    width: 400px;
+  }
+}
+
+// Desktop: hover to show
+@media (min-width: 1200px) {
+  .niveau-pr-invoer__tooltip-container:hover .niveau-pr-invoer__tooltip-popup {
+    display: block;
+  }
+}
+
+// Mobile: click to show (via --open class)
+@media (max-width: 1199px) {
+  .niveau-pr-invoer__tooltip-popup--open {
+    display: block;
+    position: static;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 
@@ -496,15 +554,11 @@
   margin-bottom: 1.5rem;
 }
 
-.referentie-tabel__subtitle {
-  // inherits h3 from page wrapper
+.referentie-tabel__tooltip-container {
+  position: relative;
 }
 
-.referentie-tabel__toggle-container {
-  margin: 0.75rem 0;
-}
-
-.referentie-tabel__toggle-btn {
+.referentie-tabel__tooltip-trigger {
   color: variables.$dodeka_grijs;
   font-size: 0.875rem;
   cursor: pointer;
@@ -518,6 +572,69 @@
   &:hover {
     color: variables.$dodeka_blauw;
   }
+
+  @include variables.respond(computerscherm) {
+    cursor: default;
+  }
+}
+
+.referentie-tabel__mobile-arrow {
+  @include variables.respond(computerscherm) {
+    display: none;
+  }
+}
+
+.referentie-tabel__tooltip-popup {
+  display: none;
+}
+
+// Desktop: hover to show
+@media (min-width: 1200px) {
+  .referentie-tabel__tooltip-container:hover .referentie-tabel__tooltip-popup {
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid variables.$dodeka_grijs;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+// Mobile: click to show
+@media (max-width: 1199px) {
+  .referentie-tabel__tooltip-popup--open {
+    display: block;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: #f7f8fa;
+    border-radius: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.referentie-tabel__subtitle {
+  color: variables.$dodeka_blauw;
+  font-size: 0.875rem;
+  font-weight: variables.$bold;
+  margin: 0 0 0.5rem;
+
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.referentie-tabel__table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 0.75rem;
 }
 
 .referentie-tabel__table {

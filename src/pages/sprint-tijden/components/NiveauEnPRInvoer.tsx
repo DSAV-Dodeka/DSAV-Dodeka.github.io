@@ -127,19 +127,27 @@ function NiveauEnPRInvoer({ selectedLevel, prValues, onSelectLevel, onPRChange }
         </div>
       </div>
 
-      {/* Algorithm tooltip — click to toggle on mobile */}
+      {/* Algorithm tooltip — hover on desktop, click on mobile */}
       <div className="niveau-pr-invoer__tooltip-container">
         <button
           type="button"
           className="niveau-pr-invoer__tooltip-trigger"
           onClick={() => setShowTooltip((prev) => !prev)}
-          title={TOOLTIP_TEXT}
         >
           ℹ Hoe worden tijden berekend?
         </button>
-        {showTooltip && (
-          <p className="niveau-pr-invoer__tooltip-text">{TOOLTIP_TEXT}</p>
-        )}
+        <div className={`niveau-pr-invoer__tooltip-popup${showTooltip ? " niveau-pr-invoer__tooltip-popup--open" : ""}`}>
+          <p>
+            Tussen twee bekende PR-afstanden worden tijden berekend via lineaire interpolatie.
+            Voor afstanden buiten je PR-bereik wordt machtswet-extrapolatie gebruikt op basis
+            van de Riegel-formule (T₂ = T₁ × (D₂/D₁)ᵏ) met een sprint-specifieke exponent.
+          </p>
+          <p><strong>Referenties:</strong></p>
+          <ul>
+            <li>Riegel, P.S. (1981). &quot;Athletic Records and Human Endurance.&quot; <em>American Scientist</em>, 69(3), 285–290.</li>
+            <li>Mills, C. (2009). &quot;Estimating Sprint Training Times: What is an Appropriate Target Time?&quot;</li>
+          </ul>
+        </div>
       </div>
     </section>
   );

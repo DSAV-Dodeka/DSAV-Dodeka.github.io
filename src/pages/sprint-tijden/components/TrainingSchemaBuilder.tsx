@@ -76,7 +76,7 @@ function TrainingSchemaBuilder({ runs, mode, onAddRun, onRemoveRun, onUpdateRun,
     <section className="training-schema">
       <h2>Trainingsschema</h2>
 
-      <div className="training-schema__mode-toggle">
+      <div className={`training-schema__mode-toggle${mode === "duration" ? " training-schema__mode-toggle--duration" : ""}`}>
         <button
           type="button"
           className={`training-schema__mode-btn ${mode === "distance" ? "training-schema__mode-btn--active" : ""}`}

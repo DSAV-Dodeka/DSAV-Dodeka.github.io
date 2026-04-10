@@ -41,7 +41,8 @@ function ReferentieTabel({
   selectedLevel,
   userPRValues,
 }: ReferentieTabelProps) {
-  const [showPRRef, setShowPRRef] = useState(false);
+  const [showTable, setShowTable] = useState(false);
+
   // Determine highlighted level
   let highlightedLevel: ExperienceLevel | null = selectedLevel;
   if (!highlightedLevel) {
@@ -55,113 +56,101 @@ function ReferentieTabel({
 
   return (
     <section className="referentie-tabel">
-      <h2>Referentietijden per Niveau</h2>
-
-      {/* Training runs table */}
+      {/* Training runs table — always visible */}
       {validRuns.length > 0 && (
-        <table className="referentie-tabel__table">
-          <thead>
-            <tr>
-              <th className="referentie-tabel__header">Loopje</th>
-              {LEVELS.map((level) => (
-                <th
-                  key={level}
-                  className={`referentie-tabel__header${
-                    level === highlightedLevel
-                      ? " referentie-tabel__col--highlight"
-                      : ""
-                  }`}
-                >
-                  {LEVEL_LABELS[level]}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {validRuns.map((run) => {
-              return (
-                <tr key={run.id} className="referentie-tabel__row">
-                  <td className="referentie-tabel__cell">
-                    {run.distance}m @ {run.percentage}%
-                  </td>
-                  {LEVELS.map((level) => {
-                    const levelPrs = EXPERIENCE_LEVEL_PRS[level];
-                    const sortedPrs = prValuesToSortedPRs(levelPrs);
-                    const targetTime = calculateTargetTime(
-                      run.distance!,
-                      run.percentage,
-                      sortedPrs
-                    );
-                    return (
-                      <td
-                        key={level}
-                        className={`referentie-tabel__cell${
-                          level === highlightedLevel
-                            ? " referentie-tabel__col--highlight"
-                            : ""
-                        }`}
-                      >
-                        {roundToWholeSeconds(targetTime)}s
-                      </td>
-                    );
-                  })}
+        <>
+          <h2>Referentietijden per Niveau</h2>
+          <div className="referentie-tabel__table-scroll">
+            <table className="referentie-tabel__table">
+              <thead>
+                <tr>
+                  <th className="referentie-tabel__header">Loopje</th>
+                  {LEVELS.map((level) => (
+                    <th
+                      key={level}
+                      className={`referentie-tabel__header${
+                        level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
+                      }`}
+                    >
+                      {LEVEL_LABELS[level]}
+                    </th>
+                  ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {validRuns.map((run) => (
+                  <tr key={run.id} className="referentie-tabel__row">
+                    <td className="referentie-tabel__cell">
+                      {run.distance}m @ {run.percentage}%
+                    </td>
+                    {LEVELS.map((level) => {
+                      const sortedPrs = prValuesToSortedPRs(EXPERIENCE_LEVEL_PRS[level]);
+                      const targetTime = calculateTargetTime(run.distance!, run.percentage, sortedPrs);
+                      return (
+                        <td
+                          key={level}
+                          className={`referentie-tabel__cell${
+                            level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
+                          }`}
+                        >
+                          {roundToWholeSeconds(targetTime)}s
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
 
-      {/* Reference PRs — collapsible */}
-      <div className="referentie-tabel__toggle-container">
+      {/* PR Reference — tooltip */}
+      <div className="referentie-tabel__tooltip-container">
         <button
           type="button"
-          className="referentie-tabel__toggle-btn"
-          onClick={() => setShowPRRef((prev) => !prev)}
+          className="referentie-tabel__tooltip-trigger"
+          onClick={() => setShowTable((prev) => !prev)}
         >
-          📊 PR Referentie per niveau {showPRRef ? "▲" : "▼"}
+          📊 PR Referentie per niveau <span className="referentie-tabel__mobile-arrow">{showTable ? "▲" : "▼"}</span>
         </button>
-      </div>
-      {showPRRef && (
-        <table className="referentie-tabel__table">
-        <thead>
-          <tr>
-            <th className="referentie-tabel__header">Afstand</th>
-            {LEVELS.map((level) => (
-              <th
-                key={level}
-                className={`referentie-tabel__header${
-                  level === highlightedLevel
-                    ? " referentie-tabel__col--highlight"
-                    : ""
-                }`}
-              >
-                {LEVEL_LABELS[level]}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {ALL_DISTANCES.map((distance: PRDistance) => (
-            <tr key={distance} className="referentie-tabel__row">
-              <td className="referentie-tabel__cell">{distance}m</td>
-              {LEVELS.map((level) => (
-                <td
-                  key={level}
-                  className={`referentie-tabel__cell${
-                    level === highlightedLevel
-                      ? " referentie-tabel__col--highlight"
-                      : ""
-                  }`}
-                >
-                  {EXPERIENCE_LEVEL_PRS[level][distance]}s
-                </td>
+        <div className={`referentie-tabel__tooltip-popup${showTable ? " referentie-tabel__tooltip-popup--open" : ""}`}>
+          <table className="referentie-tabel__table">
+            <thead>
+              <tr>
+                <th className="referentie-tabel__header">Afstand</th>
+                {LEVELS.map((level) => (
+                  <th
+                    key={level}
+                    className={`referentie-tabel__header${
+                      level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
+                    }`}
+                  >
+                    {LEVEL_LABELS[level]}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {ALL_DISTANCES.map((distance: PRDistance) => (
+                <tr key={distance} className="referentie-tabel__row">
+                  <td className="referentie-tabel__cell">{distance}m</td>
+                  {LEVELS.map((level) => (
+                    <td
+                      key={level}
+                      className={`referentie-tabel__cell${
+                        level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
+                      }`}
+                    >
+                      {EXPERIENCE_LEVEL_PRS[level][distance]}s
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
   );
 }
