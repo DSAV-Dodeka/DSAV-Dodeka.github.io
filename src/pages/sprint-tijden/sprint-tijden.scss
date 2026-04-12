@@ -1,0 +1,706 @@
+@use "../../variables";
+
+// ─── Page wrapper ────────────────────────────────────────────────
+.sprint-tijden-page {
+  max-width: 960px;
+  margin: 0 variables.$margin_mobile variables.$margin_mobile;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  @include variables.respond(computerscherm) {
+    margin: 0 auto variables.$margin_y;
+  }
+
+  h2 {
+    color: variables.$dodeka_blauw;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
+    margin: 1.5rem 0 0.75rem;
+
+    @include variables.respond(computerscherm) {
+      font-size: variables.$font_ml;
+      margin: variables.$margin_y 0 1rem;
+    }
+  }
+
+  h3 {
+    color: variables.$dodeka_blauw;
+    font-size: variables.$font_small;
+    font-weight: variables.$bold;
+    margin: 1rem 0 0.5rem;
+
+    @include variables.respond(computerscherm) {
+      font-size: variables.$font_medium;
+      margin: 1.5rem 0 0.75rem;
+    }
+  }
+}
+
+// ─── TrainingSchemaBuilder ───────────────────────────────────────
+.training-schema {
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.training-schema__mode-toggle {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 2px solid variables.$dodeka_blauw;
+  width: 100%;
+  position: relative;
+  background: white;
+
+  @include variables.respond(computerscherm) {
+    width: 240px;
+  }
+}
+
+// Sliding indicator behind the active button
+.training-schema__mode-toggle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: variables.$dodeka_blauw;
+  border-radius: 999px;
+  transition: transform 0.25s ease;
+  z-index: 0;
+}
+
+.training-schema__mode-toggle--duration::after {
+  transform: translateX(100%);
+}
+
+.training-schema__mode-btn {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: transparent;
+  color: variables.$dodeka_blauw;
+  font-size: variables.$font_small;
+  font-weight: variables.$bold;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  position: relative;
+  z-index: 1;
+
+  @include variables.respond(computerscherm) {
+    padding: 0.5rem 1.25rem;
+  }
+
+  &--active {
+    color: white;
+  }
+}
+
+.training-schema__runs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.training-schema__run-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #f7f8fa;
+  border-radius: 8px;
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
+
+  @include variables.respond(computerscherm) {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+.training-schema__run-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.training-schema__run-fields {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+
+  @include variables.respond(computerscherm) {
+    width: auto;
+    gap: 0.75rem;
+  }
+}
+
+.training-schema__run-label {
+  font-weight: variables.$bold;
+  color: variables.$dodeka_blauw;
+  font-size: variables.$font_small;
+
+  @include variables.respond(computerscherm) {
+    min-width: 5rem;
+  }
+}
+
+.training-schema__run-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+
+  @include variables.respond(computerscherm) {
+    flex: none;
+    width: auto;
+  }
+}
+
+.training-schema__select,
+.training-schema__input {
+  padding: 0.5rem 0.5rem;
+  border: 1px solid variables.$dodeka_grijs;
+  border-radius: 6px;
+  font-size: 16px; // prevents iOS zoom on focus
+  color: variables.$dodeka_blauw;
+  background: white;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @include variables.respond(computerscherm) {
+    font-size: variables.$font_small;
+    width: auto;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: variables.$dodeka_blauw;
+    box-shadow: 0 0 0 2px rgba(variables.$dodeka_blauw, 0.15);
+  }
+}
+
+.training-schema__input {
+  width: 5rem;
+}
+
+.training-schema__delete-btn {
+  background: rgba(variables.$dodeka_rood, 0.08);
+  border: 1px solid rgba(variables.$dodeka_rood, 0.2);
+  color: variables.$dodeka_rood;
+  font-size: variables.$font_small;
+  font-weight: variables.$bold;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: background-color 0.15s;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include variables.respond(computerscherm) {
+    min-height: auto;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.4rem;
+    background: none;
+    border: none;
+  }
+
+  &:hover {
+    background: rgba(variables.$dodeka_rood, 0.15);
+  }
+}
+
+.training-schema__add-btn {
+  margin-top: 0.75rem;
+  padding: 0.65rem 1.25rem;
+  background: variables.$dodeka_rood;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: variables.$bold;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  width: 100%;
+
+  @include variables.respond(computerscherm) {
+    width: auto;
+    font-size: variables.$font_small;
+    padding: 0.5rem 1.25rem;
+  }
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+// ─── NiveauEnPRInvoer ────────────────────────────────────────────
+.niveau-pr-invoer {
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+.niveau-pr-invoer__levels {
+  margin-bottom: 1.25rem;
+}
+
+.niveau-pr-invoer__levels-label,
+.niveau-pr-invoer__pr-section-label {
+  display: block;
+  font-weight: variables.$bold;
+  color: variables.$dodeka_blauw;
+  margin-bottom: 0.5rem;
+  font-size: variables.$font_small;
+}
+
+.niveau-pr-invoer__levels-buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+
+  @include variables.respond(computerscherm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.niveau-btn {
+  padding: 0.6rem 0.75rem;
+  border: 2px solid variables.$dodeka_blauw;
+  border-radius: 8px;
+  background: white;
+  color: variables.$dodeka_blauw;
+  font-size: 16px;
+  font-weight: variables.$bold;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+  text-align: center;
+
+  @include variables.respond(computerscherm) {
+    padding: 0.5rem 1rem;
+    font-size: variables.$font_small;
+  }
+
+  &:hover:not(&--active) {
+    background: rgba(variables.$dodeka_blauw, 0.08);
+  }
+
+  &--active {
+    background: variables.$dodeka_blauw;
+    color: white;
+  }
+}
+
+// Remove the old 5th-child grid-column rule
+
+.niveau-pr-invoer__pr-section {
+  margin-bottom: 1rem;
+}
+
+.niveau-pr-invoer__pr-hint {
+  font-weight: variables.$normal;
+  color: variables.$dodeka_grijs;
+  font-size: 0.875rem;
+}
+
+.niveau-pr-invoer__pr-group {
+  margin-bottom: 1rem;
+}
+
+.niveau-pr-invoer__pr-group-label {
+  display: block;
+  font-size: 0.875rem;
+  color: variables.$dodeka_grijs;
+  margin-bottom: 0.4rem;
+}
+
+.niveau-pr-invoer__pr-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @include variables.respond(computerscherm) {
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+.niveau-pr-invoer__pr-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+
+  @include variables.respond(computerscherm) {
+    gap: 0.5rem;
+  }
+}
+
+.niveau-pr-invoer__pr-label {
+  font-weight: variables.$bold;
+  color: variables.$dodeka_blauw;
+  font-size: 0.875rem;
+  min-width: 3.5rem;
+
+  @include variables.respond(computerscherm) {
+    min-width: 3rem;
+    font-size: variables.$font_small;
+  }
+}
+
+.niveau-pr-invoer__pr-input {
+  padding: 0.5rem 0.5rem;
+  border: 1px solid variables.$dodeka_grijs;
+  border-radius: 6px;
+  font-size: 16px; // prevents iOS zoom
+  color: variables.$dodeka_blauw;
+  flex: 1;
+  min-width: 0;
+  background: white;
+
+  @include variables.respond(computerscherm) {
+    font-size: variables.$font_small;
+    width: 5rem;
+    flex: none;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: variables.$dodeka_blauw;
+    box-shadow: 0 0 0 2px rgba(variables.$dodeka_blauw, 0.15);
+  }
+}
+
+.niveau-pr-invoer__tooltip-container {
+  margin-top: 0.75rem;
+  position: relative;
+  display: inline-block;
+}
+
+.niveau-pr-invoer__tooltip-trigger {
+  color: variables.$dodeka_grijs;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  border-bottom: 1px dashed variables.$dodeka_grijs;
+  transition: color 0.15s;
+
+  &:hover {
+    color: variables.$dodeka_blauw;
+  }
+}
+
+.niveau-pr-invoer__tooltip-popup {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid variables.$dodeka_grijs;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  color: variables.$dodeka_blauw;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  width: 320px;
+  max-width: 90vw;
+  z-index: 10;
+
+  p { margin: 0 0 0.4rem; }
+  ul { padding-left: 1.25rem; margin: 0; }
+  li { margin-bottom: 0.3rem; }
+
+  // Desktop: show on hover
+  @include variables.respond(computerscherm) {
+    width: 400px;
+  }
+}
+
+// Desktop: hover to show
+@media (min-width: 1200px) {
+  .niveau-pr-invoer__tooltip-container:hover .niveau-pr-invoer__tooltip-popup {
+    display: block;
+  }
+}
+
+// Mobile: click to show (via --open class)
+@media (max-width: 1199px) {
+  .niveau-pr-invoer__tooltip-popup--open {
+    display: block;
+    position: static;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+// ─── DoeltijdenOverzicht ─────────────────────────────────────────
+.doeltijden-overzicht {
+  margin-bottom: 1.5rem;
+}
+
+.doeltijden-overzicht__card {
+  background: rgba(variables.$dodeka_rood, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(variables.$dodeka_rood, 0.15);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow:
+    0 8px 32px rgba(variables.$dodeka_rood, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+  @include variables.respond(computerscherm) {
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: variables.$dodeka_rood;
+  }
+}
+
+.doeltijden-overzicht__placeholder {
+  color: variables.$dodeka_grijs;
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+.doeltijden-overzicht__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+
+  @include variables.respond(computerscherm) {
+    font-size: variables.$font_small;
+    border-radius: 10px;
+  }
+
+  th,
+  td {
+    padding: 0.5rem 0.5rem;
+    text-align: left;
+
+    @include variables.respond(computerscherm) {
+      padding: 0.6rem 0.75rem;
+    }
+  }
+
+  thead th {
+    background: variables.$dodeka_blauw;
+    color: white;
+    font-weight: variables.$bold;
+    font-size: 0.8rem;
+
+    @include variables.respond(computerscherm) {
+      font-size: variables.$font_small;
+    }
+  }
+
+  tbody tr:nth-child(even) {
+    background: #edf3f8;
+  }
+
+  tbody tr:hover {
+    background: rgba(variables.$dodeka_rood, 0.06);
+  }
+}
+
+// ─── ReferentieTabel ─────────────────────────────────────────────
+.referentie-tabel {
+  margin-bottom: 1.5rem;
+}
+
+.referentie-tabel__tooltip-container {
+  position: relative;
+}
+
+.referentie-tabel__tooltip-trigger {
+  color: variables.$dodeka_grijs;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  border-bottom: 1px dashed variables.$dodeka_grijs;
+  transition: color 0.15s;
+
+  &:hover {
+    color: variables.$dodeka_blauw;
+  }
+
+  @include variables.respond(computerscherm) {
+    cursor: default;
+  }
+}
+
+.referentie-tabel__mobile-arrow {
+  @include variables.respond(computerscherm) {
+    display: none;
+  }
+}
+
+.referentie-tabel__tooltip-popup {
+  display: none;
+}
+
+// Desktop: hover to show
+@media (min-width: 1200px) {
+  .referentie-tabel__tooltip-container:hover .referentie-tabel__tooltip-popup {
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid variables.$dodeka_grijs;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+// Mobile: click to show
+@media (max-width: 1199px) {
+  .referentie-tabel__tooltip-popup--open {
+    display: block;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: #f7f8fa;
+    border-radius: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.referentie-tabel__subtitle {
+  color: variables.$dodeka_blauw;
+  font-size: 0.875rem;
+  font-weight: variables.$bold;
+  margin: 0 0 0.5rem;
+
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.referentie-tabel__table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 calc(-1 * #{variables.$margin_mobile}) 0.75rem;
+  padding: 0 variables.$margin_mobile;
+
+  @include variables.respond(computerscherm) {
+    margin: 0 0 0.75rem;
+    padding: 0;
+    overflow-x: visible;
+  }
+}
+
+.referentie-tabel__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @include variables.respond(computerscherm) {
+    font-size: variables.$font_small;
+    display: table;
+    overflow-x: visible;
+  }
+
+  th,
+  td {
+    padding: 0.4rem 0.5rem;
+    text-align: center;
+    white-space: nowrap;
+
+    @include variables.respond(computerscherm) {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+
+  th:first-child,
+  td:first-child {
+    text-align: left;
+  }
+}
+
+.referentie-tabel__header {
+  background: variables.$dodeka_blauw;
+  color: white;
+  font-weight: variables.$bold;
+}
+
+.referentie-tabel__row {
+  &:nth-child(even) {
+    background: #f2f4f7;
+  }
+
+  &:hover {
+    background: rgba(variables.$dodeka_blauw, 0.06);
+  }
+}
+
+.referentie-tabel__col--highlight {
+  background: rgba(variables.$dodeka_blauw, 0.1);
+}
+
+th.referentie-tabel__col--highlight {
+  background: #1a3a5c;
+}
+
+td.referentie-tabel__col--highlight {
+  background: rgba(variables.$dodeka_blauw, 0.08);
+}
+
+.referentie-tabel__row:nth-child(even) td.referentie-tabel__col--highlight {
+  background: rgba(variables.$dodeka_blauw, 0.14);
+}
+
+// ─── Number input spinner removal ───────────────────────────────
+.training-schema__input,
+.niveau-pr-invoer__pr-input {
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
