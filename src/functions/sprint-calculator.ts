@@ -1,3 +1,6 @@
+/** Geslacht voor referentietijden */
+export type Gender = "mannen" | "vrouwen";
+
 /** Afstanden waarvoor PR's ingevoerd kunnen worden */
 export type PRDistance = 60 | 100 | 150 | 200 | 300 | 400;
 
@@ -24,14 +27,35 @@ export type ExperienceLevel = 'beginner' | 'novice' | 'intermediate' | 'gevorder
 
 /** Referentie-PR's per ervaringsniveau */
 export const EXPERIENCE_LEVEL_PRS: Record<ExperienceLevel, Record<PRDistance, number>> = {
-  beginner:     { 60: 10.5, 100: 16.5, 150: 26.0, 200: 36.0, 300: 58.0, 400: 80.0 },
-  novice:       { 60: 9.5, 100: 15.0, 150: 23.5, 200: 32.0, 300: 52.0, 400: 72.0 },
+  beginner:     { 60: 10.0, 100: 15.0, 150: 24.0, 200: 33.0, 300: 53.0, 400: 73.0 },
+  novice:       { 60: 9.2, 100: 14.0, 150: 22.0, 200: 30.0, 300: 48.0, 400: 67.0 },
   intermediate: { 60: 8.8, 100: 13.5, 150: 21.0, 200: 29.0, 300: 47.0, 400: 66.0 },
-  gevorderd:    { 60: 8.0, 100: 12.5, 150: 19.5, 200: 27.0, 300: 43.0, 400: 60.0 },
-  elite:        { 60: 7.3, 100: 11.5, 150: 17.8, 200: 24.5, 300: 39.0, 400: 55.0 },
-  legende:      { 60: 7.0, 100: 11.0, 150: 17.0, 200: 23.5, 300: 37.0, 400: 52.0 },
+  gevorderd:    { 60: 8.5, 100: 12.5, 150: 19.5, 200: 27.0, 300: 43.0, 400: 60.0 },
+  elite:        { 60: 8.0, 100: 12.0, 150: 18.5, 200: 25.5, 300: 41.0, 400: 56.0 },
+  legende:      { 60: 7.5, 100: 11.5, 150: 17.5, 200: 24.0, 300: 38.5, 400: 53.0 },
   bolt:         { 60: 6.31, 100: 9.58, 150: 14.35, 200: 19.19, 300: 30.5, 400: 45.35 },
 };
+
+/** Referentie-PR's per ervaringsniveau voor vrouwen */
+export const EXPERIENCE_LEVEL_PRS_WOMEN: Record<ExperienceLevel, Record<PRDistance, number>> = {
+  beginner:     { 60: 11.0, 100: 16.0, 150: 25.5, 200: 35.5, 300: 57.0, 400: 80.0 },
+  novice:       { 60: 10.5, 100: 15.0, 150: 24.0, 200: 33.0, 300: 53.0, 400: 74.0 },
+  intermediate: { 60: 10.0, 100: 14.5, 150: 23.0, 200: 31.5, 300: 51.0, 400: 71.0 },
+  gevorderd:    { 60: 9.5,  100: 14.0, 150: 22.0, 200: 30.0, 300: 48.5, 400: 67.0 },
+  elite:        { 60: 9.0,  100: 13.5, 150: 21.0, 200: 28.5, 300: 46.0, 400: 63.0 },
+  legende:      { 60: 8.5,  100: 13.0, 150: 20.0, 200: 27.0, 300: 43.5, 400: 59.5 },
+  bolt:         { 60: 7.08, 100: 10.49, 150: 15.71, 200: 21.34, 300: 34.1, 400: 47.99 },
+};
+
+/** Haal de juiste ervaringsniveau-dataset op voor een geslacht */
+export function getExperienceLevelPRs(gender: Gender): Record<ExperienceLevel, Record<PRDistance, number>> {
+  return gender === "vrouwen" ? EXPERIENCE_LEVEL_PRS_WOMEN : EXPERIENCE_LEVEL_PRS;
+}
+
+/** Haal het label op voor het topniveau (Bolt of Flo-Jo) */
+export function getTopLevelLabel(gender: Gender): string {
+  return gender === "vrouwen" ? "Flo-Jo ⚡" : "Bolt ⚡";
+}
 
 /** Training run in het schema */
 export interface TrainingRun {
@@ -165,8 +189,8 @@ export function findClosestLevel(prValues: PRValues): ExperienceLevel | null {
 }
 
 /** Haal PR-waarden op voor een ervaringsniveau */
-export function getLevelPRs(level: ExperienceLevel): PRValues {
-  return EXPERIENCE_LEVEL_PRS[level];
+export function getLevelPRs(level: ExperienceLevel, gender: Gender = "mannen"): PRValues {
+  return getExperienceLevelPRs(gender)[level];
 }
 
 /**

@@ -249,6 +249,62 @@
   }
 }
 
+// ─── GenderToggle ────────────────────────────────────────────────
+.gender-toggle {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 2px solid variables.$baan_rood;
+  width: 100%;
+  position: relative;
+  background: white;
+
+  @include variables.respond(computerscherm) {
+    width: 240px;
+  }
+}
+
+.gender-toggle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: variables.$baan_rood;
+  border-radius: 999px;
+  transition: transform 0.25s ease;
+  z-index: 0;
+}
+
+.gender-toggle--vrouwen::after {
+  transform: translateX(100%);
+}
+
+.gender-toggle__btn {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: transparent;
+  color: variables.$baan_rood;
+  font-size: variables.$font_small;
+  font-weight: variables.$bold;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  position: relative;
+  z-index: 1;
+
+  @include variables.respond(computerscherm) {
+    padding: 0.5rem 1.25rem;
+  }
+
+  &--active {
+    color: white;
+  }
+}
+
 // ─── NiveauEnPRInvoer ────────────────────────────────────────────
 .niveau-pr-invoer {
   margin-bottom: 1.5rem;

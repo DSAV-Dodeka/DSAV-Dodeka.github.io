@@ -108,6 +108,7 @@ function NavigationBar() {
             items={[
               { name: "Trainers", path: "/trainers" },
               { name: "Trainers gezocht", path: "/gezocht" },
+              { name: "Sprint", path: "/sprint_tijden" },
             ]}
           />
           <Dropdown
@@ -197,6 +198,7 @@ function NavigationBar() {
                 { name: "Trainingen", path: "" },
                 { name: "Trainers", path: "/trainers" },
                 { name: "Trainers gezocht", path: "/gezocht" },
+                { name: "Sprint", path: "/sprint_tijden" },
               ]}
               onClick={() => setActive(false)}
             />

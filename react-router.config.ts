@@ -20,6 +20,7 @@ export default {
       "/trainingen",
       "/trainingen/trainers",
       "/trainingen/gezocht",
+      "/trainingen/sprint_tijden",
       "/vereniging",
       "/vereniging/commissies",
       "/vereniging/bestuur",
