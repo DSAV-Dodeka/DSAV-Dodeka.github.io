@@ -6,11 +6,17 @@ import {
   roundToWholeSeconds,
   findClosestLevel,
   prValuesToSortedPRs,
+  getExperienceLevelPRs,
+  getTopLevelLabel,
   SPRINT_EXPONENT,
   EXPERIENCE_LEVEL_PRS,
+  EXPERIENCE_LEVEL_PRS_WOMEN,
+  ALL_DISTANCES,
   type SortedPR,
   type PRValues,
+  type PRDistance,
   type ExperienceLevel,
+  type Gender,
 } from '../sprint-calculator';
 
 // ── interpolate ──
@@ -204,5 +210,62 @@ describe('prValuesToSortedPRs', () => {
 
   it('returns empty array for empty input', () => {
     expect(prValuesToSortedPRs({})).toEqual([]);
+  });
+});
+
+// ── EXPERIENCE_LEVEL_PRS_WOMEN data completeness ──
+
+describe('EXPERIENCE_LEVEL_PRS_WOMEN', () => {
+  const allLevels: ExperienceLevel[] = ['beginner', 'novice', 'intermediate', 'gevorderd', 'elite', 'legende', 'bolt'];
+  const allDistances: PRDistance[] = [60, 100, 150, 200, 300, 400];
+
+  it('bevat alle 7 ervaringsniveaus', () => {
+    const levels = Object.keys(EXPERIENCE_LEVEL_PRS_WOMEN);
+    expect(levels).toHaveLength(7);
+    for (const level of allLevels) {
+      expect(EXPERIENCE_LEVEL_PRS_WOMEN).toHaveProperty(level);
+    }
+  });
+
+  it('bevat alle 6 afstanden voor elk niveau', () => {
+    for (const level of allLevels) {
+      const prs = EXPERIENCE_LEVEL_PRS_WOMEN[level];
+      for (const distance of allDistances) {
+        expect(prs[distance]).toBeDefined();
+        expect(typeof prs[distance]).toBe('number');
+      }
+    }
+  });
+
+  it('heeft Flo-Jo wereldrecord 100m = 10.49s', () => {
+    expect(EXPERIENCE_LEVEL_PRS_WOMEN.bolt[100]).toBe(10.49);
+  });
+
+  it('heeft Flo-Jo wereldrecord 200m = 21.34s', () => {
+    expect(EXPERIENCE_LEVEL_PRS_WOMEN.bolt[200]).toBe(21.34);
+  });
+});
+
+// ── getTopLevelLabel ──
+
+describe('getTopLevelLabel', () => {
+  it('retourneert "Bolt ⚡" voor mannen', () => {
+    expect(getTopLevelLabel('mannen')).toBe('Bolt ⚡');
+  });
+
+  it('retourneert "Flo-Jo ⚡" voor vrouwen', () => {
+    expect(getTopLevelLabel('vrouwen')).toBe('Flo-Jo ⚡');
+  });
+});
+
+// ── getExperienceLevelPRs ──
+
+describe('getExperienceLevelPRs', () => {
+  it('retourneert mannen-dataset voor gender "mannen"', () => {
+    expect(getExperienceLevelPRs('mannen')).toBe(EXPERIENCE_LEVEL_PRS);
+  });
+
+  it('retourneert vrouwen-dataset voor gender "vrouwen"', () => {
+    expect(getExperienceLevelPRs('vrouwen')).toBe(EXPERIENCE_LEVEL_PRS_WOMEN);
   });
 });

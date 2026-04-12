@@ -5,8 +5,9 @@ import userEvent from "@testing-library/user-event";
 import DoeltijdenOverzicht from "../components/DoeltijdenOverzicht";
 import NiveauEnPRInvoer from "../components/NiveauEnPRInvoer";
 import ReferentieTabel from "../components/ReferentieTabel";
+import GenderToggle from "../components/GenderToggle";
 import { EXPERIENCE_LEVEL_PRS, ALL_DISTANCES } from "../../../functions/sprint-calculator";
-import type { TrainingRun, PRValues } from "../../../functions/sprint-calculator";
+import type { TrainingRun, PRValues, Gender } from "../../../functions/sprint-calculator";
 
 afterEach(() => {
   cleanup();
@@ -110,5 +111,57 @@ describe("ReferentieTabel", () => {
       );
       expect(distanceCell).toBeTruthy();
     }
+  });
+});
+
+
+// ── GenderToggle ──
+
+describe("GenderToggle", () => {
+  it("renders with 'Mannen' and 'Vrouwen' labels", () => {
+    render(<GenderToggle gender="mannen" onGenderChange={vi.fn()} />);
+
+    expect(screen.getByRole("button", { name: "Mannen" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Vrouwen" })).toBeInTheDocument();
+  });
+
+  it("has 'Mannen' as default active state", () => {
+    render(<GenderToggle gender="mannen" onGenderChange={vi.fn()} />);
+
+    const mannenBtn = screen.getByRole("button", { name: "Mannen" });
+    const vrouwenBtn = screen.getByRole("button", { name: "Vrouwen" });
+
+    expect(mannenBtn.className).toContain("gender-toggle__btn--active");
+    expect(vrouwenBtn.className).not.toContain("gender-toggle__btn--active");
+  });
+
+  it("calls onGenderChange with 'vrouwen' when 'Vrouwen' is clicked", async () => {
+    const user = userEvent.setup();
+    const onGenderChange = vi.fn();
+
+    render(<GenderToggle gender="mannen" onGenderChange={onGenderChange} />);
+
+    await user.click(screen.getByRole("button", { name: "Vrouwen" }));
+    expect(onGenderChange).toHaveBeenCalledWith("vrouwen");
+  });
+});
+
+// ── Gender toggle integration: ReferentieTabel ──
+
+describe("ReferentieTabel — gender-aware labels", () => {
+  it("shows 'Bolt ⚡' in PR reference table when gender is mannen", () => {
+    render(
+      <ReferentieTabel runs={[]} selectedLevel={null} userPRValues={{}} gender="mannen" />
+    );
+
+    expect(screen.getByText("Bolt ⚡")).toBeInTheDocument();
+  });
+
+  it("shows 'Flo-Jo ⚡' in PR reference table when gender is vrouwen", () => {
+    render(
+      <ReferentieTabel runs={[]} selectedLevel={null} userPRValues={{}} gender="vrouwen" />
+    );
+
+    expect(screen.getByText("Flo-Jo ⚡")).toBeInTheDocument();
   });
 });

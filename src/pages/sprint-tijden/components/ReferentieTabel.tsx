@@ -4,20 +4,24 @@ import type {
   ExperienceLevel,
   PRValues,
   PRDistance,
+  Gender,
 } from "../../../functions/sprint-calculator";
 import {
-  EXPERIENCE_LEVEL_PRS,
   ALL_DISTANCES,
   calculateTargetTime,
+  calculateDistanceForDuration,
   roundToWholeSeconds,
   findClosestLevel,
   prValuesToSortedPRs,
+  getExperienceLevelPRs,
+  getTopLevelLabel,
 } from "../../../functions/sprint-calculator";
 
 interface ReferentieTabelProps {
   runs: TrainingRun[];
   selectedLevel: ExperienceLevel | null;
   userPRValues: PRValues;
+  gender: Gender;
 }
 
 const LEVELS: ExperienceLevel[] = [
@@ -31,22 +35,28 @@ const LEVELS: ExperienceLevel[] = [
 
 const LEVELS_WITH_BOLT: ExperienceLevel[] = [...LEVELS, "bolt"];
 
-const LEVEL_LABELS: Record<ExperienceLevel, string> = {
-  beginner: "Verse Sprinter",
-  novice: "Enthousiast",
-  intermediate: "Groeiend Talent",
-  gevorderd: "Doorgewinterd",
-  elite: "Sprintkanon",
-  legende: "Legende",
-  bolt: "Bolt ⚡",
-};
+function getLevelLabels(gender: Gender): Record<ExperienceLevel, string> {
+  return {
+    beginner: "Verse Sprinter",
+    novice: "Enthousiast",
+    intermediate: "Groeiend Talent",
+    gevorderd: "Doorgewinterd",
+    elite: "Sprintkanon",
+    legende: "Legende",
+    bolt: getTopLevelLabel(gender),
+  };
+}
 
 function ReferentieTabel({
   runs,
   selectedLevel,
   userPRValues,
+  gender,
 }: ReferentieTabelProps) {
   const [showTable, setShowTable] = useState(false);
+
+  const levelLabels = getLevelLabels(gender);
+  const experienceLevelPRs = getExperienceLevelPRs(gender);
 
   // Determine highlighted level
   let highlightedLevel: ExperienceLevel | null = selectedLevel;
@@ -54,17 +64,21 @@ function ReferentieTabel({
     highlightedLevel = findClosestLevel(userPRValues);
   }
 
-  // Filter valid distance-mode runs
+  // Filter valid runs (distance with distance set, or duration with duration set)
   const validRuns = runs.filter(
-    (run) => run.mode === "distance" && run.distance != null
+    (run) =>
+      (run.mode === "distance" && run.distance != null) ||
+      (run.mode === "duration" && run.duration != null)
   );
+
+  const isDurationMode = validRuns.length > 0 && validRuns[0]!.mode === "duration";
 
   return (
     <section className="referentie-tabel">
       {/* Training runs table — always visible */}
       {validRuns.length > 0 && (
         <>
-          <h2>Referentietijden per Niveau</h2>
+          <h2>Referentie{isDurationMode ? "afstanden" : "tijden"} per Niveau</h2>
           <div className="referentie-tabel__table-scroll">
             <table className="referentie-tabel__table">
               <thead>
@@ -77,7 +91,7 @@ function ReferentieTabel({
                         level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
                       }`}
                     >
-                      {LEVEL_LABELS[level]}
+                      {levelLabels[level]}
                     </th>
                   ))}
                 </tr>
@@ -86,10 +100,26 @@ function ReferentieTabel({
                 {validRuns.map((run) => (
                   <tr key={run.id} className="referentie-tabel__row">
                     <td className="referentie-tabel__cell">
-                      {run.distance}m @ {run.percentage}%
+                      {run.mode === "distance"
+                        ? `${run.distance}m @ ${run.percentage}%`
+                        : `${run.duration}s @ ${run.percentage}%`}
                     </td>
                     {LEVELS.map((level) => {
-                      const sortedPrs = prValuesToSortedPRs(EXPERIENCE_LEVEL_PRS[level]);
+                      const sortedPrs = prValuesToSortedPRs(experienceLevelPRs[level]);
+                      if (run.mode === "duration") {
+                        const distanceAt100 = calculateDistanceForDuration(run.duration!, sortedPrs);
+                        const estimatedDistance = distanceAt100 * (run.percentage / 100);
+                        return (
+                          <td
+                            key={level}
+                            className={`referentie-tabel__cell${
+                              level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
+                            }`}
+                          >
+                            {Math.round(estimatedDistance / 10) * 10}m
+                          </td>
+                        );
+                      }
                       const targetTime = calculateTargetTime(run.distance!, run.percentage, sortedPrs);
                       return (
                         <td
@@ -131,7 +161,7 @@ function ReferentieTabel({
                       level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
                     }`}
                   >
-                    {LEVEL_LABELS[level]}
+                    {levelLabels[level]}
                   </th>
                 ))}
               </tr>
@@ -147,7 +177,7 @@ function ReferentieTabel({
                         level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
                       }`}
                     >
-                      {EXPERIENCE_LEVEL_PRS[level][distance]}s
+                      {experienceLevelPRs[level][distance]}s
                     </td>
                   ))}
                 </tr>

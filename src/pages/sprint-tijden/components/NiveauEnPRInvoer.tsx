@@ -1,23 +1,28 @@
 import { useState } from "react";
-import type { ExperienceLevel, PRDistance, PRValues } from "../../../functions/sprint-calculator";
-import { PRIMARY_DISTANCES, SECONDARY_DISTANCES } from "../../../functions/sprint-calculator";
+import type { ExperienceLevel, PRDistance, PRValues, Gender } from "../../../functions/sprint-calculator";
+import { PRIMARY_DISTANCES, SECONDARY_DISTANCES, getTopLevelLabel } from "../../../functions/sprint-calculator";
+import GenderToggle from "./GenderToggle";
 
 interface NiveauEnPRInvoerProps {
   selectedLevel: ExperienceLevel | null;
   prValues: PRValues;
   onSelectLevel: (level: ExperienceLevel | null) => void;
   onPRChange: (distance: PRDistance, value: number | null) => void;
+  gender: Gender;
+  onGenderChange: (gender: Gender) => void;
 }
 
-const LEVEL_LABELS: Record<ExperienceLevel, string> = {
-  beginner: "Verse Sprinter",
-  novice: "Enthousiast",
-  intermediate: "Groeiend Talent",
-  gevorderd: "Doorgewinterd",
-  elite: "Sprintkanon",
-  legende: "Legende",
-  bolt: "Usain Bolt ⚡",
-};
+function getLevelLabels(gender: Gender): Record<ExperienceLevel, string> {
+  return {
+    beginner: "Verse Sprinter",
+    novice: "Enthousiast",
+    intermediate: "Groeiend Talent",
+    gevorderd: "Doorgewinterd",
+    elite: "Sprintkanon",
+    legende: "Legende",
+    bolt: getTopLevelLabel(gender),
+  };
+}
 
 const LEVELS: ExperienceLevel[] = ["beginner", "novice", "intermediate", "gevorderd", "elite", "legende"];
 
@@ -73,8 +78,9 @@ function PRInput({
   );
 }
 
-function NiveauEnPRInvoer({ selectedLevel, prValues, onSelectLevel, onPRChange }: NiveauEnPRInvoerProps) {
+function NiveauEnPRInvoer({ selectedLevel, prValues, onSelectLevel, onPRChange, gender, onGenderChange }: NiveauEnPRInvoerProps) {
   const [showTooltip, setShowTooltip] = useState(false);
+  const levelLabels = getLevelLabels(gender);
 
   const handleLevelClick = (level: ExperienceLevel) => {
     // Clicking already-selected level clears it
@@ -89,6 +95,9 @@ function NiveauEnPRInvoer({ selectedLevel, prValues, onSelectLevel, onPRChange }
     <section className="niveau-pr-invoer">
       <h2>Niveau &amp; PR Invoer</h2>
 
+      {/* Gender toggle */}
+      <GenderToggle gender={gender} onGenderChange={onGenderChange} />
+
       {/* Experience level selection */}
       <div className="niveau-pr-invoer__levels">
         <span className="niveau-pr-invoer__levels-label">Selecteer je niveau</span>
@@ -100,7 +109,7 @@ function NiveauEnPRInvoer({ selectedLevel, prValues, onSelectLevel, onPRChange }
               className={`niveau-btn${selectedLevel === level ? " niveau-btn--active" : ""}`}
               onClick={() => handleLevelClick(level)}
             >
-              {LEVEL_LABELS[level]}
+              {levelLabels[level]}
             </button>
           ))}
         </div>

@@ -9,8 +9,10 @@ import type {
   PRValues,
   PRDistance,
   ExperienceLevel,
+  Gender,
 } from "../../functions/sprint-calculator";
-import { getLevelPRs } from "../../functions/sprint-calculator";
+import { getLevelPRs, getExperienceLevelPRs } from "../../functions/sprint-calculator";
+import GenderToggle from "./components/GenderToggle";
 import "./sprint-tijden.scss";
 
 const DEFAULT_RUNS: TrainingRun[] = [
@@ -24,6 +26,7 @@ function SprintTijden() {
   const [prValues, setPRValues] = useState<PRValues>({});
   const [selectedLevel, setSelectedLevel] = useState<ExperienceLevel | null>(null);
   const [trainingMode, setTrainingMode] = useState<"distance" | "duration">("distance");
+  const [gender, setGender] = useState<Gender>("mannen");
 
   const runCounter = useRef(4);
 
@@ -67,9 +70,10 @@ function SprintTijden() {
   const handleSelectLevel = useCallback((level: ExperienceLevel | null) => {
     setSelectedLevel(level);
     if (level) {
-      setPRValues(getLevelPRs(level));
+      const levelPrs = getExperienceLevelPRs(gender);
+      setPRValues(levelPrs[level]);
     }
-  }, []);
+  }, [gender]);
 
   const handlePRChange = useCallback((distance: PRDistance, value: number | null) => {
     setSelectedLevel(null);
@@ -82,6 +86,14 @@ function SprintTijden() {
       return { ...prev, [distance]: value };
     });
   }, []);
+
+  const handleGenderChange = useCallback((newGender: Gender) => {
+    setGender(newGender);
+    if (selectedLevel) {
+      const levelPrs = getExperienceLevelPRs(newGender);
+      setPRValues(levelPrs[selectedLevel]);
+    }
+  }, [selectedLevel]);
 
   const hasPRData = Object.values(prValues).some((v) => v != null);
 
@@ -103,6 +115,8 @@ function SprintTijden() {
         prValues={prValues}
         onSelectLevel={handleSelectLevel}
         onPRChange={handlePRChange}
+        gender={gender}
+        onGenderChange={handleGenderChange}
       />
 
       <DoeltijdenOverzicht
@@ -116,6 +130,7 @@ function SprintTijden() {
         runs={trainingRuns}
         selectedLevel={selectedLevel}
         userPRValues={prValues}
+        gender={gender}
       />
     </div>
   );
