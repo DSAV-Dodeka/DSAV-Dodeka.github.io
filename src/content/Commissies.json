@@ -202,22 +202,22 @@
                 {
                     "naam": "Bart",
                     "functie": "Lid",
-                    "foto": "placeholder"
+                    "foto": "bart_kasco"
                 },
                 {
                     "naam": "Lars",
                     "functie": "Lid",
-                    "foto": "placeholder"
+                    "foto": "lars_kasco"
                 },
                 {
                     "naam": "Stefan",
                     "functie": "Lid",
-                    "foto": "placeholder"
+                    "foto": "stefan_kasco"
                 },
                 {
                     "naam": "Thomas",
                     "functie": "Plaatsvervangend lid",
-                    "foto": "placeholder"
+                    "foto": "thomas_kasco"
                 }
             ],
             "fotos": "kasco"
