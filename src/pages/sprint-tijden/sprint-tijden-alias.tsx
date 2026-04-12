@@ -4,6 +4,6 @@ export function loader() {
   return redirect("/trainingen/sprint_tijden");
 }
 
-export default function SprintAlias() {
+export default function SprintTijdenAlias() {
   return null;
 }
