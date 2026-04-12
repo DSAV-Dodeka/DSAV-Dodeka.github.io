@@ -75,68 +75,76 @@ function ReferentieTabel({
 
   return (
     <section className="referentie-tabel">
-      {/* Training runs table — always visible */}
+      {/* Training runs tables — one per gender */}
       {validRuns.length > 0 && (
         <>
-          <h2>Referentie{isDurationMode ? "afstanden" : "tijden"} per Niveau</h2>
-          <div className="referentie-tabel__table-scroll">
-            <table className="referentie-tabel__table">
-              <thead>
-                <tr>
-                  <th className="referentie-tabel__header">Loopje</th>
-                  {LEVELS.map((level) => (
-                    <th
-                      key={level}
-                      className={`referentie-tabel__header${
-                        level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
-                      }`}
-                    >
-                      {levelLabels[level]}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {validRuns.map((run) => (
-                  <tr key={run.id} className="referentie-tabel__row">
-                    <td className="referentie-tabel__cell">
-                      {run.mode === "distance"
-                        ? `${run.distance}m @ ${run.percentage}%`
-                        : `${run.duration}s @ ${run.percentage}%`}
-                    </td>
-                    {LEVELS.map((level) => {
-                      const sortedPrs = prValuesToSortedPRs(experienceLevelPRs[level]);
-                      if (run.mode === "duration") {
-                        const distanceAt100 = calculateDistanceForDuration(run.duration!, sortedPrs);
-                        const estimatedDistance = distanceAt100 * (run.percentage / 100);
-                        return (
-                          <td
+          {(["mannen", "vrouwen"] as const).map((g) => {
+            const gLabels = getLevelLabels(g);
+            const gPRs = getExperienceLevelPRs(g);
+            return (
+              <div key={g}>
+                <h2>Referentie{isDurationMode ? "afstanden" : "tijden"} {g === "mannen" ? "Mannen" : "Vrouwen"}</h2>
+                <div className="referentie-tabel__table-scroll">
+                  <table className="referentie-tabel__table">
+                    <thead>
+                      <tr>
+                        <th className="referentie-tabel__header">Loopje</th>
+                        {LEVELS.map((level) => (
+                          <th
                             key={level}
-                            className={`referentie-tabel__cell${
-                              level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
+                            className={`referentie-tabel__header${
+                              g === gender && level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
                             }`}
                           >
-                            {Math.round(estimatedDistance / 10) * 10}m
+                            {gLabels[level]}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {validRuns.map((run) => (
+                        <tr key={run.id} className="referentie-tabel__row">
+                          <td className="referentie-tabel__cell">
+                            {run.mode === "distance"
+                              ? `${run.distance}m @ ${run.percentage}%`
+                              : `${run.duration}s @ ${run.percentage}%`}
                           </td>
-                        );
-                      }
-                      const targetTime = calculateTargetTime(run.distance!, run.percentage, sortedPrs);
-                      return (
-                        <td
-                          key={level}
-                          className={`referentie-tabel__cell${
-                            level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
-                          }`}
-                        >
-                          {roundToWholeSeconds(targetTime)}s
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                          {LEVELS.map((level) => {
+                            const sortedPrs = prValuesToSortedPRs(gPRs[level]);
+                            if (run.mode === "duration") {
+                              const distanceAt100 = calculateDistanceForDuration(run.duration!, sortedPrs);
+                              const estimatedDistance = distanceAt100 * (run.percentage / 100);
+                              return (
+                                <td
+                                  key={level}
+                                  className={`referentie-tabel__cell${
+                                    g === gender && level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
+                                  }`}
+                                >
+                                  {Math.round(estimatedDistance / 10) * 10}m
+                                </td>
+                              );
+                            }
+                            const targetTime = calculateTargetTime(run.distance!, run.percentage, sortedPrs);
+                            return (
+                              <td
+                                key={level}
+                                className={`referentie-tabel__cell${
+                                  g === gender && level === highlightedLevel ? " referentie-tabel__col--highlight" : ""
+                                }`}
+                              >
+                                {roundToWholeSeconds(targetTime)}s
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            );
+          })}
         </>
       )}
 
