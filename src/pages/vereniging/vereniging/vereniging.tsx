@@ -31,8 +31,8 @@ function Vereniging() {
             <div className="tijdlijn">
                 <div className="timeline">
                     <div className="event">
-                        <h3>10 december 2018</h3>
-                        <p>Oprichting studentencommissie van AV '40</p>
+                        <h3>28 november 2018</h3>
+                        <p>Start van studentengroep van AV '40</p>
                     </div>
                     <div className="event">
                         <h3>25 februari 2019</h3>
