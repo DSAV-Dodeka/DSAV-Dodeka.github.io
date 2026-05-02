@@ -701,3 +701,78 @@
 .admin-cols-departed col:nth-child(1) { width: 40%; }
 .admin-cols-departed col:nth-child(2) { width: 40%; }
 .admin-cols-departed col:nth-child(3) { width: 20%; }
+
+/* Sync file date display */
+.admin-sync-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-sync-file-date {
+  font-size: 14px;
+  color: #495057;
+}
+
+/* Confirmation modal */
+.admin-confirm-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 24px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 520px;
+  width: 90%;
+}
+
+.admin-confirm-modal h3 {
+  margin: 0 0 16px 0;
+  color: #333;
+}
+
+.admin-confirm-modal p {
+  margin: 16px 0 0;
+  color: #555;
+}
+
+.admin-confirm-reasons {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.admin-confirm-reasons li {
+  margin-bottom: 8px;
+  color: #721c24;
+  line-height: 1.5;
+}
+
+.admin-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+/* Action group: flex row for action buttons */
+.admin-action-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Small button variant */
+.admin-button-small {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* Inline confirmation (delete yes/no) */
+.admin-inline-confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #721c24;
+}

@@ -31,6 +31,8 @@ import {
   useResolveSyncMatch,
   useCompleteSync,
   useResendRegistrationInvite,
+  useDeleteRegistration,
+  useDeleteUser,
   registrationsOptions,
   usersOptions,
   syncStatusOptions,
@@ -193,6 +195,9 @@ export default function Admin() {
     userId: string;
     perm: string;
   } | null>(null);
+  const [syncConfirmReasons, setSyncConfirmReasons] = useState<string[] | null>(null);
+  const [confirmingDeleteReg, setConfirmingDeleteReg] = useState<string | null>(null);
+  const [confirmingDeleteUser, setConfirmingDeleteUser] = useState<string | null>(null);
 
   const isAdmin =
     session?.user.permissions.includes("admin") ||
@@ -229,6 +234,8 @@ export default function Admin() {
 
   const acceptRegMut = useAcceptRegistration();
   const resendInviteMut = useResendRegistrationInvite();
+  const deleteRegMut = useDeleteRegistration();
+  const deleteUserMut = useDeleteUser();
   const addPermMut = useAddPermission();
   const removePermMut = useRemovePermission();
   const importSyncMut = useImportSync();
@@ -316,9 +323,17 @@ export default function Admin() {
 
     setStatus("");
     const content = await file.text();
+    const fileModifiedAt = Math.floor(file.lastModified / 1000);
     const counter = syncStatus?.sync_state_counter;
+    const mutArgs: { csvContent: string; syncStateCounter?: number; fileModifiedAt: number } = {
+      csvContent: content,
+      fileModifiedAt,
+    };
+    if (counter !== undefined) {
+      mutArgs.syncStateCounter = counter;
+    }
     importSyncMut.mutate(
-      counter !== undefined ? { csvContent: content, syncStateCounter: counter } : { csvContent: content },
+      mutArgs,
       {
         onSuccess: (result) => {
           setStatus(`Imported ${result.imported} member(s) from CSV`);
@@ -351,8 +366,9 @@ export default function Admin() {
     );
   };
 
-  const handleCompleteSync = () => {
+  const doCompleteSync = () => {
     setStatus("");
+    setSyncConfirmReasons(null);
     completeSyncMut.mutate(syncStatus?.sync_state_counter, {
       onSuccess: (result) => {
         const parts = [
@@ -368,6 +384,53 @@ export default function Admin() {
       },
       onError: (error) => setStatus(`Error: ${formatError(error)}`),
     });
+  };
+
+  const handleCompleteSync = () => {
+    if (!syncStatus) return;
+    const reasons: string[] = [];
+
+    if (syncStatus.file_modified_at) {
+      const ageSeconds = Math.floor(Date.now() / 1000) - syncStatus.file_modified_at;
+      if (ageSeconds > 86400) {
+        const fileDate = new Date(syncStatus.file_modified_at * 1000);
+        const days = Math.floor(ageSeconds / 86400);
+        reasons.push(
+          `The imported file is from ${fileDate.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })} (${days} day${days !== 1 ? "s" : ""} ago). Members who joined after this date will appear as departed.`,
+        );
+      }
+    }
+
+    if (syncStatus.departed_users.length > 0) {
+      const n = syncStatus.departed_users.length;
+      reasons.push(
+        `${n} member account${n !== 1 ? "s" : ""} will be removed (departed members).`,
+      );
+    }
+
+    if (reasons.length > 0) {
+      setSyncConfirmReasons(reasons);
+    } else {
+      doCompleteSync();
+    }
+  };
+
+  const handleDeleteRegistration = (registrationId: string) => {
+    setStatus("");
+    deleteRegMut.mutate(registrationId, {
+      onSuccess: () => setStatus("Registration deleted"),
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
+    setConfirmingDeleteReg(null);
+  };
+
+  const handleDeleteUser = (userId: string) => {
+    setStatus("");
+    deleteUserMut.mutate(userId, {
+      onSuccess: () => setStatus("User deleted"),
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
+    setConfirmingDeleteUser(null);
   };
 
   // --- Keyboard navigation ---
@@ -569,27 +632,54 @@ export default function Admin() {
                           </td>
                           <td>{reg.bondsnummer ?? "\u2014"}</td>
                           <td>
-                            {!reg.accepted ? (
-                              <button
-                                onClick={() => handleAcceptRegistration(reg.registration_id)}
-                                disabled={processingRegId === reg.registration_id}
-                                className="admin-button admin-button-accept"
-                              >
-                                {processingRegId === reg.registration_id
-                                  ? "Processing..."
-                                  : "Approve"}
-                              </button>
-                            ) : (
-                              reg.available_actions?.some((a) => a.kind === "resend_registration_invite") && (
+                            <div className="admin-action-group">
+                              {!reg.accepted ? (
                                 <button
-                                  onClick={() => handleResendInvite(reg.registration_id)}
-                                  disabled={resendInviteMut.isPending}
-                                  className="admin-button admin-button-refresh"
+                                  onClick={() => handleAcceptRegistration(reg.registration_id)}
+                                  disabled={processingRegId === reg.registration_id}
+                                  className="admin-button admin-button-accept"
                                 >
-                                  {resendInviteMut.isPending ? "Sending..." : "Resend Invite"}
+                                  {processingRegId === reg.registration_id
+                                    ? "Processing..."
+                                    : "Approve"}
                                 </button>
-                              )
-                            )}
+                              ) : (
+                                reg.available_actions?.some((a) => a.kind === "resend_registration_invite") && (
+                                  <button
+                                    onClick={() => handleResendInvite(reg.registration_id)}
+                                    disabled={resendInviteMut.isPending}
+                                    className="admin-button admin-button-refresh"
+                                  >
+                                    {resendInviteMut.isPending ? "Sending..." : "Resend Invite"}
+                                  </button>
+                                )
+                              )}
+                              {confirmingDeleteReg === reg.registration_id ? (
+                                <span className="admin-inline-confirm">
+                                  Delete?
+                                  <button
+                                    className="admin-perm-confirm-yes"
+                                    onClick={() => handleDeleteRegistration(reg.registration_id)}
+                                  >
+                                    Yes
+                                  </button>
+                                  <button
+                                    className="admin-perm-confirm-no"
+                                    onClick={() => setConfirmingDeleteReg(null)}
+                                  >
+                                    No
+                                  </button>
+                                </span>
+                              ) : (
+                                <button
+                                  className="admin-button admin-button-danger admin-button-small"
+                                  onClick={() => setConfirmingDeleteReg(reg.registration_id)}
+                                  disabled={deleteRegMut.isPending}
+                                >
+                                  Delete
+                                </button>
+                              )}
+                            </div>
                           </td>
                         </tr>
                       ))}
@@ -710,61 +800,90 @@ export default function Admin() {
                                   </div>
                                 </td>
                                 <td>
-                                  {addingPermUser !== user.user_id ? (
-                                    <button
-                                      className="admin-button admin-button-add"
-                                      onClick={() => {
-                                        setSelectedPermForUser("");
-                                        setAddingPermUser(user.user_id);
-                                      }}
-                                      disabled={
-                                        availablePerms.filter(
-                                          (p) => !user.permissions.includes(p),
-                                        ).length === 0
-                                      }
-                                    >
-                                      + Add
-                                    </button>
-                                  ) : (
-                                    <form
-                                      className="admin-add-perm-form"
-                                      onSubmit={(e) =>
-                                        handleAddPermission(e, user.user_id)
-                                      }
-                                      onKeyDown={(e) => {
-                                        if (e.key === "Escape") {
-                                          e.preventDefault();
-                                          setAddingPermUser(null);
+                                  <div className="admin-action-group">
+                                    {addingPermUser !== user.user_id ? (
+                                      <button
+                                        className="admin-button admin-button-add"
+                                        onClick={() => {
+                                          setSelectedPermForUser("");
+                                          setAddingPermUser(user.user_id);
+                                        }}
+                                        disabled={
+                                          availablePerms.filter(
+                                            (p) => !user.permissions.includes(p),
+                                          ).length === 0
                                         }
-                                      }}
-                                    >
-                                      <select
-                                        value={effectivePerm}
-                                        onChange={handlePermSelectChange}
-                                        className="admin-perm-select"
                                       >
-                                        {addablePerms.map((perm) => (
-                                          <option key={perm} value={perm}>
-                                            {getPermissionDisplay(perm)}
-                                          </option>
-                                        ))}
-                                      </select>
-                                      <button
-                                        type="submit"
-                                        className="admin-button admin-button-accept"
-                                        disabled={!effectivePerm}
-                                      >
-                                        Add
+                                        + Add
                                       </button>
-                                      <button
-                                        type="button"
-                                        className="admin-button"
-                                        onClick={() => setAddingPermUser(null)}
+                                    ) : (
+                                      <form
+                                        className="admin-add-perm-form"
+                                        onSubmit={(e) =>
+                                          handleAddPermission(e, user.user_id)
+                                        }
+                                        onKeyDown={(e) => {
+                                          if (e.key === "Escape") {
+                                            e.preventDefault();
+                                            setAddingPermUser(null);
+                                          }
+                                        }}
                                       >
-                                        Cancel
-                                      </button>
-                                    </form>
-                                  )}
+                                        <select
+                                          value={effectivePerm}
+                                          onChange={handlePermSelectChange}
+                                          className="admin-perm-select"
+                                        >
+                                          {addablePerms.map((perm) => (
+                                            <option key={perm} value={perm}>
+                                              {getPermissionDisplay(perm)}
+                                            </option>
+                                          ))}
+                                        </select>
+                                        <button
+                                          type="submit"
+                                          className="admin-button admin-button-accept"
+                                          disabled={!effectivePerm}
+                                        >
+                                          Add
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="admin-button"
+                                          onClick={() => setAddingPermUser(null)}
+                                        >
+                                          Cancel
+                                        </button>
+                                      </form>
+                                    )}
+                                    {!user.permissions.includes("admin") && (
+                                      confirmingDeleteUser === user.user_id ? (
+                                        <span className="admin-inline-confirm">
+                                          Delete?
+                                          <button
+                                            className="admin-perm-confirm-yes"
+                                            onClick={() => handleDeleteUser(user.user_id)}
+                                          >
+                                            Yes
+                                          </button>
+                                          <button
+                                            className="admin-perm-confirm-no"
+                                            onClick={() => setConfirmingDeleteUser(null)}
+                                          >
+                                            No
+                                          </button>
+                                        </span>
+                                      ) : (
+                                        <button
+                                          className="admin-button admin-button-danger admin-button-small"
+                                          onClick={() => setConfirmingDeleteUser(user.user_id)}
+                                          disabled={deleteUserMut.isPending}
+                                        >
+                                          Delete
+                                        </button>
+                                      )
+                                    )}
+                                  </div>
                                 </td>
                               </tr>
                             ))}
@@ -821,6 +940,14 @@ export default function Admin() {
             </>
           )}
 
+          {syncConfirmReasons && (
+            <SyncConfirmModal
+              reasons={syncConfirmReasons}
+              onConfirm={doCompleteSync}
+              onCancel={() => setSyncConfirmReasons(null)}
+            />
+          )}
+
           {/* Sync Tab */}
           {activeTab === "sync" && (
             <>
@@ -869,6 +996,18 @@ export default function Admin() {
                           <span className="admin-status-badge admin-status-badge-warning">Sync in progress</span>
                         ) : (
                           <span className="admin-status-badge admin-status-badge-muted">No active sync</span>
+                        )}
+                        {syncStatus.file_modified_at && (
+                          <span className="admin-sync-file-date">
+                            Imported file from:{" "}
+                            <strong>
+                              {new Date(syncStatus.file_modified_at * 1000).toLocaleDateString("en-GB", {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric",
+                              })}
+                            </strong>
+                          </span>
                         )}
                       </div>
                     </div>
@@ -951,6 +1090,38 @@ export default function Admin() {
           )}
         </>
       )}
+    </div>
+  );
+}
+
+function SyncConfirmModal({
+  reasons,
+  onConfirm,
+  onCancel,
+}: {
+  reasons: string[];
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  return (
+    <div className="admin-help-overlay" onClick={onCancel}>
+      <div className="admin-confirm-modal" onClick={(e) => e.stopPropagation()}>
+        <h3>Confirm sync completion</h3>
+        <ul className="admin-confirm-reasons">
+          {reasons.map((r, i) => (
+            <li key={i}>{r}</li>
+          ))}
+        </ul>
+        <p>Are you sure you want to complete this sync?</p>
+        <div className="admin-confirm-actions">
+          <button className="admin-button" onClick={onCancel}>
+            Cancel
+          </button>
+          <button className="admin-button admin-button-accept" onClick={onConfirm}>
+            Complete sync
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
