@@ -149,10 +149,12 @@ export function useImportSync() {
     mutationFn: ({
       csvContent,
       syncStateCounter,
+      fileModifiedAt,
     }: {
       csvContent: string;
       syncStateCounter?: number;
-    }) => backend.importSync(csvContent, syncStateCounter),
+      fileModifiedAt?: number;
+    }) => backend.importSync(csvContent, syncStateCounter, fileModifiedAt),
   });
 }
 
@@ -216,6 +218,29 @@ export function useResendRegistrationInvite() {
       await queryClient.invalidateQueries({
         queryKey: registrationsOptions.queryKey,
       });
+    },
+  });
+}
+
+export function useDeleteRegistration() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (registrationId: string) =>
+      backend.deleteRegistration(registrationId),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: registrationsOptions.queryKey,
+      });
+    },
+  });
+}
+
+export function useDeleteUser() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (userId: string) => backend.deleteUser(userId),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: usersOptions.queryKey });
     },
   });
 }

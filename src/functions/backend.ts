@@ -194,6 +194,36 @@ export async function acceptRegistration(
   return response.json();
 }
 
+export async function deleteRegistration(
+  registrationId: string,
+): Promise<{ success: boolean }> {
+  const response = await post(
+    "/admin/delete_registration/",
+    { registration_id: registrationId },
+    true,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to delete registration: ${text}`);
+  }
+  return response.json();
+}
+
+export async function deleteUser(
+  userId: string,
+): Promise<{ success: boolean }> {
+  const response = await post(
+    "/admin/delete_user/",
+    { user_id: userId },
+    true,
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to delete user: ${text}`);
+  }
+  return response.json();
+}
+
 export async function resendRegistrationInvite(
   registrationId: string,
 ): Promise<{ success: boolean; email: string }> {
@@ -443,6 +473,7 @@ export interface SyncDataChangeItem {
 export interface SyncStatus {
   sync_in_progress: boolean;
   sync_state_counter: number;
+  file_modified_at: number | null;
   can_complete: boolean;
   review_required: SyncReviewItem[];
   registrations_created: SyncNewRegistrationItem[];
@@ -471,12 +502,20 @@ export interface CompleteSyncResult {
 export async function importSync(
   csvContent: string,
   syncStateCounter?: number,
+  fileModifiedAt?: number,
 ): Promise<SyncImportResult> {
-  const body: { csv_content: string; sync_state_counter?: number } = {
+  const body: {
+    csv_content: string;
+    sync_state_counter?: number;
+    file_modified_at?: number;
+  } = {
     csv_content: csvContent,
   };
   if (syncStateCounter !== undefined) {
     body.sync_state_counter = syncStateCounter;
+  }
+  if (fileModifiedAt !== undefined) {
+    body.file_modified_at = fileModifiedAt;
   }
   const response = await post("/admin/import_sync/", body, true);
   if (!response.ok) {
