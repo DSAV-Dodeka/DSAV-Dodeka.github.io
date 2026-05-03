@@ -8,35 +8,34 @@ import * as backend from "./backend.ts";
 
 // --- Session queries ---
 
+export const sessionInfoOptions = queryOptions({
+  queryKey: ["session"] as const,
+  queryFn: () => backend.getSessionInfo(),
+  staleTime: 30000,
+});
+
+export const secondarySessionInfoOptions = queryOptions({
+  queryKey: ["session-secondary"] as const,
+  queryFn: () => backend.getSessionInfo(true),
+  staleTime: 10000,
+});
+
 export function useSessionInfo() {
   return useQuery({
-    queryKey: ["session"],
-    queryFn: async () => {
-      if (import.meta.env.DEV) {
-        const { getDebugSession } = await import("./debug-user.ts");
-        const debug = getDebugSession();
-        if (debug) return debug;
-      }
-      return backend.getSessionInfo();
-    },
+    ...sessionInfoOptions,
     refetchInterval: 60000,
-    staleTime: 30000,
   });
 }
 
 export function useSecondarySessionInfo() {
   return useQuery({
-    queryKey: ["session-secondary"],
-    queryFn: async () => {
-      return backend.getSessionInfo(true);
-    },
+    ...secondarySessionInfoOptions,
     refetchInterval: (query) => {
       if (query.state.data) {
         return 30000;
       }
       return false;
     },
-    staleTime: 10000,
   });
 }
 
@@ -62,7 +61,15 @@ export type { RegistrationStatus } from "./backend.ts";
 
 export const memberBirthdaysOptions = queryOptions({
   queryKey: ["member", "birthdays"] as const,
-  queryFn: backend.getMemberBirthdays,
+  queryFn: async () => {
+    if (import.meta.env.DEV && typeof window !== "undefined") {
+      const { getDebugBirthdays } = await import("./debug-user.ts");
+      const debugBirthdays = getDebugBirthdays();
+      if (debugBirthdays) return debugBirthdays;
+    }
+
+    return backend.getMemberBirthdays();
+  },
 });
 
 // --- Member query hooks ---

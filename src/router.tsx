@@ -1,7 +1,8 @@
-import { createRoute, createRootRoute, createRouter as createTanStackRouter, redirect } from "@tanstack/react-router";
+import { createRoute, createRootRouteWithContext, createRouter as createTanStackRouter, redirect } from "@tanstack/react-router";
 import { HeadContent, Scripts } from "@tanstack/react-router";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState } from "react";
+import { QueryClient } from "@tanstack/react-query";
+import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
+import type { ReactNode } from "react";
 import { z } from "zod";
 
 import "./index.scss";
@@ -46,9 +47,16 @@ import NieuwsHome from "./pages/nieuws/nieuws/nieuws";
 import Spike from "./pages/nieuws/spike/spike";
 import NielsRedirect from "./pages/nieuws/niels-redirect";
 import Catchall from "./catchall";
-import { getSessionInfo } from "./functions/backend";
+import {
+  secondarySessionInfoOptions,
+  sessionInfoOptions,
+} from "./functions/query";
 
 const cacheTime = 1000 * 60;
+
+interface RouterContext {
+  queryClient: QueryClient;
+}
 
 function createQueryClient() {
   return new QueryClient({
@@ -62,7 +70,7 @@ function createQueryClient() {
   });
 }
 
-const rootRoute = createRootRoute({
+const rootRoute = createRootRouteWithContext<RouterContext>()({
   head: () => ({
     meta: [
       { charSet: "UTF-8" },
@@ -87,15 +95,10 @@ const rootRoute = createRootRoute({
 });
 
 function RootComponent() {
-  const [queryClient] = useState(createQueryClient);
-  return (
-    <QueryClientProvider client={queryClient}>
-      <AppLayout />
-    </QueryClientProvider>
-  );
+  return <AppLayout />;
 }
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument({ children }: { children: ReactNode }) {
   return (
     <html lang="nl">
       <head>
@@ -122,18 +125,24 @@ function redirectToLogin(location: AuthGuardLocation): never {
   });
 }
 
-async function requireSession(location: AuthGuardLocation) {
-  const session = await getSessionInfo();
+async function requireSession(
+  context: RouterContext,
+  location: AuthGuardLocation,
+) {
+  const session = await context.queryClient.fetchQuery(sessionInfoOptions);
   if (!session) {
     redirectToLogin(location);
   }
   return session;
 }
 
-async function requireAdmin(location: AuthGuardLocation) {
+async function requireAdmin(
+  context: RouterContext,
+  location: AuthGuardLocation,
+) {
   const [session, secondarySession] = await Promise.all([
-    getSessionInfo(),
-    getSessionInfo(true),
+    context.queryClient.fetchQuery(sessionInfoOptions),
+    context.queryClient.fetchQuery(secondarySessionInfoOptions),
   ]);
   if (
     !session?.user.permissions.includes("admin") &&
@@ -183,7 +192,7 @@ const flowTestRoute = createRoute({ getParentRoute: () => rootRoute, path: "flow
 const adminRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "admin",
-  beforeLoad: ({ location }) => requireAdmin(location),
+  beforeLoad: ({ context, location }) => requireAdmin(context, location),
   component: Admin,
 });
 const brandingRoute = createRoute({ getParentRoute: () => rootRoute, path: "huisstijl", component: Branding });
@@ -192,13 +201,13 @@ const updateRoute = createRoute({ getParentRoute: () => rootRoute, path: "update
 const ledenRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "leden",
-  beforeLoad: ({ location }) => requireSession(location),
+  beforeLoad: ({ context, location }) => requireSession(context, location),
   component: LedenHome,
 });
 const ledenVerjaardagenRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "leden/verjaardagen",
-  beforeLoad: ({ location }) => requireSession(location),
+  beforeLoad: ({ context, location }) => requireSession(context, location),
   component: Verjaardagen,
 });
 const accountRegisterRoute = createRoute({ getParentRoute: () => rootRoute, path: "account/register", component: Register });
@@ -225,8 +234,8 @@ const accountLoginRoute = createRoute({
   validateSearch: z.object({
     redirect: z.string().optional().transform(sanitizeRedirect),
   }),
-  beforeLoad: async ({ search }) => {
-    const session = await getSessionInfo();
+  beforeLoad: async ({ context, search }) => {
+    const session = await context.queryClient.fetchQuery(sessionInfoOptions);
     if (session) {
       throw redirect({ to: search.redirect });
     }
@@ -236,7 +245,7 @@ const accountLoginRoute = createRoute({
 const accountEmailUpdateRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "account/email-update",
-  beforeLoad: ({ location }) => requireSession(location),
+  beforeLoad: ({ context, location }) => requireSession(context, location),
   validateSearch: z.object({
     token: z.string().optional(),
   }),
@@ -245,7 +254,7 @@ const accountEmailUpdateRoute = createRoute({
 const accountDeleteRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "account/delete",
-  beforeLoad: ({ location }) => requireSession(location),
+  beforeLoad: ({ context, location }) => requireSession(context, location),
   validateSearch: z.object({
     token: z.string().optional(),
   }),
@@ -254,7 +263,7 @@ const accountDeleteRoute = createRoute({
 const accountProfileRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "account/profile",
-  beforeLoad: ({ location }) => requireSession(location),
+  beforeLoad: ({ context, location }) => requireSession(context, location),
   component: Profile,
 });
 const wedstrijdenRoute = createRoute({ getParentRoute: () => rootRoute, path: "wedstrijden", component: WedstrijdenHome });
@@ -265,7 +274,7 @@ const nieuwsRoute = createRoute({ getParentRoute: () => rootRoute, path: "nieuws
 const nieuwsSpikeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "nieuws/spike",
-  beforeLoad: ({ location }) => requireSession(location),
+  beforeLoad: ({ context, location }) => requireSession(context, location),
   component: Spike,
 });
 const nielsRoute = createRoute({ getParentRoute: () => rootRoute, path: "Niels", component: NielsRedirect });
@@ -314,10 +323,19 @@ const routeTree = rootRoute.addChildren([
 ]);
 
 export function createAppRouter() {
-  return createTanStackRouter({
+  const queryClient = createQueryClient();
+  const router = createTanStackRouter({
     routeTree,
+    context: { queryClient },
     scrollRestoration: true,
   });
+
+  setupRouterSsrQueryIntegration({
+    router,
+    queryClient,
+  });
+
+  return router;
 }
 
 declare module "@tanstack/react-router" {

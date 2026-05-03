@@ -1,4 +1,6 @@
-import WedstrijdenData from "$content/Wedstrijden.json";
+// This module is imported by vite.config.ts while Vite is still loading,
+// so it cannot use aliases defined inside that same Vite config.
+import WedstrijdenData from "../content/Wedstrijden.json";
 
 export interface Wedstrijd {
   naam: string;

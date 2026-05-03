@@ -303,9 +303,25 @@ export interface SessionInfo {
   expires_at: number | null;
 }
 
+async function getDebugSessionInfo(
+  secondary: boolean,
+): Promise<SessionInfo | null> {
+  if (secondary || !import.meta.env.DEV || typeof window === "undefined") {
+    return null;
+  }
+
+  const { getDebugSession } = await import("./debug-user.ts");
+  return getDebugSession();
+}
+
 export async function getSessionInfo(
   secondary = false,
 ): Promise<SessionInfo | null> {
+  const debugSession = await getDebugSessionInfo(secondary);
+  if (debugSession) {
+    return debugSession;
+  }
+
   const path = secondary
     ? "/auth/session_info/?secondary=true"
     : "/auth/session_info/";

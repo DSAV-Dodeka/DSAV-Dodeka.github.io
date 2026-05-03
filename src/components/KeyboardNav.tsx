@@ -8,7 +8,7 @@
 //
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useRouter } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 
 const LEADER_KEY = "\\";
@@ -50,6 +50,7 @@ const TOAST_COLORS = {
 
 export default function KeyboardNav() {
   const navigate = useNavigate();
+  const router = useRouter();
   const queryClient = useQueryClient();
   const leaderActive = useRef(false);
   const buffer = useRef("");
@@ -99,6 +100,7 @@ export default function KeyboardNav() {
         const { toggleDebugUser } = await import("$functions/debug-user.ts");
         const active = toggleDebugUser();
         await queryClient.invalidateQueries({ queryKey: ["session"] });
+        await router.invalidate();
         setToast({
           message: active ? "Debug user ON (member)" : "Debug user OFF",
           type: active ? "success" : "info",
@@ -137,7 +139,7 @@ export default function KeyboardNav() {
         }
       }
     },
-    [navigate, queryClient, resetLeader],
+    [navigate, queryClient, resetLeader, router],
   );
 
   useEffect(() => {
