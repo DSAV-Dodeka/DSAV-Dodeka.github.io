@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
-const BUILD_DIR = join(__dirname, "build", "client");
+const BUILD_DIR = join(__dirname, "dist", "client");
 
 const MIME_TYPES = {
   ".html": "text/html",
@@ -66,10 +66,10 @@ const server = createServer(async (req, res) => {
     return;
   }
 
-  // Fall back to __spa-fallback.html for client-side routing
-  const fallbackPath = join(BUILD_DIR, "__spa-fallback.html");
+  // Fall back to TanStack Start's prerendered SPA shell for client-side routing
+  const fallbackPath = join(BUILD_DIR, "_shell.html");
   if (await serveFile(fallbackPath, res)) {
-    console.log(`✓ ${url} → __spa-fallback.html`);
+    console.log(`✓ ${url} → _shell.html`);
     return;
   }
 

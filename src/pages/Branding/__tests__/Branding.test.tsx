@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter } from "@tanstack/react-router";
 import Branding from "../Branding";
 import ColorPalette from "../components/ColorPalette";
 import Typography from "../components/Typography";

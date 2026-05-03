@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Nieuwsbericht from "../nieuws/components/Nieuwsbericht";
-import SpikeText from "../../../content/Spike.json";
+import SpikeText from "$content/Spike.json";
 import "./Spike.scss";
 import logo from "$images/spike/logo.webp";
 
@@ -10,11 +10,7 @@ function Spike() {
   return (
     <div className="spikeContainer">
       <div className="spikeLogoContainer">
-        <img
-          src={logo}
-          alt="De Spike"
-          className="spike_1"
-        />
+        <img src={logo} alt="De Spike" className="spike_1" />
       </div>
       {/*{!authState.isAuthenticated && (
                 <p className="spike_status">Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log in om deze pagina te kunnen bekijken.</p>

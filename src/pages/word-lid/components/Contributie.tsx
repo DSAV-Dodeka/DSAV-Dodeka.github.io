@@ -1,4 +1,4 @@
-import Header from "../../../components/Header";
+import Header from "$components/Header";
 import "./Contributie.scss";
 
 function Contributie() {
@@ -46,11 +46,18 @@ function Contributie() {
       <div className="contributie_3">
         <Header text="Contributie" position="right" />
         <p className="contributie_4">
-          Als wedstrijdlid kan je deelnemen aan alle trainingen, activiteiten en wegwedstrijden. Je krijgt een wedstrijdlicentie bij de Atletiekunie en kan daardoor ook deelnemen aan wedstrijden op de baan. 
+          Als wedstrijdlid kan je deelnemen aan alle trainingen, activiteiten en
+          wegwedstrijden. Je krijgt een wedstrijdlicentie bij de Atletiekunie en
+          kan daardoor ook deelnemen aan wedstrijden op de baan.
           <br /> <br />
-          Als recreantlid kan je deelnemen aan alle trainingen, activiteiten en wegwedstrijden, maar niet aan wedstrijden op de baan.
+          Als recreantlid kan je deelnemen aan alle trainingen, activiteiten en
+          wegwedstrijden, maar niet aan wedstrijden op de baan.
           <br /> <br />
-          Als gastlid kan je deelnemen aan alle trainingen, activiteiten en wegwedstrijden. Je hebt al een wedstrijdlicentie bij een andere atletiekvereniging en komt op baanwedstrijden ook uit voor deze vereniging. Een uitzondering geldt voor de Nationale Studenten Kampioenschappen (NSK's), hier mag je wel uitkomen voor Dodeka.
+          Als gastlid kan je deelnemen aan alle trainingen, activiteiten en
+          wegwedstrijden. Je hebt al een wedstrijdlicentie bij een andere
+          atletiekvereniging en komt op baanwedstrijden ook uit voor deze
+          vereniging. Een uitzondering geldt voor de Nationale Studenten
+          Kampioenschappen (NSK's), hier mag je wel uitkomen voor Dodeka.
         </p>
       </div>
     </div>

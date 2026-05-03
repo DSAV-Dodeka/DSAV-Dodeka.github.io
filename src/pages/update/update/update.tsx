@@ -16,7 +16,7 @@ const MAANDEN = [
 
 function getGroepLabel(datum: string): string {
   const date = parseDatum(datum);
-  const maand = MAANDEN[date.getMonth()];
+  const maand = MAANDEN[date.getMonth()] ?? "";
   return maand.charAt(0).toUpperCase() + maand.slice(1) + " " + date.getFullYear();
 }
 
@@ -66,37 +66,49 @@ function renderItems(items: TijdlijnItem[]) {
 
   while (i < items.length) {
     const item = items[i];
+    if (!item) break;
 
     if (item.type === "update" && (item.entry.grootte ?? "groot") === "klein") {
       // Collect consecutive standalone klein items
       const kleinGroep: ChangelogEntry[] = [];
       while (
         i < items.length &&
-        items[i].type === "update" &&
-        ((items[i] as { type: "update"; entry: ChangelogEntry }).entry.grootte ?? "groot") === "klein"
+        (() => {
+          const next = items[i];
+          return (
+            !!next &&
+            next.type === "update" &&
+            (next.entry.grootte ?? "groot") === "klein"
+          );
+        })()
       ) {
-        kleinGroep.push((items[i] as { type: "update"; entry: ChangelogEntry }).entry);
+        const next = items[i];
+        if (!next || next.type !== "update") break;
+        kleinGroep.push(next.entry);
         i++;
+      }
+
+      const firstKlein = kleinGroep[0];
+      if (!firstKlein) {
+        continue;
       }
 
       if (kleinGroep.length > 1) {
         elements.push(
-          <div className="compacte-groep" key={`compact-${kleinGroep[0].id}`}>
+          <div className="compacte-groep" key={`compact-${firstKlein.id}`}>
             {kleinGroep.map((entry) => (
               <CompacteKaart key={entry.id} entry={entry} />
             ))}
           </div>
         );
       } else {
-        elements.push(<CompacteKaart key={kleinGroep[0].id} entry={kleinGroep[0]} />);
+        elements.push(<CompacteKaart key={firstKlein.id} entry={firstKlein} />);
       }
     } else if (item.type === "update") {
       elements.push(<UpdateKaart key={item.entry.id} entry={item.entry} />);
       i++;
     } else {
-      elements.push(
-        <ReleaseMomentEntry key={item.moment.id} moment={item.moment} updates={item.updates} />
-      );
+      elements.push(<ReleaseMomentEntry key={item.moment.id} moment={item.moment} updates={item.updates} />);
       i++;
     }
   }

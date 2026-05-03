@@ -1,9 +1,11 @@
-import { useParams } from "react-router";
+import { useParams } from "@tanstack/react-router";
 import Wedstrijd from "./wedstrijd";
 import { findWedstrijdByPath } from "$functions/wedstrijden.ts";
 
 export default function WedstrijdLoader() {
-  const { wedstrijdPath } = useParams();
+  const { wedstrijdPath } = useParams({
+    from: "/wedstrijden/$wedstrijdPath",
+  });
 
   const wedstrijd = findWedstrijdByPath(`/${wedstrijdPath}`);
 

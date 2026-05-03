@@ -1,6 +1,6 @@
 import { formatTime, cucumberCount } from "../utils";
 import type { LeaderboardEntry, TimesEntry } from "../utils";
-import timesDataFile from "../../../content/KomkommerTijden.json";
+import timesDataFile from "$content/KomkommerTijden.json";
 
 interface LeaderboardProps {
   userTime: number;
@@ -10,14 +10,14 @@ interface LeaderboardProps {
 export function buildLeaderboard(
   data: TimesEntry[],
   userTime: number,
-  userName: string
+  userName: string,
 ): LeaderboardEntry[] {
   const entries: LeaderboardEntry[] = data.map((entry) => ({
     rank: 0,
     naam: entry.naam,
     tijd: entry.tijd,
     startjaar: entry.startjaar,
-    eindjaar: entry.eindjaar,
+    ...(entry.eindjaar !== undefined ? { eindjaar: entry.eindjaar } : {}),
     isUser: false,
   }));
 
@@ -44,7 +44,7 @@ export function Leaderboard({ userTime, userName }: LeaderboardProps) {
   const entries = buildLeaderboard(
     timesData as TimesEntry[],
     userTime,
-    userName
+    userName,
   );
 
   return (

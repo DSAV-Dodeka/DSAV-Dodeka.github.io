@@ -1,5 +1,4 @@
-
-import arnoldFoto from "../../../../images/arnold/arnoldfoto.webp";
+import arnoldFoto from "$images/arnold/arnoldfoto.webp";
 import "./ArnoldInfo.scss";
 
 function ArnoldInfo() {

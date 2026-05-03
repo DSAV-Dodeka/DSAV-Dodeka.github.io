@@ -1,4 +1,4 @@
-import Header from "../../../components/Header";
+import Header from "$components/Header";
 import "./Loopgroep.scss";
 import loopgroep from "$images/trainingen/loopgroep_update.webp";
 

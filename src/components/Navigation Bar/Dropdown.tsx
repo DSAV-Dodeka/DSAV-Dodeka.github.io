@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router";
+import { useState } from "react";
+import { useLocation, Link } from "@tanstack/react-router";
 import { useSessionInfo } from "$functions/query.ts";
 import "./Dropdown.scss";
 
@@ -14,13 +14,6 @@ interface DropdownProps {
 }
 
 function ProtectedItem({ to, name }: { to: string; name: string }) {
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => { setIsClient(true); }, []);
-  if (!isClient) return null;
-  return <ProtectedItemClient to={to} name={name} />;
-}
-
-function ProtectedItemClient({ to, name }: { to: string; name: string }) {
   const { data: session } = useSessionInfo();
   const isMember = session?.user.permissions.includes("member") ?? false;
   if (!isMember) return null;

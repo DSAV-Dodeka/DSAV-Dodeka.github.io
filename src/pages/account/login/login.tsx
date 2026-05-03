@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SessionInfo, useSessionInfo } from "$functions/query";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link, useSearch } from "@tanstack/react-router";
 import { login } from "$functions/flows/login.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./login.css";
@@ -26,6 +26,7 @@ function computeState(
 export default function Login() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { redirect } = useSearch({ from: "/account/login" });
   const [pressedLogin, setPressedLogin] = useState(false);
   const [status, setStatus] = useState("");
 
@@ -41,8 +42,7 @@ export default function Login() {
 
   if (state == "logged_in") {
     setTimeout(() => {
-      // Send to homepage
-      navigate("/");
+      navigate({ to: redirect });
     }, 200);
   }
 
@@ -62,6 +62,7 @@ export default function Login() {
       }
 
       await queryClient.invalidateQueries({ queryKey: ["session"] });
+      navigate({ to: redirect });
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
       setPressedLogin(false);

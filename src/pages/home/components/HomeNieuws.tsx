@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link } from "@tanstack/react-router";
 import "./HomeNieuws.scss";
-import Nieuws from "../../../content/Nieuws.json";
+import Nieuws from "$content/Nieuws.json";
 import nieuws from "$images/home/nieuws.webp";
 
 function HomeNieuws() {

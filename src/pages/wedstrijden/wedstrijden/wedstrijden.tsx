@@ -1,8 +1,8 @@
-import { Link } from "react-router";
-import PageTitle from "../../../components/PageTitle";
+import { Link } from "@tanstack/react-router";
+import PageTitle from "$components/PageTitle";
 import EigenWedstrijd from "./components/EigenWedstrijd";
-import TextWedstrijden from "../../../content/Wedstrijden.json";
-import records from "../../../images/wedstrijden/records.webp";
+import TextWedstrijden from "$content/Wedstrijden.json";
+import records from "$images/wedstrijden/records.webp";
 import "./Wedstrijden.scss";
 
 const dateMap: Record<string, string> = {
@@ -55,7 +55,7 @@ function Wedstrijden() {
         ))}
       </div>
       <div className="wedstrijden_routes">
-        <Link className="wedstrijden_records" to="records">
+        <Link className="wedstrijden_records" to="/wedstrijden/records">
           <h1 className="wedstrijden_link_header">Records</h1>
           <img src={records} className="wedstrijden_link_image" alt="" />
         </Link>

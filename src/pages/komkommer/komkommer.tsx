@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import PageTitle from "../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 import { TimerDisplay } from "./components/TimerDisplay";
 import { TimerControls } from "./components/TimerControls";
 import { StopTimesList } from "./components/StopTimesList";
@@ -7,7 +7,7 @@ import { TimeSelector } from "./components/TimeSelector";
 import { Leaderboard, buildLeaderboard } from "./components/Leaderboard";
 import { formatTime } from "./utils";
 import type { Phase, TimesEntry } from "./utils";
-import timesDataFile from "../../content/KomkommerTijden.json";
+import timesDataFile from "$content/KomkommerTijden.json";
 import "./komkommer.scss";
 
 const timesData = (timesDataFile as any).tijden as TimesEntry[];
@@ -88,14 +88,17 @@ function Komkommer() {
     setPhase("selecting");
   }, [getCurrentElapsed, cancelTimer]);
 
-  const handleTimeSelect = useCallback((timeMs: number) => {
-    setSelectedTime(timeMs);
-    setPreviousResults((prev) => [
-      ...prev,
-      { tijd: timeMs, naam: userName || "Jij" },
-    ]);
-    setPhase("leaderboard");
-  }, [userName]);
+  const handleTimeSelect = useCallback(
+    (timeMs: number) => {
+      setSelectedTime(timeMs);
+      setPreviousResults((prev) => [
+        ...prev,
+        { tijd: timeMs, naam: userName || "Jij" },
+      ]);
+      setPhase("leaderboard");
+    },
+    [userName],
+  );
 
   const handleRestart = useCallback(() => {
     setStopTimes([]);
@@ -120,7 +123,9 @@ function Komkommer() {
 
         {phase === "idle" && (
           <div className="name-input">
-            <label htmlFor="userName" className="name-input__label">Je naam</label>
+            <label htmlFor="userName" className="name-input__label">
+              Je naam
+            </label>
             <input
               id="userName"
               type="text"
@@ -171,7 +176,9 @@ function Komkommer() {
             <ol className="previous-times__list">
               {previousResults.slice(0, -1).map((result, i) => (
                 <li key={i} className="previous-times__item">
-                  <span className="previous-times__rank">#{getRank(result.tijd, timesData, result.naam)}</span>
+                  <span className="previous-times__rank">
+                    #{getRank(result.tijd, timesData, result.naam)}
+                  </span>
                   <span className="previous-times__name">{result.naam}</span>
                   <span className="previous-times__time">
                     {formatTime(result.tijd)}

@@ -1,4 +1,4 @@
-import Header from "../../../../components/Header";
+import Header from "$components/Header";
 import "./Donateurs_info.scss";
 import geld from "$images/commissies/quico/commissie.webp";
 
@@ -15,11 +15,15 @@ function Donateurs_info(props: { text: string }) {
             </span>
           ))}
         </p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeBuHmuPLmTTTmjKEoCPj6B9PXG5PlG_Ql-0dla4NNY7Hr2Uw/viewform" target="_blank" rel="noopener noreferrer">
-        <button className="schrijfInButton" id="submit_button" type="button">
-          Word donateur!
-        </button>
-      </a>
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSeBuHmuPLmTTTmjKEoCPj6B9PXG5PlG_Ql-0dla4NNY7Hr2Uw/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className="schrijfInButton" id="submit_button" type="button">
+            Word donateur!
+          </button>
+        </a>
       </div>
       <img src={geld} alt="" className="donateurs_4" />
     </div>

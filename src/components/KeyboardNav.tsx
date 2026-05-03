@@ -6,11 +6,9 @@
 //   \du             → toggle debug user with member permissions (DEV only)
 // Ignored when focus is in an input, textarea, or contenteditable element.
 //
-// Uses a wrapper component to skip rendering during prerendering (static pages
-// listed in react-router.config.ts are prerendered without QueryClientProvider).
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 
 const LEADER_KEY = "\\";
@@ -50,20 +48,7 @@ const TOAST_COLORS = {
   error: { bg: "#f8d7da", fg: "#721c24", border: "#f5c6cb" },
 } as const;
 
-// Wrapper: skip during prerender since there is no QueryClientProvider
 export default function KeyboardNav() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) return null;
-
-  return <KeyboardNavClient />;
-}
-
-function KeyboardNavClient() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const leaderActive = useRef(false);
@@ -106,7 +91,7 @@ function KeyboardNavClient() {
       }
 
       if (command === "admin") {
-        navigate("/admin");
+        navigate({ to: "/admin" });
         return;
       }
 

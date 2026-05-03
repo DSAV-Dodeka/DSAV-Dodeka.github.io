@@ -22,7 +22,7 @@ function FormatPicker({ logoName, logoId, colorVariant, previewSrc }: FormatPick
   const isDark = colorVariant === "dark";
 
   return (
-    <div className="format-picker">
+    <div className="format-picker" data-logo-id={logoId}>
       <div className={`format-picker__preview ${isDark ? "format-picker__preview--light" : "format-picker__preview--dark"}`}>
         <img src={previewSrc} alt={logoName} />
       </div>

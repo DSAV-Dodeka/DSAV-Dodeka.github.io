@@ -1,7 +1,7 @@
-import PageTitle from "../../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 import Wedstrijd from "./components/Wedstrijd.tsx";
 import "./Hoogtepunten.scss";
-import Wedstrijden from "../../../content/Hoogtepunten.json";
+import Wedstrijden from "$content/Hoogtepunten.json";
 
 interface Prijs {
   plaats: number;
@@ -17,14 +17,22 @@ interface HoogtepuntItem {
 }
 
 const Hoogtepunten = () => {
-    return (
-        <>
-            <PageTitle title="Hoogtepunten"/>
-            {Wedstrijden.wedstrijden.map((item: HoogtepuntItem) => {
-                return <Wedstrijd key={item.wedstrijd} naam={item.wedstrijd} foto={item.foto} prijzen={item.prijzen} prestaties={item.prestaties}/>
-            })}
-        </>
-    )
-}
+  return (
+    <>
+      <PageTitle title="Hoogtepunten" />
+      {Wedstrijden.wedstrijden.map((item: HoogtepuntItem) => {
+        return (
+          <Wedstrijd
+            key={item.wedstrijd}
+            naam={item.wedstrijd}
+            foto={item.foto}
+            prijzen={item.prijzen}
+            prestaties={item.prestaties}
+          />
+        );
+      })}
+    </>
+  );
+};
 
 export default Hoogtepunten;

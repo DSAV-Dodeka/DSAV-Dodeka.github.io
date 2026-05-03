@@ -1,10 +1,10 @@
-import PageTitle from "../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 import Trainingstijden from "./components/Trainingstijden";
 import Trainingsinfo from "./components/Trainingsinfo";
 import Icons from "./components/Icons";
 import Baanatletiek from "./components/Baanatletiek";
 import Loopgroep from "./components/Loopgroep";
-import Text from "../../content/Trainingen.json";
+import Text from "$content/Trainingen.json";
 
 function Trainingen() {
   return (

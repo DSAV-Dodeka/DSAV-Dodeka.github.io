@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link } from "@tanstack/react-router";
 import { useSessionInfo } from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import verjaardagenImg from "$images/leden/verjaardagen.webp";
@@ -27,7 +27,7 @@ export default function Leden() {
         </p>
         <div className="leden-login">
           <button
-            onClick={() => navigate("/account/login")}
+            onClick={() => navigate({ to: "/account/login" })}
             className="leden-login-button"
           >
             Inloggen
@@ -55,7 +55,7 @@ export default function Leden() {
       <PageTitle title={`Welkom, ${session.user.firstname}`} />
       <div className="leden-container">
         <div className="leden-routes">
-          <Link className="leden-link leden-link-double" to="">
+          <Link className="leden-link leden-link-double" to="/word_lid">
             <h1 className="leden-link-header leden-link-header-double">
               Inschrijven trainingen
             </h1>
@@ -65,7 +65,7 @@ export default function Leden() {
               alt=""
             />
           </Link>
-          <Link className="leden-link" to="verjaardagen">
+          <Link className="leden-link" to="/leden/verjaardagen">
             <h1 className="leden-link-header">Verjaardagen</h1>
             <img src={verjaardagenImg} className="leden-link-image" alt="" />
           </Link>

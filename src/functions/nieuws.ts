@@ -1,4 +1,4 @@
-import NieuwsData from "../content/Nieuws.json";
+import NieuwsData from "$content/Nieuws.json";
 
 export interface Nieuwsbericht {
   id: string;

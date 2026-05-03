@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Header from "../../../../components/Header";
+import Header from "$components/Header";
 import "./Commissie.scss";
-import { getHashedImageUrl } from "../../../../functions/links";
+import { getHashedImageUrl } from "$functions/links";
 
 interface CommissieLid {
   naam: string;
@@ -58,7 +58,8 @@ function Commissie(props: CommissieProps) {
     }
   }
 
-  return props.position === "left" || (isClient && window.innerWidth <= 1023) ? (
+  return props.position === "left" ||
+    (isClient && window.innerWidth <= 1023) ? (
     <div id={props.name} className="commissieContainer">
       <img
         className="commissieLogo roundedRight"

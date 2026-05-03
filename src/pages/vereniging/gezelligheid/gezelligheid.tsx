@@ -1,6 +1,5 @@
-
 import "./gezelligheid.scss";
-import PageTitle from "../../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 import biermijl from "$images/gezelligheid/biermijl.webp";
 import nskTeamsAlgemeen from "$images/gezelligheid/nsk_teams_algemeen.webp";
 import gala1 from "$images/gezelligheid/gala1.webp";
@@ -14,26 +13,10 @@ function Gezelligheid() {
       </div>
 
       <div className="fotobalk">
-        <img
-          className="fotos"
-          src={biermijl}
-          alt="foto1"
-        />
-        <img
-          className="fotos"
-          src={nskTeamsAlgemeen}
-          alt="foto2"
-        />
-        <img
-          className="fotos"
-          src={gala1}
-          alt="foto4"
-        />
-        <img
-          className="fotos"
-          src={uithof}
-          alt="foto3"
-        />
+        <img className="fotos" src={biermijl} alt="foto1" />
+        <img className="fotos" src={nskTeamsAlgemeen} alt="foto2" />
+        <img className="fotos" src={gala1} alt="foto4" />
+        <img className="fotos" src={uithof} alt="foto3" />
         {/* <img className="fotos" src={Image4} alt="foto4"/> */}
       </div>
 

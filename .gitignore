@@ -109,6 +109,7 @@ dist
 stats.html
 
 .react-router
+src/routeTree.gen.ts
 
 #Kiro (AI assisted IDE)
 /.kiro/

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   requestPasswordReset,
@@ -13,8 +13,7 @@ import "./password-reset.css";
 export default function PasswordReset() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
+  const { token } = useSearch({ from: "/account/password-reset" });
 
   const { data: session, isLoading } = useSessionInfo();
 
@@ -54,7 +53,7 @@ export default function PasswordReset() {
       }
 
       // Navigate to the same page with token in URL
-      navigate(`/account/password-reset?token=${result.token}`);
+      navigate({ to: "/account/password-reset", search: { token: result.token ?? null } });
       setStatus(
         "✓ Reset email sent! Check your inbox for the temporary password.",
       );
@@ -88,7 +87,7 @@ export default function PasswordReset() {
 
       // Redirect to login after a short delay
       setTimeout(() => {
-        navigate("/account/login");
+        navigate({ to: "/account/login" });
       }, 2000);
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);

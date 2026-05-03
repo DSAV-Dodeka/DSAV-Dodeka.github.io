@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { SignupFlow } from "$functions/flows/signup.ts";
 import {
@@ -32,9 +32,10 @@ type SignupPhase =
 function useSignupController() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const registrationId = searchParams.get("registration_id");
-  const codeFromUrl = searchParams.get("code");
+  const { registration_id: registrationId, code: codeFromUrl } = useSearch({
+    from: "/account/signup",
+  });
+  const normalizedRegistrationId = registrationId ?? null;
 
   const signupFlow = useRef(new SignupFlow());
   const [loading, setLoading] = useState(false);
@@ -47,18 +48,18 @@ function useSignupController() {
   const [lookupCode, setLookupCode] = useState("");
 
   // 1. Registration status
-  const regQuery = useRegistrationStatus(registrationId);
+  const regQuery = useRegistrationStatus(normalizedRegistrationId);
   const reg = regQuery.data;
 
   // 2. Auto-renew: create fresh Faroe signup when accepted but no signup_token
   const needsRenewal =
-    !!registrationId && !!reg && reg.accepted && !reg.signup_token;
+    !!normalizedRegistrationId && !!reg && reg.accepted && !reg.signup_token;
   const autoRenew = useQuery({
-    queryKey: ["auto-renew-signup", registrationId],
+    queryKey: ["auto-renew-signup", normalizedRegistrationId],
     queryFn: async () => {
-      const result = await renewSignup(registrationId!);
+      const result = await renewSignup(normalizedRegistrationId!);
       queryClient.setQueryData(
-        ["registration-status", registrationId],
+        ["registration-status", normalizedRegistrationId],
         (old: RegistrationStatus | undefined) =>
           old ? { ...old, signup_token: result.signup_token } : old,
       );
@@ -83,11 +84,11 @@ function useSignupController() {
         codeFromUrl!,
       );
       if (result.ok) return { verified: true, expired: false };
-      if (result.error === "invalid_signup_token" && registrationId) {
+      if (result.error === "invalid_signup_token" && normalizedRegistrationId) {
         try {
-          const renewed = await renewSignup(registrationId);
+          const renewed = await renewSignup(normalizedRegistrationId);
           queryClient.setQueryData(
-            ["registration-status", registrationId],
+            ["registration-status", normalizedRegistrationId],
             (old: RegistrationStatus | undefined) =>
               old ? { ...old, signup_token: renewed.signup_token } : old,
           );
@@ -154,9 +155,12 @@ function useSignupController() {
       const result = await lookupRegistration(lookupEmail, lookupCode);
       if (result.found && result.registration_id) {
         setVerificationCode(lookupCode);
-        setSearchParams({
-          registration_id: result.registration_id,
-          code: lookupCode,
+        navigate({
+          to: "/account/signup",
+          search: {
+            registration_id: result.registration_id,
+            code: lookupCode,
+          },
         });
       } else {
         setStatus("Geen registratie gevonden met deze e-mail en code");
@@ -479,7 +483,7 @@ export default function Signup() {
               gebruik maken van alle ledenfunctionaliteiten.
             </p>
             <button
-              onClick={() => ctrl.navigate("/")}
+              onClick={() => ctrl.navigate({ to: "/" })}
               className="signup-btn signup-btn-primary"
             >
               Naar de homepagina

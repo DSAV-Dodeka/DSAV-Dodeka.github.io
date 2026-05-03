@@ -1,6 +1,6 @@
-import old_foto from "../../../images/vereniging/oudleden/old_temp.webp";
+import old_foto from "$images/vereniging/oudleden/old_temp.webp";
 import "./old.scss";
-import PageTitle from "../../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 
 function OLD() {
   return (

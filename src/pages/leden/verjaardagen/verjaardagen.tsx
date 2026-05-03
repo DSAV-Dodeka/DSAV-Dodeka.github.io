@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { useSessionInfo, useMemberBirthdays } from "$functions/query.ts";
 import type { Birthday } from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
@@ -123,7 +123,7 @@ export default function Verjaardagen() {
         </p>
         <div className="verjaardagen-login">
           <button
-            onClick={() => navigate("/account/login")}
+            onClick={() => navigate({ to: "/account/login" })}
             className="verjaardagen-login-button"
           >
             Inloggen

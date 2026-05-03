@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { requestAccountDeletion, AccountDeletionFlow } from "$functions/flows/account-deletion.ts";
 import { useSessionInfo } from "$functions/query.ts";
@@ -10,8 +10,7 @@ import "./delete.css";
 export default function DeleteAccount() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
+  const { token } = useSearch({ from: "/account/delete" });
 
   const { data: session, isLoading } = useSessionInfo();
   const deletionFlow = useRef(new AccountDeletionFlow());
@@ -36,7 +35,7 @@ export default function DeleteAccount() {
       }
 
       // Navigate to the same page with token in URL
-      navigate(`/account/delete?token=${result.token}`);
+      navigate({ to: "/account/delete", search: { token: result.token ?? null } });
       setStatus("✓ Deletion initiated. Confirm with your password.");
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
@@ -73,7 +72,7 @@ export default function DeleteAccount() {
 
       // Redirect to home after a short delay
       setTimeout(() => {
-        navigate("/");
+        navigate({ to: "/" });
       }, 2000);
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
@@ -122,7 +121,7 @@ export default function DeleteAccount() {
 
         <div className="delete-section">
           <button
-            onClick={() => navigate("/account/login")}
+            onClick={() => navigate({ to: "/account/login" })}
             className="delete-button delete-button-primary"
           >
             Go to Login
@@ -163,7 +162,7 @@ export default function DeleteAccount() {
 
           <div className="delete-section">
             <button
-              onClick={() => navigate("/account/profile")}
+              onClick={() => navigate({ to: "/account/profile" })}
               className="delete-button delete-button-secondary"
             >
               Cancel
@@ -218,7 +217,7 @@ export default function DeleteAccount() {
             <div className="delete-section">
               <button
                 type="button"
-                onClick={() => navigate("/account/profile")}
+                onClick={() => navigate({ to: "/account/profile" })}
                 className="delete-button delete-button-secondary"
               >
                 Cancel

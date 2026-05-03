@@ -309,15 +309,34 @@ export async function getSessionInfo(
   const path = secondary
     ? "/auth/session_info/?secondary=true"
     : "/auth/session_info/";
-  const response = await get(path, true);
+  let response: Response;
+  try {
+    response = await get(path, true);
+  } catch {
+    return null;
+  }
   if (!response.ok) {
     return null;
   }
-  const data = await response.json();
-  if (data.error) {
+  const text = await response.text();
+  if (!text || text.trim() === "no_session") {
     return null;
   }
-  return data;
+  let data: unknown;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    return null;
+  }
+  if (
+    !data ||
+    typeof data !== "object" ||
+    "error" in data ||
+    !("user" in data)
+  ) {
+    return null;
+  }
+  return data as SessionInfo;
 }
 
 export async function getSessionToken(): Promise<string> {

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import PageTitle from "../../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 import Record from "./components/Record";
-import RecordText from "../../../content/Records.json";
+import RecordText from "$content/Records.json";
 import "./Records.scss";
 
 function Records() {

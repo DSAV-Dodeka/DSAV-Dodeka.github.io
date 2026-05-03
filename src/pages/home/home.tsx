@@ -5,7 +5,6 @@ import HomeTrainingen from "./components/HomeTrainingen";
 import HomeCommissies from "./components/HomeCommissies";
 import "./home.scss";
 import Samenwerkingen from "./components/Samenwerkingen";
-// import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
   const snowContent = ["🐣", "🥚", "🐰", "🌷"];

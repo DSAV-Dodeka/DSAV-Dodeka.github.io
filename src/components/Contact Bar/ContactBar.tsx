@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "@tanstack/react-router";
 import "./ContactBar.scss";
 
 import Heading from "./Heading";
@@ -33,7 +33,7 @@ function ContactBar() {
               Sportring 12, Delft
             </a>
           </p>
-          <Link to="/contact" className="bar_link">
+          <Link to="/contact" hash="faq" className="bar_link">
             F.A.Q.
           </Link>
           <br />
@@ -48,7 +48,7 @@ function ContactBar() {
         </div>
       </div>
       <div className="bar_container">
-        <Link className="no_underline" to="/trainingen#">
+        <Link className="no_underline" to="/trainingen">
           <Heading title="Trainingsdagen" />
         </Link>
         <div className="bar_info">
@@ -58,7 +58,7 @@ function ContactBar() {
         </div>
       </div>
       <div className="bar_container">
-        <Link className="no_underline" to="/contact/sponsors#">
+        <Link className="no_underline" to="/contact/sponsors">
           <Heading title="Sponsors" />
         </Link>
         <div className="bar_info">

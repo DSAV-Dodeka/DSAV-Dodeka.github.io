@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   requestEmailUpdate,
@@ -13,8 +13,7 @@ import "./email-update.css";
 export default function EmailUpdate() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
+  const { token } = useSearch({ from: "/account/email-update" });
 
   const { data: session, isLoading } = useSessionInfo();
   const updateFlow = useRef(new EmailUpdateFlow());
@@ -42,7 +41,7 @@ export default function EmailUpdate() {
       }
 
       // Navigate to the same page with token in URL
-      navigate(`/account/email-update?token=${result.token}`);
+      navigate({ to: "/account/email-update", search: { token: result.token ?? null } });
       setStatus("✓ Verification code sent! Check your new email address.");
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
@@ -79,7 +78,7 @@ export default function EmailUpdate() {
 
       // Redirect to profile after a short delay
       setTimeout(() => {
-        navigate("/account/profile");
+        navigate({ to: "/account/profile" });
       }, 1000);
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
@@ -110,7 +109,7 @@ export default function EmailUpdate() {
 
         <div className="email-update-section">
           <button
-            onClick={() => navigate("/account/login")}
+            onClick={() => navigate({ to: "/account/login" })}
             className="email-update-button email-update-button-primary"
           >
             Go to Login

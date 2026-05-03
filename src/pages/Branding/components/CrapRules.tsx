@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import "./CrapRules.scss";
 
 /* ── Principes met uitgebreide uitleg ── */
@@ -165,7 +166,7 @@ function ProximityVisual() {
   );
 }
 
-const PRINCIPLE_VISUALS: Record<string, () => JSX.Element> = {
+const PRINCIPLE_VISUALS: Record<string, () => ReactElement> = {
   Contrast: ContrastVisual,
   Herhaling: RepetitionVisual,
   Uitlijning: AlignmentVisual,
@@ -190,7 +191,7 @@ function CrapRules() {
       {/* ── Principe-kaarten met visueel + uitleg ── */}
       <div className="crap-rules__principles">
         {PRINCIPLES.map((p) => {
-          const Visual = PRINCIPLE_VISUALS[p.name];
+          const Visual = PRINCIPLE_VISUALS[p.name] ?? ContrastVisual;
           return (
             <div key={p.name} className="crap-rules__principle">
               <div className="crap-rules__principle-visual">

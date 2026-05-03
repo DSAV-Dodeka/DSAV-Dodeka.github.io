@@ -81,11 +81,12 @@
   text-decoration: underline;
 }
 
-p {
+.registreerContainer p {
   margin: 0;
 }
 
-* {
+.registreerContainer,
+.registreerContainer * {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
@@ -128,7 +129,7 @@ p {
   outline: none;
 }
 
-button {
+.registreerContainer button {
   width: 100%;
   background-color: var(--dodeka-rood);
   color: white;
@@ -141,7 +142,7 @@ button {
   height: 4rem; /* Set the specific height for the button */
 }
 
-button:hover {
+.registreerContainer button:hover {
   background: white;
   color: var(--dodeka-rood);
 }
@@ -195,7 +196,7 @@ button:hover {
   position: relative;
 }
 
-button.registerButton:disabled {
+.registreerContainer button.registerButton:disabled {
   cursor: wait;
   background: gray;
   color: black;

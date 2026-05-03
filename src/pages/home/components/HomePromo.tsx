@@ -1,6 +1,6 @@
 import {
     Link
-} from "react-router";
+} from "@tanstack/react-router";
 import "./HomePromo.scss";
 
 function HomePromo() {

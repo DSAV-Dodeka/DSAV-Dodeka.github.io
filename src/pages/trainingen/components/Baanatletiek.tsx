@@ -1,4 +1,4 @@
-import Header from "../../../components/Header";
+import Header from "$components/Header";
 import "./Baanatletiek.scss";
 import baanatletiek from "$images/trainingen/baanatletiek.webp";
 

@@ -1,5 +1,5 @@
-import PageTitle from "../../../components/PageTitle";
-import Header from "../../../components/Header";
+import PageTitle from "$components/PageTitle";
+import Header from "$components/Header";
 import "./VCP.scss";
 import vcpLisa from "$images/vcp/vcp_lisa.webp";
 import vcpNiels from "$images/vcp/vcp_niels.webp";

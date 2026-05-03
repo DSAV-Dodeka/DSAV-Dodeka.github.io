@@ -1,4 +1,4 @@
-import WedstrijdenData from "../content/Wedstrijden.json";
+import WedstrijdenData from "$content/Wedstrijden.json";
 
 export interface Wedstrijd {
   naam: string;
@@ -25,10 +25,7 @@ export interface Wedstrijd {
  * Get all wedstrijden (both current and old)
  */
 export function getAllWedstrijden(): Wedstrijd[] {
-  return [
-    ...WedstrijdenData.wedstrijden,
-    ...WedstrijdenData.wedstrijden_oud,
-  ];
+  return [...WedstrijdenData.wedstrijden, ...WedstrijdenData.wedstrijden_oud];
 }
 
 /**

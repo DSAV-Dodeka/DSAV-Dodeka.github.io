@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSessionInfo } from "$functions/query.ts";
 import * as api from "$functions/backend.ts";
@@ -23,7 +23,7 @@ export default function Profile() {
 
       // Redirect to login after a short delay
       setTimeout(() => {
-        navigate("/account/login");
+        navigate({ to: "/account/login" });
       }, 1000);
     } catch (error) {
       setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
@@ -54,7 +54,7 @@ export default function Profile() {
 
         <div className="profile-section">
           <button
-            onClick={() => navigate("/account/login")}
+            onClick={() => navigate({ to: "/account/login" })}
             className="profile-button profile-button-primary"
           >
             Go to Login

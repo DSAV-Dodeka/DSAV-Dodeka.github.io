@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "@tanstack/react-router";
 import "./EigenWedstrijd.scss";
 import { getHashedImageUrl } from "$functions/links";
 

@@ -1,6 +1,6 @@
-import Header from "../../../../components/Header";
+import Header from "$components/Header";
 import "./Trainersgezocht.scss";
-import ContactButtons from "../../../../components/ContactButtons";
+import ContactButtons from "$components/ContactButtons";
 import dagvandeatletiek from "$images/trainingen/dagvandeatletiek.webp";
 
 function Trainersgezocht(props: { text: string }) {

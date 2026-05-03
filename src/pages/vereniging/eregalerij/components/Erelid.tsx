@@ -1,5 +1,5 @@
 import "./Erelid.scss";
-import { getHashedImageUrl } from "../../../../functions/links";
+import { getHashedImageUrl } from "$functions/links";
 
 interface ErelidProps {
   naam: string;
@@ -27,10 +27,7 @@ function Erelid({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <img
-        className="erelid_foto"
-        src={getHashedImageUrl(foto)}
-      />
+      <img className="erelid_foto" src={getHashedImageUrl(foto)} />
       <p className="erelid_naam">{naam}</p>
       <div className="erelid_info">
         {redenen.map((text, index) => (

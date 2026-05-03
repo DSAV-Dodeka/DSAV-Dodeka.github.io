@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Link } from "react-router";
+import { Link } from "@tanstack/react-router";
 import PageTitle from "$components/PageTitle.tsx";
 import * as api from "$functions/backend.ts";
 import { useSecondarySessionInfo } from "$functions/query.ts";

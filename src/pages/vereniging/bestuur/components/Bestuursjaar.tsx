@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Header from "../../../../components/Header";
+import Header from "$components/Header";
 import "./Bestuursjaar.scss";
 import { getHashedImageUrl } from "$functions/links";
 
@@ -29,12 +29,8 @@ function Bestuursjaar(props: BestuursjaarProps) {
         <div className="bestuursjaarLeden">
           {props.leden.map((lid, index) => (
             <Fragment key={props.jaar + lid[0] + index}>
-              <h1 className="bestuurLid_naam">
-                {lid[0]}
-              </h1>
-              <h1 className="bestuurLid_functie">
-                {lid[1]}
-              </h1>
+              <h1 className="bestuurLid_naam">{lid[0]}</h1>
+              <h1 className="bestuurLid_functie">{lid[1]}</h1>
             </Fragment>
           ))}
         </div>

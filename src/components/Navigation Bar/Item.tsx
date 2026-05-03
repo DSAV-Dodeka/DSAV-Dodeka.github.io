@@ -1,6 +1,6 @@
 import {
   useLocation, Link
-} from "react-router";
+} from "@tanstack/react-router";
 import "./Item.scss"
 
 function Item(props: { name: string; path: string; onClick?: () => void }) {

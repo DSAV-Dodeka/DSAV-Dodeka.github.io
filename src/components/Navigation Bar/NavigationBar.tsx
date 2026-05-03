@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { useState } from "react";
+import { Link, useLocation } from "@tanstack/react-router";
 import Item from "./Item";
 import Dropdown from "./Dropdown";
 import MobileDropdown from "./MobileDropdown";
 import disableScroll from "disable-scroll";
-import wedstrijdText from "../../content/Wedstrijden.json";
+import wedstrijdText from "$content/Wedstrijden.json";
 import { useSessionInfo } from "$functions/query.ts";
 import "./NavigationBar.scss";
 import "./animation.css";
@@ -12,9 +12,7 @@ import logo from "$images/logo.png";
 import dodeka from "$images/dodeka.png";
 import LoginIndicator from "../LoginIndicator/LoginIndicator";
 
-// Client-only component that renders the Leden menu when the user is a member.
-// useSessionInfo (react-query) cannot run during SSR since QueryClientProvider
-// is only mounted on the client.
+// Renders the Leden menu only after the session query confirms membership.
 function MemberDropdown() {
   const { data: session } = useSessionInfo();
   const isMember = session?.user.permissions.includes("member") ?? false;
@@ -62,15 +60,6 @@ function MobileNieuws({ onClick }: { onClick: () => void }) {
     );
   }
   return <Item name="Nieuws" path="/nieuws" onClick={onClick} />;
-}
-
-// useEffect to gate rendering: QueryClientProvider is absent during SSR/prerender,
-// so components using React Query hooks must not render server-side.
-function ClientOnly({ children }: { children: React.ReactNode }) {
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => { setIsClient(true); }, []);
-  if (!isClient) return null;
-  return <>{children}</>;
 }
 
 function NavigationBar() {
@@ -163,9 +152,7 @@ function NavigationBar() {
               { name: "Donateurs", path: "/donateurs" },
             ]}
           />
-          <ClientOnly>
-            <MemberDropdown />
-          </ClientOnly>
+          <MemberDropdown />
         </div>
         <LoginIndicator />
       </nav>
@@ -195,9 +182,7 @@ function NavigationBar() {
           <div className={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={closeMenu} />
             {/* <Item name="OWee" path="/owee" onClick={closeMenu} /> */}
-            <ClientOnly>
-              <MobileNieuws onClick={closeMenu} />
-            </ClientOnly>
+            <MobileNieuws onClick={closeMenu} />
             <MobileDropdown
               name="Vereniging"
               path="/vereniging"
@@ -240,11 +225,7 @@ function NavigationBar() {
               )}
               onClick={closeMenu}
             />
-            <Item
-              name="Word lid!"
-              path="/word_lid"
-              onClick={closeMenu}
-            />
+            <Item name="Word lid!" path="/word_lid" onClick={closeMenu} />
             <MobileDropdown
               name="Contact"
               path="/contact"
@@ -256,9 +237,7 @@ function NavigationBar() {
               ]}
               onClick={closeMenu}
             />
-            <ClientOnly>
-              <MemberMobileDropdown onClick={closeMenu} />
-            </ClientOnly>
+            <MemberMobileDropdown onClick={closeMenu} />
           </div>
         </div>
       </nav>

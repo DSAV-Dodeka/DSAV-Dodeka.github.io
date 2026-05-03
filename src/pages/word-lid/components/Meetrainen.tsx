@@ -1,6 +1,6 @@
-import { Link } from "react-router";
-import Header from "../../../components/Header";
-import ContactButtons from "../../../components/ContactButtons";
+import { Link } from "@tanstack/react-router";
+import Header from "$components/Header";
+import ContactButtons from "$components/ContactButtons";
 import "./Meetrainen.scss";
 import wordlid from "$images/word_lid/wordLid.webp";
 
@@ -38,7 +38,7 @@ function Meetrainen() {
         </p>
         <p className="meetrainen_5">
           Mocht je nu nog vragen hebben, kijk dan in onze{" "}
-          <Link to="/contact#faq" className="meetrainen_6">
+          <Link to="/contact" hash="faq" className="meetrainen_6">
             F.A.Q.
           </Link>
           , of stuur een berichtje via de mail of Instagram!

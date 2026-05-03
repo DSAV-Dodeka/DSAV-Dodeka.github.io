@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { Outlet, useLocation } from "react-router";
-import NavigationBar from "../components/Navigation Bar/NavigationBar";
-import ContactBar from "../components/Contact Bar/ContactBar";
-import KeyboardNav from "../components/KeyboardNav";
+import { Outlet, useLocation } from "@tanstack/react-router";
+import NavigationBar from "$components/Navigation Bar/NavigationBar";
+import ContactBar from "$components/Contact Bar/ContactBar";
+import KeyboardNav from "$components/KeyboardNav";
 import "./layout.css";
 
 export default function AppLayout() {

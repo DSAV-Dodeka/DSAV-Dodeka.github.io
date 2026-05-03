@@ -1,6 +1,6 @@
-import PageTitle from "../../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 import Trainersgezocht from "./components/Trainersgezocht";
-import Text from "../../../content/Gezocht.json";
+import Text from "$content/Gezocht.json";
 
 function Gezocht() {
   return (

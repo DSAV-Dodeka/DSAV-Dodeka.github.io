@@ -1,4 +1,4 @@
-import ChangelogData from "../content/Changelog.json";
+import ChangelogData from "$content/Changelog.json";
 
 export interface ChangelogEntry {
   id: string;
@@ -42,7 +42,7 @@ export function isNieuw(datum: string): boolean {
   const veertienDagenGeleden = new Date(
     now.getFullYear(),
     now.getMonth(),
-    now.getDate() - 14
+    now.getDate() - 14,
   );
   return date >= veertienDagenGeleden;
 }
@@ -77,7 +77,7 @@ export function getAllUpdates(): ChangelogEntry[] {
   }));
 
   return updates.sort(
-    (a, b) => parseDatum(b.datum).getTime() - parseDatum(a.datum).getTime()
+    (a, b) => parseDatum(b.datum).getTime() - parseDatum(a.datum).getTime(),
   );
 }
 

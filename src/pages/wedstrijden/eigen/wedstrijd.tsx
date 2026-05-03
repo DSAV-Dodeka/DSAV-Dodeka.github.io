@@ -1,8 +1,8 @@
-import PageTitle from "../../../components/PageTitle";
+import PageTitle from "$components/PageTitle";
 import WedstrijdAlgemeen from "./components/WedstrijdAlgemeen.tsx";
 import WedstrijdBelangrijk from "./components/WedstrijdBelangrijk.tsx";
 import "./Wedstrijd.scss";
-import { getHashedImageUrl } from "../../../functions/links";
+import { getHashedImageUrl } from "$functions/links";
 import type { Wedstrijd } from "$functions/wedstrijden.ts";
 
 interface WedstrijdProps {
