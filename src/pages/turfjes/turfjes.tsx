@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PageTitle from "../../components/PageTitle";
-import turfjesData from "../../content/turfjes.json";
+import turfjesData from "../../content/Turfjes.json";
 import "./turfjes.scss";
 
 interface Turfje {
@@ -99,13 +99,17 @@ function buildCumulativeData(turfjes: Turfje[], people: string[]): CumulativePoi
   return points;
 }
 
-interface TooltipData {
+interface TooltipEntry {
   person: string;
-  date: string;
   cumulative: number;
   change: number;
   reason: string;
   color: string;
+}
+
+interface TooltipData {
+  entries: TooltipEntry[];
+  date: string;
   x: number;
   y: number;
 }
@@ -170,34 +174,52 @@ function TurfjesGraph({ turfjes, people }: { turfjes: Turfje[]; people: string[]
   // Zero line position (if negative values exist)
   const zeroY = minValue < 0 ? valueToY(0) : null;
 
-  const handleDotClick = (person: string, pointIndex: number, color: string) => {
+  const buildTooltipData = (pointIndex: number, hoveredY: number, x: number): TooltipData | null => {
+    const point = data[pointIndex];
+    if (!point) return null;
+
+    // Find all people at the same Y position (same cumulative value) at this date
+    const entries: TooltipEntry[] = [];
+    for (let pIdx = 0; pIdx < people.length; pIdx++) {
+      const person = people[pIdx]!;
+      const cumulative = point.values.get(person) ?? 0;
+      const personY = valueToY(cumulative);
+      // Consider dots "at the same point" if within 5px vertically
+      if (Math.abs(personY - hoveredY) < 5) {
+        const change = point.dayChanges.get(person) ?? 0;
+        const reasons = point.dayReasons.get(person) ?? [];
+        const reason = reasons.join(", ");
+        const color = GRAPH_COLORS[pIdx % GRAPH_COLORS.length] ?? "#001f48";
+        entries.push({ person, cumulative, change, reason, color });
+      }
+    }
+
+    if (entries.length === 0) return null;
+    return { entries, date: point.date, x, y: hoveredY };
+  };
+
+  const handleDotClick = (person: string, pointIndex: number, _color: string) => {
     const point = data[pointIndex];
     if (!point) return;
     const cumulative = point.values.get(person) ?? 0;
-    const change = point.dayChanges.get(person) ?? 0;
-    const reasons = point.dayReasons.get(person) ?? [];
-    const reason = reasons.join(", ");
-    const x = padding.left + (data.length > 1 ? pointIndex * xStep : chartWidth / 2);
     const y = valueToY(cumulative);
+    const x = padding.left + (data.length > 1 ? pointIndex * xStep : chartWidth / 2);
 
     // Toggle tooltip
-    if (tooltip?.person === person && tooltip?.date === point.date) {
+    if (tooltip?.entries.some((e) => e.person === person) && tooltip?.date === point.date) {
       setTooltip(null);
     } else {
-      setTooltip({ person, date: point.date, cumulative, change, reason, color, x, y });
+      setTooltip(buildTooltipData(pointIndex, y, x));
     }
   };
 
-  const showTooltip = (person: string, pointIndex: number, color: string) => {
+  const showTooltip = (person: string, pointIndex: number, _color: string) => {
     const point = data[pointIndex];
     if (!point) return;
     const cumulative = point.values.get(person) ?? 0;
-    const change = point.dayChanges.get(person) ?? 0;
-    const reasons = point.dayReasons.get(person) ?? [];
-    const reason = reasons.join(", ");
-    const x = padding.left + (data.length > 1 ? pointIndex * xStep : chartWidth / 2);
     const y = valueToY(cumulative);
-    setTooltip({ person, date: point.date, cumulative, change, reason, color, x, y });
+    const x = padding.left + (data.length > 1 ? pointIndex * xStep : chartWidth / 2);
+    setTooltip(buildTooltipData(pointIndex, y, x));
   };
 
   const hideTooltip = () => {
@@ -285,7 +307,7 @@ function TurfjesGraph({ turfjes, people }: { turfjes: Turfje[]; people: string[]
                 key={`${person}-${i}`}
                 cx={point.x}
                 cy={point.y}
-                r={isDimmed ? 2.5 : (tooltip?.person === person && tooltip?.date === data[i]?.date) ? 6 : 4}
+                r={isDimmed ? 2.5 : (tooltip?.entries.some((e) => e.person === person) && tooltip?.date === data[i]?.date) ? 6 : 4}
                 fill={color}
                 opacity={isDimmed ? 0.2 : 1}
                 className="turfjes-graph__dot"
@@ -312,32 +334,36 @@ function TurfjesGraph({ turfjes, people }: { turfjes: Turfje[]; people: string[]
           >
             <div className="turfjes-graph__tooltip-arrow" />
             <div className="turfjes-graph__tooltip-content">
-              <span
-                className="turfjes-graph__tooltip-name"
-                style={{ color: tooltip.color }}
-              >
-                {tooltip.person}
-              </span>
               <span className="turfjes-graph__tooltip-date">
                 {formatDateFull(tooltip.date)}
               </span>
-              <div className="turfjes-graph__tooltip-stats">
-                <span className="turfjes-graph__tooltip-total">
-                  Totaal: {tooltip.cumulative}
-                </span>
-                {tooltip.change !== 0 && (
+              {tooltip.entries.map((entry) => (
+                <div key={entry.person} className="turfjes-graph__tooltip-entry">
                   <span
-                    className={`turfjes-graph__tooltip-change ${tooltip.change > 0 ? "turfjes-graph__tooltip-change--positive" : "turfjes-graph__tooltip-change--negative"}`}
+                    className="turfjes-graph__tooltip-name"
+                    style={{ color: entry.color }}
                   >
-                    {tooltip.change > 0 ? `+${tooltip.change}` : tooltip.change} op deze dag
+                    {entry.person}
                   </span>
-                )}
-              </div>
-              {tooltip.reason && (
-                <span className="turfjes-graph__tooltip-reason">
-                  {tooltip.reason}
-                </span>
-              )}
+                  <div className="turfjes-graph__tooltip-stats">
+                    <span className="turfjes-graph__tooltip-total">
+                      Totaal: {entry.cumulative}
+                    </span>
+                    {entry.change !== 0 && (
+                      <span
+                        className={`turfjes-graph__tooltip-change ${entry.change > 0 ? "turfjes-graph__tooltip-change--positive" : "turfjes-graph__tooltip-change--negative"}`}
+                      >
+                        {entry.change > 0 ? `+${entry.change}` : entry.change} op deze dag
+                      </span>
+                    )}
+                  </div>
+                  {entry.reason && (
+                    <span className="turfjes-graph__tooltip-reason">
+                      {entry.reason}
+                    </span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -436,7 +462,7 @@ function Turfjes() {
   const maxTotaal = totals[0]?.totaal ?? 1;
   const people = totals.map((t) => t.naam);
 
-  const [activeTab, setActiveTab] = useState<"overzicht" | "details">("overzicht");
+  const [activeTab, setActiveTab] = useState<"overzicht" | "details" | "regels">("overzicht");
 
   return (
     <div className="turfjes-page">
@@ -456,6 +482,13 @@ function Turfjes() {
         >
           <span className="turfjes-tab__icon">📈</span>
           Details
+        </button>
+        <button
+          className={`turfjes-tab ${activeTab === "regels" ? "turfjes-tab--active" : ""}`}
+          onClick={() => setActiveTab("regels")}
+        >
+          <span className="turfjes-tab__icon">📋</span>
+          Regels
         </button>
       </div>
 
@@ -501,6 +534,22 @@ function Turfjes() {
 
       {activeTab === "details" && (
         <TurfjesDetails turfjes={turfjes} people={people} />
+      )}
+
+      {activeTab === "regels" && (
+        <div className="turfjes-regels">
+          <ul className="turfjes-regels__list">
+            <li>Te laat komen: <strong>1 turfje</strong>, meer dan 9 min: <strong>2 turfjes</strong></li>
+            <li>Voorzitter te laat of geen agenda 9 uur van te voren</li>
+            <li>Niet braveren op komkommer tijdens een vergadering</li>
+            <li>.ComComsmopolitan verkeerd uitspreken</li>
+            <li>Mei niet braveren op maand mei</li>
+            <li>Niet braveren op een nummer dat niet 12 is</li>
+            <li>Braveren op een andere commissie tijdens een vergadering</li>
+            <li>ToDo niet af voor de volgende vergadering</li>
+            <li>Grapjes maken over 6/7</li>
+          </ul>
+        </div>
       )}
     </div>
   );
