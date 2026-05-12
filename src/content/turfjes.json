@@ -1,0 +1,58 @@
+{
+    "turfjes": [
+        {
+            "naam": "Jefry",
+            "datum": "2026-05-12",
+            "aantal": 1,
+            "reden": "Voorbeeld turfje"
+        },
+        {
+            "naam": "Tijmen",
+            "datum": "2026-05-12",
+            "aantal": 2,
+            "reden": "Te laat"
+        },
+        {
+            "naam": "Mei Chang",
+            "datum": "2026-05-10",
+            "aantal": 1,
+            "reden": ""
+        },
+        {
+            "naam": "Jefry",
+            "datum": "2026-05-08",
+            "aantal": 3,
+            "reden": "Telefoon afgegaan tijdens training"
+        },
+        {
+            "naam": "Anne-Wil",
+            "datum": "2026-05-06",
+            "aantal": 1,
+            "reden": "Vergeten"
+        },
+        {
+            "naam": "Tijmen",
+            "datum": "2026-05-03",
+            "aantal": 1,
+            "reden": ""
+        },
+        {
+            "naam": "Jefry",
+            "datum": "2026-04-28",
+            "aantal": 2,
+            "reden": "Dubbel turfje"
+        },
+        {
+            "naam": "Mei Chang",
+            "datum": "2026-04-25",
+            "aantal": 1,
+            "reden": "Geen reden nodig"
+        },
+        {
+            "naam": "Jefry",
+            "datum": "2026-05-11",
+            "aantal": -2,
+            "reden": "Turfjes kwijtgescholden"
+        }
+    ]
+}
