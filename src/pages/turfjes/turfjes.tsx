@@ -540,11 +540,11 @@ function Turfjes() {
         <div className="turfjes-regels">
           <ul className="turfjes-regels__list">
             <li>Te laat komen: <strong>1 turfje</strong>, meer dan 9 min: <strong>2 turfjes</strong></li>
-            <li>Voorzitter te laat of geen agenda 9 uur van te voren</li>
+            <li>Voorzitter later dan (of geen) agenda 9 uur van te voren</li>
             <li>Niet braveren op komkommer tijdens een vergadering</li>
             <li>.ComComsmopolitan verkeerd uitspreken</li>
-            <li>Mei niet braveren op maand mei</li>
-            <li>Niet braveren op een nummer dat niet 12 is</li>
+            <li>Mei braveert op de maand mei</li>
+            <li>Braveren op een nummer dat niet 12 is</li>
             <li>Braveren op een andere commissie tijdens een vergadering</li>
             <li>ToDo niet af voor de volgende vergadering</li>
             <li>Grapjes maken over 6/7</li>
