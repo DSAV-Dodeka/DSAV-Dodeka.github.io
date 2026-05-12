@@ -40,6 +40,7 @@ export default [
     route("admin", "./pages/admin/admin.tsx"),
     route("huisstijl", "./pages/Branding/Branding.tsx"),
     route("komkommer", "./pages/komkommer/komkommer.tsx"),
+    route("turfjes", "./pages/turfjes/turfjes.tsx"),
     route("sprint", "./pages/sprint-tijden/sprint-alias.tsx"),
     route("sprint_tijden", "./pages/sprint-tijden/sprint-tijden-alias.tsx"),
     route("trainings_schema", "./pages/sprint-tijden/trainings-schema-alias.tsx"),
