@@ -128,7 +128,7 @@ p {
   outline: none;
 }
 
-button {
+.registerButton {
   width: 100%;
   background-color: var(--dodeka-rood);
   color: white;
@@ -141,7 +141,7 @@ button {
   height: 4rem; /* Set the specific height for the button */
 }
 
-button:hover {
+.registerButton:hover {
   background: white;
   color: var(--dodeka-rood);
 }
@@ -195,7 +195,7 @@ button:hover {
   position: relative;
 }
 
-button.registerButton:disabled {
+.registerButton:disabled {
   cursor: wait;
   background: gray;
   color: black;

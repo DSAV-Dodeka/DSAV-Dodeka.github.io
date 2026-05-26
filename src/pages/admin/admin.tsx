@@ -1334,6 +1334,9 @@ function SyncDepartedGroup({ items }: { items: SyncDepartedItem[] }) {
 
 function SyncDataChanges({ items }: { items: SyncDataChangeItem[] }) {
   const [expanded, setExpanded] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<SyncDataChangeItem | null>(
+    null,
+  );
   const withChanges = items.filter((item) => item.field_diffs.length > 0);
   const removals = items.filter((item) => item.incoming_volta_data == null);
 
@@ -1375,7 +1378,16 @@ function SyncDataChanges({ items }: { items: SyncDataChangeItem[] }) {
                 const isNew = item.current_volta_data == null && !isRemoval;
                 return (
                   <tr key={item.bondsnummer}>
-                    <td>{item.bondsnummer}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="admin-link-button"
+                        onClick={() => setSelectedItem(item)}
+                        title={`Show imported data for ${item.bondsnummer}`}
+                      >
+                        {item.bondsnummer}
+                      </button>
+                    </td>
                     <td>
                       {isRemoval && (
                         <span className="admin-status-badge admin-status-badge-pending">Removed</span>
@@ -1405,6 +1417,83 @@ function SyncDataChanges({ items }: { items: SyncDataChangeItem[] }) {
       {items.length === 0 && (
         <div className="admin-empty">No import data</div>
       )}
+      {selectedItem && (
+        <VoltaDataModal
+          item={selectedItem}
+          onClose={() => setSelectedItem(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+function formatVoltaValue(value: unknown): string {
+  if (value === null || value === undefined || value === "") return "\u2014";
+  if (typeof value === "object") return JSON.stringify(value);
+  return String(value);
+}
+
+function VoltaDataTable({
+  title,
+  data,
+}: {
+  title: string;
+  data: Record<string, unknown> | null;
+}) {
+  const entries = data ? Object.entries(data) : [];
+
+  return (
+    <div className="admin-volta-detail-section">
+      <h4>{title}</h4>
+      {entries.length > 0 ? (
+        <table className="admin-volta-detail-table">
+          <tbody>
+            {entries.map(([key, value]) => (
+              <tr key={key}>
+                <th>{key}</th>
+                <td>{formatVoltaValue(value)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <div className="admin-volta-detail-empty">No data</div>
+      )}
+    </div>
+  );
+}
+
+function VoltaDataModal({
+  item,
+  onClose,
+}: {
+  item: SyncDataChangeItem;
+  onClose: () => void;
+}) {
+  return (
+    <div className="admin-help-overlay" onClick={onClose}>
+      <div className="admin-volta-detail-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="admin-volta-detail-header">
+          <h3>Imported data #{item.bondsnummer}</h3>
+          <button
+            type="button"
+            className="admin-button admin-button-small"
+            onClick={onClose}
+          >
+            Close
+          </button>
+        </div>
+        {item.field_diffs.length > 0 && (
+          <div className="admin-volta-detail-diffs">
+            <h4>Changes</h4>
+            <FieldDiffs diffs={item.field_diffs} />
+          </div>
+        )}
+        <div className="admin-volta-detail-grid">
+          <VoltaDataTable title="Incoming import" data={item.incoming_volta_data} />
+          <VoltaDataTable title="Currently applied" data={item.current_volta_data} />
+        </div>
+      </div>
     </div>
   );
 }

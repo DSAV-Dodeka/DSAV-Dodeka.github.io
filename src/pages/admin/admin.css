@@ -767,6 +767,119 @@
   font-size: 12px;
 }
 
+.admin-link-button {
+  appearance: none;
+  background: none;
+  border: none;
+  color: #0d6efd;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  padding: 0;
+  text-decoration: underline;
+  width: auto;
+}
+
+.admin-link-button:hover,
+.admin-link-button:focus {
+  color: #084298;
+}
+
+.admin-link-button:focus {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
+
+.admin-volta-detail-modal {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  max-width: 980px;
+  overflow: auto;
+  padding: 24px 32px;
+  width: 90%;
+}
+
+.admin-volta-detail-header {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.admin-volta-detail-header h3,
+.admin-volta-detail-section h4,
+.admin-volta-detail-diffs h4 {
+  margin: 0;
+}
+
+.admin-volta-detail-diffs {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  margin-bottom: 18px;
+  padding: 12px 14px;
+}
+
+.admin-volta-detail-diffs h4 {
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.admin-volta-detail-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-volta-detail-section {
+  min-width: 0;
+}
+
+.admin-volta-detail-section h4 {
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.admin-volta-detail-table {
+  border-collapse: collapse;
+  font-size: 13px;
+  width: 100%;
+}
+
+.admin-volta-detail-table th,
+.admin-volta-detail-table td {
+  border-bottom: 1px solid #e9ecef;
+  padding: 7px 8px;
+  text-align: left;
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.admin-volta-detail-table th {
+  color: #495057;
+  font-weight: 600;
+  width: 34%;
+}
+
+.admin-volta-detail-empty {
+  background: #f8f9fa;
+  border-radius: 5px;
+  color: #666;
+  padding: 18px;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .admin-volta-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Inline confirmation (delete yes/no) */
 .admin-inline-confirm {
   display: inline-flex;
