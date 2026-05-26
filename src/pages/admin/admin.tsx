@@ -2,12 +2,17 @@ import {
   useState,
   useEffect,
   useCallback,
+  useMemo,
   useRef,
   type SyntheticEvent,
   type ChangeEvent,
 } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { createCollection, eq, useLiveQuery } from "@tanstack/react-db";
+import { queryCollectionOptions } from "@tanstack/query-db-collection";
+import * as backend from "$functions/backend.ts";
 import type {
+  AdminUserRecord,
   AdminRegistrationRecord,
   SyncStatus,
   SyncReviewItem,
@@ -22,19 +27,14 @@ import {
   useSessionInfo,
   useSecondarySessionInfo,
   useRegistrations,
-  useUsers,
   useSyncStatus,
   useAcceptRegistration,
-  useAddPermission,
-  useRemovePermission,
   useImportSync,
   useResolveSyncMatch,
   useCompleteSync,
   useResendRegistrationInvite,
   useDeleteRegistration,
-  useDeleteUser,
   registrationsOptions,
-  usersOptions,
   syncStatusOptions,
 } from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
@@ -82,7 +82,16 @@ function getPermissionDisplay(permission: string): string {
 
 function RefreshIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <polyline points="23 4 23 10 17 10" />
       <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
     </svg>
@@ -105,12 +114,30 @@ function HelpOverlay({
             <h4>Admin Navigation</h4>
             <table className="admin-help-table">
               <tbody>
-                <tr><td className="admin-help-key">[ / ]</td><td>Previous / next tab</td></tr>
-                <tr><td className="admin-help-key">j / k</td><td>Move highlight down / up</td></tr>
-                <tr><td className="admin-help-key">h / l</td><td>Cycle actions within highlighted item</td></tr>
-                <tr><td className="admin-help-key">Enter</td><td>Click focused action</td></tr>
-                <tr><td className="admin-help-key">r</td><td>Refresh current tab</td></tr>
-                <tr><td className="admin-help-key">Escape</td><td>Clear highlight / close help</td></tr>
+                <tr>
+                  <td className="admin-help-key">[ / ]</td>
+                  <td>Previous / next tab</td>
+                </tr>
+                <tr>
+                  <td className="admin-help-key">j / k</td>
+                  <td>Move highlight down / up</td>
+                </tr>
+                <tr>
+                  <td className="admin-help-key">h / l</td>
+                  <td>Cycle actions within highlighted item</td>
+                </tr>
+                <tr>
+                  <td className="admin-help-key">Enter</td>
+                  <td>Click focused action</td>
+                </tr>
+                <tr>
+                  <td className="admin-help-key">r</td>
+                  <td>Refresh current tab</td>
+                </tr>
+                <tr>
+                  <td className="admin-help-key">Escape</td>
+                  <td>Clear highlight / close help</td>
+                </tr>
               </tbody>
             </table>
           </>
@@ -118,14 +145,25 @@ function HelpOverlay({
         <h4>Global</h4>
         <table className="admin-help-table">
           <tbody>
-            <tr><td className="admin-help-key">?</td><td>Toggle this help</td></tr>
-            <tr><td className="admin-help-key">\a</td><td>Go to admin page</td></tr>
+            <tr>
+              <td className="admin-help-key">?</td>
+              <td>Toggle this help</td>
+            </tr>
+            <tr>
+              <td className="admin-help-key">\a</td>
+              <td>Go to admin page</td>
+            </tr>
             {import.meta.env.DEV && (
-              <tr><td className="admin-help-key">\s</td><td>Refresh admin session</td></tr>
+              <tr>
+                <td className="admin-help-key">\s</td>
+                <td>Refresh admin session</td>
+              </tr>
             )}
           </tbody>
         </table>
-        <button className="admin-button admin-help-close" onClick={onClose}>Close</button>
+        <button className="admin-button admin-help-close" onClick={onClose}>
+          Close
+        </button>
         <div className="admin-help-hint">Press ? or Escape to dismiss</div>
       </div>
     </div>
@@ -140,7 +178,9 @@ function RegistrationStatusBadge({ reg }: { reg: AdminRegistrationRecord }) {
   if (reg.accepted && reg.signup_active) {
     return (
       <span className="admin-tooltip">
-        <span className="admin-status-badge admin-status-badge-warning">Pending</span>
+        <span className="admin-status-badge admin-status-badge-warning">
+          Pending
+        </span>
         <span className="admin-tooltip-text">
           Accepted and signup email sent. Awaiting account creation.
         </span>
@@ -150,7 +190,9 @@ function RegistrationStatusBadge({ reg }: { reg: AdminRegistrationRecord }) {
   if (reg.accepted) {
     return (
       <span className="admin-tooltip">
-        <span className="admin-status-badge admin-status-badge-info">Invited</span>
+        <span className="admin-status-badge admin-status-badge-info">
+          Invited
+        </span>
         <span className="admin-tooltip-text">
           Accepted. The user will receive an invite email with a signup link.
         </span>
@@ -159,7 +201,9 @@ function RegistrationStatusBadge({ reg }: { reg: AdminRegistrationRecord }) {
   }
   return (
     <span className="admin-tooltip">
-      <span className="admin-status-badge admin-status-badge-muted">&mdash;</span>
+      <span className="admin-status-badge admin-status-badge-muted">
+        &mdash;
+      </span>
       <span className="admin-tooltip-text">
         Not yet approved. Approve first to send an invite email.
       </span>
@@ -168,6 +212,77 @@ function RegistrationStatusBadge({ reg }: { reg: AdminRegistrationRecord }) {
 }
 
 type AdminTab = "users" | "registrations" | "sync";
+
+type PersistableTransaction = {
+  isPersisted: { promise: Promise<unknown> };
+};
+
+function getSortName(user: Pick<AdminUserRecord, "firstname" | "lastname">) {
+  return `${user.firstname} ${user.lastname}`.toLowerCase();
+}
+
+function getUserActions(
+  permissions: string[],
+  allPerms: string[],
+): AdminUserAction[] {
+  const actions: AdminUserAction[] = [];
+  const normalized = normalizePermissions(permissions);
+
+  for (const permission of allPerms) {
+    if (
+      permission !== "admin" &&
+      permission !== "member" &&
+      !normalized.includes(permission)
+    ) {
+      actions.push({ kind: "add_permission", permission });
+    }
+  }
+
+  for (const permission of normalized) {
+    if (permission !== "admin" && permission !== "member") {
+      actions.push({ kind: "remove_permission", permission });
+    }
+  }
+
+  if (!normalized.includes("admin")) {
+    actions.push({ kind: "delete_user" });
+  }
+
+  return actions;
+}
+
+function setUserPermissions(
+  user: AdminUserRow,
+  permissions: string[],
+  allPerms: string[],
+) {
+  const normalized = normalizePermissions(permissions);
+  user.permissions = normalized;
+  user.member_state = normalized.length > 0 ? "active" : "inactive";
+  user.available_actions = getUserActions(normalized, allPerms);
+}
+
+function getAddablePermissions(user: AdminUserRow | null): string[] {
+  if (!user) return [];
+  return user.available_actions
+    .filter(
+      (action): action is { kind: "add_permission"; permission: string } =>
+        action.kind === "add_permission",
+    )
+    .map((action) => action.permission);
+}
+
+function hasUserAction(
+  user: AdminUserRow,
+  kind: AdminUserAction["kind"],
+  permission?: string,
+) {
+  return user.available_actions.some((action) => {
+    if (action.kind !== kind) return false;
+    if (!permission) return true;
+    return "permission" in action && action.permission === permission;
+  });
+}
 
 export default function Admin() {
   const queryClient = useQueryClient();
@@ -195,9 +310,18 @@ export default function Admin() {
     userId: string;
     perm: string;
   } | null>(null);
-  const [syncConfirmReasons, setSyncConfirmReasons] = useState<string[] | null>(null);
-  const [confirmingDeleteReg, setConfirmingDeleteReg] = useState<string | null>(null);
-  const [confirmingDeleteUser, setConfirmingDeleteUser] = useState<string | null>(null);
+  const [syncConfirmReasons, setSyncConfirmReasons] = useState<string[] | null>(
+    null,
+  );
+  const [confirmingDeleteReg, setConfirmingDeleteReg] = useState<string | null>(
+    null,
+  );
+  const [confirmingDeleteUser, setConfirmingDeleteUser] = useState<
+    string | null
+  >(null);
+  const [pendingUserAction, setPendingUserAction] = useState<string | null>(
+    null,
+  );
 
   const isAdmin =
     session?.user.permissions.includes("admin") ||
@@ -206,48 +330,82 @@ export default function Admin() {
 
   // --- Queries ---
 
-  const needsData = !!isAdmin && (activeTab === "users" || activeTab === "registrations");
-  const regsQuery = useRegistrations(needsData);
-  const usersQuery = useUsers(needsData);
+  const needsRegistrationData =
+    !!isAdmin && (activeTab === "users" || activeTab === "registrations");
+  const regsQuery = useRegistrations(needsRegistrationData);
+  const activeUsersQuery = useLiveQuery(
+    (q) => {
+      if (!isAdmin) return undefined;
+      return q
+        .from({ user: usersCollection })
+        .where(({ user }) => eq(user.member_state, "active"))
+        .orderBy(({ user }) => user.sort_name, "asc")
+        .select(({ user }) => user);
+    },
+    [isAdmin, usersCollection],
+  );
+  const inactiveUsersQuery = useLiveQuery(
+    (q) => {
+      if (!isAdmin) return undefined;
+      return q
+        .from({ user: usersCollection })
+        .where(({ user }) => eq(user.member_state, "inactive"))
+        .orderBy(({ user }) => user.sort_name, "asc")
+        .select(({ user }) => user);
+    },
+    [isAdmin, usersCollection],
+  );
   const syncStatusQuery = useSyncStatus(!!isAdmin && activeTab === "sync");
 
   const registrations: AdminRegistrationRecord[] = regsQuery.data ?? [];
-  const { users = [], perms: allPerms = [] } = usersQuery.data ?? {};
-  const availablePerms = allPerms.filter(
-    (p) => p !== "admin" && p !== "member",
+  const activeUsers = activeUsersQuery.data ?? [];
+  const inactiveUsers = inactiveUsersQuery.data ?? [];
+  const users = [...activeUsers, ...inactiveUsers];
+  const allPerms = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          users.flatMap((user) => [
+            ...user.permissions,
+            ...getAddablePermissions(user),
+          ]),
+        ),
+      ).sort(),
+    [users],
   );
   const syncStatus: SyncStatus | null = syncStatusQuery.data ?? null;
   const { refetch: refetchSyncStatus } = syncStatusQuery;
 
   const addingUser = addingPermUser
-    ? users.find((u) => u.user_id === addingPermUser)
+    ? (users.find((u) => u.user_id === addingPermUser) ?? null)
     : null;
-  const addablePerms = addingUser
-    ? availablePerms.filter((p) => !addingUser.permissions.includes(p))
-    : [];
-  const effectivePerm =
-    addablePerms.includes(selectedPermForUser)
-      ? selectedPermForUser
-      : addablePerms[0] || "";
+  const addablePerms = getAddablePermissions(addingUser);
+  const effectivePerm = addablePerms.includes(selectedPermForUser)
+    ? selectedPermForUser
+    : addablePerms[0] || "";
 
   // --- Mutations ---
 
   const acceptRegMut = useAcceptRegistration();
   const resendInviteMut = useResendRegistrationInvite();
   const deleteRegMut = useDeleteRegistration();
-  const deleteUserMut = useDeleteUser();
-  const addPermMut = useAddPermission();
-  const removePermMut = useRemovePermission();
   const importSyncMut = useImportSync();
   const resolveSyncMut = useResolveSyncMatch();
   const completeSyncMut = useCompleteSync();
 
-  const processingRegId =
-    acceptRegMut.isPending ? acceptRegMut.variables : null;
+  const processingRegId = acceptRegMut.isPending
+    ? acceptRegMut.variables
+    : null;
 
   const loading = regsQuery.isFetching;
-  const usersLoading = usersQuery.isFetching;
-  const syncLoading = syncStatusQuery.isFetching ||
+  const usersLoading =
+    activeUsersQuery.isLoading || inactiveUsersQuery.isLoading;
+  const usersError =
+    activeUsersQuery.isError || inactiveUsersQuery.isError
+      ? usersCollection.utils.lastError
+      : null;
+  const syncLoading =
+    syncStatusQuery.isFetching ||
     importSyncMut.isPending ||
     resolveSyncMut.isPending ||
     completeSyncMut.isPending;
@@ -272,33 +430,75 @@ export default function Admin() {
 
   // --- Permissions handlers ---
 
+  const runUserTransaction = (
+    actionId: string,
+    tx: PersistableTransaction,
+    onSuccess: () => void,
+  ) => {
+    setPendingUserAction(actionId);
+    tx.isPersisted.promise
+      .then(onSuccess)
+      .catch((error) => setStatus(`Error: ${formatError(error)}`))
+      .finally(() => setPendingUserAction(null));
+  };
+
   const handleAddPermission = (e: SyntheticEvent, userId: string) => {
     e.preventDefault();
     if (!effectivePerm) return;
     setStatus("");
-    addPermMut.mutate(
-      { userId, permission: effectivePerm },
-      {
-        onSuccess: () => {
-          setStatus(`Added ${getPermissionDisplay(effectivePerm)} permission`);
-          setAddingPermUser(null);
-        },
-        onError: (error) => setStatus(`Error: ${formatError(error)}`),
-      },
-    );
+    const permission = effectivePerm;
+    const tx = usersCollection.update(userId, (user) => {
+      setUserPermissions(user, [...user.permissions, permission], allPerms);
+    });
+    runUserTransaction(`add:${userId}:${permission}`, tx, () => {
+      setStatus(`Added ${getPermissionDisplay(permission)} permission`);
+      setAddingPermUser(null);
+    });
   };
 
   const handleRemovePermission = (userId: string, permission: string) => {
     if (permission === "admin") return;
     setStatus("");
-    removePermMut.mutate(
-      { userId, permission },
-      {
-        onSuccess: () =>
-          setStatus(`Removed ${getPermissionDisplay(permission)} permission`),
-        onError: (error) => setStatus(`Error: ${formatError(error)}`),
-      },
-    );
+    const tx = usersCollection.update(userId, (user) => {
+      setUserPermissions(
+        user,
+        user.permissions.filter((perm) => perm !== permission),
+        allPerms,
+      );
+    });
+    runUserTransaction(`remove:${userId}:${permission}`, tx, () => {
+      setStatus(`Removed ${getPermissionDisplay(permission)} permission`);
+    });
+  };
+
+  const handleDeleteUser = (userId: string) => {
+    setStatus("");
+    const tx = usersCollection.delete(userId);
+    runUserTransaction(`delete:${userId}`, tx, () => {
+      setStatus("User deleted");
+      setConfirmingDeleteUser(null);
+    });
+  };
+
+  const isUserActionPending = (
+    kind: "add" | "remove" | "delete",
+    userId: string,
+    permission?: string,
+  ) => {
+    if (kind === "delete") return pendingUserAction === `delete:${userId}`;
+    return pendingUserAction === `${kind}:${userId}:${permission}`;
+  };
+
+  const getUserActionLabel = (
+    kind: "add" | "remove" | "delete",
+    userId: string,
+    label: string,
+    permission?: string,
+  ) => {
+    if (isUserActionPending(kind, userId, permission)) {
+      return kind === "delete" ? "Deleting..." : "Saving...";
+    }
+    return label;
   };
 
   const handlePermSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -325,24 +525,25 @@ export default function Admin() {
     const content = await file.text();
     const fileModifiedAt = Math.floor(file.lastModified / 1000);
     const counter = syncStatus?.sync_state_counter;
-    const mutArgs: { csvContent: string; syncStateCounter?: number; fileModifiedAt: number } = {
+    const mutArgs: {
+      csvContent: string;
+      syncStateCounter?: number;
+      fileModifiedAt: number;
+    } = {
       csvContent: content,
       fileModifiedAt,
     };
     if (counter !== undefined) {
       mutArgs.syncStateCounter = counter;
     }
-    importSyncMut.mutate(
-      mutArgs,
-      {
-        onSuccess: (result) => {
-          setStatus(`Imported ${result.imported} member(s) from CSV`);
-          queryClient.invalidateQueries({ queryKey: syncStatusOptions.queryKey });
-          if (fileInputRef.current) fileInputRef.current.value = "";
-        },
-        onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    importSyncMut.mutate(mutArgs, {
+      onSuccess: (result) => {
+        setStatus(`Imported ${result.imported} member(s) from CSV`);
+        queryClient.invalidateQueries({ queryKey: syncStatusOptions.queryKey });
+        if (fileInputRef.current) fileInputRef.current.value = "";
       },
-    );
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
   };
 
   const handleResolveMatch = (
@@ -381,6 +582,7 @@ export default function Admin() {
         ];
         setStatus(`Sync complete: ${parts.join(", ")}`);
         refetchSyncStatus();
+        void usersCollection.utils.refetch();
       },
       onError: (error) => setStatus(`Error: ${formatError(error)}`),
     });
@@ -391,7 +593,8 @@ export default function Admin() {
     const reasons: string[] = [];
 
     if (syncStatus.file_modified_at) {
-      const ageSeconds = Math.floor(Date.now() / 1000) - syncStatus.file_modified_at;
+      const ageSeconds =
+        Math.floor(Date.now() / 1000) - syncStatus.file_modified_at;
       if (ageSeconds > 86400) {
         const fileDate = new Date(syncStatus.file_modified_at * 1000);
         const days = Math.floor(ageSeconds / 86400);
@@ -424,28 +627,9 @@ export default function Admin() {
     setConfirmingDeleteReg(null);
   };
 
-  const handleDeleteUser = (userId: string) => {
-    setStatus("");
-    deleteUserMut.mutate(userId, {
-      onSuccess: () => setStatus("User deleted"),
-      onError: (error) => setStatus(`Error: ${formatError(error)}`),
-    });
-    setConfirmingDeleteUser(null);
-  };
-
   // --- Keyboard navigation ---
 
   const TABS: AdminTab[] = ["users", "registrations", "sync"];
-
-  const sortByName = (a: { firstname: string; lastname: string }, b: { firstname: string; lastname: string }) => {
-    const aName = `${a.firstname} ${a.lastname}`.toLowerCase();
-    const bName = `${b.firstname} ${b.lastname}`.toLowerCase();
-    return aName.localeCompare(bName);
-  };
-  const activeUsers = users.filter((u) => u.permissions.length > 0).sort(sortByName);
-  const inactiveUsers = users
-    .filter((u) => u.permissions.length === 0)
-    .sort(sortByName);
 
   // Sync navigation indices
   let syncRowCount = 0;
@@ -469,13 +653,15 @@ export default function Admin() {
 
   const handleRefresh = useCallback(() => {
     if (activeTab === "users") {
-      queryClient.invalidateQueries({ queryKey: usersOptions.queryKey });
+      void usersCollection.utils.refetch();
     } else if (activeTab === "registrations") {
-      queryClient.invalidateQueries({ queryKey: registrationsOptions.queryKey });
+      queryClient.invalidateQueries({
+        queryKey: registrationsOptions.queryKey,
+      });
     } else if (activeTab === "sync") {
       refetchSyncStatus();
     }
-  }, [activeTab, queryClient, refetchSyncStatus]);
+  }, [activeTab, queryClient, refetchSyncStatus, usersCollection]);
 
   const handleToggleHelp = useCallback(() => {
     setShowHelp((prev) => !prev);
@@ -490,8 +676,21 @@ export default function Admin() {
       setAddingPermUser(null);
       return true;
     }
+    if (confirmingDeleteUser) {
+      setConfirmingDeleteUser(null);
+      return true;
+    }
+    if (confirmingDeleteReg) {
+      setConfirmingDeleteReg(null);
+      return true;
+    }
     return false;
-  }, [addingPermUser, confirmingRemoval]);
+  }, [
+    addingPermUser,
+    confirmingDeleteReg,
+    confirmingDeleteUser,
+    confirmingRemoval,
+  ]);
 
   useAdminKeyboard({
     tabs: TABS,
@@ -596,11 +795,20 @@ export default function Admin() {
               {loading && registrations.length === 0 ? (
                 <div className="admin-loading">Loading...</div>
               ) : registrations.length === 0 ? (
-                <div className="admin-empty">No registration requests found</div>
+                <div className="admin-empty">
+                  No registration requests found
+                </div>
               ) : (
                 <div className="admin-table-container">
                   <table className="admin-table admin-cols-registrations">
-                    <colgroup><col /><col /><col /><col /><col /><col /></colgroup>
+                    <colgroup>
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                      <col />
+                    </colgroup>
                     <thead>
                       <tr>
                         <th>Email</th>
@@ -613,9 +821,16 @@ export default function Admin() {
                     </thead>
                     <tbody>
                       {registrations.map((reg, idx) => (
-                        <tr key={reg.registration_id} className={highlightedRow === idx ? "admin-nav-highlight" : ""}>
+                        <tr
+                          key={reg.registration_id}
+                          className={
+                            highlightedRow === idx ? "admin-nav-highlight" : ""
+                          }
+                        >
                           <td>{reg.email}</td>
-                          <td>{reg.firstname} {reg.lastname}</td>
+                          <td>
+                            {reg.firstname} {reg.lastname}
+                          </td>
                           <td>
                             <span
                               className={`admin-status-badge ${
@@ -635,8 +850,14 @@ export default function Admin() {
                             <div className="admin-action-group">
                               {!reg.accepted ? (
                                 <button
-                                  onClick={() => handleAcceptRegistration(reg.registration_id)}
-                                  disabled={processingRegId === reg.registration_id}
+                                  onClick={() =>
+                                    handleAcceptRegistration(
+                                      reg.registration_id,
+                                    )
+                                  }
+                                  disabled={
+                                    processingRegId === reg.registration_id
+                                  }
                                   className="admin-button admin-button-accept"
                                 >
                                   {processingRegId === reg.registration_id
@@ -644,13 +865,20 @@ export default function Admin() {
                                     : "Approve"}
                                 </button>
                               ) : (
-                                reg.available_actions?.some((a) => a.kind === "resend_registration_invite") && (
+                                reg.available_actions?.some(
+                                  (a) =>
+                                    a.kind === "resend_registration_invite",
+                                ) && (
                                   <button
-                                    onClick={() => handleResendInvite(reg.registration_id)}
+                                    onClick={() =>
+                                      handleResendInvite(reg.registration_id)
+                                    }
                                     disabled={resendInviteMut.isPending}
                                     className="admin-button admin-button-refresh"
                                   >
-                                    {resendInviteMut.isPending ? "Sending..." : "Resend Invite"}
+                                    {resendInviteMut.isPending
+                                      ? "Sending..."
+                                      : "Resend Invite"}
                                   </button>
                                 )
                               )}
@@ -659,7 +887,11 @@ export default function Admin() {
                                   Delete?
                                   <button
                                     className="admin-perm-confirm-yes"
-                                    onClick={() => handleDeleteRegistration(reg.registration_id)}
+                                    onClick={() =>
+                                      handleDeleteRegistration(
+                                        reg.registration_id,
+                                      )
+                                    }
                                   >
                                     Yes
                                   </button>
@@ -673,7 +905,9 @@ export default function Admin() {
                               ) : (
                                 <button
                                   className="admin-button admin-button-danger admin-button-small"
-                                  onClick={() => setConfirmingDeleteReg(reg.registration_id)}
+                                  onClick={() =>
+                                    setConfirmingDeleteReg(reg.registration_id)
+                                  }
                                   disabled={deleteRegMut.isPending}
                                 >
                                   Delete
@@ -696,7 +930,7 @@ export default function Admin() {
               <div className="admin-header">
                 <h2>Users</h2>
                 <button
-                  onClick={() => usersQuery.refetch()}
+                  onClick={() => void usersCollection.utils.refetch()}
                   disabled={usersLoading}
                   className="admin-button admin-button-refresh admin-button-icon"
                   title="Refresh (r)"
@@ -707,6 +941,10 @@ export default function Admin() {
 
               {usersLoading && users.length === 0 ? (
                 <div className="admin-loading">Loading users...</div>
+              ) : usersError ? (
+                <div className="admin-empty">
+                  Failed to load users: {formatError(usersError)}
+                </div>
               ) : users.length === 0 ? (
                 <div className="admin-empty">No users found</div>
               ) : (
@@ -722,7 +960,12 @@ export default function Admin() {
                     {activeUsers.length > 0 ? (
                       <div className="admin-table-container">
                         <table className="admin-table admin-cols-members">
-                          <colgroup><col /><col /><col /><col /></colgroup>
+                          <colgroup>
+                            <col />
+                            <col />
+                            <col />
+                            <col />
+                          </colgroup>
                           <thead>
                             <tr>
                               <th>Name</th>
@@ -735,11 +978,17 @@ export default function Admin() {
                             {activeUsers.map((user, idx) => (
                               <tr
                                 key={user.user_id}
-                                className={highlightedRow === idx ? "admin-nav-highlight" : ""}
+                                className={
+                                  highlightedRow === idx
+                                    ? "admin-nav-highlight"
+                                    : ""
+                                }
                               >
                                 <td>
                                   {user.firstname} {user.lastname}
-                                  <div className="admin-user-email">{user.email}</div>
+                                  <div className="admin-user-email">
+                                    {user.email}
+                                  </div>
                                 </td>
                                 <td>{user.bondsnummer ?? "\u2014"}</td>
                                 <td>
@@ -751,23 +1000,43 @@ export default function Admin() {
                                         style={getPermissionStyle(perm)}
                                       >
                                         {getPermissionDisplay(perm)}
-                                        {perm !== "admin" && perm !== "member" &&
-                                          (confirmingRemoval?.userId === user.user_id &&
+                                        {hasUserAction(
+                                          user,
+                                          "remove_permission",
+                                          perm,
+                                        ) &&
+                                          (confirmingRemoval?.userId ===
+                                            user.user_id &&
                                           confirmingRemoval?.perm === perm ? (
                                             <span className="admin-perm-confirm">
                                               <button
                                                 className="admin-perm-confirm-yes"
+                                                disabled={isUserActionPending(
+                                                  "remove",
+                                                  user.user_id,
+                                                  perm,
+                                                )}
                                                 onClick={() => {
-                                                  handleRemovePermission(user.user_id, perm);
+                                                  handleRemovePermission(
+                                                    user.user_id,
+                                                    perm,
+                                                  );
                                                   setConfirmingRemoval(null);
                                                 }}
                                               >
-                                                Yes
+                                                {getUserActionLabel(
+                                                  "remove",
+                                                  user.user_id,
+                                                  "Yes",
+                                                  perm,
+                                                )}
                                               </button>
                                               <button
                                                 className="admin-perm-confirm-no"
                                                 ref={(el) => el?.focus()}
-                                                onClick={() => setConfirmingRemoval(null)}
+                                                onClick={() =>
+                                                  setConfirmingRemoval(null)
+                                                }
                                                 onKeyDown={(e) => {
                                                   if (e.key === "Escape") {
                                                     e.preventDefault();
@@ -782,13 +1051,18 @@ export default function Admin() {
                                             <button
                                               className="admin-perm-remove"
                                               style={{
-                                                color: getPermissionStyle(perm).color,
+                                                color:
+                                                  getPermissionStyle(perm)
+                                                    .color,
                                               }}
                                               onClick={() =>
                                                 setConfirmingRemoval({
                                                   userId: user.user_id,
                                                   perm,
                                                 })
+                                              }
+                                              disabled={
+                                                pendingUserAction !== null
                                               }
                                               title={`Remove ${getPermissionDisplay(perm)}`}
                                             >
@@ -809,9 +1083,8 @@ export default function Admin() {
                                           setAddingPermUser(user.user_id);
                                         }}
                                         disabled={
-                                          availablePerms.filter(
-                                            (p) => !user.permissions.includes(p),
-                                          ).length === 0
+                                          getAddablePermissions(user).length ===
+                                            0 || pendingUserAction !== null
                                         }
                                       >
                                         + Add
@@ -833,6 +1106,7 @@ export default function Admin() {
                                           value={effectivePerm}
                                           onChange={handlePermSelectChange}
                                           className="admin-perm-select"
+                                          disabled={pendingUserAction !== null}
                                         >
                                           {addablePerms.map((perm) => (
                                             <option key={perm} value={perm}>
@@ -843,32 +1117,59 @@ export default function Admin() {
                                         <button
                                           type="submit"
                                           className="admin-button admin-button-accept"
-                                          disabled={!effectivePerm}
+                                          disabled={
+                                            !effectivePerm ||
+                                            pendingUserAction !== null ||
+                                            isUserActionPending(
+                                              "add",
+                                              user.user_id,
+                                              effectivePerm,
+                                            )
+                                          }
                                         >
-                                          Add
+                                          {getUserActionLabel(
+                                            "add",
+                                            user.user_id,
+                                            "Add",
+                                            effectivePerm,
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className="admin-button"
-                                          onClick={() => setAddingPermUser(null)}
+                                          onClick={() =>
+                                            setAddingPermUser(null)
+                                          }
                                         >
                                           Cancel
                                         </button>
                                       </form>
                                     )}
-                                    {!user.permissions.includes("admin") && (
-                                      confirmingDeleteUser === user.user_id ? (
+                                    {hasUserAction(user, "delete_user") &&
+                                      (confirmingDeleteUser === user.user_id ? (
                                         <span className="admin-inline-confirm">
                                           Delete?
                                           <button
                                             className="admin-perm-confirm-yes"
-                                            onClick={() => handleDeleteUser(user.user_id)}
+                                            disabled={isUserActionPending(
+                                              "delete",
+                                              user.user_id,
+                                            )}
+                                            onClick={() =>
+                                              handleDeleteUser(user.user_id)
+                                            }
                                           >
-                                            Yes
+                                            {getUserActionLabel(
+                                              "delete",
+                                              user.user_id,
+                                              "Yes",
+                                            )}
                                           </button>
                                           <button
                                             className="admin-perm-confirm-no"
-                                            onClick={() => setConfirmingDeleteUser(null)}
+                                            onClick={() =>
+                                              setConfirmingDeleteUser(null)
+                                            }
                                           >
                                             No
                                           </button>
@@ -876,13 +1177,16 @@ export default function Admin() {
                                       ) : (
                                         <button
                                           className="admin-button admin-button-danger admin-button-small"
-                                          onClick={() => setConfirmingDeleteUser(user.user_id)}
-                                          disabled={deleteUserMut.isPending}
+                                          onClick={() =>
+                                            setConfirmingDeleteUser(
+                                              user.user_id,
+                                            )
+                                          }
+                                          disabled={pendingUserAction !== null}
                                         >
                                           Delete
                                         </button>
-                                      )
-                                    )}
+                                      ))}
                                   </div>
                                 </td>
                               </tr>
@@ -907,7 +1211,10 @@ export default function Admin() {
                       <>
                         <div className="admin-table-container">
                           <table className="admin-table admin-cols-inactive">
-                            <colgroup><col /><col /></colgroup>
+                            <colgroup>
+                              <col />
+                              <col />
+                            </colgroup>
                             <thead>
                               <tr>
                                 <th>Name</th>
@@ -919,7 +1226,9 @@ export default function Admin() {
                                 <tr key={user.user_id}>
                                   <td>
                                     {user.firstname} {user.lastname}
-                                    <div className="admin-user-email">{user.email}</div>
+                                    <div className="admin-user-email">
+                                      {user.email}
+                                    </div>
                                   </td>
                                   <td>{user.bondsnummer ?? "\u2014"}</td>
                                 </tr>
@@ -965,7 +1274,8 @@ export default function Admin() {
                 />
                 {syncStatus?.sync_in_progress && (
                   <p className="admin-sync-import-hint">
-                    A sync session is in progress. Importing a new file will replace it.
+                    A sync session is in progress. Importing a new file will
+                    replace it.
                   </p>
                 )}
               </div>
@@ -993,15 +1303,21 @@ export default function Admin() {
                     <div className="admin-sync-group">
                       <div className="admin-sync-info">
                         {syncStatus.sync_in_progress ? (
-                          <span className="admin-status-badge admin-status-badge-warning">Sync in progress</span>
+                          <span className="admin-status-badge admin-status-badge-warning">
+                            Sync in progress
+                          </span>
                         ) : (
-                          <span className="admin-status-badge admin-status-badge-muted">No active sync</span>
+                          <span className="admin-status-badge admin-status-badge-muted">
+                            No active sync
+                          </span>
                         )}
                         {syncStatus.file_modified_at && (
                           <span className="admin-sync-file-date">
                             Imported file from:{" "}
                             <strong>
-                              {new Date(syncStatus.file_modified_at * 1000).toLocaleDateString("en-GB", {
+                              {new Date(
+                                syncStatus.file_modified_at * 1000,
+                              ).toLocaleDateString("en-GB", {
                                 day: "numeric",
                                 month: "long",
                                 year: "numeric",
@@ -1034,12 +1350,16 @@ export default function Admin() {
                               ))}
                             </div>
                           ) : (
-                            <div className="admin-empty">No items need review</div>
+                            <div className="admin-empty">
+                              No items need review
+                            </div>
                           )}
                         </div>
 
                         {/* New registrations */}
-                        <SyncNewRegistrations items={syncStatus.registrations_created} />
+                        <SyncNewRegistrations
+                          items={syncStatus.registrations_created}
+                        />
 
                         {/* Matched registrations */}
                         <SyncRegistrationGroup
@@ -1063,7 +1383,9 @@ export default function Admin() {
                         <SyncDepartedGroup items={syncStatus.departed_users} />
 
                         {/* Import data overview */}
-                        <SyncDataChanges items={syncStatus.volta_data_changes} />
+                        <SyncDataChanges
+                          items={syncStatus.volta_data_changes}
+                        />
 
                         {/* Complete sync */}
                         <div className="admin-sync-group admin-sync-complete">
@@ -1071,7 +1393,11 @@ export default function Admin() {
                             onClick={handleCompleteSync}
                             disabled={syncLoading || !syncStatus.can_complete}
                             className="admin-button admin-button-accept"
-                            title={syncStatus.can_complete ? "Apply all pending changes" : "Resolve all review items first"}
+                            title={
+                              syncStatus.can_complete
+                                ? "Apply all pending changes"
+                                : "Resolve all review items first"
+                            }
                           >
                             Complete sync
                           </button>
@@ -1117,7 +1443,10 @@ function SyncConfirmModal({
           <button className="admin-button" onClick={onCancel}>
             Cancel
           </button>
-          <button className="admin-button admin-button-accept" onClick={onConfirm}>
+          <button
+            className="admin-button admin-button-accept"
+            onClick={onConfirm}
+          >
             Complete sync
           </button>
         </div>
@@ -1165,7 +1494,9 @@ function SyncNewRegistrations({ items }: { items: SyncNewRegistrationItem[] }) {
               {items.map((item) => (
                 <tr key={item.bondsnummer}>
                   <td>{item.bondsnummer}</td>
-                  <td>{item.firstname} {item.lastname}</td>
+                  <td>
+                    {item.firstname} {item.lastname}
+                  </td>
                   <td>{item.email}</td>
                 </tr>
               ))}
@@ -1189,8 +1520,7 @@ function SyncRegistrationGroup({
   return (
     <div className="admin-sync-group">
       <h3>
-        {title}{" "}
-        <span className="admin-sync-count">({items.length})</span>
+        {title} <span className="admin-sync-count">({items.length})</span>
       </h3>
       {items.length > 0 ? (
         <div className="admin-table-container">
@@ -1209,7 +1539,9 @@ function SyncRegistrationGroup({
                   <td>{item.bondsnummer}</td>
                   <td>
                     {item.registration.firstname} {item.registration.lastname}
-                    <div className="admin-user-email">{item.registration.email}</div>
+                    <div className="admin-user-email">
+                      {item.registration.email}
+                    </div>
                   </td>
                   <td>
                     {item.email_will_change ? (
@@ -1251,10 +1583,11 @@ function SyncUserGroup({
   return (
     <div className="admin-sync-group">
       <h3>
-        {title}{" "}
-        <span className="admin-sync-count">({items.length})</span>
+        {title} <span className="admin-sync-count">({items.length})</span>
         {withChanges.length > 0 && (
-          <span className="admin-changes">{withChanges.length} with changes</span>
+          <span className="admin-changes">
+            {withChanges.length} with changes
+          </span>
         )}
       </h3>
       {items.length > 0 ? (
@@ -1275,9 +1608,13 @@ function SyncUserGroup({
                       <td>{item.bondsnummer}</td>
                       <td>
                         {item.user.firstname} {item.user.lastname}
-                        <div className="admin-user-email">{item.user.email}</div>
+                        <div className="admin-user-email">
+                          {item.user.email}
+                        </div>
                       </td>
-                      <td><FieldDiffs diffs={item.field_diffs} /></td>
+                      <td>
+                        <FieldDiffs diffs={item.field_diffs} />
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -1317,7 +1654,9 @@ function SyncDepartedGroup({ items }: { items: SyncDepartedItem[] }) {
             <tbody>
               {items.map((d) => (
                 <tr key={d.user_id}>
-                  <td>{d.firstname} {d.lastname}</td>
+                  <td>
+                    {d.firstname} {d.lastname}
+                  </td>
                   <td>{d.email}</td>
                   <td>{d.bondsnummer ?? "\u2014"}</td>
                 </tr>
@@ -1378,14 +1717,23 @@ function SyncDataChanges({ items }: { items: SyncDataChangeItem[] }) {
                     <td>{item.bondsnummer}</td>
                     <td>
                       {isRemoval && (
-                        <span className="admin-status-badge admin-status-badge-pending">Removed</span>
+                        <span className="admin-status-badge admin-status-badge-pending">
+                          Removed
+                        </span>
                       )}
                       {isNew && (
-                        <span className="admin-status-badge admin-status-badge-accepted">New</span>
+                        <span className="admin-status-badge admin-status-badge-accepted">
+                          New
+                        </span>
                       )}
-                      {!isRemoval && !isNew && item.field_diffs.length === 0 && "\u2014"}
+                      {!isRemoval &&
+                        !isNew &&
+                        item.field_diffs.length === 0 &&
+                        "\u2014"}
                       {!isRemoval && !isNew && item.field_diffs.length > 0 && (
-                        <span className="admin-status-badge admin-status-badge-warning">Changed</span>
+                        <span className="admin-status-badge admin-status-badge-warning">
+                          Changed
+                        </span>
                       )}
                     </td>
                     <td>
@@ -1402,9 +1750,7 @@ function SyncDataChanges({ items }: { items: SyncDataChangeItem[] }) {
           </table>
         </div>
       )}
-      {items.length === 0 && (
-        <div className="admin-empty">No import data</div>
-      )}
+      {items.length === 0 && <div className="admin-empty">No import data</div>}
     </div>
   );
 }
@@ -1418,14 +1764,20 @@ function SyncReviewCard({
 }: {
   item: SyncReviewItem;
   disabled: boolean;
-  onResolve: (bondsnummer: number, kind: string, subjectId: string | null) => void;
+  onResolve: (
+    bondsnummer: number,
+    kind: string,
+    subjectId: string | null,
+  ) => void;
 }) {
   const voltaEmail = String(item.incoming_volta_data["email"] ?? "");
   const voltaName = [
     String(item.incoming_volta_data["voornaam"] ?? ""),
     String(item.incoming_volta_data["tussenvoegsel"] ?? ""),
     String(item.incoming_volta_data["achternaam"] ?? ""),
-  ].filter(Boolean).join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className="admin-review-card">
@@ -1437,7 +1789,9 @@ function SyncReviewCard({
 
       {item.candidates.length === 0 ? (
         <div className="admin-review-card-body">
-          <span className="admin-review-card-none">No matching registrations or users found</span>
+          <span className="admin-review-card-none">
+            No matching registrations or users found
+          </span>
           <button
             className="admin-button admin-button-accept"
             disabled={disabled}
@@ -1449,10 +1803,15 @@ function SyncReviewCard({
       ) : (
         <div className="admin-review-card-body">
           {item.candidates.map((c) => (
-            <div key={`${c.kind}-${c.subject_id}`} className="admin-review-candidate">
+            <div
+              key={`${c.kind}-${c.subject_id}`}
+              className="admin-review-candidate"
+            >
               <div className="admin-review-candidate-info">
                 <span className="admin-review-candidate-type">{c.kind}</span>
-                <span className="admin-review-candidate-name">{c.display_name}</span>
+                <span className="admin-review-candidate-name">
+                  {c.display_name}
+                </span>
                 <span className="admin-review-candidate-email">{c.email}</span>
                 <span className="admin-review-candidate-reasons">
                   {c.reasons.map((r) => r.replace("_", " ")).join(", ")}
@@ -1461,14 +1820,18 @@ function SyncReviewCard({
               <button
                 className="admin-button admin-button-accept"
                 disabled={disabled}
-                onClick={() => onResolve(item.bondsnummer, c.kind, c.subject_id)}
+                onClick={() =>
+                  onResolve(item.bondsnummer, c.kind, c.subject_id)
+                }
               >
                 Link
               </button>
             </div>
           ))}
           <div className="admin-review-candidate admin-review-candidate-none">
-            <span className="admin-review-candidate-info">None of the above</span>
+            <span className="admin-review-candidate-info">
+              None of the above
+            </span>
             <button
               className="admin-button admin-button-danger"
               disabled={disabled}

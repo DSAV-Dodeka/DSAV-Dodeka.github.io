@@ -1,6 +1,6 @@
 const BACKEND_URL = import.meta.env.DEV
   ? "http://127.0.0.1:12780"
-  : (import.meta.env['VITE_BACKEND_URL'] ?? "https://backend.dsavdodeka.nl");
+  : (import.meta.env["VITE_BACKEND_URL"] ?? "https://backend.dsavdodeka.nl");
 
 // HTTP helpers
 async function post(
@@ -212,11 +212,7 @@ export async function deleteRegistration(
 export async function deleteUser(
   userId: string,
 ): Promise<{ success: boolean }> {
-  const response = await post(
-    "/admin/delete_user/",
-    { user_id: userId },
-    true,
-  );
+  const response = await post("/admin/delete_user/", { user_id: userId }, true);
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to delete user: ${text}`);
