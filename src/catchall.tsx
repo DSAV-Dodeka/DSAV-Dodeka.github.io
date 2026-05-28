@@ -1,7 +1,11 @@
 import { Link } from "react-router";
+import { useSessionInfo } from "$functions/query.ts";
+import Game from "./pages/leden/game/Game";
 import "./catchall.css";
 
 export default function Component() {
+  const { data: session } = useSessionInfo();
+
   return (
     <div className="notfound-container">
       <h1 className="notfound-title">404</h1>
@@ -12,6 +16,7 @@ export default function Component() {
       <Link to="/" className="notfound-link">
         Terug naar home
       </Link>
+      {session && <Game />}
     </div>
   );
 }

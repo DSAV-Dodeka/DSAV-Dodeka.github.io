@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PageTitle from '../../../components/PageTitle';
 import bg from './background.png';
 import avr1 from './Aardvark-run1.png';
@@ -14,12 +14,11 @@ import './Game.scss';
 const Game = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const isJumpingRef = useRef(false);
-    const [jumpHeight, setJumpHeight] = useState(0);
     const gravity = 1;
     const groundHeight = 50;
     const obstaclesRef = useRef([{ x: 800, width: 20, height: 30, src: 0}]);
     const characterRef = useRef({ x: 50, y: 0, width: 120, height: 150 });
-    const [difficulty, setDifficulty] = useState(1); // Difficulty level
+    const [, setDifficulty] = useState(1);
     const [isGameOver, setIsGameOver] = useState(false); // Game over state
     const [isGameStarted, setIsGameStarted] = useState(false); // Game start state
     const scoreRef = useRef(0); // Score state stored in a ref
@@ -145,7 +144,7 @@ const Game = () => {
             }
 
             // Cycle through character images
-            let currentImage = characterImages[Math.floor(frameCounter / 10) % characterImages.length];
+            let currentImage = characterImages[Math.floor(frameCounter / 10) % characterImages.length]!;
             frameCounter++;
             scoreRef.current = frameCounter; // Update score
 
@@ -166,7 +165,7 @@ const Game = () => {
 
             // Draw obstacles
             obstacles.forEach((obstacle) => {
-                ctx.drawImage(hordeImages[obstacle.src], obstacle.x, canvas.height - groundHeight - obstacle.height, obstacle.width, obstacle.height);
+                ctx.drawImage(hordeImages[obstacle.src]!, obstacle.x, canvas.height - groundHeight - obstacle.height, obstacle.width, obstacle.height);
                 
                 // Collision detection
                 if (
