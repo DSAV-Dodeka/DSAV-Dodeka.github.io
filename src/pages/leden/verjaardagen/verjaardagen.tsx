@@ -169,10 +169,9 @@ export default function Verjaardagen() {
             const datumFull = `${dayName} ${parsed.day}`;
             const age = getAge(parsed);
             const name = formatName(entry);
-            const key = `${name}-${entry.geboortedatum}`;
 
             return (
-              <div key={key} className="verjaardagen-contents">
+              <div key={entry.user_id} className="verjaardagen-contents">
                 {showMonth && (
                   <p className="verjaardagen-maand">
                     {maanden[parsed.month - 1]}
