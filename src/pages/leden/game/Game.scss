@@ -1,5 +1,16 @@
-@import "../../../variables.scss";
-
 .game-container {
     margin-bottom: 6rem;
+    text-align: center;
+}
+
+.game-title {
+    color: #001f48;
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem;
+}
+
+.game-canvas {
+    display: block;
+    margin: 0 auto;
 }

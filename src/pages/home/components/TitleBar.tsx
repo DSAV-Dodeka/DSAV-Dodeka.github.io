@@ -9,9 +9,9 @@ function TitleBar() {
     <div id="home_title_container">
       <div id="home_title_left">
         <div className="sneeuw_wrapper">
-          <Sneeuw className="sneeuw_bar" style={{ left: '-5%' }} />
-          <Sneeuw className="sneeuw_bar" style={{ left: '25%', transform: 'none' }} />
-          <Sneeuw className="sneeuw_bar" style={{ left: '55%' }} />
+          <Sneeuw className="sneeuw_bar sneeuw_bar--left" />
+          <Sneeuw className="sneeuw_bar sneeuw_bar--center" />
+          <Sneeuw className="sneeuw_bar sneeuw_bar--right" />
         </div>
       </div>
       <div id="home_title_right">

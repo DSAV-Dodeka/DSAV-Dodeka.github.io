@@ -23,7 +23,10 @@ function MemberDropdown() {
     <Dropdown
       name="Leden"
       path="/leden"
-      items={[{ name: "Verjaardagen", path: "/verjaardagen" }]}
+      items={[
+        { name: "Verjaardagen", path: "/verjaardagen" },
+        { name: "Hordes", path: "/hordes" },
+      ]}
     />
   );
 }
@@ -39,6 +42,7 @@ function MemberMobileDropdown({ onClick }: { onClick: () => void }) {
       items={[
         { name: "Ledenpagina", path: "" },
         { name: "Verjaardagen", path: "/verjaardagen" },
+        { name: "Hordes", path: "/hordes" },
       ]}
       onClick={onClick}
     />

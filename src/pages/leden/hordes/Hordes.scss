@@ -1,7 +1,7 @@
-@import "../../../variables.scss";
+@use "../../../variables.scss";
 
 .hordes_status {
-    color: $dodeka_blauw;
+    color: variables.$dodeka_blauw;
     margin-left: 4rem;
 }
 
@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: row;
     gap: 4rem;
-    @include respond(mobile) {
+    @include variables.respond(mobile) {
         flex-direction: column;
         margin-left: 2rem;
         margin-right: 2rem;

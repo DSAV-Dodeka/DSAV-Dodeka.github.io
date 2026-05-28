@@ -1,4 +1,4 @@
-const BACKEND_URL = import.meta.env.DEV
+export const BACKEND_URL = import.meta.env.DEV
   ? "http://127.0.0.1:12780"
   : (import.meta.env['VITE_BACKEND_URL'] ?? "https://backend.dsavdodeka.nl");
 
@@ -613,6 +613,75 @@ export async function getMemberBirthdays(): Promise<Birthday[]> {
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Failed to get birthdays: ${text}`);
+  }
+  return response.json();
+}
+
+// Private key-value store
+
+export class PrivateKeyNotSetError extends Error {
+  readonly key: string;
+  constructor(key: string) {
+    super(`Private key not set: ${key}`);
+    this.key = key;
+  }
+}
+
+export async function getPrivate<T = unknown>(key: string): Promise<T> {
+  const response = await post("/members/private/", { key }, true);
+  if (response.status === 404) {
+    throw new PrivateKeyNotSetError(key);
+  }
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to read private key ${key}: ${text}`);
+  }
+  const data = await response.json();
+  return data.value as T;
+}
+
+export interface PrivateKvAdminEntry {
+  value: unknown;
+  required_role: string | null;
+}
+
+export async function adminGetPrivate(key: string): Promise<PrivateKvAdminEntry> {
+  const response = await post("/admin/private_kv/get/", { key }, true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to read private key ${key}: ${text}`);
+  }
+  return response.json();
+}
+
+export async function adminSetPrivate(
+  key: string,
+  value: unknown,
+  role?: string,
+): Promise<void> {
+  const body: { key: string; value: unknown; role?: string } = { key, value };
+  if (role) body.role = role;
+  const response = await post("/admin/private_kv/set/", body, true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to write private key ${key}: ${text}`);
+  }
+}
+
+export interface PrivateKvKeyInfo {
+  key: string;
+  required_role: string;
+}
+
+export interface PrivateKvList {
+  keys: PrivateKvKeyInfo[];
+}
+
+export async function adminListPrivate(): Promise<PrivateKvList> {
+  const response = await get("/admin/private_kv/list/", true);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to list private keys: ${text}`);
   }
   return response.json();
 }

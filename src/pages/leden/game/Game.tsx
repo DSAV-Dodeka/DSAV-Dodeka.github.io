@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import PageTitle from '../../../components/PageTitle';
 import bg from './background.png';
 import avr1 from './Aardvark-run1.png';
 import avr2 from './Aardvark-run2.png';
@@ -240,13 +239,12 @@ const Game = () => {
 
     return (
         <div className='game-container'>
-            <PageTitle title="Arnolds minigame" />
+            <h2 className="game-title">ARNOLDS MINIGAME</h2>
             <canvas
                 className="game-canvas"
                 ref={canvasRef}
                 width={800}
                 height={400}
-                style={{ display: 'block', margin: '0 auto' }}
             ></canvas>
         </div>
     );

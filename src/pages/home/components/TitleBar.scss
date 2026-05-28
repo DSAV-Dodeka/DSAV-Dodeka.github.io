@@ -127,3 +127,16 @@
   position: absolute;
   bottom: 0;
 }
+
+.sneeuw_bar--left {
+  left: -5%;
+}
+
+.sneeuw_bar--center {
+  left: 25%;
+  transform: none;
+}
+
+.sneeuw_bar--right {
+  left: 55%;
+}

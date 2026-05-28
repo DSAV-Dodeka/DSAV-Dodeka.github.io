@@ -172,7 +172,7 @@ export default function EmailUpdateFlowTest() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <small style={{ color: "#666", fontSize: "12px" }}>
+              <small className="flow-test-field-hint">
                 Your current password to confirm your identity
               </small>
             </div>

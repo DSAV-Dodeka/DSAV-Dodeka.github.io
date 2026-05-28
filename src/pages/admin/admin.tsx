@@ -36,7 +36,14 @@ import {
   registrationsOptions,
   usersOptions,
   syncStatusOptions,
+  useAdminPrivate,
+  useAdminPrivateList,
+  useAdminSetPrivate,
 } from "$functions/query.ts";
+import {
+  EXPECTED_PRIVATE_KEYS,
+  findExpectedKey,
+} from "./privateKeyRegistry";
 import PageTitle from "$components/PageTitle.tsx";
 import { useAdminKeyboard } from "./useAdminKeyboard.ts";
 import "./admin.css";
@@ -89,49 +96,6 @@ function RefreshIcon() {
   );
 }
 
-function HelpOverlay({
-  isAdmin,
-  onClose,
-}: {
-  isAdmin: boolean;
-  onClose: () => void;
-}) {
-  return (
-    <div className="admin-help-overlay" onClick={onClose}>
-      <div className="admin-help-panel" onClick={(e) => e.stopPropagation()}>
-        <h3>Keyboard Shortcuts</h3>
-        {isAdmin && (
-          <>
-            <h4>Admin Navigation</h4>
-            <table className="admin-help-table">
-              <tbody>
-                <tr><td className="admin-help-key">[ / ]</td><td>Previous / next tab</td></tr>
-                <tr><td className="admin-help-key">j / k</td><td>Move highlight down / up</td></tr>
-                <tr><td className="admin-help-key">h / l</td><td>Cycle actions within highlighted item</td></tr>
-                <tr><td className="admin-help-key">Enter</td><td>Click focused action</td></tr>
-                <tr><td className="admin-help-key">r</td><td>Refresh current tab</td></tr>
-                <tr><td className="admin-help-key">Escape</td><td>Clear highlight / close help</td></tr>
-              </tbody>
-            </table>
-          </>
-        )}
-        <h4>Global</h4>
-        <table className="admin-help-table">
-          <tbody>
-            <tr><td className="admin-help-key">?</td><td>Toggle this help</td></tr>
-            <tr><td className="admin-help-key">\a</td><td>Go to admin page</td></tr>
-            {import.meta.env.DEV && (
-              <tr><td className="admin-help-key">\s</td><td>Refresh admin session</td></tr>
-            )}
-          </tbody>
-        </table>
-        <button className="admin-button admin-help-close" onClick={onClose}>Close</button>
-        <div className="admin-help-hint">Press ? or Escape to dismiss</div>
-      </div>
-    </div>
-  );
-}
-
 function formatError(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
@@ -167,7 +131,7 @@ function RegistrationStatusBadge({ reg }: { reg: AdminRegistrationRecord }) {
   );
 }
 
-type AdminTab = "users" | "registrations" | "sync";
+type AdminTab = "users" | "registrations" | "sync" | "private";
 
 export default function Admin() {
   const queryClient = useQueryClient();
@@ -179,7 +143,6 @@ export default function Admin() {
   const [status, setStatus] = useState("");
   const [highlightedRow, setHighlightedRow] = useState(-1);
   const [highlightedCol, setHighlightedCol] = useState(0);
-  const [showHelp, setShowHelp] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const setActiveTab = useCallback((tab: AdminTab) => {
@@ -435,7 +398,7 @@ export default function Admin() {
 
   // --- Keyboard navigation ---
 
-  const TABS: AdminTab[] = ["users", "registrations", "sync"];
+  const TABS: AdminTab[] = ["users", "registrations", "sync", "private"];
 
   const sortByName = (a: { firstname: string; lastname: string }, b: { firstname: string; lastname: string }) => {
     const aName = `${a.firstname} ${a.lastname}`.toLowerCase();
@@ -477,10 +440,6 @@ export default function Admin() {
     }
   }, [activeTab, queryClient, refetchSyncStatus]);
 
-  const handleToggleHelp = useCallback(() => {
-    setShowHelp((prev) => !prev);
-  }, []);
-
   const handleCancel = useCallback(() => {
     if (confirmingRemoval) {
       setConfirmingRemoval(null);
@@ -494,6 +453,7 @@ export default function Admin() {
   }, [addingPermUser, confirmingRemoval]);
 
   useAdminKeyboard({
+    active: !!isAdmin,
     tabs: TABS,
     activeTab,
     setActiveTab: setActiveTab as (tab: string) => void,
@@ -503,8 +463,6 @@ export default function Admin() {
     setHighlightedCol,
     rowCount,
     onRefresh: handleRefresh,
-    showHelp,
-    onToggleHelp: handleToggleHelp,
     onCancel: handleCancel,
   });
 
@@ -520,10 +478,6 @@ export default function Admin() {
 
   return (
     <div className="admin-container">
-      {showHelp && (
-        <HelpOverlay isAdmin={!!isAdmin} onClose={handleToggleHelp} />
-      )}
-
       {authLoading ? (
         <>
           <PageTitle title="Admin Dashboard" />
@@ -563,6 +517,12 @@ export default function Admin() {
               onClick={() => setActiveTab("sync")}
             >
               Sync
+            </button>
+            <button
+              className={`admin-tab ${activeTab === "private" ? "active" : ""}`}
+              onClick={() => setActiveTab("private")}
+            >
+              Private
             </button>
           </div>
 
@@ -1088,6 +1048,187 @@ export default function Admin() {
               </div>
             </>
           )}
+
+          {activeTab === "private" && <PrivateKvTab isAdmin={!!isAdmin} />}
+        </>
+      )}
+    </div>
+  );
+}
+
+function PrivateKvTab({ isAdmin }: { isAdmin: boolean }) {
+  const [keyInput, setKeyInput] = useState("");
+  const [activeKey, setActiveKey] = useState<string>("");
+  const [draft, setDraft] = useState<string>("");
+  const [roleDraft, setRoleDraft] = useState<string>("member");
+  const [parseError, setParseError] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
+
+  const listQuery = useAdminPrivateList(isAdmin);
+  const keyQuery = useAdminPrivate(activeKey, isAdmin && !!activeKey);
+  const usersQuery = useUsers(isAdmin);
+  const setPrivate = useAdminSetPrivate();
+
+  const permissionOptions = usersQuery.data?.perms ?? ["member", "admin"];
+
+  const existingKeys = listQuery.data?.keys ?? [];
+  const unsetKnownKeys = EXPECTED_PRIVATE_KEYS.filter(
+    (k) => !existingKeys.some((e) => e.key === k.key),
+  );
+  const activeExpected = findExpectedKey(activeKey);
+
+  useEffect(() => {
+    if (!keyQuery.data) return;
+    const expected = findExpectedKey(activeKey);
+    const isNewKey = keyQuery.data.required_role === null;
+    if (isNewKey && expected) {
+      setDraft(JSON.stringify(expected.placeholder, null, 2));
+      setRoleDraft(expected.recommendedRole);
+    } else {
+      setDraft(JSON.stringify(keyQuery.data.value, null, 2));
+      setRoleDraft(keyQuery.data.required_role ?? "member");
+    }
+    setParseError(null);
+    setSaveError(null);
+  }, [keyQuery.data, activeKey]);
+
+  const load = (k: string) => {
+    setActiveKey(k);
+    setKeyInput(k);
+  };
+
+  const onSave = async () => {
+    setSaveError(null);
+    let parsed: unknown;
+    try {
+      parsed = draft === "" ? null : JSON.parse(draft);
+    } catch (e) {
+      setParseError(e instanceof Error ? e.message : String(e));
+      return;
+    }
+    setParseError(null);
+    try {
+      await setPrivate.mutateAsync({ key: activeKey, value: parsed, role: roleDraft });
+    } catch (e) {
+      setSaveError(e instanceof Error ? e.message : String(e));
+    }
+  };
+
+  return (
+    <div className="admin-sync-section">
+      <div className="admin-header">
+        <h2>Private data</h2>
+      </div>
+      <p className="admin-private-intro">
+        Paste arbitrary JSON values keyed by string. The required role for the
+        member-facing read endpoint is stored alongside the value and is
+        editable below (defaults to <code>member</code> for new keys).
+      </p>
+
+      <div className="admin-private-key-row">
+        <input
+          type="text"
+          className="admin-private-key-input"
+          value={keyInput}
+          placeholder="key (e.g. hordes_join)"
+          onChange={(e) => setKeyInput(e.target.value)}
+        />
+        <button
+          className="admin-button"
+          disabled={!keyInput}
+          onClick={() => load(keyInput)}
+        >
+          Load
+        </button>
+      </div>
+
+      {listQuery.data && (
+        <div className="admin-private-keys-list">
+          <strong>Existing keys:</strong>{" "}
+          {existingKeys.length === 0 ? (
+            <em>none</em>
+          ) : (
+            existingKeys.map((k) => (
+              <button
+                key={k.key}
+                type="button"
+                className="admin-private-key-pill"
+                onClick={() => load(k.key)}
+              >
+                {k.key} <small>[{k.required_role}]</small>
+              </button>
+            ))
+          )}
+        </div>
+      )}
+
+      {unsetKnownKeys.length > 0 && (
+        <div className="admin-private-keys-list">
+          <strong>Unset known keys:</strong>{" "}
+          {unsetKnownKeys.map((k) => (
+            <button
+              key={k.key}
+              type="button"
+              className="admin-private-key-pill"
+              title={k.description}
+              onClick={() => load(k.key)}
+            >
+              {k.key} <small>[{k.recommendedRole} · new]</small>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {activeKey && (
+        <>
+          <div className="admin-private-editor-header">
+            <span>
+              Editing <code>{activeKey}</code>
+              {keyQuery.isLoading && <em> (loading…)</em>}
+              {keyQuery.data && keyQuery.data.required_role === null && <em> (new key)</em>}
+            </span>
+            <label>
+              Required role:{" "}
+              <select
+                value={roleDraft}
+                onChange={(e) => setRoleDraft(e.target.value)}
+              >
+                {permissionOptions.map((p) => (
+                  <option key={p} value={p}>{p}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+          {activeExpected && (
+            <p className="admin-private-description">
+              <strong>{activeExpected.key}:</strong> {activeExpected.description}
+            </p>
+          )}
+          <textarea
+            className="admin-private-textarea"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            rows={16}
+            spellCheck={false}
+          />
+          {parseError && (
+            <div className="admin-status admin-status-error">JSON parse error: {parseError}</div>
+          )}
+          {saveError && (
+            <div className="admin-status admin-status-error">{saveError}</div>
+          )}
+          {setPrivate.isSuccess && !saveError && (
+            <div className="admin-status admin-status-success">Saved.</div>
+          )}
+          <div className="admin-private-actions">
+            <button
+              className="admin-button"
+              disabled={setPrivate.isPending || !activeKey}
+              onClick={onSave}
+            >
+              {setPrivate.isPending ? "Saving…" : "Save"}
+            </button>
+          </div>
         </>
       )}
     </div>
@@ -1354,9 +1495,8 @@ function SyncDataChanges({ items }: { items: SyncDataChangeItem[] }) {
         )}
         {items.length > 0 && (
           <button
-            className="admin-button admin-button-add"
+            className="admin-button admin-button-add admin-section-details-toggle"
             onClick={() => setExpanded(!expanded)}
-            style={{ marginLeft: "0.5em" }}
           >
             {expanded ? "Hide" : "Details"}
           </button>

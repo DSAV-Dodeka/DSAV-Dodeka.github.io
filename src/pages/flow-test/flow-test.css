@@ -298,6 +298,20 @@
   color: #666;
 }
 
+.flow-test-info-warning {
+  background: #fff3cd;
+  border-color: #ffc107;
+}
+
+.flow-test-btn-danger {
+  background: #dc3545;
+}
+
+.flow-test-field-hint {
+  color: #666;
+  font-size: 12px;
+}
+
 .flow-test-complete {
   text-align: center;
   padding: 40px;
