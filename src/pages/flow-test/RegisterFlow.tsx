@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import * as api from "$functions/backend.ts";
-import type { NewUser } from "$functions/backend.ts";
+import type { AdminRegistrationRecord } from "$functions/backend.ts";
 import { SignupFlow } from "$functions/flows/signup.ts";
 import PendingRegistrations from "$components/PendingRegistrations.tsx";
 import { TEST_EMAIL, TEST_FIRSTNAME, TEST_LASTNAME, TEST_PASSWORD } from "./constants";
@@ -10,7 +10,7 @@ export default function RegisterFlow() {
   const queryClient = useQueryClient();
   const signupFlow = useRef(new SignupFlow());
   const [step, setStep] = useState<
-    "register" | "signup" | "pending_approval" | "complete"
+    "register" | "accept" | "signup" | "complete"
   >("register");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
@@ -18,29 +18,25 @@ export default function RegisterFlow() {
   const [email, setEmail] = useState(TEST_EMAIL);
   const [firstname, setFirstname] = useState(TEST_FIRSTNAME);
   const [lastname, setLastname] = useState(TEST_LASTNAME);
-  const [registrationToken, setRegistrationToken] = useState("");
+  const [registrationId, setRegistrationId] = useState("");
   const [signupToken, setSignupToken] = useState("");
 
   const [verificationCode, setVerificationCode] = useState("");
   const [password, setPassword] = useState(TEST_PASSWORD);
 
   // Pending registrations state
-  const [pendingUsers, setPendingUsers] = useState<NewUser[]>([]);
+  const [pendingRegs, setPendingRegs] = useState<AdminRegistrationRecord[]>([]);
   const [pendingLoaded, setPendingLoaded] = useState(false);
 
   const handleRequestRegistration = async () => {
     setLoading(true);
     setStatus("");
     try {
-      const result = await api.requestRegistration(email, firstname, lastname);
-      setRegistrationToken(result.registration_token);
-      if (result.signup_token) {
-        setSignupToken(result.signup_token);
-      }
-      setStatus("✓ Registration requested, verification email sent");
-      setStep("signup");
+      await api.requestRegistration(email, firstname, lastname);
+      setStatus("Registration requested (pending admin acceptance)");
+      setStep("accept");
     } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+      setStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       setLoading(false);
     }
@@ -50,50 +46,75 @@ export default function RegisterFlow() {
     setLoading(true);
     setStatus("");
     try {
-      const users = await api.listNewUsers();
-      setPendingUsers(users);
+      const regs = await api.listRegistrations();
+      setPendingRegs(regs);
       setPendingLoaded(true);
-      setStatus(`✓ Loaded ${users.length} newusers`);
+      setStatus(`Loaded ${regs.length} registrations`);
     } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+      setStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleResume = async (user: NewUser) => {
+  const handleResume = async (reg: AdminRegistrationRecord) => {
     setLoading(true);
     setStatus("");
     try {
-      setEmail(user.email);
+      setEmail(reg.email);
+      setRegistrationId(reg.registration_id);
 
-      if (user.is_registered && !user.accepted) {
-        // User completed signup but needs admin acceptance
-        setStatus(`✓ Resumed for ${user.email} (pending acceptance)`);
-        setStep("pending_approval");
-      } else if (user.is_registered && user.accepted) {
-        // User is fully complete
-        setStatus(`✓ ${user.email} is already complete`);
-        setStep("complete");
-      } else if (!user.is_registered && user.registration_token) {
-        // User needs to complete email verification + signup
-        setRegistrationToken(user.registration_token);
-
-        // Get current signup token (may still be valid)
-        const regStatus = await api.getRegistrationStatus(
-          user.registration_token,
-        );
-        if (regStatus.signup_token) {
-          setSignupToken(regStatus.signup_token);
-        }
-
-        setStatus(`✓ Resumed registration for ${user.email}`);
-        setStep("signup");
+      if (!reg.accepted) {
+        setStatus(`Resumed for ${reg.email} (needs acceptance)`);
+        setStep("accept");
       } else {
-        setStatus("✗ Cannot resume: no registration token found");
+        setStatus(`Resumed for ${reg.email} (accepted, needs signup)`);
+        setStep("signup");
       }
     } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+      setStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAccept = async () => {
+    setLoading(true);
+    setStatus("");
+    try {
+      // Find registration by email if we don't have the ID yet
+      let regId = registrationId;
+      if (!regId) {
+        const regs = await api.listRegistrations();
+        const reg = regs.find((r) => r.email === email);
+        if (!reg) {
+          setStatus("Error: No registration found for this email");
+          return;
+        }
+        regId = reg.registration_id;
+        setRegistrationId(regId);
+      }
+      await api.acceptRegistration(regId);
+      setStatus("Registration accepted, invite email sent");
+      setStep("signup");
+    } catch (error) {
+      setStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRenewSignup = async () => {
+    setLoading(true);
+    setStatus("");
+    try {
+      const result = await api.renewSignup(registrationId);
+      setSignupToken(result.signup_token);
+      setVerificationCode("");
+      signupFlow.current = new SignupFlow();
+      setStatus("Signup renewed, new verification email sent");
+    } catch (error) {
+      setStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       setLoading(false);
     }
@@ -106,28 +127,12 @@ export default function RegisterFlow() {
       const result = await api.getToken("signup_verification", email);
       if (result?.found) {
         setVerificationCode(result.code);
-        setStatus("✓ Code loaded");
+        setStatus("Code loaded");
       } else {
-        setStatus("✗ No code found (check if email was sent)");
+        setStatus("No code found (check if email was sent)");
       }
     } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleRenewSignup = async () => {
-    setLoading(true);
-    setStatus("");
-    try {
-      const result = await api.renewSignup(registrationToken);
-      setSignupToken(result.signup_token);
-      setVerificationCode("");
-      signupFlow.current = new SignupFlow();
-      setStatus("✓ Signup renewed, new verification email sent");
-    } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+      setStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       setLoading(false);
     }
@@ -145,39 +150,18 @@ export default function RegisterFlow() {
       if (!result.ok) {
         if (result.error.includes("invalid_signup_token")) {
           setStatus(
-            "✗ Signup token expired. Click 'Renew Signup' to get a new one.",
+            "Signup token expired. Click 'Renew Signup' to get a new one.",
           );
           return;
         }
-        setStatus(`✗ ${result.error}`);
+        setStatus(`Error: ${result.error}`);
         return;
       }
       await queryClient.invalidateQueries({ queryKey: ["session"] });
-      // Check if user was already accepted (e.g. by admin or sync)
-      const session = await api.getSessionInfo();
-      if (session?.user.permissions.includes("member")) {
-        setStatus("✓ Signup complete (already accepted, member permission granted)");
-        setStep("complete");
-      } else {
-        setStatus("✓ Signup complete (no member permission yet)");
-        setStep("pending_approval");
-      }
-    } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleAcceptUser = async () => {
-    setLoading(true);
-    setStatus("");
-    try {
-      const result = await api.acceptUser(email);
-      setStatus(`✓ ${result.message}`);
+      setStatus("Signup complete");
       setStep("complete");
     } catch (error) {
-      setStatus(`✗ ${error instanceof Error ? error.message : String(error)}`);
+      setStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       setLoading(false);
     }
@@ -186,7 +170,7 @@ export default function RegisterFlow() {
   const handleReset = () => {
     setStep("register");
     setStatus("");
-    setRegistrationToken("");
+    setRegistrationId("");
     setSignupToken("");
     setVerificationCode("");
     signupFlow.current = new SignupFlow();
@@ -196,8 +180,8 @@ export default function RegisterFlow() {
     <>
       <h2>Registration Flow</h2>
       <p>
-        Test the full registration flow: register → verify email + set password
-        → admin approve
+        Test the full registration flow: register &rarr; admin accept &rarr;
+        verify email + set password
       </p>
 
       {step === "register" && (
@@ -247,11 +231,10 @@ export default function RegisterFlow() {
             </div>
           </form>
 
-          <div style={{ marginTop: "30px" }}>
+          <div className="flow-test-section">
             <h3>Pending Registrations</h3>
             <p>
-              Users who registered but haven't verified their email yet. Requires
-              admin session.
+              Registrations awaiting admin action. Requires admin session.
             </p>
             <div className="flow-test-actions">
               <button
@@ -263,9 +246,9 @@ export default function RegisterFlow() {
               </button>
             </div>
             {pendingLoaded && (
-              <div style={{ marginTop: "10px" }}>
+              <div className="flow-test-pending">
                 <PendingRegistrations
-                  users={pendingUsers}
+                  registrations={pendingRegs}
                   onResume={handleResume}
                   loading={loading}
                 />
@@ -275,16 +258,43 @@ export default function RegisterFlow() {
         </>
       )}
 
+      {step === "accept" && (
+        <>
+          <div className="flow-test-info">
+            <strong>Email:</strong> {email}
+            <br />
+            <p>
+              Registration created but not yet accepted. Admin must approve.
+            </p>
+          </div>
+          <div className="flow-test-actions">
+            <button
+              className="flow-test-btn flow-test-btn-primary"
+              onClick={handleAccept}
+              disabled={loading}
+            >
+              {loading ? "Accepting..." : "Accept Registration (Admin)"}
+            </button>
+            <button
+              className="flow-test-btn flow-test-btn-secondary"
+              onClick={handleReset}
+            >
+              Start Over
+            </button>
+          </div>
+        </>
+      )}
+
       {step === "signup" && (
         <>
           <div className="flow-test-info">
-            <strong>Registration Token:</strong> {registrationToken}
+            <strong>Registration ID:</strong> {registrationId}
             <br />
             <strong>Signup Token:</strong> {signupToken || "(none)"}
             <br />
             <strong>Email:</strong> {email}
           </div>
-          <p>Verify your email and set a password to complete signup.</p>
+          <p>Renew signup, then verify your email and set a password.</p>
           <form
             className="flow-test-form"
             onSubmit={(e) => {
@@ -325,7 +335,7 @@ export default function RegisterFlow() {
               <button
                 type="submit"
                 className="flow-test-btn flow-test-btn-primary"
-                disabled={loading}
+                disabled={loading || !signupToken}
               >
                 {loading ? "Completing..." : "Complete Signup"}
               </button>
@@ -333,7 +343,7 @@ export default function RegisterFlow() {
                 type="button"
                 className="flow-test-btn flow-test-btn-secondary"
                 onClick={handleRenewSignup}
-                disabled={loading}
+                disabled={loading || !registrationId}
               >
                 Renew Signup
               </button>
@@ -349,36 +359,9 @@ export default function RegisterFlow() {
         </>
       )}
 
-      {step === "pending_approval" && (
-        <>
-          <div className="flow-test-info">
-            <strong>Email:</strong> {email}
-            <br />
-            <p>
-              Account created but without member permission. Admin must approve.
-            </p>
-          </div>
-          <div className="flow-test-actions">
-            <button
-              className="flow-test-btn flow-test-btn-primary"
-              onClick={handleAcceptUser}
-              disabled={loading}
-            >
-              {loading ? "Accepting..." : "Accept User (Admin)"}
-            </button>
-            <button
-              className="flow-test-btn flow-test-btn-secondary"
-              onClick={handleReset}
-            >
-              Start Over
-            </button>
-          </div>
-        </>
-      )}
-
       {step === "complete" && (
         <div className="flow-test-complete">
-          <h3>✓ Registration Complete</h3>
+          <h3>Registration Complete</h3>
           <p>
             User account created, session established, and member permission
             granted.
@@ -395,7 +378,7 @@ export default function RegisterFlow() {
       {status && (
         <div
           className={`flow-test-status ${
-            status.startsWith("✓") ? "success" : "error"
+            status.startsWith("Error") ? "error" : "success"
           }`}
         >
           {status}

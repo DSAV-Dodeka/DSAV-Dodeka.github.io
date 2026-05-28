@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useSessionInfo } from "$functions/query.ts";
-import { getMemberBirthdays, type Birthday } from "$functions/backend.ts";
+import { useSessionInfo, useMemberBirthdays } from "$functions/query.ts";
+import type { Birthday } from "$functions/backend.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import "./verjaardagen.css";
 
@@ -97,27 +96,14 @@ export default function Verjaardagen() {
   const navigate = useNavigate();
   const { data: session, isLoading: sessionLoading } = useSessionInfo();
 
-  const [birthdays, setBirthdays] = useState<Birthday[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const isMember = session?.user.permissions.includes("member") ?? false;
+  const birthdaysQuery = useMemberBirthdays(isMember);
 
-  const isMember = session?.user.permissions.includes("member");
-
-  useEffect(() => {
-    if (!isMember) return;
-    setLoading(true);
-    setError("");
-    getMemberBirthdays()
-      .then((result) => {
-        setBirthdays(sortByUpcoming(result));
-      })
-      .catch((err) => {
-        setError(err instanceof Error ? err.message : String(err));
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [isMember]);
+  const birthdays = birthdaysQuery.data ? sortByUpcoming(birthdaysQuery.data) : [];
+  const loading = birthdaysQuery.isLoading;
+  const error = birthdaysQuery.error
+    ? (birthdaysQuery.error instanceof Error ? birthdaysQuery.error.message : String(birthdaysQuery.error))
+    : "";
 
   if (sessionLoading) {
     return (
@@ -183,10 +169,9 @@ export default function Verjaardagen() {
             const datumFull = `${dayName} ${parsed.day}`;
             const age = getAge(parsed);
             const name = formatName(entry);
-            const key = `${name}-${entry.geboortedatum}`;
 
             return (
-              <div key={key} className="verjaardagen-contents">
+              <div key={entry.user_id} className="verjaardagen-contents">
                 {showMonth && (
                   <p className="verjaardagen-maand">
                     {maanden[parsed.month - 1]}

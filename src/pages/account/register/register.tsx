@@ -1,11 +1,10 @@
 import {
   useReducer,
-  FormEvent,
   ChangeEvent,
   // FocusEvent,
   useState,
-  useEffect,
   useRef,
+  type SyntheticEvent,
 } from "react";
 import {
   type RegisterState,
@@ -13,11 +12,9 @@ import {
   VoltaError,
   isVoltaEnabled,
   setVoltaEnabled,
-  isBackendEnabled,
   isDemoMode,
   isDevMode,
-} from "./register.ts";
-import { useNavigate } from "react-router";
+} from "./register-logic.ts";
 import "./register.css";
 import PageTitle from "$components/PageTitle.tsx";
 
@@ -115,10 +112,7 @@ const initialState: RegisterState =
 // };
 
 export default function Registreer() {
-  const navigate = useNavigate();
   const myStatus = useRef<HTMLDivElement>(null);
-  const [handled, setHandled] = useState(false);
-  const [infoOk, setInfoOk] = useState(false);
   const [state, dispatch] = useReducer(registerReducer, initialState);
   const [submitted, setSubmitted] = useState("");
   const [status, setStatus] = useState("");
@@ -131,19 +125,6 @@ export default function Registreer() {
     setVoltaEnabled(newValue);
   };
 
-  useEffect(() => {
-    if (!handled) {
-      try {
-        const reducerInitial = { ...initialState };
-        setInfoOk(true);
-        dispatch({ type: "reload", new_state: reducerInitial });
-      } catch (e) {
-        setInfoOk(false);
-      }
-      setHandled(true);
-    }
-  }, [handled]);
-
   const somethingWrong = () => {
     setStatus(
       "Er is iets misgegaan, controleer je gegevens, probeer het opnieuw. Werkt het nog steeds niet? Neem contact op met het bestuur via bestuur@dsavdodeka.nl of via onze sociale media accounts.",
@@ -155,7 +136,9 @@ export default function Registreer() {
     return true;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const [registered, setRegistered] = useState(false);
+
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
     if (formIsValid()) {
@@ -163,19 +146,9 @@ export default function Registreer() {
       setLoading(true);
 
       clientRegister(submitState).then(
-        (registrationToken) => {
+        () => {
           setLoading(false);
-          if (registrationToken) {
-            navigate(
-              `/account/signup?token=${encodeURIComponent(registrationToken)}`,
-            );
-          } else if (!isBackendEnabled) {
-            // Backend intentionally disabled - show clean pending message
-            navigate("/account/signup?pending=true");
-          } else {
-            // Backend was enabled but failed - show warning
-            navigate("/account/signup?volta_ok=true");
-          }
+          setRegistered(true);
         },
         (e) => {
           setLoading(false);
@@ -214,17 +187,32 @@ export default function Registreer() {
     dispatch({ type: "change_bool", field: name, value: checked });
   };
 
+  if (registered) {
+    return (
+      <div>
+        <PageTitle title="Registratie ontvangen" />
+        <div className="registreerContainer">
+          <div className="form register-confirmation">
+            <h2>Registratie ontvangen!</h2>
+            <p>
+              Je aanmelding is succesvol ontvangen. Het bestuur beoordeelt je
+              aanvraag en stuurt je een uitnodigingsmail zodra je bent
+              goedgekeurd. Dit duurt meestal enkele werkdagen.
+            </p>
+            <p className="register-confirmation-hint">
+              Vragen? Neem contact op via{" "}
+              <a href="mailto:bestuur@dsavdodeka.nl">bestuur@dsavdodeka.nl</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <PageTitle title="Registreer" />
       <div className="registreerContainer">
-        {!infoOk && handled && (
-          <p className="largeText">
-            Deze link voor het registratieformulier werkt niet, probeer het
-            opnieuw of vraag het bestuur om een nieuwe link!
-          </p>
-        )}
-        {infoOk && (
           <form className="form" onSubmit={handleSubmit}>
             {isDemoMode && (
               <div className="volta-toggle">
@@ -476,7 +464,8 @@ export default function Registreer() {
                   <span className="info-tooltip-text">
                     <strong>Externe media:</strong> sociale media, website, etc.
                     Dit kan door externen worden bekeken.
-                    <br /><br />
+                    <br />
+                    <br />
                     <strong>Interne media:</strong> jaarboek, nieuwsbrief,
                     besloten Instagram, fotoalbums gedeeld binnen Dodeka. Hier
                     hebben externen geen toegang tot.
@@ -535,7 +524,6 @@ export default function Registreer() {
               )}
             </div>
           </form>
-        )}
       </div>
     </div>
   );

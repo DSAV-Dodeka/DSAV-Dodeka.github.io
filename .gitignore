@@ -118,7 +118,3 @@ stats.html
 .kiro
 
 .vscode
-
-# Test files
-src/pages/komkommer/__tests__/
-vitest.config.ts

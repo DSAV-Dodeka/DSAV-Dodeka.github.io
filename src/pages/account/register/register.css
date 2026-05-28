@@ -128,7 +128,7 @@ p {
   outline: none;
 }
 
-button {
+.registerButton {
   width: 100%;
   background-color: var(--dodeka-rood);
   color: white;
@@ -141,7 +141,7 @@ button {
   height: 4rem; /* Set the specific height for the button */
 }
 
-button:hover {
+.registerButton:hover {
   background: white;
   color: var(--dodeka-rood);
 }
@@ -195,7 +195,7 @@ button:hover {
   position: relative;
 }
 
-button.registerButton:disabled {
+.registerButton:disabled {
   cursor: wait;
   background: gray;
   color: black;
@@ -305,4 +305,29 @@ button.registerButton:disabled {
 .info-tooltip:focus-within .info-tooltip-text {
   visibility: visible;
   opacity: 1;
+}
+
+/* Registration confirmation */
+.register-confirmation {
+  text-align: center;
+  padding: 2rem;
+}
+
+.register-confirmation h2 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.register-confirmation-hint {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.register-confirmation-hint a {
+  color: var(--dodeka-rood);
+  text-decoration: none;
+}
+
+.register-confirmation-hint a:hover {
+  text-decoration: underline;
 }

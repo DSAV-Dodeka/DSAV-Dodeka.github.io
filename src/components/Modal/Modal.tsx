@@ -16,6 +16,8 @@ const Modal = (props: ModalProps) => {
         dialog.current?.close()
     }
 
+    // useEffect required: <dialog> showModal/close are imperative DOM APIs
+    // that cannot be expressed declaratively in JSX.
     useEffect(() => {
         if (!dialog.current) {
             return

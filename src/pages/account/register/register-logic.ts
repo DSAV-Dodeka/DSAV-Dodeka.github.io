@@ -324,7 +324,7 @@ async function simulateVoltaDelay(): Promise<void> {
 
 export async function clientRegister(
   registerState: RegisterState,
-): Promise<string | null> {
+): Promise<void> {
   // Call Volta if enabled, otherwise simulate delay
   if (voltaEnabled) {
     const voltaRegistration = registerStateToVolta(registerState);
@@ -334,27 +334,14 @@ export async function clientRegister(
     await simulateVoltaDelay();
   }
 
-  // Skip backend call if backend is disabled (frontend deployed before backend)
   if (!isBackendEnabled) {
-    return null;
+    throw new Error("Backend is not available");
   }
 
-  // Then register with our backend (creates newuser entry + Faroe signup)
-  try {
-    const result = await requestRegistration(
-      registerState.email,
-      registerState.firstname,
-      getFullLastName(registerState),
-    );
-    return result.registration_token;
-  } catch (error) {
-    // If Volta succeeded but our backend failed,
-    // we still consider it a success (user is in Volta)
-    // In dev mode or demo mode without Volta, we want to see the error
-    if (!voltaEnabled) {
-      throw error;
-    }
-    console.error("Backend registration failed (but Volta succeeded):", error);
-    return null;
-  }
+  // Register with our backend (creates pending registration only)
+  await requestRegistration(
+    registerState.email,
+    registerState.firstname,
+    getFullLastName(registerState),
+  );
 }

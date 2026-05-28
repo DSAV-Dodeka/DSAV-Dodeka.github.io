@@ -2,34 +2,46 @@ import {
   useState,
   useEffect,
   useCallback,
-  type FormEvent,
+  useRef,
+  type SyntheticEvent,
   type ChangeEvent,
 } from "react";
-import {
-  listNewUsers,
-  acceptUser,
-  resendSignupEmail,
-  listUsers,
-  getAvailablePermissions,
-  addUserPermission,
-  removeUserPermission,
-  importSync,
-  getSyncStatus,
-  acceptNewSync,
-  removeDeparted,
-  updateExisting,
-  type NewUser,
-  type User,
-  type SyncEntry,
-  type SyncStatus,
-  type EmailChange,
+import { useQueryClient } from "@tanstack/react-query";
+import type {
+  AdminRegistrationRecord,
+  SyncStatus,
+  SyncReviewItem,
+  SyncFieldDiff,
+  SyncNewRegistrationItem,
+  SyncRegistrationItem,
+  SyncUserItem,
+  SyncDepartedItem,
+  SyncDataChangeItem,
 } from "$functions/backend.ts";
-import { useSessionInfo, useSecondarySessionInfo } from "$functions/query.ts";
+import {
+  useSessionInfo,
+  useSecondarySessionInfo,
+  useRegistrations,
+  useUsers,
+  useSyncStatus,
+  useAcceptRegistration,
+  useAddPermission,
+  useRemovePermission,
+  useImportSync,
+  useResolveSyncMatch,
+  useCompleteSync,
+  useResendRegistrationInvite,
+  useDeleteRegistration,
+  useDeleteUser,
+  registrationsOptions,
+  usersOptions,
+  syncStatusOptions,
+} from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import { useAdminKeyboard } from "./useAdminKeyboard.ts";
 import "./admin.css";
 
-// Permission display configuration: backend name -> { display, color, light }
+// Permission display configuration
 const PERMISSION_CONFIG: Record<
   string,
   { display: string; color: string; light: boolean }
@@ -120,9 +132,45 @@ function HelpOverlay({
   );
 }
 
+function formatError(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function RegistrationStatusBadge({ reg }: { reg: AdminRegistrationRecord }) {
+  if (reg.accepted && reg.signup_active) {
+    return (
+      <span className="admin-tooltip">
+        <span className="admin-status-badge admin-status-badge-warning">Pending</span>
+        <span className="admin-tooltip-text">
+          Accepted and signup email sent. Awaiting account creation.
+        </span>
+      </span>
+    );
+  }
+  if (reg.accepted) {
+    return (
+      <span className="admin-tooltip">
+        <span className="admin-status-badge admin-status-badge-info">Invited</span>
+        <span className="admin-tooltip-text">
+          Accepted. The user will receive an invite email with a signup link.
+        </span>
+      </span>
+    );
+  }
+  return (
+    <span className="admin-tooltip">
+      <span className="admin-status-badge admin-status-badge-muted">&mdash;</span>
+      <span className="admin-tooltip-text">
+        Not yet approved. Approve first to send an invite email.
+      </span>
+    </span>
+  );
+}
+
 type AdminTab = "users" | "registrations" | "sync";
 
 export default function Admin() {
+  const queryClient = useQueryClient();
   const { data: session, isLoading: sessionLoading } = useSessionInfo();
   const { data: secondarySession, isLoading: secondaryLoading } =
     useSecondarySessionInfo();
@@ -132,146 +180,129 @@ export default function Admin() {
   const [highlightedRow, setHighlightedRow] = useState(-1);
   const [highlightedCol, setHighlightedCol] = useState(0);
   const [showHelp, setShowHelp] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Reset row highlight when switching tabs
   const setActiveTab = useCallback((tab: AdminTab) => {
     setActiveTabRaw(tab);
     setHighlightedRow(-1);
     setHighlightedCol(0);
   }, []);
 
-  // Registration state
-  const [newUsers, setNewUsers] = useState<NewUser[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [processingEmail, setProcessingEmail] = useState<string | null>(null);
-
-  // Permissions state
-  const [users, setUsers] = useState<User[]>([]);
-  const [availablePerms, setAvailablePerms] = useState<string[]>([]);
-  const [usersLoading, setUsersLoading] = useState(false);
+  // Local UI state
   const [addingPermUser, setAddingPermUser] = useState<string | null>(null);
-  const [selectedPerm, setSelectedPerm] = useState<string>("");
+  const [selectedPermForUser, setSelectedPermForUser] = useState<string>("");
   const [confirmingRemoval, setConfirmingRemoval] = useState<{
     userId: string;
     perm: string;
   } | null>(null);
-
-  // Sync state
-  const [syncStatus, setSyncStatus] = useState<SyncStatus | null>(null);
-  const [syncLoading, setSyncLoading] = useState(false);
+  const [syncConfirmReasons, setSyncConfirmReasons] = useState<string[] | null>(null);
+  const [confirmingDeleteReg, setConfirmingDeleteReg] = useState<string | null>(null);
+  const [confirmingDeleteUser, setConfirmingDeleteUser] = useState<string | null>(null);
 
   const isAdmin =
     session?.user.permissions.includes("admin") ||
     secondarySession?.user.permissions.includes("admin");
   const authLoading = sessionLoading || secondaryLoading;
 
+  // --- Queries ---
+
+  const needsData = !!isAdmin && (activeTab === "users" || activeTab === "registrations");
+  const regsQuery = useRegistrations(needsData);
+  const usersQuery = useUsers(needsData);
+  const syncStatusQuery = useSyncStatus(!!isAdmin && activeTab === "sync");
+
+  const registrations: AdminRegistrationRecord[] = regsQuery.data ?? [];
+  const { users = [], perms: allPerms = [] } = usersQuery.data ?? {};
+  const availablePerms = allPerms.filter(
+    (p) => p !== "admin" && p !== "member",
+  );
+  const syncStatus: SyncStatus | null = syncStatusQuery.data ?? null;
+  const { refetch: refetchSyncStatus } = syncStatusQuery;
+
+  const addingUser = addingPermUser
+    ? users.find((u) => u.user_id === addingPermUser)
+    : null;
+  const addablePerms = addingUser
+    ? availablePerms.filter((p) => !addingUser.permissions.includes(p))
+    : [];
+  const effectivePerm =
+    addablePerms.includes(selectedPermForUser)
+      ? selectedPermForUser
+      : addablePerms[0] || "";
+
+  // --- Mutations ---
+
+  const acceptRegMut = useAcceptRegistration();
+  const resendInviteMut = useResendRegistrationInvite();
+  const deleteRegMut = useDeleteRegistration();
+  const deleteUserMut = useDeleteUser();
+  const addPermMut = useAddPermission();
+  const removePermMut = useRemovePermission();
+  const importSyncMut = useImportSync();
+  const resolveSyncMut = useResolveSyncMatch();
+  const completeSyncMut = useCompleteSync();
+
+  const processingRegId =
+    acceptRegMut.isPending ? acceptRegMut.variables : null;
+
+  const loading = regsQuery.isFetching;
+  const usersLoading = usersQuery.isFetching;
+  const syncLoading = syncStatusQuery.isFetching ||
+    importSyncMut.isPending ||
+    resolveSyncMut.isPending ||
+    completeSyncMut.isPending;
+
   // --- Registration handlers ---
 
-  const loadNewUsers = async () => {
-    setLoading(true);
+  const handleAcceptRegistration = (registrationId: string) => {
     setStatus("");
-    try {
-      const result = await listNewUsers();
-      setNewUsers(result);
-      setStatus(`Loaded ${result.length} registration request(s)`);
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setLoading(false);
-    }
+    acceptRegMut.mutate(registrationId, {
+      onSuccess: () => setStatus("Registration accepted, invite sent"),
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
   };
 
-  const handleAcceptUser = async (email: string) => {
-    setProcessingEmail(email);
+  const handleResendInvite = (registrationId: string) => {
     setStatus("");
-    try {
-      const result = await acceptUser(email);
-      setStatus(result.message);
-      await loadNewUsers();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setProcessingEmail(null);
-    }
-  };
-
-  const handleResendEmail = async (email: string) => {
-    setProcessingEmail(email);
-    setStatus("");
-    try {
-      const result = await resendSignupEmail(email);
-      setStatus(result.message);
-      await loadNewUsers();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setProcessingEmail(null);
-    }
+    resendInviteMut.mutate(registrationId, {
+      onSuccess: (result) => setStatus(`Invite resent to ${result.email}`),
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
   };
 
   // --- Permissions handlers ---
 
-  const loadUsers = async () => {
-    setUsersLoading(true);
-    setStatus("");
-    try {
-      const [userList, perms] = await Promise.all([
-        listUsers(),
-        getAvailablePermissions(),
-      ]);
-      setUsers(userList);
-      setAvailablePerms(perms.filter((p) => p !== "admin" && p !== "member"));
-      setStatus(`Loaded ${userList.length} user(s)`);
-      if (perms.length > 0 && !selectedPerm) {
-        setSelectedPerm(perms.find((p) => p !== "admin") ?? perms[0] ?? "");
-      }
-    } catch (error) {
-      setStatus(
-        `Error loading users: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setUsersLoading(false);
-    }
-  };
-
-  const handleAddPermission = async (e: FormEvent, userId: string) => {
+  const handleAddPermission = (e: SyntheticEvent, userId: string) => {
     e.preventDefault();
-    if (!selectedPerm) return;
+    if (!effectivePerm) return;
     setStatus("");
-    try {
-      await addUserPermission(userId, selectedPerm);
-      setStatus(`Added ${getPermissionDisplay(selectedPerm)} permission`);
-      setAddingPermUser(null);
-      await loadUsers();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    }
+    addPermMut.mutate(
+      { userId, permission: effectivePerm },
+      {
+        onSuccess: () => {
+          setStatus(`Added ${getPermissionDisplay(effectivePerm)} permission`);
+          setAddingPermUser(null);
+        },
+        onError: (error) => setStatus(`Error: ${formatError(error)}`),
+      },
+    );
   };
 
-  const handleRemovePermission = async (userId: string, permission: string) => {
+  const handleRemovePermission = (userId: string, permission: string) => {
     if (permission === "admin") return;
     setStatus("");
-    try {
-      await removeUserPermission(userId, permission);
-      setStatus(`Removed ${getPermissionDisplay(permission)} permission`);
-      await loadUsers();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    }
+    removePermMut.mutate(
+      { userId, permission },
+      {
+        onSuccess: () =>
+          setStatus(`Removed ${getPermissionDisplay(permission)} permission`),
+        onError: (error) => setStatus(`Error: ${formatError(error)}`),
+      },
+    );
   };
 
   const handlePermSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPerm(e.target.value);
+    setSelectedPermForUser(e.target.value);
   };
 
   // --- Sync handlers ---
@@ -279,177 +310,172 @@ export default function Admin() {
   const handleFileUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setSyncLoading(true);
-    setStatus("");
-    try {
-      const content = await file.text();
-      const result = await importSync(content);
-      setStatus(`Imported ${result.imported} member(s) from CSV`);
-      setSyncStatus(null);
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
+
+    if (syncStatus?.sync_in_progress) {
+      const confirmed = window.confirm(
+        "A sync session is already in progress. Importing a new file will discard all recorded decisions. Continue?",
       );
-    } finally {
-      setSyncLoading(false);
+      if (!confirmed) {
+        if (fileInputRef.current) fileInputRef.current.value = "";
+        return;
+      }
+    }
+
+    setStatus("");
+    const content = await file.text();
+    const fileModifiedAt = Math.floor(file.lastModified / 1000);
+    const counter = syncStatus?.sync_state_counter;
+    const mutArgs: { csvContent: string; syncStateCounter?: number; fileModifiedAt: number } = {
+      csvContent: content,
+      fileModifiedAt,
+    };
+    if (counter !== undefined) {
+      mutArgs.syncStateCounter = counter;
+    }
+    importSyncMut.mutate(
+      mutArgs,
+      {
+        onSuccess: (result) => {
+          setStatus(`Imported ${result.imported} member(s) from CSV`);
+          queryClient.invalidateQueries({ queryKey: syncStatusOptions.queryKey });
+          if (fileInputRef.current) fileInputRef.current.value = "";
+        },
+        onError: (error) => setStatus(`Error: ${formatError(error)}`),
+      },
+    );
+  };
+
+  const handleResolveMatch = (
+    bondsnummer: number,
+    kind: string,
+    subjectId: string | null,
+  ) => {
+    setStatus("");
+    const counter = syncStatus?.sync_state_counter;
+    resolveSyncMut.mutate(
+      counter !== undefined
+        ? { bondsnummer, kind, subjectId, syncStateCounter: counter }
+        : { bondsnummer, kind, subjectId },
+      {
+        onSuccess: (result) => {
+          setStatus(result.message);
+          refetchSyncStatus();
+        },
+        onError: (error) => setStatus(`Error: ${formatError(error)}`),
+      },
+    );
+  };
+
+  const doCompleteSync = () => {
+    setStatus("");
+    setSyncConfirmReasons(null);
+    completeSyncMut.mutate(syncStatus?.sync_state_counter, {
+      onSuccess: (result) => {
+        const parts = [
+          `${result.volta_rows_applied} volta rows applied`,
+          `${result.registrations_created} registrations created`,
+          `${result.registrations_accepted} accepted`,
+          `${result.registrations_updated} updated`,
+          `${result.users_refreshed} users refreshed`,
+          `${result.users_departed} departed`,
+        ];
+        setStatus(`Sync complete: ${parts.join(", ")}`);
+        refetchSyncStatus();
+      },
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
+  };
+
+  const handleCompleteSync = () => {
+    if (!syncStatus) return;
+    const reasons: string[] = [];
+
+    if (syncStatus.file_modified_at) {
+      const ageSeconds = Math.floor(Date.now() / 1000) - syncStatus.file_modified_at;
+      if (ageSeconds > 86400) {
+        const fileDate = new Date(syncStatus.file_modified_at * 1000);
+        const days = Math.floor(ageSeconds / 86400);
+        reasons.push(
+          `The imported file is from ${fileDate.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })} (${days} day${days !== 1 ? "s" : ""} ago). Members who joined after this date will appear as departed.`,
+        );
+      }
+    }
+
+    if (syncStatus.departed_users.length > 0) {
+      const n = syncStatus.departed_users.length;
+      reasons.push(
+        `${n} member account${n !== 1 ? "s" : ""} will be removed (departed members).`,
+      );
+    }
+
+    if (reasons.length > 0) {
+      setSyncConfirmReasons(reasons);
+    } else {
+      doCompleteSync();
     }
   };
 
-  const handleComputeStatus = async () => {
-    setSyncLoading(true);
+  const handleDeleteRegistration = (registrationId: string) => {
     setStatus("");
-    try {
-      const result = await getSyncStatus();
-      setSyncStatus(result);
-      const parts = [
-        `${result.to_accept.length} new`,
-        `${result.pending_signup.length} pending`,
-        `${result.existing.length} existing`,
-        `${result.departed.length} departed`,
-      ];
-      if (result.email_changes.length > 0) {
-        parts.push(`${result.email_changes.length} email change(s)`);
-      }
-      setStatus(parts.join(", "));
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    } finally {
-      setSyncLoading(false);
-    }
+    deleteRegMut.mutate(registrationId, {
+      onSuccess: () => setStatus("Registration deleted"),
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
+    setConfirmingDeleteReg(null);
   };
 
-  const handleAcceptNew = async (email?: string) => {
-    setSyncLoading(true);
+  const handleDeleteUser = (userId: string) => {
     setStatus("");
-    try {
-      const result = await acceptNewSync(email);
-      const parts = [`Added ${result.added}, skipped ${result.skipped}`];
-      if (result.emails_sent > 0) {
-        parts.push(`emails sent: ${result.emails_sent}`);
-      }
-      if (result.emails_failed > 0) {
-        parts.push(`emails failed: ${result.emails_failed}`);
-      }
-      setStatus(parts.join(", "));
-      await handleComputeStatus();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-      setSyncLoading(false);
-    }
-  };
-
-  const handleRemoveDeparted = async (email?: string) => {
-    setSyncLoading(true);
-    setStatus("");
-    try {
-      const result = await removeDeparted(email);
-      setStatus(`Removed ${result.removed} departed user(s)`);
-      await handleComputeStatus();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-      setSyncLoading(false);
-    }
-  };
-
-  const handleUpdateExisting = async (email?: string) => {
-    setSyncLoading(true);
-    setStatus("");
-    try {
-      const result = await updateExisting(email);
-      const updateParts = [`Updated ${result.updated} existing user(s)`];
-      if (result.email_changes_applied) {
-        updateParts.push(`${result.email_changes_applied} email(s) changed`);
-      }
-      setStatus(updateParts.join(", "));
-      await handleComputeStatus();
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
-      setSyncLoading(false);
-    }
+    deleteUserMut.mutate(userId, {
+      onSuccess: () => setStatus("User deleted"),
+      onError: (error) => setStatus(`Error: ${formatError(error)}`),
+    });
+    setConfirmingDeleteUser(null);
   };
 
   // --- Keyboard navigation ---
 
   const TABS: AdminTab[] = ["users", "registrations", "sync"];
 
-  // Split users into active members (have permissions) and inactive (no permissions).
-  // Exclude users still in the newusers table from inactive — they show up
-  // on the Registrations tab instead (pending acceptance).
-  const sortByName = (a: User, b: User) => {
+  const sortByName = (a: { firstname: string; lastname: string }, b: { firstname: string; lastname: string }) => {
     const aName = `${a.firstname} ${a.lastname}`.toLowerCase();
     const bName = `${b.firstname} ${b.lastname}`.toLowerCase();
     return aName.localeCompare(bName);
   };
-  const newUserEmails = new Set(newUsers.map((u) => u.email));
-  const activeUsers = users.filter((u) => u.permissions.length > 0 && !u.disabled).sort(sortByName);
+  const activeUsers = users.filter((u) => u.permissions.length > 0).sort(sortByName);
   const inactiveUsers = users
-    .filter((u) => (u.permissions.length === 0 || u.disabled) && !newUserEmails.has(u.email))
+    .filter((u) => u.permissions.length === 0)
     .sort(sortByName);
 
-  // Compute sync navigation indices (flat index across all sync sections)
-  // Order: New → Pending → Email Changes → Departed → Existing (existing last, usually largest)
+  // Sync navigation indices
   let syncRowCount = 0;
-  let syncNewBulkNav = -1;
-  let syncNewStartNav = -1;
-  let syncEmailChStartNav = -1;
-  let syncDepBulkNav = -1;
-  let syncDepStartNav = -1;
-  let syncExBulkNav = -1;
-  let syncExStartNav = -1;
-  // Pre-compute which existing members have changes
-  const existingChanged = syncStatus?.existing.filter((pair) =>
-    !pair.current ||
-    pair.sync.voornaam !== pair.current.voornaam ||
-    pair.sync.achternaam !== pair.current.achternaam ||
-    pair.sync.tussenvoegsel !== pair.current.tussenvoegsel ||
-    pair.sync.geboortedatum !== pair.current.geboortedatum,
-  ) ?? [];
-  const emailChanges: EmailChange[] = syncStatus?.email_changes ?? [];
   if (syncStatus) {
-    if (syncStatus.to_accept.length > 0) {
-      syncNewBulkNav = syncRowCount++;
-      syncNewStartNav = syncRowCount;
-      syncRowCount += syncStatus.to_accept.length;
-    }
-    if (syncStatus.pending_signup.length > 0) {
-      syncRowCount += syncStatus.pending_signup.length;
-    }
-    if (emailChanges.length > 0) {
-      syncEmailChStartNav = syncRowCount;
-      syncRowCount += emailChanges.length;
-    }
-    if (syncStatus.departed.length > 0) {
-      syncDepBulkNav = syncRowCount++;
-      syncDepStartNav = syncRowCount;
-      syncRowCount += syncStatus.departed.length;
-    }
-    if (existingChanged.length > 0) {
-      syncExBulkNav = syncRowCount++;
-      syncExStartNav = syncRowCount;
-      syncRowCount += existingChanged.length;
-    }
+    syncRowCount =
+      syncStatus.review_required.length +
+      syncStatus.registrations_created.length +
+      syncStatus.registrations_accepted.length +
+      syncStatus.pending_registrations_updated.length +
+      syncStatus.live_users_enriched.length +
+      syncStatus.departed_users.length +
+      1; // complete sync button
   }
 
   const rowCount =
     activeTab === "users"
       ? activeUsers.length
       : activeTab === "registrations"
-        ? newUsers.length
+        ? registrations.length
         : syncRowCount;
 
   const handleRefresh = useCallback(() => {
-    if (activeTab === "users") loadUsers();
-    else if (activeTab === "registrations") loadNewUsers();
-    else if (activeTab === "sync") handleComputeStatus();
-  }, [activeTab]);
+    if (activeTab === "users") {
+      queryClient.invalidateQueries({ queryKey: usersOptions.queryKey });
+    } else if (activeTab === "registrations") {
+      queryClient.invalidateQueries({ queryKey: registrationsOptions.queryKey });
+    } else if (activeTab === "sync") {
+      refetchSyncStatus();
+    }
+  }, [activeTab, queryClient, refetchSyncStatus]);
 
   const handleToggleHelp = useCallback(() => {
     setShowHelp((prev) => !prev);
@@ -482,7 +508,6 @@ export default function Admin() {
     onCancel: handleCancel,
   });
 
-  // Auto-focus the permission select when the add form opens
   useEffect(() => {
     if (!addingPermUser) return;
     requestAnimationFrame(() => {
@@ -492,15 +517,6 @@ export default function Admin() {
       if (select) select.focus();
     });
   }, [addingPermUser]);
-
-  // Load users + newusers together (newusers needed to filter inactive list)
-  useEffect(() => {
-    if (!isAdmin) return;
-    if (activeTab === "users" || activeTab === "registrations") {
-      loadUsers();
-      loadNewUsers();
-    }
-  }, [isAdmin, activeTab]);
 
   return (
     <div className="admin-container">
@@ -566,9 +582,9 @@ export default function Admin() {
           {activeTab === "registrations" && (
             <>
               <div className="admin-header">
-                <h2>User Registration Requests</h2>
+                <h2>Pending Registrations</h2>
                 <button
-                  onClick={loadNewUsers}
+                  onClick={() => regsQuery.refetch()}
                   disabled={loading}
                   className="admin-button admin-button-refresh admin-button-icon"
                   title="Refresh (r)"
@@ -577,91 +593,93 @@ export default function Admin() {
                 </button>
               </div>
 
-              {loading && newUsers.length === 0 ? (
+              {loading && registrations.length === 0 ? (
                 <div className="admin-loading">Loading...</div>
-              ) : newUsers.length === 0 ? (
+              ) : registrations.length === 0 ? (
                 <div className="admin-empty">No registration requests found</div>
               ) : (
                 <div className="admin-table-container">
-                  <table className="admin-table">
+                  <table className="admin-table admin-cols-registrations">
+                    <colgroup><col /><col /><col /><col /><col /><col /></colgroup>
                     <thead>
                       <tr>
                         <th>Email</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Approved</th>
-                        <th>Account</th>
-                        <th>Emails Sent</th>
+                        <th>Name</th>
+                        <th>Accepted</th>
+                        <th>Status</th>
+                        <th>Bondsnummer</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {newUsers.map((user, idx) => (
-                        <tr key={user.email} className={highlightedRow === idx ? "admin-nav-highlight" : ""}>
-                          <td>{user.email}</td>
-                          <td>{user.firstname}</td>
-                          <td>{user.lastname}</td>
+                      {registrations.map((reg, idx) => (
+                        <tr key={reg.registration_id} className={highlightedRow === idx ? "admin-nav-highlight" : ""}>
+                          <td>{reg.email}</td>
+                          <td>{reg.firstname} {reg.lastname}</td>
                           <td>
                             <span
                               className={`admin-status-badge ${
-                                user.accepted
+                                reg.accepted
                                   ? "admin-status-badge-accepted"
                                   : "admin-status-badge-pending"
                               }`}
                             >
-                              {user.accepted ? "Yes" : "No"}
+                              {reg.accepted ? "Yes" : "No"}
                             </span>
                           </td>
                           <td>
-                            <span
-                              className={`admin-status-badge ${
-                                user.is_registered
-                                  ? "admin-status-badge-accepted"
-                                  : user.has_signup_token
-                                    ? "admin-status-badge-warning"
-                                    : "admin-status-badge-pending"
-                              }`}
-                            >
-                              {user.is_registered
-                                ? "Created"
-                                : user.has_signup_token
-                                  ? "Pending"
-                                  : "None"}
-                            </span>
+                            <RegistrationStatusBadge reg={reg} />
                           </td>
-                          <td>{user.email_send_count}</td>
+                          <td>{reg.bondsnummer ?? "\u2014"}</td>
                           <td>
-                            {!user.accepted ? (
-                              <button
-                                onClick={() => handleAcceptUser(user.email)}
-                                disabled={processingEmail === user.email}
-                                className="admin-button admin-button-accept"
-                              >
-                                {processingEmail === user.email
-                                  ? "Processing..."
-                                  : "Approve"}
-                              </button>
-                            ) : !user.has_signup_token ? (
-                              <button
-                                onClick={() => handleResendEmail(user.email)}
-                                disabled={processingEmail === user.email}
-                                className="admin-button admin-button-accept"
-                              >
-                                {processingEmail === user.email
-                                  ? "Sending..."
-                                  : "Resend Invite"}
-                              </button>
-                            ) : (
-                              <button
-                                onClick={() => handleResendEmail(user.email)}
-                                disabled={processingEmail === user.email}
-                                className="admin-button admin-button-resend"
-                              >
-                                {processingEmail === user.email
-                                  ? "Sending..."
-                                  : "Resend Code"}
-                              </button>
-                            )}
+                            <div className="admin-action-group">
+                              {!reg.accepted ? (
+                                <button
+                                  onClick={() => handleAcceptRegistration(reg.registration_id)}
+                                  disabled={processingRegId === reg.registration_id}
+                                  className="admin-button admin-button-accept"
+                                >
+                                  {processingRegId === reg.registration_id
+                                    ? "Processing..."
+                                    : "Approve"}
+                                </button>
+                              ) : (
+                                reg.available_actions?.some((a) => a.kind === "resend_registration_invite") && (
+                                  <button
+                                    onClick={() => handleResendInvite(reg.registration_id)}
+                                    disabled={resendInviteMut.isPending}
+                                    className="admin-button admin-button-refresh"
+                                  >
+                                    {resendInviteMut.isPending ? "Sending..." : "Resend Invite"}
+                                  </button>
+                                )
+                              )}
+                              {confirmingDeleteReg === reg.registration_id ? (
+                                <span className="admin-inline-confirm">
+                                  Delete?
+                                  <button
+                                    className="admin-perm-confirm-yes"
+                                    onClick={() => handleDeleteRegistration(reg.registration_id)}
+                                  >
+                                    Yes
+                                  </button>
+                                  <button
+                                    className="admin-perm-confirm-no"
+                                    onClick={() => setConfirmingDeleteReg(null)}
+                                  >
+                                    No
+                                  </button>
+                                </span>
+                              ) : (
+                                <button
+                                  className="admin-button admin-button-danger admin-button-small"
+                                  onClick={() => setConfirmingDeleteReg(reg.registration_id)}
+                                  disabled={deleteRegMut.isPending}
+                                >
+                                  Delete
+                                </button>
+                              )}
+                            </div>
                           </td>
                         </tr>
                       ))}
@@ -678,7 +696,7 @@ export default function Admin() {
               <div className="admin-header">
                 <h2>Users</h2>
                 <button
-                  onClick={loadUsers}
+                  onClick={() => usersQuery.refetch()}
                   disabled={usersLoading}
                   className="admin-button admin-button-refresh admin-button-icon"
                   title="Refresh (r)"
@@ -703,10 +721,12 @@ export default function Admin() {
                     </h3>
                     {activeUsers.length > 0 ? (
                       <div className="admin-table-container">
-                        <table className="admin-table">
+                        <table className="admin-table admin-cols-members">
+                          <colgroup><col /><col /><col /><col /></colgroup>
                           <thead>
                             <tr>
                               <th>Name</th>
+                              <th>Bondsnummer</th>
                               <th>Permissions</th>
                               <th>Actions</th>
                             </tr>
@@ -721,6 +741,7 @@ export default function Admin() {
                                   {user.firstname} {user.lastname}
                                   <div className="admin-user-email">{user.email}</div>
                                 </td>
+                                <td>{user.bondsnummer ?? "\u2014"}</td>
                                 <td>
                                   <div className="admin-perm-list">
                                     {user.permissions.map((perm) => (
@@ -771,7 +792,7 @@ export default function Admin() {
                                               }
                                               title={`Remove ${getPermissionDisplay(perm)}`}
                                             >
-                                              ×
+                                              &times;
                                             </button>
                                           ))}
                                       </span>
@@ -779,54 +800,90 @@ export default function Admin() {
                                   </div>
                                 </td>
                                 <td>
-                                  {addingPermUser !== user.user_id ? (
-                                    <button
-                                      className="admin-button admin-button-add"
-                                      onClick={() => setAddingPermUser(user.user_id)}
-                                    >
-                                      + Add
-                                    </button>
-                                  ) : (
-                                    <form
-                                      className="admin-add-perm-form"
-                                      onSubmit={(e) =>
-                                        handleAddPermission(e, user.user_id)
-                                      }
-                                      onKeyDown={(e) => {
-                                        if (e.key === "Escape") {
-                                          e.preventDefault();
-                                          setAddingPermUser(null);
+                                  <div className="admin-action-group">
+                                    {addingPermUser !== user.user_id ? (
+                                      <button
+                                        className="admin-button admin-button-add"
+                                        onClick={() => {
+                                          setSelectedPermForUser("");
+                                          setAddingPermUser(user.user_id);
+                                        }}
+                                        disabled={
+                                          availablePerms.filter(
+                                            (p) => !user.permissions.includes(p),
+                                          ).length === 0
                                         }
-                                      }}
-                                    >
-                                      <select
-                                        value={selectedPerm}
-                                        onChange={handlePermSelectChange}
-                                        className="admin-perm-select"
                                       >
-                                        {availablePerms
-                                          .filter((p) => !user.permissions.includes(p))
-                                          .map((perm) => (
+                                        + Add
+                                      </button>
+                                    ) : (
+                                      <form
+                                        className="admin-add-perm-form"
+                                        onSubmit={(e) =>
+                                          handleAddPermission(e, user.user_id)
+                                        }
+                                        onKeyDown={(e) => {
+                                          if (e.key === "Escape") {
+                                            e.preventDefault();
+                                            setAddingPermUser(null);
+                                          }
+                                        }}
+                                      >
+                                        <select
+                                          value={effectivePerm}
+                                          onChange={handlePermSelectChange}
+                                          className="admin-perm-select"
+                                        >
+                                          {addablePerms.map((perm) => (
                                             <option key={perm} value={perm}>
                                               {getPermissionDisplay(perm)}
                                             </option>
                                           ))}
-                                      </select>
-                                      <button
-                                        type="submit"
-                                        className="admin-button admin-button-accept"
-                                      >
-                                        Add
-                                      </button>
-                                      <button
-                                        type="button"
-                                        className="admin-button"
-                                        onClick={() => setAddingPermUser(null)}
-                                      >
-                                        Cancel
-                                      </button>
-                                    </form>
-                                  )}
+                                        </select>
+                                        <button
+                                          type="submit"
+                                          className="admin-button admin-button-accept"
+                                          disabled={!effectivePerm}
+                                        >
+                                          Add
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="admin-button"
+                                          onClick={() => setAddingPermUser(null)}
+                                        >
+                                          Cancel
+                                        </button>
+                                      </form>
+                                    )}
+                                    {!user.permissions.includes("admin") && (
+                                      confirmingDeleteUser === user.user_id ? (
+                                        <span className="admin-inline-confirm">
+                                          Delete?
+                                          <button
+                                            className="admin-perm-confirm-yes"
+                                            onClick={() => handleDeleteUser(user.user_id)}
+                                          >
+                                            Yes
+                                          </button>
+                                          <button
+                                            className="admin-perm-confirm-no"
+                                            onClick={() => setConfirmingDeleteUser(null)}
+                                          >
+                                            No
+                                          </button>
+                                        </span>
+                                      ) : (
+                                        <button
+                                          className="admin-button admin-button-danger admin-button-small"
+                                          onClick={() => setConfirmingDeleteUser(user.user_id)}
+                                          disabled={deleteUserMut.isPending}
+                                        >
+                                          Delete
+                                        </button>
+                                      )
+                                    )}
+                                  </div>
                                 </td>
                               </tr>
                             ))}
@@ -849,11 +906,12 @@ export default function Admin() {
                     {inactiveUsers.length > 0 ? (
                       <>
                         <div className="admin-table-container">
-                          <table className="admin-table">
+                          <table className="admin-table admin-cols-inactive">
+                            <colgroup><col /><col /></colgroup>
                             <thead>
                               <tr>
                                 <th>Name</th>
-                                <th>Status</th>
+                                <th>Bondsnummer</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -863,13 +921,7 @@ export default function Admin() {
                                     {user.firstname} {user.lastname}
                                     <div className="admin-user-email">{user.email}</div>
                                   </td>
-                                  <td>
-                                    {user.disabled && (
-                                      <span className="admin-status-badge admin-status-badge-disabled">
-                                        Disabled
-                                      </span>
-                                    )}
-                                  </td>
+                                  <td>{user.bondsnummer ?? "\u2014"}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -888,6 +940,14 @@ export default function Admin() {
             </>
           )}
 
+          {syncConfirmReasons && (
+            <SyncConfirmModal
+              reasons={syncConfirmReasons}
+              onConfirm={doCompleteSync}
+              onCancel={() => setSyncConfirmReasons(null)}
+            />
+          )}
+
           {/* Sync Tab */}
           {activeTab === "sync" && (
             <>
@@ -901,301 +961,612 @@ export default function Admin() {
                   onChange={handleFileUpload}
                   disabled={syncLoading}
                   className="admin-file-input"
+                  ref={fileInputRef}
                 />
+                {syncStatus?.sync_in_progress && (
+                  <p className="admin-sync-import-hint">
+                    A sync session is in progress. Importing a new file will replace it.
+                  </p>
+                )}
               </div>
 
               <div className="admin-sync-section">
                 <div className="admin-header">
-                  <h2>Sync Status</h2>
+                  <h2>Sync status</h2>
                   <button
-                    onClick={handleComputeStatus}
+                    onClick={() => refetchSyncStatus()}
                     disabled={syncLoading}
                     className="admin-button admin-button-refresh admin-button-icon"
-                    title="Compute Status (r)"
+                    title="Refresh (r)"
                   >
                     <RefreshIcon />
                   </button>
                 </div>
 
+                {syncStatusQuery.isLoading && (
+                  <div className="admin-loading">Loading sync status...</div>
+                )}
+
                 {syncStatus && (
                   <>
-                    {/* New members */}
+                    {/* Sync session info */}
                     <div className="admin-sync-group">
-                      <h3>
-                        New Members{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.to_accept.length})
-                        </span>
-                      </h3>
-                      {syncStatus.to_accept.length > 0 && (
-                        <>
-                          <div className={`admin-nav-item ${highlightedRow === syncNewBulkNav ? "admin-nav-highlight" : ""}`}>
-                            <button
-                              onClick={() => handleAcceptNew()}
-                              disabled={syncLoading}
-                              className="admin-button admin-button-accept"
-                            >
-                              Accept All New
-                            </button>
-                          </div>
-                          <div className="admin-table-container">
-                            <table className="admin-table">
-                              <thead>
-                                <tr>
-                                  <th>Email</th>
-                                  <th>Name</th>
-                                  <th>Action</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {syncStatus.to_accept.map((entry, idx) => (
-                                  <tr key={entry.email} className={highlightedRow === syncNewStartNav + idx ? "admin-nav-highlight" : ""}>
-                                    <td>{entry.email}</td>
-                                    <td>
-                                      {entry.voornaam}{" "}
-                                      {entry.tussenvoegsel
-                                        ? `${entry.tussenvoegsel} `
-                                        : ""}
-                                      {entry.achternaam}
-                                    </td>
-                                    <td>
-                                      <button
-                                        onClick={() =>
-                                          handleAcceptNew(entry.email)
-                                        }
-                                        disabled={syncLoading}
-                                        className="admin-button admin-button-accept"
-                                      >
-                                        Accept
-                                      </button>
-                                    </td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
-                        </>
-                      )}
-                      {syncStatus.to_accept.length === 0 && (
-                        <div className="admin-empty">No new members</div>
-                      )}
-                    </div>
-
-                    {/* Pending members (accepted, awaiting signup) */}
-                    <div className="admin-sync-group">
-                      <h3>
-                        Pending Signup{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.pending_signup.length})
-                        </span>
-                      </h3>
-                      {syncStatus.pending_signup.length > 0 && (
-                        <div className="admin-table-container">
-                          <table className="admin-table">
-                            <thead>
-                              <tr>
-                                <th>Email</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {syncStatus.pending_signup.map((email) => (
-                                <tr key={email}>
-                                  <td>{email}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      )}
-                      {syncStatus.pending_signup.length === 0 && (
-                        <div className="admin-empty">No pending signups</div>
-                      )}
-                    </div>
-
-                    {/* Email changes (bondsnummer-matched) */}
-                    {emailChanges.length > 0 && (
-                      <div className="admin-sync-group">
-                        <h3>
-                          Email Changes{" "}
-                          <span className="admin-sync-count">
-                            ({emailChanges.length})
-                          </span>
-                        </h3>
-                        <p className="admin-sync-hint">
-                          These members changed their email in the athletics union system.
-                          Matched by bondsnummer. Applied automatically by "Update All Changed".
-                        </p>
-                        <div className="admin-table-container">
-                          <table className="admin-table">
-                            <thead>
-                              <tr>
-                                <th>Bondsnummer</th>
-                                <th>Old Email</th>
-                                <th>New Email</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {emailChanges.map((ec, idx) => (
-                                <tr key={ec.bondsnummer} className={highlightedRow === syncEmailChStartNav + idx ? "admin-nav-highlight" : ""}>
-                                  <td>{ec.bondsnummer}</td>
-                                  <td>{ec.old_email}</td>
-                                  <td>{ec.new_email}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Departed members */}
-                    <div className="admin-sync-group">
-                      <h3>
-                        Departed Members{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.departed.length})
-                        </span>
-                      </h3>
-                      {syncStatus.departed.length > 0 && (
-                        <>
-                          <div className={`admin-nav-item ${highlightedRow === syncDepBulkNav ? "admin-nav-highlight" : ""}`}>
-                            <button
-                              onClick={() => handleRemoveDeparted()}
-                              disabled={syncLoading}
-                              className="admin-button admin-button-danger"
-                            >
-                              Remove All Departed
-                            </button>
-                          </div>
-                          <div className="admin-table-container">
-                            <table className="admin-table">
-                              <thead>
-                                <tr>
-                                  <th>Email</th>
-                                  <th>Action</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {syncStatus.departed.map((email, idx) => (
-                                  <tr key={email} className={highlightedRow === syncDepStartNav + idx ? "admin-nav-highlight" : ""}>
-                                    <td>{email}</td>
-                                    <td>
-                                      <button
-                                        onClick={() =>
-                                          handleRemoveDeparted(email)
-                                        }
-                                        disabled={syncLoading}
-                                        className="admin-button admin-button-danger"
-                                      >
-                                        Remove
-                                      </button>
-                                    </td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
-                        </>
-                      )}
-                      {syncStatus.departed.length === 0 && (
-                        <div className="admin-empty">No departed members</div>
-                      )}
-                    </div>
-
-                    {/* Existing members */}
-                    <div className="admin-sync-group">
-                      <h3>
-                        Existing Members{" "}
-                        <span className="admin-sync-count">
-                          ({syncStatus.existing.length})
-                        </span>
-                        {existingChanged.length > 0 && (
-                          <span className="admin-changes">
-                            {existingChanged.length} changed
+                      <div className="admin-sync-info">
+                        {syncStatus.sync_in_progress ? (
+                          <span className="admin-status-badge admin-status-badge-warning">Sync in progress</span>
+                        ) : (
+                          <span className="admin-status-badge admin-status-badge-muted">No active sync</span>
+                        )}
+                        {syncStatus.file_modified_at && (
+                          <span className="admin-sync-file-date">
+                            Imported file from:{" "}
+                            <strong>
+                              {new Date(syncStatus.file_modified_at * 1000).toLocaleDateString("en-GB", {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric",
+                              })}
+                            </strong>
                           </span>
                         )}
-                      </h3>
-                      {syncStatus.existing.length > 0 ? (
-                        existingChanged.length > 0 ? (
-                          <>
-                            <div className={`admin-nav-item ${highlightedRow === syncExBulkNav ? "admin-nav-highlight" : ""}`}>
-                              <button
-                                onClick={() => handleUpdateExisting()}
-                                disabled={syncLoading}
-                                className="admin-button admin-button-refresh"
-                              >
-                                Update All Changed
-                              </button>
-                            </div>
-                            <div className="admin-table-container">
-                              <table className="admin-table">
-                                <thead>
-                                  <tr>
-                                    <th>Email</th>
-                                    <th>Changes</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {existingChanged.map((pair, idx) => {
-                                    const formatName = (e: SyncEntry) =>
-                                      `${e.voornaam} ${e.tussenvoegsel ? `${e.tussenvoegsel} ` : ""}${e.achternaam}`;
-                                    const nameChanged = !pair.current ||
-                                      pair.sync.voornaam !== pair.current.voornaam ||
-                                      pair.sync.achternaam !== pair.current.achternaam ||
-                                      pair.sync.tussenvoegsel !== pair.current.tussenvoegsel;
-                                    const birthdayChanged = !pair.current ||
-                                      pair.sync.geboortedatum !== pair.current.geboortedatum;
-                                    return (
-                                      <tr key={pair.sync.email} className={highlightedRow === syncExStartNav + idx ? "admin-nav-highlight" : ""}>
-                                        <td>{pair.sync.email}</td>
-                                        <td>
-                                          {!pair.current ? (
-                                            <span className="admin-status-badge admin-status-badge-pending">No account</span>
-                                          ) : (
-                                            <>
-                                              {nameChanged && (
-                                                <div>Name: {formatName(pair.current)} → {formatName(pair.sync)}</div>
-                                              )}
-                                              {birthdayChanged && (
-                                                <div>Birthday: {pair.current.geboortedatum || "–"} → {pair.sync.geboortedatum || "–"}</div>
-                                              )}
-                                            </>
-                                          )}
-                                        </td>
-                                        <td>
-                                          <button
-                                            onClick={() =>
-                                              handleUpdateExisting(pair.sync.email)
-                                            }
-                                            disabled={syncLoading}
-                                            className="admin-button admin-button-refresh"
-                                          >
-                                            Update
-                                          </button>
-                                        </td>
-                                      </tr>
-                                    );
-                                  })}
-                                </tbody>
-                              </table>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="admin-empty">
-                            All {syncStatus.existing.length} existing members are up to date
-                          </div>
-                        )
-                      ) : (
-                        <div className="admin-empty">No existing members</div>
-                      )}
+                      </div>
                     </div>
+
+                    {syncStatus.sync_in_progress && (
+                      <>
+                        {/* Review required */}
+                        <div className="admin-sync-group">
+                          <h3>
+                            Review required{" "}
+                            <span className="admin-sync-count">
+                              ({syncStatus.review_required.length})
+                            </span>
+                          </h3>
+                          {syncStatus.review_required.length > 0 ? (
+                            <div className="admin-review-list">
+                              {syncStatus.review_required.map((item) => (
+                                <SyncReviewCard
+                                  key={item.bondsnummer}
+                                  item={item}
+                                  disabled={syncLoading}
+                                  onResolve={handleResolveMatch}
+                                />
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="admin-empty">No items need review</div>
+                          )}
+                        </div>
+
+                        {/* New registrations */}
+                        <SyncNewRegistrations items={syncStatus.registrations_created} />
+
+                        {/* Matched registrations */}
+                        <SyncRegistrationGroup
+                          title="Matched registrations"
+                          items={syncStatus.registrations_accepted}
+                        />
+
+                        {/* Existing registrations */}
+                        <SyncRegistrationGroup
+                          title="Existing registrations"
+                          items={syncStatus.pending_registrations_updated}
+                        />
+
+                        {/* Current members */}
+                        <SyncUserGroup
+                          title="Current members"
+                          items={syncStatus.live_users_enriched}
+                        />
+
+                        {/* Departed members */}
+                        <SyncDepartedGroup items={syncStatus.departed_users} />
+
+                        {/* Import data overview */}
+                        <SyncDataChanges items={syncStatus.volta_data_changes} />
+
+                        {/* Complete sync */}
+                        <div className="admin-sync-group admin-sync-complete">
+                          <button
+                            onClick={handleCompleteSync}
+                            disabled={syncLoading || !syncStatus.can_complete}
+                            className="admin-button admin-button-accept"
+                            title={syncStatus.can_complete ? "Apply all pending changes" : "Resolve all review items first"}
+                          >
+                            Complete sync
+                          </button>
+                          {!syncStatus.can_complete && (
+                            <span className="admin-sync-hint">
+                              Resolve all review items before completing
+                            </span>
+                          )}
+                        </div>
+                      </>
+                    )}
                   </>
                 )}
               </div>
             </>
           )}
         </>
+      )}
+    </div>
+  );
+}
+
+function SyncConfirmModal({
+  reasons,
+  onConfirm,
+  onCancel,
+}: {
+  reasons: string[];
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  return (
+    <div className="admin-help-overlay" onClick={onCancel}>
+      <div className="admin-confirm-modal" onClick={(e) => e.stopPropagation()}>
+        <h3>Confirm sync completion</h3>
+        <ul className="admin-confirm-reasons">
+          {reasons.map((r, i) => (
+            <li key={i}>{r}</li>
+          ))}
+        </ul>
+        <p>Are you sure you want to complete this sync?</p>
+        <div className="admin-confirm-actions">
+          <button className="admin-button" onClick={onCancel}>
+            Cancel
+          </button>
+          <button className="admin-button admin-button-accept" onClick={onConfirm}>
+            Complete sync
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- Sync detail components ---
+
+function FieldDiffs({ diffs }: { diffs: SyncFieldDiff[] }) {
+  if (diffs.length === 0) return null;
+  return (
+    <div className="admin-field-diffs">
+      {diffs.map((d) => (
+        <div key={d.field} className="admin-field-diff">
+          <span className="admin-field-diff-label">{d.field}:</span>{" "}
+          <span className="admin-field-diff-old">{d.current || "\u2014"}</span>
+          {" \u2192 "}
+          <span className="admin-field-diff-new">{d.incoming || "\u2014"}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SyncNewRegistrations({ items }: { items: SyncNewRegistrationItem[] }) {
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        New registrations{" "}
+        <span className="admin-sync-count">({items.length})</span>
+      </h3>
+      {items.length > 0 ? (
+        <div className="admin-table-container">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Bondsnummer</th>
+                <th>Name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => (
+                <tr key={item.bondsnummer}>
+                  <td>{item.bondsnummer}</td>
+                  <td>{item.firstname} {item.lastname}</td>
+                  <td>{item.email}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="admin-empty">None</div>
+      )}
+    </div>
+  );
+}
+
+function SyncRegistrationGroup({
+  title,
+  items,
+}: {
+  title: string;
+  items: SyncRegistrationItem[];
+}) {
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        {title}{" "}
+        <span className="admin-sync-count">({items.length})</span>
+      </h3>
+      {items.length > 0 ? (
+        <div className="admin-table-container">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Bondsnummer</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Changes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => (
+                <tr key={item.bondsnummer}>
+                  <td>{item.bondsnummer}</td>
+                  <td>
+                    {item.registration.firstname} {item.registration.lastname}
+                    <div className="admin-user-email">{item.registration.email}</div>
+                  </td>
+                  <td>
+                    {item.email_will_change ? (
+                      <span className="admin-status-badge admin-status-badge-warning">
+                        Email will change
+                      </span>
+                    ) : (
+                      "\u2014"
+                    )}
+                  </td>
+                  <td>
+                    {item.field_diffs.length > 0 ? (
+                      <FieldDiffs diffs={item.field_diffs} />
+                    ) : (
+                      <span className="admin-sync-no-changes">Up to date</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="admin-empty">None</div>
+      )}
+    </div>
+  );
+}
+
+function SyncUserGroup({
+  title,
+  items,
+}: {
+  title: string;
+  items: SyncUserItem[];
+}) {
+  const withChanges = items.filter((item) => item.field_diffs.length > 0);
+
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        {title}{" "}
+        <span className="admin-sync-count">({items.length})</span>
+        {withChanges.length > 0 && (
+          <span className="admin-changes">{withChanges.length} with changes</span>
+        )}
+      </h3>
+      {items.length > 0 ? (
+        <>
+          {withChanges.length > 0 && (
+            <div className="admin-table-container">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Bondsnummer</th>
+                    <th>Name</th>
+                    <th>Changes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {withChanges.map((item) => (
+                    <tr key={item.bondsnummer}>
+                      <td>{item.bondsnummer}</td>
+                      <td>
+                        {item.user.firstname} {item.user.lastname}
+                        <div className="admin-user-email">{item.user.email}</div>
+                      </td>
+                      <td><FieldDiffs diffs={item.field_diffs} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          {withChanges.length === 0 && (
+            <div className="admin-empty">
+              All {items.length} members are up to date
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="admin-empty">None</div>
+      )}
+    </div>
+  );
+}
+
+function SyncDepartedGroup({ items }: { items: SyncDepartedItem[] }) {
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        Departed members{" "}
+        <span className="admin-sync-count">({items.length})</span>
+      </h3>
+      {items.length > 0 ? (
+        <div className="admin-table-container">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Bondsnummer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((d) => (
+                <tr key={d.user_id}>
+                  <td>{d.firstname} {d.lastname}</td>
+                  <td>{d.email}</td>
+                  <td>{d.bondsnummer ?? "\u2014"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="admin-empty">None</div>
+      )}
+    </div>
+  );
+}
+
+function SyncDataChanges({ items }: { items: SyncDataChangeItem[] }) {
+  const [expanded, setExpanded] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<SyncDataChangeItem | null>(
+    null,
+  );
+  const withChanges = items.filter((item) => item.field_diffs.length > 0);
+  const removals = items.filter((item) => item.incoming_volta_data == null);
+
+  return (
+    <div className="admin-sync-group">
+      <h3>
+        Import data overview{" "}
+        <span className="admin-sync-count">({items.length})</span>
+        {(withChanges.length > 0 || removals.length > 0) && (
+          <span className="admin-changes">
+            {withChanges.length > 0 && `${withChanges.length} changed`}
+            {withChanges.length > 0 && removals.length > 0 && ", "}
+            {removals.length > 0 && `${removals.length} removed`}
+          </span>
+        )}
+        {items.length > 0 && (
+          <button
+            className="admin-button admin-button-add"
+            onClick={() => setExpanded(!expanded)}
+            style={{ marginLeft: "0.5em" }}
+          >
+            {expanded ? "Hide" : "Details"}
+          </button>
+        )}
+      </h3>
+      {expanded && items.length > 0 && (
+        <div className="admin-table-container">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Bondsnummer</th>
+                <th>Status</th>
+                <th>Changes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item) => {
+                const isRemoval = item.incoming_volta_data == null;
+                const isNew = item.current_volta_data == null && !isRemoval;
+                return (
+                  <tr key={item.bondsnummer}>
+                    <td>
+                      <button
+                        type="button"
+                        className="admin-link-button"
+                        onClick={() => setSelectedItem(item)}
+                        title={`Show imported data for ${item.bondsnummer}`}
+                      >
+                        {item.bondsnummer}
+                      </button>
+                    </td>
+                    <td>
+                      {isRemoval && (
+                        <span className="admin-status-badge admin-status-badge-pending">Removed</span>
+                      )}
+                      {isNew && (
+                        <span className="admin-status-badge admin-status-badge-accepted">New</span>
+                      )}
+                      {!isRemoval && !isNew && item.field_diffs.length === 0 && "\u2014"}
+                      {!isRemoval && !isNew && item.field_diffs.length > 0 && (
+                        <span className="admin-status-badge admin-status-badge-warning">Changed</span>
+                      )}
+                    </td>
+                    <td>
+                      {item.field_diffs.length > 0 ? (
+                        <FieldDiffs diffs={item.field_diffs} />
+                      ) : (
+                        "\u2014"
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {items.length === 0 && (
+        <div className="admin-empty">No import data</div>
+      )}
+      {selectedItem && (
+        <VoltaDataModal
+          item={selectedItem}
+          onClose={() => setSelectedItem(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+function formatVoltaValue(value: unknown): string {
+  if (value === null || value === undefined || value === "") return "\u2014";
+  if (typeof value === "object") return JSON.stringify(value);
+  return String(value);
+}
+
+function VoltaDataTable({
+  title,
+  data,
+}: {
+  title: string;
+  data: Record<string, unknown> | null;
+}) {
+  const entries = data ? Object.entries(data) : [];
+
+  return (
+    <div className="admin-volta-detail-section">
+      <h4>{title}</h4>
+      {entries.length > 0 ? (
+        <table className="admin-volta-detail-table">
+          <tbody>
+            {entries.map(([key, value]) => (
+              <tr key={key}>
+                <th>{key}</th>
+                <td>{formatVoltaValue(value)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <div className="admin-volta-detail-empty">No data</div>
+      )}
+    </div>
+  );
+}
+
+function VoltaDataModal({
+  item,
+  onClose,
+}: {
+  item: SyncDataChangeItem;
+  onClose: () => void;
+}) {
+  return (
+    <div className="admin-help-overlay" onClick={onClose}>
+      <div className="admin-volta-detail-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="admin-volta-detail-header">
+          <h3>Imported data #{item.bondsnummer}</h3>
+          <button
+            type="button"
+            className="admin-button admin-button-small"
+            onClick={onClose}
+          >
+            Close
+          </button>
+        </div>
+        {item.field_diffs.length > 0 && (
+          <div className="admin-volta-detail-diffs">
+            <h4>Changes</h4>
+            <FieldDiffs diffs={item.field_diffs} />
+          </div>
+        )}
+        <div className="admin-volta-detail-grid">
+          <VoltaDataTable title="Incoming import" data={item.incoming_volta_data} />
+          <VoltaDataTable title="Currently applied" data={item.current_volta_data} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- Sync Review Card ---
+
+function SyncReviewCard({
+  item,
+  disabled,
+  onResolve,
+}: {
+  item: SyncReviewItem;
+  disabled: boolean;
+  onResolve: (bondsnummer: number, kind: string, subjectId: string | null) => void;
+}) {
+  const voltaEmail = String(item.incoming_volta_data["email"] ?? "");
+  const voltaName = [
+    String(item.incoming_volta_data["voornaam"] ?? ""),
+    String(item.incoming_volta_data["tussenvoegsel"] ?? ""),
+    String(item.incoming_volta_data["achternaam"] ?? ""),
+  ].filter(Boolean).join(" ");
+
+  return (
+    <div className="admin-review-card">
+      <div className="admin-review-card-header">
+        <span className="admin-review-card-bn">#{item.bondsnummer}</span>
+        <span className="admin-review-card-name">{voltaName}</span>
+        <span className="admin-review-card-email">{voltaEmail}</span>
+      </div>
+
+      {item.candidates.length === 0 ? (
+        <div className="admin-review-card-body">
+          <span className="admin-review-card-none">No matching registrations or users found</span>
+          <button
+            className="admin-button admin-button-accept"
+            disabled={disabled}
+            onClick={() => onResolve(item.bondsnummer, "none", null)}
+          >
+            Create new registration
+          </button>
+        </div>
+      ) : (
+        <div className="admin-review-card-body">
+          {item.candidates.map((c) => (
+            <div key={`${c.kind}-${c.subject_id}`} className="admin-review-candidate">
+              <div className="admin-review-candidate-info">
+                <span className="admin-review-candidate-type">{c.kind}</span>
+                <span className="admin-review-candidate-name">{c.display_name}</span>
+                <span className="admin-review-candidate-email">{c.email}</span>
+                <span className="admin-review-candidate-reasons">
+                  {c.reasons.map((r) => r.replace("_", " ")).join(", ")}
+                </span>
+              </div>
+              <button
+                className="admin-button admin-button-accept"
+                disabled={disabled}
+                onClick={() => onResolve(item.bondsnummer, c.kind, c.subject_id)}
+              >
+                Link
+              </button>
+            </div>
+          ))}
+          <div className="admin-review-candidate admin-review-candidate-none">
+            <span className="admin-review-candidate-info">None of the above</span>
+            <button
+              className="admin-button admin-button-danger"
+              disabled={disabled}
+              onClick={() => onResolve(item.bondsnummer, "none", null)}
+            >
+              Create new
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
