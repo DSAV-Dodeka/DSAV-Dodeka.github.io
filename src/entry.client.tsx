@@ -13,6 +13,10 @@ const queryClient = new QueryClient({
       gcTime: cacheTime,
       retry: 1,
       throwOnError: false,
+      // Don't refetch on every window/tab focus. Freshness comes from explicit
+      // refetchInterval (session) or invalidation (admin mutations); without
+      // this, queries with staleTime: 0 refetch on every focus event.
+      refetchOnWindowFocus: false,
     },
   },
 });

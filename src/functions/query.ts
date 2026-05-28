@@ -133,9 +133,16 @@ export function useAdminSetPrivate() {
 
 // --- Admin query options ---
 
+// Admin data changes rarely and is refreshed explicitly (mutations invalidate,
+// the "r" shortcut / refresh buttons refetch). A staleTime keeps mount/focus
+// events from hammering the backend; without it (staleTime: 0) every window
+// focus refetches the whole admin dashboard.
+const ADMIN_STALE_TIME = 60_000;
+
 export const registrationsOptions = queryOptions({
   queryKey: ["admin", "registrations"] as const,
   queryFn: backend.listRegistrations,
+  staleTime: ADMIN_STALE_TIME,
 });
 
 export const usersOptions = queryOptions({
@@ -147,11 +154,13 @@ export const usersOptions = queryOptions({
     ]);
     return { users, perms };
   },
+  staleTime: ADMIN_STALE_TIME,
 });
 
 export const syncStatusOptions = queryOptions({
   queryKey: ["admin", "syncStatus"] as const,
   queryFn: backend.getSyncStatus,
+  staleTime: ADMIN_STALE_TIME,
 });
 
 // --- Admin query hooks ---
