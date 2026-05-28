@@ -1,0 +1,16 @@
+{
+    "hordes": [
+        {
+            "naam": "Koers",
+            "tekst": "Wij fietsen",
+            "join": "whatsapplinkje",
+            "foto": "koers.jpg"
+        },
+        {
+            "naam": "Koers",
+            "tekst": "Wij fietsen",
+            "join": "whatsapplinkje",
+            "foto": "link naar bestandje"
+        }
+    ]
+}

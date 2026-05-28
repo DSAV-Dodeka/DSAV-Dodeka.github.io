@@ -1,0 +1,22 @@
+@import "../../../variables.scss";
+
+.hordes_status {
+    color: $dodeka_blauw;
+    margin-left: 4rem;
+}
+
+.hordes_container {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-bottom: 6rem;
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    @include respond(mobile) {
+        flex-direction: column;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        margin-bottom: 4rem;
+        gap: 2rem;
+    }
+}
