@@ -1,30 +1,41 @@
-// Keyboard navigation using a backslash (\) leader key.
-// After pressing backslash, type a command within 500ms:
-//   \?              → show available shortcuts
-//   \a or \admin    → navigate to /admin
-//   \s or \session  → load admin credentials and login as secondary session (DEV only)
-//   \du             → toggle debug user with member permissions (DEV only)
-// Ignored when focus is in an input, textarea, or contenteditable element.
+// The single global keyboard handler for the whole app.
 //
-// Uses a wrapper component to skip rendering during prerendering (static pages
-// listed in react-router.config.ts are prerendered without QueryClientProvider).
+// Global shortcuts (available everywhere):
+//   ?               → toggle the keyboard shortcut help overlay
+//   \a or \admin    → navigate to /admin
+//   \s or \session  → refresh admin secondary session (DEV only)
+//   \du             → toggle debug user with member permissions (DEV only)
+//
+// Backslash (\) is a leader key: press it, then type a command within 500ms.
+// Bare keys other than "?" are dispatched to contextual scopes that pages
+// register via useKeyboardScope (e.g. the admin dashboard's table navigation),
+// so there is exactly one keydown listener in the app.
+//
+// Ignored when focus is in an input, textarea, select, or contenteditable.
+// A wrapper component skips rendering during prerendering (static pages are
+// prerendered without a QueryClientProvider).
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
 import { useNavigate } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
+import {
+  dispatchToScopes,
+  getScopes,
+  subscribeScopes,
+} from "./keyboardRegistry.ts";
+import "./KeyboardNav.css";
 
 const LEADER_KEY = "\\";
 const LEADER_TIMEOUT_MS = 500;
 const TOAST_DURATION_MS = 4000;
 
-// Commands available in all environments
+// Leader commands available in all environments
 const COMMANDS: Record<string, string> = {
   a: "admin",
   admin: "admin",
-  "?": "help",
 };
 
-// Commands only available in development
+// Leader commands only available in development
 const DEV_COMMANDS: Record<string, string> = {
   s: "session",
   session: "session",
@@ -43,12 +54,6 @@ interface Toast {
   message: string;
   type: "info" | "success" | "error";
 }
-
-const TOAST_COLORS = {
-  info: { bg: "#d1ecf1", fg: "#0c5460", border: "#bee5eb" },
-  success: { bg: "#d4edda", fg: "#155724", border: "#c3e6cb" },
-  error: { bg: "#f8d7da", fg: "#721c24", border: "#f5c6cb" },
-} as const;
 
 // Wrapper: skip during prerender since there is no QueryClientProvider
 export default function KeyboardNav() {
@@ -71,6 +76,9 @@ function KeyboardNavClient() {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const busyRef = useRef(false);
   const [toast, setToast] = useState<Toast | null>(null);
+  const [showHelp, setShowHelp] = useState(false);
+  const showHelpRef = useRef(showHelp);
+  showHelpRef.current = showHelp;
 
   // Auto-dismiss toast
   useEffect(() => {
@@ -91,19 +99,6 @@ function KeyboardNavClient() {
   const executeCommand = useCallback(
     async (command: string) => {
       resetLeader();
-
-      if (command === "help") {
-        const lines = [
-          "\\a  → admin page",
-          "\\?  → this help",
-        ];
-        if (import.meta.env.DEV) {
-          lines.push("\\s  → refresh admin session");
-          lines.push("\\du → toggle debug user");
-        }
-        setToast({ message: lines.join("\n"), type: "info" });
-        return;
-      }
 
       if (command === "admin") {
         navigate("/admin");
@@ -159,28 +154,49 @@ function KeyboardNavClient() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isEditableTarget(e.target)) return;
 
+      // While the help overlay is open, only "?" / Escape are meaningful.
+      if (showHelpRef.current) {
+        if (e.key === "?" || e.key === "Escape") {
+          e.preventDefault();
+          setShowHelp(false);
+          resetLeader();
+        }
+        return;
+      }
+
+      // Leader sequence: accumulate a command after backslash
+      if (leaderActive.current) {
+        // Ignore modifier-only / non-character keys (Shift, Arrow*, …)
+        if (e.key.length !== 1) return;
+
+        buffer.current += e.key.toLowerCase();
+        if (timerRef.current) clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(resetLeader, LEADER_TIMEOUT_MS);
+
+        const key = buffer.current;
+        const command =
+          COMMANDS[key] ?? (import.meta.env.DEV ? DEV_COMMANDS[key] : undefined);
+        if (command) executeCommand(command);
+        return;
+      }
+
       // Activate leader on backslash
-      if (e.key === LEADER_KEY && !leaderActive.current) {
+      if (e.key === LEADER_KEY) {
         leaderActive.current = true;
         buffer.current = "";
         timerRef.current = setTimeout(resetLeader, LEADER_TIMEOUT_MS);
         return;
       }
 
-      if (!leaderActive.current) return;
-
-      // Accumulate buffer and reset timeout on each keystroke
-      buffer.current += e.key.toLowerCase();
-      if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(resetLeader, LEADER_TIMEOUT_MS);
-
-      // Check if buffer matches a known command
-      const key = buffer.current;
-      const command =
-        COMMANDS[key] ?? (import.meta.env.DEV ? DEV_COMMANDS[key] : undefined);
-      if (command) {
-        executeCommand(command);
+      // Bare "?" toggles the unified help overlay
+      if (e.key === "?") {
+        e.preventDefault();
+        setShowHelp(true);
+        return;
       }
+
+      // Anything else: let contextual page scopes handle it (e.g. admin nav)
+      dispatchToScopes(e);
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -190,29 +206,82 @@ function KeyboardNavClient() {
     };
   }, [executeCommand, resetLeader]);
 
-  if (!toast) return null;
-
-  const colors = TOAST_COLORS[toast.type];
   return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: 20,
-        right: 20,
-        padding: "10px 16px",
-        borderRadius: 6,
-        fontSize: 14,
-        fontWeight: 500,
-        zIndex: 10000,
-        backgroundColor: colors.bg,
-        color: colors.fg,
-        border: `1px solid ${colors.border}`,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-      }}
-    >
+    <>
+      {showHelp && <HelpOverlay onClose={() => setShowHelp(false)} />}
+      {toast && <FeedbackToast toast={toast} />}
+    </>
+  );
+}
+
+function FeedbackToast({ toast }: { toast: Toast }) {
+  return (
+    <div className={`keyboard-nav-toast keyboard-nav-toast-${toast.type}`}>
       {toast.message.split("\n").map((line, i) => (
-        <div key={i} style={{ whiteSpace: "pre", fontFamily: "monospace" }}>{line}</div>
+        <div key={i} className="keyboard-nav-toast-line">
+          {line}
+        </div>
       ))}
+    </div>
+  );
+}
+
+function HelpOverlay({ onClose }: { onClose: () => void }) {
+  // Subscribe to the scope registry so contextual sections appear/disappear
+  const scopes = useSyncExternalStore(subscribeScopes, getScopes, getScopes);
+
+  return (
+    <div className="keyboard-help-overlay" onClick={onClose}>
+      <div className="keyboard-help-panel" onClick={(e) => e.stopPropagation()}>
+        <h3>Keyboard Shortcuts</h3>
+
+        {scopes.map((scope) => (
+          <div key={scope.id}>
+            <h4>{scope.title}</h4>
+            <table className="keyboard-help-table">
+              <tbody>
+                {scope.entries.map((entry) => (
+                  <tr key={entry.keys}>
+                    <td className="keyboard-help-key">{entry.keys}</td>
+                    <td>{entry.desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+
+        <h4>Global</h4>
+        <table className="keyboard-help-table">
+          <tbody>
+            <tr>
+              <td className="keyboard-help-key">?</td>
+              <td>Toggle this help</td>
+            </tr>
+            <tr>
+              <td className="keyboard-help-key">\a</td>
+              <td>Go to admin page</td>
+            </tr>
+            {import.meta.env.DEV && (
+              <>
+                <tr>
+                  <td className="keyboard-help-key">\s</td>
+                  <td>Refresh admin session</td>
+                </tr>
+                <tr>
+                  <td className="keyboard-help-key">\du</td>
+                  <td>Toggle debug user</td>
+                </tr>
+              </>
+            )}
+          </tbody>
+        </table>
+
+        <button className="keyboard-help-close" onClick={onClose}>
+          Close
+        </button>
+        <div className="keyboard-help-hint">Press ? or Escape to dismiss</div>
+      </div>
     </div>
   );
 }

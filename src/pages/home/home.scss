@@ -1,5 +1,11 @@
 @use "../../variables";
 
+#home_root {
+  position: relative;
+  overflow-x: clip;
+  width: 100%;
+}
+
 #home_title_right_button:hover {
   cursor: pointer;
 }

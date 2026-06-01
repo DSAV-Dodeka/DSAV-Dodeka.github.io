@@ -16,7 +16,7 @@ const MAANDEN = [
 
 function getGroepLabel(datum: string): string {
   const date = parseDatum(datum);
-  const maand = MAANDEN[date.getMonth()];
+  const maand = MAANDEN[date.getMonth()]!;
   return maand.charAt(0).toUpperCase() + maand.slice(1) + " " + date.getFullYear();
 }
 
@@ -65,30 +65,29 @@ function renderItems(items: TijdlijnItem[]) {
   let i = 0;
 
   while (i < items.length) {
-    const item = items[i];
+    const item = items[i]!;
 
     if (item.type === "update" && (item.entry.grootte ?? "groot") === "klein") {
       // Collect consecutive standalone klein items
       const kleinGroep: ChangelogEntry[] = [];
-      while (
-        i < items.length &&
-        items[i].type === "update" &&
-        ((items[i] as { type: "update"; entry: ChangelogEntry }).entry.grootte ?? "groot") === "klein"
-      ) {
-        kleinGroep.push((items[i] as { type: "update"; entry: ChangelogEntry }).entry);
+      while (i < items.length) {
+        const huidig = items[i]!;
+        if (huidig.type !== "update" || (huidig.entry.grootte ?? "groot") !== "klein") break;
+        kleinGroep.push(huidig.entry);
         i++;
       }
 
+      const eerste = kleinGroep[0]!;
       if (kleinGroep.length > 1) {
         elements.push(
-          <div className="compacte-groep" key={`compact-${kleinGroep[0].id}`}>
+          <div className="compacte-groep" key={`compact-${eerste.id}`}>
             {kleinGroep.map((entry) => (
               <CompacteKaart key={entry.id} entry={entry} />
             ))}
           </div>
         );
       } else {
-        elements.push(<CompacteKaart key={kleinGroep[0].id} entry={kleinGroep[0]} />);
+        elements.push(<CompacteKaart key={eerste.id} entry={eerste} />);
       }
     } else if (item.type === "update") {
       elements.push(<UpdateKaart key={item.entry.id} entry={item.entry} />);

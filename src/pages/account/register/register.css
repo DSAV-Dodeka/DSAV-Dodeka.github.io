@@ -331,3 +331,14 @@ p {
 .register-confirmation-hint a:hover {
   text-decoration: underline;
 }
+
+.register-bank-hint,
+.register-bank-hint a {
+  color: #999;
+}
+
+.register-bank-hint {
+  margin-bottom: 0.7rem;
+  line-height: 1rem;
+  font-style: italic;
+}

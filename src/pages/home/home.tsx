@@ -95,7 +95,7 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div id="home_root">
       <TitleBar />
       {/* <HomePromo /> */}
       <HomeNieuws />

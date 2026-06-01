@@ -80,16 +80,15 @@ export default function AccountDeletionFlowTest() {
 
       {step === "confirm" && (
         <div className="flow-test-form">
-          <div className="flow-test-info" style={{ background: "#fff3cd", borderColor: "#ffc107" }}>
+          <div className="flow-test-info flow-test-info-warning">
             <strong>⚠️ Warning:</strong> This will permanently delete the account.
             You will need to re-register to test other flows.
           </div>
           <div className="flow-test-actions">
             <button
               onClick={handleRequestDeletion}
-              className="flow-test-btn flow-test-btn-primary"
+              className="flow-test-btn flow-test-btn-primary flow-test-btn-danger"
               disabled={loading}
-              style={{ background: "#dc3545" }}
             >
               {loading ? "Initiating..." : "Start Account Deletion"}
             </button>
@@ -118,16 +117,15 @@ export default function AccountDeletionFlowTest() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <small style={{ color: "#666", fontSize: "12px" }}>
+              <small className="flow-test-field-hint">
                 Confirm your identity with your current password
               </small>
             </div>
             <div className="flow-test-actions">
               <button
                 type="submit"
-                className="flow-test-btn flow-test-btn-primary"
+                className="flow-test-btn flow-test-btn-primary flow-test-btn-danger"
                 disabled={loading}
-                style={{ background: "#dc3545" }}
               >
                 {loading ? "Deleting..." : "Delete Account"}
               </button>

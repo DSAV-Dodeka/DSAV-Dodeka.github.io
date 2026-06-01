@@ -62,7 +62,14 @@ export type { RegistrationStatus } from "./backend.ts";
 
 export const memberBirthdaysOptions = queryOptions({
   queryKey: ["member", "birthdays"] as const,
-  queryFn: backend.getMemberBirthdays,
+  queryFn: async () => {
+    if (import.meta.env.DEV) {
+      const { getDebugBirthdays } = await import("./debug-user.ts");
+      const debug = getDebugBirthdays();
+      if (debug) return debug;
+    }
+    return backend.getMemberBirthdays();
+  },
 });
 
 // --- Member query hooks ---
@@ -71,11 +78,71 @@ export function useMemberBirthdays(enabled: boolean) {
   return useQuery({ ...memberBirthdaysOptions, enabled });
 }
 
+// --- Private key-value store ---
+
+export function usePrivate<T = unknown>(key: string, enabled: boolean) {
+  return useQuery({
+    queryKey: ["private", key] as const,
+    queryFn: () => backend.getPrivate<T>(key),
+    enabled: enabled && !!key,
+    retry: false,
+  });
+}
+
+export function useAdminPrivate(key: string, enabled: boolean) {
+  return useQuery({
+    queryKey: ["admin", "private", key] as const,
+    queryFn: () => backend.adminGetPrivate(key),
+    enabled: enabled && !!key,
+    retry: false,
+  });
+}
+
+export const adminPrivateListOptions = queryOptions({
+  queryKey: ["admin", "private", "_list"] as const,
+  queryFn: backend.adminListPrivate,
+});
+
+export function useAdminPrivateList(enabled: boolean) {
+  return useQuery({ ...adminPrivateListOptions, enabled });
+}
+
+export function useAdminSetPrivate() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({
+      key,
+      value,
+      role,
+    }: {
+      key: string;
+      value: unknown;
+      role?: string;
+    }) => backend.adminSetPrivate(key, value, role),
+    onSuccess: async (_, { key }) => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["admin", "private", key] }),
+        queryClient.invalidateQueries({ queryKey: ["private", key] }),
+        queryClient.invalidateQueries({
+          queryKey: adminPrivateListOptions.queryKey,
+        }),
+      ]);
+    },
+  });
+}
+
 // --- Admin query options ---
+
+// Admin data changes rarely and is refreshed explicitly (mutations invalidate,
+// the "r" shortcut / refresh buttons refetch). A staleTime keeps mount/focus
+// events from hammering the backend; without it (staleTime: 0) every window
+// focus refetches the whole admin dashboard.
+const ADMIN_STALE_TIME = 60_000;
 
 export const registrationsOptions = queryOptions({
   queryKey: ["admin", "registrations"] as const,
   queryFn: backend.listRegistrations,
+  staleTime: ADMIN_STALE_TIME,
 });
 
 export const usersOptions = queryOptions({
@@ -87,11 +154,13 @@ export const usersOptions = queryOptions({
     ]);
     return { users, perms };
   },
+  staleTime: ADMIN_STALE_TIME,
 });
 
 export const syncStatusOptions = queryOptions({
   queryKey: ["admin", "syncStatus"] as const,
   queryFn: backend.getSyncStatus,
+  staleTime: ADMIN_STALE_TIME,
 });
 
 // --- Admin query hooks ---

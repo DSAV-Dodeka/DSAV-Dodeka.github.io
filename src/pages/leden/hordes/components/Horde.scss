@@ -1,0 +1,61 @@
+@use "../../../../variables.scss";
+
+.horde_card {
+    display: flex;
+    flex-direction: column;
+    width: calc((100% - 8rem) / 3);
+    background-color: variables.$dodeka_blauw;
+    color: white;
+    border-radius: 0.5rem;
+    @include variables.respond(mobile) {
+        width: 100%;
+    }
+}
+
+.horde_naam {
+    font-size: variables.$font_ml;
+    font-weight: variables.$bold;
+    padding: 1rem;
+    padding-left: 2rem;
+    background-color: variables.$dodeka_rood;
+    @include variables.respond(mobile) {
+        padding-left: 1rem;
+        font-size: variables.$font_ml;
+    }
+}
+
+.horde_img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.horde_content {
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+    font-size: variables.$font_small;
+    flex-grow: 1;
+    @include variables.respond(mobile) {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+.horde_join {
+    background-color: variables.$dodeka_rood;
+    color: white;
+    cursor: pointer;
+    margin: 2rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: variables.$font_medium;
+    box-shadow: 0 0 5px variables.$dodeka_rood;
+    font-weight: variables.$bold;
+    text-align: center;
+    @include variables.respond(mobile) {
+        margin: 1rem;
+
+    }
+}
