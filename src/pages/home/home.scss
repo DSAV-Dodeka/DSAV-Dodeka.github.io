@@ -56,7 +56,10 @@
 
 
 .snow {
-  animation: fall ease-in, sway ease-in-out;
+  animation-name: fall, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards, forwards;
   color: white;
   position: absolute;
 }

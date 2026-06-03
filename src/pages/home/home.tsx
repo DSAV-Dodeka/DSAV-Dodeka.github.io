@@ -8,14 +8,14 @@ import Samenwerkingen from "./components/Samenwerkingen";
 // import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
-  const snowContent = ["🐣", "🥚", "🐰", "🌷"];
+  const snowContent = ["☀️", "🍦", "🍹", "🌻"];
 
   const random = (num: number) => {
     return Math.floor(Math.random() * num);
   };
 
   const getRandomStyles = () => {
-    const top = random(50) - 20;
+    const top = random(30) + 10;
     const left = random(100);
     const dur = random(10) + 20;
     const size = random(25) + 10;
