@@ -84,28 +84,3 @@
     color: variables.$dodeka_rood;
     text-decoration: none;
 }
-
-//easter egg 
-.static-egg {
-    position: absolute;
-    top: 17.5rem; 
-    left: 8rem;
-    
-    font-size: 1.5rem;
-    cursor: default;
-    user-select: none;
-    opacity: 0.4;
-    transition: all 0.3s ease;
-
-    @include variables.respond(mobile) {
-        top: 8.5rem; 
-        left: 5rem;
-        font-size: 1.2rem;
-    }
-
-    &:hover {
-        opacity: 1;
-        transform: scale(1.5) rotate(-15deg);
-    }
-}
-//

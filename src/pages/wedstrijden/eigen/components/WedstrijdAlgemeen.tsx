@@ -48,9 +48,6 @@ function Wedstrijd(props: WedstrijdAlgemeenProps) {
       ) : (
         ""
       )}
-      {/* //easter egg */}
-      <span className="static-egg">🥚</span>
-      {/* // */}
     </div>
   );
 }
