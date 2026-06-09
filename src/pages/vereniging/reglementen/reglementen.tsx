@@ -31,7 +31,7 @@ function Reglementen() {
                         <div className="leden_link_shadow"></div>
                         <div className="leden_link">
                             <a
-                                href="/files/DSAV_Dodeka_Huishoudelijk_Reglement.pdf"
+                                href="/files/Huishoudelijk_Reglement_Juni_2026.pdf"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="leden_link_header"
@@ -86,7 +86,7 @@ function Reglementen() {
                         <div className="leden_link_shadow"></div>
                         <div className="leden_link">
                             <a
-                                href="/files/privacyverklaring_dodeka_okt25.pdf"
+                                href="/files/Privacyverklaring_Dodeka_Juni_2026.pdf"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="leden_link_header"
