@@ -82,6 +82,10 @@ function Vereniging() {
                         <h3>10 januari 2026</h3>
                         <p>DSAV Dodeka wint voor het vijfde jaar op rij de ZeuS bokaal</p>
                     </div>
+                    <div className="event">
+                        <h3>9 mei 2026</h3>
+                        <p>In samenwerking met DSAV Dodeka wint de TU Delft voor het eerst de Batavierenrace</p>
+                    </div>
                 </div>
             </div>
             <div className="vereniging_5">
