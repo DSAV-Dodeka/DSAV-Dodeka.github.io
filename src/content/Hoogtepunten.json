@@ -1,8 +1,8 @@
 {
     "wedstrijden": [
         {
-            "wedstrijd": "NSK Baan 2026",
-            "foto": "nsk_baan_2026.jpg",
+            "wedstrijd": "NSK Meerkamp 2026",
+            "foto": "nsk_meerkamp_2026.webp",
             "prijzen": [
                 {
                     "naam": "Tijmen Hoedjes, Robin Beijer",
@@ -28,7 +28,7 @@
         },
         {
             "wedstrijd": "NSK Ekiden 2026",
-            "foto": "nsk_ekiden_2026.jpg",
+            "foto": "nsk_ekiden_2026.webp",
             "prijzen": [
                 {
                     "naam": "Dodekampioenen",
@@ -44,7 +44,7 @@
         },
         {
             "wedstrijd": "NSK Indoor 2026",
-            "foto": "nsk_indoor_2026.jpg",
+            "foto": "nsk_indoor_2026.webp",
             "prijzen": [
                 {
                     "naam": "Stein Glastra",
@@ -85,7 +85,7 @@
         },
         {
             "wedstrijd": "NSK Cross 2026",
-            "foto": "nsk_cross_2026.jpg",
+            "foto": "nsk_cross_2026.webp",
             "prijzen": [
                 {
                     "naam": "Stein Glastra",
