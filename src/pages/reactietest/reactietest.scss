@@ -1,0 +1,52 @@
+@use "../../variables" as v;
+
+.reactietest-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: v.$margin_y;
+  padding: v.$margin_y v.$margin_x;
+
+  @include v.respond(mobile) {
+    padding: v.$margin_mobile;
+  }
+}
+
+.reactietest-highscore {
+  font-weight: v.$bold;
+  font-size: v.$font_medium;
+  color: v.$dodeka_blauw;
+}
+
+.reactietest-tile {
+  width: 100%;
+  max-width: 32rem;
+  height: 16rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  color: white;
+  font-weight: v.$bold;
+  font-size: v.$font_ml;
+  text-align: center;
+  padding: v.$margin_mobile;
+  transition: background-color 0.1s ease;
+
+  &--idle,
+  &--places,
+  &--waiting {
+    background-color: v.$baan_rood;
+  }
+
+  &--go {
+    background-color: v.$dodeka_blauw;
+  }
+
+  &--early {
+    background-color: v.$dodeka_grijs;
+  }
+
+  &--result {
+    background-color: v.$dodeka_blauw90p;
+  }
+}
