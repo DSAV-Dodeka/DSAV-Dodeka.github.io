@@ -9,6 +9,7 @@ const memberPages = [
   { title: "Komkommertimer", emoji: "🥒", path: "/komkommer" },
   { title: "Huisstijl", emoji: "🎨", path: "/huisstijl" },
   { title: "Website Updates", emoji: "📰", path: "/update" },
+  { title: "Reactietest", emoji: "⚡", path: "/reactietest" },
 ];
 
 export default function Leden() {
