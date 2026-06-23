@@ -94,6 +94,14 @@
   margin-bottom: 2rem;
 }
 
+.leden-link-image-pixelated {
+  object-fit: contain;
+  image-rendering: pixelated;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: #cdeac0;
+}
+
 @media (min-width: 1200px) {
   .leden-link-image {
     height: 24rem;

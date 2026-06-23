@@ -3,6 +3,7 @@ import { useSessionInfo } from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import verjaardagenImg from "$images/leden/verjaardagen.webp";
 import soonImg from "$images/leden/soon.webp";
+import mierenvangenImg from "../game/Aardvark-jump.png";
 import "./leden.css";
 
 export default function Leden() {
@@ -68,6 +69,14 @@ export default function Leden() {
           <Link className="leden-link" to="verjaardagen">
             <h1 className="leden-link-header">Verjaardagen</h1>
             <img src={verjaardagenImg} className="leden-link-image" alt="" />
+          </Link>
+          <Link className="leden-link" to="mierenvangen">
+            <h1 className="leden-link-header">Vang de mieren</h1>
+            <img
+              src={mierenvangenImg}
+              className="leden-link-image leden-link-image-pixelated"
+              alt=""
+            />
           </Link>
         </div>
       </div>

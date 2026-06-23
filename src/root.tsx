@@ -9,6 +9,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <link rel="manifest" href="manifest.json" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link rel="stylesheet" href="https://use.typekit.net/bby6uhw.css" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"

@@ -1,0 +1,31 @@
+.mierenvangen-container {
+  margin-bottom: 6rem;
+  text-align: center;
+  font-family: "Press Start 2P", monospace;
+}
+
+.mierenvangen-title {
+  color: #001f48;
+  font-size: 1.25rem;
+  margin: 2rem 0 1rem;
+  letter-spacing: 1px;
+}
+
+.mierenvangen-canvas {
+  display: block;
+  margin: 0 auto;
+  width: 800px;
+  height: 400px;
+  max-width: 100%;
+  image-rendering: pixelated;
+  border: 6px solid #001f48;
+  box-shadow:
+    0 0 0 4px #cdeac0,
+    0 0 0 8px #001f48;
+}
+
+.mierenvangen-hint {
+  color: #001f48;
+  font-size: 0.7rem;
+  margin-top: 1rem;
+}
