@@ -12,6 +12,7 @@ export interface ChangelogEntry {
   auteur?: string;
   versie?: string;
   momentId?: string;
+  forceNieuw?: boolean;
 }
 
 export interface ReleaseMoment {
