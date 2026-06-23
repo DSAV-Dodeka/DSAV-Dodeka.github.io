@@ -1,0 +1,172 @@
+@use "../../../variables";
+
+.leden-container {
+  margin-bottom: 4rem;
+}
+
+.leden-status {
+  color: variables.$dodeka_blauw;
+  margin-left: 4rem;
+}
+
+.leden-login {
+  margin-left: 4rem;
+}
+
+.leden-login-button {
+  padding: 10px 24px;
+  background-color: variables.$dodeka_blauw;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.leden-routes {
+  margin-bottom: 2rem;
+
+  @media (min-width: 1200px) {
+    display: flex;
+    margin-bottom: 2rem;
+  }
+}
+
+.leden-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+
+  @media (min-width: 1200px) {
+    width: calc(100% / 3);
+    height: 24rem;
+
+    &.leden-link-double {
+      width: calc(200% / 3);
+    }
+  }
+}
+
+.leden-link-header {
+  position: absolute;
+  background-color: variables.$dodeka_rood;
+  padding: 0.5rem 2rem;
+  width: calc(100% - 2rem);
+  color: white;
+  font-size: 1.75rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  top: 2rem;
+  margin-left: 2rem;
+  z-index: 6;
+  left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  box-sizing: border-box;
+
+  @media (min-width: 1200px) {
+    width: 20rem;
+    margin-left: 0;
+    top: 2rem;
+    right: 0;
+
+    &.leden-link-header-double {
+      width: 40rem;
+    }
+  }
+}
+
+.leden-link-image {
+  display: block;
+  object-fit: cover;
+  height: 22rem;
+  width: 100%;
+  background-color: variables.$dodeka_blauw;
+  margin-bottom: 2rem;
+
+  @media (min-width: 1200px) {
+    height: 24rem;
+    width: 22rem;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    &.leden-link-image-double {
+      width: 46rem;
+    }
+  }
+}
+
+/* Grid-based card styles for additional pages */
+.leden-section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: variables.$dodeka_blauw;
+  margin: 3rem 2rem 1.5rem 4rem;
+  padding: 0;
+
+  @media (min-width: 1200px) {
+    margin: 3rem 0 1.5rem 4rem;
+  }
+}
+
+.leden-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  padding: 0 2rem;
+  margin: 0 2rem 0 4rem;
+
+  @media (min-width: 1200px) {
+    padding: 0;
+    margin: 0 0 0 4rem;
+    gap: 1.5rem;
+  }
+}
+
+.leden-small-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.leden-small-card {
+  background: linear-gradient(
+    135deg,
+    variables.$dodeka_blauw 0%,
+    variables.$dodeka_blauw90p 100%
+  );
+  color: white;
+  border-radius: 8px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 31, 72, 0.15);
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 31, 72, 0.25);
+  }
+}
+
+.leden-small-card-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.leden-small-card-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
