@@ -1,9 +1,9 @@
 @use "../../../variables";
 
 // Category accent colors
-$accent-feature: #0891b2;
+$accent-feature: #d97706;
 $accent-bugfix: variables.$dodeka_rood;
-$accent-verbetering: #d97706;
+$accent-verbetering: #0891b2;
 $accent-content: #059669;
 
 // ── Page wrapper ──────────────────────────────────────────────
@@ -179,8 +179,46 @@ $accent-content: #059669;
     border-left-color: $accent-verbetering;
   }
 
-  &--content {
-    border-left-color: $accent-content;
+  &--groot {
+    border-left-width: 6px;
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  &--featured {
+    position: relative;
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.03) 0%, rgba(217, 119, 6, 0.01) 100%);
+    border-left-color: #d97706;
+    border-left-width: 6px;
+    box-shadow: 0 2px 12px rgba(217, 119, 6, 0.15);
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 6px 24px rgba(217, 119, 6, 0.25);
+      transform: translateY(-2px);
+    }
+
+    &::after {
+      content: "✨";
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      font-size: 1.5rem;
+      animation: shimmer 2s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
   }
 
   &__header {

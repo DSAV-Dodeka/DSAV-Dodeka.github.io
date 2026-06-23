@@ -144,6 +144,163 @@
       "grootte": "klein",
       "auteur":"Anne-Wil & Jefry",
       "momentId": "24uursvergadering-2026"
+    },
+    {
+      "id": "feature-sprint-tijden-pagina",
+      "datum": "09-04-2026",
+      "titel": "Sprint tijden pagina gelanceerd",
+      "beschrijving": "Een nieuwe pagina voor het uitrekenen van je sprinttijden",
+      "categorie": "feature",
+      "grootte": "groot",
+      "auteur": "Jefry",
+      "link": "/sprint_tijden"
+    },
+    {
+      "id": "content-lvv-trainersfotos",
+      "datum": "11-04-2026",
+      "titel": "LVV toegevoegd en trainersfoto's bijgewerkt",
+      "beschrijving": "De LVV is toegevoegd en de foto's bij de 'trainers gezocht' pagina zijn vervangen.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Tijmen",
+      "link": "/trainingen/gezocht"
+    },
+    {
+      "id": "content-kasco-fotos",
+      "datum": "12-04-2026",
+      "titel": "Kasco-foto's toegevoegd aan commissiepagina",
+      "beschrijving": "De Kasco-commissie heeft nu foto's op de commissiepagina.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Jefry",
+      "link": "/vereniging/commissies"
+    },
+    {
+      "id": "content-nieuwsartikel-tijdlijn-april",
+      "datum": "19-04-2026",
+      "titel": "Nieuwsartikel geplaatst en tijdlijn bijgewerkt",
+      "beschrijving": "Er is een nieuw nieuwsartikel geplaatst en de tijdlijn van de vereniging is bijgewerkt.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Tijmen",
+      "link": "/vereniging"
+    },
+    {
+      "id": "feature-turfjes-pagina",
+      "datum": "12-05-2026",
+      "titel": "Turfjes-pagina gelanceerd",
+      "beschrijving": "Een nieuwe pagina om de turfjes bij te houden, met de actuele cijfers en duidelijke regels.",
+      "categorie": "feature",
+      "grootte": "klein",
+      "auteur": "Jefry",
+      "link": "/turfjes"
+    },
+    {
+      "id": "content-nieuws-batavieren",
+      "datum": "18-05-2026",
+      "titel": "Nieuws: Batavieren gewonnen",
+      "beschrijving": "Een nieuwsbericht over de gewonnen Batavierenrace is online gezet.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Anne-Wil",
+      "link": "/nieuws"
+    },
+    {
+      "id": "feature-arnold-404-game",
+      "datum": "28-05-2026",
+      "titel": "Verstop-Arnold minigame op de 404-pagina",
+      "beschrijving": "Kom je per ongeluk op een niet-bestaande pagina terecht? Dan kun je nu, als je ingelogd bent, een rondje Arnold spelen.",
+      "categorie": "feature",
+      "grootte": "klein",
+      "auteur": "Tip"
+    },
+    {
+      "id": "feature-inloggen-productie",
+      "datum": "28-05-2026",
+      "titel": "Inloggen nu live in productie",
+      "beschrijving": "Het inloggen en registreren via de website staat nu echt live, niet meer alleen in een testomgeving.",
+      "categorie": "feature",
+      "grootte": "groot",
+      "auteur": "Tip",
+      "link": "/account/login"
+    },
+    {
+      "id": "content-nieuws-1e-competitie",
+      "datum": "30-05-2026",
+      "titel": "Nieuws: 1e competitie",
+      "beschrijving": "Een nieuwsbericht over de eerste competitieronde is toegevoegd.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Anne-Wil",
+      "link": "/nieuws"
+    },
+    {
+      "id": "bugfix-paasthema-opgeruimd",
+      "datum": "03-06-2026",
+      "titel": "Laatste paasei-easter eggs opgeruimd",
+      "beschrijving": "De overgebleven code van de verborgen paaseitjes is verwijderd, het paasthema is nu echt afgesloten.",
+      "categorie": "bugfix",
+      "grootte": "klein",
+      "auteur": "Mei Chang"
+    },
+    {
+      "id": "feature-zomerthema",
+      "datum": "03-06-2026",
+      "titel": "Zomerthema online",
+      "beschrijving": "Een vrolijk zomerthema staat nu op de homepage.",
+      "categorie": "feature",
+      "grootte": "klein",
+      "auteur": "Mei Chang"
+    },
+    {
+      "id": "content-nieuws-kb8-b5",
+      "datum": "09-06-2026",
+      "titel": "Nieuws: KB8 & B5 is back",
+      "beschrijving": "Een nieuwsbericht over de terugkeer van KB8 & B5 is online gezet.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Anne-Wil",
+      "link": "/nieuws"
+    },
+    {
+      "id": "content-nsk-meerkamp",
+      "datum": "09-06-2026",
+      "titel": "NSK meerkamp hoogtepunten toegevoegd",
+      "beschrijving": "De hoogtepunten van het NSK meerkamp zijn toegevoegd aan de website.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Ymme",
+      "link": "/wedstrijden/hoogtepunten"
+    },
+    {
+      "id": "verbetering-tijdlijn-lijn",
+      "datum": "09-06-2026",
+      "titel": "Tijdlijn-lijn sluit nu netjes aan op de puntjes",
+      "beschrijving": "De verticale lijn in de tijdlijn van de vereniging is verbeterd zodat deze nu mooi aansluit op de puntjes.",
+      "categorie": "verbetering",
+      "grootte": "klein",
+      "auteur": "Tijmen",
+      "link": "/vereniging"
+    },
+    {
+      "id": "verbetering-hr-privacy",
+      "datum": "09-06-2026",
+      "titel": "Huishoudelijk Reglement & Privacyverklaring bijgewerkt",
+      "beschrijving": "Het Huishoudelijk Reglement en de Privacyverklaring zijn vervangen door de laatste versies.",
+      "categorie": "verbetering",
+      "grootte": "klein",
+      "auteur": "Ymme",
+      "link": "/vereniging/reglementen"
+    },
+    {
+      "id": "verbetering-leden-tiling",
+      "datum": "23-06-2026",
+      "titel": "Ledenpagina herontworpen met tiling",
+      "beschrijving": "De ledenpagina heeft een nieuwe tiling-layout gekregen en gebruikt nu SCSS-variabelen voor een consistentere stijl.",
+      "categorie": "verbetering",
+      "grootte": "groot",
+      "auteur": "Jefry",
+      "link": "/leden"
     }
   ],
   "momenten": [

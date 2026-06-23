@@ -17,10 +17,11 @@ interface UpdateKaartProps {
 
 function UpdateKaart({ entry }: UpdateKaartProps) {
   const emoji = getCategorieEmoji(entry.categorie);
-  const nieuw = isNieuw(entry.datum);
+  const nieuw = entry.forceNieuw || (entry.categorie === "feature" && isNieuw(entry.datum));
+  const isFeatured = entry.id === "feature-inloggen-productie";
 
   return (
-    <article className={`update-kaart update-kaart--${entry.categorie}`}>
+    <article className={`update-kaart update-kaart--${entry.categorie}${isFeatured ? " update-kaart--featured" : ""}${entry.grootte === "groot" ? " update-kaart--groot" : ""}`}>
       <div className="update-kaart__header">
         <span className="update-kaart__categorie">{emoji}</span>
         <h3 className="update-kaart__titel">{entry.titel}</h3>
