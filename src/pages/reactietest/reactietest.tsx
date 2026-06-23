@@ -1,4 +1,10 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  type PointerEvent,
+} from "react";
 import PageTitle from "$components/PageTitle.tsx";
 import "./reactietest.scss";
 
@@ -44,7 +50,7 @@ export default function Reactietest() {
     }, 800);
   }, []);
 
-  const handleClick = useCallback(() => {
+  const handleActivate = useCallback(() => {
     if (phase === "idle" || phase === "result" || phase === "early") {
       startRound();
       return;
@@ -68,6 +74,14 @@ export default function Reactietest() {
     }
   }, [phase, highscore, startRound]);
 
+  const handlePointerDown = useCallback(
+    (e: PointerEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      handleActivate();
+    },
+    [handleActivate],
+  );
+
   const label = {
     idle: "Klik om te starten",
     places: "Op uw plaatsen...",
@@ -86,7 +100,7 @@ export default function Reactietest() {
       <button
         type="button"
         className={`reactietest-tile reactietest-tile--${phase}`}
-        onClick={handleClick}
+        onPointerDown={handlePointerDown}
       >
         {label}
       </button>
