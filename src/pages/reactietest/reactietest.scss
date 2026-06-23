@@ -31,6 +31,9 @@
   text-align: center;
   padding: v.$margin_mobile;
   transition: background-color 0.1s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 
   &--idle,
   &--places,
