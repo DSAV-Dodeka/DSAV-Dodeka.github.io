@@ -6,6 +6,7 @@ import {
   type PointerEvent,
 } from "react";
 import PageTitle from "$components/PageTitle.tsx";
+import { useSessionInfo } from "$functions/query.ts";
 import "./reactietest.scss";
 
 type Phase = "idle" | "places" | "waiting" | "go" | "early" | "result";
@@ -20,6 +21,8 @@ function getStoredHighscore(): number | null {
 }
 
 export default function Reactietest() {
+  const { data: session, isLoading: sessionLoading } = useSessionInfo();
+
   const [phase, setPhase] = useState<Phase>("idle");
   const [reactionTime, setReactionTime] = useState<number | null>(null);
   const [highscore, setHighscore] = useState<number | null>(() =>
@@ -90,6 +93,27 @@ export default function Reactietest() {
     early: "Te vroeg! Klik om het opnieuw te proberen",
     result: `${reactionTime} ms — klik om opnieuw te proberen`,
   }[phase];
+
+  if (sessionLoading) {
+    return (
+      <div className="reactietest-page">
+        <PageTitle title="Reactietest" />
+        <p>Laden...</p>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return (
+      <div className="reactietest-page">
+        <PageTitle title="Reactietest" />
+        <p>
+          Deze pagina is helaas niet toegankelijk als je niet ingelogd bent.
+          Log in om deze pagina te kunnen bekijken.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="reactietest-page">
