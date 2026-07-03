@@ -54,6 +54,10 @@ export default [
         "./pages/leden/verjaardagen/verjaardagen.tsx",
       ),
       route("hordes", "./pages/leden/hordes/Hordes.tsx"),
+      route(
+        "inschrijven_training",
+        "./pages/leden/inschrijven-training/inschrijven-training.tsx",
+      ),
     ]),
     ...prefix("account", [
       route("register", "./pages/account/register/register.tsx"),

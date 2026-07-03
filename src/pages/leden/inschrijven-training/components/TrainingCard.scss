@@ -1,0 +1,506 @@
+@import "../../../../variables";
+
+$day_ma: $dodeka_blauw;
+$day_wo: $dodeka_rood;
+$day_za: #2f7d5b;
+$day_other: #5d6f80;
+$groen: #2f7d5b;
+
+.training-card {
+  --day-color: #{$day_other};
+  background: white;
+  border: 1px solid #e3e8ee;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 31, 72, 0.07);
+  transition: box-shadow 0.15s ease;
+
+  &.day-ma {
+    --day-color: #{$day_ma};
+  }
+  &.day-wo {
+    --day-color: #{$day_wo};
+  }
+  &.day-za {
+    --day-color: #{$day_za};
+  }
+
+  &:not(.is-cancelled):hover {
+    box-shadow: 0 4px 14px rgba(0, 31, 72, 0.13);
+  }
+
+  &.is-cancelled {
+    opacity: 0.75;
+    background: #f6f7f9;
+
+    .card-date {
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--day-color),
+        var(--day-color) 8px,
+        color-mix(in srgb, var(--day-color) 82%, white) 8px,
+        color-mix(in srgb, var(--day-color) 82%, white) 16px
+      );
+    }
+
+    .card-weekday,
+    .card-daynum {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.card-header {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  gap: 1rem;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.card-date {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  padding: 0.9rem 0.5rem;
+  background: var(--day-color);
+  color: white;
+
+  .card-weekday {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+  }
+
+  .card-daynum {
+    font-size: 1.35rem;
+    font-weight: $bold;
+    line-height: 1.6rem;
+  }
+
+  @include respond(phone) {
+    width: 5.2rem;
+
+    .card-daynum {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.card-summary {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.7rem 0;
+
+  .card-time {
+    color: $dodeka_blauw;
+    font-weight: $bold;
+    font-size: 0.95rem;
+  }
+
+  .card-events {
+    color: #5d6f80;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-cancel-reason {
+    color: $dodeka_rood;
+    font-weight: $bold;
+  }
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-right: 1rem;
+
+  .card-count {
+    color: #5d6f80;
+    font-size: 0.85rem;
+    white-space: nowrap;
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  .card-chevron {
+    color: #93a3b1;
+    transition: transform 0.15s ease;
+  }
+}
+
+.training-card.is-open .card-chevron {
+  transform: rotate(180deg);
+}
+
+.badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: $bold;
+  white-space: nowrap;
+
+  &.badge-signedup {
+    background: color-mix(in srgb, $groen 14%, white);
+    color: $groen;
+    border: 1px solid color-mix(in srgb, $groen 40%, white);
+  }
+
+  &.badge-cancelled {
+    background: color-mix(in srgb, $dodeka_rood 12%, white);
+    color: $dodeka_rood;
+    border: 1px solid color-mix(in srgb, $dodeka_rood 40%, white);
+  }
+}
+
+.card-body {
+  border-top: 1px solid #edf0f4;
+  padding: 0.6rem 1rem 0.9rem;
+
+  .card-cancelled-text {
+    color: $dodeka_blauw;
+    margin: 0.5rem 0;
+  }
+}
+
+// One container listing all trainers of the day.
+.card-trainer-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.8rem;
+  margin: 0.5rem 0 0.2rem;
+  padding: 0.45rem 0.7rem;
+  background: #f1f4f7;
+  border-radius: 8px;
+  color: $dodeka_blauw;
+  font-size: 0.9rem;
+}
+
+.trainer-info-label {
+  font-size: 0.68rem;
+  font-weight: $bold;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #93a3b1;
+}
+
+.trainer-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.trainer-chip {
+  display: inline-flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #d4dbe3;
+  border-radius: 999px;
+  padding: 0.14rem 0.65rem;
+  font-size: 0.85rem;
+  color: $dodeka_blauw;
+
+  // Warming-up trainers are marked in baan-rood.
+  &.is-warmup {
+    border-color: $baan_rood;
+    color: $baan_rood;
+  }
+
+  // The contact point of the day is marked in TU blauw and takes priority
+  // over the warming-up color if both apply.
+  &.is-contact {
+    border-color: $tu_blauw;
+    color: $tu_blauw;
+    font-weight: $bold;
+  }
+}
+
+.card-trainer-info-edit {
+  gap: 0.6rem 1.4rem;
+}
+
+.trainer-edit-field {
+  flex: 1;
+  min-width: 14rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: $bold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5d6f80;
+
+  i {
+    font-weight: $normal;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  input {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: $normal;
+    text-transform: none;
+    letter-spacing: normal;
+    color: $dodeka_blauw;
+    border: 1px solid #b7c3cf;
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    background: white;
+  }
+}
+
+// --- Event rows -------------------------------------------------------------
+
+.event-list {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+
+  // Two columns on wide screens halves the scroll distance of an open day.
+  @include respond(computerscherm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.event-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: #fafbfd;
+  border: 1px solid #e8edf3;
+  border-radius: 10px;
+  padding: 0.45rem 0.65rem 0.55rem;
+}
+
+.event-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  .event-name {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $dodeka_blauw;
+    font-weight: $bold;
+    font-size: 1.05rem;
+  }
+
+  .event-name-input {
+    flex: 1;
+    font: inherit;
+    font-weight: $bold;
+    color: $dodeka_blauw;
+    border: 1px dashed #b7c3cf;
+    border-radius: 6px;
+    padding: 0.15rem 0.4rem;
+    max-width: 13rem;
+  }
+
+  .event-count {
+    color: #5d6f80;
+    font-size: 0.85rem;
+    background: #f1f4f7;
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+  }
+}
+
+.event-slot-tag {
+  font-size: 0.7rem;
+  font-weight: $bold;
+  letter-spacing: 0.05em;
+  color: #5d6f80;
+  background: #f1f4f7;
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+}
+
+
+.event-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.event-comment {
+  margin: 0;
+  background: #fdf3e4;
+  color: #6b4a17;
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.event-schedule {
+  background: white;
+  border: 1px solid #e3e8ee;
+  border-left: 3px solid var(--day-color);
+  border-radius: 8px;
+  padding: 0.45rem 0.7rem;
+
+  pre {
+    margin: 0;
+    font: inherit;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: $dodeka_blauw;
+    white-space: pre-wrap;
+  }
+}
+
+.event-no-schedule,
+.event-no-attendees {
+  margin: 0;
+  color: #93a3b1;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.event-edit-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #5d6f80;
+
+  textarea,
+  input {
+    font: inherit;
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: normal;
+    color: $dodeka_blauw;
+    border: 1px solid #b7c3cf;
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    resize: vertical;
+    background: white;
+  }
+}
+
+.event-attendees {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: white;
+  border: 1px solid #e8edf3;
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem 0.45rem;
+}
+
+.event-attendees-label {
+  font-size: 0.68rem;
+  font-weight: $bold;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #93a3b1;
+}
+
+.attendee-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.attendee-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #f1f4f7;
+  color: $dodeka_blauw;
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+  font-size: 0.8rem;
+
+  &.is-you {
+    background: color-mix(in srgb, $groen 14%, white);
+    border: 1px solid color-mix(in srgb, $groen 40%, white);
+    font-weight: $bold;
+  }
+
+  .attendee-remove {
+    border: none;
+    background: none;
+    color: $dodeka_rood;
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.1rem;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+// --- Manage footer ------------------------------------------------------------
+
+.card-manage-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed #d4dbe3;
+}
+
+.manage-cancel-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  input {
+    font: inherit;
+    font-size: 0.9rem;
+    border: 1px solid #b7c3cf;
+    border-radius: 8px;
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+.manage-cancel-form input {
+  width: 16rem;
+
+  @include respond(phone) {
+    width: 10rem;
+  }
+}

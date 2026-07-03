@@ -1,0 +1,86 @@
+@import "../../../../variables";
+
+.competition-panel {
+  background: white;
+  border: 1px solid #e3c56e;
+  background: linear-gradient(180deg, #fffaf0, #fff);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.competition-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.8rem 1.1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.competition-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: $dodeka_blauw;
+  font-weight: $bold;
+  font-size: 1.05rem;
+}
+
+.competition-boardonly {
+  font-size: 0.75rem;
+  font-weight: $normal;
+  color: #8a5a19;
+  background: #fdf3e4;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+.competition-chevron {
+  color: #93a3b1;
+  transition: transform 0.15s ease;
+
+  &.is-open {
+    transform: rotate(180deg);
+  }
+}
+
+.competition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.45rem 1.1rem;
+  }
+
+  th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #5d6f80;
+    border-bottom: 1px solid #eee3c8;
+  }
+
+  td {
+    color: $dodeka_blauw;
+    border-bottom: 1px solid #f6efdd;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  td:first-child {
+    width: 2.5rem;
+    color: #93a3b1;
+  }
+
+  td:last-child {
+    font-weight: $bold;
+  }
+}
