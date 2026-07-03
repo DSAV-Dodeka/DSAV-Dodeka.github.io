@@ -47,7 +47,9 @@
 }
 
 #app_flex {
-  overflow: hidden;
+  /* clip instead of hidden: same clipping, but doesn't create a scroll
+     container, so position: sticky keeps working for descendants */
+  overflow: clip;
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 4rem);

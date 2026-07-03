@@ -31,33 +31,75 @@ function attendees(count: number, offset = 0) {
   });
 }
 
-const SPRINT_SCHEDULE = `Warming-up: 2 rondjes + loopscholing
-Kern: 3× 3×60m vliegend, rust 3' / serierust 6'
-Afsluiting: 4× starts uit blokken + core`;
+// Realistic example schedules (as actually written by trainers), cycled per
+// training so the preview doesn't repeat the exact same schema every day.
+// MiLa genuinely doesn't get a schedule every training — some slots are
+// intentionally left null here to match that.
+const SPRINT_SCHEDULES: string[] = [
+  `Wedstrijd warming up
+Startblok: wedstrijdsimulatie
+0-5 x 30m 95% vliegende start
+SP = 3 min
+Spikes = Ja`,
+  `6-7 x 67m
+p = 6-7 min
+67%
+spikes = ja met 6-7 puntjes`,
+  `Onderhoud schema lang
+Lange sprint: lange vs korte lopers
+Lange sprinters: 200 - 250 - 300 (- 200)
+Korte sprinters: 120 - 150 - 180 (- 120)
+80-90% SP = 7 min
+Spikes: nee (tenzij wedstrijden)`,
+  `onderhoud schema kort
+70-80-90-100-90-80-70
+P = 3 min
+Spikes: nee (tenzij wedstrijden)`,
+];
 
-const MILA_SCHEDULE = `Warming-up: 15' inlopen + versnellingen
-Kern: 6× 800m @ 10k-tempo, rust 90"
-Afsluiting: 10' uitlopen`;
+const MILA_SCHEDULES: (string | null)[] = [
+  `Competitie voorbereiding 800, 1500, 3000, 5000`,
+  `VO2-max training: 6-7x700 op 5000m tempo; P=600 joggen`,
+  null,
+  null,
+];
 
-const LOOPGROEP_SCHEDULE = `Warming-up: 10' rustig inlopen
-Kern: 40' duurloop D1/D2 in groepen
-Afsluiting: rekken en core`;
+const LOOPGROEP_SCHEDULES: string[] = [
+  `Long run (50-70') D0`,
+  `2 x (6'-7') LT1
+HP=4' D1`,
+  `10x600m LT2
+HP=200m D1`,
+  `Long run (50-70') D1`,
+];
 
-function baseEvents(id: string, t1: string, t2: string | null): TrainingEvent[] {
+function baseEvents(
+  id: string,
+  index: number,
+  t1: string,
+  t2: string | null,
+): TrainingEvent[] {
+  const sprintSchedule =
+    SPRINT_SCHEDULES[index % SPRINT_SCHEDULES.length] ?? null;
+  const milaSchedule = MILA_SCHEDULES[index % MILA_SCHEDULES.length] ?? null;
+  const loopgroepSchedule =
+    LOOPGROEP_SCHEDULES[index % LOOPGROEP_SCHEDULES.length] ?? null;
   return [
     {
       event_id: `${id}_sprint`,
       slot: "sprint",
       name: "Sprint",
-      schedule: SPRINT_SCHEDULE,
-      comment: "Neem je spikes mee!",
+      schedule: sprintSchedule,
+      comment: sprintSchedule?.includes("Spikes = Ja")
+        ? "Neem je spikes mee!"
+        : null,
       attendees: attendees(3),
     },
     {
       event_id: `${id}_mila`,
       slot: "mila",
       name: "MiLa",
-      schedule: MILA_SCHEDULE,
+      schedule: milaSchedule,
       comment: null,
       attendees: attendees(3, 3),
     },
@@ -65,7 +107,7 @@ function baseEvents(id: string, t1: string, t2: string | null): TrainingEvent[] 
       event_id: `${id}_loopgroep`,
       slot: "loopgroep",
       name: "Loopgroep",
-      schedule: LOOPGROEP_SCHEDULE,
+      schedule: loopgroepSchedule,
       comment: null,
       attendees: attendees(2, 6),
     },
@@ -107,8 +149,10 @@ function upcomingTrainingDates(): string[] {
   return dates;
 }
 
-const T1_EVENTS = ["Kogel", "Ver", "Speer", "Hoog"];
-const T2_EVENTS = ["Discus", "Hinkstap", null, "Polsstok"];
+// Technisch 1 / Technisch 2, paired per training the way trainers actually
+// fill them in.
+const T1_EVENTS = ["Hoog", "Horde", "Hoog", "Ver"];
+const T2_EVENTS = ["Kogel", "Discus", "Kogel", "Speer"];
 
 export function makeMockTrainings(): TrainingDay[] {
   return upcomingTrainingDates().map((date, i) => {
@@ -122,6 +166,7 @@ export function makeMockTrainings(): TrainingDay[] {
       warmup_trainers: "Jasmijn",
       events: baseEvents(
         id,
+        i,
         T1_EVENTS[i % T1_EVENTS.length] ?? "Kogel",
         T2_EVENTS[i % T2_EVENTS.length] ?? null,
       ),

@@ -257,12 +257,21 @@ scope for v1).
 
 ## 7. Schedule import
 
-Trainers prepare the whole period's schedule outside the website (typically
-a spreadsheet) and upload it in one go.
+Trainers prepare schedules outside the website (typically a spreadsheet).
+There are two import flows:
 
-### 7.1 File format
+1. **Full import** — one file with everything for the period (days, T1/T2
+   events, trainers, optionally schedules).
+2. **Per-group import** — schedules are made per group: the Sprint trainer
+   delivers all Sprint schedules, not the MiLa ones. Each of the three
+   schedule groups can therefore be uploaded separately (§7.3).
 
-One row per training day, eight columns:
+### 7.1 Full-import file format
+
+One row per training day. **Only the `date` column is required** — the file
+may contain any subset of the remaining columns (dynamic width); missing or
+empty cells mean "not set". Columns beyond the eight below are ignored.
+T1/T2 never carry a schedule — the file only has a name column for them:
 
 | column | maps to |
 |---|---|
@@ -337,6 +346,39 @@ response as `"replaced_with_signups": [dates]`).
 
 Response: `{ "created": 12, "replaced": 2, "skipped": 1 }`.
 
+### 7.3 POST /trainings/import/schedules/
+Permission: manager. Per-group schedule import: one trainer uploads all
+schedules for their own group in one go. File format: two columns,
+`date, schedule` (CSV, quoted multiline cells allowed) or JSON
+`[{ "date": "...", "schedule": "..." }]`.
+
+Body:
+
+```json
+{
+  "slot": "sprint",
+  "mode": "per_item",
+  "schedules": [
+    { "date": "2026-07-06", "schedule": "Kern: 3× 3×60m vliegend" },
+    { "date": "2026-07-08", "schedule": "4× starts uit blokken" }
+  ],
+  "replace_dates": ["2026-07-06"]
+}
+```
+
+- `slot` must be `sprint`, `mila` or `loopgroep` — `422`
+  (`no_schedule_slot`) for t1/t2.
+- If the training day does not exist yet, it is **created** with default
+  times (§2) and only this group's schedule set. Signups and other groups
+  are never touched by this endpoint.
+- If the day exists and the group's schedule is empty, it is filled in.
+- If the day exists and the group already has a schedule, the conflict mode
+  applies (same `overwrite_all` / `skip_existing` / `per_item` semantics as
+  §7.2, where a conflict = date whose group schedule is already set).
+- Transactional: all or nothing.
+
+Response: `{ "days_created": 3, "schedules_set": 9, "skipped": 1 }`.
+
 ## 8. Business rules summary
 
 1. One training day per date; five fixed slots per day; one active signup
@@ -354,7 +396,9 @@ Response: `{ "created": 12, "replaced": 2, "skipped": 1 }`.
    signup within the season. Removing a no-show retracts that day's point.
 7. Standings are visible to `bestuur`/`admin` only.
 8. All writes require manager permissions except signup/sign-out.
-9. Import is transactional and follows the conflict mode of §7.2.
+9. Imports are transactional and follow the conflict modes of §7.2/§7.3.
+   Schedules are delivered per group (§7.3); the full import (§7.2) needs
+   only a date column, all other columns are optional.
 
 ## 9. Out of scope for v1 (planned, don't block on these)
 

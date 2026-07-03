@@ -2,7 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useSessionInfo } from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
-import type { Attendee, ImportedTraining, TrainingDay } from "./types";
+import type {
+  Attendee,
+  ImportedGroupSchedule,
+  ImportedTraining,
+  ScheduleSlot,
+  TrainingDay,
+} from "./types";
 import { MOCK_USER, makeMockStandings, makeMockTrainings } from "./mock-data";
 import { toTrainingDay } from "./utils";
 import TrainingCard from "./components/TrainingCard";
@@ -232,6 +238,59 @@ export default function InschrijvenTraining() {
     setImportOpen(false);
   }
 
+  // A trainer uploads all schedules for one group. Missing days are
+  // created with default times, empty schedules are filled in, and already
+  // filled schedules are only overwritten for dates the trainer chose.
+  function handleImportGroup(
+    slot: ScheduleSlot,
+    items: ImportedGroupSchedule[],
+    replaceDates: string[],
+  ) {
+    let next = [...trainings];
+    for (const item of items) {
+      const existing = next.find((t) => t.date === item.date);
+      if (!existing) {
+        const day = toTrainingDay(
+          {
+            date: item.date,
+            sprint_schedule: null,
+            mila_schedule: null,
+            loopgroep_schedule: null,
+            t1_event: null,
+            t2_event: null,
+            available_trainers: null,
+            warmup_trainers: null,
+          },
+          `training_${item.date}`,
+        );
+        day.events = day.events.map((event) =>
+          event.slot === slot ? { ...event, schedule: item.schedule } : event,
+        );
+        next.push(day);
+        continue;
+      }
+      const groupEvent = existing.events.find((e) => e.slot === slot);
+      const hasExistingSchedule = groupEvent?.schedule != null;
+      if (hasExistingSchedule && !replaceDates.includes(item.date)) {
+        continue;
+      }
+      next = next.map((t) =>
+        t.date === item.date
+          ? {
+              ...t,
+              events: t.events.map((event) =>
+                event.slot === slot
+                  ? { ...event, schedule: item.schedule }
+                  : event,
+              ),
+            }
+          : t,
+      );
+    }
+    setTrainings(sortByDate(next));
+    setImportOpen(false);
+  }
+
   return (
     <>
       <PageTitle title="Inschrijven trainingen" />
@@ -312,9 +371,10 @@ export default function InschrijvenTraining() {
 
       {importOpen && (
         <ImportModal
-          existingDates={trainings.map((t) => t.date)}
+          trainings={trainings}
           onClose={() => setImportOpen(false)}
           onImport={handleImport}
+          onImportGroup={handleImportGroup}
         />
       )}
 

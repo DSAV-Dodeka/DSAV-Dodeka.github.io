@@ -6,12 +6,22 @@ $day_za: #2f7d5b;
 $day_other: #5d6f80;
 $groen: #2f7d5b;
 
+// Each group keeps its own accent color across every training day — this is
+// the main separator between events (the day-color is reserved for "which
+// day", these are "which group"). Picked to stay clear of the day colors
+// above and the trainer highlight colors ($tu_blauw / $baan_rood).
+$slot_sprint: #d97706;
+$slot_mila: #0f9488;
+$slot_loopgroep: #6d4aa0;
+$slot_t1: #5b7290;
+$slot_t2: #a3456b;
+
 .training-card {
   --day-color: #{$day_other};
   background: white;
   border: 1px solid #e3e8ee;
   border-radius: 14px;
-  overflow: hidden;
+  // No overflow: hidden here — it would break the sticky card header.
   box-shadow: 0 1px 3px rgba(0, 31, 72, 0.07);
   transition: box-shadow 0.15s ease;
 
@@ -57,10 +67,41 @@ $groen: #2f7d5b;
   gap: 1rem;
   padding: 0;
   border: none;
-  background: none;
+  background: white;
   cursor: pointer;
   text-align: left;
   font: inherit;
+  // Clips the colored date tile to the card's rounded corners.
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+// Zero-height marker just above the header; TrainingCard.tsx watches it with
+// an IntersectionObserver to know whether the sticky header is currently
+// pinned (see .is-stuck below).
+.card-sticky-sentinel {
+  height: 0;
+}
+
+// While a day is open, its header (with the date) sticks below the navbar
+// (4rem tall, z-index 10) so you always see which day you're scrolling in.
+.training-card.is-open > .card-header {
+  position: sticky;
+  top: 4rem;
+  z-index: 5;
+  border-radius: 13px 13px 0 0;
+  box-shadow: 0 3px 8px rgba(0, 31, 72, 0.08);
+
+  // Once actually pinned below the navbar, square off the top corners —
+  // rounded corners floating flush against the navbar look like a stray
+  // notch instead of a clean edge.
+  &.is-stuck {
+    border-radius: 0;
+  }
+}
+
+.training-card.is-cancelled > .card-header {
+  background: #f6f7f9;
 }
 
 .card-date {
@@ -181,18 +222,29 @@ $groen: #2f7d5b;
   }
 }
 
-// One container listing all trainers of the day.
+// One container listing all trainers of the day. Sticks directly below the
+// card header (see the inline `top` style, set from the measured header
+// height) so it joins the sticky header as one continuous block once you
+// scroll past it, instead of popping in as a separate element.
 .card-trainer-info {
+  position: sticky;
+  z-index: 4;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem 0.8rem;
-  margin: 0.5rem 0 0.2rem;
+  margin: 0 0 0.5rem;
   padding: 0.45rem 0.7rem;
   background: #f1f4f7;
   border-radius: 8px;
   color: $dodeka_blauw;
   font-size: 0.9rem;
+
+  // Once actually pinned flush below the (also squared-off) header, drop
+  // the rounding so the two line up as one continuous bar.
+  &.is-stuck {
+    border-radius: 0;
+  }
 }
 
 .trainer-info-label {
@@ -273,39 +325,73 @@ $groen: #2f7d5b;
   }
 }
 
-// --- Event rows -------------------------------------------------------------
+// --- Event panels -------------------------------------------------------------
 
-.event-list {
-  list-style: none;
-  margin: 0.4rem 0 0;
-  padding: 0;
+// Running groups (with schedules) left, technical slots right on desktop;
+// a single stacked column on mobile.
+.event-columns {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
 
-  // Two columns on wide screens halves the scroll distance of an open day.
   @include respond(computerscherm) {
     grid-template-columns: 1fr 1fr;
+    align-items: start;
   }
 }
 
-.event-row {
+.event-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  background: #fafbfd;
-  border: 1px solid #e8edf3;
-  border-radius: 10px;
-  padding: 0.45rem 0.65rem 0.55rem;
+  gap: 0.85rem;
 }
 
-.event-head {
+// Each group is a clearly bounded panel: a colored left accent bar and
+// tinted header strip identify the group, body holds schedule and
+// attendees. The accent color is per-group (not per-day) so e.g. every
+// Sprint panel looks the same regardless of which day it's on.
+.event-panel {
+  --slot-color: #{$day_other};
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d5dce4;
+  border-left: 4px solid var(--slot-color);
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 31, 72, 0.05);
+
+  &.event-panel-sprint {
+    --slot-color: #{$slot_sprint};
+  }
+  &.event-panel-mila {
+    --slot-color: #{$slot_mila};
+  }
+  &.event-panel-loopgroep {
+    --slot-color: #{$slot_loopgroep};
+  }
+  &.event-panel-t1 {
+    --slot-color: #{$slot_t1};
+  }
+  &.event-panel-t2 {
+    --slot-color: #{$slot_t2};
+  }
+}
+
+.event-panel-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.6rem;
+  padding: 0.5rem 0.7rem;
+  background: color-mix(in srgb, var(--slot-color) 13%, white);
+  border-bottom: 1px solid color-mix(in srgb, var(--slot-color) 30%, white);
 
   .event-name {
-    flex: 1;
     min-width: 0;
     display: flex;
     align-items: center;
@@ -324,14 +410,7 @@ $groen: #2f7d5b;
     border-radius: 6px;
     padding: 0.15rem 0.4rem;
     max-width: 13rem;
-  }
-
-  .event-count {
-    color: #5d6f80;
-    font-size: 0.85rem;
-    background: #f1f4f7;
-    border-radius: 999px;
-    padding: 0.15rem 0.55rem;
+    background: white;
   }
 }
 
@@ -340,17 +419,18 @@ $groen: #2f7d5b;
   font-weight: $bold;
   letter-spacing: 0.05em;
   color: #5d6f80;
-  background: #f1f4f7;
+  background: white;
+  border: 1px solid #dbe2ea;
   border-radius: 4px;
   padding: 0.1rem 0.35rem;
 }
 
-
-.event-detail {
+.event-panel-body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.45rem;
+  padding: 0.55rem 0.7rem 0.65rem;
 }
 
 .event-comment {
@@ -363,9 +443,9 @@ $groen: #2f7d5b;
 }
 
 .event-schedule {
-  background: white;
+  background: #fbfcfd;
   border: 1px solid #e3e8ee;
-  border-left: 3px solid var(--day-color);
+  border-left: 3px solid var(--slot-color);
   border-radius: 8px;
   padding: 0.45rem 0.7rem;
 
@@ -416,10 +496,9 @@ $groen: #2f7d5b;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background: white;
-  border: 1px solid #e8edf3;
+  background: #f4f6f9;
   border-radius: 8px;
-  padding: 0.35rem 0.55rem 0.45rem;
+  padding: 0.4rem 0.6rem 0.5rem;
 }
 
 .event-attendees-label {
@@ -443,7 +522,8 @@ $groen: #2f7d5b;
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  background: #f1f4f7;
+  background: white;
+  border: 1px solid #e3e9f0;
   color: $dodeka_blauw;
   border-radius: 999px;
   padding: 0.12rem 0.55rem;

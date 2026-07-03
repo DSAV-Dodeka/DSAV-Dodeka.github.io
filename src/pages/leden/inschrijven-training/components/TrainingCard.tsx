@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Attendee, TrainingDay, TrainingEvent } from "../types";
 import {
   dayColorClass,
@@ -7,6 +7,10 @@ import {
   splitNames,
 } from "../utils";
 import "./TrainingCard.scss";
+
+// The navbar (position: sticky, top: 0) is 4rem tall, so the card header
+// sticks right below it at this offset.
+const STICKY_OFFSET_PX = 64;
 
 interface TrainingCardProps {
   training: TrainingDay;
@@ -43,6 +47,45 @@ export default function TrainingCard(props: TrainingCardProps) {
   const { training, currentUser, manageMode } = props;
   const [cancelReason, setCancelReason] = useState("");
   const [showCancelForm, setShowCancelForm] = useState(false);
+  const [isStuck, setIsStuck] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLButtonElement>(null);
+
+  // Detects whether the sticky header is actually pinned below the navbar
+  // right now (as opposed to sitting in its normal in-flow position), so we
+  // can square off its corners only while it's floating over other cards.
+  useEffect(() => {
+    if (!props.expanded) {
+      setIsStuck(false);
+      return;
+    }
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry) setIsStuck(entry.intersectionRatio < 1);
+      },
+      { threshold: [1], rootMargin: `-${STICKY_OFFSET_PX + 1}px 0px 0px 0px` },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [props.expanded]);
+
+  // Measures the header so the trainer panel right below it can stick at
+  // exactly that offset — it joins the header as one continuous sticky
+  // stack instead of popping in as a separate element (which felt jumpy).
+  useEffect(() => {
+    if (!props.expanded) return;
+    const header = headerRef.current;
+    if (!header) return;
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry) setHeaderHeight(entry.borderBoxSize[0]?.blockSize ?? entry.contentRect.height);
+    });
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, [props.expanded]);
 
   const cancelled = training.cancelled !== null;
   // The event the current user is signed up for on this day, if any.
@@ -58,6 +101,10 @@ export default function TrainingCard(props: TrainingCardProps) {
   const visibleEvents = training.events.filter(
     (event) => manageMode || event.name !== null,
   );
+  // Desktop shows the running groups (with schedules) on the left and the
+  // technical slots on the right.
+  const runningEvents = visibleEvents.filter((event) => hasSchedule(event));
+  const technicalEvents = visibleEvents.filter((event) => !hasSchedule(event));
 
   function cancelDay() {
     const reason = cancelReason.trim();
@@ -65,6 +112,45 @@ export default function TrainingCard(props: TrainingCardProps) {
     props.onUpdate((t) => ({ ...t, cancelled: { reason } }));
     setShowCancelForm(false);
     setCancelReason("");
+  }
+
+  function renderEvent(event: TrainingEvent) {
+    return (
+      <EventPanel
+        key={event.event_id}
+        event={event}
+        currentUser={currentUser}
+        manageMode={manageMode}
+        onSignup={() => props.onSignup(event.event_id)}
+        onRemoveAttendee={(userId) =>
+          props.onRemoveAttendee(event.event_id, userId)
+        }
+        onRename={(name) =>
+          props.onUpdate((t) =>
+            updateEvent(t, event.event_id, (ev) => ({
+              ...ev,
+              name: name.trim() === "" ? null : name,
+            })),
+          )
+        }
+        onEditComment={(comment) =>
+          props.onUpdate((t) =>
+            updateEvent(t, event.event_id, (ev) => ({
+              ...ev,
+              comment: comment.trim() === "" ? null : comment,
+            })),
+          )
+        }
+        onEditSchedule={(schedule) =>
+          props.onUpdate((t) =>
+            updateEvent(t, event.event_id, (ev) => ({
+              ...ev,
+              schedule: schedule.trim() === "" ? null : schedule,
+            })),
+          )
+        }
+      />
+    );
   }
 
   return (
@@ -76,7 +162,12 @@ export default function TrainingCard(props: TrainingCardProps) {
         props.expanded ? "is-open" : "",
       ].join(" ")}
     >
-      <button className="card-header" onClick={props.onToggle}>
+      <div ref={sentinelRef} className="card-sticky-sentinel" aria-hidden />
+      <button
+        ref={headerRef}
+        className={`card-header ${isStuck ? "is-stuck" : ""}`}
+        onClick={props.onToggle}
+      >
         <div className="card-date">
           <span className="card-weekday">{formatWeekday(training.date)}</span>
           <span className="card-daynum">{formatDayMonth(training.date)}</span>
@@ -130,45 +221,19 @@ export default function TrainingCard(props: TrainingCardProps) {
                 training={training}
                 manageMode={manageMode}
                 onUpdate={props.onUpdate}
+                stickyTop={STICKY_OFFSET_PX + headerHeight}
+                isStuck={isStuck}
               />
-              <ul className="event-list">
-                {visibleEvents.map((event) => (
-                  <EventRow
-                    key={event.event_id}
-                    event={event}
-                    currentUser={currentUser}
-                    manageMode={manageMode}
-                    onSignup={() => props.onSignup(event.event_id)}
-                    onRemoveAttendee={(userId) =>
-                      props.onRemoveAttendee(event.event_id, userId)
-                    }
-                    onRename={(name) =>
-                      props.onUpdate((t) =>
-                        updateEvent(t, event.event_id, (ev) => ({
-                          ...ev,
-                          name: name.trim() === "" ? null : name,
-                        })),
-                      )
-                    }
-                    onEditComment={(comment) =>
-                      props.onUpdate((t) =>
-                        updateEvent(t, event.event_id, (ev) => ({
-                          ...ev,
-                          comment: comment.trim() === "" ? null : comment,
-                        })),
-                      )
-                    }
-                    onEditSchedule={(schedule) =>
-                      props.onUpdate((t) =>
-                        updateEvent(t, event.event_id, (ev) => ({
-                          ...ev,
-                          schedule: schedule.trim() === "" ? null : schedule,
-                        })),
-                      )
-                    }
-                  />
-                ))}
-              </ul>
+              <div className="event-columns">
+                <ul className="event-list">
+                  {runningEvents.map(renderEvent)}
+                </ul>
+                {technicalEvents.length > 0 && (
+                  <ul className="event-list event-list-technical">
+                    {technicalEvents.map(renderEvent)}
+                  </ul>
+                )}
+              </div>
             </>
           )}
 
@@ -230,10 +295,14 @@ export default function TrainingCard(props: TrainingCardProps) {
 
 // One container with all five trainers of the day. The first name in the
 // list is the contact point and is highlighted; warm-up trainers get a tag.
+// Sticks right below the card header once you scroll past it, so who's
+// training stays visible without a separate, jumpier sticky element.
 function TrainerPanel(props: {
   training: TrainingDay;
   manageMode: boolean;
   onUpdate: (update: (training: TrainingDay) => TrainingDay) => void;
+  stickyTop: number;
+  isStuck: boolean;
 }) {
   const { training, manageMode } = props;
   const trainerNames = splitNames(training.trainers);
@@ -245,7 +314,10 @@ function TrainerPanel(props: {
 
   if (manageMode) {
     return (
-      <div className="card-trainer-info card-trainer-info-edit">
+      <div
+        className={`card-trainer-info card-trainer-info-edit ${props.isStuck ? "is-stuck" : ""}`}
+        style={{ top: props.stickyTop }}
+      >
         <label className="trainer-edit-field">
           Trainers <i>(eerste naam is het aanspreekpunt)</i>
           <input
@@ -283,7 +355,10 @@ function TrainerPanel(props: {
   if (trainerNames.length === 0 && extraWarmup.length === 0) return null;
 
   return (
-    <div className="card-trainer-info">
+    <div
+      className={`card-trainer-info ${props.isStuck ? "is-stuck" : ""}`}
+      style={{ top: props.stickyTop }}
+    >
       <span className="trainer-info-label">Trainers</span>
       <ul className="trainer-chips">
         {trainerNames.map((name, i) => (
@@ -315,7 +390,7 @@ function TrainerPanel(props: {
   );
 }
 
-interface EventRowProps {
+interface EventPanelProps {
   event: TrainingEvent;
   currentUser: Attendee;
   manageMode: boolean;
@@ -326,7 +401,9 @@ interface EventRowProps {
   onEditSchedule: (schedule: string) => void;
 }
 
-function EventRow(props: EventRowProps) {
+// One group of the training day, as a clearly bounded panel: a tinted
+// header strip (name + sign-up), then schedule, then attendees.
+function EventPanel(props: EventPanelProps) {
   const { event, manageMode } = props;
   const isTechnical = !hasSchedule(event);
   const isSignedUp = event.attendees.some(
@@ -334,8 +411,8 @@ function EventRow(props: EventRowProps) {
   );
 
   return (
-    <li className="event-row">
-      <div className="event-head">
+    <li className={`event-panel event-panel-${event.slot}`}>
+      <div className="event-panel-header">
         {manageMode && isTechnical ? (
           <input
             className="event-name-input"
@@ -352,7 +429,6 @@ function EventRow(props: EventRowProps) {
             )}
           </span>
         )}
-        <span className="event-count">{event.attendees.length}</span>
         {!manageMode && event.name !== null && (
           <button
             className={`btn btn-signup ${isSignedUp ? "is-signedup" : ""}`}
@@ -363,7 +439,7 @@ function EventRow(props: EventRowProps) {
         )}
       </div>
 
-      <div className="event-detail">
+      <div className="event-panel-body">
         {manageMode ? (
           <>
             {!isTechnical && (
@@ -405,9 +481,13 @@ function EventRow(props: EventRowProps) {
           </>
         )}
 
-        {event.attendees.length > 0 && (
-          <div className="event-attendees">
-            <span className="event-attendees-label">Aanmeldingen</span>
+        <div className="event-attendees">
+          <span className="event-attendees-label">
+            Aanmeldingen ({event.attendees.length})
+          </span>
+          {event.attendees.length === 0 ? (
+            <span className="event-no-attendees">Nog geen aanmeldingen.</span>
+          ) : (
             <ul className="attendee-list">
               {event.attendees.map((attendee) => (
                 <li
@@ -431,8 +511,8 @@ function EventRow(props: EventRowProps) {
                 </li>
               ))}
             </ul>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </li>
   );

@@ -1,4 +1,9 @@
-import type { GroupSlot, ImportedTraining, TrainingDay } from "./types";
+import type {
+  GroupSlot,
+  ImportedGroupSchedule,
+  ImportedTraining,
+  TrainingDay,
+} from "./types";
 
 const WEEKDAYS_LONG = [
   "Zondag",
@@ -134,13 +139,10 @@ function parseCsvImport(content: string): ImportedTraining[] {
   // Skip an optional header row
   const startIndex = rows[0]?.[0]?.trim().toLowerCase() === "date" ? 1 : 0;
 
+  // Only the date column is required; the file may have any number of the
+  // remaining columns (missing or empty cells simply mean "not set").
   return rows.slice(startIndex).map((row, i) => {
     const line = startIndex + i + 1;
-    if (row.length < 8) {
-      throw new Error(
-        `Regel ${line}: verwacht 8 kolommen (date, sprint schedule, mila schedule, loopgroep schedule, t1 event, t2 event, available trainers, warm-up trainers).`,
-      );
-    }
     const cell = (index: number): string | null => {
       const value = (row[index] ?? "").trim();
       return value === "" ? null : value;
@@ -161,6 +163,58 @@ function parseCsvImport(content: string): ImportedTraining[] {
       available_trainers: cell(6),
       warmup_trainers: cell(7),
     };
+  });
+}
+
+// --- Per-group schedule import -----------------------------------------------
+// A trainer delivers all schedules for their own group (e.g. every Sprint
+// training of the coming period) as two columns: date, schedule.
+
+export function parseGroupScheduleFile(
+  filename: string,
+  content: string,
+): ImportedGroupSchedule[] {
+  if (filename.toLowerCase().endsWith(".json")) {
+    const data: unknown = JSON.parse(content);
+    if (!Array.isArray(data)) {
+      throw new Error("JSON-bestand moet een lijst van schema's zijn.");
+    }
+    return data.map((raw, i) => {
+      const item = raw as Record<string, unknown>;
+      const date = item["date"];
+      const schedule = item["schedule"];
+      if (typeof date !== "string" || !isIsoDate(date)) {
+        throw new Error(
+          `Schema ${i + 1}: ongeldige datum (verwacht JJJJ-MM-DD).`,
+        );
+      }
+      return {
+        date,
+        schedule:
+          typeof schedule === "string" && schedule.trim() !== ""
+            ? schedule
+            : null,
+      };
+    });
+  }
+
+  const rows = parseCsvRows(content).filter((row) =>
+    row.some((cell) => cell.trim() !== ""),
+  );
+  if (rows.length === 0) {
+    throw new Error("Het bestand is leeg.");
+  }
+  const startIndex = rows[0]?.[0]?.trim().toLowerCase() === "date" ? 1 : 0;
+
+  return rows.slice(startIndex).map((row, i) => {
+    const date = (row[0] ?? "").trim();
+    if (!isIsoDate(date)) {
+      throw new Error(
+        `Regel ${startIndex + i + 1}: ongeldige datum "${date}" (verwacht JJJJ-MM-DD).`,
+      );
+    }
+    const schedule = (row[1] ?? "").trim();
+    return { date, schedule: schedule === "" ? null : schedule };
   });
 }
 

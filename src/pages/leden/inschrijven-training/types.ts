@@ -46,11 +46,13 @@ export interface CompetitionStanding {
   points: number;
 }
 
-// A training day parsed from an import file, before it gets an id.
-// Columns: date, sprint/mila/loopgroep schedule, t1/t2 event,
-// available trainers, warm-up trainers.
-// "available trainers" holds the five trainer names in group order
-// (Sprint, MiLa, Loopgroep, T1, T2), separated by commas.
+// The three groups that carry a workout schedule (T1/T2 never do).
+export type ScheduleSlot = "sprint" | "mila" | "loopgroep";
+
+// A training day parsed from a full-schedule import file, before it gets an
+// id. Columns: date, sprint/mila/loopgroep schedule, t1/t2 event, available
+// trainers, warm-up trainers. Only the date is required; all other columns
+// may be missing or empty.
 export interface ImportedTraining {
   date: string;
   sprint_schedule: string | null;
@@ -60,4 +62,11 @@ export interface ImportedTraining {
   t2_event: string | null;
   available_trainers: string | null;
   warmup_trainers: string | null;
+}
+
+// One row of a per-group import: a trainer uploads all schedules for their
+// own group (e.g. all Sprint trainings) in one go.
+export interface ImportedGroupSchedule {
+  date: string;
+  schedule: string | null;
 }

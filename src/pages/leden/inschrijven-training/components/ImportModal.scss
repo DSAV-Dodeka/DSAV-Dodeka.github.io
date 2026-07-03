@@ -51,6 +51,32 @@
   }
 }
 
+// What to import: full schema or one group's schedules.
+.import-mode-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0 0.2rem;
+
+  button {
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: $bold;
+    padding: 0.35rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #b7c3cf;
+    background: white;
+    color: #5d6f80;
+    cursor: pointer;
+
+    &.is-active {
+      background: $dodeka_rood;
+      border-color: $dodeka_rood;
+      color: white;
+    }
+  }
+}
+
 .import-format-tabs {
   display: flex;
   gap: 0.4rem;
