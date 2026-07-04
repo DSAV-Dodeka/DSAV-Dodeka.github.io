@@ -1,0 +1,166 @@
+@import "../../../../variables";
+
+.import-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 31, 72, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.import-modal {
+  background: white;
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem;
+  width: 34rem;
+  max-width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 31, 72, 0.3);
+
+  p {
+    color: $dodeka_blauw;
+    font-size: 0.95rem;
+  }
+}
+
+.import-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    margin: 0;
+    color: $dodeka_blauw;
+  }
+}
+
+.import-close {
+  border: none;
+  background: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #93a3b1;
+  cursor: pointer;
+
+  &:hover {
+    color: $dodeka_rood;
+  }
+}
+
+// What to import: full schema or one group's schedules.
+.import-mode-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0 0.2rem;
+
+  button {
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: $bold;
+    padding: 0.35rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #b7c3cf;
+    background: white;
+    color: #5d6f80;
+    cursor: pointer;
+
+    &.is-active {
+      background: $dodeka_rood;
+      border-color: $dodeka_rood;
+      color: white;
+    }
+  }
+}
+
+.import-format-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+
+  button {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: $bold;
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid #b7c3cf;
+    background: white;
+    color: #5d6f80;
+    cursor: pointer;
+
+    &.is-active {
+      background: $dodeka_blauw;
+      border-color: $dodeka_blauw;
+      color: white;
+    }
+  }
+}
+
+.import-example {
+  background: #f6f8fa;
+  border: 1px solid #e3e8ee;
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.8rem;
+  overflow-x: auto;
+  color: $dodeka_blauw;
+}
+
+.import-error {
+  color: $dodeka_rood;
+  font-weight: $bold;
+}
+
+.import-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.import-conflicts {
+  border: 1px solid #f0d9d5;
+  background: #fdf7f6;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+
+  ul {
+    list-style: none;
+    margin: 0.6rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}
+
+.import-conflict-bulk {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.import-conflict-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  font-size: 0.9rem;
+  color: $dodeka_blauw;
+
+  .import-conflict-date {
+    font-weight: $bold;
+    min-width: 9rem;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+  }
+}

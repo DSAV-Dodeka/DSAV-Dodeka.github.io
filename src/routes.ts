@@ -41,6 +41,7 @@ export default [
     route("huisstijl", "./pages/Branding/Branding.tsx"),
     route("komkommer", "./pages/komkommer/komkommer.tsx"),
     route("turfjes", "./pages/turfjes/turfjes.tsx"),
+    route("reactietest", "./pages/reactietest/reactietest.tsx"),
     route("sprint", "./pages/sprint-tijden/sprint-alias.tsx"),
     route("sprint_tijden", "./pages/sprint-tijden/sprint-tijden-alias.tsx"),
     route("trainings_schema", "./pages/sprint-tijden/trainings-schema-alias.tsx"),
@@ -53,6 +54,10 @@ export default [
         "./pages/leden/verjaardagen/verjaardagen.tsx",
       ),
       route("hordes", "./pages/leden/hordes/Hordes.tsx"),
+      route(
+        "inschrijven_training",
+        "./pages/leden/inschrijven-training/inschrijven-training.tsx",
+      ),
     ]),
     ...prefix("account", [
       route("register", "./pages/account/register/register.tsx"),
