@@ -40,6 +40,9 @@ export default function InschrijvenTraining() {
   const devMode = import.meta.env.DEV;
 
   const [devView, setDevView] = useState("Lid");
+  // DEV-only design exploration for the event panels (see the "design
+  // exploration" section in TrainingCard.scss).
+  const [designVariant, setDesignVariant] = useState("Huidig");
   const [trainings, setTrainings] = useState(() =>
     sortByDate(makeMockTrainings()),
   );
@@ -294,7 +297,11 @@ export default function InschrijvenTraining() {
   return (
     <>
       <PageTitle title="Inschrijven trainingen" />
-      <div className="training-page">
+      <div
+        className={`training-page ${
+          designVariant === "Huidig" ? "" : `design-${designVariant.toLowerCase()}`
+        }`}
+      >
         <div className="training-toolbar">
           <div className="training-legend">
             <span className="legend-chip legend-ma">Maandag</span>
@@ -378,6 +385,20 @@ export default function InschrijvenTraining() {
         />
       )}
 
+      {devMode && (
+        <div className="training-dev-switcher training-design-switcher">
+          <span>Design:</span>
+          {["Huidig", "A", "B", "C"].map((variant) => (
+            <button
+              key={variant}
+              className={designVariant === variant ? "is-active" : ""}
+              onClick={() => setDesignVariant(variant)}
+            >
+              {variant}
+            </button>
+          ))}
+        </div>
+      )}
       {devMode && (
         <div className="training-dev-switcher">
           <span>Bekijk als:</span>

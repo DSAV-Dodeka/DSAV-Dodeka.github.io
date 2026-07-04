@@ -584,3 +584,153 @@ $slot_t2: #a3456b;
     width: 10rem;
   }
 }
+
+// --- Design exploration (DEV switcher: Design Huidig/A/B/C) -----------------
+// Three alternative treatments of the event panels, toggled via a class on
+// .training-page. Once a direction is chosen, the winner gets folded into
+// the base styles above and this section is removed.
+
+// Variant A — "Rustig": no containers at all. Groups are separated by
+// whitespace and a thin divider; the slot color shrinks to a small dot at
+// the group name. Hierarchy comes from typography.
+.design-a {
+  .event-panel {
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #e8edf3;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0.2rem;
+    }
+  }
+
+  .event-panel-header {
+    background: none;
+    border-bottom: none;
+    padding: 0 0 0.2rem;
+
+    .event-name::before {
+      content: "";
+      flex-shrink: 0;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: var(--slot-color);
+    }
+  }
+
+  .event-panel-body {
+    padding: 0 0 0 1.05rem;
+  }
+
+  .event-schedule {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .event-comment {
+    background: none;
+    padding: 0;
+    color: #8a5a19;
+  }
+
+  .event-attendees {
+    background: none;
+    padding: 0;
+    margin-top: 0.2rem;
+  }
+
+  .attendee-chip {
+    background: #f1f4f7;
+    border-color: transparent;
+  }
+}
+
+// Variant B — "Vlak": one soft flat container per group with the colored
+// spine kept, but no nested boxes inside — schedule and attendees are plain
+// content within the panel.
+.design-b {
+  .event-panel {
+    background: #f6f8fa;
+    border: none;
+    border-left: 4px solid var(--slot-color);
+    box-shadow: none;
+  }
+
+  .event-panel-header {
+    background: none;
+    border-bottom: none;
+    padding-bottom: 0.05rem;
+  }
+
+  .event-schedule {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .event-comment {
+    background: none;
+    padding: 0;
+    color: #8a5a19;
+  }
+
+  .event-attendees {
+    background: none;
+    border-top: 1px dashed #d5dce4;
+    border-radius: 0;
+    padding: 0.5rem 0 0;
+  }
+
+  .attendee-chip {
+    background: white;
+    border-color: #e3e9f0;
+  }
+}
+
+// Variant C — "Krachtig": solid color-blocked group headers (mini versions
+// of the date tile), white body. Maximum scannability, heaviest look.
+.design-c {
+  .event-panel {
+    border-color: color-mix(in srgb, var(--slot-color) 40%, white);
+    border-left-width: 1px;
+  }
+
+  .event-panel-header {
+    background: var(--slot-color);
+    border-bottom: none;
+
+    .event-name {
+      color: white;
+    }
+  }
+
+  .event-slot-tag {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: transparent;
+    color: white;
+  }
+
+  // The red sign-up button clashes on colored headers; invert it there.
+  .event-panel-header .btn.btn-signup {
+    background: white;
+    border-color: white;
+    color: var(--slot-color);
+
+    &:hover {
+      background: #f1f4f7;
+    }
+
+    &.is-signedup {
+      color: #2f7d5b;
+    }
+  }
+}

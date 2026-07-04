@@ -185,6 +185,11 @@ $day_za: #2f7d5b;
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+
+  // The design-exploration pill sits above the "Bekijk als" pill.
+  &.training-design-switcher {
+    bottom: 3.6rem;
+  }
   z-index: 90;
   display: flex;
   align-items: center;
