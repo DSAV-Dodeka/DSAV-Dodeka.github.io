@@ -63,7 +63,7 @@ export default function Leden() {
       <PageTitle title={`Welkom, ${session.user.firstname}`} />
       <div className="leden-container">
         <div className="leden-routes">
-          <Link className="leden-link leden-link-double" to="">
+          <Link className="leden-link leden-link-double" to="inschrijven_training">
             <h1 className="leden-link-header leden-link-header-double">
               Inschrijven trainingen
             </h1>
