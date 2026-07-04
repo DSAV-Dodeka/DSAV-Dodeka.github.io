@@ -64,3 +64,57 @@ export function getDebugBirthdays(): Birthday[] | null {
   if (!isDebugUserActive()) return null;
   return DEBUG_BIRTHDAYS;
 }
+
+function placeholderImage(color: string, label: string): string {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="800" height="600" fill="${color}"/><text x="400" y="315" font-family="sans-serif" font-size="48" fill="white" text-anchor="middle">${label}</text></svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
+const DEBUG_PRIVATE: Record<string, unknown> = {
+  fotos_events: [
+    {
+      id: "debug-nsk-baan",
+      name: "NSK Baan",
+      date: "2026-06-14",
+      type: "Wedstrijd",
+      image: placeholderImage("#cb4b3d", "NSK Baan"),
+      links: [
+        { label: "dump", url: "https://example.com/dump" },
+        { label: "dodeka", url: "https://example.com/dodeka" },
+      ],
+    },
+    {
+      id: "debug-trainingsweekend",
+      name: "Trainingsweekend Ardennen",
+      date: "2026-04-20",
+      type: "Reis",
+      image: placeholderImage("#001f48", "Ardennen"),
+      links: [
+        { label: "alles", url: "https://example.com/alles" },
+        { label: "focus", url: "https://example.com/focus" },
+        { label: "drone", url: "https://example.com/drone" },
+      ],
+    },
+    {
+      id: "debug-borrel",
+      name: "Eindejaarsborrel",
+      date: "2025-12-19",
+      type: "Gezelligheid",
+      image: placeholderImage("#93a3b1", "Borrel"),
+      links: [{ label: "dump", url: "https://example.com/dump" }],
+    },
+    {
+      id: "debug-baantraining",
+      name: "Baantraining zomer",
+      date: "2025-07-08",
+      type: "Training",
+      image: placeholderImage("#2a9d8f", "Training"),
+      links: [],
+    },
+  ],
+};
+
+export function getDebugPrivate(key: string): unknown | null {
+  if (!isDebugUserActive()) return null;
+  return DEBUG_PRIVATE[key] ?? null;
+}

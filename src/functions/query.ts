@@ -83,7 +83,14 @@ export function useMemberBirthdays(enabled: boolean) {
 export function usePrivate<T = unknown>(key: string, enabled: boolean) {
   return useQuery({
     queryKey: ["private", key] as const,
-    queryFn: () => backend.getPrivate<T>(key),
+    queryFn: async () => {
+      if (import.meta.env.DEV) {
+        const { getDebugPrivate } = await import("./debug-user.ts");
+        const debug = getDebugPrivate(key);
+        if (debug !== null) return debug as T;
+      }
+      return backend.getPrivate<T>(key);
+    },
     enabled: enabled && !!key,
     retry: false,
   });

@@ -1,0 +1,425 @@
+@use "../../../variables";
+
+.fotos-status {
+  color: variables.$dodeka_blauw;
+  margin-left: variables.$margin_x;
+
+  @include variables.respond(mobile) {
+    margin-left: variables.$margin_mobile;
+  }
+}
+
+.fotos-container {
+  margin: 0 variables.$margin_x 4rem;
+
+  @include variables.respond(mobile) {
+    margin: 0 variables.$margin_mobile 3rem;
+  }
+}
+
+// --- Top bar ---
+
+.fotos-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.fotos-search {
+  flex: 1 1 14rem;
+  max-width: 20rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid variables.$dodeka_grijs;
+  border-radius: 4px;
+  font-size: variables.$font_small;
+  color: variables.$dodeka_blauw;
+
+  &:focus {
+    outline: 2px solid variables.$dodeka_blauw;
+    outline-offset: -1px;
+  }
+}
+
+.fotos-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid variables.$dodeka_grijs;
+  border-radius: 4px;
+  font-size: variables.$font_small;
+  color: variables.$dodeka_blauw;
+  background-color: white;
+}
+
+.fotos-typefilter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+// Dev-only "Bekijk als" toggle, styled distinctly (dashed border) so it
+// reads as a debug affordance rather than a real filter.
+.fotos-viewtoggle {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px dashed variables.$dodeka_grijs;
+  border-radius: 999px;
+}
+
+.fotos-chip {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid variables.$dodeka_blauw;
+  border-radius: 999px;
+  background-color: white;
+  color: variables.$dodeka_blauw;
+  font-size: variables.$font_small;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(variables.$dodeka_blauw, 0.08);
+  }
+
+  &--active {
+    background-color: variables.$dodeka_blauw;
+    color: white;
+
+    &:hover {
+      background-color: variables.$dodeka_blauw90p;
+    }
+  }
+}
+
+.fotos-button {
+  padding: 0.5rem 1.25rem;
+  background-color: variables.$dodeka_rood;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: variables.$font_small;
+  font-weight: variables.$bold;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  &--danger {
+    background-color: white;
+    color: variables.$dodeka_rood;
+    border: 1px solid variables.$dodeka_rood;
+  }
+}
+
+.fotos-add {
+  margin-left: auto;
+}
+
+// --- Grid ---
+
+.fotos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1.5rem;
+}
+
+.fotos-card {
+  // Native buttons vertically-center their content internally regardless of
+  // `display`, unless overridden with an explicit flex layout. Without this,
+  // grid row-stretching (to match the tallest card) shifts shorter cards'
+  // image/text down instead of leaving the extra space at the bottom.
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(variables.$dodeka_blauw, 0.2);
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(variables.$dodeka_blauw, 0.25);
+  }
+}
+
+.fotos-card-imagewrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.fotos-badge {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: variables.$bold;
+
+  &--wedstrijd {
+    background-color: variables.$dodeka_rood;
+  }
+
+  &--gezelligheid {
+    background-color: #2a9d8f;
+  }
+
+  &--training {
+    background-color: variables.$dodeka_blauw;
+  }
+
+  &--reis {
+    background-color: #0066cc;
+  }
+
+  &--overig {
+    background-color: variables.$dodeka_grijs;
+  }
+}
+
+.fotos-card-edit {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background-color: rgba(white, 0.9);
+  color: variables.$dodeka_blauw;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+  }
+}
+
+.fotos-card-info {
+  padding: 0.75rem 1rem 1rem;
+}
+
+.fotos-card-name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 0;
+  min-height: calc(1.4rem * 2);
+  color: variables.$dodeka_blauw;
+  font-size: 1.1rem;
+  line-height: 1.4rem;
+}
+
+.fotos-card-date {
+  margin: 0.25rem 0 0;
+  color: variables.$dodeka_grijs;
+  font-size: variables.$font_small;
+}
+
+// --- Modals ---
+
+.fotos-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(variables.$dodeka_blauw, 0.55);
+}
+
+.fotos-modal {
+  position: relative;
+  width: 100%;
+  max-width: 24rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: white;
+
+  &--form {
+    max-width: 32rem;
+  }
+}
+
+.fotos-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  border: none;
+  background: none;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: variables.$dodeka_grijs;
+  cursor: pointer;
+
+  &:hover {
+    color: variables.$dodeka_blauw;
+  }
+}
+
+.fotos-modal-title {
+  margin: 0 1.5rem 0.25rem 0;
+  color: variables.$dodeka_blauw;
+  font-size: variables.$font_ml;
+}
+
+.fotos-modal-date {
+  margin: 0 0 1rem;
+  color: variables.$dodeka_grijs;
+}
+
+.fotos-modal-empty {
+  color: variables.$dodeka_blauw;
+}
+
+.fotos-modal-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fotos-modal-link {
+  display: block;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  background-color: variables.$dodeka_blauw;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: variables.$bold;
+  text-transform: capitalize;
+
+  &:hover {
+    background-color: variables.$dodeka_blauw90p;
+  }
+}
+
+// --- Create/edit form ---
+
+.fotos-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.fotos-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: variables.$dodeka_blauw;
+  font-weight: variables.$bold;
+
+  input,
+  select {
+    padding: 0.5rem;
+    border: 1px solid variables.$dodeka_grijs;
+    border-radius: 4px;
+    font-size: variables.$font_small;
+    font-weight: variables.$normal;
+    color: variables.$dodeka_blauw;
+  }
+}
+
+.fotos-form-preview {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.fotos-form-section {
+  margin: 0.5rem 0 0;
+  color: variables.$dodeka_blauw;
+  font-weight: variables.$bold;
+}
+
+.fotos-form-linkrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  input {
+    padding: 0.4rem 0.5rem;
+    border: 1px solid variables.$dodeka_grijs;
+    border-radius: 4px;
+    font-size: variables.$font_small;
+    color: variables.$dodeka_blauw;
+  }
+
+  input[type="url"] {
+    flex: 1;
+  }
+}
+
+.fotos-form-linklabel {
+  width: 6rem;
+  flex-shrink: 0;
+  color: variables.$dodeka_blauw;
+  text-transform: capitalize;
+
+  input,
+  &input {
+    width: 100%;
+  }
+}
+
+input.fotos-form-linklabel {
+  text-transform: none;
+}
+
+.fotos-form-linkremove {
+  border: none;
+  background: none;
+  color: variables.$dodeka_rood;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.fotos-form-addlink {
+  align-self: flex-start;
+  border: none;
+  background: none;
+  padding: 0;
+  color: variables.$dodeka_rood;
+  font-weight: variables.$bold;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.fotos-form-error {
+  margin: 0;
+  color: variables.$dodeka_rood;
+}
+
+.fotos-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}

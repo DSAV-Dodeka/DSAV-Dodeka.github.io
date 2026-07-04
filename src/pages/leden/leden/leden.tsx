@@ -10,6 +10,7 @@ const memberPages = [
   { title: "Huisstijl", emoji: "🎨", path: "/huisstijl" },
   { title: "Website Updates", emoji: "📰", path: "/update" },
   { title: "Reactietest", emoji: "⚡", path: "/reactietest" },
+  { title: "Foto's", emoji: "📸", path: "/leden/fotos" },
 ];
 
 export default function Leden() {
