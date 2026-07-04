@@ -1,0 +1,736 @@
+@import "../../../../variables";
+
+$day_ma: $dodeka_blauw;
+$day_wo: $dodeka_rood;
+$day_za: #2f7d5b;
+$day_other: #5d6f80;
+$groen: #2f7d5b;
+
+// Each group keeps its own accent color across every training day — this is
+// the main separator between events (the day-color is reserved for "which
+// day", these are "which group"). Picked to stay clear of the day colors
+// above and the trainer highlight colors ($tu_blauw / $baan_rood).
+$slot_sprint: #d97706;
+$slot_mila: #0f9488;
+$slot_loopgroep: #6d4aa0;
+$slot_t1: #5b7290;
+$slot_t2: #a3456b;
+
+.training-card {
+  --day-color: #{$day_other};
+  background: white;
+  border: 1px solid #e3e8ee;
+  border-radius: 14px;
+  // No overflow: hidden here — it would break the sticky card header.
+  box-shadow: 0 1px 3px rgba(0, 31, 72, 0.07);
+  transition: box-shadow 0.15s ease;
+
+  &.day-ma {
+    --day-color: #{$day_ma};
+  }
+  &.day-wo {
+    --day-color: #{$day_wo};
+  }
+  &.day-za {
+    --day-color: #{$day_za};
+  }
+
+  &:not(.is-cancelled):hover {
+    box-shadow: 0 4px 14px rgba(0, 31, 72, 0.13);
+  }
+
+  &.is-cancelled {
+    opacity: 0.75;
+    background: #f6f7f9;
+
+    .card-date {
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--day-color),
+        var(--day-color) 8px,
+        color-mix(in srgb, var(--day-color) 82%, white) 8px,
+        color-mix(in srgb, var(--day-color) 82%, white) 16px
+      );
+    }
+
+    .card-weekday,
+    .card-daynum {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.card-header {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  gap: 1rem;
+  padding: 0;
+  border: none;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  // Clips the colored date tile to the card's rounded corners.
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+// Zero-height marker just above the header; TrainingCard.tsx watches it with
+// an IntersectionObserver to know whether the sticky header is currently
+// pinned (see .is-stuck below).
+.card-sticky-sentinel {
+  height: 0;
+}
+
+// While a day is open, its header (with the date) sticks below the navbar
+// (4rem tall, z-index 10) so you always see which day you're scrolling in.
+.training-card.is-open > .card-header {
+  position: sticky;
+  top: 4rem;
+  z-index: 5;
+  border-radius: 13px 13px 0 0;
+  box-shadow: 0 3px 8px rgba(0, 31, 72, 0.08);
+
+  // Once actually pinned below the navbar, square off the top corners —
+  // rounded corners floating flush against the navbar look like a stray
+  // notch instead of a clean edge.
+  &.is-stuck {
+    border-radius: 0;
+  }
+}
+
+.training-card.is-cancelled > .card-header {
+  background: #f6f7f9;
+}
+
+.card-date {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  padding: 0.9rem 0.5rem;
+  background: var(--day-color);
+  color: white;
+
+  .card-weekday {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+  }
+
+  .card-daynum {
+    font-size: 1.35rem;
+    font-weight: $bold;
+    line-height: 1.6rem;
+  }
+
+  @include respond(phone) {
+    width: 5.2rem;
+
+    .card-daynum {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.card-summary {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.7rem 0;
+
+  .card-time {
+    color: $dodeka_blauw;
+    font-weight: $bold;
+    font-size: 0.95rem;
+  }
+
+  .card-events {
+    color: #5d6f80;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-cancel-reason {
+    color: $dodeka_rood;
+    font-weight: $bold;
+  }
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-right: 1rem;
+
+  .card-count {
+    color: #5d6f80;
+    font-size: 0.85rem;
+    white-space: nowrap;
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  .card-chevron {
+    color: #93a3b1;
+    transition: transform 0.15s ease;
+  }
+}
+
+.training-card.is-open .card-chevron {
+  transform: rotate(180deg);
+}
+
+.badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: $bold;
+  white-space: nowrap;
+
+  &.badge-signedup {
+    background: color-mix(in srgb, $groen 14%, white);
+    color: $groen;
+    border: 1px solid color-mix(in srgb, $groen 40%, white);
+  }
+
+  &.badge-cancelled {
+    background: color-mix(in srgb, $dodeka_rood 12%, white);
+    color: $dodeka_rood;
+    border: 1px solid color-mix(in srgb, $dodeka_rood 40%, white);
+  }
+}
+
+.card-body {
+  border-top: 1px solid #edf0f4;
+  padding: 0.6rem 1rem 0.9rem;
+
+  .card-cancelled-text {
+    color: $dodeka_blauw;
+    margin: 0.5rem 0;
+  }
+}
+
+// One container listing all trainers of the day. Sticks directly below the
+// card header (see the inline `top` style, set from the measured header
+// height) so it joins the sticky header as one continuous block once you
+// scroll past it, instead of popping in as a separate element.
+.card-trainer-info {
+  position: sticky;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.8rem;
+  margin: 0 0 0.5rem;
+  padding: 0.45rem 0.7rem;
+  background: #f1f4f7;
+  border-radius: 8px;
+  color: $dodeka_blauw;
+  font-size: 0.9rem;
+
+  // Once actually pinned flush below the (also squared-off) header, drop
+  // the rounding so the two line up as one continuous bar.
+  &.is-stuck {
+    border-radius: 0;
+  }
+}
+
+.trainer-info-label {
+  font-size: 0.68rem;
+  font-weight: $bold;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #93a3b1;
+}
+
+.trainer-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.trainer-chip {
+  display: inline-flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #d4dbe3;
+  border-radius: 999px;
+  padding: 0.14rem 0.65rem;
+  font-size: 0.85rem;
+  color: $dodeka_blauw;
+
+  // Warming-up trainers are marked in baan-rood.
+  &.is-warmup {
+    border-color: $baan_rood;
+    color: $baan_rood;
+  }
+
+  // The contact point of the day is marked in TU blauw and takes priority
+  // over the warming-up color if both apply.
+  &.is-contact {
+    border-color: $tu_blauw;
+    color: $tu_blauw;
+    font-weight: $bold;
+  }
+}
+
+.card-trainer-info-edit {
+  gap: 0.6rem 1.4rem;
+}
+
+.trainer-edit-field {
+  flex: 1;
+  min-width: 14rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: $bold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5d6f80;
+
+  i {
+    font-weight: $normal;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  input {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: $normal;
+    text-transform: none;
+    letter-spacing: normal;
+    color: $dodeka_blauw;
+    border: 1px solid #b7c3cf;
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    background: white;
+  }
+}
+
+// --- Event panels -------------------------------------------------------------
+
+// Running groups (with schedules) left, technical slots right on desktop;
+// a single stacked column on mobile.
+.event-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+
+  @include respond(computerscherm) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.event-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+// Each group is a clearly bounded panel: a colored left accent bar and
+// tinted header strip identify the group, body holds schedule and
+// attendees. The accent color is per-group (not per-day) so e.g. every
+// Sprint panel looks the same regardless of which day it's on.
+.event-panel {
+  --slot-color: #{$day_other};
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d5dce4;
+  border-left: 4px solid var(--slot-color);
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 31, 72, 0.05);
+
+  &.event-panel-sprint {
+    --slot-color: #{$slot_sprint};
+  }
+  &.event-panel-mila {
+    --slot-color: #{$slot_mila};
+  }
+  &.event-panel-loopgroep {
+    --slot-color: #{$slot_loopgroep};
+  }
+  &.event-panel-t1 {
+    --slot-color: #{$slot_t1};
+  }
+  &.event-panel-t2 {
+    --slot-color: #{$slot_t2};
+  }
+}
+
+.event-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.5rem 0.7rem;
+  background: color-mix(in srgb, var(--slot-color) 13%, white);
+  border-bottom: 1px solid color-mix(in srgb, var(--slot-color) 30%, white);
+
+  .event-name {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $dodeka_blauw;
+    font-weight: $bold;
+    font-size: 1.05rem;
+  }
+
+  .event-name-input {
+    flex: 1;
+    font: inherit;
+    font-weight: $bold;
+    color: $dodeka_blauw;
+    border: 1px dashed #b7c3cf;
+    border-radius: 6px;
+    padding: 0.15rem 0.4rem;
+    max-width: 13rem;
+    background: white;
+  }
+}
+
+.event-slot-tag {
+  font-size: 0.7rem;
+  font-weight: $bold;
+  letter-spacing: 0.05em;
+  color: #5d6f80;
+  background: white;
+  border: 1px solid #dbe2ea;
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+}
+
+.event-panel-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.55rem 0.7rem 0.65rem;
+}
+
+.event-comment {
+  margin: 0;
+  background: #fdf3e4;
+  color: #6b4a17;
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.event-schedule {
+  background: #fbfcfd;
+  border: 1px solid #e3e8ee;
+  border-left: 3px solid var(--slot-color);
+  border-radius: 8px;
+  padding: 0.45rem 0.7rem;
+
+  pre {
+    margin: 0;
+    font: inherit;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: $dodeka_blauw;
+    white-space: pre-wrap;
+  }
+}
+
+.event-no-schedule,
+.event-no-attendees {
+  margin: 0;
+  color: #93a3b1;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.event-edit-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #5d6f80;
+
+  textarea,
+  input {
+    font: inherit;
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: normal;
+    color: $dodeka_blauw;
+    border: 1px solid #b7c3cf;
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    resize: vertical;
+    background: white;
+  }
+}
+
+.event-attendees {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: #f4f6f9;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem 0.5rem;
+}
+
+.event-attendees-label {
+  font-size: 0.68rem;
+  font-weight: $bold;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #93a3b1;
+}
+
+.attendee-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.attendee-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: white;
+  border: 1px solid #e3e9f0;
+  color: $dodeka_blauw;
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+  font-size: 0.8rem;
+
+  &.is-you {
+    background: color-mix(in srgb, $groen 14%, white);
+    border: 1px solid color-mix(in srgb, $groen 40%, white);
+    font-weight: $bold;
+  }
+
+  .attendee-remove {
+    border: none;
+    background: none;
+    color: $dodeka_rood;
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.1rem;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+// --- Manage footer ------------------------------------------------------------
+
+.card-manage-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed #d4dbe3;
+}
+
+.manage-cancel-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  input {
+    font: inherit;
+    font-size: 0.9rem;
+    border: 1px solid #b7c3cf;
+    border-radius: 8px;
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+.manage-cancel-form input {
+  width: 16rem;
+
+  @include respond(phone) {
+    width: 10rem;
+  }
+}
+
+// --- Design exploration (DEV switcher: Design Huidig/A/B/C) -----------------
+// Three alternative treatments of the event panels, toggled via a class on
+// .training-page. Once a direction is chosen, the winner gets folded into
+// the base styles above and this section is removed.
+
+// Variant A — "Rustig": no containers at all. Groups are separated by
+// whitespace and a thin divider; the slot color shrinks to a small dot at
+// the group name. Hierarchy comes from typography.
+.design-a {
+  .event-panel {
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #e8edf3;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0.2rem;
+    }
+  }
+
+  .event-panel-header {
+    background: none;
+    border-bottom: none;
+    padding: 0 0 0.2rem;
+
+    .event-name::before {
+      content: "";
+      flex-shrink: 0;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: var(--slot-color);
+    }
+  }
+
+  .event-panel-body {
+    padding: 0 0 0 1.05rem;
+  }
+
+  .event-schedule {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .event-comment {
+    background: none;
+    padding: 0;
+    color: #8a5a19;
+  }
+
+  .event-attendees {
+    background: none;
+    padding: 0;
+    margin-top: 0.2rem;
+  }
+
+  .attendee-chip {
+    background: #f1f4f7;
+    border-color: transparent;
+  }
+}
+
+// Variant B — "Vlak": one soft flat container per group with the colored
+// spine kept, but no nested boxes inside — schedule and attendees are plain
+// content within the panel.
+.design-b {
+  .event-panel {
+    background: #f6f8fa;
+    border: none;
+    border-left: 4px solid var(--slot-color);
+    box-shadow: none;
+  }
+
+  .event-panel-header {
+    background: none;
+    border-bottom: none;
+    padding-bottom: 0.05rem;
+  }
+
+  .event-schedule {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .event-comment {
+    background: none;
+    padding: 0;
+    color: #8a5a19;
+  }
+
+  .event-attendees {
+    background: none;
+    border-top: 1px dashed #d5dce4;
+    border-radius: 0;
+    padding: 0.5rem 0 0;
+  }
+
+  .attendee-chip {
+    background: white;
+    border-color: #e3e9f0;
+  }
+}
+
+// Variant C — "Krachtig": solid color-blocked group headers (mini versions
+// of the date tile), white body. Maximum scannability, heaviest look.
+.design-c {
+  .event-panel {
+    border-color: color-mix(in srgb, var(--slot-color) 40%, white);
+    border-left-width: 1px;
+  }
+
+  .event-panel-header {
+    background: var(--slot-color);
+    border-bottom: none;
+
+    .event-name {
+      color: white;
+    }
+  }
+
+  .event-slot-tag {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: transparent;
+    color: white;
+  }
+
+  // The red sign-up button clashes on colored headers; invert it there.
+  .event-panel-header .btn.btn-signup {
+    background: white;
+    border-color: white;
+    color: var(--slot-color);
+
+    &:hover {
+      background: #f1f4f7;
+    }
+
+    &.is-signedup {
+      color: #2f7d5b;
+    }
+  }
+}
