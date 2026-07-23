@@ -134,10 +134,10 @@
                    "prestatie":"01:58.82"
                 },
                 {
-                   "naam":"Matthijs Arnoldus",
-                   "datum":"2022-07-03",
-                   "plaats":"Den Haag",
-                   "prestatie":"02:04.74"
+                   "naam":"Jacco Rodewijk",
+                   "datum":"2026-05-17",
+                   "plaats":"Delft",
+                   "prestatie":"02:04.30"
                 }
              ]
           },
@@ -163,16 +163,16 @@
                    "prestatie":"04:09.32"
                 },
                 {
+                   "naam":"Lucas Linssen",
+                   "datum":"2026-07-09",
+                   "plaats":"Den Haag",
+                   "prestatie":"04:20.23"
+                },
+                {
                    "naam":"Kyllian van Leeuwen",
                    "datum":"2025-03-25",
                    "plaats":"Amersfoort",
                    "prestatie":"04:22.35"
-                },
-                {
-                   "naam":"Jelmer Stuijt",
-                   "datum":"2022-06-01",
-                   "plaats":"Barendrecht",
-                   "prestatie":"04:32.48"
                 }
              ]
           },
@@ -521,7 +521,7 @@
                    "naam":"Joris Gudde",
                    "datum":"2026-04-25",
                    "plaats":"Rotterdam",
-                   "prestatie":"19.93"
+                   "prestatie":"26.99"
                 },
                 {
                    "naam":"Lars Priester",
@@ -792,6 +792,12 @@
                    "prestatie":"16:05"
                 },
                 {
+                   "naam":"Jacco Rodewijk",
+                   "datum":"2026-05-13",
+                   "plaats":"Venlo",
+                   "prestatie":"16:05"
+                },
+                {
                    "naam":"Chiem Denen",
                    "datum":"2024-09-22",
                    "plaats":"Venlo",
@@ -802,12 +808,6 @@
                    "datum":"2025-11-01",
                    "plaats":"Enschede",
                    "prestatie":"19:24"
-                },
-                {
-                   "naam":"Bart Groeneveld",
-                   "datum":"2021-11-13",
-                   "plaats":"Rotterdam",
-                   "prestatie":"19:32"
                 }
              ]
           },
@@ -833,16 +833,16 @@
                    "prestatie":"32:51"
                 },
                 {
+                   "naam":"Jacco Rodewijk",
+                   "datum":"2026-07-05",
+                   "plaats":"Noordwijk",
+                   "prestatie":"34:31"
+                },
+                {
                    "naam":"Kyllian van Leeuwen",
                    "datum":"2024-11-02",
                    "plaats":"Wageningen",
                    "prestatie":"35:56"
-                },
-                {
-                   "naam":"Chiem Denen",
-                   "datum":"2024-11-02",
-                   "plaats":"Venlo ",
-                   "prestatie":"37:31"
                 }
              ]
           },
@@ -874,10 +874,10 @@
                    "prestatie":"01:39:13"
                 },
                 {
-                   "naam": "Julius Knoester",
-                   "datum": "2026-05-10",
+                   "naam": "Jacco Rodewijk",
+                   "datum": "2025-05-11",
                    "plaats": "Leiden",
-                   "prestatie": "01:56:07"
+                   "prestatie": "01:43:26"
                 }
              ]
           },
@@ -1328,9 +1328,9 @@
              "prestaties":[
                 {
                   "naam":"Robina Negenman",
-                  "datum":"2024-06-02",
-                  "plaats":"Gouda",
-                  "prestatie":"26.04"
+                  "datum":"2026-05-02",
+                  "plaats":"Hengelo",
+                  "prestatie":"25.81"
                 },
                 {
                    "naam":"Flore Verbist",
@@ -1363,9 +1363,9 @@
              "prestaties":[
                 {
                    "naam":"Robina Negenman",
-                   "datum":"2024-06-08",
-                   "plaats":"Eindhoven",
-                   "prestatie":"57.62"
+                   "datum":"2026-06-13",
+                   "plaats":"Groningen",
+                   "prestatie":"57.01"
                 },
                 {
                    "naam":"Anne-Wil van Werkhoven",
@@ -1415,16 +1415,16 @@
                    "prestatie":"02:23.12"
                 },
                 {
+                   "naam":"Robina Negenman",
+                   "datum":"2026-05-03",
+                   "plaats":"Hengelo",
+                   "prestatie":"02:23.98"
+                },
+                {
                    "naam":"Aniek Sips",
                    "datum":"2022-06-11",
                    "plaats":"Groningen",
                    "prestatie":"02:25.55"
-                },
-                {
-                   "naam":"Saana Taal",
-                   "datum":"2023-05-27",
-                   "plaats":"Wageningen",
-                   "prestatie":"02:33.84"
                 }
              ]
           },
@@ -1520,9 +1520,9 @@
              "prestaties":[
                 {
                    "naam":"Robina Negenman",
-                   "datum":"2025-05-03",
-                   "plaats":"Delft",
-                   "prestatie":"15.02"
+                   "datum":"2026-05-02",
+                   "plaats":"Hengelo",
+                   "prestatie":"14.76"
                 },
                 {
                    "naam":"Mira Groot",
@@ -1555,9 +1555,9 @@
              "prestaties":[
                 {
                    "naam":"Robina Negenman",
-                   "datum":"2024-06-09",
-                   "plaats":"Eindhoven ",
-                   "prestatie":"01:01.87"
+                   "datum":"2026-05-31",
+                   "plaats":"Hoofddorp",
+                   "prestatie":"01:00.65"
                 },
                 {
                    "naam":"Robin Beijer",
@@ -1681,6 +1681,12 @@
                    "prestatie":"39.41"
                 },
                 {
+                   "naam":"Robina Negenman",
+                   "datum":"2026-05-03",
+                   "plaats":"Hengelo",
+                   "prestatie":"37.61"
+                },
+                {
                    "naam":"Saana Taal",
                    "datum":"2020-07-03",
                    "plaats":"Delft",
@@ -1697,12 +1703,6 @@
                    "datum":"2025-05-03",
                    "plaats":"Delft",
                    "prestatie":"24.97"
-                },
-                {
-                   "naam":"Nienke Westra",
-                   "datum":"2026-05-31",
-                   "plaats":"Hoofddorp",
-                   "prestatie":"21.16"
                 }
              ]
           },
@@ -1781,9 +1781,9 @@
              "prestaties":[
                 {
                    "naam":"Robina Negenman",
-                   "datum":"2024-05-11",
-                   "plaats":"Delft",
-                   "prestatie":"1.58"
+                   "datum":"2026-05-02",
+                   "plaats":"Hengelo",
+                   "prestatie":"1.59"
                 },
                 {
                    "naam":"Saana Taal",
@@ -1891,6 +1891,12 @@
                    "prestatie":"5.24"
                 },
                 {
+                   "naam":"Robina Negenman",
+                   "datum":"2025-05-04",
+                   "plaats":"Delft",
+                   "prestatie":"5.23"
+                },
+                {
                    "naam":"Anna Lusthof",
                    "datum":"2023-05-21",
                    "plaats":"Eindhoven",
@@ -1907,12 +1913,6 @@
                    "datum":"2021-10-24",
                    "plaats":"Eindhoven",
                    "prestatie":"4.69"
-                },
-                {
-                   "naam":"Donne Gerlich",
-                   "datum":"2021-07-03",
-                   "plaats":"Delft",
-                   "prestatie":"4.27"
                 }
              ]
           },
@@ -1923,7 +1923,7 @@
                    "naam":"Robina Negenman",
                    "datum":"2024-05-12",
                    "plaats":"Delft",
-                   "prestatie":"4767.00"
+                   "prestatie":"4927.00"
                 },
                 {
                    "naam":"Saana Taal",
