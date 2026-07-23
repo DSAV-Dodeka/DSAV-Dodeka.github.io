@@ -16,6 +16,8 @@ const Modal = (props: ModalProps) => {
         dialog.current?.close()
     }
 
+    // useEffect required: <dialog> showModal/close are imperative DOM APIs
+    // that cannot be expressed declaratively in JSX.
     useEffect(() => {
         if (!dialog.current) {
             return
@@ -41,7 +43,6 @@ const Modal = (props: ModalProps) => {
                     <div className="modal-title">{props.Title}</div>
                     <button
                         className="modal-close-btn"
-                        autoFocus
                         onClick={closeModal}
                         title="Sluit"
                     >

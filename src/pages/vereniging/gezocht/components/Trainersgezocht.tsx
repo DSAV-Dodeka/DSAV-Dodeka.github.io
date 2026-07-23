@@ -1,7 +1,7 @@
 import Header from "../../../../components/Header";
 import "./Trainersgezocht.scss";
 import ContactButtons from "../../../../components/ContactButtons";
-import dagvandeatletiek from "$images/trainingen/dagvandeatletiek.webp";
+import jamietrainer from "$images/nieuws/jamietrainer.webp";
 
 function Trainersgezocht(props: { text: string }) {
   return (
@@ -18,7 +18,7 @@ function Trainersgezocht(props: { text: string }) {
         </p>
         <ContactButtons />
       </div>
-      <img src={dagvandeatletiek} alt="" className="gezocht_4" />
+      <img src={jamietrainer} alt="" className="gezocht_4" />
     </div>
   );
 }

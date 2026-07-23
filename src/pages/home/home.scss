@@ -1,5 +1,11 @@
 @use "../../variables";
 
+#home_root {
+  position: relative;
+  overflow-x: clip;
+  width: 100%;
+}
+
 #home_title_right_button:hover {
   cursor: pointer;
 }
@@ -50,7 +56,10 @@
 
 
 .snow {
-  animation: fall ease-in, sway ease-in-out;
+  animation-name: fall, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards, forwards;
   color: white;
   position: absolute;
 }

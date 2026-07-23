@@ -1,11 +1,37 @@
 {
     "wedstrijden": [
         {
-            "wedstrijd": "NSK Ekiden 2026",
-            "foto": "nsk_ekiden_2026.jpg",
+            "wedstrijd": "NSK Meerkamp 2026",
+            "foto": "nsk_meerkamp_2026.webp",
             "prijzen": [
                 {
-                    "naam": "Dodekampionenen",
+                    "naam": "Tijmen Hoedjes, Robin Beijer",
+                    "plaats": 1,
+                    "afstand": "Loopmeerkamp"
+                },
+                {
+                    "naam": "Lou Bijman",
+                    "plaats": 3,
+                    "afstand": "Loopmeerkamp"
+                },
+                {
+                    "naam": "Robina Negenman",
+                    "plaats": 2,
+                    "afstand": "Zevenkamp"
+                }
+            ],
+            "prestaties": [
+                "Sven evenaarde het clubrecord hoogspringen met 1.95m",
+                "Robin en Tijmen winnen de loopmeerkamp, Robin voor de vijfde keer op rij",
+                "Uniek: Saana deed mee aan de werpkamp én de loopmeerkamp"
+            ]
+        },
+        {
+            "wedstrijd": "NSK Ekiden 2026",
+            "foto": "nsk_ekiden_2026.webp",
+            "prijzen": [
+                {
+                    "naam": "Dodekampioenen",
                     "plaats": 1,
                     "afstand": "Marathon estafette mixed"
                 }
@@ -18,7 +44,7 @@
         },
         {
             "wedstrijd": "NSK Indoor 2026",
-            "foto": "nsk_indoor_2026.jpg",
+            "foto": "nsk_indoor_2026.webp",
             "prijzen": [
                 {
                     "naam": "Stein Glastra",
@@ -54,12 +80,12 @@
             "prestaties": [
                 "Er werden maar liefst 7 dodeka records behaald...",
                 "... en een record aantal medailles van maar liefst 6 plakken",
-                "Xylander brak zijn polsstok (bucket list van elke polsstokker)"
+                "Xylander brak zijn polsstok (bucket list van elke polsstokspringer)"
             ]
         },
         {
             "wedstrijd": "NSK Cross 2026",
-            "foto": "nsk_cross_2026.jpg",
+            "foto": "nsk_cross_2026.webp",
             "prijzen": [
                 {
                     "naam": "Stein Glastra",

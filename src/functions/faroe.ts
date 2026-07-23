@@ -1,7 +1,7 @@
 import { Client } from "@faroe/client";
 
 const AUTH_URL = import.meta.env.DEV
-  ? "http://localhost:12770"
+  ? "http://127.0.0.1:12770"
   : (import.meta.env['VITE_AUTH_URL'] ?? "https://auth.dsavdodeka.nl");
 
 class FaroeEndpoint {

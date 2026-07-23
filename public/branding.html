@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodeka Huisstijl</title>
+    <!-- Use Tailwind CSS for modern, responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Define CSS variables for all key colors with descriptive names */
+        :root {
+            --brand-primary: #001D48;
+            --brand-secondary: #BB4B3D;
+            --brand-success: #FFFFFF;
+            --brand-warning: #00A6D6;
+            --brand-danger: #FF914D;
+
+            --page-bg: #f7f9fb;
+            --card-bg: #FFFFFF;
+            --card-inner-bg: #F9FAFB;
+            --text-dark: #001d48;
+            --text-gray: #4B5563;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            background-color: var(--page-bg);
+            color: var(--text-dark);
+        }
+
+        /* Apply the new header font to all heading elements */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            ;
+            color: var(--text-dark);
+        }
+
+        /* Custom style for the copy message box */
+        #copy-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1f2937;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            /* Fully rounded */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        #copy-message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="p-8 md:p-12 lg:p-16">
+
+    <!-- Success message for clipboard copy -->
+    <div id="copy-message" class="text-sm font-medium">Copied!</div>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto bg-white p-8 md:p-12 lg:p-16 rounded-3xl shadow-xl space-y-16">
+
+        <!-- Upright Logo at the top of the page for quick reference -->
+        <div class="flex justify-center items-center py-8">
+            <img src="https://placehold.co/200x200/A3A3A3/007BFF?text=Upright+Logo" alt="Upright Logo Placeholder"
+                class="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-2xl shadow-lg">
+        </div>
+
+        <!-- Header Section -->
+        <header class="text-center space-y-4">
+            <h1 style="font-family: 'Montserrat', sans-serif; font-weight:900"
+                class="text-4xl md:text-5xl lg:text-6xl text-gray-800 tracking-tight">Huisstijl van Dodeka</h1>
+            <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto">Een beknopt overzicht van de visuele
+                identiteit van D.S.A.V. Dodeka</p>
+        </header>
+
+        <!-- --- Introduction Section --- -->
+        <section class="space-y-6">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-gray-800 border-b-2 pb-2 border-gray-200 flex items-center gap-3">
+                <i data-lucide="info" class="w-8 h-8"></i>
+                Huisstijl Introductie
+            </h2>
+            <div class="space-y-4 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                <p class="text-gray-700">Dodeka is opgericht in 2019 en daarmee een zeer jonge en frisse vereniging. Dat
+                    willen wij ook graag uitstralen. Omdat we een sport vereniging zijn voor studenten willen we ook
+                    bepaalde mate van snelheid en speelsheid uitstralen. We gebruiken daarom strakke, maar afgeronde
+                    vormen</p>
+                <p class="text-gray-700">In dit document krijg je een overzicht te zien van het juiste gebruik van de
+                    visuele elementen die jouw design herkenbaar maken als een Dodeka ontwerp.</p>
+            </div>
+        </section>
+
+        <!-- --- Color Palette Section --- -->
+        <section class="space-y-6">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-gray-800 border-b-2 pb-2 border-gray-200 flex items-center gap-3">
+                <i data-lucide="palette" class="w-8 h-8"></i>
+                Kleurenpalette
+            </h2>
+            <p class="text-gray-700 mb-8">
+                De <strong>primaire kleuren</strong> herken je waarschijnlijk meteen en dat is de bedoeling. Deze
+                kleuren zijn hoor je als hoofdkleuren te gebruiken in de designs. Met deze drie kleuren kan je een
+                volledig design maken.
+            </p>
+            <p class="text-gray-700 mb-8">Maar hoe kan je ergens dan de nadruk op leggen? Daar zijn de
+                <strong>secundaire kleuren</strong> voor. Deze gebruik je om iets uit te lichten in je design, zoals een
+                knop.
+            </p>
+
+            <!-- Main Colors -->
+            <h3 class="text-xl md:text-2xl font-semibold text-gray-700">Primaire Kleuren</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <!-- Main Color 1 -->
+                <div class="flex flex-col items-center space-y-3 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                    <div id="mainColor1"
+                        class="w-24 h-24 rounded-2xl md:w-32 md:h-32 shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+                        style="background-color: var(--brand-primary);" onclick="copyToClipboard('#001D48')"></div>
+                    <span class="text-sm font-semibold text-gray-700">Dodeka Blauw</span>
+                    <div class="flex flex-col text-center space-y-1 mt-2">
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('#001D48')">HEX: #001D48</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('rgb(0,29,72)')">RGB: rgb(0,29,72)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('cmyk(100, 60, 0, 72)')">CMYK: cmyk(100, 60, 0, 72)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('Pantone 293 C')">Pantone: 293 C</span>
+                    </div>
+                </div>
+                <!-- Main Color 2 -->
+                <div class="flex flex-col items-center space-y-3 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                    <div id="mainColor2"
+                        class="w-24 h-24 rounded-2xl md:w-32 md:h-32 shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+                        style="background-color: var(--brand-secondary);" onclick="copyToClipboard('#BB4B3D')"></div>
+                    <span class="text-sm font-semibold text-gray-700">Baan Rood</span>
+                    <div class="flex flex-col text-center space-y-1 mt-2">
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('#BB4B3D')">HEX: #BB4B3D</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('rgb(187, 75, 61)')">RGB: rgb(187, 75, 61)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('cmyk(0, 60, 67, 27)')">CMYK: cmyk(0, 60, 67, 27)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('Pantone 18-1142 TPX')">Pantone: 18-1142 TPX</span>
+                    </div>
+                </div>
+                <!-- Main Color 3 -->
+                <div class="flex flex-col items-center space-y-3 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                    <div id="mainColor3"
+                        class="w-24 h-24 rounded-2xl md:w-32 md:h-32 shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+                        style="background-color: var(--brand-success);" onclick="copyToClipboard('#FFFFFF')"></div>
+                    <span class="text-sm font-semibold text-gray-700">Wit</span>
+                    <div class="flex flex-col text-center space-y-1 mt-2">
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('#FFFFFF')">HEX: #FFFFFF</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('rgb(255, 255, 255)')">RGB: rgb(255, 255, 255)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('cmyk(0, 0, 0, 0)')">CMYK: cmyk(0, 0, 0, 0)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('Pantone White')">Pantone: White</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extra Colors -->
+            <h3 class="text-xl md:text-2xl font-semibold text-gray-700 mt-8">Secundaire Kleuren</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <!-- Extra Color 1 -->
+                <div class="flex flex-col items-center space-y-3 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                    <div id="extraColor1"
+                        class="w-24 h-24 rounded-2xl md:w-32 md:h-32 shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+                        style="background-color: var(--brand-warning);" onclick="copyToClipboard('#00A6D6')"></div>
+                    <span class="text-sm font-semibold text-gray-700">TU Blauw</span>
+                    <div class="flex flex-col text-center space-y-1 mt-2">
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('#00A6D6')">HEX: #00A6D6</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('rgb(0,166,214)')">RGB: rgb(0,166,214)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('cmyk(75, 14, 7, 0)')">CMYK: cmyk(75, 14, 7, 0)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('Pantone Process Cyan C')">Pantone: Process Cyan C</span>
+                    </div>
+                </div>
+                <!-- Extra Color 2 -->
+                <div class="flex flex-col items-center space-y-3 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                    <div id="extraColor2"
+                        class="w-24 h-24 rounded-2xl md:w-32 md:h-32 shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+                        style="background-color: var(--brand-danger);" onclick="copyToClipboard('#FF914D')"></div>
+                    <span class="text-sm font-semibold text-gray-700">Team NL Oranje </span>
+                    <div class="flex flex-col text-center space-y-1 mt-2">
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('#FF914D')">HEX: #FF914D</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('rgb(255, 145, 77)')">RGB: rgb(255, 145, 77)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('cmyk(0, 43, 70, 0)')">CMYK: cmyk(0, 43, 70, 0)</span>
+                        <span class="text-xs text-gray-500 font-mono cursor-pointer"
+                            onclick="copyToClipboard('Pantone 1575 C')">Pantone: 1575 C</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Typography Section --- -->
+        <section class="space-y-6">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-gray-800 border-b-2 pb-2 border-gray-200 flex items-center gap-3">
+                <i data-lucide="type" class="w-8 h-8"></i>
+                Lettertypes
+            </h2>
+            <p class="text-gray-700 mb-8">
+                We gebruiken het lettertype Montserrat voor een clean, modern, maar ook dynamisch uiterlijk. Het is een
+                goed leesbaar lettertype voor titels en is makkelijk van ver te lezen. Voor een
+                <strong>leestekst</strong> is Montserrat <strong>niet</strong> geschikt, daarom gebruik je Source Sans 3
+                voor alles waar je zinnen van moet lezen. Gebruik daarom Montserrat Bold ook als je in een afbeelding 1
+                woord wil duidelijk maken, gebruik daar niet een zwak lettertype.
+            </p>
+
+            <div class="space-y-6 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                <p style="font-family: 'Montserrat', sans-serif; font-weight:900"
+                    class="text-3xl md:text-4xl lg:text-5xl text-gray-900">Title: Montserrat Black</p>
+                <p style="font-family: 'Montserrat', sans-serif; font-weight:800"
+                    class="text-2xl md:text-3xl lg:text-4xl text-gray-800">Heading 1: Montserrat Bold</p>
+                <p style="font-family: 'Source Sans 3', sans-serif; font-weight:400"
+                    class="text-lg md:text-xl lg:text-2xl font-medium text-gray-500">Lees tekst: Source Sans 3</p>
+            </div>
+        </section>
+
+        <!-- --- Logo Section --- -->
+        <section class="space-y-6">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-gray-800 border-b-2 pb-2 border-gray-200 flex items-center gap-3">
+                <i data-lucide="image" class="w-8 h-8"></i>
+                Logos
+            </h2>
+            <p class="text-gray-700 mb-8">
+                Het logo van D.S.A.V. Dodeka symboliseert een atletiek baan. Het lettertype is modern wat past bij de
+                leeftijd van de vereniging. De d’s en a’s zijn aangepast naar de vorm van de atletiekbaan. En de dikte
+                van de letters van “odeka” is aangepast naar de dikte van de lijnen van de atletiekbaan d.
+            </p>
+
+            <p>
+                Ons logo maakt ons makkelijk herkenbaar voor andere mensen en verenigingen. Het is vanaf de andere kant
+                van de atletiekbaan nog steeds goed te herkennen. Het is samen met veelvoudig braveren ons sterkste
+                herkennigspunt. Daarom is het belangrijk dat we ons logo correct gebruiken.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Elongated Logo -->
+                <div class="flex flex-col items-center space-y-3 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                    <div
+                        class="flex items-center justify-center w-full h-24 p-2 bg-white rounded-lg border border-gray-200">
+                        <img src="https://placehold.co/250x70/A3A3A3/007BFF?text=Elongated+Logo"
+                            alt="Elongated Logo Dark Blue" class="max-w-full max-h-full">
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700">Elongated Logo (Dark Blue)</p>
+                    <div class="flex items-center justify-center w-full h-24 p-2 bg-gray-900 rounded-lg">
+                        <img src="https://placehold.co/250x70/4B5563/FFFFFF?text=Elongated+Logo"
+                            alt="Elongated Logo White" class="max-w-full max-h-full">
+                    </div>
+                    <p class="text-xs text-center text-gray-500">Dit hoofdlogo wordt gebruikt wanneer dat kan. Als er
+                        genoeg ruimte is gebruik je altijd dit logo.</p>
+                </div>
+                <!-- Upright Full Logo -->
+                <div class="flex flex-col items-center space-y-3 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                    <div
+                        class="flex items-center justify-center w-36 h-36 p-2 bg-white rounded-lg border border-gray-200">
+                        <img src="https://placehold.co/150x150/A3A3A3/007BFF?text=Upright+Logo"
+                            alt="Upright Full Logo Dark Blue" class="max-w-full max-h-full">
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700">Upright Full Logo (Dark Blue)</p>
+                    <div class="flex items-center justify-center w-36 h-36 p-2 bg-gray-900 rounded-lg">
+                        <img src="https://placehold.co/150x150/4B5563/FFFFFF?text=Upright+Logo"
+                            alt="Upright Full Logo White" class="max-w-full max-h-full">
+                    </div>
+                    <p class="text-xs text-center text-gray-500">Dit logo gebruik je wanneer er niet genoeg ruimte is
+                        voor het lange logo. Denk hierbij aan een posterplek of een sticker. De merchandise gebruikt ook
+                        dit logo omdat het meest herkenbare deel (de atletiekbaan) dan groter afgedrukt kan worden.</p>
+                </div>
+                <!-- Monogram -->
+                <div class="flex flex-col items-center space-y-3 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                    <div
+                        class="flex items-center justify-center w-24 h-24 p-2 bg-white rounded-lg border border-gray-200">
+                        <img src="https://placehold.co/100x100/A3A3A3/007BFF?text=M" alt="Monogram Dark Blue"
+                            class="max-w-full max-h-full">
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700">Monogram (Dark Blue)</p>
+                    <div class="flex items-center justify-center w-24 h-24 p-2 bg-gray-900 rounded-lg">
+                        <img src="https://placehold.co/100x100/4B5563/FFFFFF?text=M" alt="Monogram White"
+                            class="max-w-full max-h-full">
+                    </div>
+                    <p class="text-xs text-center text-gray-500">Het icoon gebruik je wanneer de tekst van de
+                        hoofdlogo’s onleesbaar zal zijn of wanneer je het logo wil gebruiken in een setting waar tekst
+                        onwenselijk is.</p>
+                </div>
+            </div>
+        </section>
+
+     
+
+        <!-- --- CRAP Rules and Application --- -->
+        <section class="space-y-6">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-gray-800 border-b-2 pb-2 border-gray-200 flex items-center gap-3">
+                <i data-lucide="layout-grid" class="w-8 h-8"></i>
+                CRAP Rules and Application
+            </h2>
+            <p class="text-gray-700 mb-8">
+                The <strong>CRAP</strong> principles are fundamental to good design. Applying <strong>Contrast</strong>,
+                <strong>Repetition</strong>, <strong>Alignment</strong>, and <strong>Proximity</strong> consistently
+                will create a professional, cohesive, and easy-to-read experience for your audience.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                <!-- Contrast Diagram -->
+                <div class="flex flex-col items-center text-center space-y-4">
+                    <div class="w-full flex items-center justify-center h-24 rounded-lg bg-gray-900 shadow-lg">
+                        <p class="text-white text-3xl font-bold">Contrast</p>
+                    </div>
+                    <div class="w-full h-24 rounded-lg bg-gray-200 shadow-lg flex items-center justify-center">
+                        <p class="text-gray-900 text-sm font-normal">Less Contrast</p>
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700">Contrast</p>
+                </div>
+
+                <!-- Repetition Diagram -->
+                <div class="flex flex-col items-center text-center space-y-4">
+                    <div class="flex items-center justify-around w-full h-24 rounded-lg bg-white shadow-lg p-2">
+                        <div class="w-10 h-10 rounded-full" style="background-color: var(--brand-primary);"></div>
+                        <div class="w-10 h-10 rounded-full" style="background-color: var(--brand-primary);"></div>
+                        <div class="w-10 h-10 rounded-full" style="background-color: var(--brand-primary);"></div>
+                    </div>
+                    <div class="flex items-center justify-around w-full h-24 rounded-lg bg-white shadow-lg p-2">
+                        <div class="w-10 h-10 rounded-full" style="background-color: var(--brand-primary);"></div>
+                        <div class="w-10 h-10 rounded-full" style="background-color: var(--brand-primary);"></div>
+                        <div class="w-10 h-10 rounded-full" style="background-color: var(--brand-primary);"></div>
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700">Repetition</p>
+                </div>
+
+                <!-- Alignment Diagram -->
+                <div class="flex flex-col items-center text-center space-y-4">
+                    <div class="w-full h-24 p-2 rounded-lg bg-white shadow-lg flex flex-col justify-center">
+                        <div class="w-3/4 h-4 bg-gray-400 rounded mb-2"></div>
+                        <div class="w-full h-4 bg-gray-500 rounded mb-2"></div>
+                        <div class="w-1/2 h-4 bg-gray-600 rounded"></div>
+                    </div>
+                    <div class="w-full h-24 p-2 rounded-lg bg-white shadow-lg flex flex-col justify-center">
+                        <div class="w-3/4 h-4 bg-gray-400 rounded text-right mb-2 ml-auto"></div>
+                        <div class="w-full h-4 bg-gray-500 rounded mb-2"></div>
+                        <div class="w-1/2 h-4 bg-gray-600 rounded text-right ml-auto"></div>
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700">Alignment</p>
+                </div>
+
+                <!-- Proximity Diagram -->
+                <div class="flex flex-col items-center text-center space-y-4">
+                    <div
+                        class="w-full h-24 p-4 rounded-lg bg-white shadow-lg flex flex-col justify-center items-center">
+                        <div class="flex space-x-2 mb-2">
+                            <div class="w-8 h-8 rounded-full" style="background-color: var(--brand-primary);"></div>
+                            <div class="w-8 h-8 rounded-full" style="background-color: var(--brand-primary);"></div>
+                        </div>
+                        <div class="w-20 h-8 rounded-lg bg-gray-300"></div>
+                    </div>
+                    <div
+                        class="w-full h-24 p-4 rounded-lg bg-white shadow-lg flex flex-col justify-center items-center">
+                        <div class="flex space-x-2">
+                            <div class="w-8 h-8 rounded-full" style="background-color: var(--brand-primary);"></div>
+                            <div class="w-8 h-8 rounded-full" style="background-color: var(--brand-primary);"></div>
+                        </div>
+                        <div class="w-20 h-8 rounded-lg bg-gray-300 mt-2"></div>
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700">Proximity</p>
+                </div>
+            </div>
+
+            <!-- Original CRAP text kept as reference -->
+            <div
+                class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                <div class="flex-1 space-y-2">
+                    <h4 class="font-bold text-green-600">✅ Do's</h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li><strong>Contrast:</strong> Ensure sufficient contrast between text and background colors for
+                            readability, and use size/weight to differentiate important elements.</li>
+                        <li><strong>Repetition:</strong> Use the same colors, fonts, and logo versions consistently
+                            across all branding materials.</li>
+                        <li><strong>Alignment:</strong> Align elements to create a clear, organized structure. Don't use
+                            random or inconsistent spacing.</li>
+                        <li><strong>Proximity:</strong> Group related elements together to show they belong as a single
+                            unit. For example, a heading should be closer to its paragraph than to the next heading.
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex-1 space-y-2">
+                    <h4 class="font-bold text-red-600">❌ Don'ts</h4>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Avoid using low-contrast color combinations or making visual elements compete for attention.
+                        </li>
+                        <li>Don't introduce new, unapproved colors or fonts without a clear reason.</li>
+                        <li>Never stretch, squash, or distort the logo, and always maintain its clear exclusion zone.
+                        </li>
+                        <li>Avoid placing elements randomly or with inconsistent spacing that makes the design feel
+                            messy.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Practical Design Tips Section --- -->
+        <section class="space-y-6">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-gray-800 border-b-2 pb-2 border-gray-200 flex items-center gap-3">
+                <i data-lucide="lightbulb" class="w-8 h-8"></i>
+                Practical Design Tips
+            </h2>
+            <div class="space-y-4 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li><strong>Maintain Hierarchy:</strong> Use the different font weights and sizes to create a clear
+                        visual hierarchy. Use `Heading 1` for top-level titles and `Body Text` for main paragraphs.</li>
+                    <li><strong>White Space is Your Friend:</strong> Give elements room to breathe. Don't overcrowd your
+                        designs, and use ample padding and margins.</li>
+                    <li><strong>Test for Accessibility:</b> Always ensure your color combinations have enough contrast
+                            for people with visual impairments. Use online tools to check for accessibility.</li>
+                    <li><strong>File Formats:</strong> Use SVG or high-resolution PNG for logos on the web. For print,
+                        use vector formats like AI or EPS to ensure quality.</li>
+                </ul>
+            </div>
+            <!-- Shapes Guide -->
+            <h3 class="text-xl md:text-2xl font-semibold text-gray-700 mt-8">Brand Shapes Guide</h3>
+            <div
+                class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                <div class="flex-1 space-y-2">
+                    <h4 class="font-bold text-green-600">✅ Recommended Shapes</h4>
+                    <p class="text-xs text-gray-500">
+                        Use geometric shapes like circles, squares, or simple lines that align with the brand's clean
+                        and modern aesthetic. These shapes can be incorporated into design elements, icons, and layouts.
+                    </p>
+                </div>
+                <div class="flex-1 space-y-2">
+                    <h4 class="font-bold text-red-600">❌ Shapes to Avoid</h4>
+                    <p class="text-xs text-gray-500">
+                        Stay away from overly complex, jagged, or unprofessional shapes that might clash with the
+                        brand's identity. This includes shapes with an overly "retro" or "futuristic" feel unless
+                        specifically part of a campaign.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Brand History Section --- -->
+        <section class="space-y-6">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-gray-800 border-b-2 pb-2 border-gray-200 flex items-center gap-3">
+                <i data-lucide="clock" class="w-8 h-8"></i>
+                Herkomst van het logo
+            </h2>
+            <div class="space-y-4 p-6 bg-gray-50 rounded-2xl shadow-inner">
+                <p class="text-gray-700">Na de naamsverandering begin 2021 is er een logo-werkgroep opgericht, bestaande
+                    uit:</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                    <li>Abel Kappenburg</li>
+                    <li>Donne Gerlich</li>
+                    <li>Lianne Folkerts</li>
+                    <li>Koen Stapel</li>
+                    <li>Nathan Douenburg</li>
+                    <li>Jefry el Bhwash</li>
+                </ul>
+                <p class="text-gray-700">Deze mensen hebben zich bezig gehouden met het logo, de kleur en het
+                    lettertype. Er zijn een reeks aan mogelijke logo's voorbij gekomen, maar één daarvan viel op. Dat
+                    logo was namelijk iets verder dan de conceptfase omdat een vriend van Jefry, Raúl Cortés Peña, op
+                    het concept van Jefry zijn design-skills had uitgeoefend. Dit logo werd snel de favoriet en vanaf
+                    dat punt is de groep bezig geweest met de verschillende versies van het logo die je nu kent.</p>
+                <p class="text-gray-700">Op 31 maart 2021 hebben zij dit logo gepresenteerd aan de vereniging via een
+                    discord meeting. Echter is uit dit proces nooit een formeel document voortgekomen. Daarom is er in
+                    November 2022 door Jefry dit huisstijl document opgesteld. Hierna heeft Donne meegeholpen.</p>
+                <p class="text-gray-700">Later in 2025 is door Itse het afmaken van de huisstijl weer in het leven
+                    geroepen. Daar is in overleg met Jefry een werkgroep uit voortgekomen met Itse Veltmeijer, Julius
+                    Knoester, Noortje Molenaar, Xylander Parqui, Anne-Wil van Werkhoven en Jefry. Zij hebben de
+                    huisstijl opnieuw opgepakt en zo zijn daar de Canva met allerlei templates en dit document/deze
+                    webpagina uit voortgekomen.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        /**
+         * Copies a given text to the clipboard and shows a temporary success message.
+         * @param {string} text - The text to be copied.
+         */
+        function copyToClipboard(text) {
+            // Create a temporary input element to hold the text
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+
+            // Select the text and copy it
+            tempInput.select();
+            document.execCommand('copy');
+
+            // Remove the temporary input
+            document.body.removeChild(tempInput);
+
+            // Show a temporary success message
+            const messageBox = document.getElementById('copy-message');
+            messageBox.classList.add('show');
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 2000); // Hide the message after 2 seconds
+        }
+
+        // Handle the case where the user might want dodecagons instead of rounded squares.
+        // The current implementation uses rounded squares, which is a good default.
+        // To change to a dodecagon, you would need to use an SVG or a CSS clip-path.
+        // For simplicity and broad compatibility, the current rounded square is a better choice.
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

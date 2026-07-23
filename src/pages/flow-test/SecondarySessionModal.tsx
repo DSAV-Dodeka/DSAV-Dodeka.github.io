@@ -20,7 +20,7 @@ export default function SecondarySessionModal({ open, onClose }: Props) {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
 
-  // Sync dialog open state
+  // useEffect required: <dialog> showModal/close are imperative DOM APIs.
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;

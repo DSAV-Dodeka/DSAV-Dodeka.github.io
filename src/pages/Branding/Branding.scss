@@ -1,0 +1,247 @@
+@use "../../variables";
+
+.branding-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 variables.$margin_x;
+  position: relative;
+
+  @include variables.respond(mobile) {
+    padding: 0 variables.$margin_mobile;
+  }
+
+  .branding-section {
+    padding: 2rem 0 3rem;
+    position: relative;
+    z-index: 1;
+
+    & + .branding-section {
+      margin-top: 0.5rem;
+    }
+
+    h2 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: variables.$font_large;
+      color: #fff;
+      background: variables.$dodeka_blauw;
+      padding: 1.25rem 2rem;
+      border-radius: 20px;
+      margin-bottom: 0;
+      letter-spacing: 0.02em;
+      position: relative;
+
+      @include variables.respond(mobile) {
+        font-size: variables.$font_ml;
+        padding: 1rem 1.25rem;
+        border-radius: 14px;
+      }
+    }
+
+    h3 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      color: variables.$dodeka_blauw;
+    }
+  }
+}
+
+// Animated floating background shapes
+.branding-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  // Stretch wider than the content area to fill the visible page
+  left: calc(-1 * variables.$margin_x - 10vw);
+  right: calc(-1 * variables.$margin_x - 10vw);
+  z-index: 0;
+  pointer-events: none;
+
+  @include variables.respond(mobile) {
+    left: calc(-1 * variables.$margin_mobile - 5vw);
+    right: calc(-1 * variables.$margin_mobile - 5vw);
+  }
+
+  &__shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.09;
+    will-change: transform;
+
+    // TU Blauw — large circle top right
+    &--1 {
+      width: 380px;
+      height: 380px;
+      background: #00A6D6;
+      top: 2%;
+      right: 2%;
+      animation: float-gentle 30s ease-in-out infinite;
+    }
+
+    // Baan rood — large left upper
+    &--2 {
+      width: 280px;
+      height: 280px;
+      background: variables.$dodeka_rood;
+      top: 12%;
+      left: 1%;
+      opacity: 0.08;
+      animation: float-gentle 24s ease-in-out infinite reverse;
+    }
+
+    // TU Blauw — rounded square mid right
+    &--3 {
+      width: 180px;
+      height: 180px;
+      background: #00A6D6;
+      border-radius: 30%;
+      top: 35%;
+      right: 10%;
+      opacity: 0.08;
+      animation: float-rotate 40s linear infinite;
+    }
+
+    // Team NL Oranje — left mid
+    &--4 {
+      width: 150px;
+      height: 150px;
+      background: #FF914D;
+      bottom: 35%;
+      left: 8%;
+      opacity: 0.07;
+      animation: float-gentle 22s ease-in-out infinite;
+      animation-delay: -7s;
+    }
+
+    // Team NL Oranje — large rounded square bottom right
+    &--5 {
+      width: 320px;
+      height: 320px;
+      background: #FF914D;
+      border-radius: 35%;
+      bottom: 4%;
+      right: 5%;
+      opacity: 0.06;
+      animation: float-rotate 45s linear infinite reverse;
+    }
+
+    // TU Blauw — circle left lower
+    &--6 {
+      width: 220px;
+      height: 220px;
+      background: #00A6D6;
+      top: 55%;
+      left: 3%;
+      opacity: 0.07;
+      animation: float-gentle 28s ease-in-out infinite;
+      animation-delay: -12s;
+    }
+
+    // Baan rood — rounded square center
+    &--7 {
+      width: 120px;
+      height: 120px;
+      background: variables.$dodeka_rood;
+      top: 45%;
+      left: 42%;
+      opacity: 0.06;
+      border-radius: 40%;
+      animation: float-rotate 35s linear infinite;
+      animation-delay: -5s;
+    }
+
+    // Team NL Oranje — rounded square top center-left
+    &--8 {
+      width: 140px;
+      height: 140px;
+      background: #FF914D;
+      border-radius: 30%;
+      top: 6%;
+      left: 25%;
+      opacity: 0.07;
+      animation: float-gentle 26s ease-in-out infinite reverse;
+      animation-delay: -8s;
+    }
+
+    // Baan rood — large circle bottom left
+    &--9 {
+      width: 260px;
+      height: 260px;
+      background: variables.$dodeka_rood;
+      bottom: 8%;
+      left: 2%;
+      opacity: 0.06;
+      animation: float-gentle 32s ease-in-out infinite;
+      animation-delay: -15s;
+    }
+
+    // Baan rood — rounded square far right
+    &--10 {
+      width: 150px;
+      height: 150px;
+      background: variables.$dodeka_rood;
+      border-radius: 35%;
+      top: 72%;
+      right: 3%;
+      opacity: 0.07;
+      animation: float-rotate 38s linear infinite reverse;
+      animation-delay: -10s;
+    }
+
+    // TU Blauw — large left top
+    &--11 {
+      width: 200px;
+      height: 200px;
+      background: #00A6D6;
+      border-radius: 35%;
+      top: 1%;
+      left: 5%;
+      opacity: 0.06;
+      animation: float-rotate 42s linear infinite;
+      animation-delay: -3s;
+    }
+
+    // Team NL Oranje — left lower
+    &--12 {
+      width: 130px;
+      height: 130px;
+      background: #FF914D;
+      bottom: 22%;
+      left: 15%;
+      opacity: 0.07;
+      border-radius: 30%;
+      animation: float-gentle 20s ease-in-out infinite;
+      animation-delay: -9s;
+    }
+
+    // TU Blauw — circle left mid-upper
+    &--13 {
+      width: 170px;
+      height: 170px;
+      background: #00A6D6;
+      top: 28%;
+      left: 6%;
+      opacity: 0.06;
+      animation: float-gentle 34s ease-in-out infinite reverse;
+      animation-delay: -18s;
+    }
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(8px, -6px);
+  }
+}
+
+@keyframes float-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

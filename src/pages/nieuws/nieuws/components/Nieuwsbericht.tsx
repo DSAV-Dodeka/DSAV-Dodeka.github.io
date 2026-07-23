@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Title from "./Title";
+import TrackBackground from "./TrackElements";
 import "./Nieuwsbericht.scss";
 import { getHashedImageUrl } from "$functions/links";
 
@@ -15,6 +16,7 @@ interface NieuwsberichtProps {
 }
 
 function Nieuwsbericht(props: NieuwsberichtProps) {
+  // useEffect required: window is unavailable during SSR/prerender.
   const [width, setWidth] = useState(1920);
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -22,16 +24,22 @@ function Nieuwsbericht(props: NieuwsberichtProps) {
 
   return (
     <div id={props.id} className="nieuwsbericht_1">
+      <TrackBackground seed={props.id.split("").reduce((a, c) => a + c.charCodeAt(0), 0)} />
       {props.position === "left" || width <= 1023 ? (
-        <img
-          className="nieuwsbericht_2"
-          src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
-          alt=""
-        />
+        <div className="nieuwsbericht_img_outer">
+          <div className="nieuwsbericht_img_wrap">
+            <img
+              className="nieuwsbericht_2"
+              src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
+              alt=""
+            />
+          </div>
+        </div>
       ) : (
         ""
       )}
       <div className="nieuwsbericht_3">
+        <div className="nieuwsbericht_3_inner">
         <Title title={props.titel.toUpperCase()} position={props.position} />
         <p
           className={
@@ -49,15 +57,20 @@ function Nieuwsbericht(props: NieuwsberichtProps) {
             </span>
           ))}
         </p>
+        </div>
       </div>
       {props.position === "left" || width <= 1023 ? (
         ""
       ) : (
-        <img
-          className="nieuwsbericht_6"
-          src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
-          alt=""
-        />
+        <div className="nieuwsbericht_img_outer">
+          <div className="nieuwsbericht_img_wrap">
+            <img
+              className="nieuwsbericht_6"
+              src={getHashedImageUrl(`/${props.page}/${props.foto}`)}
+              alt=""
+            />
+          </div>
+        </div>
       )}
     </div>
   );

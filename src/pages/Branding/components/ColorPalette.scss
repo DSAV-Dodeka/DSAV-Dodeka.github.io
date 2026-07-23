@@ -1,0 +1,140 @@
+@use "../../../variables";
+
+.color-palette {
+  padding-top: 0.75rem;
+
+  &__section {
+    margin-bottom: 2.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__heading {
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
+    color: variables.$dodeka_blauw;
+    margin-bottom: 1rem;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 1rem;
+
+    &--primary {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &--secondary {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include variables.respond(mobile) {
+      &--primary,
+      &--secondary {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  &__toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(1rem);
+    background-color: variables.$dodeka_blauw;
+    color: #fff;
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: variables.$bold;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 0 8px 24px rgba(0, 29, 72, 0.3);
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    &--visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+}
+
+.color-swatch {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 29, 72, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(0, 29, 72, 0.06);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 8px 20px rgba(0, 29, 72, 0.1),
+      0 2px 6px rgba(0, 29, 72, 0.04);
+  }
+
+  &__preview {
+    height: 100px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.9;
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 3px solid variables.$dodeka_rood;
+      outline-offset: -3px;
+    }
+
+    &--light {
+      border-bottom: 1px solid #e5e7eb;
+    }
+  }
+
+  &__info {
+    padding: 0.85rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: variables.$bold;
+    font-size: 0.9rem;
+    color: variables.$dodeka_blauw;
+    margin-bottom: 0.25rem;
+  }
+
+  &__value {
+    font-size: 0.8rem;
+    font-family: "Source Code Pro", monospace;
+    cursor: pointer;
+    padding: 0.15rem 0.35rem;
+    border-radius: 6px;
+    transition: background-color 0.15s, color 0.15s;
+
+    &:hover,
+    &:focus-visible {
+      background-color: variables.$dodeka_blauw;
+      color: #fff;
+      outline: none;
+
+      strong {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    strong {
+      color: #9ca3af;
+      transition: color 0.15s;
+    }
+  }
+}

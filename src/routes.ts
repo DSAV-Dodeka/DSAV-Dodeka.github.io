@@ -21,6 +21,7 @@ export default [
       index("./pages/trainingen/trainingen.tsx"),
       route("trainers", "./pages/vereniging/trainers/trainers.tsx"),
       route("gezocht", "./pages/vereniging/gezocht/gezocht.tsx"),
+      route("sprint_tijden", "./pages/sprint-tijden/sprint-tijden.tsx"),
     ]),
     ...prefix("vereniging", [
       index("./pages/vereniging/vereniging/vereniging.tsx"),
@@ -37,12 +38,22 @@ export default [
       ? [route("flow-test", "./pages/flow-test/flow-test.tsx")]
       : []),
     route("admin", "./pages/admin/admin.tsx"),
+    route("huisstijl", "./pages/Branding/Branding.tsx"),
+    route("komkommer", "./pages/komkommer/komkommer.tsx"),
+    route("turfjes", "./pages/turfjes/turfjes.tsx"),
+    route("reactietest", "./pages/reactietest/reactietest.tsx"),
+    route("sprint", "./pages/sprint-tijden/sprint-alias.tsx"),
+    route("sprint_tijden", "./pages/sprint-tijden/sprint-tijden-alias.tsx"),
+    route("trainings_schema", "./pages/sprint-tijden/trainings-schema-alias.tsx"),
+    route("training_schema", "./pages/sprint-tijden/training-schema-alias.tsx"),
+    route("update", "./pages/update/update/update.tsx"),
     ...prefix("leden", [
       index("./pages/leden/leden/leden.tsx"),
       route(
         "verjaardagen",
         "./pages/leden/verjaardagen/verjaardagen.tsx",
       ),
+      route("hordes", "./pages/leden/hordes/Hordes.tsx"),
     ]),
     ...prefix("account", [
       route("register", "./pages/account/register/register.tsx"),
@@ -69,6 +80,7 @@ export default [
       index("./pages/nieuws/nieuws/nieuws.tsx"),
       route("spike", "./pages/nieuws/spike/spike.tsx"),
     ]),
+    route("Niels", "./pages/nieuws/niels-redirect.tsx"),
   ]),
   // * matches all URLs, the? makes it optional so it will match / as well
   route("*?", "catchall.tsx"),

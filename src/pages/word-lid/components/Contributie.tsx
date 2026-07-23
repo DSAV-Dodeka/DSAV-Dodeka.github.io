@@ -25,11 +25,11 @@ function Contributie() {
         </div>
         <div className="vl"></div>
         <div className="contributieTabel2">
-          <span>&#8364;</span>53,5 <span className="jaapie">per kwartaal</span>
+          <span>&#8364;</span>56 <span className="jaapie">per kwartaal</span>
           <br />
-          <span>&#8364;</span>47,- <span className="jaapie">per kwartaal</span>
+          <span>&#8364;</span>49,- <span className="jaapie">per kwartaal</span>
           <br />
-          <span>&#8364;</span>44,- <span className="jaapie">per kwartaal</span>
+          <span>&#8364;</span>46,- <span className="jaapie">per kwartaal</span>
           <br />
           <span>&#8364;</span>5,- <span className="jaapie">eenmalig</span>
           <br />

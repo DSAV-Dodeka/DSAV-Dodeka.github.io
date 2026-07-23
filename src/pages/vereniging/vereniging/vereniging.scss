@@ -167,7 +167,7 @@
 /* Event card */
 .event {
     position: relative;
-    width: 45%;
+    width: calc(50% - 3rem);
     background: white;
     padding: 1rem 1.25rem;
     border-radius: 0.6rem;
@@ -190,7 +190,7 @@
     position: absolute;
     top: 50%;
     height: 3px;
-    width: 2.5rem;
+    width: 3rem;
     background: white;
     transform: translateY(-50%);
 }
@@ -219,11 +219,11 @@
 
 /* Dot position */
 .event:nth-child(odd)::before {
-    right: -3.6rem;
+    right: calc(-3rem - 7px);
 }
 
 .event:nth-child(even)::before {
-    left: -3.6rem;
+    left: calc(-3rem - 7px);
 }
 
 .event::before,
@@ -234,31 +234,30 @@
 
 @media (max-width: 768px) {
 
-    /* Move vertical line to the left */
+    /* Vertical line through the center */
     .timeline::before {
-        left: 24px;
-        transform: none;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
-    /* Events full width */
+    /* Events boxes */
     .event {
         width: 100%;
         margin: 0;
-        align-self: flex-start !important;
-        padding-left: 4rem;
-        text-align: left;
+        align-self: center !important;
+        text-align: center;
+        padding: 1rem 1.25rem;
+        box-sizing: border-box;
+        z-index: 1;
     }
 
-    /* Timeline dot */
+    /* Remove the dots */
     .event::before {
-        left: 24px;
-        transform: translateY(-50%);
+        display: none;
     }
 
-    /* Horizontal connector */
+    /* Remove the horizontal connectors */
     .event::after {
-        left: 24px;
-        right: auto;
-        width: 2rem;
+        display: none;
     }
 }

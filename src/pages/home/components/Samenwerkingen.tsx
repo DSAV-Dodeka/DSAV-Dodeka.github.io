@@ -19,13 +19,13 @@ function Homesamenwerking() {
               <img src={maltha} alt="malta" className="sponsors maltha" />
             </a>
             <a href="https://muconsult.nl/" target="_blank" rel="noopener noreferrer">
-              <img src={muconsult} alt="muconsult" className="sponsors maltha" />
+              <img src={muconsult} alt="muconsult" className="sponsors muconsult" />
             </a>
             <a href="https://www.boozed.nl/" target="_blank" rel="noopener noreferrer">
               <img src={boozed} alt="boozed" className="sponsors maltha" />
             </a>
             <a href="https://www.virtuoos.com/" target="_blank" rel="noopener noreferrer">
-              <img src={virtuoos} alt="virtuoos" className="sponsors virtuoos" />
+              <img src={virtuoos} alt="virtuoos" className="sponsors muconsult" />
             </a>
         </div>
 

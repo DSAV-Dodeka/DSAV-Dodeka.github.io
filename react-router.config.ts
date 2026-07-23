@@ -20,6 +20,7 @@ export default {
       "/trainingen",
       "/trainingen/trainers",
       "/trainingen/gezocht",
+      "/trainingen/sprint_tijden",
       "/vereniging",
       "/vereniging/commissies",
       "/vereniging/bestuur",
@@ -34,6 +35,11 @@ export default {
       ...wedstrijdPaths,
       "/nieuws",
       "/nieuws/spike",
+      "/update",
+      "/sprint_tijden",
+      "/sprint",
+      "/trainings_schema",
+      "/training_schema",
     ];
   },
 } satisfies Config;

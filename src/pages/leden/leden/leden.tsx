@@ -3,7 +3,14 @@ import { useSessionInfo } from "$functions/query.ts";
 import PageTitle from "$components/PageTitle.tsx";
 import verjaardagenImg from "$images/leden/verjaardagen.webp";
 import soonImg from "$images/leden/soon.webp";
-import "./leden.css";
+import "./leden.scss";
+
+const memberPages = [
+  { title: "Komkommertimer", emoji: "🥒", path: "/komkommer" },
+  { title: "Huisstijl", emoji: "🎨", path: "/huisstijl" },
+  { title: "Website Updates", emoji: "📰", path: "/update" },
+  { title: "Reactietest", emoji: "⚡", path: "/reactietest" },
+];
 
 export default function Leden() {
   const navigate = useNavigate();
@@ -69,6 +76,18 @@ export default function Leden() {
             <h1 className="leden-link-header">Verjaardagen</h1>
             <img src={verjaardagenImg} className="leden-link-image" alt="" />
           </Link>
+        </div>
+
+        <h2 className="leden-section-title">Meer voor leden</h2>
+        <div className="leden-grid">
+          {memberPages.map((page) => (
+            <Link key={page.path} className="leden-small-card-link" to={page.path}>
+              <div className="leden-small-card">
+                <div className="leden-small-card-emoji">{page.emoji}</div>
+                <h3 className="leden-small-card-title">{page.title}</h3>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </>

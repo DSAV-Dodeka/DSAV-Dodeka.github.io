@@ -23,7 +23,10 @@ function MemberDropdown() {
     <Dropdown
       name="Leden"
       path="/leden"
-      items={[{ name: "Verjaardagen", path: "/verjaardagen" }]}
+      items={[
+        { name: "Verjaardagen", path: "/verjaardagen" },
+        { name: "Hordes", path: "/hordes" },
+      ]}
     />
   );
 }
@@ -39,12 +42,34 @@ function MemberMobileDropdown({ onClick }: { onClick: () => void }) {
       items={[
         { name: "Ledenpagina", path: "" },
         { name: "Verjaardagen", path: "/verjaardagen" },
+        { name: "Hordes", path: "/hordes" },
       ]}
       onClick={onClick}
     />
   );
 }
 
+function MobileNieuws({ onClick }: { onClick: () => void }) {
+  const { data: session } = useSessionInfo();
+  const isMember = session?.user.permissions.includes("member") ?? false;
+  if (isMember) {
+    return (
+      <MobileDropdown
+        name="Nieuws"
+        path="/nieuws"
+        items={[
+          { name: "Nieuws", path: "" },
+          { name: "De Spike", path: "/spike" },
+        ]}
+        onClick={onClick}
+      />
+    );
+  }
+  return <Item name="Nieuws" path="/nieuws" onClick={onClick} />;
+}
+
+// useEffect to gate rendering: QueryClientProvider is absent during SSR/prerender,
+// so components using React Query hooks must not render server-side.
 function ClientOnly({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => { setIsClient(true); }, []);
@@ -56,13 +81,20 @@ function NavigationBar() {
   const [active, setActive] = useState(false);
   const location = useLocation().pathname;
 
-  useEffect(() => {
-    if (active) {
+  const toggleActive = () => {
+    const next = !active;
+    setActive(next);
+    if (next) {
       disableScroll.on();
     } else {
       disableScroll.off();
     }
-  }, []);
+  };
+
+  const closeMenu = () => {
+    setActive(false);
+    disableScroll.off();
+  };
 
   return (
     <div id="navBar">
@@ -108,6 +140,7 @@ function NavigationBar() {
             items={[
               { name: "Trainers", path: "/trainers" },
               { name: "Trainers gezocht", path: "/gezocht" },
+              { name: "Sprint", path: "/sprint_tijden" },
             ]}
           />
           <Dropdown
@@ -143,7 +176,7 @@ function NavigationBar() {
       </nav>
       <nav id="navMobile">
         <div id="navMobileBar">
-          <div className="hamburgerIcon" onClick={() => setActive(!active)}>
+          <div className="hamburgerIcon" onClick={toggleActive}>
             <div
               className={"hamburgerStreepje" + (active ? " hamburgerTop" : "")}
             ></div>
@@ -165,16 +198,11 @@ function NavigationBar() {
         </div>
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
           <div className={active ? "" : "inactive"}>
-            <Item name="Home" path="/" onClick={() => setActive(false)} />
-            {/* <Item name="OWee" path="/owee" onClick={() => setActive(false)} /> */}
-            <Item
-              name="Nieuws"
-              path="/nieuws"
-              onClick={() => setActive(false)}
-            />
-            {/*{authState.isLoaded && authState.isAuthenticated &&
-              <MobileDropdown name="Nieuws" path="/nieuws" items={[{name: "Nieuwsarchief", path: ""}, { name: "De Spike", path: "/spike" }]} onClick={() => setActive(false)} />
-            }*/}
+            <Item name="Home" path="/" onClick={closeMenu} />
+            {/* <Item name="OWee" path="/owee" onClick={closeMenu} /> */}
+            <ClientOnly>
+              <MobileNieuws onClick={closeMenu} />
+            </ClientOnly>
             <MobileDropdown
               name="Vereniging"
               path="/vereniging"
@@ -188,7 +216,7 @@ function NavigationBar() {
                 { name: "OLD", path: "/old" },
                 { name: "Reglementen", path: "/reglementen" },
               ]}
-              onClick={() => setActive(false)}
+              onClick={closeMenu}
             />
             <MobileDropdown
               name="Trainingen"
@@ -197,8 +225,9 @@ function NavigationBar() {
                 { name: "Trainingen", path: "" },
                 { name: "Trainers", path: "/trainers" },
                 { name: "Trainers gezocht", path: "/gezocht" },
+                { name: "Sprint", path: "/sprint_tijden" },
               ]}
-              onClick={() => setActive(false)}
+              onClick={closeMenu}
             />
             <MobileDropdown
               name="Wedstrijden"
@@ -215,12 +244,12 @@ function NavigationBar() {
                     path: wedstrijd.path,
                   })),
               )}
-              onClick={() => setActive(false)}
+              onClick={closeMenu}
             />
             <Item
               name="Word lid!"
               path="/word_lid"
-              onClick={() => setActive(false)}
+              onClick={closeMenu}
             />
             <MobileDropdown
               name="Contact"
@@ -231,10 +260,10 @@ function NavigationBar() {
                 { name: "VCP", path: "/vcp" },
                 { name: "Donateurs", path: "/donateurs" },
               ]}
-              onClick={() => setActive(false)}
+              onClick={closeMenu}
             />
             <ClientOnly>
-              <MemberMobileDropdown onClick={() => setActive(false)} />
+              <MemberMobileDropdown onClick={closeMenu} />
             </ClientOnly>
           </div>
         </div>

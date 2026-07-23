@@ -1,7 +1,9 @@
 .admin-container {
   padding: 20px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .admin-header {
@@ -94,16 +96,16 @@
 }
 
 .admin-table-container {
-  overflow-x: auto;
+  overflow: visible;
 }
 
 .admin-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .admin-table thead {
@@ -115,6 +117,8 @@
   padding: 12px 16px;
   text-align: left;
   border-bottom: 1px solid #dee2e6;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .admin-table th {
@@ -189,9 +193,49 @@
   color: #e65100;
 }
 
-.admin-status-badge-disabled {
-  background-color: #dc3545;
+.admin-status-badge-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.admin-status-badge-muted {
+  background-color: #e9ecef;
+  color: #6c757d;
+}
+
+/* Tooltip on status badges */
+.admin-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.admin-tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  background-color: #1a1a2e;
   color: #ffffff;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.4;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: opacity 0.2s;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.admin-tooltip:hover .admin-tooltip-text,
+.admin-tooltip:focus-within .admin-tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
 
 .admin-not-authorized {
@@ -356,6 +400,12 @@
   margin: 10px 0;
 }
 
+.admin-sync-import-hint {
+  margin: 10px 0;
+  color: #888;
+  font-style: italic;
+}
+
 .admin-sync-group {
   margin-bottom: 20px;
   padding: 15px;
@@ -372,11 +422,21 @@
   color: #2196F3;
 }
 
+.admin-sync-complete {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
 .admin-sync-hint {
-  margin: 0 0 10px 0;
   font-size: 13px;
   color: #888;
   font-style: italic;
+}
+
+.admin-sync-no-changes {
+  color: #999;
+  font-size: 13px;
 }
 
 .admin-button-danger {
@@ -464,4 +524,429 @@
   color: #999;
   font-size: 12px;
   margin-top: 8px;
+}
+
+/* Cells that contain expanding content (candidates, diffs, tooltips) */
+.admin-table td:has(.admin-candidate-list),
+.admin-table td:has(.admin-field-diffs),
+.admin-table td:has(.admin-tooltip) {
+  overflow: visible;
+  white-space: normal;
+}
+
+/* Field diffs */
+.admin-field-diffs {
+  font-size: 13px;
+}
+
+.admin-field-diff {
+  margin-bottom: 2px;
+}
+
+.admin-field-diff-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.admin-field-diff-old {
+  color: #dc3545;
+  text-decoration: line-through;
+}
+
+.admin-field-diff-new {
+  color: #28a745;
+  font-weight: 500;
+}
+
+/* Sync review cards */
+.admin-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-review-card {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.admin-review-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.admin-review-card-bn {
+  font-weight: 700;
+  color: #001f48;
+  font-size: 14px;
+}
+
+.admin-review-card-name {
+  font-weight: 500;
+}
+
+.admin-review-card-email {
+  color: #666;
+}
+
+.admin-review-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-review-card-none {
+  padding: 10px 14px;
+  color: #888;
+  font-style: italic;
+}
+
+.admin-review-candidate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  border-top: 1px solid #eee;
+}
+
+.admin-review-candidate:first-child {
+  border-top: none;
+}
+
+.admin-review-candidate-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-review-candidate-type {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  background: #e9ecef;
+  color: #495057;
+}
+
+.admin-review-candidate-name {
+  font-weight: 500;
+}
+
+.admin-review-candidate-email {
+  color: #666;
+}
+
+.admin-review-candidate-reasons {
+  color: #0066cc;
+  font-size: 12px;
+}
+
+.admin-review-candidate-none {
+  background: #fafafa;
+}
+
+.admin-review-candidate .admin-button {
+  flex-shrink: 0;
+  padding: 4px 12px;
+  font-size: 13px;
+}
+
+/*
+ * Fixed column layouts for each table variant.
+ * With table-layout:fixed the browser sizes columns from <col> widths,
+ * so content changes never cause layout shift.
+ */
+
+/* Registrations tab: Email | Name | Accepted | Status | BN | Action */
+.admin-cols-registrations col:nth-child(1) { width: 28%; }
+.admin-cols-registrations col:nth-child(2) { width: 22%; }
+.admin-cols-registrations col:nth-child(3) { width: 10%; }
+.admin-cols-registrations col:nth-child(4) { width: 12%; }
+.admin-cols-registrations col:nth-child(5) { width: 13%; }
+.admin-cols-registrations col:nth-child(6) { width: 15%; }
+
+/* Users: active members: Name | BN | Permissions | Actions */
+.admin-cols-members col:nth-child(1) { width: 30%; }
+.admin-cols-members col:nth-child(2) { width: 12%; }
+.admin-cols-members col:nth-child(3) { width: 38%; }
+.admin-cols-members col:nth-child(4) { width: 20%; }
+
+/* Users: inactive: Name | BN */
+.admin-cols-inactive col:nth-child(1) { width: 70%; }
+.admin-cols-inactive col:nth-child(2) { width: 30%; }
+
+/* (review section uses card layout, no table columns) */
+
+/* Sync: linked registrations: BN | Email | Name | Email Change | Changes */
+.admin-cols-linked col:nth-child(1) { width: 12%; }
+.admin-cols-linked col:nth-child(2) { width: 25%; }
+.admin-cols-linked col:nth-child(3) { width: 23%; }
+.admin-cols-linked col:nth-child(4) { width: 15%; }
+.admin-cols-linked col:nth-child(5) { width: 25%; }
+
+/* Sync: existing changes: BN | Email | Changes */
+.admin-cols-existing col:nth-child(1) { width: 15%; }
+.admin-cols-existing col:nth-child(2) { width: 35%; }
+.admin-cols-existing col:nth-child(3) { width: 50%; }
+
+/* Sync: departed: Email | Name | BN */
+.admin-cols-departed col:nth-child(1) { width: 40%; }
+.admin-cols-departed col:nth-child(2) { width: 40%; }
+.admin-cols-departed col:nth-child(3) { width: 20%; }
+
+/* Sync file date display */
+.admin-sync-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-sync-file-date {
+  font-size: 14px;
+  color: #495057;
+}
+
+/* Confirmation modal */
+.admin-confirm-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 24px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 520px;
+  width: 90%;
+}
+
+.admin-confirm-modal h3 {
+  margin: 0 0 16px 0;
+  color: #333;
+}
+
+.admin-confirm-modal p {
+  margin: 16px 0 0;
+  color: #555;
+}
+
+.admin-confirm-reasons {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.admin-confirm-reasons li {
+  margin-bottom: 8px;
+  color: #721c24;
+  line-height: 1.5;
+}
+
+.admin-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+/* Action group: flex row for action buttons */
+.admin-action-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Small button variant */
+.admin-button-small {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.admin-link-button {
+  appearance: none;
+  background: none;
+  border: none;
+  color: #0d6efd;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  padding: 0;
+  text-decoration: underline;
+  width: auto;
+}
+
+.admin-link-button:hover,
+.admin-link-button:focus {
+  color: #084298;
+}
+
+.admin-link-button:focus {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
+
+.admin-volta-detail-modal {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  max-width: 980px;
+  overflow: auto;
+  padding: 24px 32px;
+  width: 90%;
+}
+
+.admin-volta-detail-header {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.admin-volta-detail-header h3,
+.admin-volta-detail-section h4,
+.admin-volta-detail-diffs h4 {
+  margin: 0;
+}
+
+.admin-volta-detail-diffs {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  margin-bottom: 18px;
+  padding: 12px 14px;
+}
+
+.admin-volta-detail-diffs h4 {
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.admin-volta-detail-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-volta-detail-section {
+  min-width: 0;
+}
+
+.admin-volta-detail-section h4 {
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.admin-volta-detail-table {
+  border-collapse: collapse;
+  font-size: 13px;
+  width: 100%;
+}
+
+.admin-volta-detail-table th,
+.admin-volta-detail-table td {
+  border-bottom: 1px solid #e9ecef;
+  padding: 7px 8px;
+  text-align: left;
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.admin-volta-detail-table th {
+  color: #495057;
+  font-weight: 600;
+  width: 34%;
+}
+
+.admin-volta-detail-empty {
+  background: #f8f9fa;
+  border-radius: 5px;
+  color: #666;
+  padding: 18px;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .admin-volta-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Inline confirmation (delete yes/no) */
+.admin-inline-confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #721c24;
+}
+
+.admin-section-details-toggle {
+  margin-left: 0.5em;
+}
+
+/* --- Private key-value store tab --- */
+
+.admin-private-intro {
+  margin-top: 0;
+  color: #666;
+}
+
+.admin-private-key-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.admin-private-key-input {
+  flex: 1;
+  padding: 0.4rem;
+}
+
+.admin-private-keys-list {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.admin-private-key-pill {
+  margin: 0 0.25rem;
+  padding: 0.1rem 0.4rem;
+}
+
+.admin-private-editor-header {
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.admin-private-textarea {
+  width: 100%;
+  font-family: monospace;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.admin-private-actions {
+  margin-top: 0.5rem;
+}
+
+.admin-private-description {
+  margin: 0.25rem 0 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: #f5f5f5;
+  border-left: 3px solid #999;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }

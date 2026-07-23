@@ -110,6 +110,9 @@ stats.html
 
 .react-router
 
+#Kiro (AI assisted IDE)
+/.kiro/
+
 .DS_Store
 
 .kiro
