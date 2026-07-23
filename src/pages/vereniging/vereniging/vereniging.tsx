@@ -4,7 +4,7 @@ import {
 import PageTitle from "../../../components/PageTitle";
 import "./vereniging.scss";
 import over from "$images/over/over.webp";
-import overBestuur from "$images/over/overBestuur.webp";
+import overBestuur from "$images/over/overBestuur.jpg";
 import overCommissies from "$images/over/overCommissies.webp";
 import arnold from "$images/over/arnold.webp";
 import overGezelligheid from "$images/over/overGezelligheid.webp";
