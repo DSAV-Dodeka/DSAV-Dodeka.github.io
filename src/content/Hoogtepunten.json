@@ -1,6 +1,107 @@
 {
     "wedstrijden": [
         {
+            "wedstrijd": "NSK Baan 2026",
+            "foto": "nsk_baan_2026.png",
+            "prijzen": [
+                {
+                    "naam": "Tijmen Hoedjes",
+                    "plaats": 2,
+                    "afstand": "800m"
+                },
+                {
+                    "naam": "Stein Glastra",
+                    "plaats": 3,
+                    "afstand": "800m"
+                },
+                {
+                    "naam": "Tijmen Hoedjes",
+                    "plaats": 1,
+                    "afstand": "1500m"
+                },
+                {
+                    "naam": "Stein Glastra",
+                    "plaats": 3,
+                    "afstand": "1500m"
+                },
+                {
+                    "naam": "Dodekaravaan",
+                    "plaats": 3,
+                    "afstand": "Olym estafette (m)"
+                },
+                {
+                    "naam": "Dodekalorie\u00EBn",
+                    "plaats": 2,
+                    "afstand": "4x100m (m)"
+                },
+                {
+                    "naam": "Tobias Steevensz",
+                    "plaats": 3,
+                    "afstand": "HSS"
+                },
+                {
+                    "naam": "Xylander Parqui",
+                    "plaats": 2,
+                    "afstand": "Polshoog"
+                },
+                {
+                    "naam": "Eric van Pijlen",
+                    "plaats": 3,
+                    "afstand": "Polshoog"
+                },
+                {
+                    "naam": "Robina Negenman",
+                    "plaats": 1,
+                    "afstand": "400m"
+                },
+                {
+                    "naam": "Robina Negenman",
+                    "plaats": 1,
+                    "afstand": "100mH"
+                },
+                {
+                    "naam": "Robina Negenman",
+                    "plaats": 1,
+                    "afstand": "400mH"
+                },
+                {
+                    "naam": "Dodekanonnen",
+                    "plaats": 3,
+                    "afstand": "4x100m (v)"
+                },
+                {
+                    "naam": "Sanne Diepen",
+                    "plaats": 3,
+                    "afstand": "Speerwerpen"
+                },
+                {
+                    "naam": "Anne-Wil van Werkhoven",
+                    "plaats": 1,
+                    "afstand": "HSS"
+                },
+                {
+                    "naam": "Jean-Baptiste Auffret",
+                    "plaats": 1,
+                    "afstand": "800m"
+                },
+                {
+                    "naam": "Ivar Vialard",
+                    "plaats": 2,
+                    "afstand": "Hoogspringen"
+                },
+                {
+                    "naam": "Ivar Vialard",
+                    "plaats": 2,
+                    "afstand": "HSS"
+                }
+            ],
+            "prestaties": [
+                "Niks gaat boven Groningen! Er reisden meer dan 30 atleten naar het hoge noorden",
+                "Bij de 800m mannen kleurde het podium volledig dodeka blauw",
+                "Anne-Wil, Robina, JB en Ymme verbeterden het clubrecord op HSS, 400m, 800m en 3000mSC"
+            ]
+        },
+        {
             "wedstrijd": "NSK Meerkamp 2026",
             "foto": "nsk_meerkamp_2026.webp",
             "prijzen": [
