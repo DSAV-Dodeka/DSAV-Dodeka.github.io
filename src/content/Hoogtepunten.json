@@ -2,7 +2,7 @@
     "wedstrijden": [
         {
             "wedstrijd": "NSK Baan 2026",
-            "foto": "nsk_baan_2026.png",
+            "foto": "nsk_baan_2026.jpg",
             "prijzen": [
                 {
                     "naam": "Tijmen Hoedjes",
@@ -93,6 +93,11 @@
                     "naam": "Ivar Vialard",
                     "plaats": 2,
                     "afstand": "HSS"
+                },
+                {
+                    "naam": "Robin Beijer",
+                    "plaats": 3,
+                    "afstand": "800m"
                 }
             ],
             "prestaties": [
@@ -106,7 +111,12 @@
             "foto": "nsk_meerkamp_2026.webp",
             "prijzen": [
                 {
-                    "naam": "Tijmen Hoedjes, Robin Beijer",
+                    "naam": "Tijmen Hoedjes",
+                    "plaats": 1,
+                    "afstand": "Loopmeerkamp"
+                },
+                {
+                    "naam": "Robin Beijer",
                     "plaats": 1,
                     "afstand": "Loopmeerkamp"
                 },
@@ -366,7 +376,12 @@
                     "afstand": "Speerwerpen"
                 },
                 {
-                    "naam": "Bestafette, Dodeka Dames",
+                    "naam": "Bestafette",
+                    "plaats": 1,
+                    "afstand": "4x100m"
+                },
+                {
+                    "naam": "Dodeka Dames",
                     "plaats": 1,
                     "afstand": "4x100m"
                 },
@@ -402,7 +417,12 @@
             "foto": "nsk_meerkamp_2024.webp",
             "prijzen": [
                 {
-                    "naam": "Tijmen Hoedjes, Robin Beijer",
+                    "naam": "Tijmen Hoedjes",
+                    "plaats": 1,
+                    "afstand": "Loopmeerkamp"
+                },
+                {
+                    "naam": "Robin Beijer",
                     "plaats": 1,
                     "afstand": "Loopmeerkamp"
                 },
@@ -492,8 +512,13 @@
                 {
                     "naam": "Tijmen Hoedjes",
                     "plaats": 3,
-                    "afstand": "Korte & Sprint cross"
+                    "afstand": "Korte cross"
                 }, 
+                {
+                    "naam": "Tijmen Hoedjes",
+                    "plaats": 3,
+                    "afstand": "Sprint cross"
+                },
                 {
                     "naam": "Robert Meier",
                     "plaats": 1,
@@ -536,7 +561,12 @@
             "foto": "nsk_trappenloop2023_landscape.webp",
             "prijzen": [
                 {
-                    "naam": "Robin Beijer, Marien Sips",
+                    "naam": "Robin Beijer",
+                    "plaats": 1,
+                    "afstand": "10 verdiepingen"
+                }, 
+                {
+                    "naam": "Marien Sips",
                     "plaats": 1,
                     "afstand": "10 verdiepingen"
                 }, 
