@@ -27,7 +27,10 @@
 #home_logo {
   width: var(--logo-width);
   margin-left: var(--logo-margin-left);
-  top: var(--logo-top);
+  /* --hero-offset is set by the hero video (see HeroVideo.tsx) so the fixed
+     logo rides down with the navbar instead of sitting on top of the video.
+     Defaults to 0px, so this behaves normally when there is no hero. */
+  top: calc(var(--logo-top) + var(--hero-offset, 0px));
   position: fixed;
   transition: none;
   will-change: width, margin-left, top;

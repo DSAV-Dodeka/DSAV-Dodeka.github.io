@@ -49,7 +49,13 @@ function Home() {
           "--max-offset",
         ),
       );
-      const progress = Math.min(scrollY / maxOffset, 1);
+      // HERO VIDEO — the logo animation should only start once the user has
+      // scrolled past the video. Measured, so this is a no-op (offset 0) when
+      // the hero is not rendered; safe to leave in place.
+      const heroOffset =
+        document.getElementById("hero_video_wrapper")?.offsetHeight ?? 0;
+      const adjustedScroll = Math.max(scrollY - heroOffset, 0);
+      const progress = Math.min(adjustedScroll / maxOffset, 1);
       document.documentElement.style.setProperty(
         "--scroll-progress",
         progress.toString(),
