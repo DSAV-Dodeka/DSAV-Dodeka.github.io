@@ -8,9 +8,9 @@ function OWee() {
     return(
         <div>
             <PageTitle title="OWee"/>
+            <OWeeSchema />  
             <OWeeText />
             <OWeeImageBar />
-            <OWeeSchema />
         </div>
     )
 }
