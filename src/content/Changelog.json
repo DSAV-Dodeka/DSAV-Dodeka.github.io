@@ -1,6 +1,15 @@
 {
   "updates": [
     {
+      "id": "content-zomerthema-uit",
+      "datum": "15-08-2026",
+      "titel": "Zomerthema uitgezet",
+      "beschrijving": "Het zomerthema op de homepage staat uit: de vallende zomer-emoji en de zandbalk zijn weg. Met één schakelaar in de code zetten we het volgende thema er zo weer op.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Jefry"
+    },
+    {
       "id": "feature-owee-voorpagina",
       "datum": "15-08-2026",
       "titel": "OWee-video en banner op de voorpagina",

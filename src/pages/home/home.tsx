@@ -6,6 +6,7 @@ import HomeTrainingen from "./components/HomeTrainingen";
 import HomeCommissies from "./components/HomeCommissies";
 import "./home.scss";
 import Samenwerkingen from "./components/Samenwerkingen";
+import { SEASON_THEME_ENABLED } from "./season";
 // import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
@@ -81,7 +82,7 @@ function Home() {
     };
 
     // Initial setup
-    createSnow(30);
+    if (SEASON_THEME_ENABLED) createSnow(30);
     updateLogoMax();
     updateScrollProgress();
 
@@ -109,7 +110,9 @@ function Home() {
       <HomeTrainingen />
       <HomeCommissies />
       <Samenwerkingen />
-      <div id="sneeuw_container"></div>
+      {/* createSnow busy-waits for this element, so the two must stay gated
+          together by the same flag. */}
+      {SEASON_THEME_ENABLED && <div id="sneeuw_container"></div>}
     </div>
   );
 }
