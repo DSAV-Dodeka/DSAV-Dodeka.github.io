@@ -115,7 +115,7 @@ function NavigationBar() {
         />
         <div id="navItems">
           <Item name="Home" path="/" />
-          {/* <Item name="OWee" path="/owee" /> */}
+          {<Item name="OWee" path="/owee" />}
           <Dropdown
             name="Nieuws"
             path="/nieuws"
@@ -199,7 +199,7 @@ function NavigationBar() {
         <div id="navMobileContainer" className={active ? "" : " inactive"}>
           <div className={active ? "" : "inactive"}>
             <Item name="Home" path="/" onClick={closeMenu} />
-            {/* <Item name="OWee" path="/owee" onClick={closeMenu} /> */}
+            {<Item name="OWee" path="/owee" onClick={closeMenu} /> }
             <ClientOnly>
               <MobileNieuws onClick={closeMenu} />
             </ClientOnly>

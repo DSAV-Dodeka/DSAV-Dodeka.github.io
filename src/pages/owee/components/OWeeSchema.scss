@@ -2,6 +2,10 @@
 
 .OWeeSchema {
     background-color: white;
+    background-image: url("$images/owee/background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     border-top: 4rem solid variables.$dodeka_blauw90p;
     border-bottom: 4rem solid variables.$dodeka_blauw90p;
     width: 100%;
