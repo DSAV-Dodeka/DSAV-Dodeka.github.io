@@ -21,8 +21,26 @@ import { useEffect } from "react";
 import "./HeroVideo.scss";
 import logo from "$images/logo.png";
 
-const HERO_VIDEO_URL =
-  "https://res.cloudinary.com/dknah0nov/video/upload/v1786804828/Dodeka_OWee_2026_teaser.mp4";
+// Cloudinary serves the raw upload untouched unless the URL carries a
+// transformation segment. The source file is 3840x2160, 75 MB for 15 seconds —
+// an average of 41.7 Mbps, which no normal connection can stream in real time,
+// so the hero sat frozen while it buffered.
+//
+// These transformations are applied on delivery and cached by Cloudinary, so
+// the original upload does not need re-encoding or replacing:
+//   f_auto          best format per browser (WebM/VP9 to Chrome, MP4 to Safari)
+//   q_auto          quality chosen per frame content
+//   w_1920,c_limit  cap the width at 1920, never upscale
+const CLOUDINARY_BASE = "https://res.cloudinary.com/dknah0nov/video/upload";
+const HERO_VIDEO_ID = "v1786804828/Dodeka_OWee_2026_teaser";
+
+// 5.2 MB at 2.9 Mbps, down from 75 MB at 41.7 Mbps.
+const HERO_VIDEO_URL = `${CLOUDINARY_BASE}/f_auto,q_auto,w_1920,c_limit/${HERO_VIDEO_ID}.mp4`;
+
+// The first frame as a still (~63 KB, `so_0` = start offset 0). It paints
+// straight away and covers the gap while the video buffers, so the hero never
+// shows a black box.
+const HERO_POSTER_URL = `${CLOUDINARY_BASE}/so_0,f_auto,q_auto,w_1920,c_limit/${HERO_VIDEO_ID}.jpg`;
 
 function HeroVideo() {
   useEffect(() => {
@@ -59,6 +77,8 @@ function HeroVideo() {
       <video
         id="hero_video_element"
         src={HERO_VIDEO_URL}
+        poster={HERO_POSTER_URL}
+        preload="auto"
         autoPlay
         muted
         loop
