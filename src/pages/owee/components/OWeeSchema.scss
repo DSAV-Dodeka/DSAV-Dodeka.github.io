@@ -34,9 +34,16 @@
     }
 }
 
+
+.OWeeHeader {
+    font-size: variables.$font_large;
+    color: variables.$dodeka_rood;
+    -webkit-text-stroke: 1px white;
+}
+
 .OWeeDag {
     display: inline-block;
-    width: calc(25% - 1rem);
+    width: calc(20% - 1rem);
     color: variables.$dodeka_blauw90p;
     vertical-align: top;
     margin-right: 1rem;
@@ -49,30 +56,44 @@
 }
 
 .OWeeDatum {
-    color: variables.$dodeka_rood;
+    color: variables.$dodeka_blauw;
     font-size: variables.$font_medium;
-    margin-bottom: 1rem;
-    font-weight: variables.$normal;
+    //margin: top right bottom left;
+    //margin-bottom: 1rem;
+    margin: 1rem 0 0 1rem;
+    font-weight: variables.$bold;
 }
 
 .OWeeDatumDag {
     font-size: variables.$font_ml;
-    margin-bottom: 0;
-    
-    font-weight: variables.$normal;
+    margin: 0 0 1rem 1rem;
+    font-weight: variables.$bold;
 }
 
 .OWeeActiviteit {
-    background-color: variables.$dodeka_rood;
+    background-color: variables.$dodeka_blauw90p;
     border-radius: 0.5rem;
     padding: 0.5rem;
     margin-bottom: 1rem;
+    margin: 1rem;
+    transition: transform 0.2s ease;
+    &:hover {
+        transform: scale(1.05);
+    }
 }
 
 .OWeeActiviteitNaam {
     font-size: variables.$font_ml;
-    color: variables.$dodeka_blauw90p;
+    color: white;
     // font-weight: $normal;
+}
+
+.OWeeActiviteit:hover {
+    margin: 1rem;
+}
+
+.OWeeActiviteit:active{
+    margin: 1rem;
 }
 
 .OWeeActiviteitTijd {
@@ -86,4 +107,41 @@
     font-size: variables.$font_small;
     color: variables.$dodeka_blauw90p;
     color: white;
+}
+
+.planning {
+    background-color: white;
+    border-radius: 1rem;
+}
+
+.popup {
+    background-color: white;
+    border-radius: 1rem;
+}
+
+.closePopup {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  cursor: pointer;
+}
+
+.closePopup::before,
+.closePopup::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px;
+  height: 3px;
+  background: black;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.closePopup::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.hidden {
+    display: none;
 }
