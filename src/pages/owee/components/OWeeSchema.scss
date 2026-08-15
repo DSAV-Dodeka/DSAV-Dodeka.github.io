@@ -21,6 +21,7 @@
         padding-bottom: 1rem;
         margin-bottom: 4rem;
         display: flex;
+        flex-direction: column;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
         border-top: 2rem solid variables.$dodeka_blauw90p;
@@ -73,7 +74,7 @@
 .OWeeActiviteit {
     background-color: variables.$dodeka_blauw90p;
     border-radius: 0.5rem;
-    padding: 0.5rem;
+    padding: 1rem;
     margin-bottom: 1rem;
     margin: 1rem;
     transition: transform 0.2s ease;
@@ -83,7 +84,7 @@
 }
 
 .OWeeActiviteitNaam {
-    font-size: variables.$font_ml;
+    font-size: variables.$font_medium;
     color: white;
     // font-weight: $normal;
 }
@@ -97,6 +98,13 @@
 }
 
 .OWeeActiviteitTijd {
+    font-size: variables.$font_small;
+    padding-top: 0.5rem;
+    color: white;
+    // font-weight: $bold;
+}
+
+.OWeeActiviteitPlaats {
     font-size: variables.$font_small;
     padding-bottom: 0.5rem;
     color: white;
@@ -114,34 +122,60 @@
     border-radius: 1rem;
 }
 
+.hidden {
+    display: none;
+}
+
 .popup {
+    position: relative;
     background-color: white;
     border-radius: 1rem;
+    padding: 3.5rem 2rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.popupContent {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.popupText {
+    flex: 1;
+}
+
+.OWeeImagePopup {
+    width: 45%;
+    border-radius: 0.5rem;
 }
 
 .closePopup {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    font-size: 2rem;
+    line-height: 1;
+    z-index: 10;
 }
 
-.closePopup::before,
-.closePopup::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 25px;
-  height: 3px;
-  background: black;
-  transform: translate(-50%, -50%) rotate(45deg);
-}
+@media (max-width: 600px) {
+    .popup {
+        margin: 0 1rem;
+    }
+    .popupContent {
+        flex-direction: column;
+    }
 
-.closePopup::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
-
-.hidden {
-    display: none;
+    .OWeeImagePopup {
+        width: 100%;
+    }
 }
