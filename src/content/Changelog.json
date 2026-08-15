@@ -1,6 +1,16 @@
 {
   "updates": [
     {
+      "id": "feature-owee-voorpagina",
+      "datum": "15-08-2026",
+      "titel": "OWee-video en banner op de voorpagina",
+      "beschrijving": "De voorpagina opent nu met een schermvullende OWee-video, en een opvallende banner brengt je in één klik naar al onze OWee-activiteiten. Zo vinden nieuwe studenten ons meteen.",
+      "categorie": "feature",
+      "grootte": "groot",
+      "auteur": "Jefry",
+      "link": "/owee"
+    },
+    {
       "id": "feature-huisstijl-pagina",
       "datum": "04-04-2026",
       "titel": "Huisstijl pagina gebouwd",
