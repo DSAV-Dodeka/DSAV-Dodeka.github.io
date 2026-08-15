@@ -1,5 +1,11 @@
 @use "../../../variables";
 
+.home_promo_link {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
 .home_promo {
     position: relative;
     background-color: variables.$dodeka_rood;

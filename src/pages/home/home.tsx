@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import HomeNieuws from "./components/HomeNieuws";
+import HomePromo from "./components/HomePromo";
 import TitleBar from "./components/TitleBar";
 import HomeTrainingen from "./components/HomeTrainingen";
 import HomeCommissies from "./components/HomeCommissies";
@@ -103,7 +104,7 @@ function Home() {
   return (
     <div id="home_root">
       <TitleBar />
-      {/* <HomePromo /> */}
+      <HomePromo />
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
