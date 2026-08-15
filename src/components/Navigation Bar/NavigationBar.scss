@@ -13,7 +13,7 @@
 #navPc {
   position: relative;
   display: flex;
-  height: 4rem;
+  height: variables.$nav_height;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -49,7 +49,7 @@
 #navMobileBar {
   position: relative;
   display: flex;
-  height: 4rem;
+  height: variables.$nav_height;
   justify-content: center;
   padding-left: 1rem;
   padding-right: 1rem;

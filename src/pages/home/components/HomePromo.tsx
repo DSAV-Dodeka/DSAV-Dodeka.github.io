@@ -5,7 +5,7 @@ function HomePromo() {
   return (
     <Link to={"/owee"} className="home_promo_link">
       <div className="home_promo">
-        <span className="home_promo_date">16 t/m 20 aug</span>
+        <span className="home_promo_date">16&ndash;20 aug</span>
         <div className="home_promo_text">
           <p className="home_promo_title">Wij zijn op de OWee!</p>
           <p className="home_promo_sub">Bekijk al onze activiteiten</p>

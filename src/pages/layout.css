@@ -47,7 +47,10 @@
 }
 
 #app_flex {
-  overflow: hidden;
+  /* `clip` clips exactly like `hidden` but does not create a scroll container,
+     so `position: sticky` inside the page content still pins to the viewport.
+     With `hidden`, sticky descendants silently do nothing. */
+  overflow: clip;
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 4rem);

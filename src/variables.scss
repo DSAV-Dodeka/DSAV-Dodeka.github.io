@@ -18,6 +18,11 @@ $line_height_large: 2.5rem;
 $line_height_medium: 1.75rem;
 $line_height_small: 1.5rem;
 
+// Layout
+// Height of the navigation bar. Anything that pins below the nav derives its
+// offset from this instead of repeating the value.
+$nav_height: 4rem;
+
 // Margins
 $margin_x: 4rem;
 $margin_y: 2rem;
