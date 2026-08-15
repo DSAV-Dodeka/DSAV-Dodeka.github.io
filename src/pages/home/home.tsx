@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import HomeNieuws from "./components/HomeNieuws";
+import HomePromo from "./components/HomePromo";
 import TitleBar from "./components/TitleBar";
 import HomeTrainingen from "./components/HomeTrainingen";
 import HomeCommissies from "./components/HomeCommissies";
 import "./home.scss";
 import Samenwerkingen from "./components/Samenwerkingen";
+import { SEASON_THEME_ENABLED } from "./season";
 // import { fontSize, innerWidth } from "../../functions/sizes";
 
 function Home() {
@@ -49,7 +51,13 @@ function Home() {
           "--max-offset",
         ),
       );
-      const progress = Math.min(scrollY / maxOffset, 1);
+      // HERO VIDEO — the logo animation should only start once the user has
+      // scrolled past the video. Measured, so this is a no-op (offset 0) when
+      // the hero is not rendered; safe to leave in place.
+      const heroOffset =
+        document.getElementById("hero_video_wrapper")?.offsetHeight ?? 0;
+      const adjustedScroll = Math.max(scrollY - heroOffset, 0);
+      const progress = Math.min(adjustedScroll / maxOffset, 1);
       document.documentElement.style.setProperty(
         "--scroll-progress",
         progress.toString(),
@@ -74,7 +82,7 @@ function Home() {
     };
 
     // Initial setup
-    createSnow(30);
+    if (SEASON_THEME_ENABLED) createSnow(30);
     updateLogoMax();
     updateScrollProgress();
 
@@ -97,12 +105,14 @@ function Home() {
   return (
     <div id="home_root">
       <TitleBar />
-      {/* <HomePromo /> */}
+      <HomePromo />
       <HomeNieuws />
       <HomeTrainingen />
       <HomeCommissies />
       <Samenwerkingen />
-      <div id="sneeuw_container"></div>
+      {/* createSnow busy-waits for this element, so the two must stay gated
+          together by the same flag. */}
+      {SEASON_THEME_ENABLED && <div id="sneeuw_container"></div>}
     </div>
   );
 }
