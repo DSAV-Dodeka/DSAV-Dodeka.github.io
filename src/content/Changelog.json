@@ -1,6 +1,15 @@
 {
   "updates": [
     {
+      "id": "bugfix-owee-video-sneller",
+      "datum": "15-08-2026",
+      "titel": "OWee-video op de voorpagina laadt nu direct",
+      "beschrijving": "De video stond in 4K op de website en was 75 MB groot, waardoor hij de eerste seconden bleef hangen. Hij wordt nu automatisch kleiner geleverd (5 MB) en je ziet meteen het eerste beeld.",
+      "categorie": "bugfix",
+      "grootte": "klein",
+      "auteur": "Jefry"
+    },
+    {
       "id": "content-zomerthema-uit",
       "datum": "15-08-2026",
       "titel": "Zomerthema uitgezet",
