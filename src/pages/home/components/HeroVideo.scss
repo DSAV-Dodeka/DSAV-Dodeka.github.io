@@ -14,6 +14,52 @@
   object-fit: cover;
 }
 
+// Darken the video so the logo/title stay readable over any footage.
+.hero_scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 45%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+.hero_content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0 2rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero_logo {
+  width: min(18rem, 60vw);
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
+}
+
+.hero_title {
+  margin: 0;
+  max-width: 40rem;
+  color: white;
+  font-size: variables.$font_large;
+  font-weight: variables.$bold;
+  line-height: variables.$line_height_large;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+
+  @include variables.respond(mobile) {
+    font-size: variables.$font_ml;
+    line-height: variables.$line_height_medium;
+  }
+}
+
 // Scroll indicator — bouncing chevron
 .hero_scroll_indicator {
   position: absolute;

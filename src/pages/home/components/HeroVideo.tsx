@@ -19,6 +19,7 @@
  */
 import { useEffect } from "react";
 import "./HeroVideo.scss";
+import logo from "$images/logo.png";
 
 const HERO_VIDEO_URL =
   "https://res.cloudinary.com/dknah0nov/video/upload/v1786804828/Dodeka_OWee_2026_teaser.mp4";
@@ -63,6 +64,13 @@ function HeroVideo() {
         loop
         playsInline
       />
+      <div className="hero_scrim" />
+      <div className="hero_content">
+        <img className="hero_logo" src={logo} alt="Dodeka" />
+        <h1 className="hero_title">
+          Dé Delftse Studenten Atletiek Vereniging
+        </h1>
+      </div>
       <div className="hero_scroll_indicator">
         <div className="hero_scroll_chevron" />
       </div>
