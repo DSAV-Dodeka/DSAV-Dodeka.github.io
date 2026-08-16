@@ -1,6 +1,17 @@
 {
   "updates": [
     {
+      "id": "feature-owee-pagina-beunsessie",
+      "datum": "15-08-2026",
+      "titel": "OWee-pagina geüpdatet en geüpgraded",
+      "beschrijving": "Tijdens onze beunsessie hebben we de OWee-pagina geüpdatet en geüpgraded: een nieuw programmaschema waarin je op elke activiteit kunt klikken voor een pop-up met uitleg, verse foto's van de trainingen, de parade en de borrel, en een nieuwe achtergrond. De foto's worden nu vooraf geladen, dus een pop-up staat er meteen.",
+      "categorie": "feature",
+      "grootte": "groot",
+      "auteur": "Ymme, Mei Chang, Anne-Wil, Xylander, Tijmen en Jefry",
+      "link": "/owee",
+      "momentId": "beunsessie-2026"
+    },
+    {
       "id": "bugfix-owee-video-sneller",
       "datum": "15-08-2026",
       "titel": "OWee-video op de voorpagina laadt nu direct",
@@ -24,7 +35,7 @@
       "titel": "OWee-video en banner op de voorpagina",
       "beschrijving": "De voorpagina opent nu met een schermvullende OWee-video, en een opvallende banner brengt je in één klik naar al onze OWee-activiteiten. Zo vinden nieuwe studenten ons meteen.",
       "categorie": "feature",
-      "grootte": "groot",
+      "grootte": "klein",
       "auteur": "Jefry",
       "link": "/owee"
     },
@@ -432,6 +443,12 @@
     }
   ],
   "momenten": [
+    {
+      "id": "beunsessie-2026",
+      "naam": "Beunsessie 2026",
+      "datum": "15-08-2026",
+      "beschrijving": "Updates die tijdens onze beunsessie zijn gebouwd en uitgerold."
+    },
     {
       "id": "24uursvergadering-2026",
       "naam": "24-uursvergadering 2026",
