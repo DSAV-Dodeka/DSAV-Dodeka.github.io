@@ -176,7 +176,12 @@ function OWeeSchema() {
                             <div className="popupText">
                                 <h2>Training</h2>
                                 <p>De maandag en woensdag kan worden afgesloten met een sportieve training bij ons op de atletiekbaan, op het adres Sportring 12. Proeftrainen kan 3 keer gratis en zelfs tijdens de OWee! </p>
-                                <p>Meld je hier aan voor een <a href="https://dsavdodeka.nl/trainingen/">proeftraining</a></p>
+                                <a className="OWeeInschrijfKnop" href="https://dsavdodeka.nl/trainingen/" target="_blank" rel="noreferrer">
+                                    Meld je aan voor een proeftraining
+                                    <svg className="OWeeInschrijfKnopPijl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
+                                    </svg>
+                                </a>
                             </div>
                             <img className="OWeeImagePopup" src={training_rennen} />
                         </div>
@@ -192,7 +197,13 @@ function OWeeSchema() {
                                 <br></br>
                                 <p>Onderweg zal er gestopt worden bij kaaslokaal Delft om te genieten van een gratis blokje kaas. Na deze korte pauze gaat de run verder, we eindigen bij Piada at the canal, waar deelnemers die het tot het einde hebben gehaald beloond worden met een gratis Piade. </p>
                                 <br></br>
-                                <p>Ook zonder sportkleding of de hipste hardloopschoenen ben je welkom om deel te nemen. Inschrijven kan via deze <a href = "https://docs.google.com/forms/d/1LPveictqRrqoOw4EwtREOpF4oxneMskBCbn8fzhwjEw/edit">link </a></p>                                
+                                <p>Ook zonder sportkleding of de hipste hardloopschoenen ben je welkom om deel te nemen.</p>
+                                <a className="OWeeInschrijfKnop" href="https://docs.google.com/forms/d/e/1FAIpQLScaKjcdk330TxKcTaVkdwLJXSA7JScnKfdfgMYHLzJyGQ4EKw/viewform" target="_blank" rel="noreferrer">
+                                    Schrijf je in voor de Runclub
+                                    <svg className="OWeeInschrijfKnopPijl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
+                                    </svg>
+                                </a>
                             </div>
                             <img className="OWeeImagePopup" src={run} />
                         </div>

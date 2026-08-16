@@ -225,6 +225,74 @@
     flex: 1;
 }
 
+// Aanmeldknop in de Training/Runclub-popups: dezelfde rood-verloop-CTA als de
+// interesseformulier-knop onder de planning, zodat "hier moet je iets doen"
+// er in de hele OWee-pagina hetzelfde uitziet.
+.OWeeInschrijfKnop {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 3rem;
+    padding: 0.65rem 1.5rem;
+    margin-top: 1rem;
+
+    border-radius: 0.75rem;
+    background: linear-gradient(
+        100deg,
+        variables.$dodeka_rood 0%,
+        variables.$baan_rood 100%
+    );
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 31, 72, 0.25);
+
+    color: white;
+    font-size: variables.$font_small;
+    font-weight: variables.$bold;
+    text-decoration: none;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        transform 150ms ease-out,
+        box-shadow 150ms ease-out;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.5rem 1.25rem rgba(0, 31, 72, 0.3);
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    &:focus-visible {
+        outline: 3px solid variables.$dodeka_blauw;
+        outline-offset: 3px;
+    }
+}
+
+.OWeeInschrijfKnopPijl {
+    height: 0.9rem;
+    fill: white;
+    transition: transform 150ms ease-out;
+}
+
+.OWeeInschrijfKnop:hover .OWeeInschrijfKnopPijl {
+    transform: translateX(0.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .OWeeInschrijfKnop,
+    .OWeeInschrijfKnopPijl {
+        transition: none;
+    }
+
+    .OWeeInschrijfKnop:hover,
+    .OWeeInschrijfKnop:active,
+    .OWeeInschrijfKnop:hover .OWeeInschrijfKnopPijl {
+        transform: none;
+    }
+}
+
 .OWeeImagePopup {
     width: 45%;
     border-radius: 0.5rem;
