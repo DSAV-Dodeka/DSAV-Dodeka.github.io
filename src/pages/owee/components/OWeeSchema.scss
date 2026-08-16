@@ -6,8 +6,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border-top: 4rem solid variables.$dodeka_blauw90p;
-    border-bottom: 4rem solid variables.$dodeka_blauw90p;
     width: 100%;
     // Ruimer kader dan voorheen (1rem / 4rem / 3rem): zo blijft er aan alle
     // kanten een rand van de achtergrondfoto zichtbaar rond de planning.
@@ -28,8 +26,6 @@
         flex-direction: column;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
-        border-top: 2rem solid variables.$dodeka_blauw90p;
-        border-bottom: 2rem solid variables.$dodeka_blauw90p;
     }
 }
 
@@ -90,9 +86,15 @@
     margin: 0 0 0.75rem;
     position: relative;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 31, 72, 0.15);
+    transition:
+        transform 0.15s ease-out,
+        box-shadow 0.15s ease-out;
+    // Was scale(1.05): in de smallere kolommen liep een opgeschaalde kaart over
+    // zijn buren heen. Een klein zetje omhoog leest net zo goed als "klikbaar".
     &:hover {
-        transform: scale(1.05);
+        transform: translateY(-3px);
+        box-shadow: 0 0.5rem 1.25rem rgba(0, 31, 72, 0.3);
     }
     &:last-child {
         margin-bottom: 0;
@@ -126,14 +128,6 @@
     font-size: variables.$font_medium;
     color: white;
     // font-weight: $normal;
-}
-
-.OWeeActiviteit:hover {
-    margin: 1rem;
-}
-
-.OWeeActiviteit:active{
-    margin: 1rem;
 }
 
 .OWeeActiviteitTijd {
