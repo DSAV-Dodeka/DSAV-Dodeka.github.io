@@ -176,7 +176,7 @@ function OWeeSchema() {
                             <div className="popupText">
                                 <h2>Training</h2>
                                 <p>De maandag en woensdag kan worden afgesloten met een sportieve training bij ons op de atletiekbaan, op het adres Sportring 12. Proeftrainen kan 3 keer gratis en zelfs tijdens de OWee! </p>
-                                <a className="OWeeInschrijfKnop" href="https://dsavdodeka.nl/trainingen/" target="_blank" rel="noreferrer">
+                                <a className="OWeeInschrijfKnop" href="https://docs.google.com/forms/d/e/1FAIpQLSfNeX4zWJoujKnY_sgDss_hFAd9F_rub1zdPCu6aJ479GBq6A/viewform" target="_blank" rel="noreferrer">
                                     Meld je aan voor een proeftraining
                                     <svg className="OWeeInschrijfKnopPijl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
                                         <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
