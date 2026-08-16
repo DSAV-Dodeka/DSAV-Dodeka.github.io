@@ -12,37 +12,58 @@
  * logo rides along with the navbar.
  *
  * TO REMOVE THE HERO: delete the `{isHome && <HeroVideo />}` line and its
- * import in `src/pages/layout.tsx`, then delete this file and HeroVideo.scss.
- * Nothing else needs changing: `--hero-offset` defaults to 0px in
- * animation.css, and the hero offset in `home.tsx` measures the element and
- * falls back to 0 when it is absent.
+ * import in `src/pages/layout.tsx`, then delete this file, HeroVideo.scss and
+ * the clips in `public/hero/`. Nothing else needs changing: `--hero-offset`
+ * defaults to 0px in animation.css, and the hero offset in `home.tsx` measures
+ * the element and falls back to 0 when it is absent.
  */
 import { useEffect } from "react";
 import "./HeroVideo.scss";
 import logo from "$images/logo.png";
 
-// Cloudinary serves the raw upload untouched unless the URL carries a
-// transformation segment. The source file is 3840x2160, 75 MB for 15 seconds —
-// an average of 41.7 Mbps, which no normal connection can stream in real time,
-// so the hero sat frozen while it buffered.
+// The clip is served from our own origin (GitHub Pages), not Cloudinary.
 //
-// These transformations are applied on delivery and cached by Cloudinary, so
-// the original upload does not need re-encoding or replacing:
-//   f_auto          best format per browser (WebM/VP9 to Chrome, MP4 to Safari)
-//   q_auto          quality chosen per frame content
-//   w_1920,c_limit  cap the width at 1920, never upscale
-const CLOUDINARY_BASE = "https://res.cloudinary.com/dknah0nov/video/upload";
-const HERO_VIDEO_ID = "v1786804828/Dodeka_OWee_2026_teaser";
+// It used to be delivered straight from Cloudinary with an on-the-fly
+// `f_auto,q_auto,w_1920,c_limit` transformation. That derivation is cheap — it
+// happens once and is cached — but the *delivery* is not: the hero autoplays
+// and loops on the busiest page of the site, and a looping <video> re-fetches
+// on browsers that keep media out of the HTTP disk cache (iOS Safari). One
+// month of that came to 37.79 GB, far past the free plan's 25 GB.
+//
+// Serving static files from Pages costs nothing, so the files below are the
+// Cloudinary output downloaded once and committed:
+//   q_auto:eco   quality tuned for a background clip behind a scrim
+//   c_limit      cap the width, never upscale
+//   ac_none      drop the audio track — the hero is muted anyway
+const HERO_VIDEO_DESKTOP = "/hero/owee_teaser_1280.mp4"; // 2.4 MB
+const HERO_VIDEO_MOBILE = "/hero/owee_teaser_720.mp4"; //  1.0 MB
 
-// 5.2 MB at 2.9 Mbps, down from 75 MB at 41.7 Mbps.
-const HERO_VIDEO_URL = `${CLOUDINARY_BASE}/f_auto,q_auto,w_1920,c_limit/${HERO_VIDEO_ID}.mp4`;
+// The first frame as a still (63 KB). It paints straight away and covers the
+// gap while the video buffers, so the hero never shows a black box.
+const HERO_POSTER_URL = "/hero/owee_teaser_poster.jpg";
 
-// The first frame as a still (~63 KB, `so_0` = start offset 0). It paints
-// straight away and covers the gap while the video buffers, so the hero never
-// shows a black box.
-const HERO_POSTER_URL = `${CLOUDINARY_BASE}/so_0,f_auto,q_auto,w_1920,c_limit/${HERO_VIDEO_ID}.jpg`;
+// `<source media="…">` is not a reliable way to pick a video file — browsers
+// only evaluate it at load time and Chrome dropped it entirely — so the choice
+// is made here and assigned to `.src` in an effect. The element is rendered
+// without a `src` so the prerendered HTML fetches nothing on its own: the
+// poster carries the first paint and exactly one video file is ever requested.
+function pickHeroVideo() {
+  return window.matchMedia("(max-width: 768px)").matches
+    ? HERO_VIDEO_MOBILE
+    : HERO_VIDEO_DESKTOP;
+}
 
 function HeroVideo() {
+  useEffect(() => {
+    const video = document.getElementById(
+      "hero_video_element",
+    ) as HTMLVideoElement | null;
+
+    if (video && !video.src) {
+      video.src = pickHeroVideo();
+    }
+  }, []);
+
   useEffect(() => {
     const root = document.documentElement;
 
@@ -76,7 +97,6 @@ function HeroVideo() {
     <div id="hero_video_wrapper">
       <video
         id="hero_video_element"
-        src={HERO_VIDEO_URL}
         poster={HERO_POSTER_URL}
         preload="auto"
         autoPlay

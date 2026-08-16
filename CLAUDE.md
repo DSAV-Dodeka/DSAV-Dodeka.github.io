@@ -58,6 +58,17 @@ The video renders **above** the nav bar; the nav is `position: sticky`, so it si
    `TS6133: 'isHome' is declared but its value is never read` if you leave it
    behind. Keep `pathname` — the scroll-to-top effect still uses it.
 2. Delete `src/pages/home/components/HeroVideo.tsx` and `HeroVideo.scss`.
+3. Delete `public/hero/` — the two clips and the poster are only used here.
+
+The clips are served from our own origin on purpose. They were originally
+delivered from Cloudinary with an on-the-fly transformation; the derivation is
+cached and effectively free, but the *delivery* is not, and one month of an
+autoplaying looping hero on the busiest page came to 37.79 GB against a 25 GB
+free plan. A looping `<video>` re-fetches on browsers that keep media out of the
+HTTP disk cache (iOS Safari), which is why the download count ran far past the
+real visitor count. `public/` is copied into the build by Vite and GitHub Pages
+serves it for free — if a new clip is needed, transform it once in Cloudinary,
+download the result, and commit it rather than linking the delivery URL.
 
 Nothing else needs touching. Two hooks stay behind on purpose and both no-op once the video is gone:
 
