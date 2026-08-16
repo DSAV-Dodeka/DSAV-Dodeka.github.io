@@ -130,6 +130,15 @@
     // font-weight: $normal;
 }
 
+// Voor titels met een locatie erin ("Sportfeest @ Proteus"): het venue is
+// ondergeschikt aan de activiteitnaam en mag kleiner, zodat de titel op één
+// regel past in de smalle dagkolom.
+.OWeeActiviteitNaamVenue {
+    font-size: variables.$font_small;
+    font-weight: variables.$normal;
+    white-space: nowrap;
+}
+
 .OWeeActiviteitTijd {
     font-size: variables.$font_small;
     padding-top: 0.5rem;

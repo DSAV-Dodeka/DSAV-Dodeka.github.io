@@ -80,9 +80,9 @@ function OWeeSchema() {
                         <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Sportfeest")}>
-                        <h1 className="OWeeActiviteitNaam">Sportfeest</h1>
+                        <h1 className="OWeeActiviteitNaam">Sportfeest <span className="OWeeActiviteitNaamVenue">@ Proteus</span></h1>
                         <p className="OWeeActiviteitTijd">20:30-03:00</p>
-                        <p className="OWeeActiviteitPlaats">Proteus, Rotterdamseweg 362a</p>
+                        <p className="OWeeActiviteitPlaats">Rotterdamseweg 362a</p>
                         <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                 </div>
