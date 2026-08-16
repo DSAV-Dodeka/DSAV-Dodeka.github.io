@@ -273,7 +273,7 @@ function OWeeSchema() {
                         <div className="popupContent">
                             <div className="popupText">
                                 <h2>Sportfeest bij Proteus</h2>
-                                <p>Dodeka is natuurlijk niet te missen bij het sportfeest op proteus. Hier kun je zien dat Dodeka niet alleen een sportvereniging is maar ook super gezellig.</p>
+                                <p>Dodeka is natuurlijk niet te missen bij het sportfeest op Proteus. Hier kun je zien dat Dodeka niet alleen een sportvereniging is maar ook super gezellig.</p>
                             </div>
                             <img className="OWeeImagePopup" src={sportfeest} />
                         </div>
