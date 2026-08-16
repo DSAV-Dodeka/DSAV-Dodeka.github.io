@@ -101,9 +101,10 @@
     }
 }
 
-// Rood labeltje onderin de activiteit. Staat er altijd, zodat ook wie niet met
-// de muis over de kaart gaat ziet dat er meer info achter zit.
-.OWeeTooltip {
+// Het rode "Klik voor meer info"-labeltje onderin elke activiteit. Het staat er
+// altijd (dus niet alleen bij hover), zodat ook op mobiel en voor wie niet met
+// de muis over de kaart gaat duidelijk is dat er meer info achter zit.
+.OWeeActiviteitInfo {
     display: inline-block;
     margin-top: 0.75rem;
 
@@ -119,8 +120,8 @@
     transition: background-color 0.2s ease;
 }
 
-.OWeeActiviteit:hover .OWeeTooltip,
-.OWeeActiviteit:focus-visible .OWeeTooltip {
+.OWeeActiviteit:hover .OWeeActiviteitInfo,
+.OWeeActiviteit:focus-visible .OWeeActiviteitInfo {
     background-color: variables.$baan_rood;
 }
 

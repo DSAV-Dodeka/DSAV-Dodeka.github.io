@@ -1,5 +1,6 @@
 import "./OWeeSchema.scss";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import parade from "$images/owee/parade.webp";
 import activiteitenmarkt from "$images/owee/activiteitenmarkt.webp";
 import borrel from "$images/owee/borrel.webp";
@@ -47,10 +48,14 @@ import run from "$images/owee/run.webp";
  * van de twee iets anders in de popup staan, geef die dan een eigen sleutel.
  *
  * Een INSCHRIJFKNOP in een popup (zoals bij Training en Runclub): kopieer het
- * <a className="OWeeInschrijfKnop"> ... </a> blok en zet de juiste link in href.
- * Gebruik bij Google Formulieren de deel-link (die eindigt op /viewform), niet
- * de link uit de adresbalk terwijl je het formulier aan het bewerken bent (die
- * eindigt op /edit) — die werkt niet voor bezoekers.
+ * blok met className="OWeeInschrijfKnop". Verwijst hij naar een pagina op onze
+ * eigen site, gebruik dan <Link to="/trainingen">; gaat hij naar buiten (een
+ * Google Formulier bijvoorbeeld), gebruik dan <a href="..." target="_blank">.
+ *
+ * Let op bij Google Formulieren: gebruik de deel-link uit de knop "Verzenden"
+ * (die ziet eruit als .../forms/d/e/LANGE-CODE/viewform). De link uit de
+ * adresbalk terwijl je het formulier zelf aan het bewerken bent eindigt op
+ * /edit en stuurt bezoekers naar een "toegang aanvragen"-scherm.
  *
  * Kleuren, afstanden en de vormgeving staan in OWeeSchema.scss.
  * De knop naar het interesseformulier onder de planning is een los bestand:
@@ -89,13 +94,13 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Parade</h1>
                         <p className="OWeeActiviteitTijd">16:45-19:00</p>
                         <p className="OWeeActiviteitPlaats">Langs de Schie</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                     { <div className="OWeeActiviteit" onClick={() => setShowPopup("Feest")}>
                         <h1 className="OWeeActiviteitNaam">Openingsfeest</h1>
                         <p className="OWeeActiviteitTijd">20:00-01:00</p>
                         <p className="OWeeActiviteitPlaats">Tu Delft Aula</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>}
                 </div>
                 <div className="OWeeDag">
@@ -105,13 +110,13 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Infomarkt</h1>
                         <p className="OWeeActiviteitTijd">13:00-17:45</p>
                         <p className="OWeeActiviteitPlaats">Grote Markt</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Training")}>
                         <h1 className="OWeeActiviteitNaam">Training</h1>
                         <p className="OWeeActiviteitTijd">18:15-19:45</p>
                         <p className="OWeeActiviteitPlaats">Sportring 12</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                 </div>
                 <div className="OWeeDag">
@@ -121,13 +126,13 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Runclub</h1>
                         <p className="OWeeActiviteitTijd">10:30-11:30</p>
                         <p className="OWeeActiviteitPlaats">Grote Markt</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Sportfeest")}>
                         <h1 className="OWeeActiviteitNaam">Sportfeest <span className="OWeeActiviteitNaamVenue">@ Proteus</span></h1>
                         <p className="OWeeActiviteitTijd">20:30-03:00</p>
                         <p className="OWeeActiviteitPlaats">Rotterdamseweg 362a</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                 </div>
                 <div className="OWeeDag">
@@ -137,19 +142,19 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Activiteitenmarkt </h1>
                         <p className="OWeeActiviteitTijd">11:00-15:00</p>
                         <p className="OWeeActiviteitPlaats">Op X</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Training")}>
                         <h1 className="OWeeActiviteitNaam">Training</h1>
                         <p className="OWeeActiviteitTijd">18:15-19:45</p>
                         <p className="OWeeActiviteitPlaats">Sportring 12</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Borrel")}>
                         <h1 className="OWeeActiviteitNaam">Borrel</h1>
                         <p className="OWeeActiviteitTijd">20:00-23:00</p>
                         <p className="OWeeActiviteitPlaats">Sportring 12</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                 </div>
                 <div className="OWeeDag">
@@ -159,7 +164,7 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Delftse Hout relax</h1>
                         <p className="OWeeActiviteitTijd">11:30-13:00</p>
                         <p className="OWeeActiviteitPlaats">Delftse Hout</p>
-                        <span className="OWeeTooltip">Klik voor meer info</span>
+                        <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                 </div>
             </div>
@@ -226,12 +231,15 @@ function OWeeSchema() {
                             <div className="popupText">
                                 <h2>Training</h2>
                                 <p>De maandag en woensdag kan worden afgesloten met een sportieve training bij ons op de atletiekbaan, op het adres Sportring 12. Proeftrainen kan 3 keer gratis en zelfs tijdens de OWee! </p>
-                                <a className="OWeeInschrijfKnop" href="https://docs.google.com/forms/d/e/1FAIpQLSfNeX4zWJoujKnY_sgDss_hFAd9F_rub1zdPCu6aJ479GBq6A/viewform" target="_blank" rel="noreferrer">
+                                {/* Verwijst naar onze eigen trainingenpagina; daar staat alles
+                                    over de trainingen en het proeftrainen. <Link> in plaats van
+                                    <a> houdt het binnen de site (geen herlaadbeurt). */}
+                                <Link className="OWeeInschrijfKnop" to="/trainingen">
                                     Meld je aan voor een proeftraining
                                     <svg className="OWeeInschrijfKnopPijl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
                                         <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                             <img className="OWeeImagePopup" src={training_rennen} />
                         </div>
