@@ -1,5 +1,5 @@
 import "./OWeeSchema.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import parade from "$images/owee/parade.webp";
 import activiteitenmarkt from "$images/owee/activiteitenmarkt.webp";
 import borrel from "$images/owee/borrel.webp";
@@ -15,11 +15,29 @@ import run from "$images/owee/run.webp";
 
 function OWeeSchema() {
     const [showPopup, setShowPopup] = useState<string | null>(null);
-    
+
+    // Sluit de popup met Escape, en bevries de pagina eronder zolang hij open staat.
+    useEffect(() => {
+        if (showPopup === null) return;
+
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setShowPopup(null);
+        };
+        document.addEventListener("keydown", onKeyDown);
+
+        const vorigeOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.removeEventListener("keydown", onKeyDown);
+            document.body.style.overflow = vorigeOverflow;
+        };
+    }, [showPopup]);
+
     return(
         <div className="OWeeSchema">
             <h1 className="OWeeHeader">OWEE PLANNING D.S.A.V DODEKA</h1>
-            <div className={showPopup ? "planning hidden" : "planning"}>
+            <div className="planning">
                 <div className="OWeeDag">
                     <h1 className="OWeeDatumDag">Zondag</h1>
                     <h1 className="OWeeDatum">16 augustus</h1>
@@ -27,13 +45,13 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Parade</h1>
                         <p className="OWeeActiviteitTijd">16:45-19:00</p>
                         <p className="OWeeActiviteitPlaats">Langs de Schie</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                     { <div className="OWeeActiviteit" onClick={() => setShowPopup("Feest")}>
                         <h1 className="OWeeActiviteitNaam">Openingsfeest</h1>
                         <p className="OWeeActiviteitTijd">20:00-01:00</p>
                         <p className="OWeeActiviteitPlaats">Tu Delft Aula</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>}
                 </div>
                 <div className="OWeeDag">
@@ -43,13 +61,13 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Infomarkt</h1>
                         <p className="OWeeActiviteitTijd">13:00-17:45</p>
                         <p className="OWeeActiviteitPlaats">Grote Markt</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Training")}>
                         <h1 className="OWeeActiviteitNaam">Training</h1>
                         <p className="OWeeActiviteitTijd">18:15-19:45</p>
                         <p className="OWeeActiviteitPlaats">Sportring 12</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                 </div>
                 <div className="OWeeDag">
@@ -59,13 +77,13 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Runclub</h1>
                         <p className="OWeeActiviteitTijd">10:30-11:30</p>
                         <p className="OWeeActiviteitPlaats">Grote Markt</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Sportfeest")}>
                         <h1 className="OWeeActiviteitNaam">Sportfeest bij Proteus</h1>
                         <p className="OWeeActiviteitTijd">20:30-03:00</p>
                         <p className="OWeeActiviteitPlaats">Rotterdamseweg 362a</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                 </div>
                 <div className="OWeeDag">
@@ -75,19 +93,19 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Activiteitenmarkt </h1>
                         <p className="OWeeActiviteitTijd">11:00-15:00</p>
                         <p className="OWeeActiviteitPlaats">Op X</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Training")}>
                         <h1 className="OWeeActiviteitNaam">Training</h1>
                         <p className="OWeeActiviteitTijd">18:15-19:45</p>
                         <p className="OWeeActiviteitPlaats">Sportring 12</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Borrel")}>
                         <h1 className="OWeeActiviteitNaam">Borrel</h1>
                         <p className="OWeeActiviteitTijd">20:00-23:00</p>
                         <p className="OWeeActiviteitPlaats">Sportring 12</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                 </div>
                 <div className="OWeeDag">
@@ -97,13 +115,20 @@ function OWeeSchema() {
                         <h1 className="OWeeActiviteitNaam">Delftse Hout relax</h1>
                         <p className="OWeeActiviteitTijd">11:30-13:00</p>
                         <p className="OWeeActiviteitPlaats">Delftse Hout</p>
-                        <p className="OWeeActiviteitPlaats">Klik voor meer info</p>
+                        <span className="OWeeTooltip">Klik voor meer info</span>
                     </div>
                 </div>
             </div>
-            {/* Parade popup */}
+            {/* De popup ligt als overlay over de planning heen. Klik naast de
+                popup (op de overlay zelf) om hem te sluiten. */}
             {showPopup !== null && (
-                <div className="popup">
+                <div className="popupOverlay" onClick={() => setShowPopup(null)}>
+                <div
+                    className="popup"
+                    role="dialog"
+                    aria-modal="true"
+                    onClick={(e) => e.stopPropagation()}
+                >
 <button className="closePopup" onClick={() => setShowPopup(null)} aria-label="Sluiten">
                     ×
                 </button>
@@ -225,7 +250,7 @@ function OWeeSchema() {
                         </>
                     )}
                 </div>
-                
+                </div>
             )}
             
         </div>

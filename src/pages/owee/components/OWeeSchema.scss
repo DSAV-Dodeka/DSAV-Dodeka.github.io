@@ -77,10 +77,35 @@
     padding: 1rem;
     margin-bottom: 1rem;
     margin: 1rem;
+    position: relative;
+    cursor: pointer;
     transition: transform 0.2s ease;
     &:hover {
         transform: scale(1.05);
     }
+}
+
+// Rood labeltje onderin de activiteit. Staat er altijd, zodat ook wie niet met
+// de muis over de kaart gaat ziet dat er meer info achter zit.
+.OWeeTooltip {
+    display: inline-block;
+    margin-top: 0.75rem;
+
+    background-color: variables.$dodeka_rood;
+    color: white;
+    border-radius: 0.5rem;
+    // Net klein genoeg om in de smalle dagkolommen op één regel te passen.
+    padding: 0.35rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: variables.$bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+    transition: background-color 0.2s ease;
+}
+
+.OWeeActiviteit:hover .OWeeTooltip,
+.OWeeActiviteit:focus-visible .OWeeTooltip {
+    background-color: variables.$baan_rood;
 }
 
 .OWeeActiviteitNaam {
@@ -122,8 +147,26 @@
     border-radius: 1rem;
 }
 
-.hidden {
-    display: none;
+// Verduisterde laag over de hele pagina; de planning blijft er onder zichtbaar.
+.popupOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    overflow-y: auto;
+
+    background-color: rgba(0, 31, 72, 0.6);
+    animation: OWeeOverlayFade 0.15s ease;
+}
+
+@keyframes OWeeOverlayFade {
+    from {
+        opacity: 0;
+    }
 }
 
 .popup {
@@ -132,7 +175,12 @@
     border-radius: 1rem;
     padding: 3.5rem 2rem 2rem;
     max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    margin: auto;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
+    cursor: default;
 }
 
 .popupContent {
@@ -168,8 +216,11 @@
 }
 
 @media (max-width: 600px) {
+    .popupOverlay {
+        padding: 1rem;
+    }
     .popup {
-        margin: 0 1rem;
+        padding: 3rem 1.25rem 1.5rem;
     }
     .popupContent {
         flex-direction: column;
