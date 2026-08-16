@@ -176,7 +176,7 @@ function OWeeSchema() {
                     <div className="OWeeActiviteit" onClick={() => setShowPopup("Borrel")}>
                         <h1 className="OWeeActiviteitNaam">Borrel</h1>
                         <p className="OWeeActiviteitTijd">20:00-23:00</p>
-                        <p className="OWeeActiviteitPlaats">Sportring 12</p>
+                        <p className="OWeeActiviteitPlaats">Delftse Hout</p>
                         <span className="OWeeActiviteitInfo">Klik voor meer info</span>
                     </div>
                 </div>
