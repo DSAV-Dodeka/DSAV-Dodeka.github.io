@@ -10,8 +10,52 @@ import trackFestival from "$images/owee/track_festival.webp";
 import training_rennen from "$images/owee/training_rennen.webp";
 import run from "$images/owee/run.webp";
 
-
-
+/*
+ * DE OWEE-PLANNING AANPASSEN (bijv. voor volgend jaar)
+ * ====================================================
+ *
+ * Elke activiteit staat op TWEE plekken in dit bestand:
+ *
+ *   1. Het kaartje in de planning        -> hieronder, binnen een <div className="OWeeDag">
+ *   2. De popup met de uitleg + foto     -> verderop, onder "POPUPS"
+ *
+ * Die twee horen bij elkaar via een sleutelwoord. Op het kaartje staat
+ * setShowPopup("Borrel") en bij de popup showPopup === "Borrel". Zolang die
+ * twee exact hetzelfde zijn (hoofdletters tellen mee!) opent het juiste
+ * verhaal. Typ je ze verschillend, dan gebeurt er bij het klikken niets.
+ *
+ * Alleen tijden, plaatsen of teksten wijzigen?
+ *   Dat is gewoon tekst: pas de regels in het kaartje of in de popup aan.
+ *   Er is geen aparte lijst of database, alles staat letterlijk hier.
+ *
+ * Een activiteit TOEVOEGEN:
+ *   1. Kopieer een bestaand <div className="OWeeActiviteit"> ... </div> blok
+ *      naar de dag waar het bij hoort en pas de tekst aan.
+ *   2. Verzin een nieuw sleutelwoord, bijv. setShowPopup("Pubquiz").
+ *   3. Kopieer onder "POPUPS" een bestaand blok en zet daar showPopup === "Pubquiz".
+ *   4. Foto: zet het bestand in src/images/owee/ en voeg bovenaan een import
+ *      toe (kijk naar de regels hierboven), gebruik hem dan in <img src={...} />.
+ *
+ * Een activiteit WEGHALEN: verwijder allebei de blokken (kaartje + popup).
+ *
+ * Een DAG toevoegen of weghalen: kopieer/verwijder een heel
+ * <div className="OWeeDag"> ... </div> blok. De kolommen verdelen zichzelf,
+ * je hoeft niets aan de opmaak te veranderen.
+ *
+ * Let op: "Training" staat twee keer in de planning (maandag en woensdag) en
+ * gebruikt beide keren dezelfde sleutel, dus samen één popup. Moet er voor één
+ * van de twee iets anders in de popup staan, geef die dan een eigen sleutel.
+ *
+ * Een INSCHRIJFKNOP in een popup (zoals bij Training en Runclub): kopieer het
+ * <a className="OWeeInschrijfKnop"> ... </a> blok en zet de juiste link in href.
+ * Gebruik bij Google Formulieren de deel-link (die eindigt op /viewform), niet
+ * de link uit de adresbalk terwijl je het formulier aan het bewerken bent (die
+ * eindigt op /edit) — die werkt niet voor bezoekers.
+ *
+ * Kleuren, afstanden en de vormgeving staan in OWeeSchema.scss.
+ * De knop naar het interesseformulier onder de planning is een los bestand:
+ * OWeeInteresse.tsx.
+ */
 
 function OWeeSchema() {
     const [showPopup, setShowPopup] = useState<string | null>(null);
@@ -119,8 +163,14 @@ function OWeeSchema() {
                     </div>
                 </div>
             </div>
-            {/* De popup ligt als overlay over de planning heen. Klik naast de
-                popup (op de overlay zelf) om hem te sluiten. */}
+            {/* ======================= POPUPS =======================
+                Hieronder staat per activiteit het verhaal dat verschijnt als je
+                op het kaartje klikt. Er zijn twee lagen:
+                  .popupOverlay = de donkere laag over de hele pagina; klik je
+                                  daarop (dus naast de popup), dan sluit hij.
+                  .popup        = het witte kaartje zelf; een klik hierbinnen
+                                  sluit juist niet (dat doet stopPropagation).
+                Sluiten kan ook met het kruisje of met de Escape-toets. */}
             {showPopup !== null && (
                 <div className="popupOverlay" onClick={() => setShowPopup(null)}>
                 <div
@@ -260,7 +310,7 @@ function OWeeSchema() {
                         </div>
                         </>
                     )}
-                </div>
+                </div>{/* einde .popup (het witte kaartje) */}
                 </div>
             )}
             

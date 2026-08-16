@@ -1,7 +1,19 @@
 import "./OWeeInteresse.scss";
 
-// Staat direct onder de planning: daar is iemand net door alle activiteiten
-// gescrold en is de vraag "en hoe doe ik mee?" op zijn sterkst.
+/*
+ * De knop naar het interesseformulier, direct onder de planning: daar is iemand
+ * net door alle activiteiten gescrold en is de vraag "en hoe doe ik mee?" op
+ * zijn sterkst.
+ *
+ * Nieuw formulier volgend jaar? Vervang de href hieronder. Gebruik bij Google
+ * Formulieren de deel-link (Verzenden -> het linkje), die eindigt op /viewform.
+ * De link uit de adresbalk terwijl je het formulier bewerkt eindigt op /edit en
+ * werkt niet voor bezoekers.
+ *
+ * De tekst van de titel, het tussenzinnetje en het knoplabel staan hieronder
+ * gewoon als tekst. Vormgeving: OWeeInteresse.scss.
+ * Dit blok wordt op de pagina gezet in owee.tsx.
+ */
 function OWeeInteresse() {
     return (
         <div className="OWeeInteresse">

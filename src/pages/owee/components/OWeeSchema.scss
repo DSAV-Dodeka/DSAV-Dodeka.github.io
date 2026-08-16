@@ -167,7 +167,13 @@
     box-shadow: 0 1rem 2rem rgba(0, 31, 72, 0.2);
 
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    // Elke dag (.OWeeDag) krijgt automatisch een even brede kolom. Het aantal
+    // dagen staat dus nergens vast: haal je er een dag bij of weg in
+    // OWeeSchema.tsx, dan klopt deze indeling vanzelf weer.
+    grid-auto-flow: column;
+    // minmax(0, 1fr) in plaats van 1fr: zo blijven alle kolommen even breed,
+    // ook als er in één activiteit een lang adres of een lange naam staat.
+    grid-auto-columns: minmax(0, 1fr);
     gap: 2.5rem;
     padding: 1.5rem;
 
