@@ -1,16 +1,6 @@
 {
   "updates": [
     {
-      "id": "verbetering-owee-planning",
-      "datum": "16-08-2026",
-      "titel": "OWee-planning: pop-up over de planning en een knop naar het interesseformulier",
-      "beschrijving": "Klik je een activiteit aan, dan opent de info nu als pop-up over de planning heen in plaats van de planning te vervangen, en sluit je hem met een klik ernaast of met Escape. Bij elke activiteit staat voortaan een rood labeltje 'Klik voor meer info', en onder de planning zit een knop naar het interesseformulier.",
-      "categorie": "verbetering",
-      "grootte": "klein",
-      "auteur": "Jefry",
-      "link": "/owee"
-    },
-    {
       "id": "bugfix-owee-video-sneller",
       "datum": "15-08-2026",
       "titel": "OWee-video op de voorpagina laadt nu direct",
