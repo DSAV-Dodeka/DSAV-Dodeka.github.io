@@ -6,26 +6,26 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border-top: 4rem solid variables.$dodeka_blauw90p;
-    border-bottom: 4rem solid variables.$dodeka_blauw90p;
     width: 100%;
-    padding-top: 1rem;
+    // Ruimer kader dan voorheen (1rem / 4rem / 3rem): zo blijft er aan alle
+    // kanten een rand van de achtergrondfoto zichtbaar rond de planning.
+    padding-top: 2rem;
     padding-left: 4rem;
-    padding-right: 3rem;
-    padding-bottom: 1rem;
-    margin-bottom: 8rem;
+    padding-right: 4rem;
+    padding-bottom: 3rem;
+    // Was 8rem: de interesse-knop staat nu in dat gat en zorgt zelf voor de
+    // ruimte richting de tekst eronder.
+    margin-bottom: 3rem;
     @include variables.respond(mobile) {
         padding-top: 1rem;
         padding-left: 1rem;
-        padding-right: 0;
+        padding-right: 1rem;
         padding-bottom: 1rem;
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
         display: flex;
         flex-direction: column;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
-        border-top: 2rem solid variables.$dodeka_blauw90p;
-        border-bottom: 2rem solid variables.$dodeka_blauw90p;
     }
 }
 
@@ -40,34 +40,40 @@
     font-size: variables.$font_large;
     color: variables.$dodeka_rood;
     -webkit-text-stroke: 1px white;
+    margin-bottom: 1.25rem;
 }
 
 .OWeeDag {
-    display: inline-block;
-    width: calc(20% - 1rem);
     color: variables.$dodeka_blauw90p;
-    vertical-align: top;
-    margin-right: 1rem;
-    padding-right: 1rem;
+    // De breedte en de tussenruimte komen van de grid op .planning; de kolom
+    // zelf hoeft alleen zijn eigen inhoud te stapelen.
     @include variables.respond(mobile) {
-        display: auto;
         width: 100%;
         min-width: 80vw;
     }
 }
 
+// Op mobiel staan de dagen onder elkaar en valt de grid-gap weg; deze marge
+// houdt de dagen net zo duidelijk uit elkaar als op desktop.
+.OWeeDag + .OWeeDag {
+    @include variables.respond(mobile) {
+        margin-top: 2rem;
+    }
+}
+
+// Dag en datum horen bij elkaar en staan daarom dicht op elkaar; de ruimte
+// eronder (1.25rem) is groter, zodat de kop bij zijn eigen kolom hoort en niet
+// tussen de dagen in lijkt te zweven.
 .OWeeDatum {
     color: variables.$dodeka_blauw;
     font-size: variables.$font_medium;
-    //margin: top right bottom left;
-    //margin-bottom: 1rem;
-    margin: 1rem 0 0 1rem;
+    margin: 0.125rem 0 1.25rem;
     font-weight: variables.$bold;
 }
 
 .OWeeDatumDag {
     font-size: variables.$font_ml;
-    margin: 0 0 1rem 1rem;
+    margin: 0;
     font-weight: variables.$bold;
 }
 
@@ -75,12 +81,48 @@
     background-color: variables.$dodeka_blauw90p;
     border-radius: 0.5rem;
     padding: 1rem;
-    margin-bottom: 1rem;
-    margin: 1rem;
-    transition: transform 0.2s ease;
+    // Activiteiten binnen één dag staan dichter op elkaar dan de dagen onderling
+    // (de grid-gap van .planning).
+    margin: 0 0 0.75rem;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 31, 72, 0.15);
+    transition:
+        transform 0.15s ease-out,
+        box-shadow 0.15s ease-out;
+    // Was scale(1.05): in de smallere kolommen liep een opgeschaalde kaart over
+    // zijn buren heen. Een klein zetje omhoog leest net zo goed als "klikbaar".
     &:hover {
-        transform: scale(1.05);
+        transform: translateY(-3px);
+        box-shadow: 0 0.5rem 1.25rem rgba(0, 31, 72, 0.3);
     }
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Het rode "Klik voor meer info"-labeltje onderin elke activiteit. Het staat er
+// altijd (dus niet alleen bij hover), zodat ook op mobiel en voor wie niet met
+// de muis over de kaart gaat duidelijk is dat er meer info achter zit.
+.OWeeActiviteitInfo {
+    display: inline-block;
+    margin-top: 0.75rem;
+
+    background-color: variables.$dodeka_rood;
+    color: white;
+    border-radius: 0.5rem;
+    // Net klein genoeg om in de smalle dagkolommen op één regel te passen.
+    padding: 0.35rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: variables.$bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+    transition: background-color 0.2s ease;
+}
+
+.OWeeActiviteit:hover .OWeeActiviteitInfo,
+.OWeeActiviteit:focus-visible .OWeeActiviteitInfo {
+    background-color: variables.$baan_rood;
 }
 
 .OWeeActiviteitNaam {
@@ -89,12 +131,13 @@
     // font-weight: $normal;
 }
 
-.OWeeActiviteit:hover {
-    margin: 1rem;
-}
-
-.OWeeActiviteit:active{
-    margin: 1rem;
+// Voor titels met een locatie erin ("Sportfeest @ Proteus"): het venue is
+// ondergeschikt aan de activiteitnaam en mag kleiner, zodat de titel op één
+// regel past in de smalle dagkolom.
+.OWeeActiviteitNaamVenue {
+    font-size: variables.$font_small;
+    font-weight: variables.$normal;
+    white-space: nowrap;
 }
 
 .OWeeActiviteitTijd {
@@ -106,7 +149,6 @@
 
 .OWeeActiviteitPlaats {
     font-size: variables.$font_small;
-    padding-bottom: 0.5rem;
     color: white;
     // font-weight: $bold;
 }
@@ -118,12 +160,52 @@
 }
 
 .planning {
-    background-color: white;
+    // Iets doorschijnend: de achtergrondfoto blijft door de planning heen
+    // zichtbaar in plaats van volledig weggedekt te worden door een wit vlak.
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(3px);
     border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 31, 72, 0.2);
+
+    display: grid;
+    // Elke dag (.OWeeDag) krijgt automatisch een even brede kolom. Het aantal
+    // dagen staat dus nergens vast: haal je er een dag bij of weg in
+    // OWeeSchema.tsx, dan klopt deze indeling vanzelf weer.
+    grid-auto-flow: column;
+    // minmax(0, 1fr) in plaats van 1fr: zo blijven alle kolommen even breed,
+    // ook als er in één activiteit een lang adres of een lange naam staat.
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+    padding: 1.5rem;
+
+    @include variables.respond(mobile) {
+        display: block;
+        padding: 1rem;
+        background-color: white;
+        backdrop-filter: none;
+    }
 }
 
-.hidden {
-    display: none;
+// Verduisterde laag over de hele pagina; de planning blijft er onder zichtbaar.
+.popupOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    overflow-y: auto;
+
+    background-color: rgba(0, 31, 72, 0.6);
+    animation: OWeeOverlayFade 0.15s ease;
+}
+
+@keyframes OWeeOverlayFade {
+    from {
+        opacity: 0;
+    }
 }
 
 .popup {
@@ -132,7 +214,12 @@
     border-radius: 1rem;
     padding: 3.5rem 2rem 2rem;
     max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    margin: auto;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
+    cursor: default;
 }
 
 .popupContent {
@@ -143,6 +230,74 @@
 
 .popupText {
     flex: 1;
+}
+
+// Aanmeldknop in de Training/Runclub-popups: dezelfde rood-verloop-CTA als de
+// interesseformulier-knop onder de planning, zodat "hier moet je iets doen"
+// er in de hele OWee-pagina hetzelfde uitziet.
+.OWeeInschrijfKnop {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 3rem;
+    padding: 0.65rem 1.5rem;
+    margin-top: 1rem;
+
+    border-radius: 0.75rem;
+    background: linear-gradient(
+        100deg,
+        variables.$dodeka_rood 0%,
+        variables.$baan_rood 100%
+    );
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 31, 72, 0.25);
+
+    color: white;
+    font-size: variables.$font_small;
+    font-weight: variables.$bold;
+    text-decoration: none;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        transform 150ms ease-out,
+        box-shadow 150ms ease-out;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.5rem 1.25rem rgba(0, 31, 72, 0.3);
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    &:focus-visible {
+        outline: 3px solid variables.$dodeka_blauw;
+        outline-offset: 3px;
+    }
+}
+
+.OWeeInschrijfKnopPijl {
+    height: 0.9rem;
+    fill: white;
+    transition: transform 150ms ease-out;
+}
+
+.OWeeInschrijfKnop:hover .OWeeInschrijfKnopPijl {
+    transform: translateX(0.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .OWeeInschrijfKnop,
+    .OWeeInschrijfKnopPijl {
+        transition: none;
+    }
+
+    .OWeeInschrijfKnop:hover,
+    .OWeeInschrijfKnop:active,
+    .OWeeInschrijfKnop:hover .OWeeInschrijfKnopPijl {
+        transform: none;
+    }
 }
 
 .OWeeImagePopup {
@@ -168,8 +323,11 @@
 }
 
 @media (max-width: 600px) {
+    .popupOverlay {
+        padding: 1rem;
+    }
     .popup {
-        margin: 0 1rem;
+        padding: 3rem 1.25rem 1.5rem;
     }
     .popupContent {
         flex-direction: column;
