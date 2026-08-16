@@ -333,9 +333,9 @@ function OWeeSchema() {
                         <div className="popupContent">
                             <div className="popupText">
                                 <h2>Borrel</h2>
-                                <p>Borrel mee na de training op een van onze super gezellige borrels in de kantine.</p>
+                                <p>Borrel mee na de training op een van onze super gezellige borrels, dit keer in het Delftse Hout.</p>
                                 <br></br>
-                                <p>Vergeet niet wat eten mee te nemen (anders is de mac om de hoek😉)</p>
+                                <p>Vergeet niet wat eten mee te nemen (anders is de mac op de route😉)</p>
                             </div>
                             <img className="OWeeImagePopup" src={borrel} />
                         </div>
