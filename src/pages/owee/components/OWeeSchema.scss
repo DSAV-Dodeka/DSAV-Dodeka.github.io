@@ -13,13 +13,15 @@
     padding-left: 4rem;
     padding-right: 3rem;
     padding-bottom: 1rem;
-    margin-bottom: 8rem;
+    // Was 8rem: de interesse-knop staat nu in dat gat en zorgt zelf voor de
+    // ruimte richting de tekst eronder.
+    margin-bottom: 3rem;
     @include variables.respond(mobile) {
         padding-top: 1rem;
         padding-left: 1rem;
         padding-right: 0;
         padding-bottom: 1rem;
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
         display: flex;
         flex-direction: column;
         overflow-x: scroll;
