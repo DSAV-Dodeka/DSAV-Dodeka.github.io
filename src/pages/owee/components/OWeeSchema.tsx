@@ -62,8 +62,31 @@ import run from "$images/owee/run.webp";
  * OWeeInteresse.tsx.
  */
 
+// Alle foto's die alleen in een popup staan. Ze worden meteen bij het openen van
+// de pagina opgehaald, zodat de foto er al staat als je op een activiteit klikt.
+// Voeg een nieuwe popup-foto hier ook toe.
+const popupImages = [
+    parade,
+    activiteitenmarkt,
+    borrel,
+    Chillen_op_gras,
+    infomarkt,
+    sportfeest,
+    trackFestival,
+    training_rennen,
+    run,
+];
+
 function OWeeSchema() {
     const [showPopup, setShowPopup] = useState<string | null>(null);
+
+    // Haal de popup-foto's alvast op, zodat een popup meteen compleet is.
+    useEffect(() => {
+        for (const src of popupImages) {
+            const img = new Image();
+            img.src = src;
+        }
+    }, []);
 
     // Sluit de popup met Escape, en bevries de pagina eronder zolang hij open staat.
     useEffect(() => {
