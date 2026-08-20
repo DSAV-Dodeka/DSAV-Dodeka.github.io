@@ -175,9 +175,9 @@ function registerStateToVolta(registerState: RegisterState): VoltaRegistration {
     throw new Error(`Unknown plan ${registerState.plan}!`);
   }
 
-  const planAssignmentStartDate = "2025-09-01T00:00:00Z";
-  const planStartDate = "2025-09-01T00:00:00";
-  const planEndDate = "2026-08-31T00:00:00";
+  const planAssignmentStartDate = "2026-09-01T00:00:00Z";
+  const planStartDate = "2026-09-01T00:00:00";
+  const planEndDate = "2027-08-31T00:00:00";
 
   const plan: Plan = {
     selectedPlan: {
