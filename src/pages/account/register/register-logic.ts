@@ -125,7 +125,7 @@ const wedstrijdlidPlan: PlanDetails = {
   toAge: 99,
   referenceDate: null,
   organisationTypeIds: [],
-  id: 14616,
+  id: 27125,
   name: "Wedstrijdlid",
 };
 
@@ -142,7 +142,7 @@ const recreantPlan: PlanDetails = {
   toAge: 99,
   referenceDate: null,
   organisationTypeIds: [],
-  id: 14617,
+  id: 27126,
   name: "Recreantlid",
 };
 
@@ -159,7 +159,7 @@ const gastPlan: PlanDetails = {
   toAge: 99,
   referenceDate: null,
   organisationTypeIds: [],
-  id: 14618,
+  id: 27127,
   name: "Gastlid",
 };
 
