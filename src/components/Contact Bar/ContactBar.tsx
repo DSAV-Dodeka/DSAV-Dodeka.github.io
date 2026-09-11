@@ -3,8 +3,6 @@ import "./ContactBar.scss";
 
 import Heading from "./Heading";
 import maltha from "$images/sponsors/maltha.png";
-import muconsult from "$images/sponsors/muconsult.png";
-import boozed from "$images/sponsors/boozed.png";
 import virtuoos from "$images/sponsors/virtuoos.webp";
 
 
@@ -71,20 +69,6 @@ function ContactBar() {
               src={maltha}
               alt="Maltha Sport"
               className="bar_sponsor maltha_bar"
-            ></img>
-          </a>
-          <a target="_blank" rel="noreferrer" href="https://muconsult.nl/">
-            <img
-              src={muconsult}
-              alt="MuConsult"
-              className="bar_sponsor muconsult_bar"
-            ></img>
-          </a>
-          <a target="_blank" rel="noreferrer" href="https://www.boozed.nl/">
-            <img
-              src={boozed}
-              alt="Boozed"
-              className="bar_sponsor boozed_bar"
             ></img>
           </a>
           <a target="_blank" rel="noreferrer" href="https://www.virtuoos.com/">
