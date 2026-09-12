@@ -1,6 +1,15 @@
 {
   "updates": [
     {
+      "id": "content-owee-banner-uit",
+      "datum": "12-09-2026",
+      "titel": "OWee-banner van de homepage gehaald",
+      "beschrijving": "De OWee is voorbij, dus de promobanner op de voorpagina en het OWee-item in het menu zijn weg. De OWee-pagina zelf blijft nog bereikbaar via de link.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Jefry"
+    },
+    {
       "id": "feature-owee-pagina-beunsessie",
       "datum": "15-08-2026",
       "titel": "OWee-pagina geüpdatet en geüpgraded",
