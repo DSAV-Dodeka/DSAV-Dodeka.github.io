@@ -518,9 +518,9 @@
                     "foto": "Stan"
                 },
                 {
-                    "naam": "Joris",
-                    "functie": "Baantrainer",
-                    "foto": "Joris"
+                    "naam": "Tijmen",
+                    "functie": "MiLatrainer",
+                    "foto": "Tijmen"
                 },
                 {
                     "naam": "Robert",
@@ -528,9 +528,9 @@
                     "foto": "Robert"
                 },
                 {
-                    "naam": "Tijmen",
-                    "functie": "MiLatrainer",
-                    "foto": "Tijmen"
+                    "naam": "Joris",
+                    "functie": "Baantrainer",
+                    "foto": "Joris"
                 },
                 {
                     "naam": "Jamie",
@@ -543,19 +543,14 @@
                     "foto": "eric"
                 },
                 {
-                    "naam": "Thom",
-                    "functie": "Baantrainer",
-                    "foto": "placeholder"
-                },
-                {
                     "naam": "Anne-Wil",
                     "functie": "Baantrainer",
                     "foto": "annewil"
                 },
                 {
-                    "naam": "Marinka",
+                    "naam": "Stefan",
                     "functie": "Baantrainer",
-                    "foto": "Marinka"
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Ivar",
@@ -563,7 +558,17 @@
                     "foto": "Ivar"
                 },
                 {
-                    "naam": "Stefan",
+                    "naam": "Tobias",
+                    "functie": "Baantrainer",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Kyllian",
+                    "functie": "Looptrainer",
+                    "foto": "placeholder"
+                },
+                {
+                    "naam": "Aaron",
                     "functie": "Baantrainer",
                     "foto": "placeholder"
                 },
