@@ -43,7 +43,7 @@ function Wedstrijd(props: WedstrijdAlgemeenProps) {
           href={props.wedstrijd.inschrijven}
           className="inschrijf_button"
         >
-          Inschrijven
+          Inschrijven (opent vanaf 18 oktober)
         </a>
       ) : (
         ""
