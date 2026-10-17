@@ -1,6 +1,16 @@
 {
   "updates": [
     {
+      "id": "feature-het-fotoboek",
+      "datum": "17-10-2026",
+      "titel": "Het Fotoboek: alle foto's van Dodeka op één plek",
+      "beschrijving": "In Het Fotoboek vind je per seizoen het beeldmateriaal van wedstrijden, trainingen, reizen en borrels. Zoek een evenement of filter op seizoen en soort, open een polaroid voor de foto's en zet je eigen foto's en video's er met één knop bij.",
+      "categorie": "feature",
+      "grootte": "groot",
+      "auteur": "Jefry",
+      "link": "/leden/fotos"
+    },
+    {
       "id": "content-owee-banner-uit",
       "datum": "12-09-2026",
       "titel": "OWee-banner van de homepage gehaald",
