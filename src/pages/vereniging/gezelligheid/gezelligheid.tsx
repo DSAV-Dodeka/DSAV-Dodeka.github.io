@@ -2,9 +2,9 @@
 import "./gezelligheid.scss";
 import PageTitle from "../../../components/PageTitle";
 import biermijl from "$images/gezelligheid/biermijl.webp";
-import nskTeamsAlgemeen from "$images/gezelligheid/nsk_teams_algemeen.webp";
+import wageningen from "$images/gezelligheid/wageningen.webp";
 import gala1 from "$images/gezelligheid/gala1.webp";
-import uithof from "$images/gezelligheid/uithof.webp";
+import zomerreis from "$images/gezelligheid/zomerreis.jpg";
 
 function Gezelligheid() {
   return (
@@ -14,6 +14,7 @@ function Gezelligheid() {
       </div>
 
       <div className="fotobalk">
+        
         <img
           className="fotos"
           src={biermijl}
@@ -21,9 +22,10 @@ function Gezelligheid() {
         />
         <img
           className="fotos"
-          src={nskTeamsAlgemeen}
-          alt="foto2"
+          src={zomerreis}
+          alt="foto3"
         />
+
         <img
           className="fotos"
           src={gala1}
@@ -31,9 +33,10 @@ function Gezelligheid() {
         />
         <img
           className="fotos"
-          src={uithof}
-          alt="foto3"
+          src={wageningen}
+          alt="foto2"
         />
+        
         {/* <img className="fotos" src={Image4} alt="foto4"/> */}
       </div>
 

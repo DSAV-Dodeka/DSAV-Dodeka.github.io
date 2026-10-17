@@ -4,10 +4,13 @@ import NavigationBar from "../components/Navigation Bar/NavigationBar";
 import ContactBar from "../components/Contact Bar/ContactBar";
 import KeyboardNav from "../components/KeyboardNav";
 import DevOriginWarning from "../components/DevOriginWarning";
+// HERO VIDEO — see HeroVideo.tsx for how to remove it
+import HeroVideo from "./home/components/HeroVideo";
 import "./layout.css";
 
 export default function AppLayout() {
   const { pathname } = useLocation();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,6 +21,9 @@ export default function AppLayout() {
       <DevOriginWarning />
       <KeyboardNav />
       <div id="app_container">
+        {/* HERO VIDEO — must stay above <NavigationBar /> so the sticky nav
+            scrolls in from underneath it. Remove this line to disable. */}
+        {isHome && <HeroVideo />}
         <NavigationBar />
         <div id="app_flex">
           <Outlet />

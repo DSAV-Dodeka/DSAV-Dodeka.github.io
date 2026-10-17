@@ -1,6 +1,54 @@
 {
   "updates": [
     {
+      "id": "content-owee-banner-uit",
+      "datum": "12-09-2026",
+      "titel": "OWee-banner van de homepage gehaald",
+      "beschrijving": "De OWee is voorbij, dus de promobanner op de voorpagina en het OWee-item in het menu zijn weg. De OWee-pagina zelf blijft nog bereikbaar via de link.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Jefry"
+    },
+    {
+      "id": "feature-owee-pagina-beunsessie",
+      "datum": "15-08-2026",
+      "titel": "OWee-pagina geüpdatet en geüpgraded",
+      "beschrijving": "Tijdens onze beunsessie hebben we de OWee-pagina geüpdatet en geüpgraded: een nieuw programmaschema waarin je op elke activiteit kunt klikken voor een pop-up met uitleg, verse foto's van de trainingen, de parade en de borrel, en een nieuwe achtergrond. De foto's worden nu vooraf geladen, dus een pop-up staat er meteen.",
+      "categorie": "feature",
+      "grootte": "groot",
+      "auteur": "Ymme, Mei Chang, Anne-Wil, Xylander, Tijmen en Jefry",
+      "link": "/owee",
+      "momentId": "beunsessie-2026"
+    },
+    {
+      "id": "bugfix-owee-video-sneller",
+      "datum": "15-08-2026",
+      "titel": "OWee-video op de voorpagina laadt nu direct",
+      "beschrijving": "De video stond in 4K op de website en was 75 MB groot, waardoor hij de eerste seconden bleef hangen. Hij wordt nu automatisch kleiner geleverd (5 MB) en je ziet meteen het eerste beeld.",
+      "categorie": "bugfix",
+      "grootte": "klein",
+      "auteur": "Jefry"
+    },
+    {
+      "id": "content-zomerthema-uit",
+      "datum": "15-08-2026",
+      "titel": "Zomerthema uitgezet",
+      "beschrijving": "Het zomerthema op de homepage staat uit: de vallende zomer-emoji en de zandbalk zijn weg. Met één schakelaar in de code zetten we het volgende thema er zo weer op.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Jefry"
+    },
+    {
+      "id": "feature-owee-voorpagina",
+      "datum": "15-08-2026",
+      "titel": "OWee-video en banner op de voorpagina",
+      "beschrijving": "De voorpagina opent nu met een schermvullende OWee-video, en een opvallende banner brengt je in één klik naar al onze OWee-activiteiten. Zo vinden nieuwe studenten ons meteen.",
+      "categorie": "feature",
+      "grootte": "klein",
+      "auteur": "Jefry",
+      "link": "/owee"
+    },
+    {
       "id": "feature-huisstijl-pagina",
       "datum": "04-04-2026",
       "titel": "Huisstijl pagina gebouwd",
@@ -301,9 +349,115 @@
       "grootte": "groot",
       "auteur": "Jefry",
       "link": "/leden"
+    },
+    {
+      "id": "feature-reactietest",
+      "datum": "24-06-2026",
+      "titel": "Reactietest toegevoegd aan de ledenpagina",
+      "beschrijving": "Hoe snel zijn jouw reflexen echt? Test het met de nieuwe reactietest, te vinden als tegel op de ledenpagina. Werkt ook gewoon op je telefoon en is te spelen zodra je ingelogd bent.",
+      "categorie": "feature",
+      "grootte": "klein",
+      "auteur": "Jefry",
+      "link": "/reactietest"
+    },
+    {
+      "id": "content-nieuws-nsk-baan",
+      "datum": "24-06-2026",
+      "titel": "Nieuws: NSK Baan in Groningen",
+      "beschrijving": "Een nieuwsbericht over NSK Baan in Groningen, waar Dodeka met 37 atleten aan de start stond, is online gezet.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Anne-Wil",
+      "link": "/nieuws"
+    },
+    {
+      "id": "content-records-zomer-2026",
+      "datum": "11-07-2026",
+      "titel": "Clubrecords bijgewerkt",
+      "beschrijving": "De clubrecords zijn helemaal bijgewerkt met de prestaties van dit seizoen.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Tijmen",
+      "link": "/wedstrijden/records"
+    },
+    {
+      "id": "content-commissies-startco-lsk",
+      "datum": "23-07-2026",
+      "titel": "StartCo en LSK Trappenloop bijgewerkt",
+      "beschrijving": "De StartCommissie heeft haar nieuwe samenstelling op de site en de LSK Trappenloop-commissie staat er nu ook bij.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Ymme",
+      "link": "/vereniging/commissies"
+    },
+    {
+      "id": "content-nieuws-sunrice-competitie",
+      "datum": "23-07-2026",
+      "titel": "Nieuws: Sunrice en de competitie",
+      "beschrijving": "Twee nieuwe nieuwsberichten: een verslag van de Sunrice-week in Zedelgem en een terugblik op het competitieseizoen 2026.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Ymme",
+      "link": "/nieuws"
+    },
+    {
+      "id": "content-hoogtepunten-nsk-baan-2026",
+      "datum": "23-07-2026",
+      "titel": "Hoogtepunten NSK Baan 2026 toegevoegd",
+      "beschrijving": "Alle medailles en prestaties van NSK Baan 2026 staan nu bij de hoogtepunten.",
+      "categorie": "content",
+      "grootte": "klein",
+      "auteur": "Ymme",
+      "link": "/wedstrijden/hoogtepunten"
+    },
+    {
+      "id": "verbetering-trainingsfotos",
+      "datum": "23-07-2026",
+      "titel": "Foto's van de trainingen vernieuwd",
+      "beschrijving": "De loopgroep heeft een nieuwe foto gekregen en de foto op de homepage is verkleind, zodat de site sneller laadt.",
+      "categorie": "verbetering",
+      "grootte": "klein",
+      "auteur": "Mei Chang",
+      "link": "/trainingen"
+    },
+    {
+      "id": "verbetering-medailleoverzicht",
+      "datum": "25-07-2026",
+      "titel": "Medailleoverzicht bij hoogtepunten leest prettiger",
+      "beschrijving": "Bij de hoogtepunten worden atleten die op hetzelfde onderdeel een medaille pakten nu netjes samengevoegd, in plaats van los achter elkaar. Ook de NSK Baan-hoogtepunten zijn aangevuld.",
+      "categorie": "verbetering",
+      "grootte": "klein",
+      "auteur": "Ymme",
+      "link": "/wedstrijden/hoogtepunten"
+    },
+    {
+      "id": "verbetering-records-automatisch",
+      "datum": "31-07-2026",
+      "titel": "Clubrecords komen nu automatisch de site op",
+      "beschrijving": "De clubrecords worden voortaan met een script gegenereerd en direct op de site gezet. Minder handwerk en dus sneller up-to-date na een wedstrijd.",
+      "categorie": "verbetering",
+      "grootte": "klein",
+      "auteur": "Tijmen",
+      "link": "/wedstrijden/records"
+    },
+    {
+      "id": "feature-owee-pagina-live",
+      "datum": "15-08-2026",
+      "titel": "OWee-pagina staat weer online",
+      "beschrijving": "De OWee-pagina is weer terug in het menu, met een nieuwe achtergrond bij het schema. Alles wat we tijdens de OWee organiseren vind je daar.",
+      "categorie": "feature",
+      "grootte": "klein",
+      "auteur": "Ymme",
+      "link": "/owee"
     }
   ],
   "momenten": [
+    {
+      "id": "beunsessie-2026",
+      "naam": "Beunsessie 2026",
+      "datum": "15-08-2026",
+      "beschrijving": "Updates die tijdens onze beunsessie zijn gebouwd en uitgerold."
+    },
     {
       "id": "24uursvergadering-2026",
       "naam": "24-uursvergadering 2026",

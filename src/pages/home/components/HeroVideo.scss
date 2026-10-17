@@ -1,0 +1,102 @@
+@use "../../../variables";
+
+#hero_video_wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+#hero_video_element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// Darken the video so the logo/title stay readable over any footage.
+.hero_scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 45%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+.hero_content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0 2rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero_logo {
+  width: min(18rem, 60vw);
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
+}
+
+.hero_title {
+  margin: 0;
+  max-width: 40rem;
+  color: white;
+  font-size: variables.$font_large;
+  font-weight: variables.$bold;
+  line-height: variables.$line_height_large;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+  // Even out the line lengths so the last line never ends up with a lone word
+  // ("… Atletiek / Vereniging"). Verified to keep at least two words on the
+  // last line from 320px up. Deliberately not pinned with a non-breaking
+  // space: "Atletiek Vereniging" is 245px at the mobile size against 256px of
+  // room at 320px, so making it unbreakable would risk clipping.
+  text-wrap: balance;
+
+  @include variables.respond(mobile) {
+    font-size: variables.$font_ml;
+    line-height: variables.$line_height_medium;
+  }
+}
+
+// Scroll indicator — bouncing chevron
+.hero_scroll_indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: white;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  animation: hero_bounce 1.5s ease-in-out infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero_scroll_chevron {
+  width: 2rem;
+  height: 2rem;
+  border-right: 3px solid white;
+  border-bottom: 3px solid white;
+  transform: rotate(45deg);
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes hero_bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0.6rem);
+  }
+}

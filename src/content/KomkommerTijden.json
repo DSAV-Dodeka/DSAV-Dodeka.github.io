@@ -10,7 +10,7 @@
     {
       "naam": "Jefry",
       "tijd": 215510,
-      "startjaar": 2020
+      "startjaar": 2021  
     },
     {
       "naam": "Tip",
@@ -21,7 +21,9 @@
     {
       "naam": "Aniek",
       "tijd": 305000,
-      "startjaar": 2021
+      "startjaar": 2021,
+      "eindjaar": 2022
+
     },
     {
       "naam": "Leander",
@@ -43,12 +45,14 @@
     {
       "naam": "Jesper",
       "tijd": 169000,
-      "startjaar": 2023
+      "startjaar": 2023,
+      "eindjaar": 2025
     },
     {
       "naam": "Senne",
       "tijd": 220000,
-      "startjaar": 2023
+      "startjaar": 2023,
+      "eindjaar": 2024
     },
     {
       "naam": "Sanne B",
@@ -59,7 +63,8 @@
     {
       "naam": "Liam",
       "tijd": 256000,
-      "startjaar": 2024
+      "startjaar": 2023,
+      "eindjaar": 2025
     },
     {
       "naam": "Xylander",
@@ -73,7 +78,12 @@
     },
     {
       "naam": "Mei Chang",
-      "tijd": 388000,
+      "tijd": 320650,
+      "startjaar": 2025
+    },
+    {
+      "naam": "Ymme",
+      "tijd": 136060,
       "startjaar": 2025
     }
   ]

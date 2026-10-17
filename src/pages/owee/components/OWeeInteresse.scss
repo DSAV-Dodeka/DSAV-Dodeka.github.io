@@ -1,0 +1,97 @@
+@use "../../../variables";
+
+.OWeeInteresse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 0 4rem;
+    margin-bottom: 4rem;
+    @include variables.respond(mobile) {
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+}
+
+.OWeeInteresseTitel {
+    font-size: variables.$font_ml;
+    font-weight: variables.$bold;
+    color: variables.$dodeka_blauw;
+    @include variables.respond(mobile) {
+        font-size: variables.$font_medium;
+    }
+}
+
+.OWeeInteresseTekst {
+    max-width: 34rem;
+    font-size: variables.$font_small;
+    line-height: variables.$line_height_small;
+    color: variables.$dodeka_blauw;
+}
+
+.OWeeInteresseKnop {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    // Ruim boven de 44px die een vinger nodig heeft.
+    min-height: 3.25rem;
+    padding: 0.75rem 1.75rem;
+    margin-top: 0.25rem;
+
+    border-radius: 0.75rem;
+    background: linear-gradient(
+        100deg,
+        variables.$dodeka_rood 0%,
+        variables.$baan_rood 100%
+    );
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 31, 72, 0.25);
+
+    color: white;
+    font-size: variables.$font_medium;
+    font-weight: variables.$bold;
+    text-decoration: none;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        transform 150ms ease-out,
+        box-shadow 150ms ease-out;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.5rem 1.25rem rgba(0, 31, 72, 0.3);
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    &:focus-visible {
+        outline: 3px solid variables.$dodeka_blauw;
+        outline-offset: 3px;
+    }
+}
+
+.OWeeInteresseKnopPijl {
+    height: 1rem;
+    fill: white;
+    transition: transform 150ms ease-out;
+}
+
+.OWeeInteresseKnop:hover .OWeeInteresseKnopPijl {
+    transform: translateX(0.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .OWeeInteresseKnop,
+    .OWeeInteresseKnopPijl {
+        transition: none;
+    }
+
+    .OWeeInteresseKnop:hover,
+    .OWeeInteresseKnop:active,
+    .OWeeInteresseKnop:hover .OWeeInteresseKnopPijl {
+        transform: none;
+    }
+}

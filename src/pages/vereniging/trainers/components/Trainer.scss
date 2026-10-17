@@ -72,8 +72,10 @@
 
     @include variables.respond(mobile) {
         position: relative;
-        height: 100%;
         width: 100%;
+        height: auto;
+        max-height: 20rem;
+        object-fit: contain;
     }
 }
 

@@ -17,67 +17,45 @@ interface WedstrijdProps {
   prestaties: string[];
 }
 
-function getGold(prijzen: Prijs[]): string {
-  const gold = prijzen.filter((prijs) => {
-    return prijs.plaats === 1;
-  });
-  let res = "";
-  gold.forEach(
-    (item, index) =>
-      (res =
-        res +
-        (index !== 0 ? ", " : "") +
-        item.naam +
-        " (" +
-        item.afstand +
-        ")"),
-  );
-  if (res === "") {
-    return "-";
-  }
-  return res;
-}
+function getMedaille(prijzen: Prijs[], plek: number): string {
+  const medaille = prijzen.filter((prijs) => prijs.plaats === plek);
 
-function getSilver(prijzen: Prijs[]): string {
-  const silver = prijzen.filter((prijs) => {
-    return prijs.plaats === 2;
-  });
-  let res = "";
-  silver.forEach(
-    (item, index) =>
-      (res =
-        res +
-        (index !== 0 ? ", " : "") +
-        item.naam +
-        " (" +
-        item.afstand +
-        ")"),
-  );
-  if (res === "") {
-    return "-";
-  }
-  return res;
-}
+  // Stap 1: groepeer op naam
+  const personen = new Map<string, Set<string>>();
 
-function getBronze(prijzen: Prijs[]): string {
-  const bronze = prijzen.filter((prijs) => {
-    return prijs.plaats === 3;
-  });
-  let res = "";
-  bronze.forEach(
-    (item, index) =>
-      (res =
-        res +
-        (index !== 0 ? ", " : "") +
-        item.naam +
-        " (" +
-        item.afstand +
-        ")"),
-  );
-  if (res === "") {
-    return "-";
+  for (const prijs of medaille) {
+    if (!personen.has(prijs.naam)) {
+      personen.set(prijs.naam, new Set());
+    }
+    personen.get(prijs.naam)!.add(prijs.afstand);
   }
-  return res;
+
+  // Stap 2: groepeer alle personen met één afstand per afstand
+  const perAfstand = new Map<string, string[]>();
+  const resultaat: string[] = [];
+
+  for (const [naam, afstanden] of personen) {
+    const lijst = [...afstanden];
+
+    if (lijst.length > 1) {
+      // Meerdere afstanden: direct toevoegen
+      resultaat.push(`${naam} (${lijst.join(", ")})`);
+    } else {
+      // Eén afstand: later groeperen
+      const afstand = lijst[0]!;
+      if (!perAfstand.has(afstand)) {
+        perAfstand.set(afstand, []);
+      }
+      perAfstand.get(afstand)!.push(naam);
+    }
+  }
+
+  // Stap 3: voeg de gegroepeerde afstanden toe
+  for (const [afstand, namen] of perAfstand) {
+    resultaat.unshift(`${namen.join(", ")} (${afstand})`);
+  }
+
+  return resultaat.length ? resultaat.join(", ") : "-";
 }
 
 function Wedstrijd(props: WedstrijdProps) {
@@ -99,9 +77,9 @@ function Wedstrijd(props: WedstrijdProps) {
           <img className="hoogtepunten_medaille" src={brons} alt="" />
         </div>
         <div className="hoogtepunten_text_container">
-          <p className="hoogtepunten_text">{getGold(props.prijzen)}</p>
-          <p className="hoogtepunten_text">{getSilver(props.prijzen)}</p>
-          <p className="hoogtepunten_text">{getBronze(props.prijzen)}</p>
+          <p className="hoogtepunten_text">{getMedaille(props.prijzen, 1)}</p>
+          <p className="hoogtepunten_text">{getMedaille(props.prijzen, 2)}</p>
+          <p className="hoogtepunten_text">{getMedaille(props.prijzen, 3)}</p>
         </div>
       </div>
       <div className="hoogtepunten_divider"></div>

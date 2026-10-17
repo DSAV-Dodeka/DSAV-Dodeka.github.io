@@ -76,7 +76,7 @@
     color: white;
     line-height: variables.$line_height_small;
         display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     gap: 2rem;
     @include variables.respond(mobile) {
@@ -103,7 +103,4 @@
     object-fit: contain;
 }
 
-.home_samenwerking_fotos img.sponsors.muconsult {
-    width: 8rem;
-    
-}
+
