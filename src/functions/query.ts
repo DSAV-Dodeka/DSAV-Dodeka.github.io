@@ -117,7 +117,7 @@ export function useAdminPrivateList(enabled: boolean) {
 export function useAdminSetPrivate() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({
+    mutationFn: async ({
       key,
       value,
       role,
@@ -125,7 +125,13 @@ export function useAdminSetPrivate() {
       key: string;
       value: unknown;
       role?: string;
-    }) => backend.adminSetPrivate(key, value, role),
+    }) => {
+      if (import.meta.env.DEV) {
+        const { setDebugPrivate } = await import("./debug-user.ts");
+        if (setDebugPrivate(key, value)) return;
+      }
+      return backend.adminSetPrivate(key, value, role);
+    },
     onSuccess: async (_, { key }) => {
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ["admin", "private", key] }),

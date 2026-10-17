@@ -1,4 +1,27 @@
+@use "sass:color";
 @use "../../../variables";
+
+// Local tokens: spacing on a 4px grid, one radius family
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+$radius-s: 8px;
+$radius-m: 12px;
+$radius-l: 20px;
+$vlak: #eef1f6;
+$lijn: #dfe5ee;
+$tekst: #33415a;
+$focus: 0 0 0 3px rgba(variables.$dodeka_blauw, 0.35);
+
+%focus-ring {
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus;
+  }
+}
 
 .fotos-status {
   color: variables.$dodeka_blauw;
@@ -17,91 +40,147 @@
   }
 }
 
-// --- Top bar ---
+// --- Toolbar ---
 
-.fotos-topbar {
+.fotos-toolbar {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
+  flex-direction: column;
+  gap: $space-3;
+  margin-bottom: $space-8;
+}
+
+// Search + season + type on one row, also on phones
+.fotos-zoekrij {
+  display: flex;
+  gap: $space-2;
+  max-width: 40rem;
+}
+
+.fotos-search,
+.fotos-select {
+  height: 2.75rem;
+  padding: 0 $space-3;
+  border: 1px solid $lijn;
+  border-radius: $radius-s;
+  background-color: $vlak;
+  // 16px keeps iOS from zooming the page on focus
+  font: inherit;
+  font-size: 1rem;
+  color: variables.$dodeka_blauw;
+  @extend %focus-ring;
+
+  &:focus-visible {
+    background-color: white;
+    border-color: variables.$dodeka_blauw;
+  }
 }
 
 .fotos-search {
-  flex: 1 1 14rem;
-  max-width: 20rem;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid variables.$dodeka_grijs;
-  border-radius: 4px;
-  font-size: variables.$font_small;
-  color: variables.$dodeka_blauw;
-
-  &:focus {
-    outline: 2px solid variables.$dodeka_blauw;
-    outline-offset: -1px;
-  }
+  flex: 1 1 8rem;
+  min-width: 0;
 }
 
 .fotos-select {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid variables.$dodeka_grijs;
-  border-radius: 4px;
-  font-size: variables.$font_small;
-  color: variables.$dodeka_blauw;
-  background-color: white;
-}
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 11rem;
+  cursor: pointer;
 
-.fotos-typefilter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
+  // Show at a glance that a filter is on. Also while focused: Safari keeps
+  // focus on the select after choosing, and the focus style (white) would win.
+  &--actief,
+  &--actief:focus,
+  &--actief:focus-visible {
+    background-color: variables.$dodeka_blauw;
+    border-color: variables.$dodeka_blauw;
+    color: white;
+  }
 
-// Dev-only "Bekijk als" toggle, styled distinctly (dashed border) so it
-// reads as a debug affordance rather than a real filter.
-.fotos-viewtoggle {
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  border: 1px dashed variables.$dodeka_grijs;
-  border-radius: 999px;
+  // A select sizes to its longest option; fix the width so both read fully
+  @include variables.respond(phone) {
+    flex: 0 0 6.75rem;
+    padding: 0 $space-2;
+  }
 }
 
 .fotos-chip {
-  padding: 0.4rem 0.9rem;
-  border: 1px solid variables.$dodeka_blauw;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  height: 2.5rem;
+  padding: 0 $space-4;
+  border: 1px solid $lijn;
   border-radius: 999px;
   background-color: white;
   color: variables.$dodeka_blauw;
-  font-size: variables.$font_small;
+  font: inherit;
+  font-size: 0.95rem;
+  white-space: nowrap;
   cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 150ms ease, transform 150ms ease;
+  @extend %focus-ring;
 
   &:hover {
-    background-color: rgba(variables.$dodeka_blauw, 0.08);
+    background-color: $vlak;
   }
 
-  &--active {
-    background-color: variables.$dodeka_blauw;
-    color: white;
+  &:active {
+    transform: scale(0.97);
+  }
 
-    &:hover {
-      background-color: variables.$dodeka_blauw90p;
-    }
+  &--active,
+  &--active:hover {
+    background-color: variables.$dodeka_blauw;
+    border-color: variables.$dodeka_blauw;
+    color: white;
+  }
+
+  &--klein {
+    height: 2rem;
+    padding: 0 $space-3;
+    font-size: 0.85rem;
   }
 }
 
+.fotos-adminrij {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-3;
+}
+
+// Dev-only "Bekijk als" toggle, dashed so it reads as a debug control
+.fotos-viewtoggle {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-1 $space-2 $space-1 $space-3;
+  border: 1px dashed variables.$dodeka_grijs;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: variables.$dodeka_grijs;
+}
+
 .fotos-button {
-  padding: 0.5rem 1.25rem;
+  height: 2.75rem;
+  padding: 0 $space-6;
   background-color: variables.$dodeka_rood;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: variables.$font_small;
+  border-radius: $radius-s;
+  font: inherit;
   font-weight: variables.$bold;
   cursor: pointer;
+  @extend %focus-ring;
 
   &:hover {
-    opacity: 0.9;
+    filter: brightness(1.08);
+  }
+
+  &:active {
+    transform: scale(0.97);
   }
 
   &:disabled {
@@ -120,41 +199,170 @@
   margin-left: auto;
 }
 
-// --- Grid ---
+// --- Seasons + grid ---
+
+.fotos-seizoen + .fotos-seizoen {
+  margin-top: $space-8 + $space-4;
+}
+
+.fotos-seizoen-titel {
+  display: flex;
+  align-items: baseline;
+  gap: $space-3;
+  margin: 0 0 $space-3;
+  color: variables.$dodeka_blauw;
+  font-size: variables.$font_medium;
+
+  span {
+    font-size: 0.85rem;
+    font-weight: variables.$normal;
+    color: variables.$dodeka_grijs;
+  }
+}
 
 .fotos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: $space-8 $space-6;
+  padding: $space-2 $space-1;
+
+  // Two columns on phones, so a scroll shows several events at once
+  @include variables.respond(phone) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-6 $space-4;
+  }
 }
 
+// --- Polaroid cards ---
+// A white print with a deeper bottom edge for the caption, tilted a little
+// per card so the grid feels like photos laid on a table.
+
+$polaroid-rand: 0.65rem;
+
 .fotos-card {
-  // Native buttons vertically-center their content internally regardless of
-  // `display`, unless overridden with an explicit flex layout. Without this,
-  // grid row-stretching (to match the tallest card) shifts shorter cards'
-  // image/text down instead of leaving the extra space at the bottom.
+  --kanteling: -1.5deg;
+  position: relative;
+  padding: $polaroid-rand $polaroid-rand 0;
+  background-color: #fffdf8;
+  border-radius: 3px;
+  box-shadow:
+    0 1px 2px rgba(variables.$dodeka_blauw, 0.12),
+    0 10px 24px -6px rgba(variables.$dodeka_blauw, 0.35);
+  transform: rotate(var(--kanteling));
+  transition: transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 250ms ease;
+
+  // Vary the tilt without it looking like a pattern
+  &:nth-child(4n + 2) {
+    --kanteling: 1.25deg;
+  }
+  &:nth-child(4n + 3) {
+    --kanteling: -0.5deg;
+  }
+  &:nth-child(4n + 4) {
+    --kanteling: 2deg;
+  }
+
+  // A strip of tape holding the print down
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -0.6rem;
+    left: 50%;
+    width: 4.5rem;
+    height: 1.25rem;
+    transform: translateX(-50%) rotate(calc(var(--kanteling) * -2));
+    background: rgba(255, 244, 214, 0.75);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    pointer-events: none;
+  }
+
+  // Lift on hover but keep the tilt, so print and tape move as one piece
+  @media (hover: hover) {
+    &:hover {
+      transform: rotate(var(--kanteling)) translateY(-4px);
+      box-shadow:
+        0 2px 4px rgba(variables.$dodeka_blauw, 0.12),
+        0 18px 36px -8px rgba(variables.$dodeka_blauw, 0.4);
+      z-index: 2;
+    }
+  }
+
+  &:focus-within {
+    z-index: 2;
+  }
+
+  @include variables.respond(phone) {
+    padding: 0.45rem 0.45rem 0;
+
+    &::before {
+      width: 3rem;
+      height: 0.9rem;
+      top: -0.45rem;
+    }
+  }
+
+  &--skeleton {
+    aspect-ratio: 4 / 5;
+    padding: 0;
+    background: linear-gradient(90deg, $vlak 0%, white 50%, $vlak 100%) 0 0 / 200% 100%;
+    animation: fotos-shimmer 1.2s linear infinite;
+    box-shadow: none;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+@keyframes fotos-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fotos-card {
+    transition: none;
+  }
+
+  .fotos-card--skeleton {
+    animation: none;
+  }
+}
+
+// The whole print is one button (UA reset so it doesn't center its text)
+.fotos-card-open {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  width: 100%;
   padding: 0;
-  border: none;
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 0 1px 4px rgba(variables.$dodeka_blauw, 0.2);
-  overflow: hidden;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
   text-align: left;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(variables.$dodeka_blauw, 0.25);
+  &:focus-visible {
+    outline: 3px solid variables.$dodeka_blauw;
+    outline-offset: 4px;
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }
 
 .fotos-card-imagewrap {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: $vlak;
+  // Faint inner edge, like a print's photo area
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
 
   img {
     width: 100%;
@@ -162,17 +370,22 @@
     object-fit: cover;
     display: block;
   }
+
+  .fotos-badge {
+    position: absolute;
+    top: $space-2;
+    left: $space-2;
+  }
 }
 
 .fotos-badge {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  padding: 0.2rem 0.6rem;
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
   border-radius: 999px;
   color: white;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: variables.$bold;
+  line-height: 1.4;
 
   &--wedstrijd {
     background-color: variables.$dodeka_rood;
@@ -191,31 +404,45 @@
   }
 
   &--overig {
-    background-color: variables.$dodeka_grijs;
+    background-color: #6b7c8c;
   }
 }
 
 .fotos-card-edit {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  z-index: 2;
+  top: calc(#{$polaroid-rand} + #{$space-2});
+  right: calc(#{$polaroid-rand} + #{$space-2});
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
   border-radius: 50%;
-  background-color: rgba(white, 0.9);
+  background-color: rgba(white, 0.92);
   color: variables.$dodeka_blauw;
+  font: inherit;
   cursor: pointer;
+  @extend %focus-ring;
 
   &:hover {
     background-color: white;
   }
 }
 
+// The caption on the white bottom edge of the print
 .fotos-card-info {
-  padding: 0.75rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: $space-3 $space-1 $space-4;
+  text-align: center;
+
+  @include variables.respond(phone) {
+    padding: $space-2 0 $space-3;
+  }
 }
 
 .fotos-card-name {
@@ -224,16 +451,40 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   margin: 0;
-  min-height: calc(1.4rem * 2);
   color: variables.$dodeka_blauw;
-  font-size: 1.1rem;
-  line-height: 1.4rem;
+  font-size: 1rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+
+  @include variables.respond(phone) {
+    font-size: 0.85rem;
+  }
 }
 
 .fotos-card-date {
-  margin: 0.25rem 0 0;
+  margin: 0;
   color: variables.$dodeka_grijs;
-  font-size: variables.$font_small;
+  font-size: 0.8rem;
+  font-style: italic;
+
+  @include variables.respond(phone) {
+    font-size: 0.75rem;
+  }
+}
+
+.fotos-leeg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-3;
+  max-width: 32rem;
+  margin: $space-6 0;
+  color: $tekst;
+
+  p {
+    margin: 0;
+  }
 }
 
 // --- Modals ---
@@ -245,76 +496,199 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: $space-4;
   background-color: rgba(variables.$dodeka_blauw, 0.55);
+  overscroll-behavior: contain;
+  animation: fotos-fade 150ms ease-out;
+
+  // Bottom sheet on phones
+  @include variables.respond(phone) {
+    align-items: flex-end;
+    padding: 0;
+  }
 }
 
 .fotos-modal {
   position: relative;
   width: 100%;
-  max-width: 24rem;
-  max-height: calc(100vh - 2rem);
+  max-width: 26rem;
+  max-height: calc(100dvh - 2rem);
   overflow-y: auto;
-  padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: $radius-l;
   background-color: white;
+  animation: fotos-rise 250ms ease-out;
 
   &--form {
     max-width: 32rem;
+    padding: $space-6;
   }
+
+  @include variables.respond(phone) {
+    max-width: none;
+    max-height: 90dvh;
+    border-radius: $radius-l $radius-l 0 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@keyframes fotos-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fotos-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fotos-overlay,
+  .fotos-modal {
+    animation: none;
+  }
+}
+
+.fotos-modal-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background-color: $vlak;
 }
 
 .fotos-modal-close {
   position: absolute;
-  top: 0.5rem;
-  right: 0.75rem;
+  top: $space-3;
+  right: $space-3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
   border: none;
-  background: none;
-  font-size: 1.75rem;
+  border-radius: 50%;
+  background: rgba(white, 0.92);
+  font-size: 1.5rem;
   line-height: 1;
-  color: variables.$dodeka_grijs;
+  color: variables.$dodeka_blauw;
   cursor: pointer;
+  @extend %focus-ring;
 
   &:hover {
-    color: variables.$dodeka_blauw;
+    background: white;
+  }
+
+  .fotos-modal--form & {
+    background: $vlak;
   }
 }
 
-.fotos-modal-title {
-  margin: 0 1.5rem 0.25rem 0;
-  color: variables.$dodeka_blauw;
-  font-size: variables.$font_ml;
+.fotos-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-4 $space-6 $space-6;
 }
 
-.fotos-modal-date {
-  margin: 0 0 1rem;
+.fotos-modal-meta {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin: 0;
   color: variables.$dodeka_grijs;
+  font-size: 0.9rem;
+}
+
+.fotos-modal-title {
+  margin: -$space-2 0 0;
+  color: variables.$dodeka_blauw;
+  font-size: variables.$font_ml;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+
+  .fotos-modal--form & {
+    margin: 0 3rem $space-2 0;
+  }
 }
 
 .fotos-modal-empty {
-  color: variables.$dodeka_blauw;
+  margin: 0;
+  color: $tekst;
 }
 
 .fotos-modal-links {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: $space-2;
 }
 
-.fotos-modal-link {
-  display: block;
-  padding: 0.6rem 1rem;
-  border-radius: 4px;
-  background-color: variables.$dodeka_blauw;
-  color: white;
-  text-align: center;
+.fotos-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  min-height: 3rem;
+  padding: 0 $space-4;
+  border: 1px solid $lijn;
+  border-radius: $radius-s;
+  background-color: white;
+  color: variables.$dodeka_blauw;
   text-decoration: none;
   font-weight: variables.$bold;
-  text-transform: capitalize;
+  transition: background-color 150ms ease, transform 150ms ease;
+  @extend %focus-ring;
 
   &:hover {
-    background-color: variables.$dodeka_blauw90p;
+    background-color: $vlak;
   }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &--primary,
+  &--primary:hover {
+    background-color: variables.$dodeka_blauw;
+    border-color: variables.$dodeka_blauw;
+    color: white;
+  }
+
+  &--primary:hover {
+    filter: brightness(1.15);
+  }
+
+  &--upload {
+    border-style: dashed;
+    border-color: variables.$dodeka_rood;
+    color: variables.$dodeka_rood;
+
+    &:hover {
+      background-color: rgba(variables.$dodeka_rood, 0.06);
+    }
+  }
+}
+
+.fotos-upload {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding-top: $space-4;
+  border-top: 1px solid $lijn;
+}
+
+.fotos-upload-title {
+  margin: 0;
+  color: variables.$dodeka_blauw;
+  font-weight: variables.$bold;
+}
+
+.fotos-upload-text {
+  margin: 0 0 $space-1;
+  color: $tekst;
+  font-size: 0.9rem;
 }
 
 // --- Create/edit form ---
@@ -322,23 +696,24 @@
 .fotos-form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
+  gap: $space-3;
+  margin-top: $space-3;
 }
 
 .fotos-form-label {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: $space-1;
   color: variables.$dodeka_blauw;
   font-weight: variables.$bold;
 
   input,
   select {
-    padding: 0.5rem;
+    padding: $space-2;
     border: 1px solid variables.$dodeka_grijs;
-    border-radius: 4px;
-    font-size: variables.$font_small;
+    border-radius: $radius-s;
+    font: inherit;
+    font-size: 1rem;
     font-weight: variables.$normal;
     color: variables.$dodeka_blauw;
   }
@@ -348,11 +723,11 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: $radius-s;
 }
 
 .fotos-form-section {
-  margin: 0.5rem 0 0;
+  margin: $space-2 0 0;
   color: variables.$dodeka_blauw;
   font-weight: variables.$bold;
 }
@@ -360,13 +735,15 @@
 .fotos-form-linkrow {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: $space-2;
 
   input {
-    padding: 0.4rem 0.5rem;
+    min-width: 0;
+    padding: $space-2;
     border: 1px solid variables.$dodeka_grijs;
-    border-radius: 4px;
-    font-size: variables.$font_small;
+    border-radius: $radius-s;
+    font: inherit;
+    font-size: 1rem;
     color: variables.$dodeka_blauw;
   }
 
@@ -376,19 +753,10 @@
 }
 
 .fotos-form-linklabel {
-  width: 6rem;
+  width: 9rem;
   flex-shrink: 0;
   color: variables.$dodeka_blauw;
-  text-transform: capitalize;
-
-  input,
-  &input {
-    width: 100%;
-  }
-}
-
-input.fotos-form-linklabel {
-  text-transform: none;
+  font-size: 0.9rem;
 }
 
 .fotos-form-linkremove {
@@ -405,6 +773,7 @@ input.fotos-form-linklabel {
   background: none;
   padding: 0;
   color: variables.$dodeka_rood;
+  font: inherit;
   font-weight: variables.$bold;
   cursor: pointer;
 
@@ -420,6 +789,162 @@ input.fotos-form-linklabel {
 
 .fotos-form-actions {
   display: flex;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  gap: $space-3;
+  margin-top: $space-2;
+}
+
+// --- Placeholder for events without a photo ---
+
+.fotos-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  width: 100%;
+  height: 100%;
+  padding: $space-4;
+  box-sizing: border-box;
+  color: white;
+  text-align: center;
+
+  svg {
+    opacity: 0.7;
+  }
+
+  span {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-weight: variables.$bold;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  // Type colour with a soft diagonal sheen so it reads as a cover, not an error
+  @mixin tint($kleur) {
+    background: linear-gradient(135deg, color.adjust($kleur, $lightness: 8%) 0%, $kleur 60%, color.adjust($kleur, $lightness: -6%) 100%);
+  }
+
+  &--wedstrijd {
+    @include tint(variables.$dodeka_rood);
+  }
+  &--gezelligheid {
+    @include tint(#2a9d8f);
+  }
+  &--training {
+    @include tint(variables.$dodeka_blauw);
+  }
+  &--reis {
+    @include tint(#0066cc);
+  }
+  &--overig {
+    @include tint(#6b7c8c);
+  }
+
+  // In the card the badge sits top-left, so keep the name clear of it
+  .fotos-card-imagewrap & {
+    padding-top: $space-8;
+  }
+
+  @include variables.respond(phone) {
+    .fotos-card-imagewrap & {
+      gap: $space-1;
+      padding: $space-6 $space-2 $space-2;
+
+      svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      span {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+.fotos-modal-image.fotos-placeholder,
+.fotos-form-preview.fotos-placeholder {
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.fotos-form-preview.fotos-placeholder {
+  aspect-ratio: 4 / 3;
+  border-radius: $radius-s;
+}
+
+.fotos-form-optioneel {
+  font-weight: variables.$normal;
+  color: variables.$dodeka_grijs;
+}
+
+.fotos-form-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: variables.$dodeka_grijs;
+}
+
+// --- Dutch date field ---
+
+.fotos-date {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-2;
+
+  input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+
+    &[aria-invalid="true"] {
+      border-color: variables.$dodeka_rood;
+    }
+  }
+}
+
+.fotos-date-kalender {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border: 1px solid variables.$dodeka_grijs;
+  border-radius: $radius-s;
+  background: white;
+  color: variables.$dodeka_blauw;
+  cursor: pointer;
+  @extend %focus-ring;
+
+  &:hover {
+    background: $vlak;
+  }
+}
+
+// Kept rendered (not display: none) so showPicker() can open it
+.fotos-date-native {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0 !important;
+  border: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fotos-date-fout {
+  flex-basis: 100%;
+  font-size: 0.85rem;
+  font-weight: variables.$normal;
+  color: variables.$dodeka_rood;
 }

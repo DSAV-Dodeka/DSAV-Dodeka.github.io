@@ -114,7 +114,30 @@ const DEBUG_PRIVATE: Record<string, unknown> = {
   ],
 };
 
+// Saves made while the debug user is active, so admin flows can be tried
+// without a backend. Kept per tab, like the debug user itself.
+const PRIVATE_OVERRIDES_KEY = "dodeka-debug-private";
+
+function readPrivateOverrides(): Record<string, unknown> {
+  try {
+    return JSON.parse(sessionStorage.getItem(PRIVATE_OVERRIDES_KEY) ?? "{}") as Record<string, unknown>;
+  } catch {
+    return {};
+  }
+}
+
 export function getDebugPrivate(key: string): unknown | null {
   if (!isDebugUserActive()) return null;
+  const overrides = readPrivateOverrides();
+  if (key in overrides) return overrides[key];
   return DEBUG_PRIVATE[key] ?? null;
+}
+
+/** Returns false when the debug user is off, so the caller saves for real. */
+export function setDebugPrivate(key: string, value: unknown): boolean {
+  if (!isDebugUserActive()) return false;
+  const overrides = readPrivateOverrides();
+  overrides[key] = value;
+  sessionStorage.setItem(PRIVATE_OVERRIDES_KEY, JSON.stringify(overrides));
+  return true;
 }

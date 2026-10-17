@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import PageTitle from "$components/PageTitle.tsx";
 import {
   useSessionInfo,
@@ -19,8 +19,22 @@ const EVENT_TYPES = [
 ] as const;
 type EventType = (typeof EVENT_TYPES)[number];
 
-// Standard link names shown in the create form; extra names can be added there
-const DEFAULT_LINK_LABELS = ["dump", "dodeka", "alles", "focus"];
+// Standard link names shown in the create form; extra names can be added there.
+// The stored label stays the short key; LINK_INFO decides how it's shown.
+const DEFAULT_LINK_LABELS = ["dodeka", "dump", "alles", "focus"];
+
+const UPLOAD_LABEL = "dump";
+
+const LINK_INFO: Record<string, { naam: string; hint: string }> = {
+  dodeka: { naam: "Beeldmateriaal", hint: "De foto's en video's van dit evenement" },
+  dump: { naam: "Upload je beeldmateriaal", hint: "Map waar leden zelf foto's en video's in zetten" },
+  alles: { naam: "Alle foto's", hint: "Alles wat er geschoten is" },
+  focus: { naam: "Selectie", hint: "De beste foto's" },
+};
+
+function linkNaam(label: string): string {
+  return LINK_INFO[label]?.naam ?? label;
+}
 
 interface PhotoLink {
   label: string;
@@ -32,7 +46,8 @@ interface PhotoEvent {
   name: string;
   date: string; // YYYY-MM-DD
   type: EventType;
-  image: string; // data URL, resized on upload
+  seizoen?: string; // e.g. "25/26"; overrides the season derived from the date
+  image?: string; // data URL, resized on upload; a placeholder shows when missing
   links: PhotoLink[];
 }
 
@@ -72,8 +87,174 @@ function readAndResizeImage(file: File): Promise<string> {
   });
 }
 
+// The club runs on the academic year: September through August
+function seasonOf(dateStr: string): string {
+  const year = Number(dateStr.slice(0, 4));
+  const month = Number(dateStr.slice(5, 7));
+  const start = month >= 9 ? year : year - 1;
+  const yy = (n: number) => String(n % 100).padStart(2, "0");
+  return `${yy(start)}/${yy(start + 1)}`;
+}
+
+function eventSeason(event: PhotoEvent): string {
+  return event.seizoen ?? seasonOf(event.date);
+}
+
+// Seasons to offer in the form: a few around the event's date (or today)
+function seasonOptions(dateStr: string, current: string): string[] {
+  const base = dateStr ? seasonOf(dateStr) : seasonOf(new Date().toISOString().slice(0, 10));
+  const startYear = 2000 + Number(base.slice(0, 2));
+  const yy = (n: number) => String(n % 100).padStart(2, "0");
+  const options = [];
+  for (let y = startYear + 1; y >= startYear - 3; y--) options.push(`${yy(y)}/${yy(y + 1)}`);
+  if (current && !options.includes(current)) options.push(current);
+  return options;
+}
+
 function typeSlug(type: EventType): string {
   return type.toLowerCase();
+}
+
+// The event's photo, or a placeholder in its type colour when there is none
+function EventImage({
+  name,
+  type,
+  image,
+  className,
+  lazy,
+}: {
+  name: string;
+  type: EventType;
+  image?: string | null | undefined;
+  className?: string;
+  lazy?: boolean;
+}) {
+  if (image) {
+    return <img src={image} alt="" className={className} loading={lazy ? "lazy" : undefined} />;
+  }
+  return (
+    <div className={`fotos-placeholder fotos-placeholder--${typeSlug(type)} ${className ?? ""}`} aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 8h3l2-3h6l2 3h3v11H4z" />
+        <circle cx="12" cy="13" r="3.5" />
+      </svg>
+      <span lang="nl">{name || "Nieuw evenement"}</span>
+    </div>
+  );
+}
+
+// --- Dutch date field (dd-mm-jjjj) ---
+// A native <input type="date"> shows the browser's locale (mm/dd/yyyy on an
+// English Mac), so we type dates as text and keep a native picker as a helper.
+
+function isoToDutch(iso: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  return m ? `${m[3]}-${m[2]}-${m[1]}` : "";
+}
+
+function dutchToIso(text: string): string | null {
+  const m = /^(\d{2})-(\d{2})-(\d{4})$/.exec(text);
+  if (!m) return null;
+  const [, d, mo, y] = m;
+  const date = new Date(Number(y), Number(mo) - 1, Number(d));
+  const valid =
+    date.getFullYear() === Number(y) &&
+    date.getMonth() === Number(mo) - 1 &&
+    date.getDate() === Number(d);
+  return valid ? `${y}-${mo}-${d}` : null;
+}
+
+// Formats while typing: digits get dashes, and "4/10" becomes "04-10"
+function formatTypedDate(raw: string): string {
+  const parts = raw.split(/[^0-9]+/);
+  let digits = "";
+  parts.forEach((part, i) => {
+    const followedBySeparator = i < parts.length - 1;
+    digits += i < 2 && followedBySeparator && part.length === 1 ? `0${part}` : part;
+  });
+  digits = digits.slice(0, 8);
+  let out = digits.slice(0, 2);
+  if (digits.length > 2) out += `-${digits.slice(2, 4)}`;
+  if (digits.length > 4) out += `-${digits.slice(4)}`;
+  if (/[^0-9]$/.test(raw) && (digits.length === 2 || digits.length === 4)) out += "-";
+  return out;
+}
+
+function DateInput({
+  value,
+  onChange,
+}: {
+  value: string; // yyyy-mm-dd, or "" while incomplete/invalid
+  onChange: (iso: string) => void;
+}) {
+  const [text, setText] = useState(() => isoToDutch(value));
+  const pickerRef = useRef<HTMLInputElement>(null);
+  const complete = text.length === 10;
+  const invalid = complete && dutchToIso(text) === null;
+
+  const update = (next: string) => {
+    setText(next);
+    onChange(dutchToIso(next) ?? "");
+  };
+
+  return (
+    <div className="fotos-date">
+      <input
+        type="text"
+        inputMode="numeric"
+        autoComplete="off"
+        placeholder="dd-mm-jjjj"
+        maxLength={10}
+        value={text}
+        aria-invalid={invalid}
+        onChange={(e) => update(formatTypedDate(e.target.value))}
+      />
+      <button
+        type="button"
+        className="fotos-date-kalender"
+        aria-label="Kies een datum in de kalender"
+        onClick={() => {
+          const picker = pickerRef.current;
+          if (!picker) return;
+          picker.value = dutchToIso(text) ?? "";
+          if (typeof picker.showPicker === "function") picker.showPicker();
+          else picker.focus();
+        }}
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+          <rect x="3.5" y="5" width="17" height="15" rx="2" />
+          <path d="M3.5 10h17M8 3v4M16 3v4" />
+        </svg>
+      </button>
+      <input
+        ref={pickerRef}
+        type="date"
+        className="fotos-date-native"
+        tabIndex={-1}
+        aria-hidden="true"
+        onChange={(e) => update(isoToDutch(e.target.value))}
+      />
+      {invalid && <span className="fotos-date-fout">Deze datum bestaat niet</span>}
+    </div>
+  );
+}
+
+// Close on Escape and keep the page behind the overlay from scrolling
+function useOverlay(onClose: () => void) {
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeRef.current();
+    };
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, []);
 }
 
 function LinksModal({
@@ -83,33 +264,76 @@ function LinksModal({
   event: PhotoEvent;
   onClose: () => void;
 }) {
+  useOverlay(onClose);
+  const bekijken = event.links.filter((l) => l.label !== UPLOAD_LABEL);
+  const upload = event.links.find((l) => l.label === UPLOAD_LABEL);
+
   return (
     <div className="fotos-overlay" onClick={onClose}>
-      <div className="fotos-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="fotos-modal-close" onClick={onClose} aria-label="Sluiten">
+      <div
+        className="fotos-modal fotos-modal--sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="fotos-modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <EventImage name={event.name} type={event.type} image={event.image} className="fotos-modal-image" />
+        <button className="fotos-modal-close" onClick={onClose} aria-label="Sluiten" autoFocus>
           ×
         </button>
-        <h2 className="fotos-modal-title">{event.name}</h2>
-        <p className="fotos-modal-date">{formatDate(event.date)}</p>
-        {event.links.length === 0 ? (
-          <p className="fotos-modal-empty">
-            Er zijn nog geen links voor dit evenement.
+        <div className="fotos-modal-body">
+          <p className="fotos-modal-meta">
+            <span className={`fotos-badge fotos-badge--${typeSlug(event.type)}`}>
+              {event.type}
+            </span>
+            {formatDate(event.date)}
           </p>
-        ) : (
-          <div className="fotos-modal-links">
-            {event.links.map((link) => (
+          <h2 className="fotos-modal-title" id="fotos-modal-title">
+            {event.name}
+          </h2>
+
+          {bekijken.length === 0 && !upload && (
+            <p className="fotos-modal-empty">
+              Er staat nog geen beeldmateriaal online voor dit evenement.
+            </p>
+          )}
+
+          {bekijken.length > 0 && (
+            <div className="fotos-modal-links">
+              {bekijken.map((link, i) => (
+                <a
+                  key={link.label}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`fotos-link ${i === 0 ? "fotos-link--primary" : ""}`}
+                >
+                  {linkNaam(link.label)}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
+          )}
+
+          {upload && (
+            <div className="fotos-upload">
+              <p className="fotos-upload-title">Zelf foto's of video's gemaakt?</p>
+              <p className="fotos-upload-text">
+                Zet ze in de gedeelde map, dan komen ze bij het beeldmateriaal
+                van dit evenement.
+              </p>
               <a
-                key={link.label}
-                href={link.url}
+                href={upload.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="fotos-modal-link"
+                className="fotos-link fotos-link--upload"
               >
-                {link.label}
+                Upload je beeldmateriaal
+                <span aria-hidden="true">↑</span>
               </a>
-            ))}
-          </div>
-        )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -153,11 +377,14 @@ function EditModal({
   const [name, setName] = useState(existing?.name ?? "");
   const [date, setDate] = useState(existing?.date ?? "");
   const [type, setType] = useState<EventType>(existing?.type ?? "Overig");
+  // "" means automatic: the season follows from the date
+  const [seizoen, setSeizoen] = useState(existing?.seizoen ?? "");
   const [image, setImage] = useState<string | null>(existing?.image ?? null);
   const [linkRows, setLinkRows] = useState<LinkRow[]>(() =>
     eventToLinkRows(existing),
   );
   const [formError, setFormError] = useState<string | null>(null);
+  useOverlay(onClose);
 
   const handleFile = async (file: File | undefined) => {
     if (!file) return;
@@ -177,12 +404,8 @@ function EditModal({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!image) {
-      setFormError("Upload eerst een foto.");
-      return;
-    }
     if (!name.trim() || !date) {
-      setFormError("Vul een naam en datum in.");
+      setFormError("Vul een naam en een geldige datum (dd-mm-jjjj) in.");
       return;
     }
     const links = linkRows
@@ -193,7 +416,8 @@ function EditModal({
       name: name.trim(),
       date,
       type,
-      image,
+      ...(seizoen ? { seizoen } : {}),
+      ...(image ? { image } : {}),
       links,
     });
   };
@@ -202,6 +426,8 @@ function EditModal({
     <div className="fotos-overlay" onClick={onClose}>
       <div
         className="fotos-modal fotos-modal--form"
+        role="dialog"
+        aria-modal="true"
         onClick={(e) => e.stopPropagation()}
       >
         <button className="fotos-modal-close" onClick={onClose} aria-label="Sluiten">
@@ -212,15 +438,23 @@ function EditModal({
         </h2>
         <form className="fotos-form" onSubmit={handleSubmit}>
           <label className="fotos-form-label">
-            Foto
+            Foto <span className="fotos-form-optioneel">(optioneel)</span>
             <input
               type="file"
               accept="image/*"
               onChange={(e) => handleFile(e.target.files?.[0])}
             />
           </label>
-          {image && (
-            <img src={image} alt="" className="fotos-form-preview" />
+          <EventImage name={name} type={type} image={image} className="fotos-form-preview" />
+          {image ? (
+            <button type="button" className="fotos-form-addlink" onClick={() => setImage(null)}>
+              Foto weghalen
+            </button>
+          ) : (
+            <p className="fotos-form-hint">
+              Zonder foto krijgt de kaart deze placeholder. Je kunt later altijd
+              een foto toevoegen.
+            </p>
           )}
           <label className="fotos-form-label">
             Naam evenement
@@ -233,11 +467,24 @@ function EditModal({
           </label>
           <label className="fotos-form-label">
             Datum
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
+            <DateInput value={date} onChange={setDate} />
+          </label>
+          <label className="fotos-form-label">
+            Seizoen
+            <select value={seizoen} onChange={(e) => setSeizoen(e.target.value)}>
+              <option value="">
+                Automatisch{date ? ` (${seasonOf(date)})` : " (volgt uit de datum)"}
+              </option>
+              {seasonOptions(date, seizoen).map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <span className="fotos-form-hint">
+              Het seizoen loopt van september tot en met augustus. Kies zelf een
+              seizoen als het evenement daar beter bij hoort.
+            </span>
           </label>
           <label className="fotos-form-label">
             Type
@@ -265,7 +512,9 @@ function EditModal({
                   onChange={(e) => updateRow(i, { label: e.target.value })}
                 />
               ) : (
-                <span className="fotos-form-linklabel">{row.label}</span>
+                <span className="fotos-form-linklabel" title={LINK_INFO[row.label]?.hint}>
+                  {linkNaam(row.label)}
+                </span>
               )}
               <input
                 type="url"
@@ -354,20 +603,47 @@ export default function Fotos() {
     return eventsQuery.data ?? [];
   }, [eventsQuery.data, eventsQuery.error]);
 
-  const years = useMemo(() => {
-    const set = new Set(events.map((e) => e.date.slice(0, 4)));
+  const seasons = useMemo(() => {
+    const set = new Set(events.map(eventSeason));
     return [...set].sort((a, b) => b.localeCompare(a));
   }, [events]);
 
-  const visibleEvents = useMemo(() => {
+  // Season + search narrow the list first, so the type chips can show counts
+  const inSeasonAndSearch = useMemo(() => {
+    const q = search.trim().toLowerCase();
     return events
-      .filter((e) => yearFilter === "alle" || e.date.startsWith(yearFilter))
+      .filter((e) => yearFilter === "alle" || eventSeason(e) === yearFilter)
+      .filter((e) => e.name.toLowerCase().includes(q));
+  }, [events, yearFilter, search]);
+
+  const typeCounts = useMemo(() => {
+    const counts = new Map<EventType, number>();
+    for (const e of inSeasonAndSearch) counts.set(e.type, (counts.get(e.type) ?? 0) + 1);
+    return counts;
+  }, [inSeasonAndSearch]);
+
+  const visibleEvents = useMemo(() => {
+    return inSeasonAndSearch
       .filter((e) => typeFilter === "alle" || e.type === typeFilter)
-      .filter((e) =>
-        e.name.toLowerCase().includes(search.trim().toLowerCase()),
-      )
       .sort((a, b) => b.date.localeCompare(a.date));
-  }, [events, yearFilter, typeFilter, search]);
+  }, [inSeasonAndSearch, typeFilter]);
+
+  // Newest season first; events inside a season stay newest first
+  const groups = useMemo(() => {
+    const bySeason = new Map<string, PhotoEvent[]>();
+    for (const e of visibleEvents) {
+      const season = eventSeason(e);
+      bySeason.set(season, [...(bySeason.get(season) ?? []), e]);
+    }
+    return [...bySeason.entries()].sort(([a], [b]) => b.localeCompare(a));
+  }, [visibleEvents]);
+
+  const filtersActive = search.trim() !== "" || yearFilter !== "alle" || typeFilter !== "alle";
+  const resetFilters = () => {
+    setSearch("");
+    setYearFilter("alle");
+    setTypeFilter("alle");
+  };
 
   const saveEvents = async (next: PhotoEvent[]) => {
     setSaveError(null);
@@ -386,7 +662,7 @@ export default function Fotos() {
   if (sessionLoading) {
     return (
       <>
-        <PageTitle title="Foto's" />
+        <PageTitle title="Het Fotoboek" />
         <p className="fotos-status">Laden...</p>
       </>
     );
@@ -395,7 +671,7 @@ export default function Fotos() {
   if (!loggedIn) {
     return (
       <>
-        <PageTitle title="Foto's" />
+        <PageTitle title="Het Fotoboek" />
         <p className="fotos-status">
           Deze pagina is helaas niet toegankelijk als je niet ingelogd bent. Log
           in om deze pagina te kunnen bekijken.
@@ -407,7 +683,7 @@ export default function Fotos() {
   if (!isMember) {
     return (
       <>
-        <PageTitle title="Foto's" />
+        <PageTitle title="Het Fotoboek" />
         <p className="fotos-status">
           Je hebt een actief lidmaatschap nodig om deze pagina te bekijken.
         </p>
@@ -417,133 +693,151 @@ export default function Fotos() {
 
   return (
     <>
-      <PageTitle title="Foto's" />
+      <PageTitle title="Het Fotoboek" />
       <div className="fotos-container">
-        <div className="fotos-topbar">
-          <input
-            type="search"
-            className="fotos-search"
-            placeholder="Zoek een evenement..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <select
-            className="fotos-select"
-            value={yearFilter}
-            onChange={(e) => setYearFilter(e.target.value)}
-          >
-            <option value="alle">Alle jaren</option>
-            {years.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-          <div className="fotos-typefilter">
-            <button
-              className={`fotos-chip ${typeFilter === "alle" ? "fotos-chip--active" : ""}`}
-              onClick={() => setTypeFilter("alle")}
+        <div className="fotos-toolbar">
+          <div className="fotos-zoekrij">
+            <input
+              type="search"
+              className="fotos-search"
+              placeholder="Zoeken"
+              aria-label="Zoek een evenement"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <select
+              className={`fotos-select ${yearFilter !== "alle" ? "fotos-select--actief" : ""}`}
+              aria-label="Seizoen"
+              value={yearFilter}
+              onChange={(e) => setYearFilter(e.target.value)}
             >
-              Alles
-            </button>
-            {EVENT_TYPES.map((t) => (
-              <button
-                key={t}
-                className={`fotos-chip ${typeFilter === t ? "fotos-chip--active" : ""}`}
-                onClick={() => setTypeFilter(t)}
-              >
-                {t}
-              </button>
-            ))}
+              <option value="alle">Seizoen</option>
+              {seasons.map((season) => (
+                <option key={season} value={season}>
+                  {season}
+                </option>
+              ))}
+            </select>
+            <select
+              className={`fotos-select ${typeFilter !== "alle" ? "fotos-select--actief" : ""}`}
+              aria-label="Soort evenement"
+              value={typeFilter}
+              onChange={(e) => setTypeFilter(e.target.value as EventType | "alle")}
+            >
+              <option value="alle">Soort</option>
+              {EVENT_TYPES.filter((t) => typeCounts.has(t) || typeFilter === t).map((t) => (
+                <option key={t} value={t}>
+                  {t} ({typeCounts.get(t) ?? 0})
+                </option>
+              ))}
+            </select>
           </div>
-          {isDev && (
-            <div className="fotos-viewtoggle" role="group" aria-label="Bekijk als (alleen dev)">
-              <button
-                type="button"
-                className={`fotos-chip ${devViewAsAdmin ? "fotos-chip--active" : ""}`}
-                onClick={() => setDevViewAsAdmin(true)}
-              >
-                Admin
-              </button>
-              <button
-                type="button"
-                className={`fotos-chip ${!devViewAsAdmin ? "fotos-chip--active" : ""}`}
-                onClick={() => setDevViewAsAdmin(false)}
-              >
-                Lid
-              </button>
+          {(isDev || showAdminUi) && (
+            <div className="fotos-adminrij">
+              {isDev && (
+                <div className="fotos-viewtoggle" role="group" aria-label="Bekijk als (alleen dev)">
+                  <span>Dev: bekijk als</span>
+                  <button
+                    type="button"
+                    className={`fotos-chip fotos-chip--klein ${devViewAsAdmin ? "fotos-chip--active" : ""}`}
+                    onClick={() => setDevViewAsAdmin(true)}
+                  >
+                    Admin
+                  </button>
+                  <button
+                    type="button"
+                    className={`fotos-chip fotos-chip--klein ${!devViewAsAdmin ? "fotos-chip--active" : ""}`}
+                    onClick={() => setDevViewAsAdmin(false)}
+                  >
+                    Lid
+                  </button>
+                </div>
+              )}
+              {showAdminUi && (
+                <button
+                  className="fotos-button fotos-add"
+                  onClick={() => {
+                    setSaveError(null);
+                    setEditState({ open: true, event: null });
+                  }}
+                >
+                  + Nieuwe kaart
+                </button>
+              )}
             </div>
-          )}
-          {showAdminUi && (
-            <button
-              className="fotos-button fotos-add"
-              onClick={() => {
-                setSaveError(null);
-                setEditState({ open: true, event: null });
-              }}
-            >
-              + Nieuwe kaart
-            </button>
           )}
         </div>
 
         {eventsQuery.isLoading ? (
-          <p className="fotos-status">Foto's laden...</p>
-        ) : eventsQuery.error &&
-          !(eventsQuery.error instanceof PrivateKeyNotSetError) ? (
-          <p className="fotos-status">Kon de foto's niet laden.</p>
-        ) : visibleEvents.length === 0 ? (
-          <p className="fotos-status">
-            {events.length === 0
-              ? "Er zijn nog geen fotokaarten."
-              : "Geen evenementen gevonden met deze filters."}
-          </p>
-        ) : (
-          <div className="fotos-grid">
-            {visibleEvents.map((event) => (
-              <button
-                key={event.id}
-                className="fotos-card"
-                onClick={() => setOpenEvent(event)}
-              >
-                <div className="fotos-card-imagewrap">
-                  <img src={event.image} alt={event.name} />
-                  <span
-                    className={`fotos-badge fotos-badge--${typeSlug(event.type)}`}
-                  >
-                    {event.type}
-                  </span>
-                  {showAdminUi && (
-                    <span
-                      role="button"
-                      tabIndex={0}
-                      className="fotos-card-edit"
-                      aria-label="Kaart bewerken"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSaveError(null);
-                        setEditState({ open: true, event });
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setSaveError(null);
-                          setEditState({ open: true, event });
-                        }
-                      }}
-                    >
-                      ✎
-                    </span>
-                  )}
-                </div>
-                <div className="fotos-card-info">
-                  <h3 className="fotos-card-name">{event.name}</h3>
-                  <p className="fotos-card-date">{formatDate(event.date)}</p>
-                </div>
-              </button>
+          <div className="fotos-grid" aria-busy="true" aria-label="Foto's laden">
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i} className="fotos-card fotos-card--skeleton" />
             ))}
           </div>
+        ) : eventsQuery.error &&
+          !(eventsQuery.error instanceof PrivateKeyNotSetError) ? (
+          <p className="fotos-leeg">
+            De foto's konden niet geladen worden. Probeer het later nog eens.
+          </p>
+        ) : events.length === 0 ? (
+          <p className="fotos-leeg">
+            Er staan nog geen fotoalbums online. Zodra er beeldmateriaal van een
+            evenement is, vind je het hier.
+          </p>
+        ) : visibleEvents.length === 0 ? (
+          <div className="fotos-leeg">
+            <p>Geen evenementen gevonden met deze filters.</p>
+            {filtersActive && (
+              <button className="fotos-chip" onClick={resetFilters}>
+                Filters wissen
+              </button>
+            )}
+          </div>
+        ) : (
+          groups.map(([season, seasonEvents]) => (
+            <section key={season} className="fotos-seizoen" aria-label={`Seizoen ${season}`}>
+              <h2 className="fotos-seizoen-titel">
+                Seizoen {season}
+                <span>
+                  {seasonEvents.length} {seasonEvents.length === 1 ? "evenement" : "evenementen"}
+                </span>
+              </h2>
+              <div className="fotos-grid">
+                {seasonEvents.map((event) => (
+                  <div key={event.id} className="fotos-card">
+                    <button
+                      className="fotos-card-open"
+                      onClick={() => setOpenEvent(event)}
+                      aria-label={`${event.name}, ${formatDate(event.date)}`}
+                    >
+                      <div className="fotos-card-imagewrap">
+                        <EventImage name={event.name} type={event.type} image={event.image} lazy />
+                        <span className={`fotos-badge fotos-badge--${typeSlug(event.type)}`}>
+                          {event.type}
+                        </span>
+                      </div>
+                      <div className="fotos-card-info">
+                        <h3 className="fotos-card-name" lang="nl">{event.name}</h3>
+                        <p className="fotos-card-date">{formatDate(event.date)}</p>
+                      </div>
+                    </button>
+                    {showAdminUi && (
+                      <button
+                        className="fotos-card-edit"
+                        aria-label={`${event.name} bewerken`}
+                        onClick={() => {
+                          setSaveError(null);
+                          setEditState({ open: true, event });
+                        }}
+                      >
+                        ✎
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))
         )}
       </div>
 
