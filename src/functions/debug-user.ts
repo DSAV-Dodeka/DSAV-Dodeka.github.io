@@ -75,10 +75,20 @@ type DebugItem = { id: string; [field: string]: unknown };
 const DEBUG_COLLECTIONS: Record<string, DebugItem[]> = {
   fotos: [
     {
+      id: "debug-clubkampioenschappen",
+      name: "Clubkampioenschappen",
+      date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+      types: ["Wedstrijd", "Gezelligheid"],
+      created_at: Math.floor(Date.now() / 1000) - 2 * 24 * 60 * 60,
+      links: [{ label: "dump", url: "https://example.com/dump" }],
+    },
+    {
       id: "debug-nsk-baan",
       name: "NSK Baan",
-      date: "2026-06-14",
-      type: "Wedstrijd",
+      date: "2026-06-13",
+      end_date: "2026-06-14",
+      types: ["Wedstrijd"],
+      in_progress: true,
       image: placeholderImage("#cb4b3d", "NSK Baan"),
       links: [
         { label: "dump", url: "https://example.com/dump" },
@@ -88,8 +98,9 @@ const DEBUG_COLLECTIONS: Record<string, DebugItem[]> = {
     {
       id: "debug-trainingsweekend",
       name: "Trainingsweekend Ardennen",
-      date: "2026-04-20",
-      type: "Reis",
+      date: "2026-04-18",
+      end_date: "2026-04-20",
+      types: ["Reis", "Training", "Gezelligheid"],
       image: placeholderImage("#001f48", "Ardennen"),
       links: [
         { label: "alles", url: "https://example.com/alles" },
@@ -101,7 +112,7 @@ const DEBUG_COLLECTIONS: Record<string, DebugItem[]> = {
       id: "debug-borrel",
       name: "Eindejaarsborrel",
       date: "2025-12-19",
-      type: "Gezelligheid",
+      types: ["Gezelligheid"],
       image: placeholderImage("#93a3b1", "Borrel"),
       links: [{ label: "dump", url: "https://example.com/dump" }],
     },
@@ -109,7 +120,7 @@ const DEBUG_COLLECTIONS: Record<string, DebugItem[]> = {
       id: "debug-baantraining",
       name: "Baantraining zomer",
       date: "2025-07-08",
-      type: "Training",
+      types: ["Training"],
       image: placeholderImage("#2a9d8f", "Training"),
       links: [],
     },

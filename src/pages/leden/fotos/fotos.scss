@@ -371,10 +371,48 @@ $polaroid-rand: 0.65rem;
     display: block;
   }
 
-  .fotos-badge {
+  // Type badges top-left; an event can have up to three. Leave room for the
+  // edit button in the top-right corner.
+  .fotos-badges {
     position: absolute;
     top: $space-2;
     left: $space-2;
+    right: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-1;
+
+    // Keeps a badge readable on a cover photo of the same colour
+    .fotos-badge {
+      box-shadow: 0 0 0 1.5px rgba(white, 0.85);
+    }
+  }
+}
+
+// Status labels under the date: "Nieuw!" (automatic) and "Wordt aan gewerkt"
+.fotos-labels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-1;
+  margin-top: $space-1;
+}
+
+.fotos-label {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: variables.$bold;
+  line-height: 1.4;
+
+  &--nieuw {
+    background-color: rgba(variables.$dodeka_rood, 0.12);
+    color: variables.$dodeka_rood;
+  }
+
+  &--bezig {
+    background-color: $vlak;
+    color: $tekst;
   }
 }
 
@@ -947,4 +985,66 @@ $polaroid-rand: 0.65rem;
   font-size: 0.85rem;
   font-weight: variables.$normal;
   color: variables.$dodeka_rood;
+}
+
+// --- Event types (several) and "wordt aan gewerkt" in the form ---
+
+.fotos-form-types {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  legend {
+    padding: 0;
+    margin-bottom: $space-1;
+  }
+}
+
+.fotos-form-typechips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+
+  .fotos-chip {
+    cursor: pointer;
+    font-weight: normal;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .fotos-chip:has(input:disabled) {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .fotos-chip:has(input:focus-visible) {
+    box-shadow: $focus;
+  }
+}
+
+.fotos-form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  color: variables.$dodeka_blauw;
+  font-weight: variables.$bold;
+  cursor: pointer;
+
+  input {
+    margin-top: 0.3rem;
+  }
+
+  > span {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+
+  .fotos-form-hint {
+    font-weight: normal;
+  }
 }

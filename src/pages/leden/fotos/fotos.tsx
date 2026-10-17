@@ -24,6 +24,13 @@ const EVENT_TYPES = [
   "Overig",
 ] as const;
 type EventType = (typeof EVENT_TYPES)[number];
+const MAX_TYPES = 3;
+
+// "Nieuw!" shows by itself: a card added in the last 14 days, for an event
+// from the last 60 days (so importing old albums doesn't mark them all new).
+const NEW_FOR_DAYS = 14;
+const NEW_ONLY_FOR_EVENTS_WITHIN_DAYS = 60;
+const DAY_MS = 24 * 60 * 60 * 1000;
 
 // Standard link names shown in the create form; extra names can be added there.
 // The stored label stays the short key; LINK_INFO decides how it's shown.
@@ -47,14 +54,18 @@ interface PhotoLink {
   url: string;
 }
 
+// Mirrors validate_foto_card in dodeka/backend/.../data/features/fotos.py
 interface PhotoEvent {
   id: string;
   name: string;
-  date: string; // YYYY-MM-DD
-  type: EventType;
+  date: string; // YYYY-MM-DD, the (first) day of the event
+  end_date?: string; // YYYY-MM-DD, for events spanning several days
+  types: EventType[]; // 1-3, e.g. Wedstrijd + Gezelligheid
+  in_progress?: boolean; // "Wordt aan gewerkt": FOCUS is still editing
   seizoen?: string; // e.g. "25/26"; overrides the season derived from the date
   image?: string; // data URL, resized on upload; a placeholder shows when missing
   links: PhotoLink[];
+  created_at?: number; // unix seconds, set by the backend
 }
 
 function formatDate(dateStr: string): string {
@@ -63,6 +74,52 @@ function formatDate(dateStr: string): string {
     month: "long",
     year: "numeric",
   });
+}
+
+// "14 juni 2026", "13 – 14 juni 2026", "30 januari – 7 februari 2026"
+function formatDateRange(start: string, end?: string): string {
+  if (!end || end === start) return formatDate(start);
+  const sameYear = start.slice(0, 4) === end.slice(0, 4);
+  const sameMonth = sameYear && start.slice(5, 7) === end.slice(5, 7);
+  const first = new Date(start).toLocaleDateString("nl-NL", {
+    day: "numeric",
+    ...(sameMonth ? {} : { month: "long" }),
+    ...(sameYear ? {} : { year: "numeric" }),
+  });
+  return `${first} – ${formatDate(end)}`;
+}
+
+function isNew(event: PhotoEvent, now = Date.now()): boolean {
+  if (!event.created_at) return false;
+  const addedRecently = now - event.created_at * 1000 < NEW_FOR_DAYS * DAY_MS;
+  const eventEnd = new Date(event.end_date ?? event.date).getTime();
+  const recentEvent = now - eventEnd < NEW_ONLY_FOR_EVENTS_WITHIN_DAYS * DAY_MS;
+  return addedRecently && recentEvent;
+}
+
+function TypeBadges({ types }: { types: EventType[] }) {
+  return (
+    <>
+      {types.map((t) => (
+        <span key={t} className={`fotos-badge fotos-badge--${typeSlug(t)}`}>
+          {t}
+        </span>
+      ))}
+    </>
+  );
+}
+
+function StatusLabels({ event }: { event: PhotoEvent }) {
+  const nieuw = isNew(event);
+  if (!nieuw && !event.in_progress) return null;
+  return (
+    <span className="fotos-labels">
+      {nieuw && <span className="fotos-label fotos-label--nieuw">Nieuw!</span>}
+      {event.in_progress && (
+        <span className="fotos-label fotos-label--bezig">Wordt aan gewerkt</span>
+      )}
+    </span>
+  );
 }
 
 // Resize uploaded photos so the KV store stays small
@@ -283,17 +340,16 @@ function LinksModal({
         aria-labelledby="fotos-modal-title"
         onClick={(e) => e.stopPropagation()}
       >
-        <EventImage name={event.name} type={event.type} image={event.image} className="fotos-modal-image" />
+        <EventImage name={event.name} type={event.types[0] ?? "Overig"} image={event.image} className="fotos-modal-image" />
         <button className="fotos-modal-close" onClick={onClose} aria-label="Sluiten" autoFocus>
           ×
         </button>
         <div className="fotos-modal-body">
           <p className="fotos-modal-meta">
-            <span className={`fotos-badge fotos-badge--${typeSlug(event.type)}`}>
-              {event.type}
-            </span>
-            {formatDate(event.date)}
+            <TypeBadges types={event.types} />
+            {formatDateRange(event.date, event.end_date)}
           </p>
+          <StatusLabels event={event} />
           <h2 className="fotos-modal-title" id="fotos-modal-title">
             {event.name}
           </h2>
@@ -382,7 +438,10 @@ function EditModal({
 }) {
   const [name, setName] = useState(existing?.name ?? "");
   const [date, setDate] = useState(existing?.date ?? "");
-  const [type, setType] = useState<EventType>(existing?.type ?? "Overig");
+  // "" means a one-day event
+  const [endDate, setEndDate] = useState(existing?.end_date ?? "");
+  const [types, setTypes] = useState<EventType[]>(existing?.types ?? ["Overig"]);
+  const [inProgress, setInProgress] = useState(existing?.in_progress ?? false);
   // "" means automatic: the season follows from the date
   const [seizoen, setSeizoen] = useState(existing?.seizoen ?? "");
   const [image, setImage] = useState<string | null>(existing?.image ?? null);
@@ -414,6 +473,14 @@ function EditModal({
       setFormError("Vul een naam en een geldige datum (dd-mm-jjjj) in.");
       return;
     }
+    if (endDate && endDate < date) {
+      setFormError("De einddatum kan niet voor de begindatum liggen.");
+      return;
+    }
+    if (types.length === 0) {
+      setFormError("Kies minstens één soort evenement.");
+      return;
+    }
     const links = linkRows
       .filter((row) => row.label.trim() && row.url.trim())
       .map((row) => ({ label: row.label.trim(), url: row.url.trim() }));
@@ -421,7 +488,9 @@ function EditModal({
       id: existing?.id ?? crypto.randomUUID(),
       name: name.trim(),
       date,
-      type,
+      ...(endDate && endDate !== date ? { end_date: endDate } : {}),
+      types,
+      ...(inProgress ? { in_progress: true } : {}),
       ...(seizoen ? { seizoen } : {}),
       ...(image ? { image } : {}),
       links,
@@ -451,7 +520,7 @@ function EditModal({
               onChange={(e) => handleFile(e.target.files?.[0])}
             />
           </label>
-          <EventImage name={name} type={type} image={image} className="fotos-form-preview" />
+          <EventImage name={name} type={types[0] ?? "Overig"} image={image} className="fotos-form-preview" />
           {image ? (
             <button type="button" className="fotos-form-addlink" onClick={() => setImage(null)}>
               Foto weghalen
@@ -476,6 +545,15 @@ function EditModal({
             <DateInput value={date} onChange={setDate} />
           </label>
           <label className="fotos-form-label">
+            <span>
+              Einddatum <span className="fotos-form-optioneel">(optioneel)</span>
+            </span>
+            <DateInput value={endDate} onChange={setEndDate} />
+            <span className="fotos-form-hint">
+              Alleen voor evenementen van meerdere dagen, zoals een trainingsweekend.
+            </span>
+          </label>
+          <label className="fotos-form-label">
             Seizoen
             <select value={seizoen} onChange={(e) => setSeizoen(e.target.value)}>
               <option value="">
@@ -492,18 +570,48 @@ function EditModal({
               seizoen als het evenement daar beter bij hoort.
             </span>
           </label>
-          <label className="fotos-form-label">
-            Type
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value as EventType)}
-            >
-              {EVENT_TYPES.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
+          <fieldset className="fotos-form-label fotos-form-types">
+            <legend>Soort evenement</legend>
+            <div className="fotos-form-typechips">
+              {EVENT_TYPES.map((t) => {
+                const checked = types.includes(t);
+                const full = !checked && types.length >= MAX_TYPES;
+                return (
+                  <label
+                    key={t}
+                    className={`fotos-chip fotos-chip--klein ${checked ? "fotos-chip--active" : ""}`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      disabled={full}
+                      onChange={() =>
+                        setTypes((current) =>
+                          checked
+                            ? current.filter((x) => x !== t)
+                            : EVENT_TYPES.filter((x) => x === t || current.includes(x)),
+                        )
+                      }
+                    />
+                    {t}
+                  </label>
+                );
+              })}
+            </div>
+            <span className="fotos-form-hint">Kies er één tot drie.</span>
+          </fieldset>
+          <label className="fotos-form-check">
+            <input
+              type="checkbox"
+              checked={inProgress}
+              onChange={(e) => setInProgress(e.target.checked)}
+            />
+            <span>
+              Wordt aan gewerkt
+              <span className="fotos-form-hint">
+                FOCUS is de foto's nog aan het bewerken. Leden zien dit op de kaart.
+              </span>
+            </span>
           </label>
 
           <p className="fotos-form-section">Links (alleen ingevulde links worden getoond)</p>
@@ -626,13 +734,15 @@ export default function Fotos() {
 
   const typeCounts = useMemo(() => {
     const counts = new Map<EventType, number>();
-    for (const e of inSeasonAndSearch) counts.set(e.type, (counts.get(e.type) ?? 0) + 1);
+    for (const e of inSeasonAndSearch) {
+      for (const t of e.types) counts.set(t, (counts.get(t) ?? 0) + 1);
+    }
     return counts;
   }, [inSeasonAndSearch]);
 
   const visibleEvents = useMemo(() => {
     return inSeasonAndSearch
-      .filter((e) => typeFilter === "alle" || e.type === typeFilter)
+      .filter((e) => typeFilter === "alle" || e.types.includes(typeFilter))
       .sort((a, b) => b.date.localeCompare(a.date));
   }, [inSeasonAndSearch, typeFilter]);
 
@@ -818,17 +928,20 @@ export default function Fotos() {
                     <button
                       className="fotos-card-open"
                       onClick={() => setOpenEvent(event)}
-                      aria-label={`${event.name}, ${formatDate(event.date)}`}
+                      aria-label={`${event.name}, ${formatDateRange(event.date, event.end_date)}`}
                     >
                       <div className="fotos-card-imagewrap">
-                        <EventImage name={event.name} type={event.type} image={event.image} lazy />
-                        <span className={`fotos-badge fotos-badge--${typeSlug(event.type)}`}>
-                          {event.type}
+                        <EventImage name={event.name} type={event.types[0] ?? "Overig"} image={event.image} lazy />
+                        <span className="fotos-badges">
+                          <TypeBadges types={event.types} />
                         </span>
                       </div>
                       <div className="fotos-card-info">
                         <h3 className="fotos-card-name" lang="nl">{event.name}</h3>
-                        <p className="fotos-card-date">{formatDate(event.date)}</p>
+                        <p className="fotos-card-date">
+                          {formatDateRange(event.date, event.end_date)}
+                        </p>
+                        <StatusLabels event={event} />
                       </div>
                     </button>
                     {showEditUi && (
