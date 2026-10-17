@@ -685,3 +685,61 @@ export async function adminListPrivate(): Promise<PrivateKvList> {
   }
   return response.json();
 }
+
+// Committee collections: lists of items a committee manages from its own page
+// (e.g. "fotos" for Het Fotoboek). Who may read/write is decided by the
+// backend (COLLECTIONS in data/features/committee_collections.py).
+
+export type CollectionItem = { id: string };
+
+/** Thrown when the session lacks the collection's read or write role. */
+export class CollectionForbiddenError extends Error {
+  readonly collection: string;
+  constructor(collection: string) {
+    super(`Not allowed: collection ${collection}`);
+    this.collection = collection;
+  }
+}
+
+async function collectionRequest(
+  path: string,
+  collection: string,
+  body: Record<string, unknown>,
+): Promise<Response> {
+  const response = await post(path, { collection, ...body }, true);
+  if (response.status === 401 || response.status === 403) {
+    throw new CollectionForbiddenError(collection);
+  }
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Collection ${collection}: ${text}`);
+  }
+  return response;
+}
+
+export async function listCollection<T extends CollectionItem>(
+  collection: string,
+): Promise<T[]> {
+  const response = await collectionRequest("/members/collections/list/", collection, {});
+  const data = await response.json();
+  return data.items as T[];
+}
+
+/** Create or replace one item (matched by id). Returns the saved item. */
+export async function saveCollectionItem<T extends CollectionItem>(
+  collection: string,
+  item: T,
+): Promise<T> {
+  const response = await collectionRequest("/members/collections/save/", collection, {
+    item,
+  });
+  const data = await response.json();
+  return data.item as T;
+}
+
+export async function deleteCollectionItem(
+  collection: string,
+  id: string,
+): Promise<void> {
+  await collectionRequest("/members/collections/delete/", collection, { id });
+}

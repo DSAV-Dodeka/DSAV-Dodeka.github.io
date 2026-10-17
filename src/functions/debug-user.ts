@@ -70,8 +70,10 @@ function placeholderImage(color: string, label: string): string {
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
-const DEBUG_PRIVATE: Record<string, unknown> = {
-  fotos_events: [
+type DebugItem = { id: string; [field: string]: unknown };
+
+const DEBUG_COLLECTIONS: Record<string, DebugItem[]> = {
+  fotos: [
     {
       id: "debug-nsk-baan",
       name: "NSK Baan",
@@ -130,7 +132,7 @@ export function getDebugPrivate(key: string): unknown | null {
   if (!isDebugUserActive()) return null;
   const overrides = readPrivateOverrides();
   if (key in overrides) return overrides[key];
-  return DEBUG_PRIVATE[key] ?? null;
+  return null;
 }
 
 /** Returns false when the debug user is off, so the caller saves for real. */
@@ -139,5 +141,53 @@ export function setDebugPrivate(key: string, value: unknown): boolean {
   const overrides = readPrivateOverrides();
   overrides[key] = value;
   sessionStorage.setItem(PRIVATE_OVERRIDES_KEY, JSON.stringify(overrides));
+  return true;
+}
+
+// Committee collections (e.g. "fotos"): fake items, with saves and deletes
+// kept per tab like the private overrides above.
+const COLLECTION_OVERRIDES_KEY = "dodeka-debug-collections";
+
+function readCollectionOverrides(): Record<string, DebugItem[]> {
+  try {
+    return JSON.parse(
+      sessionStorage.getItem(COLLECTION_OVERRIDES_KEY) ?? "{}",
+    ) as Record<string, DebugItem[]>;
+  } catch {
+    return {};
+  }
+}
+
+export function getDebugCollection(collection: string): DebugItem[] | null {
+  if (!isDebugUserActive()) return null;
+  const overrides = readCollectionOverrides();
+  return overrides[collection] ?? DEBUG_COLLECTIONS[collection] ?? null;
+}
+
+function writeDebugCollection(collection: string, items: DebugItem[]) {
+  const overrides = readCollectionOverrides();
+  overrides[collection] = items;
+  sessionStorage.setItem(COLLECTION_OVERRIDES_KEY, JSON.stringify(overrides));
+}
+
+/** Returns false when the debug user is off, so the caller saves for real. */
+export function saveDebugCollectionItem(
+  collection: string,
+  item: { id: string },
+): boolean {
+  const items = getDebugCollection(collection);
+  if (items === null) return false;
+  writeDebugCollection(collection, [...items.filter((i) => i.id !== item.id), item]);
+  return true;
+}
+
+/** Returns false when the debug user is off, so the caller deletes for real. */
+export function deleteDebugCollectionItem(collection: string, id: string): boolean {
+  const items = getDebugCollection(collection);
+  if (items === null) return false;
+  writeDebugCollection(
+    collection,
+    items.filter((i) => i.id !== id),
+  );
   return true;
 }

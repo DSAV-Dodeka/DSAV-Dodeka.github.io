@@ -2,13 +2,19 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import PageTitle from "$components/PageTitle.tsx";
 import {
   useSessionInfo,
-  usePrivate,
-  useAdminSetPrivate,
+  useCollection,
+  useSaveCollectionItem,
+  useDeleteCollectionItem,
 } from "$functions/query.ts";
-import { PrivateKeyNotSetError } from "$functions/backend.ts";
+import { CollectionForbiddenError } from "$functions/backend.ts";
 import "./fotos.scss";
 
-const FOTOS_KEY = "fotos_events";
+// Backend collection holding the cards, one row per card. Every member may
+// read it; FOCUS (and admins) may save and delete cards. The backend enforces
+// this from COLLECTIONS in dodeka/backend/.../data/features/committee_collections.py;
+// FOTOS_WRITE_ROLE only decides whether the editor is shown. Keep them in sync.
+const FOTOS_COLLECTION = "fotos";
+const FOTOS_WRITE_ROLE = "focus";
 
 const EVENT_TYPES = [
   "Wedstrijd",
@@ -579,15 +585,20 @@ export default function Fotos() {
   const loggedIn = !!session;
   const isMember = session?.user.permissions.includes("member") ?? false;
   const isAdmin = session?.user.permissions.includes("admin") ?? false;
+  const canEdit =
+    isAdmin || (session?.user.permissions.includes(FOTOS_WRITE_ROLE) ?? false);
 
-  const eventsQuery = usePrivate<PhotoEvent[]>(FOTOS_KEY, loggedIn && isMember);
-  const setPrivate = useAdminSetPrivate();
+  const eventsQuery = useCollection<PhotoEvent>(FOTOS_COLLECTION, loggedIn && isMember);
+  const saveCard = useSaveCollectionItem<PhotoEvent>(FOTOS_COLLECTION);
+  const deleteCard = useDeleteCollectionItem(FOTOS_COLLECTION);
+  const saving = saveCard.isPending || deleteCard.isPending;
 
-  // Dev-only toggle to preview the admin/lid view without needing a real
-  // admin session. Has no effect (and isn't rendered) outside of dev.
+  // Dev-only override to preview the editor/lid view regardless of the
+  // session's permissions; null follows the real permissions. Has no effect
+  // (and isn't rendered) outside of dev.
   const isDev = import.meta.env.DEV;
-  const [devViewAsAdmin, setDevViewAsAdmin] = useState(false);
-  const showAdminUi = isDev ? devViewAsAdmin : isAdmin;
+  const [devShowEditor, setDevShowEditor] = useState<boolean | null>(null);
+  const showEditUi = isDev && devShowEditor !== null ? devShowEditor : canEdit;
 
   const [search, setSearch] = useState("");
   const [yearFilter, setYearFilter] = useState<string>("alle");
@@ -598,10 +609,7 @@ export default function Fotos() {
   >({ open: false });
   const [saveError, setSaveError] = useState<string | null>(null);
 
-  const events: PhotoEvent[] = useMemo(() => {
-    if (eventsQuery.error instanceof PrivateKeyNotSetError) return [];
-    return eventsQuery.data ?? [];
-  }, [eventsQuery.data, eventsQuery.error]);
+  const events: PhotoEvent[] = useMemo(() => eventsQuery.data ?? [], [eventsQuery.data]);
 
   const seasons = useMemo(() => {
     const set = new Set(events.map(eventSeason));
@@ -645,17 +653,20 @@ export default function Fotos() {
     setTypeFilter("alle");
   };
 
-  const saveEvents = async (next: PhotoEvent[]) => {
+  // Each save or delete touches one card only; the others stay as they are.
+  const runEdit = async (edit: () => Promise<unknown>) => {
     setSaveError(null);
     try {
-      await setPrivate.mutateAsync({
-        key: FOTOS_KEY,
-        value: next,
-        role: "member",
-      });
+      await edit();
       setEditState({ open: false });
     } catch (e) {
-      setSaveError(e instanceof Error ? e.message : "Opslaan mislukt");
+      if (e instanceof CollectionForbiddenError) {
+        setSaveError(
+          "Je hebt geen rechten (meer) om het fotoboek aan te passen. Vraag een admin om je FOCUS-rechten te verlengen.",
+        );
+      } else {
+        setSaveError(e instanceof Error ? e.message : "Opslaan mislukt");
+      }
     }
   };
 
@@ -732,28 +743,28 @@ export default function Fotos() {
               ))}
             </select>
           </div>
-          {(isDev || showAdminUi) && (
+          {(isDev || showEditUi) && (
             <div className="fotos-adminrij">
               {isDev && (
                 <div className="fotos-viewtoggle" role="group" aria-label="Bekijk als (alleen dev)">
                   <span>Dev: bekijk als</span>
                   <button
                     type="button"
-                    className={`fotos-chip fotos-chip--klein ${devViewAsAdmin ? "fotos-chip--active" : ""}`}
-                    onClick={() => setDevViewAsAdmin(true)}
+                    className={`fotos-chip fotos-chip--klein ${showEditUi ? "fotos-chip--active" : ""}`}
+                    onClick={() => setDevShowEditor(true)}
                   >
-                    Admin
+                    FOCUS
                   </button>
                   <button
                     type="button"
-                    className={`fotos-chip fotos-chip--klein ${!devViewAsAdmin ? "fotos-chip--active" : ""}`}
-                    onClick={() => setDevViewAsAdmin(false)}
+                    className={`fotos-chip fotos-chip--klein ${!showEditUi ? "fotos-chip--active" : ""}`}
+                    onClick={() => setDevShowEditor(false)}
                   >
                     Lid
                   </button>
                 </div>
               )}
-              {showAdminUi && (
+              {showEditUi && (
                 <button
                   className="fotos-button fotos-add"
                   onClick={() => {
@@ -774,8 +785,7 @@ export default function Fotos() {
               <div key={i} className="fotos-card fotos-card--skeleton" />
             ))}
           </div>
-        ) : eventsQuery.error &&
-          !(eventsQuery.error instanceof PrivateKeyNotSetError) ? (
+        ) : eventsQuery.error ? (
           <p className="fotos-leeg">
             De foto's konden niet geladen worden. Probeer het later nog eens.
           </p>
@@ -821,7 +831,7 @@ export default function Fotos() {
                         <p className="fotos-card-date">{formatDate(event.date)}</p>
                       </div>
                     </button>
-                    {showAdminUi && (
+                    {showEditUi && (
                       <button
                         className="fotos-card-edit"
                         aria-label={`${event.name} bewerken`}
@@ -847,15 +857,14 @@ export default function Fotos() {
       {editState.open && (
         <EditModal
           existing={editState.event}
-          saving={setPrivate.isPending}
+          saving={saving}
           error={saveError}
           onClose={() => setEditState({ open: false })}
           onSave={(event) => {
-            const others = events.filter((e) => e.id !== event.id);
-            void saveEvents([...others, event]);
+            void runEdit(() => saveCard.mutateAsync(event));
           }}
           onDelete={(id) => {
-            void saveEvents(events.filter((e) => e.id !== id));
+            void runEdit(() => deleteCard.mutateAsync(id));
           }}
         />
       )}

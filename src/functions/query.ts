@@ -144,6 +144,63 @@ export function useAdminSetPrivate() {
   });
 }
 
+// --- Committee collections (e.g. "fotos" for Het Fotoboek) ---
+// In dev, while the debug user is on, these read and write fake data from
+// debug-user.ts instead of calling the backend.
+
+export function useCollection<T extends backend.CollectionItem>(
+  collection: string,
+  enabled: boolean,
+) {
+  return useQuery({
+    queryKey: ["collection", collection] as const,
+    queryFn: async () => {
+      if (import.meta.env.DEV) {
+        const { getDebugCollection } = await import("./debug-user.ts");
+        const debug = getDebugCollection(collection);
+        if (debug !== null) return debug as T[];
+      }
+      return backend.listCollection<T>(collection);
+    },
+    enabled,
+    retry: false,
+  });
+}
+
+/** Save one item; the rest of the collection is untouched. */
+export function useSaveCollectionItem<T extends backend.CollectionItem>(
+  collection: string,
+) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (item: T) => {
+      if (import.meta.env.DEV) {
+        const { saveDebugCollectionItem } = await import("./debug-user.ts");
+        if (saveDebugCollectionItem(collection, item)) return item;
+      }
+      return backend.saveCollectionItem<T>(collection, item);
+    },
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["collection", collection] }),
+  });
+}
+
+/** Delete one item by id. */
+export function useDeleteCollectionItem(collection: string) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (import.meta.env.DEV) {
+        const { deleteDebugCollectionItem } = await import("./debug-user.ts");
+        if (deleteDebugCollectionItem(collection, id)) return;
+      }
+      return backend.deleteCollectionItem(collection, id);
+    },
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["collection", collection] }),
+  });
+}
+
 // --- Admin query options ---
 
 // Admin data changes rarely and is refreshed explicitly (mutations invalidate,
