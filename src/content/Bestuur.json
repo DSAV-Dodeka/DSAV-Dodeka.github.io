@@ -1,6 +1,12 @@
 {
     "besturen": [
          {
+            "naam": "Bestuur 8",
+            "leden": [["Wyna Meeuwisse","Voorzitter"],["Chiem Denen","Secretaris"], ["Tim Pennings","Penningmeester"],["Kyllian van Leeuwen","Commissaris Atletiek"], ["Ivar Vialard","Commissaris Intern"]],
+            "jaar": "2025/2026",
+            "foto": "bestuur_8lol.webp" 
+        },
+        {
             "naam": "Bestuur 7",
             "leden": [["Merel Blaauw","Voorzitter"],["Lou Bijman","Secretaris"], ["Sven van Weezep","Penningmeester"],["Xylander Parqui","Commissaris Atletiek"], ["Anne Hinrichs","Commissaris Intern"]],
             "jaar": "2025/2026",

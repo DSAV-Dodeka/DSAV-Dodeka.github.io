@@ -29,10 +29,10 @@
                         "prestatie": "11.5"
                     },
                     {
-                        "naam": "Jasper Rou",
-                        "datum": "2019-05-26",
-                        "plaats": "Grootebroek",
-                        "prestatie": "11.97"
+                        "naam": "Eric van Pijlen",
+                        "datum": "2026-06-17",
+                        "plaats": "Delft",
+                        "prestatie": "11.96"
                     }
                 ]
             },
@@ -215,6 +215,12 @@
                 "onderdeel": "10000m",
                 "prestaties": [
                     {
+                        "naam": "Ruben borgdorff",
+                        "datum": "2026-09-20",
+                        "plaats": "Delft",
+                        "prestatie": "41:16.56"
+                    },
+                    {
                         "naam": "Jasper Rou",
                         "datum": "2023-09-17",
                         "plaats": "Delft",
@@ -315,9 +321,9 @@
                     },
                     {
                         "naam": "Kyllian van Leeuwen",
-                        "datum": "2026-04-18",
-                        "plaats": "Apeldoorn",
-                        "prestatie": "10:55.18"
+                        "datum": "2026-06-14",
+                        "plaats": "Groningen",
+                        "prestatie": "10:51.11"
                     },
                     {
                         "naam": "Rik Palings",
@@ -395,6 +401,12 @@
                 "onderdeel": "Kogelstoten",
                 "prestaties": [
                     {
+                        "naam": "Mathieu van Opstal",
+                        "datum": "2026-09-19",
+                        "plaats": "Nijmegen",
+                        "prestatie": "13.24"
+                    },
+                    {
                         "naam": "Koen Stapel",
                         "datum": "2025-06-01",
                         "plaats": "Den Haag",
@@ -417,12 +429,6 @@
                         "datum": "2023-09-09",
                         "plaats": "Groningen",
                         "prestatie": "10.78"
-                    },
-                    {
-                        "naam": "Sven van Weezep",
-                        "datum": "2026-04-06",
-                        "plaats": "Delft",
-                        "prestatie": "10.31"
                     }
                 ]
             },
@@ -524,10 +530,10 @@
                         "prestatie": "26.99"
                     },
                     {
-                        "naam": "Lars Priester",
-                        "datum": "2026-07-05",
-                        "plaats": "Ede",
-                        "prestatie": "15.40"
+                        "naam": "Ruben borgdorff",
+                        "datum": "2026-09-19",
+                        "plaats": "Delft",
+                        "prestatie": "16.23"
                     }
                 ]
             },
@@ -588,16 +594,16 @@
                         "prestatie": "11.98"
                     },
                     {
+                        "naam": "Sven van Weezep",
+                        "datum": "2026-09-13",
+                        "plaats": "Delft",
+                        "prestatie": "11.87"
+                    },
+                    {
                         "naam": "Bart Groeneveld",
                         "datum": "2022-05-01",
                         "plaats": "Zeist",
                         "prestatie": "11.51"
-                    },
-                    {
-                        "naam": "Marien Sips",
-                        "datum": "2024-06-29",
-                        "plaats": "Delft",
-                        "prestatie": "11.38"
                     }
                 ]
             },
@@ -612,9 +618,9 @@
                     },
                     {
                         "naam": "Eric van Pijlen",
-                        "datum": "2024-06-29",
+                        "datum": "2026-09-20",
                         "plaats": "Delft",
-                        "prestatie": "3.75"
+                        "prestatie": "3.80"
                     },
                     {
                         "naam": "Eric Wolfrat",
@@ -629,9 +635,9 @@
                         "prestatie": "3.3"
                     },
                     {
-                        "naam": "Joris Gudde",
-                        "datum": "2026-06-13",
-                        "plaats": "Groningen",
+                        "naam": "Sven van Weezep",
+                        "datum": "2025-05-04",
+                        "plaats": "Delft",
                         "prestatie": "3.2"
                     }
                 ]
@@ -757,6 +763,12 @@
                         "prestatie": "05:51.57"
                     },
                     {
+                        "naam": "Jacco Rodewijk",
+                        "datum": "2026-10-02",
+                        "plaats": "Delft",
+                        "prestatie": "06:13.07"
+                    },
+                    {
                         "naam": "Tjeerd Commijs",
                         "datum": "2022-10-14",
                         "plaats": "Delft",
@@ -767,12 +779,6 @@
                         "datum": "2023-10-13",
                         "plaats": "Delft",
                         "prestatie": "06:21.85"
-                    },
-                    {
-                        "naam": "Tim Creusen",
-                        "datum": "2021-10-08",
-                        "plaats": "Delft",
-                        "prestatie": "06:47.49"
                     }
                 ]
             },
@@ -818,7 +824,7 @@
                         "naam": "Jules Dupont",
                         "datum": "2026-04-04",
                         "plaats": "Lille (FR)",
-                        "prestatie": "31:35.00"
+                        "prestatie": "31:35"
                     },
                     {
                         "naam": "Robert Meier",
@@ -834,15 +840,15 @@
                     },
                     {
                         "naam": "Jacco Rodewijk",
-                        "datum": "2026-07-05",
-                        "plaats": "Noordwijk",
-                        "prestatie": "34:31"
+                        "datum": "2026-09-05",
+                        "plaats": "Rotterdam",
+                        "prestatie": "32:55"
                     },
                     {
-                        "naam": "Kyllian van Leeuwen",
-                        "datum": "2024-11-02",
-                        "plaats": "Wageningen ",
-                        "prestatie": "35:56"
+                        "naam": "Tijmen Hoedjes",
+                        "datum": "2026-10-04",
+                        "plaats": "Utrecht",
+                        "prestatie": "33:49"
                     }
                 ]
             },
@@ -869,9 +875,9 @@
                     },
                     {
                         "naam": "Roy Peters",
-                        "datum": "2024-02-18",
-                        "plaats": "Brekel en Rodenrijs ",
-                        "prestatie": "01:39:13"
+                        "datum": "2026-09-20",
+                        "plaats": "Rotterdam",
+                        "prestatie": "01:23:25"
                     },
                     {
                         "naam": "Jacco Rodewijk",
@@ -901,6 +907,12 @@
                         "datum": "2024-04-14",
                         "plaats": "Rotterdam ",
                         "prestatie": "04:10:21"
+                    },
+                    {
+                        "naam": "Julius Knoester",
+                        "datum": "2026-09-05",
+                        "plaats": "Pauillac (FR)",
+                        "prestatie": "06:34:55"
                     }
                 ]
             }
@@ -1457,9 +1469,9 @@
                     },
                     {
                         "naam": "Saana Taal",
-                        "datum": "2023-09-17",
-                        "plaats": "Delft",
-                        "prestatie": "05:45.68"
+                        "datum": "2026-09-13",
+                        "plaats": "Groningen",
+                        "prestatie": "05:22.99"
                     }
                 ]
             },
@@ -1512,6 +1524,12 @@
                         "datum": "2024-06-09",
                         "plaats": "Eindhoven",
                         "prestatie": "19:23.87"
+                    },
+                    {
+                        "naam": "Saana Taal",
+                        "datum": "2026-07-17",
+                        "plaats": "Delft",
+                        "prestatie": "21:38.34"
                     }
                 ]
             },
@@ -1653,9 +1671,9 @@
                     },
                     {
                         "naam": "Sanne Diepen",
-                        "datum": "2024-06-08",
-                        "plaats": "Eindhoven",
-                        "prestatie": "10.64"
+                        "datum": "2026-05-02",
+                        "plaats": "Hengelo",
+                        "prestatie": "10.92"
                     },
                     {
                         "naam": "Saana Taal",
@@ -1676,9 +1694,9 @@
                 "prestaties": [
                     {
                         "naam": "Sanne Diepen",
-                        "datum": "2025-06-01",
-                        "plaats": "Den Haag",
-                        "prestatie": "39.41"
+                        "datum": "2026-05-31",
+                        "plaats": "Hoofddorp",
+                        "prestatie": "39.68"
                     },
                     {
                         "naam": "Robina Negenman",
@@ -1932,6 +1950,12 @@
                         "prestatie": "4107.00"
                     },
                     {
+                        "naam": "Sanne Diepen",
+                        "datum": "2026-05-03",
+                        "plaats": "Hengelo",
+                        "prestatie": "3663"
+                    },
+                    {
                         "naam": "Larissa Smit",
                         "datum": "2023-05-28",
                         "plaats": "Wageningen",
@@ -1966,6 +1990,12 @@
                 "onderdeel": "Biermijl",
                 "prestaties": [
                     {
+                        "naam": "Lou Bijman",
+                        "datum": "2026-10-02",
+                        "plaats": "Delft",
+                        "prestatie": "08:08.26"
+                    },
+                    {
                         "naam": "Beatrice Ferrari",
                         "datum": "2021-10-08",
                         "plaats": "Delft",
@@ -1988,12 +2018,6 @@
                         "datum": "2021-10-08",
                         "plaats": "Delft",
                         "prestatie": "13:13.30"
-                    },
-                    {
-                        "naam": "Pien Abbink",
-                        "datum": "2021-10-08",
-                        "plaats": "Delft",
-                        "prestatie": "15:19.57"
                     }
                 ]
             },
@@ -2022,6 +2046,12 @@
             {
                 "onderdeel": "Halve Marathon",
                 "prestaties": [
+                    {
+                        "naam": "Anna van Renesse",
+                        "datum": "2026-09-20",
+                        "plaats": "Rotterdam",
+                        "prestatie": "01:34:06"
+                    },
                     {
                         "naam": "Florence Estublier",
                         "datum": "2022-05-15",
