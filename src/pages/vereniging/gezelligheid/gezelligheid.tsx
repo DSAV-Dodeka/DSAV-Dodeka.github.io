@@ -4,7 +4,7 @@ import PageTitle from "../../../components/PageTitle";
 import biermijl from "$images/gezelligheid/biermijl.webp";
 import wageningen from "$images/gezelligheid/wageningen.webp";
 import gala1 from "$images/gezelligheid/gala1.webp";
-import zomerreis from "$images/gezelligheid/zomerreis.jpg";
+import zomerreis from "$images/gezelligheid/zomerreis.webp";
 
 function Gezelligheid() {
   return (
