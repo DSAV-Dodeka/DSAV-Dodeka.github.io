@@ -224,7 +224,7 @@
         },
 	    {
             "naam": "LSK Trappenloop",
-            "info": "",
+            "info": "Op vrijdag 11 december is het alweer tijd voor de LSK Trappenloop 2026. Dit jaar zal het na het succes van vorig jaar weer plaatsvinden in het prachtige gebouw voor Elektrotechniek, Wiskunde en Informatica (EWI). Op de verschillende onderdelen zal er uitgemaakt worden wie er met de gouden medaille naar huis gaat. Dit jaar kan er gekozen worden uit 10 verdiepingen, 20 verdiepingen en 4x5 verdiepingen estafette. Daarnaast komt er ook nog een werknemersklassement. Denk jij dat je het in je hebt om al deze trappen te overwinnen en jezelf te kronen tot DE Studentenkampioen van Nederland? Schrijf je dan snel in en zet je schrap voor de trap!",
 		    "leden": [
                 {
                     "naam": "Dagmar",
@@ -232,14 +232,14 @@
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Chiem",
+                    "naam": "Rob",
                     "functie": "Secretaris",
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Rob",
+                    "naam": "Sven",
                     "functie": "Penningmeester",
-                    "foto": "placeholder"
+                    "foto": "sven"
                 },
                 {
                     "naam": "Stan",
@@ -247,9 +247,9 @@
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Sven",
+                    "naam": "Ivar",
                     "functie": "QQ",
-                    "foto": "sven"
+                    "foto": "placeholder"
                 }
             ],
             "fotos": "nskmeerkamp"
@@ -390,9 +390,9 @@
             "info": "In februari is het weer zo ver, een groep van 30 Dodekaëders gaat skiën in de prachtige Alpen! Naast veel sneeuwpret zal Snowdeka ervoor zorgen dat er heel veel leuke activiteiten te doen zijn. We gaan met z’n allen lekker skiën, snowboarden en niet te vergeten feesten! Het wordt een drukke en gezellige week, zelfs zo leuk dat iedereen na de wispo eigenlijk nog een weekje vakantie nodig heeft. We zorgen er als commissie voor dat het voor iedereen een onvergetelijke reis zal hebben!",
 		    "leden": [
                 {
-                    "naam": "Joris",
+                    "naam": "Coen",
                     "functie": "Voorzitter",
-                    "foto": "joris"
+                    "foto": "placeholder"
                 },
                 {
                     "naam": "Marien",
@@ -400,17 +400,17 @@
                     "foto": "marien"
                 },
                 {
-                    "naam": "Maaike",
-                    "functie": "Commissaris Logistiek/Promo",
+                    "naam": "Lou",
+                    "functie": "Penningmeester",
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Marinka",
+                    "naam": "Tobias",
                     "functie": "Commissaris Activiteiten",
                     "foto": "placeholder"
                 },
                 {
-                    "naam": "Sven",
+                    "naam": "Ivar",
                     "functie": "QQ",
                     "foto": "placeholder"
                 }
