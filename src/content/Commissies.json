@@ -271,15 +271,15 @@
                 {
                     "naam": "Sven",
                     "functie": "Penningmeester/QQ",
-                    "foto": "placeholder"
+                    "foto": "sven"
                 },               
                 {
                     "naam": "Aron",
                     "functie": "Communnicaris toekomst",
-                    "foto": "placeholder"
+                    "foto": "aron"
                 },
                 {
-                    "naam": "Tim P",
+                    "naam": "Tim",
                     "functie": "Commissaris Belsessies",
                     "foto": "tim"
                 },
@@ -287,11 +287,6 @@
                     "naam": "Lou",
                     "functie": "Commissaris Werkacties",
                     "foto": "lou"
-                },
-                {
-                    "naam": "Mark",
-                    "functie": "Commissaris Activiteiten",
-                    "foto": "mark"
                 }
             ],
             "fotos": "quico"
