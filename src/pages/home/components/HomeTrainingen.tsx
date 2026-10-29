@@ -2,7 +2,7 @@ import "./HomeTrainingen.scss";
 import {
     Link
 } from "react-router";
-import trainingen from "$images/home/trainingen.jpg";
+import trainingen from "$images/home/trainingen.webp";
 
 function HomeTrainingen() {
   return (
