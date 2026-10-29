@@ -7,32 +7,32 @@
                 {
                     "naam": "Tijmen",
                     "functie": "Voorzitter",
-                    "foto": "comcom_tijmen"
+                    "foto": "tijmen"
                 },
                 {
                     "naam": "Jefry",
                     "functie": "Senior Backend Developer",
-                    "foto": "comcom_jefry"
+                    "foto": "jefry"
                 },
                 {
                     "naam": "Mei Chang",
                     "functie": "Junior Backend Developer",
-                    "foto": "comcom_meichang"
+                    "foto": "meichang"
                 },
                 {
                     "naam": "Anne-Wil",
                     "functie": "Junior Frontend Developer",
-                    "foto": "comcom_annewil"
+                    "foto": "annewil"
                 },
                 {
                     "naam": "Ymme",
                     "functie": "Junior Frontend Developer",
-                    "foto": "comcom_ymme"
+                    "foto": "ymme"
                 },
                 {
                     "naam": "Xylander",
                     "functie": "QomQommer",
-                    "foto": "comcom_xylander"
+                    "foto": "xylander"
                 }
             ],
             "fotos": "comcom"
@@ -76,7 +76,7 @@
         },
         {
             "naam": "BatCie",
-            "info": "Als BatCie organiseren wij de epische batavierenrace voor het mega gezellige Dodeka team. De bata vindt plaats op 24/25/30 mei 2024 in het oosten van het land (rond Nijmegen en Enschede). In dit prachtige weekend kan je hardlopen en feesten combineren wat supergaaf is. Met een team van 25 personen ren je in estafettevorm een afstand van in totaal 175 kilometer. Ons team draait om prestatie maar nog meer om gezelligheid. Omdat je met zijn allen in tentjes slaapt is het erg knus en ontmoet je mensen uit het hele land. Kortom, een topweekend dus! Voor bereikbaarheid zijn wij aanspreekbaar op trainingen en bereikbaar per fax op 121212.",
+            "info": "Als BatCie organiseren wij de epische batavierenrace voor het mega gezellige Dodeka team. De bata vindt plaats op 23-25 april 2027 in het oosten van het land (rond Nijmegen en Enschede). In dit prachtige weekend kan je hardlopen en feesten combineren wat supergaaf is. Met een team van 25 personen ren je in estafettevorm een afstand van in totaal 175 kilometer. Ons team draait om prestatie maar nog meer om gezelligheid. Omdat je met zijn allen in tentjes slaapt is het erg knus en ontmoet je mensen uit het hele land. Kortom, een topweekend dus! Voor bereikbaarheid zijn wij aanspreekbaar op trainingen en bereikbaar per fax op 121212.",
             "leden": [
                 {
                     "naam": "Luc",
@@ -113,7 +113,7 @@
         },
         {
             "naam": "Dies",
-            "info": "De diescommissie zorgt ervoor dat de zesde verjaardag van Dodeka er één gaat worden om nooit te vergeten. Wij voelen ons vereerd dat we tijdens de diesweek Arnold mogen helpen niet alleen een aardvarken te zijn maar ook een feestvarken! ",
+            "info": "De diescommissie zorgt ervoor dat de achtste verjaardag van Dodeka er één gaat worden om nooit te vergeten. Wij voelen ons vereerd dat we tijdens de diesweek Arnold mogen helpen niet alleen een aardvarken te zijn maar ook een feestvarken! ",
             "leden": [
                 {
                     "naam": "Sacha",
@@ -270,7 +270,7 @@
                 },
                 {
                     "naam": "Sven",
-                    "functie": "Penningmeester/QQ",
+                    "functie": "Penningmeester",
                     "foto": "sven"
                 },               
                 {
@@ -279,21 +279,21 @@
                     "foto": "aron"
                 },
                 {
-                    "naam": "Tim",
-                    "functie": "Commissaris Belsessies",
-                    "foto": "tim"
-                },
-                {
                     "naam": "Lou",
                     "functie": "Commissaris Werkacties",
                     "foto": "lou"
+                },
+                {
+                    "naam": "Tim",
+                    "functie": "QQ",
+                    "foto": "tim"
                 }
             ],
             "fotos": "quico"
         },
 	    {
             "naam": "RedaXII",
-            "info": "De RedaXII schrijft en publiceert de nieuwsbrieven en het jaarboek. Hiervoor verzamelen we stukjes en foto's en hierdoor blijven de leden geïnformeerd over wat er de afgelopen periode is gebeurd. Daarnaast is er voor iedereen die dat wil aan het einde van het jaar een jaarboek als samenvatting en herinnering van wat vast weer een geweldig jaar bij de vereniging wordt. Heb jij nu een goed idee of een leuk verhaal voor in de nieuwsbrief of het jaarboek, schroom dan niet om een van de RedaXII leden een keer aan te spreken of te mailen naar redaxii@dsavdodeka.nl. Mocht je een leuke quote hebben van iemand dan kan je die sturen naar Anne.", 
+            "info": "De RedaXII schrijft en publiceert de nieuwsbrieven en het jaarboek. Hiervoor verzamelen we stukjes en foto's en hierdoor blijven de leden geïnformeerd over wat er de afgelopen periode is gebeurd. Daarnaast is er voor iedereen die dat wil aan het einde van het jaar een jaarboek als samenvatting en herinnering van wat vast weer een geweldig jaar bij de vereniging wordt. Heb jij nu een goed idee of een leuk verhaal voor in de nieuwsbrief of het jaarboek, schroom dan niet om een van de RedaXII leden een keer aan te spreken of te mailen naar redaxii@dsavdodeka.nl. Mocht je een leuke quote hebben van iemand dan kan je die sturen naar Kyllian.", 
             "leden": [
                 {
                     "naam": "Aron",
@@ -345,7 +345,7 @@
         },
 	    {
             "naam": "SAX",
-            "info": "Yoooo! Wij zijn de SAX! Wij zullen dit jaar fantastische SAXiviteiten organiseren voor de leukste Dodekaëders. Met de SAX verzinnen we SAXiviteiten, plannen we ze in en dan is er natuurlijk nog de uitvoering van de plannen op de dag zelf. Jaarlijks worden er veel verschillende SAXiviteiten georganiseerd bijvoorbeeld een Sintenkerstennieuw diner, huizenrace en verschillende soorten uitjes. Bij het Sinterkerstennieuw diner, de eerste SAXiviteit die wij zullen organiseren, zal iedereen zijn kookkunsten kunnen laten zien (en heel veel wijn kunnen drinken). Dit jaar is de seSAXstraat, dus zit deze commissie vol Sesamstraat karakters. Dus misschien kom je wel Pinot, Bert&Ernie, Tommie, Oscar, Meneer Aart of Koekiemonster tegen! Elke borrel wordt een Saxbax getrokken, waarbij je ons ook zal herkennen (of doe gezellig mee): “SAX SAX SAX TREKT EEN BAX!” Bij de SAX komt enthousiasme en creativiteit samen in het organiseren van de SAXiviteiten en is het altijd gezellig!",
+            "info": "Yoooo! Wij zijn de SAX! Wij zullen dit jaar fantastische SAXiviteiten organiseren voor de leukste Dodekaëders. Met de SAX verzinnen we SAXiviteiten, plannen we ze in en dan is er natuurlijk nog de uitvoering van de plannen op de dag zelf. Jaarlijks worden er veel verschillende SAXiviteiten georganiseerd bijvoorbeeld een Sintenkerstennieuw diner, huizenrace en verschillende soorten uitjes. Bij het Sinterkerstennieuw diner, de eerste SAXiviteit die wij zullen organiseren, zal iedereen zijn kookkunsten kunnen laten zien (en heel veel wijn kunnen drinken). Elke borrel wordt een Saxbax getrokken, waarbij je ons ook zal herkennen (of doe gezellig mee): “SAX SAX SAX TREKT EEN BAX!” Bij de SAX komt enthousiasme en creativiteit samen in het organiseren van de SAXiviteiten en is het altijd gezellig!",
 		    "leden": [
                 {
                     "naam": "Ivar",
@@ -414,7 +414,7 @@
         },
         {
             "naam": "Startco",
-            "info": "De StartCommissie heeft als belangrijke taak dat alle nieuwe studenten de naam \"D.S.A.V. Dodeka\" kennen en dat ze weten waar onze prachtige vereniging voor staat. Dit doen we door tijdens de OWee epische activiteiten te organiseren waarbij de nieuwe studenten op een leuke manier kennis maken met de atletiek en de vereniging. Zo is de StartCo aanwezig op de parade, de infomarkt en de activiteitenmarkt en heeft de StartCo afgelopen OWee een biermijlestafette en een TrackFeest georganiseerd op de atletiekbaan. Na de OWee zorgt de StartCo ervoor dat alle nieuwe leden zich thuisvoelen op de vereniging door het leukste weekend van het jaar te organiseren: het StartWeekend. Hier kunnen nieuwe en oude leden elkaar (nog) beter leren kennen door samen leuke (en sportieve) activiteiten te doen en, natuurlijk, te partyen. Wordt D.S.A.V. Dodeka ook jouw startschot voor een geweldige studententijd?",
+            "info": "De StartCommissie heeft als belangrijke taak dat alle nieuwe studenten de naam \"D.S.A.V. Dodeka\" kennen en dat ze weten waar onze prachtige vereniging voor staat. Dit doen we door tijdens de OWee epische activiteiten te organiseren waarbij de nieuwe studenten op een leuke manier kennis maken met de atletiek en de vereniging. Zo is de StartCo aanwezig op de parade, de infomarkt en de activiteitenmarkt en heeft de StartCo afgelopen OWee een runclub georganiseerd rondom Delft. Na de OWee zorgt de StartCo ervoor dat alle nieuwe leden zich thuisvoelen op de vereniging doormiddel van mentorgroepjes en het leukste weekend van het jaar te organiseren: het StartWeekend. Hier kunnen nieuwe en oude leden elkaar (nog) beter leren kennen door samen leuke (en sportieve) activiteiten te doen en, natuurlijk, te partyen. Wordt D.S.A.V. Dodeka ook jouw startschot voor een geweldige studententijd?",
 		    "leden": [
                 {
                     "naam": "Wyna",
@@ -463,7 +463,7 @@
         },
         {
             "naam": "Sunrice",
-            "info": "Als SunRice organiseren wij de meest epische zomerreis voor Dodeka. Aangezien het zware studiejaar dan eindelijk afgelopen is, willen wij onze leden belonen met een heerlijke vakantie. In dit bijzondere lustrumjaar gaan wij de beste en leukste week van de zomer voor Dodekaëders neerzetten! Wij zorgen voor leuke activiteiten op de reis, een vette locatie en bovendien dat de reis soepel en stressvrij verloopt. Als trotse leden van Dodeka zijn we natuurlijke wel fan van sportieve trip, dus dat zal zeker niet ontbreken. Kortom, een perfecte reis dus! We zien jullie daar hè. Kusjes, de SunRice!",
+            "info": "Als SunRice organiseren wij de meest epische zomerreis voor Dodeka. Aangezien het zware studiejaar dan eindelijk afgelopen is, willen wij onze leden belonen met een heerlijke vakantie. Wij zorgen voor leuke activiteiten op de reis, een vette locatie en bovendien dat de reis soepel en stressvrij verloopt. Als trotse leden van Dodeka zijn we natuurlijke wel fan van sportieve trip, dus dat zal zeker niet ontbreken. Kortom, een perfecte reis dus! We zien jullie daar hè. Kusjes, de SunRice!",
 		    "leden": [
                 {
                     "naam": "Chiem",
@@ -500,7 +500,7 @@
         },
 	    {
             "naam": "Trainers",
-            "info": "Als commissie geven wij epische trainingen die we ook heel goed voorbereiden zodat we altijd weten wat we gaan doen. Wij zorgen ieder jaar voor tientallen fenomenale NSK-medailles door ons dag en nacht in te zetten. We hebben de ZeuS-bokaal twee keer op rij gewonnen dankzij de trainers. We hebben natuurlijk alleen maar dankzij onze commissie zoveel leden. Dit kunnen we bereiken doordat we met maar liefst 11 trainers zijn en daarmee de grootste commissie. Wij organiseren meer activiteiten dan alle andere commissies samen en onze activiteiten hebben de meeste inschrijvingen.",
+            "info": "Als commissie geven wij epische trainingen die we ook heel goed voorbereiden zodat we altijd weten wat we gaan doen. Wij zorgen ieder jaar voor tientallen fenomenale NSK-medailles door ons dag en nacht in te zetten. We hebben de ZeuS-bokaal vijf keer op rij gewonnen dankzij de trainers. We hebben natuurlijk alleen maar dankzij onze commissie zoveel leden. Dit kunnen we bereiken doordat we met maar liefst 12'vo trainers zijn en daarmee de grootste commissie. Wij organiseren meer activiteiten dan alle andere commissies samen en onze activiteiten hebben de meeste inschrijvingen.",
 		    "leden": [
                 {
                     "naam": "Jefry",
